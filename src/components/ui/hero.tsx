@@ -7,8 +7,10 @@ import { motion } from "framer-motion"
 export default function ShaderShowcase() {
   const containerRef = useRef<HTMLDivElement>(null)
   const [isActive, setIsActive] = useState(false)
+  const [isMounted, setIsMounted] = useState(false)
 
   useEffect(() => {
+    setIsMounted(true)
     const handleMouseEnter = () => setIsActive(true)
     const handleMouseLeave = () => setIsActive(false)
 
@@ -127,7 +129,7 @@ export default function ShaderShowcase() {
           </motion.svg>
 
           <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            {[...Array(6)].map((_, i) => (
+            {isMounted && [...Array(6)].map((_, i) => (
               <motion.div
                 key={i}
                 className="absolute w-1 h-1 bg-white/60 rounded-full"
@@ -155,22 +157,34 @@ export default function ShaderShowcase() {
         {/* Navigation */}
         <nav className="flex items-center space-x-2">
           <a
-            href="#"
+            href="#why"
             className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
           >
-            Features
+            Why
           </a>
           <a
-            href="#"
+            href="#work"
+            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
+          >
+            Work
+          </a>
+          <a
+            href="#packages"
             className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
           >
             Pricing
           </a>
           <a
-            href="#"
+            href="#process"
             className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
           >
-            Docs
+            Process
+          </a>
+          <a
+            href="#about"
+            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
+          >
+            About
           </a>
         </nav>
 
@@ -181,9 +195,9 @@ export default function ShaderShowcase() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
             </svg>
           </button>
-          <button className="px-6 py-2 rounded-full bg-white text-black font-normal text-xs transition-all duration-300 hover:bg-white/90 cursor-pointer h-8 flex items-center z-10">
-            Login
-          </button>
+          <a href="#contact" className="px-6 py-2 rounded-full bg-white text-black font-normal text-xs transition-all duration-300 hover:bg-white/90 cursor-pointer h-8 flex items-center z-10">
+            Contact
+          </a>
         </div>
       </header>
 
@@ -200,7 +214,7 @@ export default function ShaderShowcase() {
           >
             <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent rounded-full" />
             <span className="text-white/90 text-sm font-medium relative z-10 tracking-wide">
-              ✨ New Paper Shaders Experience
+              ✨ Premium Landing Pages for Plumbers
             </span>
           </motion.div>
 
@@ -228,10 +242,10 @@ export default function ShaderShowcase() {
                 ease: "linear",
               }}
             >
-              Beautiful
+              High Conversion
             </motion.span>
-            <span className="block font-black text-white drop-shadow-2xl">Shader</span>
-            <span className="block font-light text-white/80 italic">Experiences</span>
+            <span className="block font-black text-white drop-shadow-2xl">Plumbing</span>
+            <span className="block font-light text-white/80 italic">Landing Pages</span>
           </motion.h1>
 
           <motion.p
@@ -240,8 +254,7 @@ export default function ShaderShowcase() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
           >
-            Create stunning visual experiences with our advanced shader technology. Interactive lighting, smooth
-            animations, and beautiful effects that respond to your every move.
+            Stop wasting ad spend on pages that don't convert. I build specialized, high-performance landing pages that turn clicks into calls for plumbing businesses.
           </motion.p>
 
           <motion.div
@@ -250,20 +263,22 @@ export default function ShaderShowcase() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 1.0 }}
           >
-            <motion.button
+            <motion.a
+              href="#packages"
               className="px-10 py-4 rounded-full bg-transparent border-2 border-white/30 text-white font-medium text-sm transition-all duration-300 hover:bg-white/10 hover:border-cyan-400/50 hover:text-cyan-100 cursor-pointer backdrop-blur-sm"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              View Pricing
-            </motion.button>
-            <motion.button
+              View Packages
+            </motion.a>
+            <motion.a
+              href="#contact"
               className="px-10 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 text-white font-semibold text-sm transition-all duration-300 hover:from-cyan-400 hover:to-orange-400 cursor-pointer shadow-lg hover:shadow-xl"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              Get Started
-            </motion.button>
+              Book Free Call
+            </motion.a>
           </motion.div>
         </div>
       </main>
@@ -310,7 +325,7 @@ export default function ShaderShowcase() {
             </defs>
             <text className="text-sm fill-white/80 font-medium">
               <textPath href="#circle" startOffset="0%">
-                Loxt - Mozzi • 21st.dev is amazing • 21st.dev is amazing • Loxt-MoZzI •
+                Lead Gen Expert • conversion focused • JobFlow Landing Pages • scale your business •
               </textPath>
             </text>
           </motion.svg>
