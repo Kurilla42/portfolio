@@ -1,9 +1,11 @@
+
 import { Navigation } from '@/components/Navigation';
 import { AiMockupGenerator } from '@/components/AiMockupGenerator';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import Image from 'next/image';
 import Link from 'next/link';
+import ShaderShowcase from "@/components/ui/hero";
 import { 
   CheckCircle2, 
   ArrowRight, 
@@ -19,56 +21,10 @@ import {
 } from 'lucide-react';
 
 export default function Home() {
-  const heroImage = PlaceHolderImages.find(img => img.id === 'hero-bg');
-  
   return (
     <div className="min-h-screen bg-background">
-      <Navigation />
-
-      {/* Hero Section */}
-      <section className="section-padding overflow-hidden">
-        <div className="container-custom">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
-            <div className="space-y-8 animate-fade-in-up">
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/20 text-accent-foreground font-semibold text-sm">
-                <Zap className="w-4 h-4 fill-accent" />
-                Landing Pages for Home Services
-              </div>
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-primary leading-tight">
-                Get More Leads with High-Converting <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent-foreground">Plumbing Landing Pages</span>
-              </h1>
-              <p className="text-lg md:text-xl text-muted-foreground max-w-xl">
-                I help plumbing and home service businesses in the US double their conversion rates with high-performance, purpose-built landing pages.
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-lg rounded-full font-bold h-14 px-8 shadow-lg">
-                  <Link href="https://calendly.com" target="_blank">Book a Free 15-Minute Strategy Call</Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="text-lg rounded-full h-14 px-8 border-2 border-primary/10 hover:bg-primary/5 font-semibold">
-                  <Link href="#work">See Example Layouts</Link>
-                </Button>
-              </div>
-              <div className="flex items-center gap-6 pt-4 text-sm font-medium text-muted-foreground">
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-accent" /> Optimized for Google Ads</div>
-                <div className="flex items-center gap-2"><CheckCircle2 className="w-4 h-4 text-accent" /> Lightning Fast Loading</div>
-              </div>
-            </div>
-            <div className="relative group animate-fade-in-up" style={{ animationDelay: '200ms' }}>
-              <div className="absolute -inset-4 bg-accent/20 blur-3xl rounded-full opacity-50 group-hover:opacity-70 transition-opacity"></div>
-              <div className="relative rounded-[20px] overflow-hidden shadow-2xl border-8 border-white">
-                <Image 
-                  src={heroImage?.imageUrl || 'https://picsum.photos/seed/jobflow/1200/800'} 
-                  alt={heroImage?.description || 'JobFlow hero'} 
-                  width={1200}
-                  height={800}
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  data-ai-hint={heroImage?.imageHint || 'plumber professional'}
-                />
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Новый херо-компонент со встроенной навигацией */}
+      <ShaderShowcase />
 
       {/* Why Work With Me Section */}
       <section className="section-padding bg-white" id="why">
