@@ -1,3 +1,34 @@
 {
-  "placeholderImages": []
+  "placeholderImages": [
+    {
+      "id": "hero-bg",
+      "description": "Professional plumber at work with tools and clean workspace",
+      "imageUrl": "https://images.unsplash.com/photo-1659353588842-891391e6fcd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwbHVtYmVyJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc3MTM0OTIzMHww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "plumber professional"
+    },
+    {
+      "id": "case-study-1",
+      "description": "Clean bathroom installation showcase",
+      "imageUrl": "https://images.unsplash.com/photo-1654440122140-f1fc995ddb34?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw3fHxiYXRocm9vbSUyMHBsdW1iaW5nfGVufDB8fHx8MTc3MTQzNjg3OXww&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "bathroom plumbing"
+    },
+    {
+      "id": "case-study-2",
+      "description": "Emergency plumbing service truck in residential area",
+      "imageUrl": "https://images.unsplash.com/photo-1647964557482-9cdbb0bdf189?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8cGx1bWJpbmclMjB0cnVja3xlbnwwfHx8fDE3NzE0MzY4Nzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "plumbing truck"
+    },
+    {
+      "id": "case-study-3",
+      "description": "Smart home water leak detector installation",
+      "imageUrl": "https://images.unsplash.com/photo-1760440404220-3e285a4e335e?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw4fHx3YXRlciUyMHJlcGFpcnxlbnwwfHx8fDE3NzE0MzY4Nzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "water repair"
+    },
+    {
+      "id": "process-step",
+      "description": "Technician reviewing digital floor plan on tablet",
+      "imageUrl": "https://images.unsplash.com/photo-1669216368805-04a14268fc47?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxMHx8dGVjaG5pY2lhbiUyMHRhYmxldHxlbnwwfHx8fDE3NzE0MzY4Nzl8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      "imageHint": "technician tablet"
+    }
+  ]
 }
