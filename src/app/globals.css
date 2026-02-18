@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,6 +25,19 @@
     --input: 215 20% 88%;
     --ring: 219 65% 33%;
     --radius: 1.25rem;
+
+    /* Custom Lumina Variables */
+    --font-mono: "Inter", monospace;
+    --font-sans: "Inter", sans-serif;
+    --font-display: "Inter", serif;
+    --color-bg: #0a0a0a;
+    --color-text: #ffffff;
+    --color-text-muted: rgba(255, 255, 255, 0.7);
+    --color-text-light: rgba(255, 255, 255, 0.5);
+    --color-accent: #d4af37;
+    --font-size-mono: clamp(10px, 1.2vw, 12px);
+    --spacing-sm: 0.75rem;
+    --spacing-md: 1rem;
   }
   .dark {
     --background: 219 65% 5%;
@@ -70,4 +84,33 @@
 
 .container-custom {
   @apply max-w-[1200px] mx-auto px-6 md:px-10;
+}
+
+/* Lumina Interactive List Styles */
+.slider-wrapper .slide-nav-item {
+  @apply flex flex-col gap-2 cursor-pointer opacity-40 transition-all duration-300 min-w-[150px] md:min-w-[200px];
+}
+
+.slider-wrapper .slide-nav-item.active {
+  @apply opacity-100;
+}
+
+.slider-wrapper .slide-progress-line {
+  @apply w-full h-px bg-white/10 relative overflow-hidden;
+}
+
+.slider-wrapper .slide-progress-fill {
+  @apply absolute top-0 left-0 h-full bg-white w-0 transition-opacity duration-300;
+}
+
+.slider-wrapper .slide-nav-title {
+  @apply text-white text-[10px] uppercase tracking-widest font-mono;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

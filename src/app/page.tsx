@@ -1,8 +1,8 @@
 
-import { Navigation } from '@/components/Navigation';
 import { AiMockupGenerator } from '@/components/AiMockupGenerator';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
+import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import Image from 'next/image';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
@@ -23,42 +23,19 @@ import {
 export default function Home() {
   return (
     <div className="min-h-screen bg-background">
-      {/* Новый херо-компонент со встроенной навигацией */}
+      {/* Hero Section */}
       <ShaderShowcase />
 
-      {/* Why Work With Me Section */}
-      <section className="section-padding bg-white" id="why">
-        <div className="container-custom">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold text-primary">Why Specialized Landing Pages?</h2>
-            <p className="text-lg text-muted-foreground">
-              Most websites are digital brochures. My landing pages are conversion machines designed specifically for the plumbing business logic.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-3 gap-8">
-            <div className="bento-card bg-[#F8FAFC]">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
-                <Target className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Laser Focused Intent</h3>
-              <p className="text-muted-foreground">Every element is engineered to move the visitor toward a single goal: booking a call or requesting a quote.</p>
-            </div>
-            <div className="bento-card bg-[#F8FAFC]">
-              <div className="w-12 h-12 rounded-2xl bg-accent/20 flex items-center justify-center text-accent-foreground mb-6">
-                <TrendingUp className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Ad Spend Efficiency</h3>
-              <p className="text-muted-foreground">Stop wasting money on Google Ads that send traffic to your homepage. Increase your Quality Score and lower CPL.</p>
-            </div>
-            <div className="bento-card bg-[#F8FAFC]">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary mb-6">
-                <ShieldCheck className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold mb-3">Trust & Authority</h3>
-              <p className="text-muted-foreground">Deeply understand your customer's pain points. Clean design that reflects the professionalism of your crew.</p>
-            </div>
-          </div>
+      {/* Why Work With Me Section - Enhanced with Interactive List */}
+      <section className="bg-black" id="why">
+        <div className="container-custom pt-24 pb-12 text-center max-w-3xl mx-auto space-y-4">
+          <h2 className="text-3xl md:text-5xl font-bold text-white">Why Specialized Landing Pages?</h2>
+          <p className="text-lg text-white/60">
+            Most websites are digital brochures. My landing pages are conversion machines designed specifically for the plumbing business logic.
+          </p>
         </div>
+        
+        <LuminaInteractiveList />
       </section>
 
       {/* Case Studies / Mockups Section */}
