@@ -1,4 +1,3 @@
-
 "use client"
 import { useEffect, useRef, useState } from "react"
 import { MeshGradient, PulsingBorder } from "@paper-design/shaders-react"
@@ -91,7 +90,7 @@ export default function ShaderShowcase() {
         className="absolute inset-0 w-full h-full opacity-60"
         colors={["#000000", "#ffffff", "#06b6d4", "#f97316"]}
         speed={0.2}
-        wireframe={true}
+        wireframe="true"
       />
 
       <header className="relative z-20 flex items-center justify-between p-6">
