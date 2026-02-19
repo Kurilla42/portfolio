@@ -1,32 +1,32 @@
-
 import { AiMockupGenerator } from '@/components/AiMockupGenerator';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
+import ScrollExpandMedia from '@/components/ui/scroll-expansion-hero';
 import Image from 'next/image';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
 import { 
   CheckCircle2, 
   ArrowRight, 
-  Target, 
-  Zap, 
   ShieldCheck, 
-  TrendingUp,
-  Settings,
-  User,
   Phone,
   Layout,
+  Settings,
   MousePointerClick
 } from 'lucide-react';
 
 export default function Home() {
+  // Get image for the expansion component
+  const caseImage = PlaceHolderImages.find(img => img.id === 'case-study-1');
+  const bgImage = PlaceHolderImages.find(img => img.id === 'hero-bg');
+
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <ShaderShowcase />
 
-      {/* Why Work With Me Section - Enhanced with Interactive List */}
+      {/* Why Section */}
       <section className="bg-black" id="why">
         <div className="container-custom pt-24 pb-12 text-center max-w-3xl mx-auto space-y-4">
           <h2 className="text-3xl md:text-5xl font-bold text-white">Why Specialized Landing Pages?</h2>
@@ -38,43 +38,50 @@ export default function Home() {
         <LuminaInteractiveList />
       </section>
 
-      {/* Case Studies / Mockups Section */}
-      <section className="section-padding bg-background" id="work">
-        <div className="container-custom">
-          <div className="flex flex-col md:flex-row items-end justify-between gap-6 mb-16">
-            <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-bold text-primary">Case Study Mockups</h2>
-              <p className="text-lg text-muted-foreground max-w-2xl">
-                Explore these abstract visual representations of our high-converting layouts.
+      {/* Case Studies Section - Integrated ScrollExpansionHero */}
+      <section id="work">
+        <ScrollExpandMedia
+          mediaType="image"
+          mediaSrc={caseImage?.imageUrl || ''}
+          bgImageSrc={bgImage?.imageUrl || ''}
+          title="Case Studies"
+          date="Premium Projects"
+          scrollToExpand="Scroll to see our precision"
+          textBlend
+        >
+          <div className="max-w-4xl mx-auto space-y-16">
+            <div className="text-center space-y-6">
+              <h3 className="text-4xl md:text-6xl font-bold text-primary">Masterful Installations</h3>
+              <p className="text-xl text-muted-foreground leading-relaxed">
+                We don't just fix pipes; we architect water systems that last a lifetime. Our case studies represent the pinnacle of modern plumbing engineering and aesthetic integration.
               </p>
             </div>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-20">
-            {PlaceHolderImages.filter(img => img.id.startsWith('case-study')).map((study) => (
-              <div key={study.id} className="bento-card group p-0 overflow-hidden">
-                <div className="relative h-60 w-full">
-                  <Image 
-                    src={study.imageUrl} 
-                    alt={study.description} 
-                    fill 
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    data-ai-hint={study.imageHint}
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-lg font-bold mb-2">Emergency Service Layout</h3>
-                  <p className="text-sm text-muted-foreground">Designed for quick conversions on mobile for urgent repair requests.</p>
-                </div>
-              </div>
-            ))}
-          </div>
 
-          {/* AI Generator Integration */}
-          <div className="max-w-4xl mx-auto">
-            <AiMockupGenerator />
+            <div className="grid md:grid-cols-2 gap-8">
+              {PlaceHolderImages.filter(img => img.id.startsWith('case-study-')).map((study) => (
+                <div key={study.id} className="bento-card group p-0 overflow-hidden bg-white">
+                  <div className="relative h-64 w-full">
+                    <Image 
+                      src={study.imageUrl} 
+                      alt={study.description} 
+                      fill 
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="p-8">
+                    <h4 className="text-xl font-bold mb-3">Project: {study.description}</h4>
+                    <p className="text-muted-foreground">High-efficiency systems designed for reliability and ease of maintenance.</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* AI Generator Integration inside expanded area */}
+            <div className="pt-10">
+              <AiMockupGenerator />
+            </div>
           </div>
-        </div>
+        </ScrollExpandMedia>
       </section>
 
       {/* Packages Section */}
@@ -157,7 +164,6 @@ export default function Home() {
                   alt="Anton Kolesnikov" 
                   fill 
                   className="object-cover"
-                  data-ai-hint="professional headshot"
                 />
               </div>
             </div>
@@ -166,9 +172,6 @@ export default function Home() {
               <h2 className="text-3xl md:text-4xl font-bold text-primary">The Guy Behind the Pages</h2>
               <p className="text-lg text-muted-foreground leading-relaxed">
                 With over 5 years of experience in lead generation for local service businesses, I've seen firsthand how a single, well-crafted page can transform a business from struggling for leads to booking calls 24/7.
-              </p>
-              <p className="text-lg text-muted-foreground leading-relaxed">
-                I don't just "make websites." I build business tools that make money. I specialize in plumbing because I understand the emergency nature of the industry and how to build immediate trust with a visitor in under 3 seconds.
               </p>
               <div className="flex items-center gap-6 pt-4">
                 <div className="text-center">
@@ -190,20 +193,14 @@ export default function Home() {
       <section className="section-padding bg-background border-t" id="contact">
         <div className="container-custom">
           <div className="bento-card bg-gradient-to-br from-primary to-primary/90 text-primary-foreground p-12 text-center max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-accent/10 rounded-full blur-3xl -mr-32 -mt-32"></div>
             <div className="relative space-y-8">
               <h2 className="text-3xl md:text-5xl font-bold leading-tight">Ready to Double Your <br />Plumbing Leads?</h2>
-              <p className="text-xl opacity-80 max-w-2xl mx-auto">
-                Stop losing customers to competitors with better landing pages. Book your free 15-minute audit and strategy session today.
-              </p>
-              <div className="flex flex-col sm:flex-row justify-center gap-4 pt-4">
-                <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-xl rounded-full font-bold h-16 px-10 shadow-xl group">
-                  <Link href="https://calendly.com" target="_blank" className="flex items-center gap-2">
-                    Book My Free Call
-                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
-                </Button>
-              </div>
+              <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-accent/90 text-xl rounded-full font-bold h-16 px-10 shadow-xl group">
+                <Link href="https://calendly.com" target="_blank" className="flex items-center gap-2">
+                  Book My Free Call
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              </Button>
               <p className="text-sm opacity-60">Limited spots available for monthly intake.</p>
             </div>
           </div>
@@ -218,13 +215,6 @@ export default function Home() {
               <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white font-bold">J</div>
               <span className="font-bold text-lg text-primary">JobFlow Landing Pages</span>
             </div>
-            
-            <div className="flex gap-10 text-sm font-medium text-muted-foreground">
-              <Link href="#work" className="hover:text-primary transition-colors">Work</Link>
-              <Link href="#packages" className="hover:text-primary transition-colors">Pricing</Link>
-              <Link href="#about" className="hover:text-primary transition-colors">About</Link>
-            </div>
-
             <div className="text-sm text-muted-foreground">
               &copy; {new Date().getFullYear()} Anton Kolesnikov. All rights reserved.
             </div>
