@@ -113,19 +113,19 @@ export function LuminaInteractiveList() {
           title: 'Laser Focused Intent',
           description:
             'Every element is engineered to move the visitor toward a single goal: booking a call or requesting a quote.',
-          media: 'https://images.unsplash.com/photo-1659353588842-891391e6fcd4?q=80&w=1080',
+          media: 'https://i.ibb.co/4ZGtc09G/Whisk-89cb8686ddb9da498354cec156be16b4dr.png',
         },
         {
           title: 'Ad Spend Efficiency',
           description:
             'Stop wasting money on Google Ads that send traffic to your homepage. Increase your Quality Score and lower CPL.',
-          media: 'https://images.unsplash.com/photo-1654440122140-f1fc995ddb34?q=80&w=1080',
+          media: 'https://i.ibb.co/4ZGtc09G/Whisk-89cb8686ddb9da498354cec156be16b4dr.png',
         },
         {
           title: 'Trust & Authority',
           description:
             "Deeply understand your customer's pain points. Clean design that reflects the professionalism of your crew.",
-          media: 'https://images.unsplash.com/photo-1647964557482-9cdbb0bdf189?q=80&w=1080',
+          media: 'https://i.ibb.co/1t2yTNhv/Whisk-26ffea690ffcaab8e1f4de3f2a4f3d7bdr.png',
         },
       ];
 
