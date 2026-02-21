@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useRef } from 'react';
@@ -502,7 +501,7 @@ export function LuminaInteractiveList() {
   }, []);
 
   return (
-    <div className="slider-wrapper relative w-full h-[600px] md:h-[800px] overflow-hidden bg-black" ref={containerRef}>
+    <div className="slider-wrapper relative w-full h-[750px] md:h-[950px] overflow-hidden bg-black" ref={containerRef}>
       <canvas className="webgl-canvas absolute inset-0 w-full h-full"></canvas>
       <div className="absolute top-8 left-8 z-20 flex flex-col font-mono text-white/50 text-xs">
         <span id="slideNumber">01</span>

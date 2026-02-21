@@ -28,13 +28,6 @@ export default function Home() {
 
       {/* Why Section */}
       <section className="bg-black" id="why">
-        <div className="container-custom pt-24 pb-12 text-center max-w-3xl mx-auto space-y-4">
-          <h2 className="text-3xl md:text-5xl font-bold text-white">Why Specialized Landing Pages?</h2>
-          <p className="text-lg text-white/60">
-            Most websites are digital brochures. My landing pages are conversion machines designed specifically for the plumbing business logic.
-          </p>
-        </div>
-        
         <LuminaInteractiveList />
       </section>
 
