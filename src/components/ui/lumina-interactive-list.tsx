@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useRef } from 'react';
@@ -489,10 +490,12 @@ export function LuminaInteractiveList() {
       <canvas className="webgl-canvas absolute inset-0 w-full h-full"></canvas>
       
       {/* Top Blend Overlay - "Bleeding" transition from previous section */}
+      {/* Fixed to 2% height as requested */}
       <div 
-        className="absolute inset-x-0 top-0 h-40 z-30 pointer-events-none"
+        className="absolute inset-x-0 top-0 z-30 pointer-events-none"
         style={{
-          background: "linear-gradient(to bottom, #8bacaa 0%, rgba(139, 172, 170, 0.5) 40%, transparent 100%)"
+          height: '2%',
+          background: "linear-gradient(to bottom, #8bacaa 0%, transparent 100%)"
         }}
       />
 
