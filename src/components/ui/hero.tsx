@@ -5,18 +5,18 @@ import Image from "next/image";
 
 export default function ShaderShowcase() {
   return (
-    <div className="relative min-h-[300vh] bg-[#8bacaa]">
-      {/* Background Image - Fixed to stay behind scrolling text */}
-      <div className="fixed inset-0 z-0 h-screen w-full overflow-hidden bg-black">
+    <div className="relative min-h-[200vh] bg-[#8bacaa]">
+      {/* Background Image - Stays at the top */}
+      <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden bg-black">
         <Image
-          src="https://i.ibb.co/CpmwGV59/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.avif"
+          src="https://i.ibb.co/VpvhxdKN/Whisk-3864d9b3b89f45385ae4b571ebd64a53dr.jpg"
           alt="Hero Background"
           fill
           className="object-cover"
           priority
         />
         
-        {/* Seamless gradient to color #8bacaa */}
+        {/* Seamless gradient to color #8bacaa starting from bottom of image */}
         <div 
           className="absolute inset-x-0 bottom-0 h-[60%]" 
           style={{
@@ -39,10 +39,10 @@ export default function ShaderShowcase() {
         </nav>
       </header>
 
-      {/* Ladder Content Sections */}
+      {/* Ladder Content Sections - Distributed across 200vh */}
       <div className="relative z-10 container mx-auto px-6">
         
-        {/* Text 1 - Top Left */}
+        {/* Text 1 - Top Left (First Screen) */}
         <div className="h-screen flex items-center justify-start">
           <div className="max-w-3xl">
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none drop-shadow-2xl">
@@ -53,8 +53,8 @@ export default function ShaderShowcase() {
           </div>
         </div>
 
-        {/* Text 2 - Middle Right */}
-        <div className="h-screen flex items-center justify-end">
+        {/* Text 2 - Middle Right (Transition Area) */}
+        <div className="h-[50vh] flex items-center justify-end">
           <div className="max-w-3xl text-right">
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none drop-shadow-2xl">
               Precision<br />
@@ -63,8 +63,8 @@ export default function ShaderShowcase() {
           </div>
         </div>
 
-        {/* Text 3 - Bottom Left */}
-        <div className="h-screen flex items-center justify-start">
+        {/* Text 3 - Bottom Left (End of Section) */}
+        <div className="h-[50vh] flex items-center justify-start">
           <div className="max-w-3xl">
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none drop-shadow-2xl">
               Seamless<br />
