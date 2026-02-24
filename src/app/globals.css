@@ -85,7 +85,7 @@
   background-repeat: repeat;
   background-size: 300px;
   animation: noise-animation 0.4s steps(4) infinite;
-  opacity: 0.75;
+  opacity: 0.55;
   pointer-events: none;
   z-index: 9999;
 }
