@@ -14,22 +14,22 @@ export default function ShaderShowcase() {
 
   // Ускоренная анимация (уменьшены интервалы прогресса)
   // Основной заголовок (исчезает быстро)
-  const mainOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const mainX = useTransform(scrollYProgress, [0, 0.2], ["0%", "-50%"]);
-  const mainY = useTransform(scrollYProgress, [0, 0.2], ["0%", "10%"]);
-  const mainScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
+  const mainOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const mainX = useTransform(scrollYProgress, [0, 0.15], ["0%", "-50%"]);
+  const mainY = useTransform(scrollYProgress, [0, 0.15], ["0%", "10%"]);
+  const mainScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.8]);
 
-  // Test 1 (появляется быстрее, держится меньше)
-  const test1Opacity = useTransform(scrollYProgress, [0.15, 0.3, 0.5, 0.7], [0, 1, 1, 0]);
-  const test1X = useTransform(scrollYProgress, [0.15, 0.3, 0.5, 0.7], ["30vw", "0%", "0%", "30vw"]);
-  const test1Y = useTransform(scrollYProgress, [0.15, 0.3, 0.5, 0.7], ["0%", "0%", "0%", "15%"]);
-  const test1Scale = useTransform(scrollYProgress, [0.15, 0.3, 0.5, 0.7], [0.5, 1, 1, 0.7]);
+  // Test 1 (виден с самого начала справа, быстро выходит в центр)
+  const test1Opacity = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.6], [0.3, 1, 1, 0]);
+  const test1X = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.6], ["40vw", "0%", "0%", "30vw"]);
+  const test1Y = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.6], ["0%", "0%", "0%", "15%"]);
+  const test1Scale = useTransform(scrollYProgress, [0, 0.2, 0.45, 0.6], [0.5, 1, 1, 0.7]);
 
-  // Test 2 (финальный текст)
-  const test2Opacity = useTransform(scrollYProgress, [0.65, 0.85, 1.0], [0, 1, 1]);
-  const test2X = useTransform(scrollYProgress, [0.65, 0.85, 1.0], ["-30vw", "-10vw", "0%"]);
-  const test2Y = useTransform(scrollYProgress, [0.65, 0.85, 1.0], ["10%", "5%", "0%"]);
-  const test2Scale = useTransform(scrollYProgress, [0.65, 0.85, 1.0], [0.3, 0.7, 1]);
+  // Test 2 (финальный текст, виден издалека слева)
+  const test2Opacity = useTransform(scrollYProgress, [0, 0.55, 0.75, 1.0], [0.1, 0.3, 1, 1]);
+  const test2X = useTransform(scrollYProgress, [0, 0.55, 0.75, 1.0], ["-40vw", "-30vw", "-10vw", "0%"]);
+  const test2Y = useTransform(scrollYProgress, [0, 0.55, 0.75, 1.0], ["10%", "5%", "5%", "0%"]);
+  const test2Scale = useTransform(scrollYProgress, [0, 0.55, 0.75, 1.0], [0.3, 0.4, 0.7, 1]);
 
   // Параллакс фона
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
@@ -38,7 +38,7 @@ export default function ShaderShowcase() {
   const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "3%"]);
 
   return (
-    <div ref={containerRef} className="h-[300vh] bg-black relative">
+    <div ref={containerRef} className="h-[300vh] bg-[#8bacaa] relative">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-black">
         
         {/* Background Image with Parallax */}
@@ -47,7 +47,7 @@ export default function ShaderShowcase() {
           className="absolute inset-0 z-0 h-[120%]"
         >
           <Image
-            src="https://i.ibb.co/VpvhxdKN/Whisk-3864d9b3b89f45385ae4b571ebd64a53dr.jpg"
+            src="https://i.ibb.co/CpmwGV59/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.avif"
             alt="Hero Background"
             fill
             className="object-cover"
@@ -56,9 +56,9 @@ export default function ShaderShowcase() {
           
           {/* Бесшовный градиент к цвету #8bacaa */}
           <div 
-            className="absolute inset-x-0 bottom-0 h-[50%]" 
+            className="absolute inset-x-0 bottom-0 h-[60%]" 
             style={{
-              background: "linear-gradient(to bottom, transparent 0%, rgba(139, 172, 170, 0.6) 50%, #8bacaa 100%)"
+              background: "linear-gradient(to bottom, transparent 0%, rgba(139, 172, 170, 0.4) 40%, #8bacaa 100%)"
             }}
           />
         </motion.div>
@@ -143,9 +143,6 @@ export default function ShaderShowcase() {
           <div className="w-px h-12 bg-gradient-to-b from-accent to-transparent" />
         </motion.div>
       </div>
-      
-      {/* Убрана черная линия через замену фона контейнера перехода */}
-      <div className="h-[10vh] bg-[#8bacaa] w-full" />
     </div>
   );
 }
