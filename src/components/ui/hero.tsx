@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import Image from "next/image";
 import { motion, useScroll, useTransform } from "framer-motion";
 
@@ -12,43 +12,62 @@ export default function ShaderShowcase() {
     offset: ["start start", "end end"],
   });
 
-  // Анимация для основного заголовка (уходит влево и вниз)
-  // На 800vh скролл идет дольше, поэтому сокращаем диапазон до 0.3
-  const mainOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
-  const mainX = useTransform(scrollYProgress, [0, 0.25], ["0%", "-100%"]);
-  const mainY = useTransform(scrollYProgress, [0, 0.25], ["0%", "20%"]);
-  const mainScale = useTransform(scrollYProgress, [0, 0.25], [1, 0.5]);
+  // Замедленная анимация текста (теперь нужно больше скролла для каждого этапа)
+  // Основной заголовок (исчезает к 20% скролла)
+  const mainOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const mainX = useTransform(scrollYProgress, [0, 0.15], ["0%", "-50%"]);
+  const mainY = useTransform(scrollYProgress, [0, 0.15], ["0%", "10%"]);
+  const mainScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.8]);
 
-  // Анимация для "Test 1" (приходит справа, потом уходит вправо-вниз)
-  const test1Opacity = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.7], [0.5, 1, 1, 0]);
-  const test1X = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.7], ["38vw", "0%", "0%", "100%"]);
-  const test1Y = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.7], ["0%", "0%", "0%", "20%"]);
-  const test1Scale = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.7], [0.3, 1, 1, 0.5]);
+  // Test 1 (появляется к 25%, держится до 45%, исчезает к 60%)
+  const test1Opacity = useTransform(scrollYProgress, [0.1, 0.25, 0.45, 0.6], [0, 1, 1, 0]);
+  const test1X = useTransform(scrollYProgress, [0.1, 0.25, 0.45, 0.6], ["30vw", "0%", "0%", "30vw"]);
+  const test1Y = useTransform(scrollYProgress, [0.1, 0.25, 0.45, 0.6], ["0%", "0%", "0%", "15%"]);
+  const test1Scale = useTransform(scrollYProgress, [0.1, 0.25, 0.45, 0.6], [0.5, 1, 1, 0.7]);
 
-  // Анимация для "Test 2" (появляется слева вдали, потом выходит в центр)
-  const test2Opacity = useTransform(scrollYProgress, [0.5, 0.75, 1], [0, 0.5, 1]);
-  const test2X = useTransform(scrollYProgress, [0.5, 0.75, 1], ["-50vw", "-38vw", "0%"]);
-  const test2Scale = useTransform(scrollYProgress, [0.5, 0.75, 1], [0.1, 0.3, 1]);
+  // Test 2 (появляется к 65%, становится ярким к 85%)
+  const test2Opacity = useTransform(scrollYProgress, [0.55, 0.75, 0.9], [0, 0.5, 1]);
+  const test2X = useTransform(scrollYProgress, [0.55, 0.75, 0.9], ["-30vw", "-15vw", "0%"]);
+  const test2Y = useTransform(scrollYProgress, [0.55, 0.75, 0.9], ["10%", "5%", "0%"]);
+  const test2Scale = useTransform(scrollYProgress, [0.55, 0.75, 0.9], [0.3, 0.6, 1]);
+
+  // Параллакс фона: картинка поднимается вверх, пока мы скроллим вниз
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+  
+  // Эффект погружения кадра вниз
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
 
   return (
     <div ref={containerRef} className="h-[800vh] bg-black relative">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+        
+        {/* Background Image with Parallax */}
+        <motion.div 
+          style={{ y: bgY }}
+          className="absolute inset-0 z-0 h-[120%]"
+        >
           <Image
             src="https://i.ibb.co/VpvhxdKN/Whisk-3864d9b3b89f45385ae4b571ebd64a53dr.jpg"
             alt="Hero Background"
             fill
-            className="object-cover opacity-60"
+            className="object-cover"
             priority
           />
-          {/* Усиленный градиент к черному в нижней части */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
-        </div>
+          
+          {/* Градиентный переход внизу картинки к цвету #8bacaa */}
+          <div 
+            className="absolute inset-x-0 bottom-0 h-[40%]" 
+            style={{
+              background: "linear-gradient(to bottom, transparent, rgba(139, 172, 170, 0.4) 40%, #8bacaa 100%)"
+            }}
+          />
+        </motion.div>
 
-        {/* Text Layers */}
-        <div className="relative z-10 w-full max-w-7xl px-6 text-center">
+        {/* Text Layers Container with "sinking" effect */}
+        <motion.div 
+          style={{ y: contentY }}
+          className="relative z-10 w-full max-w-7xl px-6 text-center h-full"
+        >
           
           {/* Main Title Layer */}
           <motion.div
@@ -60,7 +79,7 @@ export default function ShaderShowcase() {
             }}
             className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none">
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none drop-shadow-2xl">
               High Conversion<br />
               <span className="text-accent">Plumbing</span><br />
               Landing Pages
@@ -77,8 +96,8 @@ export default function ShaderShowcase() {
             }}
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
           >
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter">
-              Test 1
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter drop-shadow-2xl">
+              Precision Engineering
             </h2>
           </motion.div>
 
@@ -87,16 +106,17 @@ export default function ShaderShowcase() {
             style={{
               opacity: test2Opacity,
               x: test2X,
+              y: test2Y,
               scale: test2Scale,
             }}
             className="absolute inset-0 flex items-center justify-center pointer-events-none"
           >
-            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter">
-              Test 2
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter drop-shadow-2xl">
+              Seamless Flow
             </h2>
           </motion.div>
 
-        </div>
+        </motion.div>
 
         {/* Static Header Overlays */}
         <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-6">
@@ -119,10 +139,13 @@ export default function ShaderShowcase() {
           transition={{ delay: 1, duration: 1 }}
           className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40"
         >
-          <span className="text-[10px] uppercase tracking-widest font-bold">Scroll to Explore</span>
+          <span className="text-[10px] uppercase tracking-widest font-bold">Explore the Depth</span>
           <div className="w-px h-12 bg-gradient-to-b from-accent to-transparent" />
         </motion.div>
       </div>
+      
+      {/* Bottom transition space to ensure color match with next section */}
+      <div className="h-[20vh] bg-[#8bacaa] w-full" />
     </div>
   );
 }

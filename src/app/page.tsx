@@ -1,3 +1,4 @@
+
 import { AiMockupGenerator } from '@/components/AiMockupGenerator';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
@@ -26,8 +27,8 @@ export default function Home() {
       {/* Hero Section */}
       <ShaderShowcase />
 
-      {/* Why Section */}
-      <section className="bg-black" id="why">
+      {/* Why Section - Starting with the transition color #8bacaa */}
+      <section className="bg-[#8bacaa]" id="why">
         <LuminaInteractiveList />
       </section>
 
