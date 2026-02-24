@@ -13,24 +13,25 @@ export default function ShaderShowcase() {
   });
 
   // Анимация для основного заголовка (уходит влево и вниз)
-  const mainOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const mainX = useTransform(scrollYProgress, [0, 0.4], ["0%", "-100%"]);
-  const mainY = useTransform(scrollYProgress, [0, 0.4], ["0%", "20%"]);
-  const mainScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.5]);
+  // На 800vh скролл идет дольше, поэтому сокращаем диапазон до 0.3
+  const mainOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+  const mainX = useTransform(scrollYProgress, [0, 0.25], ["0%", "-100%"]);
+  const mainY = useTransform(scrollYProgress, [0, 0.25], ["0%", "20%"]);
+  const mainScale = useTransform(scrollYProgress, [0, 0.25], [1, 0.5]);
 
   // Анимация для "Test 1" (приходит справа, потом уходит вправо-вниз)
-  const test1Opacity = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.5, 1, 1, 0]);
-  const test1X = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], ["38vw", "0%", "0%", "100%"]);
-  const test1Y = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], ["0%", "0%", "0%", "20%"]);
-  const test1Scale = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.3, 1, 1, 0.5]);
+  const test1Opacity = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.7], [0.5, 1, 1, 0]);
+  const test1X = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.7], ["38vw", "0%", "0%", "100%"]);
+  const test1Y = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.7], ["0%", "0%", "0%", "20%"]);
+  const test1Scale = useTransform(scrollYProgress, [0, 0.25, 0.5, 0.7], [0.3, 1, 1, 0.5]);
 
   // Анимация для "Test 2" (появляется слева вдали, потом выходит в центр)
-  const test2Opacity = useTransform(scrollYProgress, [0.4, 0.6, 1], [0, 0.5, 1]);
-  const test2X = useTransform(scrollYProgress, [0.4, 0.6, 1], ["-50vw", "-38vw", "0%"]);
-  const test2Scale = useTransform(scrollYProgress, [0.4, 0.6, 1], [0.1, 0.3, 1]);
+  const test2Opacity = useTransform(scrollYProgress, [0.5, 0.75, 1], [0, 0.5, 1]);
+  const test2X = useTransform(scrollYProgress, [0.5, 0.75, 1], ["-50vw", "-38vw", "0%"]);
+  const test2Scale = useTransform(scrollYProgress, [0.5, 0.75, 1], [0.1, 0.3, 1]);
 
   return (
-    <div ref={containerRef} className="h-[400vh] bg-black relative">
+    <div ref={containerRef} className="h-[800vh] bg-black relative">
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
@@ -41,7 +42,9 @@ export default function ShaderShowcase() {
             className="object-cover opacity-60"
             priority
           />
+          {/* Усиленный градиент к черному в нижней части */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black via-transparent to-transparent opacity-80" />
         </div>
 
         {/* Text Layers */}
