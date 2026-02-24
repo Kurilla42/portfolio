@@ -503,6 +503,10 @@ export function LuminaInteractiveList() {
   return (
     <div className="slider-wrapper relative w-full h-[750px] md:h-[950px] overflow-hidden bg-black" ref={containerRef}>
       <canvas className="webgl-canvas absolute inset-0 w-full h-full"></canvas>
+      
+      {/* Vignette Overlay */}
+      <div className="absolute inset-0 pointer-events-none z-10 shadow-[inset_0_0_150px_rgba(0,0,0,1)] bg-[radial-gradient(circle,_transparent_30%,_rgba(0,0,0,0.8)_100%)]"></div>
+
       <div className="absolute top-8 left-8 z-20 flex flex-col font-mono text-white/50 text-xs">
         <span id="slideNumber">01</span>
         <div className="w-px h-8 bg-white/20 my-2 self-center"></div>
