@@ -1,328 +1,125 @@
-"use client"
-import { useEffect, useRef, useState } from "react"
-import { MeshGradient, PulsingBorder } from "@paper-design/shaders-react"
-import { motion } from "framer-motion"
+
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 export default function ShaderShowcase() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const [isActive, setIsActive] = useState(false)
-  const [isMounted, setIsMounted] = useState(false)
+  const containerRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+  });
 
-  useEffect(() => {
-    setIsMounted(true)
-    const handleMouseEnter = () => setIsActive(true)
-    const handleMouseLeave = () => setIsActive(false)
+  // Анимация для основного заголовка (уходит влево и вниз)
+  const mainOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const mainX = useTransform(scrollYProgress, [0, 0.4], ["0%", "-100%"]);
+  const mainY = useTransform(scrollYProgress, [0, 0.4], ["0%", "20%"]);
+  const mainScale = useTransform(scrollYProgress, [0, 0.4], [1, 0.5]);
 
-    const container = containerRef.current
-    if (container) {
-      container.addEventListener("mouseenter", handleMouseEnter)
-      container.addEventListener("mouseleave", handleMouseLeave)
-    }
+  // Анимация для "Test 1" (приходит справа, потом уходит вправо-вниз)
+  const test1Opacity = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.5, 1, 1, 0]);
+  const test1X = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], ["38vw", "0%", "0%", "100%"]);
+  const test1Y = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], ["0%", "0%", "0%", "20%"]);
+  const test1Scale = useTransform(scrollYProgress, [0, 0.4, 0.6, 1], [0.3, 1, 1, 0.5]);
 
-    return () => {
-      if (container) {
-        container.removeEventListener("mouseenter", handleMouseEnter)
-        container.removeEventListener("mouseleave", handleMouseLeave)
-      }
-    }
-  }, [])
+  // Анимация для "Test 2" (появляется слева вдали, потом выходит в центр)
+  const test2Opacity = useTransform(scrollYProgress, [0.4, 0.6, 1], [0, 0.5, 1]);
+  const test2X = useTransform(scrollYProgress, [0.4, 0.6, 1], ["-50vw", "-38vw", "0%"]);
+  const test2Scale = useTransform(scrollYProgress, [0.4, 0.6, 1], [0.1, 0.3, 1]);
 
   return (
-    <div ref={containerRef} className="min-h-screen bg-black relative overflow-hidden">
-      <svg className="absolute inset-0 w-0 h-0">
-        <defs>
-          <filter id="glass-effect" x="-50%" y="-50%" width="200%" height="200%">
-            <feTurbulence baseFrequency="0.005" numOctaves="1" result="noise" />
-            <feDisplacementMap in="SourceGraphic" in2="noise" scale="0.3" />
-            <feColorMatrix
-              type="matrix"
-              values="1 0 0 0 0.02
-                      0 1 0 0 0.02
-                      0 0 1 0 0.05
-                      0 0 0 0.9 0"
-              result="tint"
-            />
-          </filter>
-          <filter id="gooey-filter" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur" />
-            <feColorMatrix
-              in="blur"
-              mode="matrix"
-              values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 19 -9"
-              result="gooey"
-            />
-            <feComposite in="SourceGraphic" in2="gooey" operator="atop" />
-          </filter>
-          <filter id="logo-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="3" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-          <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#06b6d4" />
-            <stop offset="50%" stopColor="#ffffff" />
-            <stop offset="100%" stopColor="#0891b2" />
-          </linearGradient>
-          <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="30%" stopColor="#06b6d4" />
-            <stop offset="70%" stopColor="#f97316" />
-            <stop offset="100%" stopColor="#ffffff" />
-          </linearGradient>
-          <filter id="text-glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-      </svg>
-
-      <MeshGradient
-        className="absolute inset-0 w-full h-full"
-        colors={["#000000", "#06b6d4", "#0891b2", "#164e63", "#f97316"]}
-        speed={0.3}
-      />
-      <MeshGradient
-        className="absolute inset-0 w-full h-full opacity-60"
-        colors={["#000000", "#ffffff", "#06b6d4", "#f97316"]}
-        speed={0.2}
-        wireframe="true"
-      />
-
-      <header className="relative z-20 flex items-center justify-between p-6">
-        <motion.div
-          className="flex items-center group cursor-pointer"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        >
-          <motion.svg
-            fill="currentColor"
-            viewBox="0 0 100 100"
-            xmlns="http://www.w3.org/2000/svg"
-            aria-hidden="true"
-            className="size-10 text-white group-hover:drop-shadow-lg transition-all duration-300"
-            style={{
-              filter: "url(#logo-glow)",
-            }}
-            whileHover={{
-              fill: "url(#logo-gradient)",
-              rotate: [0, -2, 2, 0],
-              transition: {
-                fill: { duration: 0.3 },
-                rotate: { duration: 0.6, ease: "easeInOut" },
-              },
-            }}
-          >
-            <motion.path
-              d="M15 85V15h12l18 35 18-35h12v70h-12V35L45 70h-10L17 35v50H15z"
-              initial={{ pathLength: 1 }}
-              whileHover={{
-                pathLength: [1, 0, 1],
-                transition: { duration: 1.2, ease: "easeInOut" },
-              }}
-            />
-          </motion.svg>
-
-          <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none">
-            {isMounted && [...Array(6)].map((_, i) => (
-              <motion.div
-                key={i}
-                className="absolute w-1 h-1 bg-white/60 rounded-full"
-                style={{
-                  left: `${20 + Math.random() * 60}%`,
-                  top: `${20 + Math.random() * 60}%`,
-                }}
-                animate={{
-                  y: [-10, -20, -10],
-                  x: [0, Math.random() * 20 - 10, 0],
-                  opacity: [0, 1, 0],
-                  scale: [0, 1, 0],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Number.POSITIVE_INFINITY,
-                  delay: i * 0.2,
-                  ease: "easeInOut",
-                }}
-              />
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Navigation */}
-        <nav className="flex items-center space-x-2">
-          <a
-            href="#why"
-            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
-          >
-            Why
-          </a>
-          <a
-            href="#work"
-            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
-          >
-            Work
-          </a>
-          <a
-            href="#packages"
-            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
-          >
-            Pricing
-          </a>
-          <a
-            href="#process"
-            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
-          >
-            Process
-          </a>
-          <a
-            href="#about"
-            className="text-white/80 hover:text-white text-xs font-light px-3 py-2 rounded-full hover:bg-white/10 transition-all duration-200"
-          >
-            About
-          </a>
-        </nav>
-
-        {/* Login Button Group with Arrow */}
-        <div id="gooey-btn" className="relative flex items-center group" style={{ filter: "url(#gooey-filter)" }}>
-          <button className="absolute right-0 px-2.5 py-2 rounded-full bg-white text-black font-normal text-xs transition-all duration-300 hover:bg-white/90 cursor-pointer h-8 flex items-center justify-center -translate-x-10 group-hover:-translate-x-19 z-0">
-            <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 17L17 7M17 7H7M17 7V17" />
-            </svg>
-          </button>
-          <a href="#contact" className="px-6 py-2 rounded-full bg-white text-black font-normal text-xs transition-all duration-300 hover:bg-white/90 cursor-pointer h-8 flex items-center z-10">
-            Contact
-          </a>
-        </div>
-      </header>
-
-      <main className="absolute bottom-8 left-8 z-20 max-w-2xl">
-        <div className="text-left">
-          <motion.div
-            className="inline-flex items-center px-4 py-2 rounded-full bg-white/5 backdrop-blur-sm mb-6 relative border border-white/10"
-            style={{
-              filter: "url(#glass-effect)",
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-          >
-            <div className="absolute top-0 left-1 right-1 h-px bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent rounded-full" />
-            <span className="text-white/90 text-sm font-medium relative z-10 tracking-wide">
-              ✨ Premium Landing Pages for Plumbers
-            </span>
-          </motion.div>
-
-          <motion.h1
-            className="text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-none tracking-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-          >
-            <motion.span
-              className="block font-light text-white/90 text-4xl md:text-5xl lg:text-6xl mb-2 tracking-wider"
-              style={{
-                background: "linear-gradient(135deg, #ffffff 0%, #06b6d4 30%, #f97316 70%, #ffffff 100%)",
-                WebkitBackgroundClip: "text",
-                WebkitTextFillColor: "transparent",
-                backgroundClip: "text",
-                filter: "url(#text-glow)",
-              }}
-              animate={{
-                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-              }}
-              transition={{
-                duration: 8,
-                repeat: Number.POSITIVE_INFINITY,
-                ease: "linear",
-              }}
-            >
-              High Conversion
-            </motion.span>
-            <span className="block font-black text-white drop-shadow-2xl">Plumbing</span>
-            <span className="block font-light text-white/80 italic">Landing Pages</span>
-          </motion.h1>
-
-          <motion.p
-            className="text-lg font-light text-white/70 mb-8 leading-relaxed max-w-xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            Stop wasting ad spend on pages that don't convert. I build specialized, high-performance landing pages that turn clicks into calls for plumbing businesses.
-          </motion.p>
-
-          <motion.div
-            className="flex items-center gap-6 flex-wrap"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.0 }}
-          >
-            <motion.a
-              href="#packages"
-              className="px-10 py-4 rounded-full bg-transparent border-2 border-white/30 text-white font-medium text-sm transition-all duration-300 hover:bg-white/10 hover:border-cyan-400/50 hover:text-cyan-100 cursor-pointer backdrop-blur-sm"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              View Packages
-            </motion.a>
-            <motion.a
-              href="#contact"
-              className="px-10 py-4 rounded-full bg-gradient-to-r from-cyan-500 to-orange-500 text-white font-semibold text-sm transition-all duration-300 hover:from-cyan-400 hover:to-orange-400 cursor-pointer shadow-lg hover:shadow-xl"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Book Free Call
-            </motion.a>
-          </motion.div>
-        </div>
-      </main>
-
-      <div className="absolute bottom-8 right-8 z-30">
-        <div className="relative w-20 h-20 flex items-center justify-center">
-          <PulsingBorder
-            colors={["#06b6d4", "#0891b2", "#f97316", "#00FF88", "#FFD700", "#FF6B35", "#ffffff"]}
-            speed={1.5}
-            roundness={1}
-            thickness={0.1}
-            softness={0.2}
-            intensity={5}
-            scale={0.65}
-            rotation={0}
-            style={{
-              width: "60px",
-              height: "60px",
-              borderRadius: "50%",
-            }}
+    <div ref={containerRef} className="h-[400vh] bg-black relative">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://i.ibb.co/VpvhxdKN/Whisk-3864d9b3b89f45385ae4b571ebd64a53dr.jpg"
+            alt="Hero Background"
+            fill
+            className="object-cover opacity-60"
+            priority
           />
-
-          {/* Rotating Text Around the Pulsing Border */}
-          <motion.svg
-            className="absolute inset-0 w-full h-full"
-            viewBox="0 0 100 100"
-            animate={{ rotate: 360 }}
-            transition={{
-              duration: 20,
-              repeat: Number.POSITIVE_INFINITY,
-              ease: "linear",
-            }}
-            style={{ transform: "scale(1.6)" }}
-          >
-            <defs>
-              <path id="circle" d="M 50, 50 m -38, 0 a 38,38 0 1,1 76,0 a 38,38 0 1,1 -76,0" />
-            </defs>
-            <text className="text-sm fill-white/80 font-medium">
-              <textPath href="#circle" startOffset="0%">
-                Lead Gen Expert • conversion focused • JobFlow Landing Pages • scale your business •
-              </textPath>
-            </text>
-          </motion.svg>
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
         </div>
+
+        {/* Text Layers */}
+        <div className="relative z-10 w-full max-w-7xl px-6 text-center">
+          
+          {/* Main Title Layer */}
+          <motion.div
+            style={{
+              opacity: mainOpacity,
+              x: mainX,
+              y: mainY,
+              scale: mainScale,
+            }}
+            className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none"
+          >
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter leading-none">
+              High Conversion<br />
+              <span className="text-accent">Plumbing</span><br />
+              Landing Pages
+            </h1>
+          </motion.div>
+
+          {/* Test 1 Layer */}
+          <motion.div
+            style={{
+              opacity: test1Opacity,
+              x: test1X,
+              y: test1Y,
+              scale: test1Scale,
+            }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter">
+              Test 1
+            </h2>
+          </motion.div>
+
+          {/* Test 2 Layer */}
+          <motion.div
+            style={{
+              opacity: test2Opacity,
+              x: test2X,
+              scale: test2Scale,
+            }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none"
+          >
+            <h2 className="text-5xl md:text-7xl lg:text-8xl font-black text-white uppercase tracking-tighter">
+              Test 2
+            </h2>
+          </motion.div>
+
+        </div>
+
+        {/* Static Header Overlays */}
+        <header className="absolute top-0 left-0 right-0 z-50 flex items-center justify-between p-6">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-lg">J</div>
+            <span className="font-bold text-white tracking-tighter uppercase">Anton Kolesnikov</span>
+          </div>
+          <nav className="hidden md:flex items-center space-x-6">
+            <a href="#why" className="text-white/60 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">Why</a>
+            <a href="#work" className="text-white/60 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">Work</a>
+            <a href="#packages" className="text-white/60 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">Pricing</a>
+            <a href="#contact" className="px-5 py-2 rounded-full bg-accent text-accent-foreground font-bold text-xs uppercase tracking-widest hover:bg-white transition-all">Contact</a>
+          </nav>
+        </header>
+
+        {/* Scroll Indicator */}
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1, duration: 1 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40"
+        >
+          <span className="text-[10px] uppercase tracking-widest font-bold">Scroll to Explore</span>
+          <div className="w-px h-12 bg-gradient-to-b from-accent to-transparent" />
+        </motion.div>
       </div>
     </div>
-  )
+  );
 }
