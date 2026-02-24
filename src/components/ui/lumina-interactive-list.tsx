@@ -481,7 +481,7 @@ export function LuminaInteractiveList() {
   }, []);
 
   return (
-    <div className="slider-wrapper relative w-full h-[750px] md:h-[950px] overflow-hidden bg-black" ref={containerRef}>
+    <div className="slider-wrapper relative w-full h-[850px] md:h-[1100px] overflow-hidden bg-[#8bacaa]" ref={containerRef}>
       <canvas className="webgl-canvas absolute inset-0 w-full h-full"></canvas>
       
       {/* Blurred Vignette Overlay */}
