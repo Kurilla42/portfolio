@@ -70,26 +70,6 @@ export function LuminaInteractiveList() {
           glassBubbleClarity: 1.0,
           glassEdgeGlow: 1.0,
           glassLiquidFlow: 1.0,
-          frostIntensity: 1.5,
-          frostCrystalSize: 1.0,
-          frostIceCoverage: 1.0,
-          frostTemperature: 1.0,
-          frostTexture: 1.0,
-          rippleFrequency: 25.0,
-          rippleAmplitude: 0.08,
-          rippleWaveSpeed: 1.0,
-          rippleRippleCount: 1.0,
-          rippleDecay: 1.0,
-          plasmaIntensity: 1.2,
-          plasmaSpeed: 0.8,
-          plasmaEnergyIntensity: 0.4,
-          plasmaContrastBoost: 0.3,
-          plasmaTurbulence: 1.0,
-          timeshiftDistortion: 1.6,
-          timeshiftBlur: 1.5,
-          timeshiftFlow: 1.4,
-          timeshiftChromatic: 1.5,
-          timeshiftTurbulence: 1.4,
         },
       };
 
@@ -504,8 +484,14 @@ export function LuminaInteractiveList() {
     <div className="slider-wrapper relative w-full h-[750px] md:h-[950px] overflow-hidden bg-black" ref={containerRef}>
       <canvas className="webgl-canvas absolute inset-0 w-full h-full"></canvas>
       
-      {/* Vignette Overlay */}
-      <div className="absolute inset-0 pointer-events-none z-10 shadow-[inset_0_0_150px_rgba(0,0,0,1)] bg-[radial-gradient(circle,_transparent_30%,_rgba(0,0,0,0.8)_100%)]"></div>
+      {/* Blurred Vignette Overlay */}
+      <div 
+        className="absolute inset-0 pointer-events-none z-10 backdrop-blur-xl"
+        style={{
+          maskImage: 'radial-gradient(circle, transparent 30%, black 100%)',
+          WebkitMaskImage: 'radial-gradient(circle, transparent 30%, black 100%)'
+        }}
+      ></div>
 
       <div className="absolute top-8 left-8 z-20 flex flex-col font-mono text-white/50 text-xs">
         <span id="slideNumber">01</span>
