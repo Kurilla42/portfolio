@@ -7,7 +7,7 @@ export default function ShaderShowcase() {
   return (
     <div className="relative min-h-[200vh] bg-[#8bacaa]">
       {/* Background Image - Stays at the top */}
-      <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden bg-black">
+      <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden bg-[#8bacaa]">
         <Image
           src="https://i.ibb.co/VpvhxdKN/Whisk-3864d9b3b89f45385ae4b571ebd64a53dr.jpg"
           alt="Hero Background"
@@ -16,11 +16,11 @@ export default function ShaderShowcase() {
           priority
         />
         
-        {/* Seamless gradient to color #8bacaa starting from bottom of image */}
+        {/* Seamless gradient - expanded height and more stops for perfect smoothness */}
         <div 
-          className="absolute inset-x-0 bottom-0 h-[60%]" 
+          className="absolute inset-0 z-10" 
           style={{
-            background: "linear-gradient(to bottom, transparent 0%, rgba(139, 172, 170, 0.4) 40%, #8bacaa 100%)"
+            background: "linear-gradient(to bottom, transparent 0%, transparent 40%, rgba(139, 172, 170, 0.2) 55%, rgba(139, 172, 170, 0.6) 75%, rgba(139, 172, 170, 0.9) 90%, #8bacaa 100%)"
           }}
         />
       </div>
@@ -40,7 +40,7 @@ export default function ShaderShowcase() {
       </header>
 
       {/* Ladder Content Sections - Distributed across 200vh */}
-      <div className="relative z-10 container mx-auto px-6">
+      <div className="relative z-20 container mx-auto px-6">
         
         {/* Text 1 - Top Left (First Screen) */}
         <div className="h-screen flex items-center justify-start">
