@@ -12,34 +12,34 @@ export default function ShaderShowcase() {
     offset: ["start start", "end end"],
   });
 
-  // Замедленная анимация текста (теперь нужно больше скролла для каждого этапа)
-  // Основной заголовок (исчезает к 20% скролла)
-  const mainOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const mainX = useTransform(scrollYProgress, [0, 0.15], ["0%", "-50%"]);
-  const mainY = useTransform(scrollYProgress, [0, 0.15], ["0%", "10%"]);
-  const mainScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.8]);
+  // Ускоренная анимация (уменьшены интервалы прогресса)
+  // Основной заголовок (исчезает быстро)
+  const mainOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const mainX = useTransform(scrollYProgress, [0, 0.2], ["0%", "-50%"]);
+  const mainY = useTransform(scrollYProgress, [0, 0.2], ["0%", "10%"]);
+  const mainScale = useTransform(scrollYProgress, [0, 0.2], [1, 0.8]);
 
-  // Test 1 (появляется к 25%, держится до 45%, исчезает к 60%)
-  const test1Opacity = useTransform(scrollYProgress, [0.1, 0.25, 0.45, 0.6], [0, 1, 1, 0]);
-  const test1X = useTransform(scrollYProgress, [0.1, 0.25, 0.45, 0.6], ["30vw", "0%", "0%", "30vw"]);
-  const test1Y = useTransform(scrollYProgress, [0.1, 0.25, 0.45, 0.6], ["0%", "0%", "0%", "15%"]);
-  const test1Scale = useTransform(scrollYProgress, [0.1, 0.25, 0.45, 0.6], [0.5, 1, 1, 0.7]);
+  // Test 1 (появляется быстрее, держится меньше)
+  const test1Opacity = useTransform(scrollYProgress, [0.15, 0.3, 0.5, 0.7], [0, 1, 1, 0]);
+  const test1X = useTransform(scrollYProgress, [0.15, 0.3, 0.5, 0.7], ["30vw", "0%", "0%", "30vw"]);
+  const test1Y = useTransform(scrollYProgress, [0.15, 0.3, 0.5, 0.7], ["0%", "0%", "0%", "15%"]);
+  const test1Scale = useTransform(scrollYProgress, [0.15, 0.3, 0.5, 0.7], [0.5, 1, 1, 0.7]);
 
-  // Test 2 (появляется к 65%, становится ярким к 85%)
-  const test2Opacity = useTransform(scrollYProgress, [0.55, 0.75, 0.9], [0, 0.5, 1]);
-  const test2X = useTransform(scrollYProgress, [0.55, 0.75, 0.9], ["-30vw", "-15vw", "0%"]);
-  const test2Y = useTransform(scrollYProgress, [0.55, 0.75, 0.9], ["10%", "5%", "0%"]);
-  const test2Scale = useTransform(scrollYProgress, [0.55, 0.75, 0.9], [0.3, 0.6, 1]);
+  // Test 2 (финальный текст)
+  const test2Opacity = useTransform(scrollYProgress, [0.65, 0.85, 1.0], [0, 1, 1]);
+  const test2X = useTransform(scrollYProgress, [0.65, 0.85, 1.0], ["-30vw", "-10vw", "0%"]);
+  const test2Y = useTransform(scrollYProgress, [0.65, 0.85, 1.0], ["10%", "5%", "0%"]);
+  const test2Scale = useTransform(scrollYProgress, [0.65, 0.85, 1.0], [0.3, 0.7, 1]);
 
-  // Параллакс фона: картинка поднимается вверх, пока мы скроллим вниз
-  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "-25%"]);
+  // Параллакс фона
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "-20%"]);
   
-  // Эффект погружения кадра вниз
-  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "5%"]);
+  // Эффект погружения кадра
+  const contentY = useTransform(scrollYProgress, [0, 1], ["0%", "3%"]);
 
   return (
-    <div ref={containerRef} className="h-[800vh] bg-black relative">
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+    <div ref={containerRef} className="h-[300vh] bg-black relative">
+      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center bg-black">
         
         {/* Background Image with Parallax */}
         <motion.div 
@@ -54,16 +54,16 @@ export default function ShaderShowcase() {
             priority
           />
           
-          {/* Градиентный переход внизу картинки к цвету #8bacaa */}
+          {/* Бесшовный градиент к цвету #8bacaa */}
           <div 
-            className="absolute inset-x-0 bottom-0 h-[40%]" 
+            className="absolute inset-x-0 bottom-0 h-[50%]" 
             style={{
-              background: "linear-gradient(to bottom, transparent, rgba(139, 172, 170, 0.4) 40%, #8bacaa 100%)"
+              background: "linear-gradient(to bottom, transparent 0%, rgba(139, 172, 170, 0.6) 50%, #8bacaa 100%)"
             }}
           />
         </motion.div>
 
-        {/* Text Layers Container with "sinking" effect */}
+        {/* Text Layers Container */}
         <motion.div 
           style={{ y: contentY }}
           className="relative z-10 w-full max-w-7xl px-6 text-center h-full"
@@ -144,8 +144,8 @@ export default function ShaderShowcase() {
         </motion.div>
       </div>
       
-      {/* Bottom transition space to ensure color match with next section */}
-      <div className="h-[20vh] bg-[#8bacaa] w-full" />
+      {/* Убрана черная линия через замену фона контейнера перехода */}
+      <div className="h-[10vh] bg-[#8bacaa] w-full" />
     </div>
   );
 }
