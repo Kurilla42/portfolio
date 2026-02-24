@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useEffect, useRef } from 'react';
@@ -484,6 +485,14 @@ export function LuminaInteractiveList() {
     <div className="slider-wrapper relative w-full h-[850px] md:h-[1100px] overflow-hidden bg-[#8bacaa]" ref={containerRef}>
       <canvas className="webgl-canvas absolute inset-0 w-full h-full"></canvas>
       
+      {/* Top Blend Overlay - "Bleeding" transition from previous section */}
+      <div 
+        className="absolute inset-x-0 top-0 h-40 z-30 pointer-events-none"
+        style={{
+          background: "linear-gradient(to bottom, #8bacaa 0%, rgba(139, 172, 170, 0.5) 40%, transparent 100%)"
+        }}
+      />
+
       {/* Blurred Vignette Overlay */}
       <div 
         className="absolute inset-0 pointer-events-none z-10 backdrop-blur-xl"
