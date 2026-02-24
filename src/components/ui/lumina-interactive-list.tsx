@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useEffect, useRef } from 'react';
@@ -123,7 +122,11 @@ export function LuminaInteractiveList() {
                 vec2 s = uResolution / textureSize;
                 float scale = max(s.x, s.y);
                 vec2 scaledSize = textureSize * scale;
-                vec2 offset = (uResolution - scaledSize) * 0.5;
+                // Align to top vertically, center horizontally. This ensures bottom is cropped.
+                vec2 offset = vec2(
+                    (uResolution.x - scaledSize.x) * 0.5,
+                    uResolution.y - scaledSize.y
+                );
                 return (uv * uResolution - offset) / scaledSize;
             }
             
@@ -482,7 +485,7 @@ export function LuminaInteractiveList() {
   }, []);
 
   return (
-    <div className="slider-wrapper relative w-full h-[850px] md:h-[1100px] overflow-hidden bg-[#8bacaa]" ref={containerRef}>
+    <div className="slider-wrapper relative w-full h-screen overflow-hidden bg-[#8bacaa]" ref={containerRef}>
       <canvas className="webgl-canvas absolute inset-0 w-full h-full"></canvas>
       
       {/* Top Blend Overlay - "Bleeding" transition from previous section */}
