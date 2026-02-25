@@ -62,15 +62,16 @@ export function ProcessSection() {
   return (
     <div ref={containerRef} className="relative h-[450vh] bg-[#e5e5e3]">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="container-custom w-full max-w-[1440px] grid md:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-center">
+        {/* Используем w-full без жесткого ограничения container-custom для максимального размаха */}
+        <div className="w-full px-6 md:px-12 lg:px-16 grid md:grid-cols-2 gap-0 items-center">
           
-          {/* Левая часть - Огромный заголовок */}
-          <div className="relative z-10">
+          {/* Левая часть - Огромный заголовок, прижат влево */}
+          <div className="relative z-10 pr-12">
             <span className="text-[12px] font-bold uppercase tracking-[0.3em] text-muted-foreground block mb-6">
               [OUR METHODOLOGY]
             </span>
             <div className="relative">
-              <h2 className="text-[90px] md:text-[140px] lg:text-[180px] font-black text-[#1a1a1a] uppercase tracking-tighter leading-[0.8] flex flex-col">
+              <h2 className="text-[90px] md:text-[140px] lg:text-[180px] xl:text-[210px] font-black text-[#1a1a1a] uppercase tracking-tighter leading-[0.8] flex flex-col">
                 <span>THE</span>
                 <span className="relative">
                   STEPS
@@ -86,8 +87,8 @@ export function ProcessSection() {
             </p>
           </div>
 
-          {/* Правая часть - Накапливающийся список */}
-          <div className="relative h-[85vh] flex flex-col justify-center overflow-hidden pr-4">
+          {/* Правая часть - Накапливающийся список, занимает ровно 50% и уходит вправо */}
+          <div className="relative h-[85vh] flex flex-col justify-center overflow-hidden pl-12 border-l border-black/5">
             <motion.div 
               style={{ y: listY }}
               className="flex flex-col gap-10 md:gap-14"
@@ -112,7 +113,7 @@ export function ProcessSection() {
                   >
                     <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
                       <div className="flex gap-6 items-start">
-                        <span className="text-4xl md:text-6xl font-black text-black/5 leading-none pt-1">
+                        <span className="text-4xl md:text-6xl lg:text-7xl font-black text-black/5 leading-none pt-1">
                           {step.number}
                         </span>
                         <div className="space-y-4">
@@ -122,14 +123,14 @@ export function ProcessSection() {
                             </h3>
                             <p className="text-[11px] font-bold tracking-widest text-muted-foreground">{step.location}</p>
                           </div>
-                          <p className="max-w-md text-sm md:text-base text-muted-foreground leading-relaxed font-medium">
+                          <p className="max-w-lg text-sm md:text-base text-muted-foreground leading-relaxed font-medium">
                             {step.description}
                           </p>
                         </div>
                       </div>
 
                       <div className="flex flex-col items-start md:items-end gap-2 shrink-0 pt-2">
-                        <span className="text-2xl md:text-3xl font-black text-[#1a1a1a] uppercase tracking-tighter">
+                        <span className="text-2xl md:text-3xl lg:text-4xl font-black text-[#1a1a1a] uppercase tracking-tighter">
                           {step.period}
                         </span>
                         <div className="flex items-center gap-2">
