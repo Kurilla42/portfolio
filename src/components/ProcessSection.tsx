@@ -49,9 +49,9 @@ export function ProcessSection() {
   });
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-[#e5e5e3]">
+    <div ref={containerRef} className="relative h-[300vh] bg-[#e5e5e3]">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="container-custom w-full grid md:grid-cols-[1fr_1.2fr] gap-10 md:gap-20 items-center">
+        <div className="container-custom w-full grid md:grid-cols-[1fr_1.2fr] gap-12 md:gap-24 items-center">
           
           {/* Левая часть - Заголовок (фиксированный) */}
           <div className="space-y-2">
@@ -68,48 +68,46 @@ export function ProcessSection() {
             </p>
           </div>
 
-          {/* Правая часть - Пункты (появляются при скролле) */}
-          <div className="relative h-[60vh] flex flex-col justify-center">
+          {/* Правая часть - Список пунктов (накапливаются при скролле) */}
+          <div className="flex flex-col gap-6 md:gap-8">
             {steps.map((step, index) => {
-              // Рассчитываем появление каждого шага
-              const start = index * 0.25;
-              const end = (index + 1) * 0.25;
+              // Настраиваем появление: каждый шаг начинает появляться после предыдущего
+              // Первый шаг виден почти сразу (0.05), последний заканчивает появление к 0.8
+              const start = index * 0.2;
+              const end = start + 0.15;
               
               // eslint-disable-next-line react-hooks/rules-of-hooks
-              const opacity = useTransform(scrollYProgress, [start, start + 0.1, end - 0.05, end], [0, 1, 1, index === steps.length - 1 ? 1 : 0]);
+              const opacity = useTransform(scrollYProgress, [start, end], [0, 1]);
               // eslint-disable-next-line react-hooks/rules-of-hooks
-              const y = useTransform(scrollYProgress, [start, start + 0.1], [50, 0]);
+              const y = useTransform(scrollYProgress, [start, end], [20, 0]);
 
               return (
                 <motion.div
                   key={index}
                   style={{ opacity, y }}
-                  className={cn(
-                    "absolute inset-0 flex flex-col justify-center border-b border-black/10 pb-8",
-                    index !== 0 && "pointer-events-none"
-                  )}
+                  className="border-b border-black/10 pb-6 md:pb-8 last:border-0"
                 >
-                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-                    <div className="space-y-4">
+                  <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div className="space-y-3">
                       <div className="flex items-center gap-4">
-                        <span className="text-4xl font-black text-black/20">{step.number}</span>
+                        <span className="text-3xl font-black text-black/10">{step.number}</span>
                         <div className="space-y-0.5">
-                          <h3 className="text-4xl md:text-5xl font-black text-[#1a1a1a] uppercase tracking-tighter leading-none">
+                          <h3 className="text-3xl md:text-4xl font-black text-[#1a1a1a] uppercase tracking-tighter leading-none">
                             {step.title}
                           </h3>
-                          <p className="text-[10px] font-bold tracking-widest text-muted-foreground">{step.location}</p>
+                          <p className="text-[9px] font-bold tracking-widest text-muted-foreground">{step.location}</p>
                         </div>
                       </div>
-                      <p className="max-w-md text-sm text-muted-foreground leading-relaxed font-medium">
+                      <p className="max-w-md text-xs text-muted-foreground leading-relaxed font-medium">
                         {step.description}
                       </p>
                     </div>
 
-                    <div className="flex flex-col items-start md:items-end gap-1">
-                      <span className="text-2xl font-black text-[#1a1a1a] uppercase tracking-tighter">{step.period}</span>
+                    <div className="flex flex-col items-start md:items-end gap-1 shrink-0">
+                      <span className="text-xl font-black text-[#1a1a1a] uppercase tracking-tighter">{step.period}</span>
                       <div className="flex items-center gap-2">
-                        <div className="w-2 h-2 rounded-full bg-[#88ac66] animate-pulse" />
-                        <span className="text-[10px] font-bold uppercase tracking-widest text-[#1a1a1a]">{step.status}</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-[#88ac66]" />
+                        <span className="text-[9px] font-bold uppercase tracking-widest text-[#1a1a1a]">{step.status}</span>
                       </div>
                     </div>
                   </div>
