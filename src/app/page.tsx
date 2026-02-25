@@ -3,16 +3,13 @@ import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
+import { ProcessSection } from '@/components/ProcessSection';
 import Image from 'next/image';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
 import { 
   CheckCircle2, 
-  ArrowRight, 
-  Phone,
-  Layout,
-  Settings,
-  MousePointerClick
+  ArrowRight
 } from 'lucide-react';
 
 export default function Home() {
@@ -21,13 +18,18 @@ export default function Home() {
       {/* Hero Section */}
       <ShaderShowcase />
 
-      {/* Why Section - Starting with the transition color #8bacaa */}
+      {/* Why Section */}
       <section className="bg-[#8bacaa]" id="why">
         <LuminaInteractiveList />
       </section>
 
-      {/* New Reference Section */}
+      {/* Showcase Section */}
       <SiteShowcaseSection />
+
+      {/* Process Section - Replaces the old static one */}
+      <section id="process">
+        <ProcessSection />
+      </section>
 
       {/* Packages Section */}
       <section className="section-padding bg-white" id="packages">
@@ -63,36 +65,6 @@ export default function Home() {
               </ul>
               <Button className="w-full rounded-full h-12 bg-accent text-accent-foreground hover:bg-accent/90 font-bold text-lg shadow-md">Choose Growth</Button>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section className="section-padding bg-primary text-primary-foreground" id="process">
-        <div className="container-custom">
-          <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="text-3xl md:text-4xl font-bold">My Simple 4-Step Process</h2>
-            <p className="text-lg opacity-80">
-              From initial call to live page in as little as 10 business days.
-            </p>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            {[
-              { icon: Phone, title: "1. Discovery", text: "Free 15-min strategy call to understand your business goals and service areas." },
-              { icon: Layout, title: "2. Wireframing", text: "I map out the conversion flow and write copy that speaks directly to your customers." },
-              { icon: Settings, title: "3. Build & Design", text: "High-performance coding with a focus on speed, accessibility, and clean aesthetics." },
-              { icon: MousePointerClick, title: "4. Launch & Optimize", text: "Integrate with your CRM and launch. We monitor initial traffic for performance." }
-            ].map((step, idx) => (
-              <div key={idx} className="space-y-6">
-                <div className="w-14 h-14 rounded-full bg-white/10 flex items-center justify-center text-accent">
-                  <step.icon className="w-7 h-7" />
-                </div>
-                <div className="space-y-2">
-                  <h3 className="text-xl font-bold">{step.title}</h3>
-                  <p className="text-sm opacity-70 leading-relaxed">{step.text}</p>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
