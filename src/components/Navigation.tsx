@@ -1,9 +1,10 @@
+
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 
 export function Navigation() {
   const navLinks = [
-    { name: 'Work', href: '#work' },
+    { name: 'Why', href: '#why' },
     { name: 'Packages', href: '#packages' },
     { name: 'Process', href: '#process' },
     { name: 'About', href: '#about' },

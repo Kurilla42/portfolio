@@ -33,7 +33,6 @@ export default function ShaderShowcase() {
         </div>
         <nav className="hidden md:flex items-center space-x-6">
           <a href="#why" className="text-white/60 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">Why</a>
-          <a href="#work" className="text-white/60 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">Work</a>
           <a href="#packages" className="text-white/60 hover:text-white text-xs font-bold uppercase tracking-widest transition-colors">Pricing</a>
           <a href="#contact" className="px-5 py-2 rounded-full bg-accent text-accent-foreground font-bold text-xs uppercase tracking-widest hover:bg-white transition-all">Contact</a>
         </nav>

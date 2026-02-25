@@ -1,9 +1,7 @@
 
-import { AiMockupGenerator } from '@/components/AiMockupGenerator';
 import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
-import ScrollExpandMedia from '@/components/ui/scroll-expansion-hero';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -11,7 +9,6 @@ import ShaderShowcase from "@/components/ui/hero";
 import { 
   CheckCircle2, 
   ArrowRight, 
-  ShieldCheck, 
   Phone,
   Layout,
   Settings,
@@ -19,10 +16,6 @@ import {
 } from 'lucide-react';
 
 export default function Home() {
-  // Get image for the expansion component
-  const caseImage = PlaceHolderImages.find(img => img.id === 'case-study-1');
-  const bgImage = PlaceHolderImages.find(img => img.id === 'hero-bg');
-
   return (
     <div className="min-h-screen bg-background">
       {/* Hero Section */}
@@ -31,52 +24,6 @@ export default function Home() {
       {/* Why Section - Starting with the transition color #8bacaa */}
       <section className="bg-[#8bacaa]" id="why">
         <LuminaInteractiveList />
-      </section>
-
-      {/* Case Studies Section - Integrated ScrollExpansionHero */}
-      <section id="work">
-        <ScrollExpandMedia
-          mediaType="image"
-          mediaSrc={caseImage?.imageUrl || ''}
-          bgImageSrc={bgImage?.imageUrl || ''}
-          title="Case Studies"
-          date="Premium Projects"
-          scrollToExpand="Scroll to see our precision"
-          textBlend
-        >
-          <div className="max-w-4xl mx-auto space-y-16">
-            <div className="text-center space-y-6">
-              <h3 className="text-4xl md:text-6xl font-bold text-primary">Masterful Installations</h3>
-              <p className="text-xl text-muted-foreground leading-relaxed">
-                We don't just fix pipes; we architect water systems that last a lifetime. Our case studies represent the pinnacle of modern plumbing engineering and aesthetic integration.
-              </p>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              {PlaceHolderImages.filter(img => img.id.startsWith('case-study-')).map((study) => (
-                <div key={study.id} className="bento-card group p-0 overflow-hidden bg-white">
-                  <div className="relative h-64 w-full">
-                    <Image 
-                      src={study.imageUrl} 
-                      alt={study.description} 
-                      fill 
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  </div>
-                  <div className="p-8">
-                    <h4 className="text-xl font-bold mb-3">Project: {study.description}</h4>
-                    <p className="text-muted-foreground">High-efficiency systems designed for reliability and ease of maintenance.</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* AI Generator Integration inside expanded area */}
-            <div className="pt-10">
-              <AiMockupGenerator />
-            </div>
-          </div>
-        </ScrollExpandMedia>
       </section>
 
       {/* New Reference Section */}
@@ -222,4 +169,3 @@ export default function Home() {
     </div>
   );
 }
-
