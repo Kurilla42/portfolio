@@ -54,76 +54,89 @@ export function ProcessSection() {
     restDelta: 0.001
   });
 
-  // Рассчитываем вертикальное смещение всего контейнера списка.
-  // Мы начинаем со смещения 240px (чтобы первый пункт был внизу), 
-  // и по мере появления новых пунктов поднимаем список выше.
-  const listY = useTransform(smoothProgress, [0, 0.25, 0.5, 0.75], [280, 180, 80, 0]);
+  // Рассчитываем вертикальное смещение списка. 
+  // Мы начинаем с большого запаса внизу и поднимаем его так, 
+  // чтобы к концу скролла все 4 элемента были четко видны.
+  const listY = useTransform(smoothProgress, [0, 0.3, 0.6, 1], [600, 400, 200, 0]);
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-[#e5e5e3]">
+    <div ref={containerRef} className="relative h-[450vh] bg-[#e5e5e3]">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="container-custom w-full grid md:grid-cols-[1fr_1.2fr] gap-12 md:gap-24 items-center">
+        <div className="container-custom w-full max-w-[1440px] grid md:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-center">
           
-          {/* Левая часть - Заголовок (фиксированный) */}
-          <div className="space-y-2">
-            <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground block mb-4">
+          {/* Левая часть - Огромный заголовок */}
+          <div className="relative z-10">
+            <span className="text-[12px] font-bold uppercase tracking-[0.3em] text-muted-foreground block mb-6">
               [OUR METHODOLOGY]
             </span>
-            <h2 className="text-6xl md:text-8xl font-black text-[#1a1a1a] uppercase tracking-tighter leading-[0.85] relative">
-              THE <span className="font-serif italic capitalize text-[#8bacaa] font-light lowercase tracking-normal text-5xl md:text-7xl absolute -top-4 md:-top-8 left-1/4">simple</span> <br />
-              STEPS <br />
-              TO FLOW
-            </h2>
-            <p className="max-w-xs text-sm text-muted-foreground mt-8 leading-relaxed font-medium">
+            <div className="relative">
+              <h2 className="text-[90px] md:text-[140px] lg:text-[180px] font-black text-[#1a1a1a] uppercase tracking-tighter leading-[0.8] flex flex-col">
+                <span>THE</span>
+                <span className="relative">
+                  STEPS
+                  <span className="font-serif italic capitalize text-[#8bacaa]/60 font-light lowercase tracking-normal text-[60px] md:text-[100px] lg:text-[130px] absolute -top-8 md:-top-16 left-[20%] z-20">
+                    simple
+                  </span>
+                </span>
+                <span>TO FLOW</span>
+              </h2>
+            </div>
+            <p className="max-w-md text-base md:text-lg text-muted-foreground mt-12 leading-relaxed font-medium">
               A streamlined approach from initial contact to a high-performing landing page in just 10 business days.
             </p>
           </div>
 
-          {/* Правая часть - Список с эффектом выталкивания вверх */}
-          <div className="relative h-[500px] flex flex-col justify-end overflow-hidden">
+          {/* Правая часть - Накапливающийся список */}
+          <div className="relative h-[85vh] flex flex-col justify-center overflow-hidden pr-4">
             <motion.div 
               style={{ y: listY }}
-              className="flex flex-col gap-6 md:gap-8"
+              className="flex flex-col gap-10 md:gap-14"
             >
               {steps.map((step, index) => {
-                // Первый пункт виден почти сразу, остальные появляются на своих этапах скролла
-                const start = index === 0 ? 0 : index * 0.25 - 0.1;
-                const end = index === 0 ? 0.05 : index * 0.25;
+                // Плавное появление каждого шага
+                const stepStart = index * 0.25;
+                const stepEnd = stepStart + 0.15;
                 
                 // eslint-disable-next-line react-hooks/rules-of-hooks
-                const opacity = useTransform(smoothProgress, [start, end], [index === 0 ? 1 : 0, 1]);
+                const opacity = useTransform(smoothProgress, [stepStart, stepEnd], [index === 0 ? 1 : 0, 1]);
                 // eslint-disable-next-line react-hooks/rules-of-hooks
-                const scale = useTransform(smoothProgress, [start, end], [index === 0 ? 1 : 0.95, 1]);
+                const scale = useTransform(smoothProgress, [stepStart, stepEnd], [0.95, 1]);
                 // eslint-disable-next-line react-hooks/rules-of-hooks
-                const itemTranslateY = useTransform(smoothProgress, [start, end], [20, 0]);
+                const yOffset = useTransform(smoothProgress, [stepStart, stepEnd], [40, 0]);
 
                 return (
                   <motion.div
                     key={index}
-                    style={{ opacity, scale, y: itemTranslateY }}
-                    className="border-b border-black/10 pb-6 md:pb-8 last:border-0 bg-[#e5e5e3]"
+                    style={{ opacity, scale, y: yOffset }}
+                    className="border-b border-black/10 pb-8 md:pb-12 last:border-0"
                   >
-                    <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-4">
-                          <span className="text-3xl font-black text-black/10">{step.number}</span>
-                          <div className="space-y-0.5">
-                            <h3 className="text-3xl md:text-4xl font-black text-[#1a1a1a] uppercase tracking-tighter leading-none">
+                    <div className="flex flex-col md:flex-row md:items-start justify-between gap-6">
+                      <div className="flex gap-6 items-start">
+                        <span className="text-4xl md:text-6xl font-black text-black/5 leading-none pt-1">
+                          {step.number}
+                        </span>
+                        <div className="space-y-4">
+                          <div className="space-y-1">
+                            <h3 className="text-4xl md:text-5xl lg:text-6xl font-black text-[#1a1a1a] uppercase tracking-tighter leading-none">
                               {step.title}
                             </h3>
-                            <p className="text-[9px] font-bold tracking-widest text-muted-foreground">{step.location}</p>
+                            <p className="text-[11px] font-bold tracking-widest text-muted-foreground">{step.location}</p>
                           </div>
+                          <p className="max-w-md text-sm md:text-base text-muted-foreground leading-relaxed font-medium">
+                            {step.description}
+                          </p>
                         </div>
-                        <p className="max-w-md text-xs text-muted-foreground leading-relaxed font-medium">
-                          {step.description}
-                        </p>
                       </div>
 
-                      <div className="flex flex-col items-start md:items-end gap-1 shrink-0">
-                        <span className="text-xl font-black text-[#1a1a1a] uppercase tracking-tighter">{step.period}</span>
+                      <div className="flex flex-col items-start md:items-end gap-2 shrink-0 pt-2">
+                        <span className="text-2xl md:text-3xl font-black text-[#1a1a1a] uppercase tracking-tighter">
+                          {step.period}
+                        </span>
                         <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#88ac66] animate-pulse" />
-                          <span className="text-[9px] font-bold uppercase tracking-widest text-[#1a1a1a]">{step.status}</span>
+                          <div className="w-2 h-2 rounded-full bg-[#88ac66] animate-pulse" />
+                          <span className="text-[10px] font-bold uppercase tracking-widest text-[#1a1a1a]">
+                            {step.status}
+                          </span>
                         </div>
                       </div>
                     </div>
