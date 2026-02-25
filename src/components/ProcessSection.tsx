@@ -48,16 +48,16 @@ export function ProcessSection() {
     offset: ["start start", "end end"]
   });
 
-  // Создаем плавную пружинную анимацию для скролла
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
     restDelta: 0.001
   });
 
-  // Рассчитываем общий подъем списка. 
-  // Мы хотим, чтобы список поднимался на высоту примерно 3-х элементов по мере появления новых.
-  const containerY = useTransform(smoothProgress, [0, 0.25, 0.5, 0.75], [240, 160, 80, 0]);
+  // Рассчитываем вертикальное смещение всего контейнера списка.
+  // Мы начинаем со смещения 240px (чтобы первый пункт был внизу), 
+  // и по мере появления новых пунктов поднимаем список выше.
+  const listY = useTransform(smoothProgress, [0, 0.25, 0.5, 0.75], [280, 180, 80, 0]);
 
   return (
     <div ref={containerRef} className="relative h-[400vh] bg-[#e5e5e3]">
@@ -80,13 +80,13 @@ export function ProcessSection() {
           </div>
 
           {/* Правая часть - Список с эффектом выталкивания вверх */}
-          <div className="relative h-[450px] md:h-[500px] flex flex-col justify-end overflow-hidden">
+          <div className="relative h-[500px] flex flex-col justify-end overflow-hidden">
             <motion.div 
-              style={{ y: containerY }}
+              style={{ y: listY }}
               className="flex flex-col gap-6 md:gap-8"
             >
               {steps.map((step, index) => {
-                // Первый шаг виден сразу, остальные появляются по очереди
+                // Первый пункт виден почти сразу, остальные появляются на своих этапах скролла
                 const start = index === 0 ? 0 : index * 0.25 - 0.1;
                 const end = index === 0 ? 0.05 : index * 0.25;
                 
@@ -94,11 +94,13 @@ export function ProcessSection() {
                 const opacity = useTransform(smoothProgress, [start, end], [index === 0 ? 1 : 0, 1]);
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 const scale = useTransform(smoothProgress, [start, end], [index === 0 ? 1 : 0.95, 1]);
+                // eslint-disable-next-line react-hooks/rules-of-hooks
+                const itemTranslateY = useTransform(smoothProgress, [start, end], [20, 0]);
 
                 return (
                   <motion.div
                     key={index}
-                    style={{ opacity, scale }}
+                    style={{ opacity, scale, y: itemTranslateY }}
                     className="border-b border-black/10 pb-6 md:pb-8 last:border-0 bg-[#e5e5e3]"
                   >
                     <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
@@ -120,7 +122,7 @@ export function ProcessSection() {
                       <div className="flex flex-col items-start md:items-end gap-1 shrink-0">
                         <span className="text-xl font-black text-[#1a1a1a] uppercase tracking-tighter">{step.period}</span>
                         <div className="flex items-center gap-2">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#88ac66]" />
+                          <div className="w-1.5 h-1.5 rounded-full bg-[#88ac66] animate-pulse" />
                           <span className="text-[9px] font-bold uppercase tracking-widest text-[#1a1a1a]">{step.status}</span>
                         </div>
                       </div>
