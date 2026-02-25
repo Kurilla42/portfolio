@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import ScrollExpandMedia from '@/components/ui/scroll-expansion-hero';
+import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import Image from 'next/image';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
@@ -77,6 +78,9 @@ export default function Home() {
           </div>
         </ScrollExpandMedia>
       </section>
+
+      {/* New Reference Section */}
+      <SiteShowcaseSection />
 
       {/* Packages Section */}
       <section className="section-padding bg-white" id="packages">
@@ -218,3 +222,4 @@ export default function Home() {
     </div>
   );
 }
+
