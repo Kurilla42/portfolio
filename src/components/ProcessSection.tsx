@@ -82,7 +82,7 @@ export function ProcessSection() {
           </div>
 
           {/* Правая часть - Последовательно накапливающийся список */}
-          <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-6 md:px-12 lg:px-16 border-l border-black/5 bg-white/30 backdrop-blur-sm">
+          <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-6 md:px-12 lg:px-16">
             <div className="flex flex-col gap-8 md:gap-12 relative">
               {steps.map((step, index) => {
                 // Определяем интервалы для каждого шага
@@ -94,7 +94,6 @@ export function ProcessSection() {
                 const end = start + 0.2;
                 
                 // Анимация появления и движения вверх
-                // Используем useTransform внутри рендера через замыкание или напрямую в стиле
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 const opacity = useTransform(smoothProgress, [start, start + 0.05], [0, 1]);
                 // eslint-disable-next-line react-hooks/rules-of-hooks
