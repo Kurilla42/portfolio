@@ -1,6 +1,7 @@
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
+import { ScrollObserver } from "@/components/ScrollObserver";
 
 export const metadata: Metadata = {
   title: 'JobFlow Landing Pages | Anton Kolesnikov',
@@ -17,10 +18,11 @@ export default function RootLayout({
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Space+Mono:wght@400&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet" />
       </head>
-      <body className="font-body antialiased selection:bg-accent selection:text-accent-foreground">
+      <body className="antialiased selection:bg-accent selection:text-accent-foreground overflow-x-hidden">
         <div className="noise-overlay" aria-hidden="true" />
+        <ScrollObserver />
         {children}
         <Toaster />
       </body>

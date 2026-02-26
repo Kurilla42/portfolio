@@ -1,10 +1,7 @@
-
 import { Button } from '@/components/ui/button';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
-import Image from 'next/image';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
 import { 
@@ -74,11 +71,11 @@ export default function Home() {
         <ProcessSection />
       </section>
 
-      {/* Comparison Section (New About Block) */}
+      {/* Comparison Section (About Block) */}
       <section className="section-padding bg-[#fcfbf7]" id="about">
         <div className="container-custom">
           <div className="text-center mb-24">
-            <h2 className="heading-lg text-primary tracking-tighter">
+            <h2 className="heading-lg text-primary tracking-tighter reveal-text">
               Fully integrated. <em className="accent-italic">Best in class.</em>
             </h2>
           </div>
@@ -88,33 +85,31 @@ export default function Home() {
               {/* Table Header */}
               <div className="grid grid-cols-[1fr_1.5fr_1fr] items-end border-b border-black/5 pb-8">
                 <div className="px-6">
-                  {/* Empty for criterion label space */}
                 </div>
                 <div className="px-10 text-center">
-                  <div className="inline-block px-4 py-2 bg-primary text-white heading-md rounded-t-xl mb-[-32px] relative z-10">
+                  <div className="inline-block px-4 py-2 bg-primary text-white heading-md rounded-t-xl mb-[-32px] relative z-10 reveal-text">
                     ANTON KOLESNIKOV
                   </div>
                 </div>
                 <div className="px-6 text-center">
-                  <span className="label text-muted-foreground opacity-50">Traditional Freelancer</span>
+                  <span className="label text-muted-foreground opacity-50 reveal-text">Typical Freelancer</span>
                 </div>
               </div>
 
               {/* Table Body */}
               <div className="relative">
-                {/* Highlight background for central column */}
                 <div className="absolute top-0 bottom-0 left-[25%] right-[25%] bg-primary/[0.03] rounded-b-3xl pointer-events-none z-0" />
                 
                 {comparisonData.map((row, idx) => (
                   <div key={idx} className="grid grid-cols-[1fr_1.5fr_1fr] items-center border-b border-black/5 last:border-0 relative z-10 group">
                     <div className="py-12 px-6">
-                      <h3 className="heading-md text-primary">{row.criterion}</h3>
+                      <h3 className="heading-md text-primary reveal-text">{row.criterion}</h3>
                     </div>
                     <div className="py-12 px-10 text-center">
-                      <p className="body-text text-primary font-bold leading-relaxed">{row.me}</p>
+                      <p className="body-text text-primary font-bold leading-relaxed reveal-text reveal-delay-1">{row.me}</p>
                     </div>
                     <div className="py-12 px-6 text-center">
-                      <p className="body-text text-muted-foreground opacity-40 leading-relaxed">{row.freelancer}</p>
+                      <p className="body-text text-muted-foreground opacity-40 leading-relaxed reveal-text reveal-delay-2">{row.freelancer}</p>
                     </div>
                   </div>
                 ))}
@@ -128,13 +123,13 @@ export default function Home() {
       <section className="section-padding bg-white" id="packages">
         <div className="container-custom">
           <div className="text-center max-w-3xl mx-auto mb-16 space-y-4">
-            <h2 className="heading-lg text-primary">Straightforward Packages</h2>
-            <p className="body-text">
+            <h2 className="heading-lg text-primary reveal-text">Straightforward Packages</h2>
+            <p className="body-text reveal-text reveal-delay-1">
               No hidden fees. Just results-oriented design for your home service business.
             </p>
           </div>
           <div className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
-            <div className="bento-card border-2 border-muted relative">
+            <div className="bento-card border-2 border-muted relative reveal-text">
               <h3 className="heading-md mb-2">The Starter Flow</h3>
               <p className="text-primary heading-lg mb-6">$1,495</p>
               <ul className="space-y-4 mb-10 body-text text-muted-foreground">
@@ -145,7 +140,7 @@ export default function Home() {
               </ul>
               <Button className="w-full rounded-full h-12 btn bg-primary text-white">Choose Starter</Button>
             </div>
-            <div className="bento-card border-2 border-accent bg-accent/5 relative overflow-hidden">
+            <div className="bento-card border-2 border-accent bg-accent/5 relative overflow-hidden reveal-text reveal-delay-1">
               <div className="absolute top-4 right-4 bg-accent text-accent-foreground tag px-2 py-1 rounded-full">Recommended</div>
               <h3 className="heading-md mb-2">The Growth Engine</h3>
               <p className="text-primary heading-lg mb-6">$2,995</p>
@@ -165,7 +160,7 @@ export default function Home() {
       {/* Final CTA Section */}
       <section className="section-padding bg-background border-t" id="contact">
         <div className="container-custom">
-          <div className="bento-card bg-gradient-to-br from-primary to-primary/90 text-primary-foreground p-12 text-center max-w-4xl mx-auto shadow-2xl relative overflow-hidden">
+          <div className="bento-card bg-gradient-to-br from-primary to-primary/90 text-primary-foreground p-12 text-center max-w-4xl mx-auto shadow-2xl relative overflow-hidden reveal-text">
             <div className="relative space-y-8">
               <h2 className="heading-lg text-white leading-tight">Ready to Double Your <br />Plumbing Leads?</h2>
               <Button asChild size="lg" className="bg-accent text-accent-foreground hover:bg-white text-base rounded-full btn h-16 px-10 shadow-xl group">
@@ -197,4 +192,3 @@ export default function Home() {
     </div>
   );
 }
-
