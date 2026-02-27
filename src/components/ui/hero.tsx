@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export default function ShaderShowcase() {
   return (
-    <div className="relative min-h-[300vh] bg-[#8bacaa]">
+    <div className="relative min-h-[200vh] bg-[#8bacaa]">
       {/* Background Image - Stays at the top 100vh only */}
       <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden bg-[#8bacaa]">
         <Image
@@ -24,7 +24,7 @@ export default function ShaderShowcase() {
         />
       </div>
 
-      {/* Static Header Overlays - Persists through all three screens */}
+      {/* Static Header Overlays */}
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-6 mix-blend-difference">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-bold text-lg">J</div>
@@ -54,35 +54,36 @@ export default function ShaderShowcase() {
           </div>
         </div>
 
-        {/* Section 2: Precision Engineering - Separate Full Screen */}
-        <div className="h-screen flex items-center justify-end">
-          <div className="max-w-4xl text-right">
-            <h2 className="heading-xl text-white drop-shadow-2xl reveal-text">
-              Precision<br />
-              <span className="accent-italic">Engineering</span>
-            </h2>
-            <p className="body-text text-white/80 mt-8 ml-auto max-w-xl text-lg reveal-text reveal-delay-1">
-              Every pixel is placed with intent. We don't just build websites; we build conversion machines that turn visitors into scheduled service calls.
-            </p>
-          </div>
-        </div>
+        {/* Section 2: Combined Engineering & Flow - Full Screen */}
+        <div className="h-screen flex flex-col justify-center gap-20 md:gap-0">
+          <div className="grid md:grid-cols-2 gap-12 items-start">
+            {/* Precision Engineering */}
+            <div className="max-w-2xl">
+              <h2 className="heading-lg text-white reveal-text">
+                Precision<br />
+                <span className="accent-italic">Engineering</span>
+              </h2>
+              <p className="body-text text-white/80 mt-6 max-w-md text-lg reveal-text reveal-delay-1">
+                Every pixel is placed with intent. We don't just build websites; we build conversion machines that turn visitors into scheduled service calls.
+              </p>
+            </div>
 
-        {/* Section 3: Seamless Flow - Separate Full Screen */}
-        <div className="h-screen flex items-center justify-start">
-          <div className="max-w-4xl">
-            <h2 className="heading-xl text-white drop-shadow-2xl reveal-text">
-              Seamless<br />
-              <span className="accent-italic">Flow</span>
-            </h2>
-            <p className="body-text text-white/80 mt-8 max-w-xl text-lg reveal-text reveal-delay-1">
-              From the first click to the final booking, your customer's journey is smooth, professional, and optimized for maximum trust.
-            </p>
+            {/* Seamless Flow */}
+            <div className="max-w-2xl md:text-right md:ml-auto md:mt-40">
+              <h2 className="heading-lg text-white reveal-text">
+                Seamless<br />
+                <span className="accent-italic">Flow</span>
+              </h2>
+              <p className="body-text text-white/80 mt-6 md:ml-auto max-w-md text-lg reveal-text reveal-delay-1">
+                From the first click to the final booking, your customer's journey is smooth, professional, and optimized for maximum trust and ease of use.
+              </p>
+            </div>
           </div>
         </div>
 
       </div>
 
-      {/* Scroll Indicator - Bottom of first screen */}
+      {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/40 z-20 h-24">
         <span className="tag text-white/60">Explore the Depth</span>
         <div className="w-px h-12 bg-gradient-to-b from-accent to-transparent" />
