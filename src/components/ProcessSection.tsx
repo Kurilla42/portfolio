@@ -3,7 +3,6 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
-import { cn } from '@/lib/utils';
 
 const steps = [
   {
@@ -43,6 +42,7 @@ const steps = [
 export function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
+  // Уменьшил высоту с 600vh до 400vh для более быстрого скролла
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -55,51 +55,50 @@ export function ProcessSection() {
   });
 
   return (
-    <div ref={containerRef} className="relative h-[600vh] bg-[#e5e5e3]">
+    <div ref={containerRef} className="relative h-[400vh] bg-[#e5e5e3]">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="w-full h-full flex flex-col md:flex-row items-center">
+        <div className="w-full h-full grid grid-cols-1 md:grid-cols-[1fr_1.4fr]">
           
-          {/* Левая часть - Заголовок */}
-          <div className="w-full md:w-1/2 px-6 md:px-12 lg:px-16 flex flex-col justify-center h-full relative z-10">
-            <span className="text-[12px] font-bold uppercase tracking-[0.3em] text-muted-foreground block mb-6">
+          {/* Левая часть - Заголовок (фиксированный) */}
+          <div className="px-10 md:px-20 flex flex-col justify-center h-full border-r border-black/5">
+            <span className="label text-muted-foreground block mb-8 reveal-text">
               [OUR METHODOLOGY]
             </span>
             <div className="relative">
-              <h2 className="text-[80px] md:text-[120px] lg:text-[150px] xl:text-[180px] font-black text-[#1a1a1a] uppercase tracking-tighter leading-[0.8] flex flex-col">
+              <h2 className="heading-xl text-primary leading-[0.8] flex flex-col reveal-text">
                 <span>THE</span>
                 <span className="relative">
                   STEPS
-                  <span className="font-serif italic capitalize text-[#8bacaa]/60 font-light lowercase tracking-normal text-[50px] md:text-[80px] lg:text-[110px] absolute -top-6 md:-top-12 left-[15%] z-20">
+                  <span className="accent-italic lowercase text-[0.6em] absolute -top-4 left-[20%] z-20">
                     simple
                   </span>
                 </span>
                 <span>TO FLOW</span>
               </h2>
             </div>
-            <p className="max-w-md text-base md:text-lg text-muted-foreground mt-12 leading-relaxed font-medium">
+            <p className="max-w-md body-text text-lg mt-12 reveal-text reveal-delay-1">
               A streamlined approach from initial contact to a high-performing landing page in just 10 business days.
             </p>
           </div>
 
-          {/* Правая часть - Последовательно накапливающийся список */}
-          <div className="w-full md:w-1/2 h-full flex flex-col justify-center px-6 md:px-12 lg:px-16">
-            <div className="flex flex-col gap-8 md:gap-12 relative">
+          {/* Правая часть - Накапливающийся список */}
+          <div className="h-full flex flex-col justify-center px-10 md:px-20 relative">
+            <div className="flex flex-col gap-10 md:gap-16 w-full max-w-4xl">
               {steps.map((step, index) => {
-                // Определяем интервалы для каждого шага
-                // 0.0 - 0.2: Шаг 1
-                // 0.25 - 0.45: Шаг 2
-                // 0.5 - 0.7: Шаг 3
-                // 0.75 - 0.95: Шаг 4
-                const start = index * 0.25;
-                const end = start + 0.2;
+                // Более компактные интервалы для быстрого скролла
+                const start = index * 0.22;
+                const end = start + 0.18;
+                
+                // Для первого этапа (index 0) opacity сразу 1
+                const initialOpacity = index === 0 ? 1 : 0;
                 
                 // Анимация появления и движения вверх
                 // eslint-disable-next-line react-hooks/rules-of-hooks
-                const opacity = useTransform(smoothProgress, [start, start + 0.05], [0, 1]);
+                const opacity = useTransform(smoothProgress, [start, start + 0.05], [initialOpacity, 1]);
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 const y = useTransform(smoothProgress, [start, end], [400, 0]);
                 // eslint-disable-next-line react-hooks/rules-of-hooks
-                const scale = useTransform(smoothProgress, [start, end], [0.9, 1]);
+                const scale = useTransform(smoothProgress, [start, end], [0.95, 1]);
 
                 return (
                   <motion.div
@@ -108,35 +107,34 @@ export function ProcessSection() {
                       opacity, 
                       y, 
                       scale,
-                      position: 'relative'
                     }}
-                    className="border-b border-black/10 pb-6 md:pb-10 last:border-0"
+                    className="border-b border-black/10 pb-8 md:pb-12 last:border-0"
                   >
-                    <div className="flex flex-col xl:flex-row xl:items-start justify-between gap-4 md:gap-8">
-                      <div className="flex gap-4 md:gap-8 items-start">
-                        <span className="text-4xl md:text-6xl lg:text-8xl font-black text-black/5 leading-none pt-1">
+                    <div className="flex flex-col xl:flex-row xl:items-start justify-between gap-6">
+                      <div className="flex gap-8 items-start">
+                        <span className="services-item text-primary/10 leading-none pt-1">
                           {step.number}
                         </span>
-                        <div className="space-y-3">
+                        <div className="space-y-4">
                           <div className="space-y-1">
-                            <h3 className="text-3xl md:text-5xl lg:text-6xl font-black text-[#1a1a1a] uppercase tracking-tighter leading-none">
+                            <h3 className="heading-lg text-primary text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-none">
                               {step.title}
                             </h3>
-                            <p className="text-[10px] md:text-[11px] font-bold tracking-widest text-muted-foreground">{step.location}</p>
+                            <p className="label text-muted-foreground">{step.location}</p>
                           </div>
-                          <p className="max-w-lg text-sm md:text-base text-muted-foreground/80 leading-relaxed font-medium">
+                          <p className="max-w-xl body-text text-base md:text-lg text-muted-foreground/80 leading-relaxed">
                             {step.description}
                           </p>
                         </div>
                       </div>
 
                       <div className="flex flex-row xl:flex-col items-center xl:items-end gap-3 shrink-0 xl:pt-2">
-                        <span className="text-xl md:text-3xl lg:text-4xl font-black text-[#1a1a1a] uppercase tracking-tighter">
+                        <span className="heading-md text-primary text-3xl md:text-4xl">
                           {step.period}
                         </span>
-                        <div className="flex items-center gap-2 bg-black/[0.03] px-2 py-1 rounded-full">
-                          <div className="w-1.5 h-1.5 rounded-full bg-[#88ac66] animate-pulse" />
-                          <span className="text-[9px] font-bold uppercase tracking-widest text-[#1a1a1a]">
+                        <div className="flex items-center gap-2 bg-black/[0.03] px-3 py-1 rounded-full">
+                          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                          <span className="tag text-primary">
                             {step.status}
                           </span>
                         </div>
