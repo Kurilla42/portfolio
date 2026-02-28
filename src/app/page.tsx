@@ -128,38 +128,116 @@ export default function Home() {
       </section>
 
       {/* Packages Section */}
-      <section className="section-padding bg-white" id="packages">
+      <section className="py-24 md:py-48 bg-white" id="packages">
         <div className="container-custom">
-          <div className="text-center max-w-3xl mx-auto mb-24 space-y-6">
-            <h2 className="heading-lg text-primary reveal-text">Straightforward Packages</h2>
-            <p className="body-text text-lg reveal-text reveal-delay-1">
-              No hidden fees. Just results-oriented design for your home service business.
-            </p>
-          </div>
-          <div className="grid md:grid-cols-2 gap-12 max-w-6xl mx-auto">
-            <div className="bento-card border-2 border-muted relative p-10 reveal-text">
-              <h3 className="heading-md mb-4 text-2xl">The Starter Flow</h3>
-              <p className="text-primary heading-lg mb-8">$1,495</p>
-              <ul className="space-y-5 mb-12 body-text text-lg text-muted-foreground">
-                <li className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-accent" /> Single Optimized Landing Page</li>
-                <li className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-accent" /> Conversion-Ready Copywriting</li>
-                <li className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-accent" /> Responsive Mobile Design</li>
-                <li className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-accent" /> Form & CRM Integration</li>
-              </ul>
-              <Button className="w-full rounded-full h-14 btn text-sm bg-primary text-white">Choose Starter</Button>
+          {/* Timeline UI */}
+          <div className="relative mb-32 hidden md:block">
+            <div className="absolute top-1/2 left-0 w-full h-px bg-primary/10 -translate-y-1/2 z-0" />
+            <div className="flex justify-between relative z-10">
+              <div className="w-4 h-4 rounded-full bg-primary ring-8 ring-white" />
+              <div className="w-4 h-4 rounded-full bg-primary ring-8 ring-white" />
+              <div className="w-4 h-4 rounded-full bg-accent ring-8 ring-white shadow-[0_0_15px_rgba(139,125,58,0.4)]" />
             </div>
-            <div className="bento-card border-2 border-accent bg-accent/5 relative overflow-hidden p-10 reveal-text reveal-delay-1">
-              <div className="absolute top-6 right-6 bg-accent text-accent-foreground tag px-4 py-1.5 rounded-full">Recommended</div>
-              <h3 className="heading-md mb-4 text-2xl">The Growth Engine</h3>
-              <p className="text-primary heading-lg mb-8">$2,995</p>
-              <ul className="space-y-5 mb-12 body-text text-lg text-muted-foreground">
-                <li className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-accent" /> 3 Specialized Landing Pages</li>
-                <li className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-accent" /> A/B Testing Strategy</li>
-                <li className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-accent" /> Custom Icons & Visuals</li>
-                <li className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-accent" /> Google Ads Tracking Setup</li>
-                <li className="flex items-center gap-4"><CheckCircle2 className="w-5 h-5 text-accent" /> 30-Day Performance Review</li>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-16 md:gap-24">
+            {/* Package 1 */}
+            <div className="flex flex-col reveal-text">
+              <div className="mb-8">
+                <h3 className="heading-md text-3xl mb-3">Fast Launch Starter</h3>
+                <p className="body-text text-muted-foreground text-sm">
+                  A fast launch of a professional landing page for a small plumbing business.
+                </p>
+              </div>
+              <ul className="space-y-4 mb-12 flex-grow">
+                {[
+                  "One high-converting landing page based on a proven template",
+                  "Mobile-optimized, branded with your logo, colors, and fonts",
+                  "Setup of contact details, click-to-call buttons, and a simple lead form",
+                  "Basic on-page SEO structure for your main city",
+                  "Launch on your domain/hosting"
+                ].map((item, i) => (
+                  <li key={i} className="body-text flex gap-4 text-xs leading-relaxed text-muted-foreground">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
               </ul>
-              <Button className="w-full rounded-full h-14 btn text-sm bg-accent text-accent-foreground hover:bg-accent/90 shadow-lg">Choose Growth</Button>
+              <div className="pt-8 border-t border-black/5">
+                <div className="flex items-baseline gap-3 mb-8">
+                  <span className="label line-through opacity-30 text-lg">$900</span>
+                  <span className="heading-md text-4xl text-primary">$697</span>
+                  <span className="tag opacity-40 text-[10px]">one-time</span>
+                </div>
+                <Button className="w-full rounded-full btn text-[10px] bg-primary text-white h-14 hover:scale-[1.02] transition-transform">Get Started</Button>
+              </div>
+            </div>
+
+            {/* Package 2 */}
+            <div className="flex flex-col reveal-text reveal-delay-1">
+              <div className="mb-8">
+                <h3 className="heading-md text-3xl mb-3">Local Leads Pro</h3>
+                <p className="body-text text-muted-foreground text-sm">
+                  A multi-page website built for local SEO and a steady flow of leads.
+                </p>
+              </div>
+              <ul className="space-y-4 mb-12 flex-grow">
+                {[
+                  "Up to 5–7 pages: Home, Services, individual key services, About, Contact",
+                  "“Service Areas” / “Cities We Serve” sections",
+                  "Strong trust elements: reviews, guarantees, licenses",
+                  "Enhanced on-page SEO and internal linking",
+                  "Multiple CTAs: call, quote request, service request forms",
+                  "Form integrations with email / Google Sheets / simple CRM"
+                ].map((item, i) => (
+                  <li key={i} className="body-text flex gap-4 text-xs leading-relaxed text-muted-foreground">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="pt-8 border-t border-black/5">
+                <div className="flex items-baseline gap-3 mb-8">
+                  <span className="label line-through opacity-30 text-lg">$1500</span>
+                  <span className="heading-md text-4xl text-primary">$1197</span>
+                  <span className="tag opacity-40 text-[10px]">one-time</span>
+                </div>
+                <Button className="w-full rounded-full btn text-[10px] bg-primary text-white h-14 hover:scale-[1.02] transition-transform">Get Started</Button>
+              </div>
+            </div>
+
+            {/* Package 3 */}
+            <div className="flex flex-col relative reveal-text reveal-delay-2">
+              <div className="absolute -top-12 left-0">
+                <span className="tag bg-accent text-accent-foreground px-4 py-1.5 rounded-full text-[9px] font-bold shadow-lg shadow-accent/20">Most Popular</span>
+              </div>
+              <div className="mb-8">
+                <h3 className="heading-md text-3xl mb-3">Local Leads Pro</h3>
+                <p className="body-text text-muted-foreground text-sm">
+                  A subscription for your website, ongoing support, and light marketing without the tech headaches.
+                </p>
+              </div>
+              <ul className="space-y-4 mb-12 flex-grow">
+                {[
+                  "Website built on the Local Leads Pro or Lead Magnet Premium package",
+                  "Hosting and technical maintenance",
+                  "Monthly small content and promo updates",
+                  "Light SEO and UX tweaks based on performance",
+                  "Priority email support"
+                ].map((item, i) => (
+                  <li key={i} className="body-text flex gap-4 text-xs leading-relaxed text-muted-foreground">
+                    <CheckCircle2 className="w-3.5 h-3.5 text-accent shrink-0 mt-0.5" />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+              <div className="pt-8 border-t border-black/5">
+                <div className="mb-8">
+                  <span className="label opacity-40 text-sm block mb-1">setup from $700</span>
+                  <span className="heading-md text-3xl text-accent">+$129–$199/mo.</span>
+                </div>
+                <Button className="w-full rounded-full btn text-[10px] bg-accent text-accent-foreground h-14 hover:scale-[1.02] transition-transform shadow-xl shadow-accent/10">Get Started</Button>
+              </div>
             </div>
           </div>
         </div>
