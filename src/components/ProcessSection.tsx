@@ -42,7 +42,6 @@ const steps = [
 export function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Уменьшил высоту с 600vh до 400vh для более быстрого скролла
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -57,48 +56,45 @@ export function ProcessSection() {
   return (
     <div ref={containerRef} className="relative h-[400vh] bg-[#e5e5e3]">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <div className="w-full h-full grid grid-cols-1 md:grid-cols-[1fr_1.4fr]">
+        <div className="w-full h-full grid grid-cols-1 md:grid-cols-2">
           
-          {/* Левая часть - Заголовок (фиксированный) */}
-          <div className="px-10 md:px-20 flex flex-col justify-center h-full border-r border-black/5">
-            <span className="label text-muted-foreground block mb-8 reveal-text">
+          {/* Left Side - Proportionally scaled */}
+          <div className="px-[6vw] flex flex-col justify-center h-full border-r border-black/5 bg-[#e5e5e3] z-10">
+            <span className="label text-muted-foreground block mb-[4vh] reveal-text text-[0.8vw]">
               [OUR METHODOLOGY]
             </span>
             <div className="relative">
-              <h2 className="heading-xl text-primary leading-[0.8] flex flex-col reveal-text">
+              <h2 className="text-[10vw] font-bold text-primary leading-[0.85] flex flex-col tracking-tighter reveal-text">
                 <span>THE</span>
                 <span className="relative">
                   STEPS
-                  <span className="accent-italic lowercase text-[0.6em] absolute -top-4 left-[20%] z-20">
+                  <span className="accent-italic lowercase text-[0.3em] absolute -top-[2vh] left-[20%] z-20">
                     simple
                   </span>
                 </span>
                 <span>TO FLOW</span>
               </h2>
             </div>
-            <p className="max-w-md body-text text-lg mt-12 reveal-text reveal-delay-1">
+            <p className="max-w-[25vw] body-text text-[1.2vw] mt-[6vh] reveal-text reveal-delay-1 leading-relaxed">
               A streamlined approach from initial contact to a high-performing landing page in just 10 business days.
             </p>
           </div>
 
-          {/* Правая часть - Накапливающийся список */}
-          <div className="h-full flex flex-col justify-center px-10 md:px-20 relative">
-            <div className="flex flex-col gap-10 md:gap-16 w-full max-w-4xl">
+          {/* Right Side - Step accumulation */}
+          <div className="h-full flex flex-col justify-center px-[6vw] relative bg-[#e5e5e3]">
+            <div className="flex flex-col gap-[3vh] w-full max-w-[40vw]">
               {steps.map((step, index) => {
-                // Более компактные интервалы для быстрого скролла
                 const start = index * 0.22;
                 const end = start + 0.18;
                 
-                // Для первого этапа (index 0) opacity сразу 1
                 const initialOpacity = index === 0 ? 1 : 0;
                 
-                // Анимация появления и движения вверх
                 // eslint-disable-next-line react-hooks/rules-of-hooks
                 const opacity = useTransform(smoothProgress, [start, start + 0.05], [initialOpacity, 1]);
                 // eslint-disable-next-line react-hooks/rules-of-hooks
-                const y = useTransform(smoothProgress, [start, end], [400, 0]);
+                const y = useTransform(smoothProgress, [start, end], [300, 0]);
                 // eslint-disable-next-line react-hooks/rules-of-hooks
-                const scale = useTransform(smoothProgress, [start, end], [0.95, 1]);
+                const scale = useTransform(smoothProgress, [start, end], [0.98, 1]);
 
                 return (
                   <motion.div
@@ -108,33 +104,33 @@ export function ProcessSection() {
                       y, 
                       scale,
                     }}
-                    className="border-b border-black/10 pb-8 md:pb-12 last:border-0"
+                    className="border-b border-black/10 pb-[3vh] last:border-0"
                   >
-                    <div className="flex flex-col xl:flex-row xl:items-start justify-between gap-6">
-                      <div className="flex gap-8 items-start">
-                        <span className="services-item text-primary/10 leading-none pt-1">
+                    <div className="flex flex-col lg:flex-row lg:items-start justify-between gap-[2vw]">
+                      <div className="flex gap-[2vw] items-start">
+                        <span className="services-item text-primary/10 leading-none pt-[0.5vh] text-[4vw]">
                           {step.number}
                         </span>
-                        <div className="space-y-4">
-                          <div className="space-y-1">
-                            <h3 className="heading-lg text-primary text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-none">
+                        <div className="space-y-[1.5vh]">
+                          <div className="space-y-[0.5vh]">
+                            <h3 className="heading-lg text-primary text-[3vw] tracking-tighter leading-none">
                               {step.title}
                             </h3>
-                            <p className="label text-muted-foreground">{step.location}</p>
+                            <p className="label text-muted-foreground text-[0.7vw]">{step.location}</p>
                           </div>
-                          <p className="max-w-xl body-text text-base md:text-lg text-muted-foreground/80 leading-relaxed">
+                          <p className="max-w-[25vw] body-text text-[0.9vw] text-muted-foreground/80 leading-relaxed">
                             {step.description}
                           </p>
                         </div>
                       </div>
 
-                      <div className="flex flex-row xl:flex-col items-center xl:items-end gap-3 shrink-0 xl:pt-2">
-                        <span className="heading-md text-primary text-3xl md:text-4xl">
+                      <div className="flex flex-row lg:flex-col items-center lg:items-end gap-[0.5vw] shrink-0 lg:pt-[1vh]">
+                        <span className="heading-md text-primary text-[2vw]">
                           {step.period}
                         </span>
-                        <div className="flex items-center gap-2 bg-black/[0.03] px-3 py-1 rounded-full">
-                          <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-                          <span className="tag text-primary">
+                        <div className="flex items-center gap-[0.5vw] bg-black/[0.03] px-[0.8vw] py-[0.4vh] rounded-full">
+                          <div className="w-[0.4vw] h-[0.4vw] rounded-full bg-accent animate-pulse" />
+                          <span className="tag text-primary text-[0.6vw]">
                             {step.status}
                           </span>
                         </div>

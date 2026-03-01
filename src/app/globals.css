@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -24,40 +25,6 @@
     --input: 215 20% 88%;
     --ring: 219 65% 33%;
     --radius: 1.25rem;
-
-    /* Custom Lumina Variables */
-    --font-mono: "Inter", monospace;
-    --font-sans: "Inter", sans-serif;
-    --font-display: "Inter", serif;
-    --color-bg: #0a0a0a;
-    --color-text: #ffffff;
-    --color-text-muted: rgba(255, 255, 255, 0.7);
-    --color-text-light: rgba(255, 255, 255, 0.5);
-    --color-accent: #d4af37;
-    --font-size-mono: clamp(10px, 1.2vw, 12px);
-    --spacing-sm: 0.75rem;
-    --spacing-md: 1rem;
-  }
-  .dark {
-    --background: 219 65% 5%;
-    --foreground: 215 52% 97%;
-    --card: 219 65% 10%;
-    --card-foreground: 215 52% 97%;
-    --popover: 219 65% 10%;
-    --popover-foreground: 215 52% 97%;
-    --primary: 88 77% 66%;
-    --primary-foreground: 219 65% 10%;
-    --secondary: 219 40% 15%;
-    --secondary-foreground: 215 52% 97%;
-    --muted: 219 40% 15%;
-    --muted-foreground: 219 20% 65%;
-    --accent: 219 40% 15%;
-    --accent-foreground: 215 52% 97%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 219 40% 20%;
-    --input: 219 40% 20%;
-    --ring: 88 77% 66%;
   }
 }
 
@@ -70,66 +37,66 @@
   }
 }
 
-/* Typography Utility Classes */
+/* Fluid Typography Utility Classes - Proportionally Scaling */
 .hero-display {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(120px, 30vw, 450px);
+  font-size: clamp(120px, 25vw, 450px);
   font-weight: 800;
   @apply uppercase leading-[0.85] tracking-[-0.02em];
 }
 
 .heading-xl {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(50px, 7vw, 96px);
+  font-size: clamp(50px, 8vw, 160px);
   font-weight: 700;
   @apply uppercase leading-[0.9] tracking-[-0.01em];
 }
 
 .heading-lg {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(40px, 5.5vw, 75px);
+  font-size: clamp(40px, 6vw, 120px);
   font-weight: 700;
   @apply uppercase leading-[0.9] tracking-normal;
 }
 
 .heading-md {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(20px, 2.2vw, 28px);
+  font-size: clamp(20px, 2.5vw, 48px);
   font-weight: 700;
   @apply uppercase leading-[1] tracking-[0.01em];
 }
 
 .services-item {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(36px, 4.5vw, 62px);
+  font-size: clamp(36px, 5vw, 90px);
   font-weight: 700;
   @apply uppercase leading-[1] tracking-normal;
 }
 
 .nav-link {
   font-family: 'Space Mono', monospace;
-  font-size: 11px;
+  font-size: clamp(10px, 0.8vw, 14px);
   font-weight: 400;
   @apply uppercase tracking-[0.2em] leading-[1.4];
 }
 
 .label, .tag {
   font-family: 'Space Mono', monospace;
-  font-size: 10px;
+  font-size: clamp(9px, 0.7vw, 12px);
   font-weight: 400;
   @apply uppercase tracking-[0.15em] leading-[1.4];
 }
 
 .body-text {
   font-family: 'Space Mono', monospace;
-  font-size: 13px;
+  font-size: clamp(12px, 1vw, 20px);
   font-weight: 400;
   @apply normal-case tracking-[0.03em] leading-[1.7];
 }
 
 .btn {
   font-family: 'Space Mono', monospace;
-  font-size: 11px;
+  font-size: clamp(10px, 0.8vw, 14px);
   font-weight: 400;
   @apply uppercase tracking-[0.15em];
 }
@@ -144,7 +111,7 @@
 /* Scroll Reveal Animations */
 .reveal-text {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateY(3vh);
   transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
@@ -187,39 +154,6 @@
   80% { transform: translate(-4%, 4%); }
   90% { transform: translate(2%, -2%); }
   100% { transform: translate(2%, 2%); }
-}
-
-.bento-card {
-  @apply bg-card rounded-[20px] p-6 md:p-8 shadow-[0_4px_20px_-4px_rgba(0,0,0,0.05)] border border-white/20 transition-all duration-300 hover:shadow-[0_8px_30px_-4px_rgba(0,0,0,0.1)] hover:-translate-y-1;
-}
-
-.section-padding {
-  @apply py-14 md:py-20;
-}
-
-.container-custom {
-  @apply max-w-[1200px] mx-auto px-6 md:px-10;
-}
-
-/* Lumina Interactive List Styles */
-.slider-wrapper .slide-nav-item {
-  @apply flex flex-col gap-2 cursor-pointer opacity-40 transition-all duration-300 min-w-[150px] md:min-w-[200px];
-}
-
-.slider-wrapper .slide-nav-item.active {
-  @apply opacity-100;
-}
-
-.slider-wrapper .slide-progress-line {
-  @apply w-full h-px bg-white/10 relative overflow-hidden;
-}
-
-.slider-wrapper .slide-progress-fill {
-  @apply absolute top-0 left-0 h-full bg-white w-0 transition-opacity duration-300;
-}
-
-.slider-wrapper .slide-nav-title {
-  @apply text-white text-[10px] uppercase tracking-widest font-mono;
 }
 
 .scrollbar-hide::-webkit-scrollbar {
