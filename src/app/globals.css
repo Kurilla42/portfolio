@@ -5,26 +5,27 @@
 
 @layer base {
   :root {
-    --background: 215 52% 97%;
-    --foreground: 219 65% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 219 65% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 219 65% 10%;
-    --primary: 219 65% 33%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 215 25% 90%;
-    --secondary-foreground: 219 65% 20%;
-    --muted: 215 25% 90%;
-    --muted-foreground: 219 20% 45%;
-    --accent: 88 77% 66%;
-    --accent-foreground: 219 65% 10%;
+    /* Refined Palette: Based on Sage, Clay, and Warm Tones */
+    --background: 45 15% 96%;
+    --foreground: 184 15% 15%;
+    --card: 45 15% 98%;
+    --card-foreground: 184 15% 15%;
+    --popover: 45 15% 98%;
+    --popover-foreground: 184 15% 15%;
+    --primary: 184 15% 22%;
+    --primary-foreground: 45 15% 98%;
+    --secondary: 174 15% 85%;
+    --secondary-foreground: 184 15% 20%;
+    --muted: 174 10% 88%;
+    --muted-foreground: 184 10% 45%;
+    --accent: 34 35% 45%;
+    --accent-foreground: 45 15% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 215 20% 88%;
-    --input: 215 20% 88%;
-    --ring: 219 65% 33%;
-    --radius: 1.25rem;
+    --border: 184 15% 85%;
+    --input: 184 15% 85%;
+    --ring: 34 35% 45%;
+    --radius: 0.5rem;
   }
 }
 
@@ -33,86 +34,87 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground selection:bg-accent/30;
+    @apply bg-background text-foreground selection:bg-accent/30 selection:text-foreground antialiased;
   }
 }
 
-/* Fluid Typography Utility Classes - Proportionally Scaling */
+/* --- Fluid Typography System --- */
+
 .hero-display {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(120px, 25vw, 450px);
+  font-size: clamp(120px, 28vw, 480px);
   font-weight: 800;
-  @apply uppercase leading-[0.85] tracking-[-0.02em];
+  @apply uppercase leading-[0.82] tracking-[-0.03em];
 }
 
 .heading-xl {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(50px, 8vw, 160px);
-  font-weight: 700;
-  @apply uppercase leading-[0.9] tracking-[-0.01em];
+  font-size: clamp(60px, 8.5vw, 180px);
+  font-weight: 800;
+  @apply uppercase leading-[0.88] tracking-[-0.02em];
 }
 
 .heading-lg {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(40px, 6vw, 120px);
+  font-size: clamp(48px, 6.5vw, 140px);
   font-weight: 700;
-  @apply uppercase leading-[0.9] tracking-normal;
+  @apply uppercase leading-[0.9] tracking-[-0.01em];
 }
 
 .heading-md {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(20px, 2.5vw, 48px);
+  font-size: clamp(24px, 2.8vw, 56px);
   font-weight: 700;
   @apply uppercase leading-[1] tracking-[0.01em];
 }
 
 .services-item {
   font-family: 'Barlow Condensed', sans-serif;
-  font-size: clamp(36px, 5vw, 90px);
+  font-size: clamp(40px, 5.5vw, 100px);
   font-weight: 700;
   @apply uppercase leading-[1] tracking-normal;
 }
 
 .nav-link {
   font-family: 'Space Mono', monospace;
-  font-size: clamp(10px, 0.8vw, 14px);
+  font-size: clamp(10px, 0.75vw, 13px);
   font-weight: 400;
-  @apply uppercase tracking-[0.2em] leading-[1.4];
+  @apply uppercase tracking-[0.25em] leading-[1.4];
 }
 
 .label, .tag {
   font-family: 'Space Mono', monospace;
-  font-size: clamp(9px, 0.7vw, 12px);
+  font-size: clamp(9px, 0.65vw, 11px);
   font-weight: 400;
-  @apply uppercase tracking-[0.15em] leading-[1.4];
+  @apply uppercase tracking-[0.2em] leading-[1.4];
 }
 
 .body-text {
   font-family: 'Space Mono', monospace;
-  font-size: clamp(12px, 1vw, 20px);
+  font-size: clamp(13px, 1.1vw, 22px);
   font-weight: 400;
-  @apply normal-case tracking-[0.03em] leading-[1.7];
+  @apply normal-case tracking-[0.02em] leading-[1.75];
 }
 
 .btn {
   font-family: 'Space Mono', monospace;
-  font-size: clamp(10px, 0.8vw, 14px);
+  font-size: clamp(10px, 0.75vw, 14px);
   font-weight: 400;
-  @apply uppercase tracking-[0.15em];
+  @apply uppercase tracking-[0.2em];
 }
 
 .accent-italic {
   font-family: 'Cormorant Garamond', serif;
   font-style: italic;
   font-weight: 400;
-  color: #8B7D3A;
+  color: hsl(var(--accent));
 }
 
-/* Scroll Reveal Animations */
+/* --- Reveal Animations --- */
 .reveal-text {
   opacity: 0;
-  transform: translateY(3vh);
-  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: translateY(2rem);
+  transition: opacity 1.2s cubic-bezier(0.16, 1, 0.3, 1), transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
@@ -121,10 +123,11 @@
   transform: translateY(0);
 }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
 
+/* --- Film Grain Overlay --- */
 .noise-overlay {
   position: fixed;
   top: -50%;
@@ -135,9 +138,9 @@
   height: 200%;
   background: url('https://i.ibb.co/H8T22Jm/black-felt.png');
   background-repeat: repeat;
-  background-size: 300px;
+  background-size: 250px;
   animation: noise-animation 0.8s steps(8) infinite;
-  opacity: 0.45;
+  opacity: 0.35;
   pointer-events: none;
   z-index: 9999;
 }
