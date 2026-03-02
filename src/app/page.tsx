@@ -127,116 +127,159 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Packages Section - Proportionally Scaling */}
-      <section className="py-[12vh] md:py-[20vh] bg-white" id="packages">
+      {/* Packages Section - Redesigned as Pricing Table */}
+      <section className="py-[12vh] md:py-[20vh] bg-white border-b" id="packages">
         <div className="w-full px-[6vw]">
-          {/* Timeline UI */}
-          <div className="relative mb-[10vh] hidden md:block">
-            <div className="absolute top-1/2 left-0 w-full h-[1px] bg-primary/10 -translate-y-1/2 z-0" />
-            <div className="flex justify-between relative z-10">
-              <div className="w-[1vw] h-[1vw] rounded-full bg-primary ring-[0.4vw] ring-white" />
-              <div className="w-[1vw] h-[1vw] rounded-full bg-primary ring-[0.4vw] ring-white" />
-              <div className="w-[1vw] h-[1vw] rounded-full bg-accent ring-[0.4vw] ring-white shadow-[0_0_1.5vw_rgba(139,125,58,0.4)]" />
+          <header className="mb-[8vh] md:mb-[12vh] reveal-text">
+            <div className="heading-xl text-primary leading-none tracking-tighter mb-[4vh] text-[8vw]">
+              PRICING<br />PLANS
             </div>
-          </div>
+            <p className="body-text text-muted-foreground max-w-[40vw] text-[1.2vw]">
+              Choose a capacity level that fits your business needs. 
+              Upgrade or scale your lead generation at any time.
+            </p>
+          </header>
 
-          <div className="grid md:grid-cols-3 gap-[6vw]">
-            {/* Package 1 */}
-            <div className="flex flex-col reveal-text">
-              <div className="mb-[3vh]">
-                <h3 className="heading-md text-[2.2vw] mb-[1vh]">Fast Launch Starter</h3>
-                <p className="body-text text-muted-foreground text-[0.9vw]">
-                  A fast launch of a professional landing page for a small plumbing business.
-                </p>
-              </div>
-              <ul className="space-y-[1.5vh] mb-[6vh] flex-grow">
-                {[
-                  "One high-converting landing page based on a proven template",
-                  "Mobile-optimized, branded with your logo, colors, and fonts",
-                  "Setup of contact details, click-to-call buttons, and a simple lead form",
-                  "Basic on-page SEO structure for your main city",
-                  "Launch on your domain/hosting"
-                ].map((item, i) => (
-                  <li key={i} className="body-text flex gap-[1vw] text-[0.8vw] leading-relaxed text-muted-foreground">
-                    <CheckCircle2 className="w-[0.9vw] h-[0.9vw] text-accent shrink-0 mt-[0.2vh]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="pt-[3vh] border-t border-black/5">
-                <div className="flex items-baseline gap-[0.8vw] mb-[4vh]">
-                  <span className="label line-through opacity-30 text-[1vw]">$900</span>
-                  <span className="heading-md text-[2.5vw] text-primary">$697</span>
-                  <span className="tag opacity-40 text-[0.7vw]">one-time</span>
-                </div>
-                <Button className="w-full rounded-full btn text-[0.8vw] bg-primary text-white h-[4vw] hover:scale-[1.02] transition-transform">Get Started</Button>
-              </div>
+          <div className="border-t border-black/10">
+            {/* Table Header Labels */}
+            <div className="hidden md:grid grid-cols-[80px_2fr_1.5fr_1fr] py-[2vh] border-b border-black/10 text-muted-foreground label text-[0.7vw] opacity-60">
+              <span>Level</span>
+              <span>Tier Specifications</span>
+              <span>Included Resources</span>
+              <span>Investment</span>
             </div>
 
-            {/* Package 2 */}
-            <div className="flex flex-col reveal-text reveal-delay-1">
-              <div className="mb-[3vh]">
-                <h3 className="heading-md text-[2.2vw] mb-[1vh]">Local Leads Pro</h3>
-                <p className="body-text text-muted-foreground text-[0.9vw]">
-                  A multi-page website built for local SEO and a steady flow of leads.
-                </p>
+            {/* Row 1: Fast Launch Starter */}
+            <div className="grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[6vh] border-b border-black/10 items-start hover:bg-black/[0.02] transition-colors reveal-text">
+              <div className="mb-[2vh] md:mb-0">
+                <div className="w-[3vw] h-[3vw] rounded-full bg-primary text-white flex items-center justify-center font-bold text-[1.2vw]">1</div>
               </div>
-              <ul className="space-y-[1.5vh] mb-[6vh] flex-grow">
-                {[
-                  "Up to 5–7 pages: Home, Services, individual key services, About, Contact",
-                  "“Service Areas” / “Cities We Serve” sections",
-                  "Strong trust elements: reviews, guarantees, licenses",
-                  "Enhanced on-page SEO and internal linking",
-                  "Multiple CTAs: call, quote request, service request forms",
-                  "Form integrations with email / Google Sheets / simple CRM"
-                ].map((item, i) => (
-                  <li key={i} className="body-text flex gap-[1vw] text-[0.8vw] leading-relaxed text-muted-foreground">
-                    <CheckCircle2 className="w-[0.9vw] h-[0.9vw] text-accent shrink-0 mt-[0.2vh]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="pt-[3vh] border-t border-black/5">
-                <div className="flex items-baseline gap-[0.8vw] mb-[4vh]">
-                  <span className="label line-through opacity-30 text-[1vw]">$1500</span>
-                  <span className="heading-md text-[2.5vw] text-primary">$1197</span>
-                  <span className="tag opacity-40 text-[0.7vw]">one-time</span>
+              
+              <div className="pr-[4vw] mb-[4vh] md:mb-0">
+                <span className="heading-md text-primary text-[2vw] block mb-[1vh]">Fast Launch Starter</span>
+                <span className="body-text text-muted-foreground text-[1vw] block mb-[2vh]">A fast launch of a professional landing page for a small plumbing business.</span>
+                <div className="flex flex-wrap gap-[0.5vw]">
+                  <span className="tag border border-black/10 px-[0.8vw] py-[0.4vh] rounded-[0.4vw] text-[0.6vw]">Landing Page</span>
+                  <span className="tag border border-black/10 px-[0.8vw] py-[0.4vh] rounded-[0.4vw] text-[0.6vw]">Essential SEO</span>
                 </div>
-                <Button className="w-full rounded-full btn text-[0.8vw] bg-primary text-white h-[4vw] hover:scale-[1.02] transition-transform">Get Started</Button>
+              </div>
+
+              <div className="pr-[4vw] mb-[4vh] md:mb-0 flex flex-col gap-[1vh]">
+                <span className="label text-muted-foreground opacity-40 text-[0.6vw]">RESOURCES</span>
+                {[
+                  "One high-converting landing page",
+                  "Mobile-optimized design",
+                  "Setup of contact details",
+                  "Basic on-page SEO",
+                  "Launch on your domain"
+                ].map((item, i) => (
+                  <div key={i} className="body-text text-[0.9vw] flex items-center gap-[0.8vw]">
+                    <div className="w-[0.3vw] h-[0.3vw] rounded-full bg-primary" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col items-start gap-[3vh]">
+                <div className="flex flex-col">
+                  <span className="label line-through opacity-30 text-[0.8vw]">$900</span>
+                  <div className="flex items-baseline gap-[0.4vw]">
+                    <span className="heading-md text-[2.5vw] text-primary">$697</span>
+                    <span className="label opacity-40 text-[0.8vw]">one-time</span>
+                  </div>
+                </div>
+                <Button className="rounded-full btn text-[0.8vw] bg-primary text-white h-[4vw] px-[2vw] hover:scale-[1.05] transition-transform">Get Started</Button>
               </div>
             </div>
 
-            {/* Package 3 */}
-            <div className="flex flex-col relative reveal-text reveal-delay-2">
-              <div className="absolute -top-[3vh] left-0">
-                <span className="tag bg-accent text-accent-foreground px-[1.2vw] py-[0.6vh] rounded-full text-[0.7vw] font-bold shadow-lg shadow-accent/20">Most Popular</span>
+            {/* Row 2: Local Leads Pro (Highlighted) */}
+            <div className="grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[6vh] border-b border-black/10 items-start bg-primary/[0.03] relative reveal-text reveal-delay-1 group">
+              <div className="mb-[2vh] md:mb-0">
+                <div className="w-[3vw] h-[3vw] rounded-full bg-accent text-accent-foreground flex items-center justify-center font-bold text-[1.2vw]">2</div>
               </div>
-              <div className="mb-[3vh]">
-                <h3 className="heading-md text-[2.2vw] mb-[1vh]">Local Leads Pro</h3>
-                <p className="body-text text-muted-foreground text-[0.9vw]">
-                  A subscription for support, maintenance, and growth without the tech headaches.
-                </p>
-              </div>
-              <ul className="space-y-[1.5vh] mb-[6vh] flex-grow">
-                {[
-                  "Website built on the Local Leads Pro package",
-                  "Hosting and technical maintenance included",
-                  "Monthly small content and promo updates",
-                  "Light SEO and UX tweaks based on performance",
-                  "Priority email support"
-                ].map((item, i) => (
-                  <li key={i} className="body-text flex gap-[1vw] text-[0.8vw] leading-relaxed text-muted-foreground">
-                    <CheckCircle2 className="w-[0.9vw] h-[0.9vw] text-accent shrink-0 mt-[0.2vh]" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <div className="pt-[3vh] border-t border-black/5">
-                <div className="mb-[4vh]">
-                  <span className="label opacity-40 text-[0.8vw] block mb-[0.5vh]">setup from $700</span>
-                  <span className="heading-md text-[2vw] text-accent">+$129–$199/mo.</span>
+              
+              <div className="pr-[4vw] mb-[4vh] md:mb-0">
+                <div className="flex items-center gap-[1vw] mb-[1vh]">
+                  <span className="heading-md text-primary text-[2vw]">Local Leads Pro</span>
+                  <span className="tag bg-primary text-white px-[0.8vw] py-[0.4vh] rounded-full text-[0.6vw]">Recommended</span>
                 </div>
-                <Button className="w-full rounded-full btn text-[0.8vw] bg-accent text-accent-foreground h-[4vw] hover:scale-[1.02] transition-transform shadow-xl shadow-accent/10">Get Started</Button>
+                <span className="body-text text-muted-foreground text-[1vw] block mb-[2vh]">A multi-page website built for local SEO and a steady flow of leads.</span>
+                <div className="flex flex-wrap gap-[0.5vw]">
+                  <span className="tag border border-black/10 px-[0.8vw] py-[0.4vh] rounded-[0.4vw] text-[0.6vw]">5-7 Pages</span>
+                  <span className="tag border border-black/10 px-[0.8vw] py-[0.4vh] rounded-[0.4vw] text-[0.6vw]">Trust Triggers</span>
+                  <span className="tag border border-black/10 px-[0.8vw] py-[0.4vh] rounded-[0.4vw] text-[0.6vw]">CRM Sync</span>
+                </div>
+              </div>
+
+              <div className="pr-[4vw] mb-[4vh] md:mb-0 flex flex-col gap-[1vh]">
+                <span className="label text-muted-foreground opacity-40 text-[0.6vw]">RESOURCES</span>
+                {[
+                  "Home, Services, About, Contact",
+                  "Service Area Specific pages",
+                  "Reviews & License blocks",
+                  "Enhanced Local SEO linking",
+                  "Multiple high-intent CTAs",
+                  "Form & CRM integration"
+                ].map((item, i) => (
+                  <div key={i} className="body-text text-[0.9vw] flex items-center gap-[0.8vw]">
+                    <div className="w-[0.3vw] h-[0.3vw] rounded-full bg-accent" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col items-start gap-[3vh]">
+                <div className="flex flex-col">
+                  <span className="label line-through opacity-30 text-[0.8vw]">$1500</span>
+                  <div className="flex items-baseline gap-[0.4vw]">
+                    <span className="heading-md text-[2.5vw] text-primary">$1197</span>
+                    <span className="label opacity-40 text-[0.8vw]">one-time</span>
+                  </div>
+                </div>
+                <Button className="rounded-full btn text-[0.8vw] bg-accent text-accent-foreground h-[4vw] px-[2vw] hover:scale-[1.05] transition-transform shadow-lg shadow-accent/20">Select Plan</Button>
+              </div>
+            </div>
+
+            {/* Row 3: Growth Subscription */}
+            <div className="grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[6vh] border-b border-black/10 items-start hover:bg-black/[0.02] transition-colors reveal-text reveal-delay-2">
+              <div className="mb-[2vh] md:mb-0">
+                <div className="w-[3vw] h-[3vw] rounded-full bg-primary text-white flex items-center justify-center font-bold text-[1.2vw]">3</div>
+              </div>
+              
+              <div className="pr-[4vw] mb-[4vh] md:mb-0">
+                <span className="heading-md text-primary text-[2vw] block mb-[1vh]">Growth Subscription</span>
+                <span className="body-text text-muted-foreground text-[1vw] block mb-[2vh]">Ongoing support, maintenance, and light marketing without the tech headaches.</span>
+                <div className="flex flex-wrap gap-[0.5vw]">
+                  <span className="tag border border-black/10 px-[0.8vw] py-[0.4vh] rounded-[0.4vw] text-[0.6vw]">Maintenance</span>
+                  <span className="tag border border-black/10 px-[0.8vw] py-[0.4vh] rounded-[0.4vw] text-[0.6vw]">Monthly Updates</span>
+                </div>
+              </div>
+
+              <div className="pr-[4vw] mb-[4vh] md:mb-0 flex flex-col gap-[1vh]">
+                <span className="label text-muted-foreground opacity-40 text-[0.6vw]">RESOURCES</span>
+                {[
+                  "Hosting & Tech maintenance",
+                  "Monthly content/promo tweaks",
+                  "Light SEO & UX optimizations",
+                  "Priority email support",
+                  "Performance monitoring"
+                ].map((item, i) => (
+                  <div key={i} className="body-text text-[0.9vw] flex items-center gap-[0.8vw]">
+                    <div className="w-[0.3vw] h-[0.3vw] rounded-full bg-primary" />
+                    {item}
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex flex-col items-start gap-[3vh]">
+                <div className="flex flex-col">
+                  <span className="label opacity-40 text-[0.7vw] mb-[0.2vh]">setup from $700</span>
+                  <div className="flex items-baseline gap-[0.4vw]">
+                    <span className="heading-md text-[2vw] text-accent">+$129</span>
+                    <span className="label opacity-40 text-[0.8vw]">/mo.</span>
+                  </div>
+                </div>
+                <Button className="rounded-full btn text-[0.8vw] bg-primary text-white h-[4vw] px-[2vw] hover:scale-[1.05] transition-transform">Contact Sales</Button>
               </div>
             </div>
           </div>
