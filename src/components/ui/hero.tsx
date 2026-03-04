@@ -2,31 +2,94 @@
 "use client";
 
 import Image from "next/image";
+import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { useRef } from "react";
+import { ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 export default function ShaderShowcase() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Scroll tracking for parallax and fades
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  // Parallax and visual effects on scroll
+  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const bgY = useTransform(smoothProgress, [0, 0.5], ["0%", "-10%"]);
+  const bgDarken = useTransform(smoothProgress, [0, 0.4], ["rgba(29,38,37,0.2)", "rgba(29,38,37,0.7)"]);
+  const headingOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0.85]);
+  const headingScale = useTransform(smoothProgress, [0, 0.15], [1.02, 1]);
+  const descY = useTransform(smoothProgress, [0, 0.2], [0, -20]);
+  const descOpacity = useTransform(smoothProgress, [0.05, 0.2], [0, 1]);
+
+  // Animation variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.3 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0, 
+      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
+    }
+  };
+
   return (
-    <div className="relative min-h-[200vh] bg-primary">
-      {/* Background Image Container */}
-      <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden">
-        <Image
-          src="https://i.ibb.co/VpvhxdKN/Whisk-3864d9b3b89f45385ae4b571ebd64a53dr.jpg"
-          alt="Hero Background"
-          fill
-          className="object-cover"
-          priority
-        />
+    <div ref={containerRef} className="relative min-h-[200vh] bg-background">
+      {/* Background Layer with Ken Burns Effect */}
+      <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden bg-primary">
+        <motion.div 
+          style={{ y: bgY }}
+          animate={{ 
+            scale: [1, 1.08],
+            x: [0, -20, 0],
+          }}
+          transition={{ 
+            duration: 12, 
+            repeat: Infinity, 
+            repeatType: "reverse", 
+            ease: "linear" 
+          }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src="https://i.ibb.co/VpvhxdKN/Whisk-3864d9b3b89f45385ae4b571ebd64a53dr.jpg"
+            alt="Hero Background"
+            fill
+            className="object-cover"
+            priority
+          />
+        </motion.div>
         
-        {/* Soft atmospheric gradient */}
-        <div 
+        {/* Dynamic atmospheric overlay */}
+        <motion.div 
           className="absolute inset-0 z-10" 
+          style={{ backgroundColor: bgDarken }}
+        />
+        <div 
+          className="absolute inset-0 z-15"
           style={{
-            background: "linear-gradient(to bottom, rgba(29,38,37,0.2) 0%, rgba(29,38,37,0.4) 60%, rgba(29,38,37,0.8) 90%, hsl(var(--background)) 100%)"
+            background: "linear-gradient(to bottom, transparent 60%, hsl(var(--background)) 100%)"
           }}
         />
       </div>
 
-      {/* Persistent Navigation */}
-      <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-[2.5vw] mix-blend-exclusion">
+      {/* Navigation - Fade in from top */}
+      <motion.header 
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 0.6, duration: 0.5 }}
+        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-[2.5vw] mix-blend-exclusion"
+      >
         <div className="flex items-center gap-[1vw]">
           <div className="w-[3vw] h-[3vw] rounded-lg bg-white flex items-center justify-center text-black font-bold heading-md">J</div>
           <span className="nav-link text-white">Anton Kolesnikov</span>
@@ -34,61 +97,104 @@ export default function ShaderShowcase() {
         <nav className="hidden md:flex items-center space-x-[3vw]">
           <a href="#why" className="nav-link text-white/70 hover:text-white transition-colors">Why</a>
           <a href="#packages" className="nav-link text-white/70 hover:text-white transition-colors">Pricing</a>
-          <a href="#contact" className="px-[2vw] py-[1vh] rounded-full bg-accent text-white btn hover:bg-white hover:text-primary transition-all">Contact</a>
+          <motion.a 
+            href="#contact" 
+            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,1)", color: "hsl(var(--primary))" }}
+            className="px-[2.5vw] py-[1.2vh] rounded-full bg-accent text-white btn transition-all shadow-lg hover:shadow-accent/40"
+          >
+            Contact
+          </motion.a>
         </nav>
-      </header>
+      </motion.header>
 
-      {/* Content Layers */}
+      {/* Screen 1: The Main Hook */}
       <div className="relative z-20 w-full px-[6vw]">
-        
-        {/* Screen 1: The Main Hook */}
         <div className="h-screen flex items-center justify-start">
-          <div className="max-w-[75vw]">
-            <h1 className="heading-xl text-white drop-shadow-2xl reveal-text">
-              High Conversion<br />
-              <span className="accent-italic">Plumbing</span><br />
-              Landing Pages
-            </h1>
-            <p className="body-text text-white/80 mt-[5vh] max-w-[35vw] reveal-text reveal-delay-1 leading-relaxed">
+          <motion.div 
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            style={{ opacity: headingOpacity, scale: headingScale }}
+            className="max-w-[85vw]"
+          >
+            <motion.h1 variants={itemVariants} className="heading-xl text-white drop-shadow-2xl">
+              High Conversion
+            </motion.h1>
+            
+            <motion.div variants={itemVariants} className="flex items-baseline gap-[2vw]">
+              <motion.span 
+                initial={{ clipPath: 'inset(0 100% 0 0)' }}
+                animate={{ 
+                  clipPath: 'inset(0 0 0 0)',
+                  filter: ["brightness(1)", "brightness(1.2)", "brightness(1)"]
+                }}
+                transition={{ 
+                  clipPath: { delay: 1, duration: 1, ease: "circOut" },
+                  filter: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+                }}
+                className="accent-italic text-white brightness-110"
+              >
+                Plumbing
+              </motion.span>
+              <span className="heading-xl text-white">Landing Pages</span>
+            </motion.div>
+
+            <motion.p 
+              style={{ opacity: descOpacity, y: descY }}
+              className="body-text text-white/90 mt-[6vh] max-w-[38vw] leading-relaxed"
+            >
               We design precision-engineered sales machines for US plumbing owners who demand predictable lead flow and dominant local authority.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
         </div>
 
         {/* Screen 2: The Core Philosophy */}
         <div className="h-screen flex flex-col justify-center">
           <div className="grid md:grid-cols-2 gap-[10vw] items-start">
             {/* Engineering Side */}
-            <div className="max-w-[40vw]">
-              <h2 className="heading-lg text-white reveal-text">
+            <motion.div 
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="max-w-[40vw]"
+            >
+              <h2 className="heading-lg text-white">
                 Precision<br />
                 <span className="accent-italic">Engineering</span>
               </h2>
-              <p className="body-text text-white/90 mt-[4vh] max-w-[30vw] reveal-text reveal-delay-1 leading-relaxed">
+              <p className="body-text text-white/95 mt-[4vh] max-w-[32vw] leading-relaxed">
                 Every pixel is placed with intent. We don't just build websites; we craft high-performance conversion funnels that transform casual browsers into lifetime customers.
               </p>
-            </div>
+            </motion.div>
 
             {/* Flow Side */}
-            <div className="max-w-[40vw] md:text-right md:ml-auto md:mt-[25vh]">
-              <h2 className="heading-lg text-white reveal-text">
+            <motion.div 
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="max-w-[40vw] md:text-right md:ml-auto md:mt-[20vh]"
+            >
+              <h2 className="heading-lg text-white">
                 Seamless<br />
                 <span className="accent-italic">Flow</span>
               </h2>
-              <p className="body-text text-white/90 mt-[4vh] md:ml-auto max-w-[30vw] reveal-text reveal-delay-1 leading-relaxed">
+              <p className="body-text text-white/95 mt-[4vh] md:ml-auto max-w-[32vw] leading-relaxed">
                 From the first search click to the final service booking, your customer's journey is smooth, professional, and optimized for maximum trust.
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
-
       </div>
 
       {/* Scroll Down Hint */}
-      <div className="absolute bottom-[5vh] left-1/2 -translate-x-1/2 flex flex-col items-center gap-[1.5vh] text-white/40 z-20">
+      <motion.div 
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
+        className="absolute bottom-[5vh] left-1/2 -translate-x-1/2 flex flex-col items-center gap-[1.5vh] text-white/40 z-20 pointer-events-none"
+      >
         <span className="tag text-white/60">Explore the depth</span>
         <div className="w-[1px] h-[8vh] bg-gradient-to-b from-accent to-transparent" />
-      </div>
+      </motion.div>
     </div>
   );
 }
