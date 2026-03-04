@@ -16,66 +16,58 @@ export function SiteShowcaseSection() {
 
   // Use spring for smoother transitions
   const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
+    stiffness: 80,
+    damping: 25,
     restDelta: 0.001
   });
 
-  // --- PHASE 1 & 2: TEXT MOVEMENT (0% -> 40%) ---
+  // --- PHASE 1 & 2: TYPOGRAPHY DIVERGENCE (0% -> 40%) ---
   const leftTextX = useTransform(smoothProgress, [0, 0.4, 1], ["0vw", "-45vw", "-65vw"]);
   const leftTextScale = useTransform(smoothProgress, [0, 0.4, 1], [1, 0.9, 0.85]);
-  
-  // Refined Opacity for Text (Phase 1 -> 2 -> Exit Phase)
   const leftTextOpacity = useTransform(
     smoothProgress, 
-    [0, 0.4, 0.85, 0.9, 0.95, 1], 
-    [1, 0.55, 0.55, 0.4, 0.3, 0.2]
+    [0, 0.35, 0.4, 0.8, 1], 
+    [1, 1, 0.6, 0.55, 0.25]
   );
 
   const rightTextX = useTransform(smoothProgress, [0, 0.4, 1], ["0vw", "45vw", "65vw"]);
   const rightTextScale = useTransform(smoothProgress, [0, 0.4, 1], [1, 0.9, 0.85]);
   const rightTextOpacity = useTransform(
     smoothProgress, 
-    [0, 0.4, 0.85, 0.9, 0.95, 1], 
-    [1, 0.55, 0.55, 0.4, 0.3, 0.2]
+    [0, 0.35, 0.4, 0.8, 1], 
+    [1, 1, 0.6, 0.55, 0.25]
   );
 
   const anchorOpacity = useTransform(
     smoothProgress, 
-    [0, 0.4, 0.85, 1], 
-    [0.8, 0.6, 0.6, 0.3]
+    [0, 0.4, 0.8, 1], 
+    [0.8, 0.6, 0.5, 0.3]
   );
 
-  // --- PHASE 3: IMAGE EMERGENCE (40% -> 100%) ---
+  // --- PHASE 3: IMAGE EMERGENCE (40% -> 80%) ---
   const leftImageY = useTransform(smoothProgress, [0.4, 0.6], ["100px", "0px"]);
   const leftImageOpacity = useTransform(smoothProgress, [0.4, 0.55], [0, 1]);
   
   const rightImageY = useTransform(smoothProgress, [0.45, 0.65], ["100px", "0px"]);
   const rightImageOpacity = useTransform(smoothProgress, [0.45, 0.6], [0, 1]);
 
-  // --- EXIT PHASE (Section on-scroll-over) ---
-  const sectionExitY = useTransform(
-    smoothProgress, 
-    [0.85, 0.9, 0.95, 1], 
-    [0, -10, -25, -40]
-  );
-  const sectionExitOpacity = useTransform(
-    smoothProgress, 
-    [0.85, 0.9, 0.95, 1], 
-    [1, 0.8, 0.55, 0.3]
-  );
+  // --- PHASE 4: EXIT RECESSION (80% -> 100%) ---
+  // The "Cases" section recedes (moves up and fades) to t=1 specified points
+  const sectionExitY = useTransform(smoothProgress, [0.8, 1], ["0px", "-40px"]);
+  const sectionExitOpacity = useTransform(smoothProgress, [0.8, 1], [1, 0.3]);
+  const sectionExitScale = useTransform(smoothProgress, [0.8, 1], [1, 0.97]);
 
   const leftCase = PlaceHolderImages.find(img => img.id === 'case-study-2');
   const rightCase = PlaceHolderImages.find(img => img.id === 'case-study-3');
   const siteName = "YOUR SITE".split("");
 
   return (
-    <div ref={containerRef} className="relative h-[300vh] bg-[#e5e5e5]">
+    <div ref={containerRef} className="relative h-[350vh] bg-[#e5e5e5] z-10">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Dynamic content wrapper for exit animation */}
         <motion.div 
-          style={{ y: sectionExitY, opacity: sectionExitOpacity }}
+          style={{ y: sectionExitY, opacity: sectionExitOpacity, scale: sectionExitScale }}
           className="w-full h-full flex items-center justify-center relative"
         >
           {/* Central Anchor */}
@@ -94,7 +86,7 @@ export function SiteShowcaseSection() {
             </motion.div>
           </div>
 
-          {/* Images Grid */}
+          {/* Main Stage */}
           <div className="w-full h-full grid grid-cols-2 items-center px-[4vw]">
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
@@ -107,7 +99,7 @@ export function SiteShowcaseSection() {
                 style={{ y: leftImageY, opacity: leftImageOpacity }}
                 className="relative w-[38vw] aspect-[3/4] rounded-[3vw] overflow-hidden shadow-[0_4vw_8vw_-1vw_rgba(0,0,0,0.25)] z-10"
               >
-                <Image src={leftCase?.imageUrl || ''} alt="Case Study" fill className="object-cover" priority />
+                <Image src={leftCase?.imageUrl || ''} alt="Case Study Left" fill className="object-cover" priority sizes="38vw" />
                 <div className="absolute inset-0 bg-black/5 mix-blend-multiply" />
               </motion.div>
             </div>
@@ -123,14 +115,14 @@ export function SiteShowcaseSection() {
                 style={{ y: rightImageY, opacity: rightImageOpacity }}
                 className="relative w-[38vw] aspect-[3/4] rounded-[3vw] overflow-hidden shadow-[0_4vw_8vw_-1vw_rgba(0,0,0,0.25)] z-10"
               >
-                <Image src={rightCase?.imageUrl || ''} alt="Case Study" fill className="object-cover" priority />
+                <Image src={rightCase?.imageUrl || ''} alt="Case Study Right" fill className="object-cover" priority sizes="38vw" />
                 <div className="absolute inset-0 bg-black/5 mix-blend-multiply" />
               </motion.div>
             </div>
           </div>
         </motion.div>
 
-        {/* Ambient Bottom Gradient for transition */}
+        {/* Bottom Ambient Fade to ease the overlap */}
         <div className="absolute bottom-0 left-0 right-0 h-[20vh] bg-gradient-to-t from-black/10 to-transparent pointer-events-none z-30" />
       </div>
     </div>

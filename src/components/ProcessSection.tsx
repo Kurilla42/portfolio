@@ -42,13 +42,14 @@ const steps = [
 export function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Internal Step Scroll
+  // Internal Step Accumulation Scroll (The focus loop)
   const { scrollYProgress: internalScroll } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Entrance Scroll (for the overlap effect)
+  // Entrance Scroll (The "Encroaching" Layer Effect)
+  // We track the transition when the section is approaching the top
   const { scrollYProgress: entryScroll } = useScroll({
     target: containerRef,
     offset: ["start end", "start start"]
@@ -57,20 +58,39 @@ export function ProcessSection() {
   const smoothInternal = useSpring(internalScroll, { stiffness: 80, damping: 25 });
   const smoothEntry = useSpring(entryScroll, { stiffness: 100, damping: 30 });
 
-  // Entrance Animation Transforms based on User-specified t points
-  const entryY = useTransform(smoothEntry, [0, 0.33, 0.66, 1], [100, 65, 30, 0]);
-  const entryOpacity = useTransform(smoothEntry, [0, 0.33, 0.66, 1], [0.1, 0.4, 0.75, 1]);
-  const entryScale = useTransform(smoothEntry, [0, 1], [0.97, 1]);
+  // Entrance Animation based on specific user-provided 4-point interpolation
+  // t=0: Y:100, Op:0.1 -> t=0.33: Y:65, Op:0.4 -> t=0.66: Y:30, Op:0.75 -> t=1: Y:0, Op:1.0
+  const entryY = useTransform(
+    smoothEntry, 
+    [0, 0.33, 0.66, 1], 
+    [100, 65, 30, 0]
+  );
+  
+  const entryOpacity = useTransform(
+    smoothEntry, 
+    [0, 0.33, 0.66, 1], 
+    [0.1, 0.4, 0.75, 1]
+  );
+
+  const entryScale = useTransform(
+    smoothEntry, 
+    [0, 1], 
+    [0.97, 1]
+  );
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-background z-40">
+    <div 
+      ref={containerRef} 
+      // Negative margin-top creates the overlap zone (encroachment)
+      className="relative h-[400vh] bg-background z-20 mt-[-50vh] shadow-[0_-20vh_30vh_rgba(0,0,0,0.15)]"
+    >
       <motion.div 
         style={{ 
           y: entryY, 
           opacity: entryOpacity, 
           scale: entryScale 
         }}
-        className="sticky top-0 h-screen w-full flex items-center overflow-hidden"
+        className="sticky top-0 h-screen w-full flex items-center overflow-hidden bg-background"
       >
         <div className="w-full h-full grid grid-cols-1 md:grid-cols-[1fr_1.2fr]">
           
@@ -103,7 +123,10 @@ export function ProcessSection() {
                 const activeStart = index * 0.25;
                 const activeEnd = (index + 1) * 0.25;
                 
-                // Accumulation Logic: Active -> Previous -> Old
+                // Logic for "New" -> "Previous" -> "Old" transitions
+                // Active Step: Opacity 1, Scale 1.05
+                // Previous Step: Opacity 0.5-0.6, translateY -15px
+                // Old Step: Opacity 0.15-0.2, translateY -30px
                 const opacity = useTransform(smoothInternal, 
                   [activeStart - 0.1, activeStart, activeEnd, activeEnd + 0.25, activeEnd + 0.5], 
                   [0, 1, 0.6, 0.2, 0.15]
@@ -119,7 +142,8 @@ export function ProcessSection() {
                   [0.98, 1.05, 1]
                 );
 
-                const isRendered = useTransform(smoothInternal, 
+                // Ensure steps only show when their progress starts
+                const isVisible = useTransform(smoothInternal, 
                   p => p >= (index === 0 ? 0 : activeStart - 0.05)
                 );
 
@@ -130,7 +154,7 @@ export function ProcessSection() {
                       opacity, 
                       y, 
                       scale,
-                      display: isRendered ? 'block' : 'none'
+                      display: isVisible ? 'block' : 'none'
                     }}
                     className="border-b border-primary/10 pb-[4vh] last:border-0 will-change-transform"
                   >
