@@ -42,20 +42,36 @@ const steps = [
 export function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const { scrollYProgress } = useScroll({
+  // Internal Step Scroll
+  const { scrollYProgress: internalScroll } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
-    restDelta: 0.001
+  // Entrance Scroll (for the overlap effect)
+  const { scrollYProgress: entryScroll } = useScroll({
+    target: containerRef,
+    offset: ["start end", "start start"]
   });
 
+  const smoothInternal = useSpring(internalScroll, { stiffness: 80, damping: 25 });
+  const smoothEntry = useSpring(entryScroll, { stiffness: 100, damping: 30 });
+
+  // Entrance Animation Transforms based on User-specified t points
+  const entryY = useTransform(smoothEntry, [0, 0.33, 0.66, 1], [100, 65, 30, 0]);
+  const entryOpacity = useTransform(smoothEntry, [0, 0.33, 0.66, 1], [0.1, 0.4, 0.75, 1]);
+  const entryScale = useTransform(smoothEntry, [0, 1], [0.97, 1]);
+
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-background">
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+    <div ref={containerRef} className="relative h-[400vh] bg-background z-40">
+      <motion.div 
+        style={{ 
+          y: entryY, 
+          opacity: entryOpacity, 
+          scale: entryScale 
+        }}
+        className="sticky top-0 h-screen w-full flex items-center overflow-hidden"
+      >
         <div className="w-full h-full grid grid-cols-1 md:grid-cols-[1fr_1.2fr]">
           
           {/* Left Side: Brand Anchor */}
@@ -84,39 +100,26 @@ export function ProcessSection() {
           <div className="h-full flex flex-col justify-center px-[8vw] relative bg-background">
             <div className="flex flex-col gap-[2vh] w-full relative">
               {steps.map((step, index) => {
-                // Calculation Ranges for 4 steps: 0-0.25, 0.25-0.5, 0.5-0.75, 0.75-1.0
                 const activeStart = index * 0.25;
                 const activeEnd = (index + 1) * 0.25;
                 
-                // Opacity Mapping
-                // 1. Initial/Future (0) 
-                // 2. Active (1)
-                // 3. Previous (0.6)
-                // 4. Old (0.2)
-                const opacity = useTransform(smoothProgress, 
+                // Accumulation Logic: Active -> Previous -> Old
+                const opacity = useTransform(smoothInternal, 
                   [activeStart - 0.1, activeStart, activeEnd, activeEnd + 0.25, activeEnd + 0.5], 
                   [0, 1, 0.6, 0.2, 0.15]
                 );
 
-                // Translation Mapping
-                // 1. New: translateY 20 -> 0
-                // 2. Previous: translateY 0 -> -15
-                // 3. Old: translateY -15 -> -30
-                const y = useTransform(smoothProgress,
+                const y = useTransform(smoothInternal,
                   [activeStart - 0.1, activeStart, activeEnd, activeEnd + 0.25, activeEnd + 0.5],
                   [20, 0, -15, -30, -45]
                 );
 
-                // Scale Mapping
-                // 1. New: 1.05
-                // 2. Others: 1.0
-                const scale = useTransform(smoothProgress,
+                const scale = useTransform(smoothInternal,
                   [activeStart - 0.1, activeStart, activeEnd],
                   [0.98, 1.05, 1]
                 );
 
-                // Visibility gating to ensure Steps don't render until needed
-                const isRendered = useTransform(smoothProgress, 
+                const isRendered = useTransform(smoothInternal, 
                   p => p >= (index === 0 ? 0 : activeStart - 0.05)
                 );
 
@@ -150,14 +153,10 @@ export function ProcessSection() {
                       </div>
 
                       <div className="flex flex-row lg:flex-col items-center lg:items-end gap-[1vw] shrink-0">
-                        <span className="heading-md text-primary">
-                          {step.period}
-                        </span>
+                        <span className="heading-md text-primary">{step.period}</span>
                         <div className="flex items-center gap-[0.8vw] bg-primary/[0.03] px-[1.2vw] py-[0.6vh] rounded-full border border-primary/5">
                           <div className="w-[0.5vw] h-[0.5vw] rounded-full bg-accent animate-pulse" />
-                          <span className="tag text-primary/80">
-                            {step.status}
-                          </span>
+                          <span className="tag text-primary/80">{step.status}</span>
                         </div>
                       </div>
                     </div>
@@ -168,7 +167,7 @@ export function ProcessSection() {
           </div>
 
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
