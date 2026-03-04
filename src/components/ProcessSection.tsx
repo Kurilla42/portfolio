@@ -58,13 +58,13 @@ export function ProcessSection() {
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         <div className="w-full h-full grid grid-cols-1 md:grid-cols-[1fr_1.2fr]">
           
-          {/* Left Side: Hero Brand Anchor */}
+          {/* Left Side: Brand Anchor */}
           <div className="px-[8vw] flex flex-col justify-center h-full border-r border-primary/5 bg-background z-10">
             <span className="tag text-muted-foreground block mb-[5vh] reveal-text">
               [OUR METHODOLOGY]
             </span>
             <div className="relative">
-              <h2 className="heading-xl text-primary leading-[0.85] flex flex-col tracking-tighter reveal-text">
+              <h2 className="heading-md text-primary leading-[0.85] flex flex-col tracking-tighter reveal-text text-[4.5vw]">
                 <span>THE</span>
                 <span className="relative">
                   STEPS
@@ -75,33 +75,61 @@ export function ProcessSection() {
                 <span>TO FLOW</span>
               </h2>
             </div>
-            <p className="max-w-[28vw] body-text mt-[8vh] reveal-text reveal-delay-1 text-primary/70">
+            <p className="max-w-[28vw] body-text mt-[8vh] reveal-text reveal-delay-1 text-primary/70 text-[1.1vw] leading-relaxed">
               A streamlined, high-performance approach from discovery call to a revenue-generating launch in just 10 days.
             </p>
           </div>
 
-          {/* Right Side: Stage Accumulation */}
+          {/* Right Side: Step Accumulation */}
           <div className="h-full flex flex-col justify-center px-[8vw] relative bg-background">
-            <div className="flex flex-col gap-[4vh] w-full">
+            <div className="flex flex-col gap-[2vh] w-full relative">
               {steps.map((step, index) => {
-                const start = index * 0.22;
-                const end = start + 0.18;
+                // Calculation Ranges for 4 steps: 0-0.25, 0.25-0.5, 0.5-0.75, 0.75-1.0
+                const activeStart = index * 0.25;
+                const activeEnd = (index + 1) * 0.25;
                 
-                // Keep Step 1 visible by default for better entry UX
-                const initialOpacity = index === 0 ? 1 : 0;
-                
-                // eslint-disable-next-line react-hooks/rules-of-hooks
-                const opacity = useTransform(smoothProgress, [start, start + 0.05], [initialOpacity, 1]);
-                // eslint-disable-next-line react-hooks/rules-of-hooks
-                const y = useTransform(smoothProgress, [start, end], [250, 0]);
-                // eslint-disable-next-line react-hooks/rules-of-hooks
-                const scale = useTransform(smoothProgress, [start, end], [0.97, 1]);
+                // Opacity Mapping
+                // 1. Initial/Future (0) 
+                // 2. Active (1)
+                // 3. Previous (0.6)
+                // 4. Old (0.2)
+                const opacity = useTransform(smoothProgress, 
+                  [activeStart - 0.1, activeStart, activeEnd, activeEnd + 0.25, activeEnd + 0.5], 
+                  [0, 1, 0.6, 0.2, 0.15]
+                );
+
+                // Translation Mapping
+                // 1. New: translateY 20 -> 0
+                // 2. Previous: translateY 0 -> -15
+                // 3. Old: translateY -15 -> -30
+                const y = useTransform(smoothProgress,
+                  [activeStart - 0.1, activeStart, activeEnd, activeEnd + 0.25, activeEnd + 0.5],
+                  [20, 0, -15, -30, -45]
+                );
+
+                // Scale Mapping
+                // 1. New: 1.05
+                // 2. Others: 1.0
+                const scale = useTransform(smoothProgress,
+                  [activeStart - 0.1, activeStart, activeEnd],
+                  [0.98, 1.05, 1]
+                );
+
+                // Visibility gating to ensure Steps don't render until needed
+                const isRendered = useTransform(smoothProgress, 
+                  p => p >= (index === 0 ? 0 : activeStart - 0.05)
+                );
 
                 return (
                   <motion.div
                     key={index}
-                    style={{ opacity, y, scale }}
-                    className="border-b border-primary/10 pb-[4vh] last:border-0"
+                    style={{ 
+                      opacity, 
+                      y, 
+                      scale,
+                      display: isRendered ? 'block' : 'none'
+                    }}
+                    className="border-b border-primary/10 pb-[4vh] last:border-0 will-change-transform"
                   >
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-[3vw]">
                       <div className="flex gap-[3vw] items-start">
