@@ -23,7 +23,6 @@ export default function RootLayout({
       </head>
       <body className="antialiased selection:bg-accent selection:text-accent-foreground overflow-x-hidden relative bg-[#F5F2EB]">
         <BackgroundContours />
-        <div className="noise-overlay" aria-hidden="true" />
         <ScrollObserver />
         {children}
         <Toaster />

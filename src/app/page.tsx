@@ -51,7 +51,7 @@ const comparisonData = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-transparent">
       {/* Hero Section */}
       <ShaderShowcase />
 
@@ -68,7 +68,7 @@ export default function Home() {
         <ProcessSection />
       </section>
 
-      {/* Comparison Section (About Block) */}
+      {/* Comparison Section (About Block) - Solid BG to hide lines for contrast */}
       <section className="min-h-screen py-[15vh] bg-background relative z-10" id="about">
         <div className="w-full">
           <div className="mb-[12vh] px-[6vw]">
