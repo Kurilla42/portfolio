@@ -36,20 +36,20 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // useScroll tracks the progress of the container passing through the viewport
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Smooth out the scroll for the horizontal track
-  // For 4 items, we need to move -75% of the total track width (which is 400vw)
-  // This results in moving exactly 300vw, leaving the 4th item visible.
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
-  const smoothX = useSpring(x, { stiffness: 80, damping: 25, restDelta: 0.001 });
+  // Calculate horizontal translation. With 4 items, we move 300% to show the 4th item.
+  // Using -75% for a track that is 400% wide.
+  const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  const smoothX = useSpring(xTransform, { stiffness: 80, damping: 25, restDelta: 0.001 });
 
   return (
     <div ref={containerRef} className="relative h-[400vh] bg-background">
-      {/* Sticky Viewport */}
+      {/* Sticky Viewport: This is the part that stays on screen */}
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         
         {/* Progress Bar */}
@@ -65,10 +65,10 @@ export function LuminaInteractiveList() {
           <span className="label text-muted-foreground opacity-40">[ CORE PHILOSOPHY ]</span>
         </div>
 
-        {/* Horizontal Track */}
+        {/* Horizontal Track: This is the long ribbon that moves right */}
         <motion.div 
           style={{ x: smoothX }}
-          className="flex h-full w-[400vw] items-center"
+          className="flex h-full w-[400vw] items-center will-change-transform"
         >
           {showcaseItems.map((item, index) => (
             <ShowcaseItem 
@@ -85,19 +85,18 @@ export function LuminaInteractiveList() {
 }
 
 function ShowcaseItem({ item, index, progress }: { item: any, index: number, progress: any }) {
-  // Local range for this specific item (0.25 steps for 4 items)
+  // Range mapping for 4 items (0.25 steps each)
   const start = index * 0.25;
   const end = (index + 1) * 0.25;
   const center = (start + end) / 2;
 
-  // Text focus effect: fade in/out based on position relative to the center of the viewport
-  // We use scrollProgress to calculate when this item is "active"
+  // Text focus effect: brighter in the middle, dimmer on sides
   const textOpacity = useTransform(progress, 
     [start, center, end], 
     [0.4, 1, 0.4]
   );
   
-  // Internal Parallax for image: moves slightly slower/faster than the track
+  // Internal Parallax for image: moves slightly differently than the track
   const imageX = useTransform(progress, 
     [start, end], 
     ["10%", "-10%"]
