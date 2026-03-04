@@ -42,8 +42,10 @@ export function LuminaInteractiveList() {
   });
 
   // Smooth out the scroll for the horizontal track
+  // For 4 items, we need to move -75% of the total track width (which is 400vw)
+  // This results in moving exactly 300vw, leaving the 4th item visible.
   const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
-  const smoothX = useSpring(x, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  const smoothX = useSpring(x, { stiffness: 80, damping: 25, restDelta: 0.001 });
 
   return (
     <div ref={containerRef} className="relative h-[400vh] bg-background">
@@ -51,7 +53,7 @@ export function LuminaInteractiveList() {
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         
         {/* Progress Bar */}
-        <div className="absolute bottom-[5vh] left-[8vw] right-[8vw] h-[1px] bg-primary/10 z-50">
+        <div className="absolute bottom-[6vh] left-[8vw] right-[8vw] h-[1px] bg-primary/10 z-50">
           <motion.div 
             className="h-full bg-accent" 
             style={{ scaleX: scrollYProgress, transformOrigin: "left" }} 
@@ -88,25 +90,26 @@ function ShowcaseItem({ item, index, progress }: { item: any, index: number, pro
   const end = (index + 1) * 0.25;
   const center = (start + end) / 2;
 
-  // Text focus effect: fade in/out based on position
+  // Text focus effect: fade in/out based on position relative to the center of the viewport
+  // We use scrollProgress to calculate when this item is "active"
   const textOpacity = useTransform(progress, 
     [start, center, end], 
     [0.4, 1, 0.4]
   );
   
-  // Parallax for image inside the container
+  // Internal Parallax for image: moves slightly slower/faster than the track
   const imageX = useTransform(progress, 
     [start, end], 
-    [50, -50]
+    ["10%", "-10%"]
   );
 
   return (
-    <div className="w-[100vw] h-full flex items-center px-[8vw] gap-[8vw] shrink-0">
+    <div className="w-[100vw] h-full flex items-center px-[8vw] gap-[10vw] shrink-0">
       {/* Image Container */}
-      <div className="relative w-[45vw] aspect-[16/10] rounded-[2vw] overflow-hidden shadow-2xl bg-primary/5">
+      <div className="relative w-[45vw] aspect-[16/10] rounded-[2vw] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.2)] bg-primary/5">
         <motion.div 
           style={{ x: imageX }}
-          className="relative w-full h-full scale-110"
+          className="relative w-full h-full scale-125"
         >
           <Image 
             src={item.image?.imageUrl || ''} 
@@ -114,24 +117,25 @@ function ShowcaseItem({ item, index, progress }: { item: any, index: number, pro
             fill 
             className="object-cover"
             priority
+            sizes="45vw"
           />
         </motion.div>
-        {/* Visual Overlay */}
+        {/* Subtle Visual Overlay */}
         <div className="absolute inset-0 bg-primary/5 mix-blend-multiply pointer-events-none" />
       </div>
 
       {/* Text Container */}
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="flex flex-col max-w-[32vw]"
+        className="flex flex-col max-w-[35vw]"
       >
-        <span className="services-item text-primary/10 leading-none mb-[2vh]">
+        <span className="services-item text-primary/5 leading-none mb-[3vh] block">
           {item.number}
         </span>
-        <h2 className="heading-lg text-primary tracking-tighter mb-[4vh] leading-none">
+        <h2 className="heading-lg text-primary tracking-tighter mb-[5vh] leading-[0.9]">
           {item.title}
         </h2>
-        <p className="body-text text-primary/70 max-w-[28vw]">
+        <p className="body-text text-primary/70 max-w-[30vw] leading-relaxed">
           {item.description}
         </p>
       </motion.div>
