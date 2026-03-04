@@ -9,15 +9,16 @@ export function BackgroundContours() {
     const svg = ref.current;
     if (!svg) return;
 
+    // лёгкая анимация через requestAnimationFrame
     let frame = 0;
     let id: number;
 
     const animate = () => {
-      frame += 0.002; // slow breathing speed
+      frame += 0.002; // скорость
       const paths = svg.querySelectorAll<SVGPathElement>('path[data-wiggle="1"]');
       paths.forEach((p, i) => {
         const base = Number(p.getAttribute('data-base') || 0);
-        const offset = Math.sin(frame + i) * 5; // gentle 5px amplitude
+        const offset = Math.sin(frame + i) * 3; // амплитуда 3px
         p.setAttribute('transform', `translate(0 ${base + offset})`);
       });
       id = requestAnimationFrame(animate);
@@ -30,7 +31,7 @@ export function BackgroundContours() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 -z-20 bg-background"
+      className="pointer-events-none fixed inset-0 -z-10 bg-[#F5F2EB]"
     >
       <svg
         ref={ref}
@@ -38,9 +39,9 @@ export function BackgroundContours() {
         height="100%"
         viewBox="0 0 1920 1080"
         preserveAspectRatio="xMidYMid slice"
-        className="opacity-40"
       >
-        <g stroke="hsl(var(--primary) / 0.1)" strokeWidth="1.2" fill="none">
+        {/* несколько плавных контуров */}
+        <g stroke="#D5D0C5" strokeWidth="1.5" fill="none">
           <path
             d="M-100 200 C 300 80, 600 120, 1100 260 C 1500 380, 1900 320, 2100 200"
             data-wiggle="1"

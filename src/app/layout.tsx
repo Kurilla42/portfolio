@@ -21,7 +21,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&family=Space+Mono:wght@400&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet" />
       </head>
-      <body className="antialiased selection:bg-accent selection:text-accent-foreground overflow-x-hidden relative">
+      <body className="antialiased selection:bg-accent selection:text-accent-foreground overflow-x-hidden relative bg-[#F5F2EB]">
         <BackgroundContours />
         <div className="noise-overlay" aria-hidden="true" />
         <ScrollObserver />

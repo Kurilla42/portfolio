@@ -1,4 +1,3 @@
-
 import { Button } from '@/components/ui/button';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
@@ -52,7 +51,7 @@ const comparisonData = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen">
       {/* Hero Section */}
       <ShaderShowcase />
 
@@ -70,7 +69,7 @@ export default function Home() {
       </section>
 
       {/* Comparison Section (About Block) */}
-      <section className="min-h-screen py-[15vh] bg-[#fcfbf7] border-y border-primary/5" id="about">
+      <section className="min-h-screen py-[15vh] border-y border-primary/5" id="about">
         <div className="w-full">
           <div className="mb-[12vh] px-[6vw]">
             <h2 className="heading-lg text-primary tracking-tighter reveal-text max-w-[80vw]">
@@ -125,7 +124,7 @@ export default function Home() {
       </section>
 
       {/* Packages Section */}
-      <section className="py-[15vh] bg-white" id="packages">
+      <section className="py-[15vh]" id="packages">
         <div className="w-full px-[8vw]">
           <header className="mb-[15vh] reveal-text">
             <div className="brand-mark heading-xl text-primary mb-[5vh]">
@@ -138,7 +137,6 @@ export default function Home() {
           </header>
 
           <div className="pricing-table border-t border-primary/10">
-            {/* Table Header Labels */}
             <div className="hidden md:grid grid-cols-[80px_2fr_1.5fr_1fr] py-[3vh] border-b border-primary/10 text-muted-foreground label opacity-40">
               <span>Level</span>
               <span>Tier Specifications</span>
@@ -146,7 +144,6 @@ export default function Home() {
               <span>Investment</span>
             </div>
 
-            {/* Pricing Rows */}
             <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors reveal-text">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-[3.5vw] h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-[1.5vw]">1</div>
@@ -180,7 +177,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Recommended Row */}
             <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start bg-primary/[0.03] reveal-text reveal-delay-1 relative">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-[3.5vw] h-[3.5vw] rounded-full bg-accent text-white flex items-center justify-center font-bold heading-md text-[1.5vw]">2</div>
@@ -213,7 +209,6 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Subscription Row */}
             <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors reveal-text reveal-delay-2">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-[3.5vw] h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-[1.5vw]">3</div>
@@ -247,7 +242,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-[20vh] bg-background border-t border-primary/5" id="contact">
+      <section className="py-[20vh] border-t border-primary/5" id="contact">
         <div className="w-full px-[6vw]">
           <div className="bg-primary text-white p-[10vw] text-center max-w-[85vw] mx-auto rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden reveal-text">
             <div className="relative z-10 space-y-[6vh]">
@@ -265,7 +260,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-[10vh] border-t border-primary/5 bg-white">
+      <footer className="py-[10vh] border-t border-primary/5">
         <div className="w-full px-[6vw]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-[6vh]">
             <div className="flex items-center gap-[1.5vw]">
