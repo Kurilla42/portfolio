@@ -87,22 +87,22 @@ export function Home() {
       <SiteShowcaseSection />
       <ProcessSection />
 
-      {/* Editorial Comparison Table Section */}
+      {/* Editorial Comparison Table Section - Full Width Logic */}
       <section 
         ref={sectionRef} 
-        className="relative py-[20vh] z-10 bg-[#F6F5EF] overflow-hidden" 
+        className="relative py-[25vh] z-10 bg-[#F6F5EF] overflow-hidden w-full" 
         id="about"
       >
-        <div className="w-full max-w-[1440px] mx-auto px-[8vw] md:px-[40px]">
+        <div className="w-full px-[8vw]">
           
-          <div className="mb-[12vh] reveal-text">
+          <div className="mb-[15vh] reveal-text">
             <h2 className="heading-lg text-primary tracking-tighter">
               Integrated. <br />
               <em className="accent-italic">Editorial Precision.</em>
             </h2>
           </div>
 
-          {/* Table Headers (Sticky) */}
+          {/* Table Headers (Sticky) - Matches Process Section Scale */}
           <div className="sticky top-[100px] z-30 grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 mb-0 border-b border-[#E3E0D6] bg-[#F6F5EF]/90 backdrop-blur-md">
             {[
               { label: "CRITERIA", active: false },
@@ -112,12 +112,12 @@ export function Home() {
             ].map((header, i) => (
               <div 
                 key={i} 
-                className={`relative flex items-center h-[72px] transition-colors duration-300
-                  ${i === 0 ? 'px-[32px] pl-[32px]' : 'px-[24px]'}
+                className={`relative flex items-center h-[9vh] min-h-[80px] transition-colors duration-300
+                  ${i === 0 ? 'px-[3vw]' : 'px-[2.5vw]'}
                   ${header.dark && (activeRow !== null || hoveredRow !== null) ? 'bg-white' : ''}
                 `}
               >
-                <span className="text-[13px] font-semibold tracking-[0.16em] text-[#9BA3A7] uppercase truncate">
+                <span className="text-[0.7vw] min-text-[12px] font-semibold tracking-[0.16em] text-[#9BA3A7] uppercase truncate">
                   {header.label}
                 </span>
                 {header.active && (activeRow !== null || hoveredRow !== null) && (
@@ -141,13 +141,13 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`compare-row-trigger flex flex-col justify-center px-[32px] h-[72px] border-b border-[#E3E0D6] transition-all duration-300 relative
+                  className={`compare-row-trigger flex flex-col justify-center px-[3vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300 relative
                     ${(activeRow === idx || hoveredRow === idx) ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] z-20' : idx % 2 === 0 ? 'bg-[#F9F8F3]' : 'bg-[#F6F5EF]'}`}
                 >
                   {(activeRow === idx || hoveredRow === idx) && (
                     <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-accent" />
                   )}
-                  <span className="text-[13px] font-medium text-[#7A858A] tracking-[0.18em] uppercase truncate">{item.criterion}</span>
+                  <span className="text-[0.75vw] min-text-[13px] font-medium text-[#7A858A] tracking-[0.18em] uppercase truncate">{item.criterion}</span>
                 </div>
               ))}
             </motion.div>
@@ -159,12 +159,12 @@ export function Home() {
                   key={idx}
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`flex flex-col justify-center px-[24px] h-[72px] border-b border-[#E3E0D6] transition-all duration-300
+                  className={`flex flex-col justify-center px-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.02] z-20' 
                       : idx % 2 === 0 ? 'bg-[#F9F8F3]' : 'bg-[#F6F5EF]'}`}
                 >
-                  <p className="text-[17px] font-medium text-[#1A2C32] leading-tight truncate">
+                  <p className="text-[1.2vw] min-text-[18px] font-medium text-[#1A2C32] leading-tight truncate">
                     {item.me}
                   </p>
                 </motion.div>
@@ -178,12 +178,12 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`flex flex-col justify-center px-[24px] h-[72px] border-b border-[#E3E0D6] transition-all duration-300
+                  className={`flex flex-col justify-center px-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
                       : idx % 2 === 0 ? 'bg-[#F9F8F3] opacity-80' : 'bg-[#F6F5EF] opacity-80'}`}
                 >
-                  <p className="text-[16px] font-normal text-[#8FA0A5] leading-tight truncate">
+                  <p className="text-[1.1vw] min-text-[16px] font-normal text-[#8FA0A5] leading-tight truncate">
                     {item.freelancer}
                   </p>
                 </div>
@@ -197,12 +197,12 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`flex flex-col justify-center px-[24px] h-[72px] border-b border-[#E3E0D6] transition-all duration-300
+                  className={`flex flex-col justify-center px-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
                       : idx % 2 === 0 ? 'bg-[#F9F8F3] opacity-80' : 'bg-[#F6F5EF] opacity-80'}`}
                 >
-                  <p className="text-[16px] font-normal text-[#8FA0A5] leading-tight truncate">
+                  <p className="text-[1.1vw] min-text-[16px] font-normal text-[#8FA0A5] leading-tight truncate">
                     {item.agency}
                   </p>
                 </div>
