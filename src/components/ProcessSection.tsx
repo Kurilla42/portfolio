@@ -64,9 +64,11 @@ export function ProcessSection() {
     ["100vh", "0vh"]
   );
   
+  // Set opacity to 1 almost immediately (at 0.05 instead of 0.2) 
+  // to ensure content is visible during the entire overlap duration
   const entryOpacity = useTransform(
     smoothEntry, 
-    [0, 0.2], 
+    [0, 0.05], 
     [0, 1]
   );
 
