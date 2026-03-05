@@ -109,59 +109,12 @@
   color: hsl(var(--accent));
 }
 
-/* --- Layered Reveal Animations --- */
-
-.reveal-line-wrapper {
+/* --- Precision Animation Masks --- */
+.mask-container {
   overflow: hidden;
   display: block;
+  position: relative;
 }
-
-.reveal-line-left, .reveal-line-right {
-  display: block;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1),
-              clip-path 0.9s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity, clip-path;
-}
-
-.reveal-line-left {
-  clip-path: inset(0 100% 0 0);
-  transform: translateY(20px) translateX(-10px);
-}
-
-.reveal-line-right {
-  clip-path: inset(0 0 0 100%);
-  transform: translateY(20px) translateX(10px);
-}
-
-.is-visible .reveal-line-left,
-.is-visible .reveal-line-right {
-  opacity: 1;
-  transform: translateY(0) translateX(0);
-  clip-path: inset(0 0 0 0);
-}
-
-/* Base fade reveal for body text / small tags */
-.reveal-text {
-  opacity: 0;
-  transform: translateY(15px);
-  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), 
-              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-}
-
-.is-visible.reveal-text, .is-visible .reveal-text {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Stagger Helpers */
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
 
 .scrollbar-hide::-webkit-scrollbar {
   display: none;

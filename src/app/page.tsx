@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'fra
 import { Button } from '@/components/ui/button';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
+import { ScrollRevealHeading } from '@/components/ScrollRevealHeading';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
 import { ArrowRight, Zap, Building2, User } from 'lucide-react';
@@ -93,15 +94,13 @@ export function Home() {
       >
         <div className="w-full">
           
-          <div className="mb-[15vh] px-[8vw] reveal-text">
-            <h2 className="heading-lg text-primary tracking-tighter">
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-left">Integrated.</span>
-              </div>
-              <div className="reveal-line-wrapper">
-                <em className="reveal-line-right accent-italic lowercase reveal-delay-1">Editorial Precision.</em>
-              </div>
-            </h2>
+          <div className="mb-[15vh] px-[8vw]">
+            <ScrollRevealHeading as="h2" className="heading-lg text-primary tracking-tighter">
+              Integrated.
+            </ScrollRevealHeading>
+            <div className="flex items-center gap-4">
+               <em className="accent-italic lowercase text-[4vw]">Editorial Precision.</em>
+            </div>
           </div>
 
           {/* Table Headers */}
@@ -234,16 +233,11 @@ export function Home() {
       {/* Packages Section */}
       <section className="py-[15vh] bg-background relative z-10" id="packages">
         <div className="w-full px-[8vw]">
-          <header className="mb-[15vh] reveal-text">
-            <div className="brand-mark heading-xl text-primary mb-[5vh]">
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-left">PRICING</span>
-              </div>
-              <div className="reveal-line-wrapper">
-                <span className="reveal-line-right reveal-delay-1">PLANS</span>
-              </div>
-            </div>
-            <p className="body-text text-muted-foreground max-w-[45vw] reveal-text reveal-delay-2">
+          <header className="mb-[15vh]">
+            <ScrollRevealHeading as="h2" className="heading-xl text-primary mb-[5vh]">
+              PRICING PLANS
+            </ScrollRevealHeading>
+            <p className="body-text text-muted-foreground max-w-[45vw]">
               Choose a capacity level that fits your business stage. 
               Built for performance, scalability, and predictable lead flow.
             </p>
@@ -257,7 +251,7 @@ export function Home() {
               <span>Investment</span>
             </div>
 
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors reveal-text">
+            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">1</div>
               </div>
@@ -290,7 +284,7 @@ export function Home() {
               </div>
             </div>
 
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start bg-primary/[0.03] reveal-text reveal-delay-1 relative">
+            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start bg-primary/[0.03] relative">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-accent text-white flex items-center justify-center font-bold heading-md text-xl">2</div>
               </div>
@@ -322,7 +316,7 @@ export function Home() {
               </div>
             </div>
 
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors reveal-text reveal-delay-2">
+            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">3</div>
               </div>
@@ -357,16 +351,11 @@ export function Home() {
       {/* Final CTA */}
       <section className="py-[20vh] border-t border-primary/5 bg-background relative z-10" id="contact">
         <div className="w-full px-[6vw]">
-          <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden reveal-text">
+          <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">
             <div className="relative z-10 space-y-8 md:space-y-[6vh]">
-              <h2 className="heading-lg text-white leading-[0.9] tracking-tighter">
-                <div className="reveal-line-wrapper">
-                  <span className="reveal-line-left">Ready to Double Your</span>
-                </div>
-                <div className="reveal-line-wrapper">
-                  <span className="reveal-line-right reveal-delay-1">Plumbing Leads?</span>
-                </div>
-              </h2>
+              <ScrollRevealHeading as="h2" className="heading-lg text-white leading-[0.9] tracking-tighter">
+                Ready to Double Your Plumbing Leads?
+              </ScrollRevealHeading>
               <Button asChild className="bg-accent text-white hover:bg-white hover:text-primary transition-all rounded-full btn h-16 md:h-[7vw] px-12 md:px-[5vw] shadow-2xl group">
                 <Link href="https://calendly.com" target="_blank" className="flex items-center gap-4 md:gap-[1.5vw]">
                   Book My Strategy Call

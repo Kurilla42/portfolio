@@ -2,6 +2,7 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { ScrollRevealHeading } from '@/components/ScrollRevealHeading';
 
 const steps = [
   {
@@ -91,28 +92,21 @@ export function ProcessSection() {
           
           {/* Left Side: Brand Anchor */}
           <div className="px-[8vw] flex flex-col justify-center h-full border-r border-primary/5 bg-background z-10">
-            <span className="tag text-muted-foreground block mb-[5vh] reveal-text">
+            <span className="tag text-muted-foreground block mb-[5vh]">
               [OUR METHODOLOGY]
             </span>
-            <div className="relative reveal-text">
-              <h2 className="heading-md text-primary leading-[0.85] flex flex-col tracking-tighter text-[4.5vw]">
-                <div className="reveal-line-wrapper">
-                  <span className="reveal-line-left">THE</span>
-                </div>
-                <div className="reveal-line-wrapper">
-                  <span className="reveal-line-right relative">
-                    STEPS
-                    <span className="accent-italic lowercase text-[0.3em] absolute -top-[3vh] left-[20%] z-20 opacity-80 reveal-delay-1">
-                      simple
-                    </span>
+            <div className="relative">
+              <ScrollRevealHeading as="h2" className="heading-md text-primary leading-[0.85] flex flex-col tracking-tighter text-[4.5vw]">
+                <span>THE STEPS</span>
+                <span className="relative">
+                  TO FLOW
+                  <span className="accent-italic lowercase text-[0.3em] absolute -top-[3vh] left-[20%] z-20 opacity-80">
+                    simple
                   </span>
-                </div>
-                <div className="reveal-line-wrapper">
-                  <span className="reveal-line-left reveal-delay-2">TO FLOW</span>
-                </div>
-              </h2>
+                </span>
+              </ScrollRevealHeading>
             </div>
-            <p className="max-w-[28vw] body-text mt-[8vh] reveal-text reveal-delay-3 text-primary/70 text-[1.1vw] leading-relaxed">
+            <p className="max-w-[28vw] body-text mt-[8vh] text-primary/70 text-[1.1vw] leading-relaxed">
               A streamlined, high-performance approach from discovery call to a revenue-generating launch in just 10 days.
             </p>
           </div>
