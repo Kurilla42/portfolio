@@ -94,59 +94,61 @@ export function Home() {
         className="relative py-[25vh] z-10 bg-[#F6F5EF] overflow-hidden w-full" 
         id="about"
       >
-        <div className="w-full px-[8vw]">
+        <div className="w-full">
           
-          <div className="mb-[15vh] reveal-text">
+          <div className="mb-[15vh] px-[8vw] reveal-text">
             <h2 className="heading-lg text-primary tracking-tighter">
               Integrated. <br />
               <em className="accent-italic">Editorial Precision.</em>
             </h2>
           </div>
 
-          {/* Table Headers (Sticky) */}
-          <div className="sticky top-[100px] z-30 grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 mb-0 border-b border-[#E3E0D6] bg-[#F6F5EF]/90 backdrop-blur-md">
-            {[
-              { label: "CRITERIA", active: false },
-              { label: "ANTON KOLESNIKOV", active: true, dark: true },
-              { label: "FREELANCER", active: false },
-              { label: "AGENCY", active: false }
-            ].map((header, i) => (
-              <div 
-                key={i} 
-                className={`relative flex items-center h-[9vh] min-h-[80px] transition-colors duration-300
-                  ${i === 0 ? 'px-[3vw]' : 'px-[2.5vw]'}
-                  ${header.dark && (activeRow !== null || hoveredRow !== null) ? 'bg-white' : ''}
-                `}
-              >
-                <span className={`text-[0.7vw] min-text-[12px] font-semibold tracking-[0.16em] uppercase truncate transition-colors duration-300
-                  ${header.active && (activeRow !== null || hoveredRow !== null) ? 'text-primary' : 'text-[#9BA3A7]'}
-                `}>
-                  {header.label}
-                </span>
-                {header.active && (activeRow !== null || hoveredRow !== null) && (
-                  <motion.div 
-                    layoutId="headerUnderline"
-                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    transition={{ duration: 0.25, ease: "easeOut" }}
-                  />
-                )}
-              </div>
-            ))}
+          {/* Table Headers (Sticky - Full Width Border) */}
+          <div className="sticky top-[100px] z-30 w-full border-b border-[#E3E0D6] bg-[#F6F5EF]/90 backdrop-blur-md">
+            <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 px-0">
+              {[
+                { label: "CRITERIA", active: false },
+                { label: "ANTON KOLESNIKOV", active: true, dark: true },
+                { label: "FREELANCER", active: false },
+                { label: "AGENCY", active: false }
+              ].map((header, i) => (
+                <div 
+                  key={i} 
+                  className={`relative flex items-center h-[9vh] min-h-[80px] transition-colors duration-300
+                    ${i === 0 ? 'pl-[8vw] pr-[3vw]' : i === 3 ? 'pr-[8vw] pl-[2.5vw]' : 'px-[2.5vw]'}
+                    ${header.dark && (activeRow !== null || hoveredRow !== null) ? 'bg-white' : ''}
+                  `}
+                >
+                  <span className={`text-[0.7vw] min-text-[12px] font-semibold tracking-[0.16em] uppercase truncate transition-colors duration-300
+                    ${header.active && (activeRow !== null || hoveredRow !== null) ? 'text-primary' : 'text-[#9BA3A7]'}
+                  `}>
+                    {header.label}
+                  </span>
+                  {header.active && (activeRow !== null || hoveredRow !== null) && (
+                    <motion.div 
+                      layoutId="headerUnderline"
+                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                    />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Table Body (Vertical Rails) */}
+          {/* Table Body (Vertical Rails - Borders bleed to edges) */}
           <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 relative">
             
-            {/* Track 1: Criteria */}
+            {/* Track 1: Criteria (Bleeds Left) */}
             <motion.div style={{ y: col1Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`compare-row-trigger flex flex-col justify-center px-[3vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300 relative
+                  className={`compare-row-trigger flex flex-col justify-center pl-[8vw] pr-[3vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300 relative
                     ${(activeRow === idx || hoveredRow === idx) ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] z-20' : idx % 2 === 0 ? 'bg-[#F9F8F3]' : 'bg-[#F6F5EF]'}`}
                 >
                   {(activeRow === idx || hoveredRow === idx) && (
@@ -208,14 +210,14 @@ export function Home() {
               ))}
             </motion.div>
 
-            {/* Track 4: Agency */}
+            {/* Track 4: Agency (Bleeds Right) */}
             <motion.div style={{ y: col4Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`flex flex-col justify-center px-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
+                  className={`flex flex-col justify-center pr-[8vw] pl-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
                       : idx % 2 === 0 ? 'bg-[#F9F8F3] opacity-80' : 'bg-[#F6F5EF] opacity-80'}`}
