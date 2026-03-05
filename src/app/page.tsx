@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
@@ -60,7 +61,7 @@ export function Home() {
   const col3Y = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);  // Freelancer
   const col4Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); // Agency (Sync with Anton)
 
-  // Track active row based on scroll
+  // Track active row based on scroll position (center of viewport)
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
@@ -87,7 +88,7 @@ export function Home() {
       <SiteShowcaseSection />
       <ProcessSection />
 
-      {/* Editorial Comparison Table Section - Full Width Logic */}
+      {/* Editorial Comparison Table Section */}
       <section 
         ref={sectionRef} 
         className="relative py-[25vh] z-10 bg-[#F6F5EF] overflow-hidden w-full" 
@@ -102,7 +103,7 @@ export function Home() {
             </h2>
           </div>
 
-          {/* Table Headers (Sticky) - Matches Process Section Scale */}
+          {/* Table Headers (Sticky) */}
           <div className="sticky top-[100px] z-30 grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 mb-0 border-b border-[#E3E0D6] bg-[#F6F5EF]/90 backdrop-blur-md">
             {[
               { label: "CRITERIA", active: false },
@@ -117,13 +118,17 @@ export function Home() {
                   ${header.dark && (activeRow !== null || hoveredRow !== null) ? 'bg-white' : ''}
                 `}
               >
-                <span className="text-[0.7vw] min-text-[12px] font-semibold tracking-[0.16em] text-[#9BA3A7] uppercase truncate">
+                <span className={`text-[0.7vw] min-text-[12px] font-semibold tracking-[0.16em] uppercase truncate transition-colors duration-300
+                  ${header.active && (activeRow !== null || hoveredRow !== null) ? 'text-primary' : 'text-[#9BA3A7]'}
+                `}>
                   {header.label}
                 </span>
                 {header.active && (activeRow !== null || hoveredRow !== null) && (
                   <motion.div 
                     layoutId="headerUnderline"
                     className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
                     transition={{ duration: 0.25, ease: "easeOut" }}
                   />
                 )}
@@ -145,9 +150,17 @@ export function Home() {
                     ${(activeRow === idx || hoveredRow === idx) ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] z-20' : idx % 2 === 0 ? 'bg-[#F9F8F3]' : 'bg-[#F6F5EF]'}`}
                 >
                   {(activeRow === idx || hoveredRow === idx) && (
-                    <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-accent" />
+                    <motion.div 
+                      initial={{ opacity: 0, x: -5 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="absolute left-0 top-0 bottom-0 w-[2px] bg-accent" 
+                    />
                   )}
-                  <span className="text-[0.75vw] min-text-[13px] font-medium text-[#7A858A] tracking-[0.18em] uppercase truncate">{item.criterion}</span>
+                  <span className={`text-[0.75vw] min-text-[13px] font-medium tracking-[0.18em] uppercase truncate transition-colors duration-300
+                    ${(activeRow === idx || hoveredRow === idx) ? 'text-primary' : 'text-[#7A858A]'}
+                  `}>
+                    {item.criterion}
+                  </span>
                 </div>
               ))}
             </motion.div>
@@ -159,12 +172,15 @@ export function Home() {
                   key={idx}
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
+                  whileHover={{ y: -2 }}
                   className={`flex flex-col justify-center px-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.02] z-20' 
+                      ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.04] z-20 border-accent/20' 
                       : idx % 2 === 0 ? 'bg-[#F9F8F3]' : 'bg-[#F6F5EF]'}`}
                 >
-                  <p className="text-[1.2vw] min-text-[18px] font-medium text-[#1A2C32] leading-tight truncate">
+                  <p className={`text-[1.2vw] min-text-[18px] font-medium leading-tight truncate transition-colors duration-300
+                    ${(activeRow === idx || hoveredRow === idx) ? 'text-[#111D22]' : 'text-[#1A2C32]'}
+                  `}>
                     {item.me}
                   </p>
                 </motion.div>
@@ -183,7 +199,9 @@ export function Home() {
                       ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
                       : idx % 2 === 0 ? 'bg-[#F9F8F3] opacity-80' : 'bg-[#F6F5EF] opacity-80'}`}
                 >
-                  <p className="text-[1.1vw] min-text-[16px] font-normal text-[#8FA0A5] leading-tight truncate">
+                  <p className={`text-[1.1vw] min-text-[16px] font-normal leading-tight truncate transition-opacity duration-300
+                    ${(activeRow === idx || hoveredRow === idx) ? 'text-[#8FA0A5] opacity-85' : 'text-[#8FA0A5]'}
+                  `}>
                     {item.freelancer}
                   </p>
                 </div>
@@ -202,7 +220,9 @@ export function Home() {
                       ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
                       : idx % 2 === 0 ? 'bg-[#F9F8F3] opacity-80' : 'bg-[#F6F5EF] opacity-80'}`}
                 >
-                  <p className="text-[1.1vw] min-text-[16px] font-normal text-[#8FA0A5] leading-tight truncate">
+                  <p className={`text-[1.1vw] min-text-[16px] font-normal leading-tight truncate transition-opacity duration-300
+                    ${(activeRow === idx || hoveredRow === idx) ? 'text-[#8FA0A5] opacity-85' : 'text-[#8FA0A5]'}
+                  `}>
                     {item.agency}
                   </p>
                 </div>
