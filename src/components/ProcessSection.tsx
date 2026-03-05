@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef } from 'react';
@@ -49,7 +48,6 @@ export function ProcessSection() {
   });
 
   // Entrance Scroll (The "Encroaching" Layer Effect)
-  // We track the transition when the section is approaching the top
   const { scrollYProgress: entryScroll } = useScroll({
     target: containerRef,
     offset: ["start end", "start start"]
@@ -58,8 +56,6 @@ export function ProcessSection() {
   const smoothInternal = useSpring(internalScroll, { stiffness: 80, damping: 25 });
   const smoothEntry = useSpring(entryScroll, { stiffness: 100, damping: 30 });
 
-  // Entrance Animation based on specific user-provided 4-point interpolation
-  // t=0: Y:100, Op:0.1 -> t=0.33: Y:65, Op:0.4 -> t=0.66: Y:30, Op:0.75 -> t=1: Y:0, Op:1.0
   const entryY = useTransform(
     smoothEntry, 
     [0, 0.33, 0.66, 1], 
@@ -81,7 +77,6 @@ export function ProcessSection() {
   return (
     <div 
       ref={containerRef} 
-      // Negative margin-top creates the overlap zone (encroachment)
       className="relative h-[400vh] bg-background z-20 mt-[-50vh] shadow-[0_-20vh_30vh_rgba(0,0,0,0.15)]"
     >
       <motion.div 
@@ -99,19 +94,25 @@ export function ProcessSection() {
             <span className="tag text-muted-foreground block mb-[5vh] reveal-text">
               [OUR METHODOLOGY]
             </span>
-            <div className="relative">
-              <h2 className="heading-md text-primary leading-[0.85] flex flex-col tracking-tighter reveal-text text-[4.5vw]">
-                <span>THE</span>
-                <span className="relative">
-                  STEPS
-                  <span className="accent-italic lowercase text-[0.3em] absolute -top-[3vh] left-[20%] z-20 opacity-80">
-                    simple
+            <div className="relative reveal-text">
+              <h2 className="heading-md text-primary leading-[0.85] flex flex-col tracking-tighter text-[4.5vw]">
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-left">THE</span>
+                </div>
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-right relative">
+                    STEPS
+                    <span className="accent-italic lowercase text-[0.3em] absolute -top-[3vh] left-[20%] z-20 opacity-80 reveal-delay-1">
+                      simple
+                    </span>
                   </span>
-                </span>
-                <span>TO FLOW</span>
+                </div>
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-left reveal-delay-2">TO FLOW</span>
+                </div>
               </h2>
             </div>
-            <p className="max-w-[28vw] body-text mt-[8vh] reveal-text reveal-delay-1 text-primary/70 text-[1.1vw] leading-relaxed">
+            <p className="max-w-[28vw] body-text mt-[8vh] reveal-text reveal-delay-3 text-primary/70 text-[1.1vw] leading-relaxed">
               A streamlined, high-performance approach from discovery call to a revenue-generating launch in just 10 days.
             </p>
           </div>
@@ -123,10 +124,6 @@ export function ProcessSection() {
                 const activeStart = index * 0.25;
                 const activeEnd = (index + 1) * 0.25;
                 
-                // Logic for "New" -> "Previous" -> "Old" transitions
-                // Active Step: Opacity 1, Scale 1.05
-                // Previous Step: Opacity 0.5-0.6, translateY -15px
-                // Old Step: Opacity 0.15-0.2, translateY -30px
                 const opacity = useTransform(smoothInternal, 
                   [activeStart - 0.1, activeStart, activeEnd, activeEnd + 0.25, activeEnd + 0.5], 
                   [0, 1, 0.6, 0.2, 0.15]
@@ -142,7 +139,6 @@ export function ProcessSection() {
                   [0.98, 1.05, 1]
                 );
 
-                // Ensure steps only show when their progress starts
                 const isVisible = useTransform(smoothInternal, 
                   p => p >= (index === 0 ? 0 : activeStart - 0.05)
                 );

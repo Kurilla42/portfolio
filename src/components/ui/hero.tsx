@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -24,24 +23,6 @@ export default function ShaderShowcase() {
   const headingScale = useTransform(smoothProgress, [0, 0.15], [1.02, 1]);
   const descY = useTransform(smoothProgress, [0, 0.2], [0, -20]);
   const descOpacity = useTransform(smoothProgress, [0.05, 0.2], [0, 1]);
-
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: { 
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { 
-      opacity: 1, 
-      y: 0, 
-      transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } 
-    }
-  };
 
   return (
     <div ref={containerRef} className="relative min-h-[200vh] bg-background">
@@ -110,78 +91,63 @@ export default function ShaderShowcase() {
       {/* Screen 1: The Main Hook */}
       <div className="relative z-20 w-full px-[6vw]">
         <div className="h-screen flex items-center justify-start">
-          <motion.div 
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            style={{ opacity: headingOpacity, scale: headingScale }}
-            className="max-w-[85vw]"
-          >
-            <motion.h1 variants={itemVariants} className="heading-xl text-white drop-shadow-2xl">
-              High Conversion
-            </motion.h1>
+          <div className="max-w-[85vw] is-visible">
+            <div className="reveal-line-wrapper">
+              <h1 className="reveal-line-left heading-xl text-white drop-shadow-2xl">
+                High Conversion
+              </h1>
+            </div>
             
-            <motion.div variants={itemVariants} className="flex items-baseline gap-[2vw]">
-              <motion.span 
-                initial={{ clipPath: 'inset(0 100% 0 0)' }}
-                animate={{ 
-                  clipPath: 'inset(0 0 0 0)',
-                  filter: ["brightness(1)", "brightness(1.2)", "brightness(1)"]
-                }}
-                transition={{ 
-                  clipPath: { delay: 1, duration: 1, ease: "circOut" },
-                  filter: { duration: 3, repeat: Infinity, ease: "easeInOut" }
-                }}
-                className="accent-italic text-white brightness-110"
-              >
-                Plumbing
-              </motion.span>
-              <span className="heading-xl text-white">Landing Pages</span>
-            </motion.div>
+            <div className="flex items-baseline gap-[2vw] reveal-line-wrapper">
+              <div className="reveal-line-right flex items-baseline gap-[2vw]">
+                <span className="accent-italic text-white brightness-110 reveal-delay-1">
+                  Plumbing
+                </span>
+                <span className="heading-xl text-white reveal-delay-1">Landing Pages</span>
+              </div>
+            </div>
 
             <motion.p 
               style={{ opacity: descOpacity, y: descY }}
-              className="body-text text-white/90 mt-[6vh] max-w-[38vw] leading-relaxed"
+              className="body-text text-white/90 mt-[6vh] max-w-[38vw] leading-relaxed reveal-text reveal-delay-2"
             >
               We design precision-engineered sales machines for US plumbing owners who demand predictable lead flow and dominant local authority.
             </motion.p>
-          </motion.div>
+          </div>
         </div>
 
         {/* Screen 2: The Core Philosophy */}
         <div className="h-screen flex flex-col justify-center">
           <div className="grid md:grid-cols-2 gap-[10vw] items-start">
             {/* Engineering Side */}
-            <motion.div 
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="max-w-[40vw]"
-            >
-              <h2 className="heading-lg text-white">
-                Precision<br />
-                <span className="accent-italic">Engineering</span>
-              </h2>
-              <p className="body-text text-white/95 mt-[4vh] max-w-[32vw] leading-relaxed">
+            <div className="max-w-[40vw] reveal-text">
+              <div className="reveal-line-wrapper">
+                <h2 className="reveal-line-left heading-lg text-white">
+                  Precision
+                </h2>
+              </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-right accent-italic text-[6.5vw] text-white/90">Engineering</span>
+              </div>
+              <p className="body-text text-white/95 mt-[4vh] max-w-[32vw] leading-relaxed reveal-text reveal-delay-1">
                 Every pixel is placed with intent. We don't just build websites; we craft high-performance conversion funnels that transform casual browsers into lifetime customers.
               </p>
-            </motion.div>
+            </div>
 
             {/* Flow Side */}
-            <motion.div 
-              initial={{ opacity: 0, x: 50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="max-w-[40vw] md:text-right md:ml-auto md:mt-[20vh]"
-            >
-              <h2 className="heading-lg text-white">
-                Seamless<br />
-                <span className="accent-italic">Flow</span>
-              </h2>
-              <p className="body-text text-white/95 mt-[4vh] md:ml-auto max-w-[32vw] leading-relaxed">
+            <div className="max-w-[40vw] md:text-right md:ml-auto md:mt-[20vh] reveal-text">
+              <div className="reveal-line-wrapper">
+                <h2 className="reveal-line-left heading-lg text-white">
+                  Seamless
+                </h2>
+              </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-right accent-italic text-[6.5vw] text-white/90">Flow</span>
+              </div>
+              <p className="body-text text-white/95 mt-[4vh] md:ml-auto max-w-[32vw] leading-relaxed reveal-text reveal-delay-1">
                 From the first search click to the final service booking, your customer's journey is smooth, professional, and optimized for maximum trust.
               </p>
-            </motion.div>
+            </div>
           </div>
         </div>
       </div>

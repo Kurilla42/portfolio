@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
@@ -55,13 +54,11 @@ export function Home() {
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  // Column Alignment Motion (t=0 to t=1)
   const col1Y = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
-  const col2Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); // Anton (Lowest)
-  const col3Y = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);  // Freelancer
-  const col4Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); // Agency (Sync with Anton)
+  const col2Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); 
+  const col3Y = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);  
+  const col4Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); 
 
-  // Track active row based on scroll position (center of viewport)
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
@@ -98,12 +95,16 @@ export function Home() {
           
           <div className="mb-[15vh] px-[8vw] reveal-text">
             <h2 className="heading-lg text-primary tracking-tighter">
-              Integrated. <br />
-              <em className="accent-italic">Editorial Precision.</em>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-left">Integrated.</span>
+              </div>
+              <div className="reveal-line-wrapper">
+                <em className="reveal-line-right accent-italic lowercase reveal-delay-1">Editorial Precision.</em>
+              </div>
             </h2>
           </div>
 
-          {/* Table Headers (Sticky - Full Width Border) */}
+          {/* Table Headers */}
           <div className="sticky top-[100px] z-30 w-full border-b border-[#E3E0D6] bg-[#F6F5EF]/90 backdrop-blur-md">
             <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 px-0">
               {[
@@ -138,10 +139,8 @@ export function Home() {
             </div>
           </div>
 
-          {/* Table Body (Vertical Rails - Borders bleed to edges) */}
+          {/* Table Body */}
           <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 relative">
-            
-            {/* Track 1: Criteria (Bleeds Left) */}
             <motion.div style={{ y: col1Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
@@ -167,7 +166,6 @@ export function Home() {
               ))}
             </motion.div>
 
-            {/* Track 2: Anton (Hero) */}
             <motion.div style={{ y: col2Y }} className="flex flex-col relative z-10">
               {comparisonData.map((item, idx) => (
                 <motion.div 
@@ -189,7 +187,6 @@ export function Home() {
               ))}
             </motion.div>
 
-            {/* Track 3: Freelancer */}
             <motion.div style={{ y: col3Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
@@ -210,7 +207,6 @@ export function Home() {
               ))}
             </motion.div>
 
-            {/* Track 4: Agency (Bleeds Right) */}
             <motion.div style={{ y: col4Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
@@ -240,9 +236,14 @@ export function Home() {
         <div className="w-full px-[8vw]">
           <header className="mb-[15vh] reveal-text">
             <div className="brand-mark heading-xl text-primary mb-[5vh]">
-              PRICING<br />PLANS
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-left">PRICING</span>
+              </div>
+              <div className="reveal-line-wrapper">
+                <span className="reveal-line-right reveal-delay-1">PLANS</span>
+              </div>
             </div>
-            <p className="body-text text-muted-foreground max-w-[45vw]">
+            <p className="body-text text-muted-foreground max-w-[45vw] reveal-text reveal-delay-2">
               Choose a capacity level that fits your business stage. 
               Built for performance, scalability, and predictable lead flow.
             </p>
@@ -358,7 +359,14 @@ export function Home() {
         <div className="w-full px-[6vw]">
           <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden reveal-text">
             <div className="relative z-10 space-y-8 md:space-y-[6vh]">
-              <h2 className="heading-lg text-white leading-[0.9] tracking-tighter">Ready to Double Your <br />Plumbing Leads?</h2>
+              <h2 className="heading-lg text-white leading-[0.9] tracking-tighter">
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-left">Ready to Double Your</span>
+                </div>
+                <div className="reveal-line-wrapper">
+                  <span className="reveal-line-right reveal-delay-1">Plumbing Leads?</span>
+                </div>
+              </h2>
               <Button asChild className="bg-accent text-white hover:bg-white hover:text-primary transition-all rounded-full btn h-16 md:h-[7vw] px-12 md:px-[5vw] shadow-2xl group">
                 <Link href="https://calendly.com" target="_blank" className="flex items-center gap-4 md:gap-[1.5vw]">
                   Book My Strategy Call
