@@ -208,11 +208,11 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[28vh] flex flex-col justify-center overflow-hidden
+                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[30vh] flex flex-col justify-center overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) ? 'ring-1 ring-primary/10 shadow-lg scale-[1.01] brightness-[1.03]' : 'shadow-sm opacity-90'}`}
                 >
                   <h3 className="heading-md text-primary text-base xl:text-lg mb-2 line-clamp-2">{item.criterion}</h3>
-                  <p className="body-text text-muted-foreground text-[10px] xl:text-xs opacity-70">
+                  <p className="body-text text-muted-foreground opacity-70">
                     {item.whoTheyServe}
                   </p>
                 </div>
@@ -228,7 +228,7 @@ export function Home() {
                   onMouseLeave={() => setHoveredRow(null)}
                   whileHover={{ scale: 1.04, y: -2 }}
                   transition={{ duration: 0.18, ease: "easeOut" }}
-                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[1.5vw] py-[3vh] h-[28vh] flex flex-col justify-center relative group overflow-hidden
+                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[1.5vw] py-[3vh] h-[30vh] flex flex-col justify-center relative group overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'border-accent bg-accent/5 shadow-2xl z-10 scale-[1.02]' 
                       : 'border-primary/10 shadow-xl opacity-90'}`}
@@ -237,9 +237,9 @@ export function Home() {
                     {item.me.map((point, pIdx) => (
                       <p 
                         key={pIdx} 
-                        className="body-text text-primary font-medium text-xs xl:text-sm leading-relaxed mb-4 last:mb-0"
+                        className="body-text text-primary font-medium leading-relaxed mb-4 last:mb-0"
                         dangerouslySetInnerHTML={{ 
-                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span className="text-primary font-bold">$1</span>') 
+                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span class="text-primary font-bold">$1</span>') 
                         }}
                       />
                     ))}
@@ -255,7 +255,7 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
+                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[30vh] flex flex-col justify-center grayscale-50 overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'opacity-100 scale-[1.01] brightness-[1.03] grayscale-0' 
                       : 'opacity-50'}
@@ -265,9 +265,9 @@ export function Home() {
                     {item.freelancer.map((point, pIdx) => (
                       <p 
                         key={pIdx} 
-                        className="body-text text-muted-foreground text-xs xl:text-sm leading-relaxed italic mb-4 last:mb-0"
+                        className="body-text text-muted-foreground leading-relaxed italic mb-4 last:mb-0"
                         dangerouslySetInnerHTML={{ 
-                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span className="text-muted-foreground font-semibold">$1</span>') 
+                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span class="text-muted-foreground font-semibold">$1</span>') 
                         }}
                       />
                     ))}
@@ -293,7 +293,7 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
+                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[30vh] flex flex-col justify-center grayscale-50 overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'opacity-100 scale-[1.01] brightness-[1.03] grayscale-0' 
                       : 'opacity-50'}
@@ -303,9 +303,9 @@ export function Home() {
                     {item.agency.map((point, pIdx) => (
                       <p 
                         key={pIdx} 
-                        className="body-text text-muted-foreground text-xs xl:text-sm leading-relaxed italic mb-4 last:mb-0"
+                        className="body-text text-muted-foreground leading-relaxed italic mb-4 last:mb-0"
                         dangerouslySetInnerHTML={{ 
-                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span className="text-muted-foreground font-semibold">$1</span>') 
+                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span class="text-muted-foreground font-semibold">$1</span>') 
                         }}
                       />
                     ))}
