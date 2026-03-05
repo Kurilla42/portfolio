@@ -8,7 +8,7 @@ import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
-import { ArrowRight, Check, AlertCircle, Zap } from 'lucide-react';
+import { ArrowRight, Zap } from 'lucide-react';
 
 const comparisonData = [
   {
@@ -190,7 +190,7 @@ export default function Home() {
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-between relative group shadow-primary/5
+                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-center relative group shadow-primary/5
                     ${activeRow === idx 
                       ? 'border-accent bg-accent/5 shadow-2xl scale-[1.02] z-10' 
                       : 'border-primary/10 shadow-xl opacity-90'}
@@ -199,12 +199,6 @@ export default function Home() {
                   <p className="body-text text-primary font-medium text-[0.9vw] leading-relaxed">
                     {item.me}
                   </p>
-                  <div className="flex items-center justify-start mt-[2vh]">
-                    <span className="inline-flex items-center gap-[0.4vw] bg-primary/5 text-primary px-[0.8vw] py-[0.4vh] rounded-full text-[10px] font-bold tracking-widest uppercase">
-                      <Check className="w-[10px] h-[10px]" />
-                      OPTIMIZED
-                    </span>
-                  </div>
                 </div>
               ))}
             </motion.div>
@@ -214,7 +208,7 @@ export default function Home() {
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-between grayscale-50
+                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-center grayscale-50
                     ${activeRow === idx 
                       ? 'opacity-100 scale-[1.01] brightness-[1.03]' 
                       : 'opacity-50'}
@@ -223,16 +217,6 @@ export default function Home() {
                   <p className="body-text text-muted-foreground text-[0.9vw] leading-relaxed italic">
                     {item.freelancer}
                   </p>
-                  <div className="flex items-center justify-start mt-[2vh]">
-                    <motion.span 
-                      whileHover={{ x: [0, -2, 2, -2, 2, 0] }}
-                      transition={{ duration: 0.2 }}
-                      className="inline-flex items-center gap-[0.4vw] bg-muted text-muted-foreground/60 px-[0.8vw] py-[0.4vh] rounded-full text-[10px] font-bold tracking-widest uppercase border border-primary/5"
-                    >
-                      <AlertCircle className="w-[10px] h-[10px]" />
-                      GENERIC
-                    </motion.span>
-                  </div>
                 </div>
               ))}
             </motion.div>
