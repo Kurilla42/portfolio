@@ -7,38 +7,43 @@ import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
-import { ArrowRight, Zap, AlertTriangle } from 'lucide-react';
+import { ArrowRight, Zap, AlertTriangle, Building2 } from 'lucide-react';
 
 const comparisonData = [
   {
     criterion: "Niche expertise",
     whoTheyServe: "Industry Specialization",
     me: "I work only with plumbing and home service businesses in the US. I know their pains, seasonality, and what owners actually care about.",
-    freelancer: "Takes on any niche — from cafés to online courses — so they do not understand plumbing specifics and copy generic templates."
+    freelancer: "Takes on any niche — from cafés to online courses — so they do not understand plumbing specifics and copy generic templates.",
+    agency: "They juggle dozens of niches at once, rely on generic “best practices,” and never go deep into plumbing specifics, seasonality, or what actually drives service calls."
   },
   {
     criterion: "12 years in marketing",
     whoTheyServe: "Strategic Background",
     me: "Over a decade in digital marketing: I understand lead generation, ads, SEO, and analytics, and I build all of that directly into the site structure.",
-    freelancer: "Builds the site as a “pretty business card”, without thinking how the owner will actually get and track leads."
+    freelancer: "Builds the site as a “pretty business card”, without thinking how the owner will actually get and track leads.",
+    agency: "The project is split between a designer, a coder, and an account manager — but nobody owns the strategy, so you get a pretty site that is barely connected to your real marketing goals."
   },
   {
     criterion: "Battle‑tested templates",
     whoTheyServe: "Structural Integrity",
     me: "I use my own conversion-optimized templates used in real plumbing projects: thoughtful structure, offers, and local trust triggers.",
-    freelancer: "Every time builds the site from scratch or edits a random theme, often without checking if the structure converts."
+    freelancer: "Every time builds the site from scratch or edits a random theme, often without checking if the structure converts.",
+    agency: "Every client gets the same “industry” template with a new logo and colors slapped on top — the site ends up looking like dozens of others and ignores your specific market."
   },
   {
     criterion: "Focus on leads",
     whoTheyServe: "Growth Metric",
     me: "Design serves one goal — to increase calls and form submissions. I place CTAs and guarantees to grow conversion.",
-    freelancer: "Talks mostly about colors and fonts; speaks about “conversion” in vague terms with no clear logic."
+    freelancer: "Talks mostly about colors and fonts; speaks about “conversion” in vague terms with no clear logic.",
+    agency: "They obsess over traffic and clicks instead of real inquiries: main CTAs are scattered, forms are hidden, and the page reads more like a brand brochure than a lead-generation machine."
   },
   {
     criterion: "Ready for ads & scaling",
     whoTheyServe: "Ad Readiness",
     me: "The site structure is ready for traffic from day one: service/city pages and reviews blocks are optimized for scaling local campaigns.",
-    freelancer: "Delivers generic pages that are hard to use later for local SEO, ads, or scaling your lead generation."
+    freelancer: "Delivers generic pages that are hard to use later for local SEO, ads, or scaling your lead generation.",
+    agency: "They ship a “finished” website without thinking about future campaigns: no dedicated pages for different services or cities, the structure is hard to scale, and every new ad needs the whole landing rebuilt."
   }
 ];
 
@@ -55,15 +60,17 @@ export function Home() {
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   // Column Alignment Motion:
-  // At t=0: Criteria(0), Anton(180), Typical(90)
+  // t=0: Criteria(0), Anton(180), Typical(90), Agency(180)
   // At t=1: All at 0
   const criteriaY = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
   const meY = useTransform(smoothProgress, [0.1, 0.4], [180, 0]);
   const freelancerY = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);
+  const agencyY = useTransform(smoothProgress, [0.1, 0.4], [180, 0]);
 
   const criteriaParallax = useTransform(smoothProgress, [0, 1], [0, 10]);
   const meParallax = useTransform(smoothProgress, [0, 1], [0, 5]);
   const freelancerParallax = useTransform(smoothProgress, [0, 1], [0, 15]);
+  const agencyParallax = useTransform(smoothProgress, [0, 1], [0, 12]);
 
   // Track active row based on scroll
   useEffect(() => {
@@ -114,19 +121,20 @@ export function Home() {
           </div>
 
           {/* Sticky Table Header */}
-          {/* Proportions: 24% / 38% / 38% */}
-          <div className="sticky top-[100px] z-30 grid grid-cols-[24fr_38fr_38fr] gap-[2.5vw] mb-[8vh]">
+          {/* Adjusted for 4 columns: 16% / 28% / 28% / 28% */}
+          <div className="sticky top-[100px] z-30 grid grid-cols-[16fr_28fr_28fr_28fr] gap-[2vw] mb-[8vh]">
             {[
               { label: "CRITERIA", color: "text-muted-foreground", id: 0 },
               { label: "ANTON KOLESNIKOV", color: "text-white", bg: "bg-primary", id: 1, icon: <Zap className="w-4 h-4 text-accent fill-accent" /> },
-              { label: "TYPICAL FREELANCER", color: "text-muted-foreground", id: 2 }
+              { label: "TYPICAL FREELANCER", color: "text-muted-foreground", id: 2 },
+              { label: "TRADITIONAL AGENCY", color: "text-muted-foreground", id: 3, icon: <Building2 className="w-4 h-4 text-muted-foreground" /> }
             ].map((header, i) => (
               <div 
                 key={i} 
-                className={`relative overflow-hidden border border-primary/5 rounded-2xl px-[2vw] h-[80px] flex items-center shadow-sm ${header.bg || 'bg-white/80 backdrop-blur-xl'}`}
+                className={`relative overflow-hidden border border-primary/5 rounded-2xl px-[1.5vw] h-[80px] flex items-center shadow-sm ${header.bg || 'bg-white/80 backdrop-blur-xl'}`}
               >
-                <div className="flex items-center gap-3">
-                  <span className={`label font-bold uppercase ${header.color}`}>
+                <div className="flex items-center gap-2">
+                  <span className={`label font-bold uppercase ${header.color} text-[10px] xl:text-[11px]`}>
                     {header.label}
                   </span>
                   {header.icon}
@@ -149,7 +157,7 @@ export function Home() {
           </div>
 
           {/* Grid with Vertical Rails Layout */}
-          <div className="grid grid-cols-[24fr_38fr_38fr] gap-[2.5vw] relative">
+          <div className="grid grid-cols-[16fr_28fr_28fr_28fr] gap-[2vw] relative">
             
             {/* Column 1: Criteria */}
             <motion.div style={{ y: criteriaY, translateY: criteriaParallax }} className="flex flex-col gap-[4vh]">
@@ -158,11 +166,11 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[2vw] py-[3vh] h-[28vh] flex flex-col justify-center overflow-hidden
+                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[28vh] flex flex-col justify-center overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) ? 'ring-1 ring-primary/10 shadow-lg scale-[1.01] brightness-[1.03]' : 'shadow-sm opacity-90'}`}
                 >
-                  <h3 className="heading-md text-primary text-lg lg:text-xl mb-2 line-clamp-2">{item.criterion}</h3>
-                  <p className="body-text text-muted-foreground text-xs lg:text-sm opacity-70">
+                  <h3 className="heading-md text-primary text-base xl:text-lg mb-2 line-clamp-2">{item.criterion}</h3>
+                  <p className="body-text text-muted-foreground text-[10px] xl:text-xs opacity-70">
                     {item.whoTheyServe}
                   </p>
                 </div>
@@ -178,13 +186,13 @@ export function Home() {
                   onMouseLeave={() => setHoveredRow(null)}
                   whileHover={{ scale: 1.04, y: -2 }}
                   transition={{ duration: 0.18, ease: "easeOut" }}
-                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[2vw] py-[3vh] h-[28vh] flex flex-col justify-center relative group overflow-hidden
+                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[1.5vw] py-[3vh] h-[28vh] flex flex-col justify-center relative group overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'border-accent bg-accent/5 shadow-2xl z-10 scale-[1.02]' 
                       : 'border-primary/10 shadow-xl opacity-90'}`}
                 >
                   <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    <p className="body-text text-primary font-medium text-sm lg:text-base leading-relaxed">
+                    <p className="body-text text-primary font-medium text-xs xl:text-sm leading-relaxed">
                       {item.me}
                     </p>
                   </div>
@@ -199,7 +207,7 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[3vh] h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
+                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'opacity-100 scale-[1.01] brightness-[1.03] grayscale-0' 
                       : 'opacity-50'}
@@ -207,7 +215,7 @@ export function Home() {
                 >
                   <div className="overflow-y-auto pr-2 scrollbar-hide">
                     <div className="flex items-start gap-2 mb-2">
-                      <p className="body-text text-muted-foreground text-sm lg:text-base leading-relaxed italic">
+                      <p className="body-text text-muted-foreground text-xs xl:text-sm leading-relaxed italic">
                         {item.freelancer}
                       </p>
                     </div>
@@ -220,6 +228,39 @@ export function Home() {
                       className="absolute bottom-4 right-6 text-red-400 opacity-20"
                     >
                       <AlertTriangle className="w-4 h-4" />
+                    </motion.div>
+                  )}
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Column 4: Traditional Agency */}
+            <motion.div style={{ y: agencyY, translateY: agencyParallax }} className="flex flex-col gap-[4vh]">
+              {comparisonData.map((item, idx) => (
+                <div 
+                  key={idx} 
+                  onMouseEnter={() => setHoveredRow(idx)}
+                  onMouseLeave={() => setHoveredRow(null)}
+                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
+                    ${(activeRow === idx || hoveredRow === idx) 
+                      ? 'opacity-100 scale-[1.01] brightness-[1.03] grayscale-0' 
+                      : 'opacity-50'}
+                    hover:bg-blue-50/10 hover:border-blue-200`}
+                >
+                  <div className="overflow-y-auto pr-2 scrollbar-hide">
+                    <div className="flex items-start gap-2 mb-2">
+                      <p className="body-text text-muted-foreground text-xs xl:text-sm leading-relaxed italic">
+                        {item.agency}
+                      </p>
+                    </div>
+                  </div>
+                  {hoveredRow === idx && (
+                    <motion.div 
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 0.2 }}
+                      className="absolute bottom-4 right-6 text-blue-400"
+                    >
+                      <Building2 className="w-4 h-4" />
                     </motion.div>
                   )}
                 </div>
