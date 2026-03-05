@@ -42,7 +42,7 @@ const steps = [
 export function ProcessSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Internal Step Accumulation Scroll (The focus loop)
+  // Internal Step Accumulation Scroll
   const { scrollYProgress: internalScroll } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -57,31 +57,26 @@ export function ProcessSection() {
   const smoothInternal = useSpring(internalScroll, { stiffness: 80, damping: 25 });
   const smoothEntry = useSpring(entryScroll, { stiffness: 100, damping: 30 });
 
-  // Dramatic slide from the bottom to cover the previous section
+  // Slide-up with reduced initial offset to show content immediately
   const entryY = useTransform(
     smoothEntry, 
     [0, 1], 
-    ["100vh", "0vh"]
+    ["30vh", "0vh"]
   );
   
-  // Set opacity to 1 almost immediately (at 0.05 instead of 0.2) 
-  // to ensure content is visible during the entire overlap duration
-  const entryOpacity = useTransform(
-    smoothEntry, 
-    [0, 0.05], 
-    [0, 1]
-  );
+  // Immediate visibility
+  const entryOpacity = 1;
 
   const entryScale = useTransform(
     smoothEntry, 
     [0, 1], 
-    [0.9, 1]
+    [0.98, 1]
   );
 
   return (
     <div 
       ref={containerRef} 
-      className="relative h-[400vh] bg-background z-20 mt-[-100vh] shadow-[0_-30vh_50vh_rgba(0,0,0,0.3)]"
+      className="relative h-[400vh] bg-background z-20 mt-[-100vh] shadow-[0_-30vh_50vh_rgba(0,0,0,0.15)]"
     >
       <motion.div 
         style={{ 
