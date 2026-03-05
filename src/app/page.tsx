@@ -14,31 +14,31 @@ const comparisonData = [
     criterion: "NICHE FOCUS",
     me: "Exclusive Plumbing & Home Services",
     freelancer: "Generic Templates for Any Niche",
-    agency: "Fragmented Multi-Niche Focus"
+    agency: "Juggles dozens of niches at once"
   },
   {
     criterion: "STRATEGY",
     me: "12+ Years in Local Lead Gen",
     freelancer: "Pretty Sites with No Strategy",
-    agency: "Siloed Teams, No Strategy Owner"
+    agency: "No strategy owner; split teams"
   },
   {
     criterion: "STRUCTURE",
     me: "Conversion-First Plumbing Layouts",
     freelancer: "Unproven Structural Patterns",
-    agency: "Same Template for Every Client"
+    agency: "Same template for every client"
   },
   {
     criterion: "PRIMARY GOAL",
     me: "Calls & Form Submissions",
     freelancer: "Colors, Fonts & Visuals",
-    agency: "Clicks, Traffic & Impressions"
+    agency: "Obsesses over traffic & clicks"
   },
   {
     criterion: "SCALING",
     me: "City-Specific Ad Landing Pages",
     freelancer: "Hard to Scale for Paid Traffic",
-    agency: "Rebuilds Required for Every Ad"
+    agency: "Hard to scale; needs rebuilds"
   }
 ];
 
@@ -54,11 +54,11 @@ export function Home() {
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  // Staggered Column Motion (t=0 to t=1)
+  // Column Alignment Motion (t=0 to t=1)
   const col1Y = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
   const col2Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); // Anton (Lowest)
   const col3Y = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);  // Freelancer
-  const col4Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); // Agency (Lowest)
+  const col4Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); // Agency (Sync with Anton)
 
   // Track active row based on scroll
   useEffect(() => {
@@ -90,10 +90,10 @@ export function Home() {
       {/* Editorial Comparison Table Section */}
       <section 
         ref={sectionRef} 
-        className="relative py-[20vh] z-10 bg-background overflow-hidden" 
+        className="relative py-[20vh] z-10 bg-[#F6F5EF] overflow-hidden" 
         id="about"
       >
-        <div className="w-full px-[8vw]">
+        <div className="w-full max-w-[1440px] mx-auto px-[8vw] md:px-[40px]">
           
           <div className="mb-[12vh] reveal-text">
             <h2 className="heading-lg text-primary tracking-tighter">
@@ -102,29 +102,29 @@ export function Home() {
             </h2>
           </div>
 
-          {/* Table Headers */}
-          <div className="sticky top-[100px] z-30 grid grid-cols-[1.2fr_2fr_2fr_2fr] gap-0 mb-0 border-b border-primary/10">
+          {/* Table Headers (Sticky) */}
+          <div className="sticky top-[100px] z-30 grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 mb-0 border-b border-[#E3E0D6] bg-[#F6F5EF]/90 backdrop-blur-md">
             {[
-              { label: "CRITERIA", icon: null, active: false },
-              { label: "ANTON KOLESNIKOV", icon: <Zap className="w-3 h-3 text-accent fill-accent" />, active: true, dark: true },
-              { label: "FREELANCER", icon: <User className="w-3 h-3 text-muted-foreground/40" />, active: false },
-              { label: "AGENCY", icon: <Building2 className="w-3 h-3 text-muted-foreground/40" />, active: false }
+              { label: "CRITERIA", active: false },
+              { label: "ANTON KOLESNIKOV", active: true, dark: true },
+              { label: "FREELANCER", active: false },
+              { label: "AGENCY", active: false }
             ].map((header, i) => (
               <div 
                 key={i} 
-                className={`relative px-[1.5vw] py-6 flex items-center h-[100px] ${header.dark ? 'bg-primary text-white' : 'bg-background/80 backdrop-blur-xl text-muted-foreground'}`}
+                className={`relative flex items-center h-[72px] transition-colors duration-300
+                  ${i === 0 ? 'px-[32px] pl-[32px]' : 'px-[24px]'}
+                  ${header.dark && (activeRow !== null || hoveredRow !== null) ? 'bg-white' : ''}
+                `}
               >
-                <div className="flex items-center gap-2">
-                  <span className="label font-bold tracking-[0.2em] text-[10px] xl:text-[11px] uppercase">
-                    {header.label}
-                  </span>
-                  {header.icon}
-                </div>
-                {header.active && activeRow !== null && (
+                <span className="text-[13px] font-semibold tracking-[0.16em] text-[#9BA3A7] uppercase truncate">
+                  {header.label}
+                </span>
+                {header.active && (activeRow !== null || hoveredRow !== null) && (
                   <motion.div 
-                    layoutId="headerLine"
-                    className="absolute bottom-0 left-0 right-0 h-[3px] bg-accent"
-                    transition={{ duration: 0.25 }}
+                    layoutId="headerUnderline"
+                    className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
+                    transition={{ duration: 0.25, ease: "easeOut" }}
                   />
                 )}
               </div>
@@ -132,7 +132,7 @@ export function Home() {
           </div>
 
           {/* Table Body (Vertical Rails) */}
-          <div className="grid grid-cols-[1.2fr_2fr_2fr_2fr] gap-0 relative">
+          <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 relative">
             
             {/* Track 1: Criteria */}
             <motion.div style={{ y: col1Y }} className="flex flex-col">
@@ -141,10 +141,13 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`compare-row-trigger flex flex-col justify-center px-[1.5vw] h-[160px] border-b border-primary/5 transition-colors duration-300
-                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-primary/[0.04]' : idx % 2 === 0 ? 'bg-primary/[0.01]' : 'bg-transparent'}`}
+                  className={`compare-row-trigger flex flex-col justify-center px-[32px] h-[72px] border-b border-[#E3E0D6] transition-all duration-300 relative
+                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] z-20' : idx % 2 === 0 ? 'bg-[#F9F8F3]' : 'bg-[#F6F5EF]'}`}
                 >
-                  <span className="label font-black text-primary text-[12px] tracking-[0.1em]">{item.criterion}</span>
+                  {(activeRow === idx || hoveredRow === idx) && (
+                    <div className="absolute left-0 top-0 bottom-0 w-[2px] bg-accent" />
+                  )}
+                  <span className="text-[13px] font-medium text-[#7A858A] tracking-[0.18em] uppercase truncate">{item.criterion}</span>
                 </div>
               ))}
             </motion.div>
@@ -156,12 +159,12 @@ export function Home() {
                   key={idx}
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`flex flex-col justify-center px-[1.5vw] h-[160px] border-b border-primary/10 transition-all duration-300
+                  className={`flex flex-col justify-center px-[24px] h-[72px] border-b border-[#E3E0D6] transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'bg-accent/5 border-l-2 border-r-2 border-accent/20 scale-[1.01] shadow-2xl z-20' 
-                      : idx % 2 === 0 ? 'bg-primary/[0.03]' : 'bg-primary/[0.01]'}`}
+                      ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.02] z-20' 
+                      : idx % 2 === 0 ? 'bg-[#F9F8F3]' : 'bg-[#F6F5EF]'}`}
                 >
-                  <p className="body-text text-primary font-bold leading-tight">
+                  <p className="text-[17px] font-medium text-[#1A2C32] leading-tight truncate">
                     {item.me}
                   </p>
                 </motion.div>
@@ -175,10 +178,12 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`flex flex-col justify-center px-[1.5vw] h-[160px] border-b border-primary/5 transition-colors duration-300 opacity-60
-                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-primary/[0.04] opacity-100' : idx % 2 === 0 ? 'bg-primary/[0.01]' : 'bg-transparent'}`}
+                  className={`flex flex-col justify-center px-[24px] h-[72px] border-b border-[#E3E0D6] transition-all duration-300
+                    ${(activeRow === idx || hoveredRow === idx) 
+                      ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
+                      : idx % 2 === 0 ? 'bg-[#F9F8F3] opacity-80' : 'bg-[#F6F5EF] opacity-80'}`}
                 >
-                  <p className="body-text text-muted-foreground italic leading-tight">
+                  <p className="text-[16px] font-normal text-[#8FA0A5] leading-tight truncate">
                     {item.freelancer}
                   </p>
                 </div>
@@ -192,10 +197,12 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`flex flex-col justify-center px-[1.5vw] h-[160px] border-b border-primary/5 transition-colors duration-300 opacity-60
-                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-primary/[0.04] opacity-100' : idx % 2 === 0 ? 'bg-primary/[0.01]' : 'bg-transparent'}`}
+                  className={`flex flex-col justify-center px-[24px] h-[72px] border-b border-[#E3E0D6] transition-all duration-300
+                    ${(activeRow === idx || hoveredRow === idx) 
+                      ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
+                      : idx % 2 === 0 ? 'bg-[#F9F8F3] opacity-80' : 'bg-[#F6F5EF] opacity-80'}`}
                 >
-                  <p className="body-text text-muted-foreground italic leading-tight">
+                  <p className="text-[16px] font-normal text-[#8FA0A5] leading-tight truncate">
                     {item.agency}
                   </p>
                 </div>
