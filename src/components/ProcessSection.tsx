@@ -48,7 +48,7 @@ export function ProcessSection() {
     offset: ["start start", "end end"]
   });
 
-  // Entrance Scroll (The "Encroaching" Layer Effect)
+  // Entrance Scroll (The 100% Overlap Stack Effect)
   const { scrollYProgress: entryScroll } = useScroll({
     target: containerRef,
     offset: ["start end", "start start"]
@@ -57,28 +57,29 @@ export function ProcessSection() {
   const smoothInternal = useSpring(internalScroll, { stiffness: 80, damping: 25 });
   const smoothEntry = useSpring(entryScroll, { stiffness: 100, damping: 30 });
 
+  // Dramatic slide from the bottom to cover the previous section
   const entryY = useTransform(
     smoothEntry, 
-    [0, 0.33, 0.66, 1], 
-    [100, 65, 30, 0]
+    [0, 1], 
+    ["100vh", "0vh"]
   );
   
   const entryOpacity = useTransform(
     smoothEntry, 
-    [0, 0.33, 0.66, 1], 
-    [0.1, 0.4, 0.75, 1]
+    [0, 0.2], 
+    [0, 1]
   );
 
   const entryScale = useTransform(
     smoothEntry, 
     [0, 1], 
-    [0.97, 1]
+    [0.9, 1]
   );
 
   return (
     <div 
       ref={containerRef} 
-      className="relative h-[400vh] bg-background z-20 mt-[-50vh] shadow-[0_-20vh_30vh_rgba(0,0,0,0.15)]"
+      className="relative h-[400vh] bg-background z-20 mt-[-100vh] shadow-[0_-30vh_50vh_rgba(0,0,0,0.3)]"
     >
       <motion.div 
         style={{ 

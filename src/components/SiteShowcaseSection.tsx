@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef } from 'react';
@@ -51,11 +50,9 @@ export function SiteShowcaseSection() {
   const rightImageY = useTransform(smoothProgress, [0.45, 0.65], ["100px", "0px"]);
   const rightImageOpacity = useTransform(smoothProgress, [0.45, 0.6], [0, 1]);
 
-  // --- PHASE 4: EXIT RECESSION (80% -> 100%) ---
-  // The "Cases" section recedes (moves up and fades) to t=1 specified points
-  const sectionExitY = useTransform(smoothProgress, [0.8, 1], ["0px", "-40px"]);
-  const sectionExitOpacity = useTransform(smoothProgress, [0.8, 1], [1, 0.3]);
-  const sectionExitScale = useTransform(smoothProgress, [0.8, 1], [1, 0.97]);
+  // --- PHASE 4: STACKING (REMOVED EXIT) ---
+  // We keep the section static and opaque so the next section can overlap it 100%
+  const sectionScale = useTransform(smoothProgress, [0.8, 1], [1, 0.95]);
 
   const leftCase = PlaceHolderImages.find(img => img.id === 'case-study-2');
   const rightCase = PlaceHolderImages.find(img => img.id === 'case-study-3');
@@ -65,9 +62,9 @@ export function SiteShowcaseSection() {
     <div ref={containerRef} className="relative h-[350vh] bg-[#e5e5e5] z-10">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Dynamic content wrapper for exit animation */}
+        {/* Dynamic content wrapper - stays underneath the next section */}
         <motion.div 
-          style={{ y: sectionExitY, opacity: sectionExitOpacity, scale: sectionExitScale }}
+          style={{ scale: sectionScale }}
           className="w-full h-full flex items-center justify-center relative"
         >
           {/* Central Anchor */}
