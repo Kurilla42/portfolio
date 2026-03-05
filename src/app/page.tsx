@@ -103,7 +103,7 @@ export function Home() {
         className="relative py-[20vh] z-10 bg-background overflow-hidden" 
         id="about"
       >
-        <div className="max-w-full md:max-w-[960px] lg:max-w-[1200px] xl:max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 xl:px-10">
+        <div className="w-full px-[8vw]">
           
           {/* Section Header */}
           <div className="mb-[12vh]">
@@ -115,7 +115,7 @@ export function Home() {
 
           {/* Sticky Table Header */}
           {/* Proportions: 24% / 38% / 38% */}
-          <div className="sticky top-[100px] z-30 grid grid-cols-[24fr_38fr_38fr] gap-6 lg:gap-8 mb-[8vh]">
+          <div className="sticky top-[100px] z-30 grid grid-cols-[24fr_38fr_38fr] gap-[2.5vw] mb-[8vh]">
             {[
               { label: "CRITERIA", color: "text-muted-foreground", id: 0 },
               { label: "ANTON KOLESNIKOV", color: "text-white", bg: "bg-primary", id: 1, icon: <Zap className="w-4 h-4 text-accent fill-accent" /> },
@@ -123,7 +123,7 @@ export function Home() {
             ].map((header, i) => (
               <div 
                 key={i} 
-                className={`relative overflow-hidden border border-primary/5 rounded-2xl px-6 h-[80px] flex items-center shadow-sm ${header.bg || 'bg-white/80 backdrop-blur-xl'}`}
+                className={`relative overflow-hidden border border-primary/5 rounded-2xl px-[2vw] h-[80px] flex items-center shadow-sm ${header.bg || 'bg-white/80 backdrop-blur-xl'}`}
               >
                 <div className="flex items-center gap-3">
                   <span className={`label font-bold uppercase ${header.color}`}>
@@ -149,7 +149,7 @@ export function Home() {
           </div>
 
           {/* Grid with Vertical Rails Layout */}
-          <div className="grid grid-cols-[24fr_38fr_38fr] gap-6 lg:gap-8 relative">
+          <div className="grid grid-cols-[24fr_38fr_38fr] gap-[2.5vw] relative">
             
             {/* Column 1: Criteria */}
             <motion.div style={{ y: criteriaY, translateY: criteriaParallax }} className="flex flex-col gap-[4vh]">
@@ -158,7 +158,7 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-6 py-8 h-[28vh] flex flex-col justify-center overflow-hidden
+                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[2vw] py-[3vh] h-[28vh] flex flex-col justify-center overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) ? 'ring-1 ring-primary/10 shadow-lg scale-[1.01] brightness-[1.03]' : 'shadow-sm opacity-90'}`}
                 >
                   <h3 className="heading-md text-primary text-lg lg:text-xl mb-2 line-clamp-2">{item.criterion}</h3>
@@ -178,7 +178,7 @@ export function Home() {
                   onMouseLeave={() => setHoveredRow(null)}
                   whileHover={{ scale: 1.04, y: -2 }}
                   transition={{ duration: 0.18, ease: "easeOut" }}
-                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-6 py-8 h-[28vh] flex flex-col justify-center relative group overflow-hidden
+                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[2vw] py-[3vh] h-[28vh] flex flex-col justify-center relative group overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'border-accent bg-accent/5 shadow-2xl z-10 scale-[1.02]' 
                       : 'border-primary/10 shadow-xl opacity-90'}`}
@@ -199,7 +199,7 @@ export function Home() {
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-6 py-8 h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
+                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[3vh] h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
                     ${(activeRow === idx || hoveredRow === idx) 
                       ? 'opacity-100 scale-[1.01] brightness-[1.03] grayscale-0' 
                       : 'opacity-50'}
