@@ -13,37 +13,82 @@ const comparisonData = [
   {
     criterion: "Niche expertise",
     whoTheyServe: "Industry Specialization",
-    me: "I work only with plumbing and home service businesses in the US. I know their pains, seasonality, and what owners actually care about.",
-    freelancer: "Takes on any niche — from cafés to online courses — so they do not understand plumbing specifics and copy generic templates.",
-    agency: "They juggle dozens of niches at once, rely on generic “best practices,” and never go deep into plumbing specifics, seasonality, or what actually drives service calls."
+    me: [
+      "Exclusive **Plumbing & Home Service** focus",
+      "Understands **US-specific** seasonality and owner pains"
+    ],
+    freelancer: [
+      "Takes on **any niche** (cafés, courses, retail)",
+      "Uses **generic templates** for every client"
+    ],
+    agency: [
+      "Juggles **dozens of niches** at once",
+      "Relies on generic **'best practices'**"
+    ]
   },
   {
     criterion: "12 years in marketing",
     whoTheyServe: "Strategic Background",
-    me: "Over a decade in digital marketing: I understand lead generation, ads, SEO, and analytics, and I build all of that directly into the site structure.",
-    freelancer: "Builds the site as a “pretty business card”, without thinking how the owner will actually get and track leads.",
-    agency: "The project is split between a designer, a coder, and an account manager — but nobody owns the strategy, so you get a pretty site that is barely connected to your real marketing goals."
+    me: [
+      "**12+ years** in digital lead generation",
+      "SEO and Ads built **directly** into site structure"
+    ],
+    freelancer: [
+      "Builds **'pretty business cards'**",
+      "No real **lead tracking** strategy"
+    ],
+    agency: [
+      "Project split between **siloed teams**",
+      "No single **strategy owner** for your goals"
+    ]
   },
   {
     criterion: "Battle‑tested templates",
     whoTheyServe: "Structural Integrity",
-    me: "I use my own conversion-optimized templates used in real plumbing projects: thoughtful structure, offers, and local trust triggers.",
-    freelancer: "Every time builds the site from scratch or edits a random theme, often without checking if the structure converts.",
-    agency: "Every client gets the same “industry” template with a new logo and colors slapped on top — the site ends up looking like dozens of others and ignores your specific market."
+    me: [
+      "Conversion-optimized **plumbing-first** layouts",
+      "Proven **trust triggers** and local offers"
+    ],
+    freelancer: [
+      "Builds every site **from scratch**",
+      "Uses **unproven** structural patterns"
+    ],
+    agency: [
+      "Same **industry template** for every client",
+      "Site ends up looking like **everyone else's**"
+    ]
   },
   {
     criterion: "Focus on leads",
     whoTheyServe: "Growth Metric",
-    me: "Design serves one goal — to increase calls and form submissions. I place CTAs and guarantees to grow conversion.",
-    freelancer: "Talks mostly about colors and fonts; speaks about “conversion” in vague terms with no clear logic.",
-    agency: "They obsess over traffic and clicks instead of real inquiries: main CTAs are scattered, forms are hidden, and the page reads more like a brand brochure than a lead-generation machine."
+    me: [
+      "Design serves **calls & form submissions**",
+      "**Strategic CTA** and guarantee placement"
+    ],
+    freelancer: [
+      "Talks mostly about **colors and fonts**",
+      "Vague logic on **conversion growth**"
+    ],
+    agency: [
+      "Obsesses over **traffic and clicks**",
+      "Main CTAs and forms are often **hidden**"
+    ]
   },
   {
     criterion: "Ready for ads & scaling",
     whoTheyServe: "Ad Readiness",
-    me: "The site structure is ready for traffic from day one: service/city pages and reviews blocks are optimized for scaling local campaigns.",
-    freelancer: "Delivers generic pages that are hard to use later for local SEO, ads, or scaling your lead generation.",
-    agency: "They ship a “finished” website without thinking about future campaigns: no dedicated pages for different services or cities, the structure is hard to scale, and every new ad needs the whole landing rebuilt."
+    me: [
+      "**Service & City** pages ready from Day 1",
+      "Optimized for **scaling local campaigns**"
+    ],
+    freelancer: [
+      "Generic pages **hard to scale**",
+      "Structure not ready for **paid traffic**"
+    ],
+    agency: [
+      "No **dedicated landing pages** for ads",
+      "Needs **rebuilds** for every new campaign"
+    ]
   }
 ];
 
@@ -59,9 +104,7 @@ export function Home() {
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  // Column Alignment Motion:
-  // t=0: Criteria(0), Anton(180), Typical(90), Agency(180)
-  // At t=1: All at 0
+  // Column Alignment Motion (t=0 to t=1)
   const criteriaY = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
   const meY = useTransform(smoothProgress, [0.1, 0.4], [180, 0]);
   const freelancerY = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);
@@ -121,7 +164,6 @@ export function Home() {
           </div>
 
           {/* Sticky Table Header */}
-          {/* Adjusted for 4 columns: 16% / 28% / 28% / 28% */}
           <div className="sticky top-[100px] z-30 grid grid-cols-[16fr_28fr_28fr_28fr] gap-[2vw] mb-[8vh]">
             {[
               { label: "CRITERIA", color: "text-muted-foreground", id: 0 },
@@ -160,7 +202,7 @@ export function Home() {
           <div className="grid grid-cols-[16fr_28fr_28fr_28fr] gap-[2vw] relative">
             
             {/* Column 1: Criteria */}
-            <motion.div style={{ y: criteriaY, translateY: criteriaParallax }} className="flex flex-col gap-[4vh]">
+            <motion.div style={{ y: criteriaY, translateY: criteriaParallax }} className="flex flex-col gap-[6vh]">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
@@ -177,8 +219,8 @@ export function Home() {
               ))}
             </motion.div>
 
-            {/* Column 2: Anton Kolesnikov (The Hero Column) */}
-            <motion.div style={{ y: meY, translateY: meParallax }} className="flex flex-col gap-[4vh]">
+            {/* Column 2: Anton Kolesnikov */}
+            <motion.div style={{ y: meY, translateY: meParallax }} className="flex flex-col gap-[6vh]">
               {comparisonData.map((item, idx) => (
                 <motion.div 
                   key={idx}
@@ -192,16 +234,22 @@ export function Home() {
                       : 'border-primary/10 shadow-xl opacity-90'}`}
                 >
                   <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    <p className="body-text text-primary font-medium text-xs xl:text-sm leading-relaxed">
-                      {item.me}
-                    </p>
+                    {item.me.map((point, pIdx) => (
+                      <p 
+                        key={pIdx} 
+                        className="body-text text-primary font-medium text-xs xl:text-sm leading-relaxed mb-4 last:mb-0"
+                        dangerouslySetInnerHTML={{ 
+                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span className="text-primary font-bold">$1</span>') 
+                        }}
+                      />
+                    ))}
                   </div>
                 </motion.div>
               ))}
             </motion.div>
 
             {/* Column 3: Typical Freelancer */}
-            <motion.div style={{ y: freelancerY, translateY: freelancerParallax }} className="flex flex-col gap-[4vh]">
+            <motion.div style={{ y: freelancerY, translateY: freelancerParallax }} className="flex flex-col gap-[6vh]">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
@@ -214,11 +262,15 @@ export function Home() {
                     hover:bg-red-50/10 hover:border-red-200`}
                 >
                   <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    <div className="flex items-start gap-2 mb-2">
-                      <p className="body-text text-muted-foreground text-xs xl:text-sm leading-relaxed italic">
-                        {item.freelancer}
-                      </p>
-                    </div>
+                    {item.freelancer.map((point, pIdx) => (
+                      <p 
+                        key={pIdx} 
+                        className="body-text text-muted-foreground text-xs xl:text-sm leading-relaxed italic mb-4 last:mb-0"
+                        dangerouslySetInnerHTML={{ 
+                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span className="text-muted-foreground font-semibold">$1</span>') 
+                        }}
+                      />
+                    ))}
                   </div>
                   {hoveredRow === idx && (
                     <motion.div 
@@ -235,7 +287,7 @@ export function Home() {
             </motion.div>
 
             {/* Column 4: Traditional Agency */}
-            <motion.div style={{ y: agencyY, translateY: agencyParallax }} className="flex flex-col gap-[4vh]">
+            <motion.div style={{ y: agencyY, translateY: agencyParallax }} className="flex flex-col gap-[6vh]">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
@@ -248,11 +300,15 @@ export function Home() {
                     hover:bg-blue-50/10 hover:border-blue-200`}
                 >
                   <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    <div className="flex items-start gap-2 mb-2">
-                      <p className="body-text text-muted-foreground text-xs xl:text-sm leading-relaxed italic">
-                        {item.agency}
-                      </p>
-                    </div>
+                    {item.agency.map((point, pIdx) => (
+                      <p 
+                        key={pIdx} 
+                        className="body-text text-muted-foreground text-xs xl:text-sm leading-relaxed italic mb-4 last:mb-0"
+                        dangerouslySetInnerHTML={{ 
+                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span className="text-muted-foreground font-semibold">$1</span>') 
+                        }}
+                      />
+                    ))}
                   </div>
                   {hoveredRow === idx && (
                     <motion.div 
