@@ -7,95 +7,45 @@ import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
-import { ArrowRight, Zap, AlertTriangle, Building2 } from 'lucide-react';
+import { ArrowRight, Zap, Building2, User } from 'lucide-react';
 
 const comparisonData = [
   {
-    criterion: "Niche expertise",
-    whoTheyServe: "Industry Specialization",
-    me: [
-      "Exclusive **Plumbing & Home Service** focus",
-      "Understands **US-specific** seasonality and owner pains"
-    ],
-    freelancer: [
-      "Takes on **any niche** (cafés, courses, retail)",
-      "Uses **generic templates** for every client"
-    ],
-    agency: [
-      "Juggles **dozens of niches** at once",
-      "Relies on generic **'best practices'**"
-    ]
+    criterion: "NICHE FOCUS",
+    me: "Exclusive Plumbing & Home Services",
+    freelancer: "Generic Templates for Any Niche",
+    agency: "Fragmented Multi-Niche Focus"
   },
   {
-    criterion: "12 years in marketing",
-    whoTheyServe: "Strategic Background",
-    me: [
-      "**12+ years** in digital lead generation",
-      "SEO and Ads built **directly** into site structure"
-    ],
-    freelancer: [
-      "Builds **'pretty business cards'**",
-      "No real **lead tracking** strategy"
-    ],
-    agency: [
-      "Project split between **siloed teams**",
-      "No single **strategy owner** for your goals"
-    ]
+    criterion: "STRATEGY",
+    me: "12+ Years in Local Lead Gen",
+    freelancer: "Pretty Sites with No Strategy",
+    agency: "Siloed Teams, No Strategy Owner"
   },
   {
-    criterion: "Battle‑tested templates",
-    whoTheyServe: "Structural Integrity",
-    me: [
-      "Conversion-optimized **plumbing-first** layouts",
-      "Proven **trust triggers** and local offers"
-    ],
-    freelancer: [
-      "Builds every site **from scratch**",
-      "Uses **unproven** structural patterns"
-    ],
-    agency: [
-      "Same **industry template** for every client",
-      "Site ends up looking like **everyone else's**"
-    ]
+    criterion: "STRUCTURE",
+    me: "Conversion-First Plumbing Layouts",
+    freelancer: "Unproven Structural Patterns",
+    agency: "Same Template for Every Client"
   },
   {
-    criterion: "Focus on leads",
-    whoTheyServe: "Growth Metric",
-    me: [
-      "Design serves **calls & form submissions**",
-      "**Strategic CTA** and guarantee placement"
-    ],
-    freelancer: [
-      "Talks mostly about **colors and fonts**",
-      "Vague logic on **conversion growth**"
-    ],
-    agency: [
-      "Obsesses over **traffic and clicks**",
-      "Main CTAs and forms are often **hidden**"
-    ]
+    criterion: "PRIMARY GOAL",
+    me: "Calls & Form Submissions",
+    freelancer: "Colors, Fonts & Visuals",
+    agency: "Clicks, Traffic & Impressions"
   },
   {
-    criterion: "Ready for ads & scaling",
-    whoTheyServe: "Ad Readiness",
-    me: [
-      "**Service & City** pages ready from Day 1",
-      "Optimized for **scaling local campaigns**"
-    ],
-    freelancer: [
-      "Generic pages **hard to scale**",
-      "Structure not ready for **paid traffic**"
-    ],
-    agency: [
-      "No **dedicated landing pages** for ads",
-      "Needs **rebuilds** for every new campaign"
-    ]
+    criterion: "SCALING",
+    me: "City-Specific Ad Landing Pages",
+    freelancer: "Hard to Scale for Paid Traffic",
+    agency: "Rebuilds Required for Every Ad"
   }
 ];
 
 export function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [activeRow, setActiveRow] = useState<number | null>(null);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
+  const [activeRow, setActiveRow] = useState<number | null>(null);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -104,16 +54,11 @@ export function Home() {
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  // Column Alignment Motion (t=0 to t=1)
-  const criteriaY = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
-  const meY = useTransform(smoothProgress, [0.1, 0.4], [180, 0]);
-  const freelancerY = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);
-  const agencyY = useTransform(smoothProgress, [0.1, 0.4], [180, 0]);
-
-  const criteriaParallax = useTransform(smoothProgress, [0, 1], [0, 10]);
-  const meParallax = useTransform(smoothProgress, [0, 1], [0, 5]);
-  const freelancerParallax = useTransform(smoothProgress, [0, 1], [0, 15]);
-  const agencyParallax = useTransform(smoothProgress, [0, 1], [0, 12]);
+  // Staggered Column Motion (t=0 to t=1)
+  const col1Y = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
+  const col2Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); // Anton (Lowest)
+  const col3Y = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);  // Freelancer
+  const col4Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); // Agency (Lowest)
 
   // Track active row based on scroll
   useEffect(() => {
@@ -138,16 +83,11 @@ export function Home() {
 
   return (
     <div className="min-h-screen bg-transparent">
-      {/* Hero Section */}
       <ShaderShowcase />
-
-      {/* Showcase Section */}
       <SiteShowcaseSection />
-
-      {/* Process Section */}
       <ProcessSection />
 
-      {/* Comparison Section (About Block) */}
+      {/* Editorial Comparison Table Section */}
       <section 
         ref={sectionRef} 
         className="relative py-[20vh] z-10 bg-background overflow-hidden" 
@@ -155,170 +95,109 @@ export function Home() {
       >
         <div className="w-full px-[8vw]">
           
-          {/* Section Header */}
-          <div className="mb-[12vh]">
-            <h2 className="heading-lg text-primary tracking-tighter reveal-text">
-              Fully integrated. <br />
-              <em className="accent-italic">Best in class.</em>
+          <div className="mb-[12vh] reveal-text">
+            <h2 className="heading-lg text-primary tracking-tighter">
+              Integrated. <br />
+              <em className="accent-italic">Editorial Precision.</em>
             </h2>
           </div>
 
-          {/* Sticky Table Header */}
-          <div className="sticky top-[100px] z-30 grid grid-cols-[16fr_28fr_28fr_28fr] gap-[2vw] mb-[8vh]">
+          {/* Table Headers */}
+          <div className="sticky top-[100px] z-30 grid grid-cols-[1.2fr_2fr_2fr_2fr] gap-0 mb-0 border-b border-primary/10">
             {[
-              { label: "CRITERIA", color: "text-muted-foreground", id: 0 },
-              { label: "ANTON KOLESNIKOV", color: "text-white", bg: "bg-primary", id: 1, icon: <Zap className="w-4 h-4 text-accent fill-accent" /> },
-              { label: "TYPICAL FREELANCER", color: "text-muted-foreground", id: 2 },
-              { label: "TRADITIONAL AGENCY", color: "text-muted-foreground", id: 3, icon: <Building2 className="w-4 h-4 text-muted-foreground" /> }
+              { label: "CRITERIA", icon: null, active: false },
+              { label: "ANTON KOLESNIKOV", icon: <Zap className="w-3 h-3 text-accent fill-accent" />, active: true, dark: true },
+              { label: "FREELANCER", icon: <User className="w-3 h-3 text-muted-foreground/40" />, active: false },
+              { label: "AGENCY", icon: <Building2 className="w-3 h-3 text-muted-foreground/40" />, active: false }
             ].map((header, i) => (
               <div 
                 key={i} 
-                className={`relative overflow-hidden border border-primary/5 rounded-2xl px-[1.5vw] h-[80px] flex items-center shadow-sm ${header.bg || 'bg-white/80 backdrop-blur-xl'}`}
+                className={`relative px-[1.5vw] py-6 flex items-center h-[100px] ${header.dark ? 'bg-primary text-white' : 'bg-background/80 backdrop-blur-xl text-muted-foreground'}`}
               >
                 <div className="flex items-center gap-2">
-                  <span className={`label font-bold uppercase ${header.color} text-[10px] xl:text-[11px]`}>
+                  <span className="label font-bold tracking-[0.2em] text-[10px] xl:text-[11px] uppercase">
                     {header.label}
                   </span>
                   {header.icon}
                 </div>
-                
-                {/* Active Underline Bar */}
-                <AnimatePresence>
-                  {activeRow !== null && (
-                    <motion.div 
-                      initial={{ scaleX: 0 }}
-                      animate={{ scaleX: 1 }}
-                      exit={{ scaleX: 0 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="absolute bottom-0 left-0 right-0 h-[3px] bg-accent origin-left"
-                    />
-                  )}
-                </AnimatePresence>
+                {header.active && activeRow !== null && (
+                  <motion.div 
+                    layoutId="headerLine"
+                    className="absolute bottom-0 left-0 right-0 h-[3px] bg-accent"
+                    transition={{ duration: 0.25 }}
+                  />
+                )}
               </div>
             ))}
           </div>
 
-          {/* Grid with Vertical Rails Layout */}
-          <div className="grid grid-cols-[16fr_28fr_28fr_28fr] gap-[2vw] relative">
+          {/* Table Body (Vertical Rails) */}
+          <div className="grid grid-cols-[1.2fr_2fr_2fr_2fr] gap-0 relative">
             
-            {/* Column 1: Criteria */}
-            <motion.div style={{ y: criteriaY, translateY: criteriaParallax }} className="flex flex-col gap-[6vh]">
+            {/* Track 1: Criteria */}
+            <motion.div style={{ y: col1Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[30vh] flex flex-col justify-center overflow-hidden
-                    ${(activeRow === idx || hoveredRow === idx) ? 'ring-1 ring-primary/10 shadow-lg scale-[1.01] brightness-[1.03]' : 'shadow-sm opacity-90'}`}
+                  className={`compare-row-trigger flex flex-col justify-center px-[1.5vw] h-[160px] border-b border-primary/5 transition-colors duration-300
+                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-primary/[0.04]' : idx % 2 === 0 ? 'bg-primary/[0.01]' : 'bg-transparent'}`}
                 >
-                  <h3 className="heading-md text-primary text-base xl:text-lg mb-2 line-clamp-2">{item.criterion}</h3>
-                  <p className="body-text text-muted-foreground opacity-70">
-                    {item.whoTheyServe}
-                  </p>
+                  <span className="label font-black text-primary text-[12px] tracking-[0.1em]">{item.criterion}</span>
                 </div>
               ))}
             </motion.div>
 
-            {/* Column 2: Anton Kolesnikov */}
-            <motion.div style={{ y: meY, translateY: meParallax }} className="flex flex-col gap-[6vh]">
+            {/* Track 2: Anton (Hero) */}
+            <motion.div style={{ y: col2Y }} className="flex flex-col relative z-10">
               {comparisonData.map((item, idx) => (
                 <motion.div 
                   key={idx}
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  whileHover={{ scale: 1.04, y: -2 }}
-                  transition={{ duration: 0.18, ease: "easeOut" }}
-                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[1.5vw] py-[3vh] h-[30vh] flex flex-col justify-center relative group overflow-hidden
+                  className={`flex flex-col justify-center px-[1.5vw] h-[160px] border-b border-primary/10 transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'border-accent bg-accent/5 shadow-2xl z-10 scale-[1.02]' 
-                      : 'border-primary/10 shadow-xl opacity-90'}`}
+                      ? 'bg-accent/5 border-l-2 border-r-2 border-accent/20 scale-[1.01] shadow-2xl z-20' 
+                      : idx % 2 === 0 ? 'bg-primary/[0.03]' : 'bg-primary/[0.01]'}`}
                 >
-                  <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    {item.me.map((point, pIdx) => (
-                      <p 
-                        key={pIdx} 
-                        className="body-text text-primary font-medium leading-relaxed mb-4 last:mb-0"
-                        dangerouslySetInnerHTML={{ 
-                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span class="text-primary font-bold">$1</span>') 
-                        }}
-                      />
-                    ))}
-                  </div>
+                  <p className="body-text text-primary font-bold leading-tight">
+                    {item.me}
+                  </p>
                 </motion.div>
               ))}
             </motion.div>
 
-            {/* Column 3: Typical Freelancer */}
-            <motion.div style={{ y: freelancerY, translateY: freelancerParallax }} className="flex flex-col gap-[6vh]">
+            {/* Track 3: Freelancer */}
+            <motion.div style={{ y: col3Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[30vh] flex flex-col justify-center grayscale-50 overflow-hidden
-                    ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'opacity-100 scale-[1.01] brightness-[1.03] grayscale-0' 
-                      : 'opacity-50'}
-                    hover:bg-red-50/10 hover:border-red-200`}
+                  className={`flex flex-col justify-center px-[1.5vw] h-[160px] border-b border-primary/5 transition-colors duration-300 opacity-60
+                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-primary/[0.04] opacity-100' : idx % 2 === 0 ? 'bg-primary/[0.01]' : 'bg-transparent'}`}
                 >
-                  <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    {item.freelancer.map((point, pIdx) => (
-                      <p 
-                        key={pIdx} 
-                        className="body-text text-muted-foreground leading-relaxed italic mb-4 last:mb-0"
-                        dangerouslySetInnerHTML={{ 
-                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span class="text-muted-foreground font-semibold">$1</span>') 
-                        }}
-                      />
-                    ))}
-                  </div>
-                  {hoveredRow === idx && (
-                    <motion.div 
-                      initial={{ x: -2 }}
-                      animate={{ x: [2, -2, 2] }}
-                      transition={{ duration: 0.1, repeat: 2 }}
-                      className="absolute bottom-4 right-6 text-red-400 opacity-20"
-                    >
-                      <AlertTriangle className="w-4 h-4" />
-                    </motion.div>
-                  )}
+                  <p className="body-text text-muted-foreground italic leading-tight">
+                    {item.freelancer}
+                  </p>
                 </div>
               ))}
             </motion.div>
 
-            {/* Column 4: Traditional Agency */}
-            <motion.div style={{ y: agencyY, translateY: agencyParallax }} className="flex flex-col gap-[6vh]">
+            {/* Track 4: Agency */}
+            <motion.div style={{ y: col4Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[1.5vw] py-[3vh] h-[30vh] flex flex-col justify-center grayscale-50 overflow-hidden
-                    ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'opacity-100 scale-[1.01] brightness-[1.03] grayscale-0' 
-                      : 'opacity-50'}
-                    hover:bg-blue-50/10 hover:border-blue-200`}
+                  className={`flex flex-col justify-center px-[1.5vw] h-[160px] border-b border-primary/5 transition-colors duration-300 opacity-60
+                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-primary/[0.04] opacity-100' : idx % 2 === 0 ? 'bg-primary/[0.01]' : 'bg-transparent'}`}
                 >
-                  <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    {item.agency.map((point, pIdx) => (
-                      <p 
-                        key={pIdx} 
-                        className="body-text text-muted-foreground leading-relaxed italic mb-4 last:mb-0"
-                        dangerouslySetInnerHTML={{ 
-                          __html: point.replace(/\*\*(.*?)\*\*/g, '<span class="text-muted-foreground font-semibold">$1</span>') 
-                        }}
-                      />
-                    ))}
-                  </div>
-                  {hoveredRow === idx && (
-                    <motion.div 
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 0.2 }}
-                      className="absolute bottom-4 right-6 text-blue-400"
-                    >
-                      <Building2 className="w-4 h-4" />
-                    </motion.div>
-                  )}
+                  <p className="body-text text-muted-foreground italic leading-tight">
+                    {item.agency}
+                  </p>
                 </div>
               ))}
             </motion.div>
