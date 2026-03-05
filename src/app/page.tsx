@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
@@ -91,7 +90,7 @@ export default function Home() {
       const rect = sectionRef.current.getBoundingClientRect();
       const viewportCenter = window.innerHeight / 2;
       
-      const rows = document.querySelectorAll('.compare-row');
+      const rows = document.querySelectorAll('.compare-row-trigger');
       let currentActive = null;
       
       rows.forEach((row, idx) => {
@@ -167,6 +166,7 @@ export default function Home() {
           </div>
 
           {/* Grid with Vertical Rails Layout */}
+          {/* Fixed row heights on desktop to ensure perfect horizontal alignment */}
           <div className="grid grid-cols-3 gap-[4vw] relative">
             
             {/* Column 1: Criteria */}
@@ -174,13 +174,15 @@ export default function Home() {
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className={`compare-row transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-center
+                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[260px] h-[28vh] flex flex-col justify-center overflow-hidden
                     ${activeRow === idx ? 'ring-1 ring-primary/10 shadow-lg scale-[1.01] brightness-[1.03]' : 'shadow-sm opacity-90'}`}
                 >
-                  <h3 className="heading-md text-primary text-[1.2vw] mb-[0.5vh]">{item.criterion}</h3>
-                  <p className="body-text text-muted-foreground text-[0.8vw] opacity-70">
-                    {item.whoTheyServe}
-                  </p>
+                  <h3 className="heading-md text-primary text-[1.2vw] mb-[0.5vh] line-clamp-2">{item.criterion}</h3>
+                  <div className="overflow-y-auto pr-2 scrollbar-hide">
+                    <p className="body-text text-muted-foreground text-[0.8vw] opacity-70">
+                      {item.whoTheyServe}
+                    </p>
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -190,15 +192,17 @@ export default function Home() {
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-center relative group shadow-primary/5
+                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[2vw] py-[2.5vh] min-h-[260px] h-[28vh] flex flex-col justify-center relative group shadow-primary/5 overflow-hidden
                     ${activeRow === idx 
                       ? 'border-accent bg-accent/5 shadow-2xl scale-[1.02] z-10' 
                       : 'border-primary/10 shadow-xl opacity-90'}
                     hover:scale-[1.04] hover:-translate-y-1 hover:border-accent hover:shadow-accent/10`}
                 >
-                  <p className="body-text text-primary font-medium text-[0.9vw] leading-relaxed">
-                    {item.me}
-                  </p>
+                  <div className="overflow-y-auto pr-2 scrollbar-hide">
+                    <p className="body-text text-primary font-medium text-[0.9vw] leading-relaxed">
+                      {item.me}
+                    </p>
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -208,15 +212,17 @@ export default function Home() {
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-center grayscale-50
+                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[260px] h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
                     ${activeRow === idx 
                       ? 'opacity-100 scale-[1.01] brightness-[1.03]' 
                       : 'opacity-50'}
                     hover:bg-red-50/10 hover:grayscale-0 hover:border-red-200`}
                 >
-                  <p className="body-text text-muted-foreground text-[0.9vw] leading-relaxed italic">
-                    {item.freelancer}
-                  </p>
+                  <div className="overflow-y-auto pr-2 scrollbar-hide">
+                    <p className="body-text text-muted-foreground text-[0.9vw] leading-relaxed italic">
+                      {item.freelancer}
+                    </p>
+                  </div>
                 </div>
               ))}
             </motion.div>
