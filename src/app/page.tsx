@@ -64,18 +64,20 @@ const comparisonData = [
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
   
-  // Track scroll progress of the entire section for the alignment effect
+  // Track scroll progress of the entire section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
-    offset: ["start end", "center center"]
+    offset: ["start end", "end start"]
   });
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
-  // Alignment animation: Your column starts 80px lower and slides up as it enters the view
-  const meY = useTransform(smoothProgress, [0, 1], [80, 0]);
-  const criteriaY = useTransform(smoothProgress, [0, 1], [10, 0]);
-  const freelancerY = useTransform(smoothProgress, [0, 1], [10, 0]);
+  // Column Alignment Motion:
+  // t=0: Criteria (0), Anton (180), Typical (90)
+  // t=1: All at (0)
+  const criteriaY = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
+  const meY = useTransform(smoothProgress, [0.1, 0.4], [180, 0]);
+  const freelancerY = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);
 
   return (
     <div className="min-h-screen bg-transparent">
@@ -98,63 +100,58 @@ export default function Home() {
       {/* Comparison Section (About Block) */}
       <section 
         ref={sectionRef} 
-        className="relative py-[15vh] px-[4vw] z-10" 
+        className="relative py-[20vh] px-[6vw] z-10" 
         id="about"
       >
         <div className="max-w-[1400px] mx-auto">
           
           {/* Section Header */}
-          <div className="mb-[10vh]">
+          <div className="mb-[12vh]">
             <h2 className="heading-lg text-primary tracking-tighter reveal-text">
               Fully integrated. <br />
               <em className="accent-italic">Best in class.</em>
             </h2>
           </div>
 
-          {/* Sticky Table Header - Sits below the main nav */}
-          <div className="sticky top-[80px] z-30 grid grid-cols-3 gap-[2vw] mb-[4vh]">
-            <div className="bg-primary/5 backdrop-blur-xl border border-primary/10 rounded-2xl p-[1.5vw]">
-              <span className="label text-muted-foreground opacity-60">CRITERIA</span>
+          {/* Sticky Table Header - Rails aligned with columns below */}
+          <div className="sticky top-[100px] z-30 grid grid-cols-3 gap-[4vw] mb-[6vh]">
+            <div className="bg-white/80 backdrop-blur-xl border border-primary/5 rounded-2xl p-[1.5vw] h-[10vh] flex items-center shadow-sm">
+              <span className="label text-primary font-bold opacity-80">CRITERIA</span>
             </div>
-            <div className="bg-primary text-white rounded-2xl p-[1.5vw] flex items-center justify-between shadow-2xl shadow-primary/20">
+            <div className="bg-primary text-white rounded-2xl p-[1.5vw] h-[10vh] flex items-center justify-between shadow-2xl shadow-primary/30">
               <span className="heading-md text-[1.2vw]">ANTON KOLESNIKOV</span>
               <Zap className="w-[1.2vw] h-[1.2vw] text-accent fill-accent" />
             </div>
-            <div className="bg-muted/80 backdrop-blur-xl rounded-2xl p-[1.5vw]">
+            <div className="bg-white/60 backdrop-blur-xl border border-primary/5 rounded-2xl p-[1.5vw] h-[10vh] flex items-center">
               <span className="label text-muted-foreground opacity-60">TYPICAL FREELANCER</span>
             </div>
           </div>
 
-          {/* Grid with Alignment Effect */}
-          <div className="grid grid-cols-3 gap-[2vw]">
+          {/* Grid with Vertical Rails Layout */}
+          <div className="grid grid-cols-3 gap-[4vw]">
             
             {/* Column 1: Criteria */}
-            <motion.div style={{ y: criteriaY }} className="space-y-[2vw]">
+            <motion.div style={{ y: criteriaY }} className="flex flex-col gap-[3.5vh]">
               {comparisonData.map((item, idx) => (
-                <div key={idx} className="bg-white border border-primary/5 rounded-2xl p-[2vw] min-h-[22vh] flex flex-col justify-between shadow-sm">
-                  <div>
-                    <h3 className="heading-md text-primary text-[1.4vw] mb-[1vh]">{item.criterion}</h3>
-                    <p className="body-text text-muted-foreground text-[0.8vw] leading-relaxed">
-                      {item.whoTheyServe}
-                    </p>
-                  </div>
-                  <div className="mt-[2vh]">
-                    <span className="tag bg-primary/5 text-primary/40 px-[0.8vw] py-[0.4vh] rounded-md text-[0.6vw]">Index {idx + 1}</span>
-                  </div>
+                <div key={idx} className="bg-white border border-primary/5 rounded-2xl px-[2vw] py-[3vh] min-h-[20vh] flex flex-col justify-center shadow-sm">
+                  <h3 className="heading-md text-primary text-[1.3vw] mb-[0.5vh]">{item.criterion}</h3>
+                  <p className="body-text text-muted-foreground text-[0.8vw] opacity-70">
+                    {item.whoTheyServe}
+                  </p>
                 </div>
               ))}
             </motion.div>
 
             {/* Column 2: Anton Kolesnikov (The Hero Column) */}
-            <motion.div style={{ y: meY }} className="space-y-[2vw]">
+            <motion.div style={{ y: meY }} className="flex flex-col gap-[3.5vh]">
               {comparisonData.map((item, idx) => (
-                <div key={idx} className="bg-primary/5 border-2 border-primary/20 rounded-2xl p-[2vw] min-h-[22vh] flex flex-col justify-between relative group hover:bg-primary/10 transition-colors shadow-lg">
+                <div key={idx} className="bg-white border-2 border-primary/10 rounded-2xl px-[2vw] py-[3vh] min-h-[20vh] flex flex-col justify-between relative group hover:border-primary/30 transition-all shadow-xl shadow-primary/5">
                   <p className="body-text text-primary font-medium text-[0.9vw] leading-relaxed">
                     {item.me}
                   </p>
-                  <div className="flex items-center justify-between mt-[2vh]">
-                    <span className="tag bg-primary text-white px-[0.8vw] py-[0.4vh] rounded-md text-[0.6vw] flex items-center gap-[0.4vw]">
-                      <Check className="w-[0.8vw] h-[0.8vw]" />
+                  <div className="flex items-center justify-start mt-[2vh]">
+                    <span className="inline-flex items-center gap-[0.4vw] bg-primary/5 text-primary px-[0.8vw] py-[0.4vh] rounded-full text-[10px] font-bold tracking-widest uppercase">
+                      <Check className="w-[10px] h-[10px]" />
                       OPTIMIZED
                     </span>
                   </div>
@@ -163,15 +160,15 @@ export default function Home() {
             </motion.div>
 
             {/* Column 3: Typical Freelancer */}
-            <motion.div style={{ y: freelancerY }} className="space-y-[2vw]">
+            <motion.div style={{ y: freelancerY }} className="flex flex-col gap-[3.5vh]">
               {comparisonData.map((item, idx) => (
-                <div key={idx} className="bg-muted/30 border border-primary/5 rounded-2xl p-[2vw] min-h-[22vh] flex flex-col justify-between opacity-60 grayscale hover:grayscale-0 transition-all">
-                  <p className="body-text text-muted-foreground text-[0.9vw] leading-relaxed">
+                <div key={idx} className="bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[3vh] min-h-[20vh] flex flex-col justify-between opacity-70 grayscale-50 transition-all">
+                  <p className="body-text text-muted-foreground text-[0.9vw] leading-relaxed italic">
                     {item.freelancer}
                   </p>
-                  <div className="flex items-center justify-between mt-[2vh]">
-                    <span className="tag border border-primary/10 text-muted-foreground px-[0.8vw] py-[0.4vh] rounded-md text-[0.6vw] flex items-center gap-[0.4vw]">
-                      <AlertCircle className="w-[0.8vw] h-[0.8vw]" />
+                  <div className="flex items-center justify-start mt-[2vh]">
+                    <span className="inline-flex items-center gap-[0.4vw] bg-muted text-muted-foreground/60 px-[0.8vw] py-[0.4vh] rounded-full text-[10px] font-bold tracking-widest uppercase border border-primary/5">
+                      <AlertCircle className="w-[10px] h-[10px]" />
                       GENERIC
                     </span>
                   </div>
