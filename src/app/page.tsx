@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import { ScrollRevealHeading } from '@/components/ScrollRevealHeading';
+import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
 import { ArrowRight, Zap, Building2, User } from 'lucide-react';
@@ -83,6 +84,7 @@ export function Home() {
   return (
     <div className="min-h-screen bg-transparent">
       <ShaderShowcase />
+      <LuminaInteractiveList />
       <SiteShowcaseSection />
       <ProcessSection />
 
