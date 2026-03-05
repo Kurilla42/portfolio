@@ -121,7 +121,7 @@ export default function Home() {
       {/* Comparison Section (About Block) */}
       <section 
         ref={sectionRef} 
-        className="relative py-[20vh] px-[6vw] z-10 bg-background" 
+        className="relative py-[20vh] px-[4vw] z-10 bg-background" 
         id="about"
       >
         <div className="max-w-[1400px] mx-auto">
@@ -135,7 +135,8 @@ export default function Home() {
           </div>
 
           {/* Sticky Table Header */}
-          <div className="sticky top-[100px] z-30 grid grid-cols-3 gap-[4vw] mb-[8vh]">
+          {/* Proportion: 1fr (25%) / 1.5fr (37.5%) / 1.5fr (37.5%) */}
+          <div className="sticky top-[100px] z-30 grid grid-cols-[1fr_1.5fr_1.5fr] gap-[4vw] mb-[8vh]">
             {[
               { label: "CRITERIA", color: "text-muted-foreground" },
               { label: "ANTON KOLESNIKOV", color: "text-white", bg: "bg-primary" },
@@ -167,7 +168,7 @@ export default function Home() {
 
           {/* Grid with Vertical Rails Layout */}
           {/* Fixed row heights on desktop to ensure perfect horizontal alignment */}
-          <div className="grid grid-cols-3 gap-[4vw] relative">
+          <div className="grid grid-cols-[1fr_1.5fr_1.5fr] gap-[4vw] relative">
             
             {/* Column 1: Criteria */}
             <motion.div style={{ y: criteriaY, translateY: criteriaParallax }} className="flex flex-col gap-[6vh]">
