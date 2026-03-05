@@ -7,7 +7,7 @@ import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
-import { ArrowRight, Zap } from 'lucide-react';
+import { ArrowRight, Zap, AlertTriangle } from 'lucide-react';
 
 const comparisonData = [
   {
@@ -63,6 +63,7 @@ const comparisonData = [
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeRow, setActiveRow] = useState<number | null>(null);
+  const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -72,13 +73,13 @@ export default function Home() {
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
 
   // Column Alignment Motion:
-  // t=0: Criteria (0), Anton (180), Typical (90)
-  // t=1: All at (0)
+  // At t=0: Criteria(0), Anton(180), Typical(90)
+  // At t=1: All at 0
+  // Plus subtle secondary parallax
   const criteriaY = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
   const meY = useTransform(smoothProgress, [0.1, 0.4], [180, 0]);
   const freelancerY = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);
 
-  // Subtle Parallax (Secondary)
   const criteriaParallax = useTransform(smoothProgress, [0, 1], [0, 10]);
   const meParallax = useTransform(smoothProgress, [0, 1], [0, 5]);
   const freelancerParallax = useTransform(smoothProgress, [0, 1], [0, 15]);
@@ -87,19 +88,16 @@ export default function Home() {
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return;
-      const rect = sectionRef.current.getBoundingClientRect();
       const viewportCenter = window.innerHeight / 2;
-      
       const rows = document.querySelectorAll('.compare-row-trigger');
       let currentActive = null;
       
       rows.forEach((row, idx) => {
-        const rowRect = row.getBoundingClientRect();
-        if (rowRect.top < viewportCenter && rowRect.bottom > viewportCenter) {
+        const rect = row.getBoundingClientRect();
+        if (rect.top < viewportCenter && rect.bottom > viewportCenter) {
           currentActive = idx;
         }
       });
-      
       setActiveRow(currentActive);
     };
 
@@ -121,10 +119,10 @@ export default function Home() {
       {/* Comparison Section (About Block) */}
       <section 
         ref={sectionRef} 
-        className="relative py-[20vh] px-[4vw] z-10 bg-background" 
+        className="relative py-[20vh] z-10 bg-background overflow-hidden" 
         id="about"
       >
-        <div className="max-w-[1400px] mx-auto">
+        <div className="max-w-full md:max-w-[960px] lg:max-w-[1200px] xl:max-w-[1440px] mx-auto px-4 md:px-6 lg:px-8 xl:px-10">
           
           {/* Section Header */}
           <div className="mb-[12vh]">
@@ -135,21 +133,24 @@ export default function Home() {
           </div>
 
           {/* Sticky Table Header */}
-          {/* Proportion: 1fr (25%) / 1.5fr (37.5%) / 1.5fr (37.5%) */}
-          <div className="sticky top-[100px] z-30 grid grid-cols-[1fr_1.5fr_1.5fr] gap-[4vw] mb-[8vh]">
+          {/* Proportions: 24% / 38% / 38% */}
+          <div className="sticky top-[100px] z-30 grid grid-cols-[24fr_38fr_38fr] gap-6 lg:gap-8 mb-[8vh]">
             {[
-              { label: "CRITERIA", color: "text-muted-foreground" },
-              { label: "ANTON KOLESNIKOV", color: "text-white", bg: "bg-primary" },
-              { label: "TYPICAL FREELANCER", color: "text-muted-foreground" }
+              { label: "CRITERIA", color: "text-muted-foreground", id: 0 },
+              { label: "ANTON KOLESNIKOV", color: "text-white", bg: "bg-primary", id: 1, icon: <Zap className="w-4 h-4 text-accent fill-accent" /> },
+              { label: "TYPICAL FREELANCER", color: "text-muted-foreground", id: 2 }
             ].map((header, i) => (
               <div 
                 key={i} 
-                className={`relative overflow-hidden border border-primary/5 rounded-2xl p-[1.5vw] h-[10vh] flex items-center shadow-sm ${header.bg || 'bg-white/80 backdrop-blur-xl'}`}
+                className={`relative overflow-hidden border border-primary/5 rounded-2xl px-6 h-[80px] flex items-center shadow-sm ${header.bg || 'bg-white/80 backdrop-blur-xl'}`}
               >
-                <span className={`label font-bold uppercase ${header.color}`}>
-                  {header.label}
-                  {i === 1 && <Zap className="inline-block ml-2 w-[1vw] h-[1vw] text-accent fill-accent" />}
-                </span>
+                <div className="flex items-center gap-3">
+                  <span className={`label font-bold uppercase ${header.color}`}>
+                    {header.label}
+                  </span>
+                  {header.icon}
+                </div>
+                
                 {/* Active Underline Bar */}
                 <AnimatePresence>
                   {activeRow !== null && (
@@ -167,63 +168,79 @@ export default function Home() {
           </div>
 
           {/* Grid with Vertical Rails Layout */}
-          {/* Fixed row heights on desktop to ensure perfect horizontal alignment */}
-          <div className="grid grid-cols-[1fr_1.5fr_1.5fr] gap-[4vw] relative">
+          <div className="grid grid-cols-[24fr_38fr_38fr] gap-6 lg:gap-8 relative">
             
             {/* Column 1: Criteria */}
-            <motion.div style={{ y: criteriaY, translateY: criteriaParallax }} className="flex flex-col gap-[6vh]">
+            <motion.div style={{ y: criteriaY, translateY: criteriaParallax }} className="flex flex-col gap-[4vh]">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[260px] h-[28vh] flex flex-col justify-center overflow-hidden
-                    ${activeRow === idx ? 'ring-1 ring-primary/10 shadow-lg scale-[1.01] brightness-[1.03]' : 'shadow-sm opacity-90'}`}
+                  onMouseEnter={() => setHoveredRow(idx)}
+                  onMouseLeave={() => setHoveredRow(null)}
+                  className={`compare-row-trigger transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-6 py-8 h-[28vh] flex flex-col justify-center overflow-hidden
+                    ${(activeRow === idx || hoveredRow === idx) ? 'ring-1 ring-primary/10 shadow-lg scale-[1.01] brightness-[1.03]' : 'shadow-sm opacity-90'}`}
                 >
-                  <h3 className="heading-md text-primary text-[1.2vw] mb-[0.5vh] line-clamp-2">{item.criterion}</h3>
-                  <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    <p className="body-text text-muted-foreground text-[0.8vw] opacity-70">
-                      {item.whoTheyServe}
-                    </p>
-                  </div>
+                  <h3 className="heading-md text-primary text-lg lg:text-xl mb-2 line-clamp-2">{item.criterion}</h3>
+                  <p className="body-text text-muted-foreground text-xs lg:text-sm opacity-70">
+                    {item.whoTheyServe}
+                  </p>
                 </div>
               ))}
             </motion.div>
 
             {/* Column 2: Anton Kolesnikov (The Hero Column) */}
-            <motion.div style={{ y: meY, translateY: meParallax }} className="flex flex-col gap-[6vh]">
+            <motion.div style={{ y: meY, translateY: meParallax }} className="flex flex-col gap-[4vh]">
               {comparisonData.map((item, idx) => (
-                <div 
-                  key={idx} 
-                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[2vw] py-[2.5vh] min-h-[260px] h-[28vh] flex flex-col justify-center relative group shadow-primary/5 overflow-hidden
-                    ${activeRow === idx 
-                      ? 'border-accent bg-accent/5 shadow-2xl scale-[1.02] z-10' 
-                      : 'border-primary/10 shadow-xl opacity-90'}
-                    hover:scale-[1.04] hover:-translate-y-1 hover:border-accent hover:shadow-accent/10`}
+                <motion.div 
+                  key={idx}
+                  onMouseEnter={() => setHoveredRow(idx)}
+                  onMouseLeave={() => setHoveredRow(null)}
+                  whileHover={{ scale: 1.04, y: -2 }}
+                  transition={{ duration: 0.18, ease: "easeOut" }}
+                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-6 py-8 h-[28vh] flex flex-col justify-center relative group overflow-hidden
+                    ${(activeRow === idx || hoveredRow === idx) 
+                      ? 'border-accent bg-accent/5 shadow-2xl z-10 scale-[1.02]' 
+                      : 'border-primary/10 shadow-xl opacity-90'}`}
                 >
                   <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    <p className="body-text text-primary font-medium text-[0.9vw] leading-relaxed">
+                    <p className="body-text text-primary font-medium text-sm lg:text-base leading-relaxed">
                       {item.me}
                     </p>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </motion.div>
 
             {/* Column 3: Typical Freelancer */}
-            <motion.div style={{ y: freelancerY, translateY: freelancerParallax }} className="flex flex-col gap-[6vh]">
+            <motion.div style={{ y: freelancerY, translateY: freelancerParallax }} className="flex flex-col gap-[4vh]">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
-                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[260px] h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
-                    ${activeRow === idx 
-                      ? 'opacity-100 scale-[1.01] brightness-[1.03]' 
+                  onMouseEnter={() => setHoveredRow(idx)}
+                  onMouseLeave={() => setHoveredRow(null)}
+                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-6 py-8 h-[28vh] flex flex-col justify-center grayscale-50 overflow-hidden
+                    ${(activeRow === idx || hoveredRow === idx) 
+                      ? 'opacity-100 scale-[1.01] brightness-[1.03] grayscale-0' 
                       : 'opacity-50'}
-                    hover:bg-red-50/10 hover:grayscale-0 hover:border-red-200`}
+                    hover:bg-red-50/10 hover:border-red-200`}
                 >
                   <div className="overflow-y-auto pr-2 scrollbar-hide">
-                    <p className="body-text text-muted-foreground text-[0.9vw] leading-relaxed italic">
-                      {item.freelancer}
-                    </p>
+                    <div className="flex items-start gap-2 mb-2">
+                      <p className="body-text text-muted-foreground text-sm lg:text-base leading-relaxed italic">
+                        {item.freelancer}
+                      </p>
+                    </div>
                   </div>
+                  {hoveredRow === idx && (
+                    <motion.div 
+                      initial={{ x: -2 }}
+                      animate={{ x: [2, -2, 2] }}
+                      transition={{ duration: 0.1, repeat: 2 }}
+                      className="absolute bottom-4 right-6 text-red-400 opacity-20"
+                    >
+                      <AlertTriangle className="w-4 h-4" />
+                    </motion.div>
+                  )}
                 </div>
               ))}
             </motion.div>
@@ -255,21 +272,21 @@ export default function Home() {
 
             <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors reveal-text">
               <div className="mb-[2vh] md:mb-0">
-                <div className="tier-badge w-[3.5vw] h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-[1.5vw]">1</div>
+                <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">1</div>
               </div>
               <div className="tier-info pr-[6vw] mb-[4vh] md:mb-0">
                 <span className="tier-name heading-md text-primary block mb-[2vh]">Fast Launch Starter</span>
                 <span className="tier-desc body-text text-muted-foreground block mb-[4vh]">A focused launch for small service businesses needing immediate results.</span>
                 <div className="feature-tags flex flex-wrap gap-[1vw]">
-                  <span className="feature-tag tag border border-primary/10 px-[1vw] py-[0.5vh] rounded-md">Landing Page</span>
-                  <span className="feature-tag tag border border-primary/10 px-[1vw] py-[0.5vh] rounded-md">Essential SEO</span>
+                  <span className="feature-tag tag border border-primary/10 px-3 py-1 rounded-md">Landing Page</span>
+                  <span className="feature-tag tag border border-primary/10 px-3 py-1 rounded-md">Essential SEO</span>
                 </div>
               </div>
               <div className="tier-details pr-[6vw] mb-[4vh] md:mb-0 space-y-[1.5vh]">
                 <span className="detail-label label text-muted-foreground opacity-30">RESOURCES</span>
                 {["One high-converting landing page", "Mobile-optimized design", "Lead form setup", "On-page SEO fundamentals"].map((item, i) => (
                   <div key={i} className="detail-item body-text flex items-center gap-[1vw]">
-                    <div className="w-[0.4vw] h-[0.4vw] rounded-full bg-primary" />
+                    <div className="w-1 h-1 rounded-full bg-primary" />
                     {item}
                   </div>
                 ))}
@@ -277,23 +294,23 @@ export default function Home() {
               <div className="tier-action flex flex-col items-start gap-[4vh]">
                 <div className="price-lockup flex flex-col">
                   <span className="label line-through opacity-30">$900</span>
-                  <div className="flex items-baseline gap-[0.5vw]">
-                    <span className="amount heading-md text-[3vw] text-primary">$697</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="amount heading-md text-4xl lg:text-5xl text-primary">$697</span>
                     <span className="period label opacity-40">one-time</span>
                   </div>
                 </div>
-                <Button className="btn-select rounded-full btn border border-primary text-primary h-[4.5vw] px-[3vw] hover:bg-primary hover:text-white transition-all">Get Started</Button>
+                <Button className="btn-select rounded-full btn border border-primary text-primary h-12 md:h-[4.5vw] px-8 hover:bg-primary hover:text-white transition-all">Get Started</Button>
               </div>
             </div>
 
             <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start bg-primary/[0.03] reveal-text reveal-delay-1 relative">
               <div className="mb-[2vh] md:mb-0">
-                <div className="tier-badge w-[3.5vw] h-[3.5vw] rounded-full bg-accent text-white flex items-center justify-center font-bold heading-md text-[1.5vw]">2</div>
+                <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-accent text-white flex items-center justify-center font-bold heading-md text-xl">2</div>
               </div>
               <div className="tier-info pr-[6vw] mb-[4vh] md:mb-0">
                 <div className="flex items-center gap-[1.5vw] mb-[2vh]">
                   <span className="tier-name heading-md text-primary">Local Leads Pro</span>
-                  <span className="tag bg-primary text-white px-[1vw] py-[0.5vh] rounded-full">Recommended</span>
+                  <span className="tag bg-primary text-white px-3 py-1 rounded-full">Recommended</span>
                 </div>
                 <span className="tier-desc body-text text-muted-foreground block mb-[4vh]">Our flagship multi-page solution built for dominant local SEO presence.</span>
               </div>
@@ -301,7 +318,7 @@ export default function Home() {
                 <span className="detail-label label text-muted-foreground opacity-30">RESOURCES</span>
                 {["5-7 High-intent pages", "Service Area pages", "Reviews integration", "Advanced CRM Sync", "Local SEO optimization"].map((item, i) => (
                   <div key={i} className="detail-item body-text flex items-center gap-[1vw]">
-                    <div className="w-[0.4vw] h-[0.4vw] rounded-full bg-accent" />
+                    <div className="w-1 h-1 rounded-full bg-accent" />
                     {item}
                   </div>
                 ))}
@@ -309,18 +326,18 @@ export default function Home() {
               <div className="tier-action flex flex-col items-start gap-[4vh]">
                 <div className="price-lockup flex flex-col">
                   <span className="label line-through opacity-30">$1500</span>
-                  <div className="flex items-baseline gap-[0.5vw]">
-                    <span className="amount heading-md text-[3vw] text-primary">$1197</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="amount heading-md text-4xl lg:text-5xl text-primary">$1197</span>
                     <span className="period label opacity-40">one-time</span>
                   </div>
                 </div>
-                <Button className="btn-select rounded-full btn bg-accent text-white h-[4.5vw] px-[3vw] hover:scale-[1.05] transition-transform shadow-xl shadow-accent/20">Select Plan</Button>
+                <Button className="btn-select rounded-full btn bg-accent text-white h-12 md:h-[4.5vw] px-8 hover:scale-[1.05] transition-transform shadow-xl shadow-accent/20">Select Plan</Button>
               </div>
             </div>
 
             <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors reveal-text reveal-delay-2">
               <div className="mb-[2vh] md:mb-0">
-                <div className="tier-badge w-[3.5vw] h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-[1.5vw]">3</div>
+                <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">3</div>
               </div>
               <div className="tier-info pr-[6vw] mb-[4vh] md:mb-0">
                 <span className="tier-name heading-md text-primary block mb-[2vh]">Growth Sync</span>
@@ -330,7 +347,7 @@ export default function Home() {
                 <span className="detail-label label text-muted-foreground opacity-30">RESOURCES</span>
                 {["Hosting & Maintenance", "Monthly content tweaks", "UX performance audit", "Priority tech support"].map((item, i) => (
                   <div key={i} className="detail-item body-text flex items-center gap-[1vw]">
-                    <div className="w-[0.4vw] h-[0.4vw] rounded-full bg-primary" />
+                    <div className="w-1 h-1 rounded-full bg-primary" />
                     {item}
                   </div>
                 ))}
@@ -338,12 +355,12 @@ export default function Home() {
               <div className="tier-action flex flex-col items-start gap-[4vh]">
                 <div className="price-lockup flex flex-col">
                   <span className="label opacity-40">Setup from $700</span>
-                  <div className="flex items-baseline gap-[0.5vw]">
-                    <span className="amount heading-md text-[2.5vw] text-primary">+$129</span>
+                  <div className="flex items-baseline gap-2">
+                    <span className="amount heading-md text-3xl lg:text-4xl text-primary">+$129</span>
                     <span className="period label opacity-40">/mo.</span>
                   </div>
                 </div>
-                <Button className="btn-select rounded-full btn border border-primary text-primary h-[4.5vw] px-[3vw] hover:bg-primary hover:text-white transition-all">Contact Sales</Button>
+                <Button className="btn-select rounded-full btn border border-primary text-primary h-12 md:h-[4.5vw] px-8 hover:bg-primary hover:text-white transition-all">Contact Sales</Button>
               </div>
             </div>
           </div>
@@ -353,13 +370,13 @@ export default function Home() {
       {/* Final CTA */}
       <section className="py-[20vh] border-t border-primary/5 bg-background relative z-10" id="contact">
         <div className="w-full px-[6vw]">
-          <div className="bg-primary text-white p-[10vw] text-center max-w-[85vw] mx-auto rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden reveal-text">
-            <div className="relative z-10 space-y-[6vh]">
+          <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden reveal-text">
+            <div className="relative z-10 space-y-8 md:space-y-[6vh]">
               <h2 className="heading-lg text-white leading-[0.9] tracking-tighter">Ready to Double Your <br />Plumbing Leads?</h2>
-              <Button asChild className="bg-accent text-white hover:bg-white hover:text-primary transition-all rounded-full btn h-[7vw] px-[5vw] shadow-2xl group">
-                <Link href="https://calendly.com" target="_blank" className="flex items-center gap-[1.5vw]">
+              <Button asChild className="bg-accent text-white hover:bg-white hover:text-primary transition-all rounded-full btn h-16 md:h-[7vw] px-12 md:px-[5vw] shadow-2xl group">
+                <Link href="https://calendly.com" target="_blank" className="flex items-center gap-4 md:gap-[1.5vw]">
                   Book My Strategy Call
-                  <ArrowRight className="w-[1.8vw] h-[1.8vw] group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-6 h-6 md:w-[1.8vw] md:h-[1.8vw] group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
               <p className="tag opacity-50">Limited availability for monthly intakes.</p>
@@ -372,8 +389,8 @@ export default function Home() {
       <footer className="py-[10vh] border-t border-primary/5 bg-background relative z-10">
         <div className="w-full px-[6vw]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-[6vh]">
-            <div className="flex items-center gap-[1.5vw]">
-              <div className="w-[3.5vw] h-[3.5vw] rounded-xl bg-primary flex items-center justify-center text-white heading-md">J</div>
+            <div className="flex items-center gap-4">
+              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white heading-md">J</div>
               <span className="heading-md text-primary">JobFlow Landing Pages</span>
             </div>
             <div className="tag text-muted-foreground opacity-60">
