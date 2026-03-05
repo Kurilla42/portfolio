@@ -1,8 +1,8 @@
 
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
@@ -63,8 +63,8 @@ const comparisonData = [
 
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [activeRow, setActiveRow] = useState<number | null>(null);
   
-  // Track scroll progress of the entire section
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
@@ -79,28 +79,50 @@ export default function Home() {
   const meY = useTransform(smoothProgress, [0.1, 0.4], [180, 0]);
   const freelancerY = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);
 
+  // Subtle Parallax (Secondary)
+  const criteriaParallax = useTransform(smoothProgress, [0, 1], [0, 10]);
+  const meParallax = useTransform(smoothProgress, [0, 1], [0, 5]);
+  const freelancerParallax = useTransform(smoothProgress, [0, 1], [0, 15]);
+
+  // Track active row based on scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      if (!sectionRef.current) return;
+      const rect = sectionRef.current.getBoundingClientRect();
+      const viewportCenter = window.innerHeight / 2;
+      
+      const rows = document.querySelectorAll('.compare-row');
+      let currentActive = null;
+      
+      rows.forEach((row, idx) => {
+        const rowRect = row.getBoundingClientRect();
+        if (rowRect.top < viewportCenter && rowRect.bottom > viewportCenter) {
+          currentActive = idx;
+        }
+      });
+      
+      setActiveRow(currentActive);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-transparent">
       {/* Hero Section */}
       <ShaderShowcase />
 
-      {/* Why Section */}
-      <div id="why">
-        {/* LuminaInteractiveList component is assumed to be working correctly with horizontal scroll */}
-      </div>
-
       {/* Showcase Section */}
       <SiteShowcaseSection />
 
       {/* Process Section */}
-      <section id="process">
-        <ProcessSection />
-      </section>
+      <ProcessSection />
 
       {/* Comparison Section (About Block) */}
       <section 
         ref={sectionRef} 
-        className="relative py-[20vh] px-[6vw] z-10" 
+        className="relative py-[20vh] px-[6vw] z-10 bg-background" 
         id="about"
       >
         <div className="max-w-[1400px] mx-auto">
@@ -113,28 +135,49 @@ export default function Home() {
             </h2>
           </div>
 
-          {/* Sticky Table Header - Rails aligned with columns below */}
-          <div className="sticky top-[100px] z-30 grid grid-cols-3 gap-[4vw] mb-[6vh]">
-            <div className="bg-white/80 backdrop-blur-xl border border-primary/5 rounded-2xl p-[1.5vw] h-[10vh] flex items-center shadow-sm">
-              <span className="label text-primary font-bold opacity-80">CRITERIA</span>
-            </div>
-            <div className="bg-primary text-white rounded-2xl p-[1.5vw] h-[10vh] flex items-center justify-between shadow-2xl shadow-primary/30">
-              <span className="heading-md text-[1.2vw]">ANTON KOLESNIKOV</span>
-              <Zap className="w-[1.2vw] h-[1.2vw] text-accent fill-accent" />
-            </div>
-            <div className="bg-white/60 backdrop-blur-xl border border-primary/5 rounded-2xl p-[1.5vw] h-[10vh] flex items-center">
-              <span className="label text-muted-foreground opacity-60">TYPICAL FREELANCER</span>
-            </div>
+          {/* Sticky Table Header */}
+          <div className="sticky top-[100px] z-30 grid grid-cols-3 gap-[4vw] mb-[8vh]">
+            {[
+              { label: "CRITERIA", color: "text-muted-foreground" },
+              { label: "ANTON KOLESNIKOV", color: "text-white", bg: "bg-primary" },
+              { label: "TYPICAL FREELANCER", color: "text-muted-foreground" }
+            ].map((header, i) => (
+              <div 
+                key={i} 
+                className={`relative overflow-hidden border border-primary/5 rounded-2xl p-[1.5vw] h-[10vh] flex items-center shadow-sm ${header.bg || 'bg-white/80 backdrop-blur-xl'}`}
+              >
+                <span className={`label font-bold uppercase ${header.color}`}>
+                  {header.label}
+                  {i === 1 && <Zap className="inline-block ml-2 w-[1vw] h-[1vw] text-accent fill-accent" />}
+                </span>
+                {/* Active Underline Bar */}
+                <AnimatePresence>
+                  {activeRow !== null && (
+                    <motion.div 
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      exit={{ scaleX: 0 }}
+                      transition={{ duration: 0.25, ease: "easeOut" }}
+                      className="absolute bottom-0 left-0 right-0 h-[3px] bg-accent origin-left"
+                    />
+                  )}
+                </AnimatePresence>
+              </div>
+            ))}
           </div>
 
           {/* Grid with Vertical Rails Layout */}
-          <div className="grid grid-cols-3 gap-[4vw]">
+          <div className="grid grid-cols-3 gap-[4vw] relative">
             
             {/* Column 1: Criteria */}
-            <motion.div style={{ y: criteriaY }} className="flex flex-col gap-[3.5vh]">
+            <motion.div style={{ y: criteriaY, translateY: criteriaParallax }} className="flex flex-col gap-[6vh]">
               {comparisonData.map((item, idx) => (
-                <div key={idx} className="bg-white border border-primary/5 rounded-2xl px-[2vw] py-[3vh] min-h-[20vh] flex flex-col justify-center shadow-sm">
-                  <h3 className="heading-md text-primary text-[1.3vw] mb-[0.5vh]">{item.criterion}</h3>
+                <div 
+                  key={idx} 
+                  className={`compare-row transition-all duration-300 bg-white border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-center
+                    ${activeRow === idx ? 'ring-1 ring-primary/10 shadow-lg scale-[1.01] brightness-[1.03]' : 'shadow-sm opacity-90'}`}
+                >
+                  <h3 className="heading-md text-primary text-[1.2vw] mb-[0.5vh]">{item.criterion}</h3>
                   <p className="body-text text-muted-foreground text-[0.8vw] opacity-70">
                     {item.whoTheyServe}
                   </p>
@@ -143,9 +186,16 @@ export default function Home() {
             </motion.div>
 
             {/* Column 2: Anton Kolesnikov (The Hero Column) */}
-            <motion.div style={{ y: meY }} className="flex flex-col gap-[3.5vh]">
+            <motion.div style={{ y: meY, translateY: meParallax }} className="flex flex-col gap-[6vh]">
               {comparisonData.map((item, idx) => (
-                <div key={idx} className="bg-white border-2 border-primary/10 rounded-2xl px-[2vw] py-[3vh] min-h-[20vh] flex flex-col justify-between relative group hover:border-primary/30 transition-all shadow-xl shadow-primary/5">
+                <div 
+                  key={idx} 
+                  className={`transition-all duration-300 bg-white border-2 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-between relative group shadow-primary/5
+                    ${activeRow === idx 
+                      ? 'border-accent bg-accent/5 shadow-2xl scale-[1.02] z-10' 
+                      : 'border-primary/10 shadow-xl opacity-90'}
+                    hover:scale-[1.04] hover:-translate-y-1 hover:border-accent hover:shadow-accent/10`}
+                >
                   <p className="body-text text-primary font-medium text-[0.9vw] leading-relaxed">
                     {item.me}
                   </p>
@@ -160,17 +210,28 @@ export default function Home() {
             </motion.div>
 
             {/* Column 3: Typical Freelancer */}
-            <motion.div style={{ y: freelancerY }} className="flex flex-col gap-[3.5vh]">
+            <motion.div style={{ y: freelancerY, translateY: freelancerParallax }} className="flex flex-col gap-[6vh]">
               {comparisonData.map((item, idx) => (
-                <div key={idx} className="bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[3vh] min-h-[20vh] flex flex-col justify-between opacity-70 grayscale-50 transition-all">
+                <div 
+                  key={idx} 
+                  className={`transition-all duration-300 bg-white/40 border border-primary/5 rounded-2xl px-[2vw] py-[2.5vh] min-h-[22vh] flex flex-col justify-between grayscale-50
+                    ${activeRow === idx 
+                      ? 'opacity-100 scale-[1.01] brightness-[1.03]' 
+                      : 'opacity-50'}
+                    hover:bg-red-50/10 hover:grayscale-0 hover:border-red-200`}
+                >
                   <p className="body-text text-muted-foreground text-[0.9vw] leading-relaxed italic">
                     {item.freelancer}
                   </p>
                   <div className="flex items-center justify-start mt-[2vh]">
-                    <span className="inline-flex items-center gap-[0.4vw] bg-muted text-muted-foreground/60 px-[0.8vw] py-[0.4vh] rounded-full text-[10px] font-bold tracking-widest uppercase border border-primary/5">
+                    <motion.span 
+                      whileHover={{ x: [0, -2, 2, -2, 2, 0] }}
+                      transition={{ duration: 0.2 }}
+                      className="inline-flex items-center gap-[0.4vw] bg-muted text-muted-foreground/60 px-[0.8vw] py-[0.4vh] rounded-full text-[10px] font-bold tracking-widest uppercase border border-primary/5"
+                    >
                       <AlertCircle className="w-[10px] h-[10px]" />
                       GENERIC
-                    </span>
+                    </motion.span>
                   </div>
                 </div>
               ))}
