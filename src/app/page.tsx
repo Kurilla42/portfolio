@@ -35,24 +35,6 @@ const comparisonData = [
     freelancer: "Talks mostly about colors and fonts; speaks about “conversion” in vague terms with no clear logic."
   },
   {
-    criterion: "Fast launch",
-    whoTheyServe: "Time to Revenue",
-    me: "The template lets you launch in a few days: I replace texts, set up forms/calls, connect analytics, and hand over a ready engine.",
-    freelancer: "Timeline stretches out: long brief first, then weeks of messages, revisions, and shifting deadlines."
-  },
-  {
-    criterion: "Transparent pricing",
-    whoTheyServe: "Investment Safety",
-    me: "I work with a fixed price for a ready‑to‑use site based on the template, with no hidden hours or extra fees.",
-    freelancer: "Often charges by the hour or gives a wide budget range; extra payments appear along the way."
-  },
-  {
-    criterion: "Copywriting for owners",
-    whoTheyServe: "Psychological Edge",
-    me: "I write copy from the owner’s point of view: focus on revenue, predictable flow, and contractor-specific benefits.",
-    freelancer: "Asks the client to “write the text themselves”, or uses generic boilerplate that ignores what really matters."
-  },
-  {
     criterion: "Ready for ads & scaling",
     whoTheyServe: "Ad Readiness",
     me: "The site structure is ready for traffic from day one: service/city pages and reviews blocks are optimized for scaling local campaigns.",
@@ -60,7 +42,7 @@ const comparisonData = [
   }
 ];
 
-export default function Home() {
+export function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [activeRow, setActiveRow] = useState<number | null>(null);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
@@ -75,7 +57,6 @@ export default function Home() {
   // Column Alignment Motion:
   // At t=0: Criteria(0), Anton(180), Typical(90)
   // At t=1: All at 0
-  // Plus subtle secondary parallax
   const criteriaY = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
   const meY = useTransform(smoothProgress, [0.1, 0.4], [180, 0]);
   const freelancerY = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);
@@ -402,3 +383,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;
