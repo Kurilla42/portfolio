@@ -44,7 +44,7 @@ const comparisonData = [
   }
 ];
 
-export function Home() {
+export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [activeRow, setActiveRow] = useState<number | null>(null);
@@ -88,10 +88,10 @@ export function Home() {
       <SiteShowcaseSection />
       <ProcessSection />
 
-      {/* Editorial Comparison Table Section - Background Transparent */}
+      {/* Editorial Comparison Table Section */}
       <section 
         ref={sectionRef} 
-        className="relative py-[25vh] z-10 bg-transparent overflow-hidden w-full" 
+        className="relative py-[25vh] z-10 bg-[#F5F2EB] overflow-hidden w-full" 
         id="about"
       >
         <div className="w-full">
@@ -106,7 +106,7 @@ export function Home() {
           </div>
 
           {/* Table Headers */}
-          <div className="sticky top-[100px] z-30 w-full border-b border-[#E3E0D6] bg-transparent backdrop-blur-md">
+          <div className="sticky top-[20px] z-30 w-full border-b border-[#E3E0D6] bg-[#F5F2EB]/80 backdrop-blur-md">
             <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 px-0">
               {[
                 { label: "CRITERIA", active: false },
@@ -232,8 +232,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Packages Section - Transparent Background */}
-      <section className="py-[15vh] bg-transparent relative z-10" id="packages">
+      {/* Packages Section */}
+      <section className="py-[15vh] bg-[#F5F2EB] relative z-10" id="packages">
         <div className="w-full px-[8vw]">
           <header className="mb-[15vh]">
             <ScrollRevealHeading as="h2" className="heading-xl text-primary mb-[5vh]">
@@ -246,6 +246,7 @@ export function Home() {
           </header>
 
           <div className="pricing-table border-t border-primary/10">
+            {/* Table Header */}
             <div className="hidden md:grid grid-cols-[80px_2fr_1.5fr_1fr] py-[3vh] border-b border-primary/10 text-muted-foreground label opacity-40">
               <span>Level</span>
               <span>Tier Specifications</span>
@@ -253,6 +254,7 @@ export function Home() {
               <span>Investment</span>
             </div>
 
+            {/* Row 1 */}
             <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-white/20 transition-colors">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">1</div>
@@ -286,6 +288,7 @@ export function Home() {
               </div>
             </div>
 
+            {/* Row 2 */}
             <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start bg-white/30 backdrop-blur-sm relative">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-accent text-white flex items-center justify-center font-bold heading-md text-xl">2</div>
@@ -318,6 +321,7 @@ export function Home() {
               </div>
             </div>
 
+            {/* Row 3 */}
             <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-white/20 transition-colors">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">3</div>
@@ -350,8 +354,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Final CTA - Transparent */}
-      <section className="py-[20vh] border-t border-primary/5 bg-transparent relative z-10" id="contact">
+      {/* Final CTA */}
+      <section className="py-[20vh] border-t border-primary/5 bg-[#F5F2EB] relative z-10" id="contact">
         <div className="w-full px-[6vw]">
           <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">
             <div className="relative z-10 space-y-8 md:space-y-[6vh]">
@@ -370,8 +374,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Footer - Transparent */}
-      <footer className="py-[10vh] border-t border-primary/5 bg-transparent relative z-10">
+      {/* Footer */}
+      <footer className="py-[10vh] border-t border-primary/5 bg-[#F5F2EB] relative z-10">
         <div className="w-full px-[6vw]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-[6vh]">
             <div className="flex items-center gap-4">
@@ -387,5 +391,3 @@ export function Home() {
     </div>
   );
 }
-
-export default Home;
