@@ -79,7 +79,7 @@ export function ProcessSection() {
         <div className="w-full h-full grid grid-cols-1 md:grid-cols-[1fr_1.2fr]">
           
           {/* Left Side: Brand Anchor */}
-          <div className="px-[8vw] flex flex-col justify-center h-full border-r border-primary/5 bg-background z-10">
+          <div className="px-[8vw] flex flex-col justify-center h-full bg-background z-10">
             <span className="tag text-muted-foreground block mb-[5vh]">
               [OUR METHODOLOGY]
             </span>
@@ -148,13 +148,6 @@ export function ProcessSection() {
                             </h3>
                             <p className="tag text-muted-foreground opacity-60">{step.location}</p>
                           </div>
-                        </div>
-                      </div>
-
-                      <div className="flex flex-row lg:flex-col items-center lg:items-end gap-[1vw] shrink-0">
-                        <div className="flex items-center gap-[0.8vw] bg-primary/[0.03] px-[1.2vw] py-[0.6vh] rounded-full border border-primary/5">
-                          <div className="w-[0.5vw] h-[0.5vw] rounded-full bg-accent animate-pulse" />
-                          <span className="tag text-primary/80">{step.status}</span>
                         </div>
                       </div>
                     </div>
