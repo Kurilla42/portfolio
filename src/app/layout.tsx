@@ -22,6 +22,9 @@ export default function RootLayout({
         <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800;900&family=Space+Mono:wght@400&family=Cormorant+Garamond:ital,wght@1,400&display=swap" rel="stylesheet" />
       </head>
       <body className="antialiased selection:bg-accent selection:text-accent-foreground overflow-x-hidden relative bg-[#F5F2EB]">
+        {/* Grain Overlay */}
+        <div className="noise-overlay" aria-hidden="true" />
+        
         <BackgroundContours />
         <ScrollObserver />
         {children}
