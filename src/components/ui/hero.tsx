@@ -55,12 +55,6 @@ export default function ShaderShowcase() {
           className="absolute inset-0 z-10" 
           style={{ backgroundColor: bgDarken }}
         />
-        <div 
-          className="absolute inset-0 z-15"
-          style={{
-            background: "linear-gradient(to bottom, transparent 60%, hsl(var(--background)) 100%)"
-          }}
-        />
       </div>
 
       {/* Navigation - Fade in from top */}
