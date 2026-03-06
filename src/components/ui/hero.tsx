@@ -3,58 +3,39 @@
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
-import Link from "next/link";
 import { ScrollRevealHeading } from "@/components/ScrollRevealHeading";
 
 export default function ShaderShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Scroll tracking for parallax and background darkening
+  // Scroll tracking for content reveal
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  const bgY = useTransform(smoothProgress, [0, 0.5], ["0%", "-10%"]);
-  const bgDarken = useTransform(smoothProgress, [0, 0.4], ["rgba(29,38,37,0.2)", "rgba(29,38,37,0.7)"]);
   
   // Description specifically reveals based on scroll
   const descProgress = useTransform(smoothProgress, [0.05, 0.25], [0, 1]);
 
   return (
     <div ref={containerRef} className="relative min-h-[200vh] bg-transparent">
-      {/* Background Layer with Ken Burns Effect */}
+      {/* Background Layer - Now fully static as requested */}
       <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden bg-primary">
-        <motion.div 
-          style={{ y: bgY }}
-          animate={{ 
-            scale: [1, 1.08],
-            x: [0, -20, 0],
-          }}
-          transition={{ 
-            duration: 12, 
-            repeat: Infinity, 
-            repeatType: "reverse", 
-            ease: "linear" 
-          }}
-          className="relative w-full h-full"
-        >
+        <div className="relative w-full h-full">
           <Image
-            src="https://i.ibb.co/VpvhxdKN/Whisk-3864d9b3b89f45385ae4b571ebd64a53dr.jpg"
+            src="https://i.ibb.co/NgDy55vR/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd-upscayl-2x-upscayl-standard-4x.jpg"
             alt="Hero Background"
             fill
             className="object-cover"
             priority
+            unoptimized
           />
-        </motion.div>
+        </div>
         
-        {/* Dynamic atmospheric overlay */}
-        <motion.div 
-          className="absolute inset-0 z-10" 
-          style={{ backgroundColor: bgDarken }}
-        />
+        {/* Subtle static overlay for text legibility */}
+        <div className="absolute inset-0 z-10 bg-black/30" />
       </div>
 
       {/* Screen 1: The Main Hook */}
