@@ -25,7 +25,7 @@ export default function ShaderShowcase() {
 
   return (
     <div ref={containerRef} className="relative min-h-[200vh] bg-transparent">
-      {/* Background Layer with Ken Burns Effect - Changed from fixed to absolute */}
+      {/* Background Layer with Ken Burns Effect */}
       <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden bg-primary">
         <motion.div 
           style={{ y: bgY }}
@@ -56,30 +56,6 @@ export default function ShaderShowcase() {
           style={{ backgroundColor: bgDarken }}
         />
       </div>
-
-      {/* Navigation - Fade in from top */}
-      <motion.header 
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.6, duration: 0.5 }}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between p-[2.5vw] mix-blend-exclusion"
-      >
-        <div className="flex items-center gap-[1vw]">
-          <div className="w-[3vw] h-[3vw] rounded-lg bg-white flex items-center justify-center text-black font-bold heading-md">J</div>
-          <span className="nav-link text-white">Anton Kolesnikov</span>
-        </div>
-        <nav className="hidden md:flex items-center space-x-[3vw]">
-          <a href="#why" className="nav-link text-white/70 hover:text-white transition-colors">Why</a>
-          <a href="#packages" className="nav-link text-white/70 hover:text-white transition-colors">Pricing</a>
-          <motion.a 
-            href="#contact" 
-            whileHover={{ scale: 1.05, backgroundColor: "rgba(255,255,255,1)", color: "hsl(var(--primary))" }}
-            className="px-[2.5vw] py-[1.2vh] rounded-full bg-accent text-white btn transition-all shadow-lg hover:shadow-accent/40"
-          >
-            Contact
-          </motion.a>
-        </nav>
-      </motion.header>
 
       {/* Screen 1: The Main Hook */}
       <div className="relative z-20 w-full px-[6vw]">
