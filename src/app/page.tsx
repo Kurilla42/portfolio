@@ -88,10 +88,10 @@ export function Home() {
       <SiteShowcaseSection />
       <ProcessSection />
 
-      {/* Editorial Comparison Table Section */}
+      {/* Editorial Comparison Table Section - Background Transparent */}
       <section 
         ref={sectionRef} 
-        className="relative py-[25vh] z-10 bg-[#F6F5EF] overflow-hidden w-full" 
+        className="relative py-[25vh] z-10 bg-transparent overflow-hidden w-full" 
         id="about"
       >
         <div className="w-full">
@@ -106,7 +106,7 @@ export function Home() {
           </div>
 
           {/* Table Headers */}
-          <div className="sticky top-[100px] z-30 w-full border-b border-[#E3E0D6] bg-[#F6F5EF]/90 backdrop-blur-md">
+          <div className="sticky top-[100px] z-30 w-full border-b border-[#E3E0D6] bg-transparent backdrop-blur-md">
             <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 px-0">
               {[
                 { label: "CRITERIA", active: false },
@@ -118,7 +118,7 @@ export function Home() {
                   key={i} 
                   className={`relative flex items-center h-[9vh] min-h-[80px] transition-colors duration-300
                     ${i === 0 ? 'pl-[8vw] pr-[3vw]' : i === 3 ? 'pr-[8vw] pl-[2.5vw]' : 'px-[2.5vw]'}
-                    ${header.dark && (activeRow !== null || hoveredRow !== null) ? 'bg-white' : ''}
+                    ${header.dark && (activeRow !== null || hoveredRow !== null) ? 'bg-white/50' : ''}
                   `}
                 >
                   <span className={`text-[0.7vw] min-text-[12px] font-semibold tracking-[0.16em] uppercase truncate transition-colors duration-300
@@ -149,7 +149,7 @@ export function Home() {
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
                   className={`compare-row-trigger flex flex-col justify-center pl-[8vw] pr-[3vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300 relative
-                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] z-20' : idx % 2 === 0 ? 'bg-[#F9F8F3]' : 'bg-[#F6F5EF]'}`}
+                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-white/80 shadow-[0_16px_40px_rgba(0,0,0,0.06)] z-20' : idx % 2 === 0 ? 'bg-black/5' : 'bg-transparent'}`}
                 >
                   {(activeRow === idx || hoveredRow === idx) && (
                     <motion.div 
@@ -176,8 +176,8 @@ export function Home() {
                   whileHover={{ y: -2 }}
                   className={`flex flex-col justify-center px-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.04] z-20 border-accent/20' 
-                      : idx % 2 === 0 ? 'bg-[#F9F8F3]' : 'bg-[#F6F5EF]'}`}
+                      ? 'bg-white/90 shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.04] z-20 border-accent/20' 
+                      : idx % 2 === 0 ? 'bg-black/5' : 'bg-transparent'}`}
                 >
                   <p className={`text-[1.2vw] min-text-[18px] font-medium leading-tight truncate transition-colors duration-300
                     ${(activeRow === idx || hoveredRow === idx) ? 'text-[#111D22]' : 'text-[#1A2C32]'}
@@ -196,8 +196,8 @@ export function Home() {
                   onMouseLeave={() => setHoveredRow(null)}
                   className={`flex flex-col justify-center px-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
-                      : idx % 2 === 0 ? 'bg-[#F9F8F3] opacity-80' : 'bg-[#F6F5EF] opacity-80'}`}
+                      ? 'bg-white/80 shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
+                      : idx % 2 === 0 ? 'bg-black/5 opacity-80' : 'bg-transparent opacity-80'}`}
                 >
                   <p className={`text-[1.1vw] min-text-[16px] font-normal leading-tight truncate transition-opacity duration-300
                     ${(activeRow === idx || hoveredRow === idx) ? 'text-[#8FA0A5] opacity-85' : 'text-[#8FA0A5]'}
@@ -216,8 +216,8 @@ export function Home() {
                   onMouseLeave={() => setHoveredRow(null)}
                   className={`flex flex-col justify-center pr-[8vw] pl-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
                     ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'bg-white shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
-                      : idx % 2 === 0 ? 'bg-[#F9F8F3] opacity-80' : 'bg-[#F6F5EF] opacity-80'}`}
+                      ? 'bg-white/80 shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
+                      : idx % 2 === 0 ? 'bg-black/5 opacity-80' : 'bg-transparent opacity-80'}`}
                 >
                   <p className={`text-[1.1vw] min-text-[16px] font-normal leading-tight truncate transition-opacity duration-300
                     ${(activeRow === idx || hoveredRow === idx) ? 'text-[#8FA0A5] opacity-85' : 'text-[#8FA0A5]'}
@@ -232,8 +232,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Packages Section */}
-      <section className="py-[15vh] bg-background relative z-10" id="packages">
+      {/* Packages Section - Transparent Background */}
+      <section className="py-[15vh] bg-transparent relative z-10" id="packages">
         <div className="w-full px-[8vw]">
           <header className="mb-[15vh]">
             <ScrollRevealHeading as="h2" className="heading-xl text-primary mb-[5vh]">
@@ -253,7 +253,7 @@ export function Home() {
               <span>Investment</span>
             </div>
 
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors">
+            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-white/20 transition-colors">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">1</div>
               </div>
@@ -286,7 +286,7 @@ export function Home() {
               </div>
             </div>
 
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start bg-primary/[0.03] relative">
+            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start bg-white/30 backdrop-blur-sm relative">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-accent text-white flex items-center justify-center font-bold heading-md text-xl">2</div>
               </div>
@@ -318,7 +318,7 @@ export function Home() {
               </div>
             </div>
 
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-primary/[0.02] transition-colors">
+            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-white/20 transition-colors">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">3</div>
               </div>
@@ -350,8 +350,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="py-[20vh] border-t border-primary/5 bg-background relative z-10" id="contact">
+      {/* Final CTA - Transparent */}
+      <section className="py-[20vh] border-t border-primary/5 bg-transparent relative z-10" id="contact">
         <div className="w-full px-[6vw]">
           <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">
             <div className="relative z-10 space-y-8 md:space-y-[6vh]">
@@ -370,8 +370,8 @@ export function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-[10vh] border-t border-primary/5 bg-background relative z-10">
+      {/* Footer - Transparent */}
+      <footer className="py-[10vh] border-t border-primary/5 bg-transparent relative z-10">
         <div className="w-full px-[6vw]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-[6vh]">
             <div className="flex items-center gap-4">

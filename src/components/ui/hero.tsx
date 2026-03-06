@@ -24,9 +24,9 @@ export default function ShaderShowcase() {
   const descProgress = useTransform(smoothProgress, [0.05, 0.25], [0, 1]);
 
   return (
-    <div ref={containerRef} className="relative min-h-[200vh] bg-background">
-      {/* Background Layer with Ken Burns Effect */}
-      <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden bg-primary">
+    <div ref={containerRef} className="relative min-h-[200vh] bg-transparent">
+      {/* Background Layer with Ken Burns Effect - Changed from fixed to absolute */}
+      <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden bg-primary">
         <motion.div 
           style={{ y: bgY }}
           animate={{ 
