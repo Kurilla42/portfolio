@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -21,7 +22,7 @@ export default function ShaderShowcase() {
 
   return (
     <div ref={containerRef} className="relative min-h-[200vh] bg-transparent">
-      {/* Background Layer - Now fully static as requested */}
+      {/* Background Layer - Fully static as requested */}
       <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden bg-primary">
         <div className="relative w-full h-full">
           <Image
@@ -35,19 +36,23 @@ export default function ShaderShowcase() {
         </div>
         
         {/* Subtle static overlay for text legibility */}
-        <div className="absolute inset-0 z-10 bg-black/30" />
+        <div className="absolute inset-0 z-10 bg-black/35" />
       </div>
 
-      {/* Screen 1: The Main Hook */}
+      {/* Screen 1: The Main Hook - Aligned to the Left side */}
       <div className="relative z-20 w-full px-[6vw]">
         <div className="h-screen flex items-center justify-start">
-          <div className="max-w-[85vw]">
+          <div className="max-w-[70vw] flex flex-col items-start text-left">
+            <span className="label text-white/60 mb-[4vh] block tracking-[0.3em]">
+              [ ANTON KOLESNIKOV ]
+            </span>
+            
             <ScrollRevealHeading as="h1" className="heading-xl text-white drop-shadow-2xl">
               High Conversion
             </ScrollRevealHeading>
             
-            <div className="flex items-baseline gap-[2vw]">
-              <span className="accent-italic text-white brightness-110 text-[7vw]">Plumbing</span>
+            <div className="flex flex-col mt-[1vh]">
+              <span className="accent-italic text-white brightness-110 text-[7.5vw] leading-[0.8]">Plumbing</span>
               <ScrollRevealHeading as="h1" className="heading-xl text-white">
                 Landing Pages
               </ScrollRevealHeading>
@@ -55,18 +60,18 @@ export default function ShaderShowcase() {
 
             <motion.div
               style={{ opacity: descProgress, y: useTransform(descProgress, [0, 1], [20, 0]) }}
-              className="mt-[6vh] max-w-[38vw]"
+              className="mt-[8vh] max-w-[32vw]"
             >
-              <p className="body-text text-white/90 leading-relaxed">
+              <p className="body-text text-white/90 leading-relaxed border-l border-white/20 pl-6">
                 We design precision-engineered sales machines for US plumbing owners who demand predictable lead flow and dominant local authority.
               </p>
             </motion.div>
           </div>
         </div>
 
-        {/* Screen 2: The Core Philosophy */}
+        {/* Screen 2: The Core Philosophy - Also Left Weighted */}
         <div className="h-screen flex flex-col justify-center">
-          <div className="grid md:grid-cols-2 gap-[10vw] items-start">
+          <div className="grid md:grid-cols-2 gap-[8vw] items-start">
             {/* Engineering Side */}
             <div className="max-w-[40vw]">
               <ScrollRevealHeading as="h2" className="heading-lg text-white">
@@ -79,12 +84,12 @@ export default function ShaderShowcase() {
             </div>
 
             {/* Flow Side */}
-            <div className="max-w-[40vw] md:text-right md:ml-auto md:mt-[20vh]">
+            <div className="max-w-[40vw] md:mt-[15vh]">
               <ScrollRevealHeading as="h2" className="heading-lg text-white">
                 Seamless
               </ScrollRevealHeading>
               <span className="accent-italic text-[6.5vw] text-white/90 block -mt-[2vh] mb-[4vh]">Flow</span>
-              <p className="body-text text-white/95 md:ml-auto max-w-[32vw] leading-relaxed">
+              <p className="body-text text-white/95 max-w-[32vw] leading-relaxed">
                 From the first search click to the final service booking, your customer's journey is smooth, professional, and optimized for maximum trust.
               </p>
             </div>
@@ -92,13 +97,13 @@ export default function ShaderShowcase() {
         </div>
       </div>
 
-      {/* Scroll Down Hint */}
+      {/* Scroll Down Hint - Moved to Bottom Left to match ref */}
       <motion.div 
         animate={{ y: [0, 10, 0] }}
         transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-[5vh] left-1/2 -translate-x-1/2 flex flex-col items-center gap-[1.5vh] text-white/40 z-20 pointer-events-none"
+        className="absolute bottom-[5vh] left-[6vw] flex flex-col items-start gap-[1.5vh] text-white/40 z-20 pointer-events-none"
       >
-        <span className="tag text-white/60">Explore the depth</span>
+        <span className="tag text-white/60 tracking-[0.2em]">(Scroll down)</span>
         <div className="w-[1px] h-[8vh] bg-gradient-to-b from-accent to-transparent" />
       </motion.div>
     </div>
