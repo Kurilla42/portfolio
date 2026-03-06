@@ -93,16 +93,16 @@ export function ProcessSection() {
             <span className="tag text-muted-foreground block mb-[5vh]">
               [OUR METHODOLOGY]
             </span>
-            <div className="relative">
-              <ScrollRevealHeading as="h2" className="heading-md text-primary leading-[0.85] flex flex-col tracking-tighter text-[4.5vw]">
-                <span>THE STEPS</span>
-                <span className="relative">
-                  TO FLOW
-                  <span className="accent-italic lowercase text-[0.3em] absolute -top-[3vh] left-[20%] z-20 opacity-80">
-                    simple
-                  </span>
-                </span>
+            <div className="relative flex flex-col">
+              <ScrollRevealHeading as="h2" className="heading-lg text-primary leading-[0.85] tracking-tighter">
+                THE STEPS
               </ScrollRevealHeading>
+              <div className="flex items-baseline gap-[1.5vw] -mt-[1vh]">
+                <span className="accent-italic text-[6.5vw] lowercase leading-none">simple</span>
+                <ScrollRevealHeading as="h2" className="heading-lg text-primary tracking-tighter leading-none">
+                  TO FLOW
+                </ScrollRevealHeading>
+              </div>
             </div>
             <p className="max-w-[28vw] body-text mt-[8vh] text-primary/70 text-[1.1vw] leading-relaxed">
               A streamlined, high-performance approach from discovery call to a revenue-generating launch in just 10 days.
