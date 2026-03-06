@@ -57,7 +57,7 @@ export function SiteShowcaseSection() {
   const rightCase = PlaceHolderImages.find(img => img.id === 'case-study-3');
 
   return (
-    <div ref={containerRef} className="relative h-[350vh] bg-[#e5e5e5] z-10">
+    <div ref={containerRef} className="relative h-[350vh] bg-transparent z-10">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Dynamic content wrapper - stays underneath the next section */}
@@ -71,11 +71,17 @@ export function SiteShowcaseSection() {
               style={{ opacity: anchorOpacity }}
               className="flex flex-col items-center text-primary leading-none"
             >
-              <span className="mb-[2vh] text-[6vw] opacity-30 leading-none rotate-90 inline-block">「</span>
-              <span className="accent-italic text-[6.5vw] lowercase leading-none whitespace-nowrap">
-                your site
-              </span>
-              <span className="mt-[2vh] text-[6vw] opacity-30 leading-none rotate-90 inline-block">」</span>
+              <span className="mb-[1vh] text-[4vw] opacity-30 leading-none rotate-90 inline-block">「</span>
+              
+              <div className="flex flex-col items-center accent-italic text-[6.5vw] lowercase leading-[0.75]">
+                {"your site".split("").map((char, i) => (
+                  <span key={i} className="block">
+                    {char === " " ? "\u00A0" : char}
+                  </span>
+                ))}
+              </div>
+              
+              <span className="mt-[1vh] text-[4vw] opacity-30 leading-none rotate-90 inline-block">」</span>
             </motion.div>
           </div>
 
@@ -84,7 +90,7 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
                 style={{ x: leftTextX, scale: leftTextScale, opacity: leftTextOpacity }}
-                className="absolute heading-lg text-[#1a1a1a] z-0 pointer-events-none text-center"
+                className="absolute heading-lg text-primary z-0 pointer-events-none text-center"
               >
                 Explore<br />How
               </motion.div>
@@ -100,7 +106,7 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
                 style={{ x: rightTextX, scale: rightTextScale, opacity: rightTextOpacity }}
-                className="absolute heading-lg text-[#1a1a1a] z-0 pointer-events-none text-center"
+                className="absolute heading-lg text-primary z-0 pointer-events-none text-center"
               >
                 Can Look<br />Like
               </motion.div>
@@ -116,7 +122,7 @@ export function SiteShowcaseSection() {
         </motion.div>
 
         {/* Bottom Ambient Fade to ease the overlap */}
-        <div className="absolute bottom-0 left-0 right-0 h-[20vh] bg-gradient-to-t from-black/10 to-transparent pointer-events-none z-30" />
+        <div className="absolute bottom-0 left-0 right-0 h-[20vh] bg-gradient-to-t from-black/5 to-transparent pointer-events-none z-30" />
       </div>
     </div>
   );
