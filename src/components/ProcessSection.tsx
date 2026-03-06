@@ -6,35 +6,27 @@ import { ScrollRevealHeading } from '@/components/ScrollRevealHeading';
 
 const steps = [
   {
-    number: "01",
+    number: "DAY 01",
     title: "Discovery",
     location: "[STRATEGY CALL]",
-    description: "A focused strategy session to map your business goals and high-intent service areas.",
-    period: "DAY 01",
     status: "UNDERSTANDING"
   },
   {
-    number: "02",
+    number: "DAY 02",
     title: "Wireframing",
     location: "[BLUEPRINT]",
-    description: "We architect the conversion flow and write psychological copy that drives action.",
-    period: "DAY 02-04",
     status: "PLANNING"
   },
   {
-    number: "03",
+    number: "DAY 03",
     title: "The Build",
     location: "[DEVELOPMENT]",
-    description: "Precision coding focused on speed, local SEO visibility, and high-end aesthetics.",
-    period: "DAY 05-08",
     status: "CRAFTING"
   },
   {
-    number: "04",
+    number: "DAY 04",
     title: "Launch & Sync",
     location: "[GOING LIVE]",
-    description: "Final optimization, CRM integration, and a hand-over of your new lead-gen engine.",
-    period: "DAY 10",
     status: "REVENUE"
   }
 ];
@@ -57,14 +49,12 @@ export function ProcessSection() {
   const smoothInternal = useSpring(internalScroll, { stiffness: 80, damping: 25 });
   const smoothEntry = useSpring(entryScroll, { stiffness: 100, damping: 30 });
 
-  // Slide-up with reduced initial offset to show content immediately
   const entryY = useTransform(
     smoothEntry, 
     [0, 1], 
     ["30vh", "0vh"]
   );
   
-  // Immediate visibility
   const entryOpacity = 1;
 
   const entryScale = useTransform(
@@ -148,24 +138,20 @@ export function ProcessSection() {
                   >
                     <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-[3vw]">
                       <div className="flex gap-[3vw] items-start">
-                        <span className="services-item text-primary/5 leading-none pt-[1vh]">
+                        <span className="services-item text-primary/10 leading-none pt-[1vh] !text-[3.5vw] min-w-[12vw]">
                           {step.number}
                         </span>
-                        <div className="space-y-[2vh]">
+                        <div className="space-y-[1vh]">
                           <div className="space-y-[0.5vh]">
                             <h3 className="heading-md text-primary tracking-tighter">
                               {step.title}
                             </h3>
                             <p className="tag text-muted-foreground opacity-60">{step.location}</p>
                           </div>
-                          <p className="max-w-[30vw] body-text text-primary/60">
-                            {step.description}
-                          </p>
                         </div>
                       </div>
 
                       <div className="flex flex-row lg:flex-col items-center lg:items-end gap-[1vw] shrink-0">
-                        <span className="heading-md text-primary">{step.period}</span>
                         <div className="flex items-center gap-[0.8vw] bg-primary/[0.03] px-[1.2vw] py-[0.6vh] rounded-full border border-primary/5">
                           <div className="w-[0.5vw] h-[0.5vw] rounded-full bg-accent animate-pulse" />
                           <span className="tag text-primary/80">{step.status}</span>
