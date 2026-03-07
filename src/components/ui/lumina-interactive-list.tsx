@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef, useEffect } from 'react';
-import { motion, useTransform, useSpring, useMotionValue } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const showcaseItems = [
@@ -47,111 +47,59 @@ const showcaseItems = [
 ];
 
 export function LuminaInteractiveList() {
-  const containerRef = useRef<HTMLDivElement | null>(null);
-  
-  // Use MotionValue for integration of manual calculation with Framer Motion
-  const progress = useMotionValue(0);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const el = containerRef.current;
-      if (!el) return;
-
-      const rect = el.getBoundingClientRect();
-      const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
-      
-      // Total height of the scrollable section minus the viewport height
-      const totalScrollable = rect.height - windowHeight;
-      
-      if (totalScrollable <= 0) {
-        progress.set(0);
-        return;
-      }
-
-      // Exact logic for calculating progress (0 → 1) inside the section
-      // rect.top is the distance from viewport top to the top of the element
-      const scrolledInside = Math.min(
-        Math.max(-rect.top, 0),
-        totalScrollable
-      );
-
-      const p = scrolledInside / totalScrollable;
-      progress.set(p);
-    };
-
-    // Initial check
-    handleScroll();
-    
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    window.addEventListener('resize', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('resize', handleScroll);
-    };
-  }, [progress]);
-
-  // Map 0-1 progress to 0vw - (-400vw) translation
-  // We use [0, 0.98] to ensure the 5th card is fully centered slightly before the very end of the scroll
-  const xRaw = useTransform(progress, [0, 0.98], ['0vw', '-400vw']);
-
-  // Add a spring for smoothness
-  const x = useSpring(xRaw, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001,
-  });
-
   return (
-    <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad] z-20">
-      <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        <motion.div
-          style={{ x }}
-          className="flex flex-row flex-nowrap h-full w-[500vw] items-center will-change-transform"
+    <div className="relative bg-[#97b0ad] z-20">
+      {showcaseItems.map((item, index) => (
+        <section
+          key={index}
+          className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden border-t border-primary/5 bg-[#97b0ad]"
         >
-          {showcaseItems.map((item, index) => (
-            <ShowcaseItem key={index} item={item} index={index} />
-          ))}
-        </motion.div>
-      </div>
+          <ShowcaseItem item={item} index={index} />
+        </section>
+      ))}
     </div>
   );
 }
 
 function ShowcaseItem({ item, index }: { item: any; index: number }) {
-  const isTextTop = index % 2 === 0;
+  // Ladder layout: 0, 2, 4 (Text Left, Image Right) | 1, 3 (Image Left, Text Right)
+  const isImageRight = index % 2 === 0;
 
   return (
-    <div className="w-[100vw] h-full flex items-center justify-center px-[8vw] shrink-0">
-      <div
-        className={`flex ${
-          isTextTop ? 'flex-col' : 'flex-col-reverse'
-        } items-start gap-[6vh] max-w-[85vw]`}
-      >
-        <div className="flex flex-col">
-          <span className="services-item text-primary/10 leading-none mb-[2vh] block text-[4vw]">
-            {item.number}
-          </span>
-          <h2 className="text-[3.0vw] font-black text-primary uppercase leading-[0.9] tracking-tighter font-sans">
-            {item.title}
-          </h2>
-          <p className="body-text text-primary/70 max-w-[30vw] mt-[3vh] leading-relaxed">
-            {item.description}
-          </p>
-        </div>
-
-        <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none border-none">
-          <Image
-            src={item.image}
-            alt={item.title}
-            fill
-            className="object-cover"
-            priority
-            sizes="50vw"
-          />
-          <div className="absolute inset-0 bg-primary/5 mix-blend-multiply pointer-events-none" />
-        </div>
+    <motion.div 
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, amount: 0.3 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      className={`flex ${
+        isImageRight ? 'flex-col md:flex-row' : 'flex-col md:flex-row-reverse'
+      } items-center gap-[6vh] w-full max-w-[85vw] mx-auto`}
+    >
+      {/* TEXT AREA */}
+      <div className="flex flex-col flex-1">
+        <span className="services-item text-primary/10 leading-none mb-[2vh] block text-[4vw]">
+          {item.number}
+        </span>
+        <h2 className="text-[3.0vw] font-black text-primary uppercase leading-[0.9] tracking-tighter font-sans">
+          {item.title}
+        </h2>
+        <p className="body-text text-primary/70 max-w-[30vw] mt-[3vh] leading-relaxed">
+          {item.description}
+        </p>
       </div>
-    </div>
+
+      {/* IMAGE AREA */}
+      <div className="relative flex-1 aspect-[16/9] md:aspect-[4/3] w-full overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none">
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          className="object-cover"
+          priority
+          sizes="50vw"
+        />
+        <div className="absolute inset-0 bg-primary/5 mix-blend-multiply pointer-events-none" />
+      </div>
+    </motion.div>
   );
 }
