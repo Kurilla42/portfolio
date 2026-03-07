@@ -65,18 +65,20 @@ export function LuminaInteractiveList() {
 function ShowcaseItem({ item, index }: { item: any; index: number }) {
   return (
     <div className="relative w-full h-full group overflow-hidden">
-      {/* FULL WIDTH IMAGE BACKGROUND */}
+      {/* FULL WIDTH IMAGE BACKGROUND - UNOPTIMIZED FOR MAXIMUM QUALITY */}
       <Image
         src={item.image}
         alt={item.title}
         fill
         className="object-cover"
         priority
+        unoptimized
+        quality={100}
         sizes="100vw"
       />
       
-      {/* CINEMATIC OVERLAY */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/10" />
+      {/* GRADIENT OVERLAY FOR TEXT READABILITY */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
       {/* CONTENT OVERLAY */}
       <motion.div 
@@ -101,9 +103,9 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
             </h2>
           </div>
 
-          {/* TEXT RIGHT */}
+          {/* DESCRIPTION RIGHT */}
           <div className="md:col-span-4 flex flex-col items-start md:items-end text-left md:text-right">
-            <p className="body-text text-white text-[1.5vw] leading-[1.4] font-medium opacity-90 max-w-[450px]">
+            <p className="body-text text-white text-[1.4vw] leading-[1.4] font-medium opacity-100 max-w-[450px]">
               {item.description}
             </p>
           </div>
