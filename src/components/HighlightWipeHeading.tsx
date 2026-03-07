@@ -7,7 +7,7 @@ import { cn } from '@/lib/utils';
 
 interface HighlightWipeHeadingProps {
   lines: string[];
-  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span';
+  as?: 'h1' | 'h2' | 'h3' | 'p' | 'span' | 'div';
   className?: string;
   stagger?: number;
   triggerOnce?: boolean;
@@ -28,9 +28,9 @@ export function HighlightWipeHeading({
   return (
     <Component ref={ref} className={cn("flex flex-col", className)}>
       {lines.map((line, index) => (
-        <div key={index} className="relative overflow-hidden inline-block w-fit py-1 mb-1">
+        <span key={index} className="relative overflow-hidden inline-block w-fit py-1 mb-1">
           {/* Animated Orange Bar */}
-          <motion.div
+          <motion.span
             initial={{ x: '-101%' }}
             animate={isInView ? { x: ['-101%', '0%', '101%'] } : { x: '-101%' }}
             transition={{
@@ -39,7 +39,7 @@ export function HighlightWipeHeading({
               ease: [0.4, 0, 0.2, 1],
               delay: delay + (index * stagger),
             }}
-            className="absolute inset-0 bg-[#fc7c19] z-10"
+            className="absolute inset-0 bg-[#fc7c19] z-10 block"
             style={{ height: '115%', top: '-7.5%' }}
           />
           
@@ -57,7 +57,7 @@ export function HighlightWipeHeading({
           >
             {line}
           </motion.span>
-        </div>
+        </span>
       ))}
     </Component>
   );
