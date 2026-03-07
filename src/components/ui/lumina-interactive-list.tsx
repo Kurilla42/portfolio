@@ -52,14 +52,14 @@ export function LuminaInteractiveList() {
   // 1) Привязываем прогресс к проходу секции через вьюпорт
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    // центр секции проходит через центр вьюпорта
+    // центр секции проходит через центр вьюпорта для стабильности
     offset: ['start center', 'end center'],
   });
 
-  // 2) Маппим 0–1 → 0vw–(-400vw)
+  // 2) Маппим 0–1 → 0vw–(-400vw) для 5 карточек по 100vw каждая
   const xRaw = useTransform(scrollYProgress, [0, 1], ['0vw', '-400vw']);
 
-  // 3) Лёгкая пружина для сглаживания
+  // 3) Лёгкая пружина для сглаживания инерции скролла
   const x = useSpring(xRaw, {
     stiffness: 100,
     damping: 30,
