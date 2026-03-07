@@ -47,7 +47,7 @@ export default function ShaderShowcase() {
       </div>
 
       {/* Screen 1: Reference-matched Layout */}
-      <div className="relative z-20 w-full h-screen px-[4vw] pt-[4vh] pb-[6vh] flex flex-col justify-between text-white overflow-hidden">
+      <div className="relative z-20 w-full h-screen px-[4vw] pt-[4vh] pb-[2vh] flex flex-col justify-between text-white overflow-hidden">
         
         {/* TOP ROW */}
         <div className="grid grid-cols-12 w-full items-start">
@@ -71,7 +71,7 @@ export default function ShaderShowcase() {
         </div>
 
         {/* MIDDLE SECTION */}
-        <div className="grid grid-cols-12 w-full mt-auto mb-[2vh] items-end">
+        <div className="grid grid-cols-12 w-full mt-auto mb-0 items-end">
           {/* Main Info Area */}
           <div className="col-span-8 flex flex-col">
             <div className="mb-[6vh]">
