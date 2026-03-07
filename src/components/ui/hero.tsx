@@ -131,9 +131,21 @@ export default function ShaderShowcase() {
         </div>
       </div>
 
-      {/* Philosophy Section Intro (Visible during scroll) */}
-      <div className="h-screen flex flex-col justify-center px-[6vw]">
-        {/* This stays empty to allow the background transition to be the focus during the second 100vh of scroll */}
+      {/* Screen 2: Precision Engineering Intro */}
+      <div className="relative z-20 h-screen flex flex-col justify-center px-[6vw]">
+        <motion.div 
+          style={{ opacity: useTransform(smoothProgress, [0.6, 0.8], [0, 1]) }}
+          className="max-w-[60vw]"
+        >
+          <span className="label text-white/40 block mb-[4vh]">[ OUR PHILOSOPHY ]</span>
+          <h2 className="text-[8vw] font-black text-white leading-[0.8] tracking-[-0.04em] uppercase mb-[6vh]">
+            Precision<br />
+            Engineering
+          </h2>
+          <p className="text-[1.2vw] text-white/60 max-w-[30vw] leading-relaxed">
+            Every landing page is a calculated piece of architecture. We don't just build sites; we build high-performance conversion machines.
+          </p>
+        </motion.div>
       </div>
     </div>
   );

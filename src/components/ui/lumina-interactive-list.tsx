@@ -10,7 +10,7 @@ const showcaseItems = [
   {
     title: 'Laser Focused Intent',
     description: 'Every element is engineered to move the visitor toward a single goal: booking a call or requesting a quote.',
-    image: PlaceHolderImages.find(img => img.id === 'case-study-1'),
+    image: { imageUrl: 'https://i.ibb.co/4ZGtc09G/Whisk-89cb8686ddb9da498354cec156be16b4dr.png' },
     number: '01'
   },
   {
@@ -43,12 +43,11 @@ export function LuminaInteractiveList() {
   });
 
   // Calculate horizontal translation. With 4 items, we move 300% to show the 4th item.
-  // Using -75% for a track that is 400% wide.
   const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
   const smoothX = useSpring(xTransform, { stiffness: 80, damping: 25, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-background">
+    <div ref={containerRef} className="relative h-[400vh] bg-[#97b0ad]">
       {/* Sticky Viewport: This is the part that stays on screen */}
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         

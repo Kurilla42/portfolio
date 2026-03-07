@@ -1,7 +1,8 @@
+
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
@@ -9,7 +10,7 @@ import { ScrollRevealHeading } from '@/components/ScrollRevealHeading';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
-import { ArrowRight, Zap, Building2, User } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 
 const comparisonData = [
   {
