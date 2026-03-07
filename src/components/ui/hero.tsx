@@ -80,7 +80,7 @@ export default function ShaderShowcase() {
               <h2 className="text-[24px] font-sans font-bold"><span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span></h2>
             </div>
             
-            <h1 className="text-[9.5vw] font-headline leading-[0.8] tracking-normal uppercase w-[110%] -ml-1">
+            <h1 className="text-[7.5vw] font-headline leading-[0.8] tracking-normal uppercase w-[110%] -ml-1">
               Landing Pages<br />
               For <span className="text-accent">Plumbing</span><br />
               <span className="text-white">Calls</span>
@@ -91,7 +91,7 @@ export default function ShaderShowcase() {
           <div className="col-span-4 flex flex-col pl-[4vw]">
             <div className="space-y-6 mb-[15vh]">
                <div className="h-[1px] w-full bg-white/10" />
-               <div className="space-y-2 opacity-60 text-[13px] uppercase tracking-wider font-medium font-sans">
+               <div className="space-y-2 opacity-60 text-[15px] uppercase tracking-wider font-medium font-sans text-white">
                   <p>Built for service businesses</p>
                   <p>Focused on conversion</p>
                   <p>Made for owners who care about results</p>
@@ -138,7 +138,7 @@ export default function ShaderShowcase() {
           className="max-w-[60vw]"
         >
           <span className="label text-white/40 block mb-[4vh]">[ OUR PHILOSOPHY ]</span>
-          <h2 className="text-[8vw] font-headline text-white leading-[0.8] tracking-normal uppercase mb-[6vh]">
+          <h2 className="text-[7.5vw] font-headline text-white leading-[0.8] tracking-normal uppercase mb-[6vh]">
             Precision<br />
             Engineering
           </h2>
