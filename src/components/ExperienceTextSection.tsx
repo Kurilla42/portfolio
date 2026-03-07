@@ -30,7 +30,7 @@ export function ExperienceTextSection() {
         <HighlightWipeHeading 
           as="p"
           lines={lines}
-          className="text-[3.8vw] font-black leading-[1.05] tracking-tighter text-white uppercase font-sans items-center"
+          className="text-[3.0vw] font-black leading-[1.05] tracking-tighter text-white uppercase font-sans items-center"
           stagger={0.08}
         />
       </div>
