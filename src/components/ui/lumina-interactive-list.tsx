@@ -93,8 +93,7 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
               </span>
               <div className="h-[1px] w-[6vw] bg-white/20" />
             </div>
-            <h2 className="text-[3.0vw] font-black text-white uppercase leading-[0.8] tracking-tighter font-sans">
-              {/* Size set to 3.0vw for editorial consistency */}
+            <h2 className="text-[7.5vw] font-black text-white uppercase leading-[0.8] tracking-tighter font-sans">
               {item.title}
             </h2>
           </div>

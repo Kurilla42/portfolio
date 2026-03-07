@@ -89,9 +89,8 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
                 style={{ x: leftTextX, scale: leftTextScale, opacity: leftTextOpacity }}
-                className="absolute text-[3.0vw] font-black text-primary z-0 pointer-events-none text-center uppercase leading-[0.85]"
+                className="absolute text-[7.5vw] font-black text-primary z-0 pointer-events-none text-center uppercase leading-[0.85]"
               >
-                {/* Size: 3.0vw to match Calls To Action */}
                 Explore<br />How
               </motion.div>
               <motion.div 
@@ -106,9 +105,8 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
                 style={{ x: rightTextX, scale: rightTextScale, opacity: rightTextOpacity }}
-                className="absolute text-[3.0vw] font-black text-primary z-0 pointer-events-none text-center uppercase leading-[0.85]"
+                className="absolute text-[7.5vw] font-black text-primary z-0 pointer-events-none text-center uppercase leading-[0.85]"
               >
-                {/* Size: 3.0vw to match Calls To Action */}
                 Can Look<br />Like
               </motion.div>
               <motion.div 
