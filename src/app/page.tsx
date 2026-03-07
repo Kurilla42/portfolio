@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
@@ -97,7 +96,9 @@ export default function Home() {
         <ExperienceTextSection />
       </div>
 
+      {/* Horizontal Scroll Philosophy Section */}
       <LuminaInteractiveList />
+      
       <SiteShowcaseSection />
       <ProcessSection />
 

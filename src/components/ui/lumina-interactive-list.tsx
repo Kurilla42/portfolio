@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useRef } from 'react';
@@ -41,27 +40,20 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Height is 600vh to give 5 items enough "vertical space" to scroll horizontally
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // With 5 items, we move 400% (0 to -80%)
+  // To show the 5th item (at 400vw), we need to shift the 500vw track by -400vw (which is -80% of its width)
   const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
   const smoothX = useSpring(xTransform, { stiffness: 80, damping: 25, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="relative h-[500vh] bg-[#97b0ad]">
+    <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad]">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         
-        {/* Progress Bar */}
-        <div className="absolute bottom-[6vh] left-[8vw] right-[8vw] h-[1px] bg-primary/10 z-50">
-          <motion.div 
-            className="h-full bg-accent" 
-            style={{ scaleX: scrollYProgress, transformOrigin: "left" }} 
-          />
-        </div>
-
         {/* Horizontal Track */}
         <motion.div 
           style={{ x: smoothX }}
@@ -72,7 +64,6 @@ export function LuminaInteractiveList() {
               key={index} 
               item={item} 
               index={index} 
-              progress={scrollYProgress} 
             />
           ))}
         </motion.div>
@@ -81,35 +72,17 @@ export function LuminaInteractiveList() {
   );
 }
 
-function ShowcaseItem({ item, index, progress }: { item: any, index: number, progress: any }) {
-  // Range mapping for 5 items (0.2 steps each)
-  const start = index * 0.2;
-  const end = (index + 1) * 0.2;
-  const center = (start + end) / 2;
-
-  // Text focus effect: emergin from background
-  const contentOpacity = useTransform(progress, 
-    [start - 0.1, start, center, end, end + 0.1], 
-    [0, 0.4, 1, 0.4, 0]
-  );
-
-  const contentScale = useTransform(progress,
-    [start, center, end],
-    [0.9, 1, 0.9]
-  );
-
+function ShowcaseItem({ item, index }: { item: any, index: number }) {
   // Staircase logic: toggle flex direction
   const isTextTop = index % 2 === 0;
 
   return (
     <div className="w-[100vw] h-full flex items-center justify-center px-[8vw] shrink-0">
-      <motion.div 
-        style={{ opacity: contentOpacity, scale: contentScale }}
-        className={`flex ${isTextTop ? 'flex-col' : 'flex-col-reverse'} items-start gap-[6vh] max-w-[80vw]`}
-      >
+      <div className={`flex ${isTextTop ? 'flex-col' : 'flex-col-reverse'} items-start gap-[6vh] max-w-[85vw]`}>
+        
         {/* Text Block */}
         <div className="flex flex-col">
-          <span className="services-item text-primary/10 leading-none mb-[2vh] block">
+          <span className="services-item text-primary/10 leading-none mb-[2vh] block text-[4vw]">
             {item.number}
           </span>
           <h2 className="text-[3.0vw] font-black text-primary tracking-tighter leading-[0.9] uppercase font-sans">
@@ -120,7 +93,7 @@ function ShowcaseItem({ item, index, progress }: { item: any, index: number, pro
           </p>
         </div>
 
-        {/* Image Block: Straight Corners */}
+        {/* Image Block: Straight Corners (No rounded) */}
         <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5">
           <Image 
             src={item.image} 
@@ -133,7 +106,7 @@ function ShowcaseItem({ item, index, progress }: { item: any, index: number, pro
           {/* Subtle Visual Overlay */}
           <div className="absolute inset-0 bg-primary/5 mix-blend-multiply pointer-events-none" />
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }
