@@ -1,4 +1,3 @@
-
 "use client";
 
 import Image from "next/image";
@@ -72,15 +71,15 @@ export default function ShaderShowcase() {
         </div>
 
         {/* MIDDLE SECTION */}
-        <div className="grid grid-cols-12 w-full mt-auto mb-[8vh] items-end">
+        <div className="grid grid-cols-12 w-full mt-auto mb-[4vh] items-end">
           {/* Main Info Area */}
           <div className="col-span-8 flex flex-col">
             <div className="mb-[6vh]">
-              <p className="text-[12px] opacity-60 mb-1 font-sans">Hi there! this is</p>
-              <h2 className="text-[24px] font-sans font-bold"><span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span></h2>
+              <p className="text-[15px] opacity-60 mb-1 font-sans">Hi there! this is</p>
+              <h2 className="text-[30px] font-sans font-bold"><span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span></h2>
             </div>
             
-            <h1 className="text-[7.5vw] font-headline leading-[0.8] tracking-normal uppercase w-[110%] -ml-1">
+            <h1 className="text-[7.5vw] font-sans font-black leading-[0.8] tracking-normal uppercase w-[110%] -ml-1">
               Landing Pages<br />
               For <span className="text-accent">Plumbing</span><br />
               <span className="text-white">Calls</span>
@@ -111,7 +110,7 @@ export default function ShaderShowcase() {
           </div>
           <div className="col-span-4" />
           <div className="col-span-4 pl-[4vw] flex flex-col gap-6">
-            <p className="text-[12px] leading-relaxed opacity-60 max-w-[280px] font-sans">
+            <p className="text-[15px] leading-relaxed opacity-60 max-w-[280px] font-sans">
               I'm an award winning product designer specialized in financial products. I work for Fintech, Banking, Crypto & Web3
             </p>
             <div className="flex items-center gap-6 pt-4">
@@ -138,7 +137,7 @@ export default function ShaderShowcase() {
           className="max-w-[60vw]"
         >
           <span className="label text-white/40 block mb-[4vh]">[ OUR PHILOSOPHY ]</span>
-          <h2 className="text-[7.5vw] font-headline text-white leading-[0.8] tracking-normal uppercase mb-[6vh]">
+          <h2 className="text-[7.5vw] font-sans font-black text-white leading-[0.8] tracking-normal uppercase mb-[6vh]">
             Precision<br />
             Engineering
           </h2>

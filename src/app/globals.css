@@ -70,28 +70,28 @@
 /* --- Typography System --- */
 
 .hero-display {
-  font-family: 'Anton', sans-serif;
-  @apply uppercase leading-[0.8] tracking-normal;
+  font-family: 'Inter', sans-serif;
+  @apply font-black uppercase leading-[0.8] tracking-normal;
 }
 
 .heading-xl {
-  font-family: 'Anton', sans-serif;
-  @apply uppercase leading-[0.85] tracking-normal;
+  font-family: 'Inter', sans-serif;
+  @apply font-black uppercase leading-[0.85] tracking-normal;
 }
 
 .heading-lg {
-  font-family: 'Anton', sans-serif;
-  @apply uppercase leading-[0.85] tracking-normal;
+  font-family: 'Inter', sans-serif;
+  @apply font-black uppercase leading-[0.85] tracking-normal;
 }
 
 .heading-md {
-  font-family: 'Anton', sans-serif;
-  @apply uppercase leading-[1.1] tracking-tight;
+  font-family: 'Inter', sans-serif;
+  @apply font-black uppercase leading-[1.1] tracking-tight;
 }
 
 .services-item {
-  font-family: 'Anton', sans-serif;
-  @apply uppercase leading-[1] tracking-tight;
+  font-family: 'Inter', sans-serif;
+  @apply font-black uppercase leading-[1] tracking-tight;
 }
 
 .nav-link {
