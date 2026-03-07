@@ -49,20 +49,17 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // useScroll tracks the progress of the 600vh container through the viewport
+  // useScroll tracks progress from start to end of the 600vh section
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    // "start start" means the top of the section is at the top of the viewport
-    // "end end" means the bottom of the section is at the bottom of the viewport
-    // This defines the range where the content is "stuck" via sticky positioning.
-    offset: ["start start", "end end"]
+    offset: ['start start', 'end end'],
   });
 
-  // Map progress (0 to 1) to the translateX range (0vw to -400vw)
-  // With 5 items of 100vw each, a shift of 400vw reveals the 5th item.
-  const xRaw = useTransform(scrollYProgress, [0, 1], ["0vw", "-400vw"]);
+  // Transform progress (0 to 1) into horizontal displacement (0vw to -400vw)
+  // This ensures the 5th card (at the 400vw mark) is visible at the end.
+  const xRaw = useTransform(scrollYProgress, [0, 1], ['0vw', '-400vw']);
 
-  // Apply a spring for smoother, inertial scrolling
+  // Apply spring for smooth, inertial scrolling
   const x = useSpring(xRaw, {
     stiffness: 100,
     damping: 30,
@@ -71,9 +68,9 @@ export function LuminaInteractiveList() {
 
   return (
     <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad] z-20">
-      {/* Sticky container that keeps content visible during scroll */}
+      {/* Sticky container remains viewport-height to pin content */}
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        {/* The moving track with a fixed width for 5 cards */}
+        {/* Horizontal track width is 500vw (5 items * 100vw each) */}
         <motion.div
           style={{ x }}
           className="flex flex-row flex-nowrap h-full w-[500vw] items-center will-change-transform"
@@ -88,6 +85,7 @@ export function LuminaInteractiveList() {
 }
 
 function ShowcaseItem({ item, index }: { item: any; index: number }) {
+  // Logic-less "staircase" layout: text top on even, image top on odd
   const isTextTop = index % 2 === 0;
 
   return (
@@ -109,6 +107,7 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
           </p>
         </div>
 
+        {/* Square corners requested (rounded-none) */}
         <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none">
           <Image
             src={item.image}
