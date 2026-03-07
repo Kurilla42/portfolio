@@ -5,16 +5,16 @@ import { useRef } from 'react';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 const lines = [
-  "For 12 years, I’ve studied what makes local",
-  "service pages convert: strong offers, clear",
-  "structure, trust elements, persuasive copy,",
-  "mobile-first layouts, and calls to action",
-  "that actually generate leads.",
+  "After 12 years of internet marketing and studying",
+  "hundreds of local service websites, I noticed",
+  "a pattern: the same mistakes showed up again",
+  "and again. Pages that looked professional",
+  "but generated almost no calls.",
   "",
-  "That means you get more than a nice-looking",
-  "website. You get a landing page built around",
-  "how real customers think and how real",
-  "service businesses win more jobs online."
+  "The problem wasn't traffic. It wasn't the budget.",
+  "It was 5 specific things that most web designers",
+  "simply don't think about — because they",
+  "think like designers, not marketers."
 ];
 
 export function ExperienceTextSection() {
@@ -23,14 +23,14 @@ export function ExperienceTextSection() {
   return (
     <section 
       ref={containerRef} 
-      className="relative min-h-[100vh] bg-[#97b0ad] flex items-center px-[8vw] py-[15vh] z-10"
+      className="relative min-h-[100vh] bg-[#97b0ad] flex flex-col items-center justify-center px-[8vw] py-[15vh] z-10 text-center"
     >
-      <div className="max-w-[85vw]">
-        <span className="label text-white/40 block mb-[6vh] tracking-[0.2em] uppercase font-mono">[ 12 YEARS OF PRECISION ]</span>
+      <div className="max-w-[85vw] flex flex-col items-center">
+        <span className="label text-white/40 block mb-[6vh] tracking-[0.2em] uppercase font-mono">[ THE PATTERN ]</span>
         <HighlightWipeHeading 
           as="p"
           lines={lines}
-          className="text-[3.8vw] font-black leading-[1.05] tracking-tighter text-white uppercase font-sans"
+          className="text-[3.8vw] font-black leading-[1.05] tracking-tighter text-white uppercase font-sans items-center"
           stagger={0.08}
         />
       </div>
