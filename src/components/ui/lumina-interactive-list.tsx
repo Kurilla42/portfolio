@@ -40,30 +40,30 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Стабильный офсет для эффекта "pin + horizontal scroll"
+  // Initialize scroll tracking for the specific container height (600vh)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Маппинг: от 0 до 1 (весь путь секции 600vh) 
-  // смещаем трек (500vw) на 4 карточки влево (400vw или 80% от ширины трека)
-  const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
+  // Map 0 -> 1 progress to 0vw -> -400vw horizontal translation
+  const xTransform = useTransform(scrollYProgress, [0, 1], ["0vw", "-400vw"]);
   
-  // Плавная пружина для скролла
-  const smoothX = useSpring(xTransform, { 
-    stiffness: 50, 
-    damping: 20, 
-    restDelta: 0.001 
+  // Smooth out the scroll animation with a spring
+  const x = useSpring(xTransform, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
   });
 
   return (
     <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad] z-20">
+      {/* Sticky container that keeps the track visible during vertical scroll */}
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         
-        {/* Горизонтальный трек */}
+        {/* Horizontal track: Width is 5 times viewport width for 5 cards */}
         <motion.div 
-          style={{ x: smoothX }}
+          style={{ x }}
           className="flex flex-row flex-nowrap h-full w-[500vw] items-center will-change-transform"
         >
           {showcaseItems.map((item, index) => (
@@ -80,14 +80,14 @@ export function LuminaInteractiveList() {
 }
 
 function ShowcaseItem({ item, index }: { item: any, index: number }) {
-  // Лестничная структура: четные - текст вверху, нечетные - картинка вверху
+  // Alternating layout: even items have text on top, odd items have images on top
   const isTextTop = index % 2 === 0;
 
   return (
     <div className="w-[100vw] h-full flex items-center justify-center px-[8vw] shrink-0">
       <div className={`flex ${isTextTop ? 'flex-col' : 'flex-col-reverse'} items-start gap-[6vh] max-w-[85vw]`}>
         
-        {/* Текстовый блок */}
+        {/* Text Block */}
         <div className="flex flex-col">
           <span className="services-item text-primary/10 leading-none mb-[2vh] block text-[4vw]">
             {item.number}
@@ -100,7 +100,7 @@ function ShowcaseItem({ item, index }: { item: any, index: number }) {
           </p>
         </div>
 
-        {/* Блок изображения: прямые углы, без параллакса */}
+        {/* Image Block: Straight corners as requested */}
         <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none">
           <Image 
             src={item.image} 
