@@ -1,3 +1,4 @@
+
 "use client";
 
 import Image from "next/image";
@@ -23,10 +24,10 @@ export default function ShaderShowcase() {
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   
   // Transition background to #97b0ad starting from 50% scroll
-  const bgOpacity = useTransform(smoothProgress, [0.5, 0.95], [0, 1]);
+  const bgOpacity = useTransform(smoothProgress, [0.5, 0.98], [0, 1]);
 
   return (
-    <div ref={containerRef} className="relative min-h-[200vh] bg-transparent font-sans">
+    <div ref={containerRef} className="relative min-h-[120vh] bg-transparent font-sans">
       {/* Background Layer */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden">
         <Image
@@ -106,7 +107,6 @@ export default function ShaderShowcase() {
         {/* BOTTOM ROW */}
         <div className="grid grid-cols-12 w-full items-end">
           <div className="col-span-4">
-            {/* Scroll down indicator removed per user request */}
           </div>
           <div className="col-span-4" />
           <div className="col-span-4 pl-[4vw] flex flex-col gap-6">
@@ -114,13 +114,10 @@ export default function ShaderShowcase() {
               I'm an award winning product designer specialized in financial products. I work for Fintech, Banking, Crypto & Web3
             </p>
             <div className="flex items-center gap-6 pt-4">
-              {/* Webflow Minimalist Icon */}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="opacity-40 hover:opacity-100 transition-opacity">
                 <path d="M22.56 5.86h-3.41l-1.89 6.84-1.89-6.84h-3.41l-1.89 6.84-1.89-6.84H4.77l-1.89 6.84L1 5.86h-1v12.28h3.32l1.89-6.84 1.89 6.84h3.41l1.89-6.84 1.89 6.84h3.32l1.89-6.84 1.89 6.84H23V5.86h-.44z"/>
               </svg>
-              {/* Figma */}
               <Figma size={20} className="opacity-40 hover:opacity-100 transition-opacity" />
-              {/* Cursor Icon */}
               <div className="flex items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
                  <MousePointer2 size={18} />
                  <span className="text-[10px] uppercase font-bold tracking-tighter font-sans">Cursor</span>
@@ -128,23 +125,6 @@ export default function ShaderShowcase() {
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Screen 2: Precision Engineering Intro */}
-      <div className="relative z-20 h-screen flex flex-col justify-center px-[6vw]">
-        <motion.div 
-          style={{ opacity: useTransform(smoothProgress, [0.6, 0.8], [0, 1]) }}
-          className="max-w-[60vw]"
-        >
-          <span className="label text-white/40 block mb-[4vh]">[ OUR PHILOSOPHY ]</span>
-          <h2 className="text-[7.5vw] font-sans font-black text-white leading-[0.8] tracking-normal uppercase mb-[6vh]">
-            Precision<br />
-            Engineering
-          </h2>
-          <p className="text-[15px] text-white/60 max-w-[30vw] leading-relaxed font-sans">
-            Every landing page is a calculated piece of architecture. We don't just build sites; we build high-performance conversion machines.
-          </p>
-        </motion.div>
       </div>
     </div>
   );
