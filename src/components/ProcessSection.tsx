@@ -31,7 +31,6 @@ export function ProcessSection() {
 
   // SVG Path animation values
   const pathLength = 800;
-  const strokeDashoffset = useTransform(smoothProgress, [0, 1], [pathLength, 0]);
 
   return (
     <div 
@@ -78,10 +77,10 @@ export function ProcessSection() {
                   strokeWidth="8"
                   strokeLinecap="round"
                 />
-                {/* Active Yellow Path */}
+                {/* Active Orange Path */}
                 <motion.path
                   d="M50 0 C70 150, 30 250, 50 400 C70 550, 30 650, 50 800"
-                  stroke="#FFD86A"
+                  stroke="#fc7c19"
                   strokeWidth="8"
                   strokeLinecap="round"
                   style={{
@@ -104,8 +103,8 @@ export function ProcessSection() {
                     <motion.g key={i} style={{ opacity, scale }}>
                       <circle 
                         cx="50" cy={y} r="14" 
-                        fill="#FFD86A" 
-                        className="drop-shadow-[0_0_8px_rgba(255,216,106,0.5)]"
+                        fill="#fc7c19" 
+                        className="drop-shadow-[0_0_8px_rgba(252,124,25,0.5)]"
                       />
                       <circle cx="50" cy={y} r="6" fill="white" />
                     </motion.g>

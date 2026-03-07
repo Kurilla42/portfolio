@@ -81,8 +81,8 @@ export default function ShaderShowcase() {
             
             <h1 className="text-[9.5vw] font-headline leading-[0.8] tracking-normal uppercase w-[110%] -ml-1">
               Landing Pages<br />
-              For Plumbing<br />
-              <span className="text-accent">Calls</span>
+              For <span className="text-accent">Plumbing</span><br />
+              <span className="text-white">Calls</span>
             </h1>
           </div>
 

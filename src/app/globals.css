@@ -17,13 +17,13 @@
     --secondary-foreground: 184 15% 20%;
     --muted: 174 10% 88%;
     --muted-foreground: 184 10% 45%;
-    --accent: 34 35% 45%;
+    --accent: 26 97% 54%; /* #fc7c19 equivalent */
     --accent-foreground: 45 15% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
     --border: 184 15% 85%;
     --input: 184 15% 85%;
-    --ring: 34 35% 45%;
+    --ring: 26 97% 54%;
     --radius: 0.5rem;
   }
 }
@@ -81,7 +81,7 @@
 
 .heading-lg {
   font-family: 'Anton', sans-serif;
-  @apply uppercase leading-[0.9] tracking-normal;
+  @apply uppercase leading-[0.85] tracking-normal;
 }
 
 .heading-md {
