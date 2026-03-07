@@ -12,7 +12,7 @@ const showcaseItems = [
     number: '01'
   },
   {
-    title: 'Loading Speed',
+    title: 'loading Speed',
     description: 'Stop wasting money on Google Ads that send traffic to your homepage. Increase your Quality Score and lower CPL.',
     image: 'https://i.ibb.co/1t2yTNhv/Whisk-26ffea690ffcaab8e1f4de3f2a4f3d7bdr.png',
     number: '02'
@@ -24,7 +24,7 @@ const showcaseItems = [
     number: '03'
   },
   {
-    title: 'Trust Elements',
+    title: 'Ttrust Elements',
     description: 'Transform your website into a 24/7 sales engine that works while you are out on service calls.',
     image: 'https://i.ibb.co/mV4xt97Z/Whisk-1ugn5kjmzm2nkzgotezmwktl3itm00sm0mgotaj.png',
     number: '04'
@@ -40,7 +40,7 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Height 600vh provides enough scroll space for 5 items (approx 100vh transition each)
+  // Height 600vh provides enough scroll space for 5 items
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -87,7 +87,7 @@ function ShowcaseItem({ item, index }: { item: any, index: number }) {
           <span className="services-item text-primary/10 leading-none mb-[2vh] block text-[4vw]">
             {item.number}
           </span>
-          <h2 className="text-[3.0vw] font-black text-primary tracking-tighter leading-[0.9] uppercase font-sans">
+          <h2 className="text-[3.0vw] font-black text-primary uppercase leading-[0.9] tracking-tighter font-sans">
             {item.title}
           </h2>
           <p className="body-text text-primary/70 max-w-[30vw] mt-[3vh] leading-relaxed">
@@ -105,7 +105,6 @@ function ShowcaseItem({ item, index }: { item: any, index: number }) {
             priority
             sizes="50vw"
           />
-          {/* Subtle overlay for depth */}
           <div className="absolute inset-0 bg-primary/5 mix-blend-multiply pointer-events-none" />
         </div>
       </div>
