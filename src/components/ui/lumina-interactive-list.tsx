@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import React, { useRef, useEffect } from 'react';
+import { motion, useTransform, useSpring, useMotionValue } from 'framer-motion';
 import Image from 'next/image';
 
 const showcaseItems = [
@@ -47,19 +47,49 @@ const showcaseItems = [
 ];
 
 export function LuminaInteractiveList() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  
+  // Используем MotionValue для интеграции ручного расчета с Framer Motion
+  const progress = useMotionValue(0);
 
-  // useScroll tracks progress from start to end of the 600vh section
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ['start start', 'end end'],
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      const el = containerRef.current;
+      if (!el) return;
 
-  // Transform progress (0 to 1) into horizontal displacement (0vw to -400vw)
-  // This ensures the 5th card (at the 400vw mark) is visible at the end.
-  const xRaw = useTransform(scrollYProgress, [0, 1], ['0vw', '-400vw']);
+      const rect = el.getBoundingClientRect();
+      const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+      const totalScrollable = rect.height - windowHeight;
+      
+      if (totalScrollable <= 0) {
+        progress.set(0);
+        return;
+      }
 
-  // Apply spring for smooth, inertial scrolling
+      // Точная логика расчета прогресса (0 → 1) внутри секции
+      const scrolledInside = Math.min(
+        Math.max(-rect.top, 0),
+        totalScrollable
+      );
+
+      const p = scrolledInside / totalScrollable;
+      progress.set(p);
+    };
+
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleScroll);
+    };
+  }, [progress]);
+
+  // Мапим 0-1 в 0vw - (-400vw)
+  const xRaw = useTransform(progress, [0, 1], ['0vw', '-400vw']);
+
+  // Добавляем пружину для плавности
   const x = useSpring(xRaw, {
     stiffness: 100,
     damping: 30,
@@ -68,9 +98,7 @@ export function LuminaInteractiveList() {
 
   return (
     <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad] z-20">
-      {/* Sticky container remains viewport-height to pin content */}
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
-        {/* Horizontal track width is 500vw (5 items * 100vw each) */}
         <motion.div
           style={{ x }}
           className="flex flex-row flex-nowrap h-full w-[500vw] items-center will-change-transform"
@@ -85,7 +113,6 @@ export function LuminaInteractiveList() {
 }
 
 function ShowcaseItem({ item, index }: { item: any; index: number }) {
-  // Logic-less "staircase" layout: text top on even, image top on odd
   const isTextTop = index % 2 === 0;
 
   return (
@@ -107,8 +134,7 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
           </p>
         </div>
 
-        {/* Square corners requested (rounded-none) */}
-        <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none">
+        <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none border-none">
           <Image
             src={item.image}
             alt={item.title}
