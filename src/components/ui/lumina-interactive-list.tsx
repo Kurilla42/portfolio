@@ -40,24 +40,25 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Height is 600vh to give 5 items enough "vertical space" to scroll horizontally
+  // Height is 600vh to give enough vertical space to scroll 5 items
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // To show the 5th item (at 400vw), we scroll from 0vw to -400vw
-  const xTransform = useTransform(scrollYProgress, [0, 1], ["0vw", "-400vw"]);
-  const smoothX = useSpring(xTransform, { stiffness: 80, damping: 25, restDelta: 0.001 });
+  // Shift the track. Since there are 5 items (500vw), we need to move by 400vw to show the last one.
+  // Using percentage of the track itself: 0% to -80% (since -80% of 500vw is -400vw)
+  const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
+  const smoothX = useSpring(xTransform, { stiffness: 60, damping: 20, restDelta: 0.001 });
 
   return (
     <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad] z-20">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         
-        {/* Horizontal Track */}
+        {/* Horizontal Track - ensures no wrapping and full width */}
         <motion.div 
           style={{ x: smoothX }}
-          className="flex h-full w-[500vw] items-center will-change-transform"
+          className="flex flex-row flex-nowrap h-full w-[500vw] items-center will-change-transform"
         >
           {showcaseItems.map((item, index) => (
             <ShowcaseItem 
@@ -74,8 +75,8 @@ export function LuminaInteractiveList() {
 
 function ShowcaseItem({ item, index }: { item: any, index: number }) {
   // Staircase logic: toggle flex direction
-  // 1, 3, 5 items (index 0, 2, 4) -> Text top, Image bottom
-  // 2, 4 items (index 1, 3) -> Image top, Text bottom
+  // 1, 3, 5 items (index 0, 2, 4) -> Text top, Image bottom (flex-col)
+  // 2, 4 items (index 1, 3) -> Image top, Text bottom (flex-col-reverse)
   const isTextTop = index % 2 === 0;
 
   return (
@@ -96,7 +97,7 @@ function ShowcaseItem({ item, index }: { item: any, index: number }) {
         </div>
 
         {/* Image Block: Straight Corners (No rounded) */}
-        <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5">
+        <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none">
           <Image 
             src={item.image} 
             alt={item.title} 
