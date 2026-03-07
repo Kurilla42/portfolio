@@ -49,17 +49,20 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // 1) Привязываем прогресс к проходу секции через вьюпорт
+  // useScroll tracks the progress of the 600vh container through the viewport
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    // центр секции проходит через центр вьюпорта для стабильности
-    offset: ['start center', 'end center'],
+    // "start start" means the top of the section is at the top of the viewport
+    // "end end" means the bottom of the section is at the bottom of the viewport
+    // This defines the range where the content is "stuck" via sticky positioning.
+    offset: ["start start", "end end"]
   });
 
-  // 2) Маппим 0–1 → 0vw–(-400vw) для 5 карточек по 100vw каждая
-  const xRaw = useTransform(scrollYProgress, [0, 1], ['0vw', '-400vw']);
+  // Map progress (0 to 1) to the translateX range (0vw to -400vw)
+  // With 5 items of 100vw each, a shift of 400vw reveals the 5th item.
+  const xRaw = useTransform(scrollYProgress, [0, 1], ["0vw", "-400vw"]);
 
-  // 3) Лёгкая пружина для сглаживания инерции скролла
+  // Apply a spring for smoother, inertial scrolling
   const x = useSpring(xRaw, {
     stiffness: 100,
     damping: 30,
@@ -68,7 +71,9 @@ export function LuminaInteractiveList() {
 
   return (
     <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad] z-20">
+      {/* Sticky container that keeps content visible during scroll */}
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
+        {/* The moving track with a fixed width for 5 cards */}
         <motion.div
           style={{ x }}
           className="flex flex-row flex-nowrap h-full w-[500vw] items-center will-change-transform"
