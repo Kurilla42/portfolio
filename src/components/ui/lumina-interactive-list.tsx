@@ -46,12 +46,12 @@ export function LuminaInteractiveList() {
     offset: ["start start", "end end"]
   });
 
-  // To show the 5th item (at 400vw), we need to shift the 500vw track by -400vw (which is -80% of its width)
-  const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
+  // To show the 5th item (at 400vw), we scroll from 0vw to -400vw
+  const xTransform = useTransform(scrollYProgress, [0, 1], ["0vw", "-400vw"]);
   const smoothX = useSpring(xTransform, { stiffness: 80, damping: 25, restDelta: 0.001 });
 
   return (
-    <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad]">
+    <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad] z-20">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         
         {/* Horizontal Track */}
@@ -74,6 +74,8 @@ export function LuminaInteractiveList() {
 
 function ShowcaseItem({ item, index }: { item: any, index: number }) {
   // Staircase logic: toggle flex direction
+  // 1, 3, 5 items (index 0, 2, 4) -> Text top, Image bottom
+  // 2, 4 items (index 1, 3) -> Image top, Text bottom
   const isTextTop = index % 2 === 0;
 
   return (
