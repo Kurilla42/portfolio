@@ -23,7 +23,7 @@ export function ExperienceTextSection() {
   return (
     <section 
       ref={containerRef} 
-      className="relative min-h-[100vh] bg-[#97b0ad] flex flex-col items-center justify-center px-[8vw] py-[15vh] z-10 text-center"
+      className="relative min-h-[100vh] bg-transparent flex flex-col items-center justify-center px-[8vw] py-[15vh] z-10 text-center"
     >
       <div className="max-w-[85vw] flex flex-col items-center">
         <span className="label text-white/40 block mb-[6vh] tracking-[0.2em] uppercase font-mono">[ THE PATTERN ]</span>

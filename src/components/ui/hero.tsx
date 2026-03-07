@@ -2,13 +2,16 @@
 "use client";
 
 import Image from "next/image";
-import { motion, useScroll, useTransform, useSpring } from "framer-motion";
+import { motion, useTransform, MotionValue } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Figma, MousePointer2 } from "lucide-react";
 import { HighlightWipeHeading } from "@/components/HighlightWipeHeading";
 
-export default function ShaderShowcase() {
-  const containerRef = useRef<HTMLDivElement>(null);
+interface ShaderShowcaseProps {
+  progress?: MotionValue<number>;
+}
+
+export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
   const [greeting, setGreeting] = useState("Good morning!");
 
   useEffect(() => {
@@ -17,18 +20,12 @@ export default function ShaderShowcase() {
     else if (hour >= 17 || hour < 5) setGreeting("Good evening!");
   }, []);
   
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
-  
-  const bgOpacity = useTransform(smoothProgress, [0.5, 0.98], [0, 1]);
+  // Use progress from parent if available, otherwise default to 0
+  const bgOpacity = useTransform(progress || new motion.Value(0), [0, 1], [0, 1]);
 
   return (
-    <div ref={containerRef} className="relative min-h-[120vh] bg-transparent font-sans">
-      {/* Background Layer */}
+    <div className="relative min-h-screen bg-transparent font-sans">
+      {/* Fixed Background Layer shared with next section */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden">
         <Image
           src="https://i.ibb.co/NgDy55vR/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd-upscayl-2x-upscayl-standard-4x.jpg"
@@ -45,7 +42,7 @@ export default function ShaderShowcase() {
         <div className="absolute inset-0 z-0 bg-black/20" />
       </div>
 
-      {/* Screen 1 */}
+      {/* Screen 1 Content */}
       <div className="relative z-20 w-full h-screen px-[4vw] pt-[4vh] pb-[2vh] flex flex-col justify-between text-white overflow-hidden">
         
         {/* TOP ROW */}

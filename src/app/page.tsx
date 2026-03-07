@@ -48,12 +48,18 @@ const comparisonData = [
 
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const heroCombinedRef = useRef<HTMLDivElement>(null);
   const [hoveredRow, setHoveredRow] = useState<number | null>(null);
   const [activeRow, setActiveRow] = useState<number | null>(null);
   
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ["start end", "end start"]
+  });
+
+  const { scrollYProgress: heroProgress } = useScroll({
+    target: heroCombinedRef,
+    offset: ["start start", "end end"]
   });
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
@@ -85,8 +91,12 @@ export default function Home() {
 
   return (
     <div className="min-h-screen bg-transparent">
-      <ShaderShowcase />
-      <ExperienceTextSection />
+      {/* Combined Background Area for Hero and Experience */}
+      <div ref={heroCombinedRef} className="relative">
+        <ShaderShowcase progress={heroProgress} />
+        <ExperienceTextSection />
+      </div>
+
       <LuminaInteractiveList />
       <SiteShowcaseSection />
       <ProcessSection />
