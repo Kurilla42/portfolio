@@ -40,22 +40,28 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Используем предложенный офсет для более стабильной анимации
+  // Стабильный офсет для эффекта "pin + horizontal scroll"
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start center", "end center"]
+    offset: ["start start", "end end"]
   });
 
-  // Анимация смещения: от 0% (первый слайд) до -80% (пятый слайд)
-  // Поскольку всего 5 слайдов, каждый по 100vw, общее смещение 400vw из 500vw трека
+  // Маппинг: от 0 до 1 (весь путь секции 600vh) 
+  // смещаем трек (500vw) на 4 карточки влево (400vw или 80% от ширины трека)
   const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
-  const smoothX = useSpring(xTransform, { stiffness: 60, damping: 20, restDelta: 0.001 });
+  
+  // Плавная пружина для скролла
+  const smoothX = useSpring(xTransform, { 
+    stiffness: 50, 
+    damping: 20, 
+    restDelta: 0.001 
+  });
 
   return (
     <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad] z-20">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         
-        {/* Горизонтальный трек с жестко заданной шириной для 5 слайдов */}
+        {/* Горизонтальный трек */}
         <motion.div 
           style={{ x: smoothX }}
           className="flex flex-row flex-nowrap h-full w-[500vw] items-center will-change-transform"
@@ -74,9 +80,7 @@ export function LuminaInteractiveList() {
 }
 
 function ShowcaseItem({ item, index }: { item: any, index: number }) {
-  // Лестничная структура (чередование):
-  // Индекс 0, 2, 4 (четные) -> Текст вверху, Картинка внизу
-  // Индекс 1, 3 (нечетные) -> Картинка вверху, Текст внизу
+  // Лестничная структура: четные - текст вверху, нечетные - картинка вверху
   const isTextTop = index % 2 === 0;
 
   return (
@@ -96,7 +100,7 @@ function ShowcaseItem({ item, index }: { item: any, index: number }) {
           </p>
         </div>
 
-        {/* Блок изображения: прямые углы (rounded-none), без внутренней анимации */}
+        {/* Блок изображения: прямые углы, без параллакса */}
         <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none">
           <Image 
             src={item.image} 
