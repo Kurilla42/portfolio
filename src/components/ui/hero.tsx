@@ -51,11 +51,7 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
             priority
             unoptimized
           />
-          {/* Subtle overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-black/40" />
         </motion.div>
-
-        <div className="absolute inset-0 z-0 bg-black/20" />
       </div>
 
       {/* Screen 1 Content */}
