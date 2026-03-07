@@ -40,13 +40,13 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Высота 600vh дает запас для прокрутки 5 элементов (по 100vh на каждый переход)
+  // Height 600vh provides enough scroll space for 5 items (approx 100vh transition each)
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  // Смещение трека: от 0% до -80% (так как 5 элементов по 100vw = 500vw, нам нужно сдвинуть на 400vw)
+  // Track transform: from 0% to -80% (since 5 items each 100vw = 500vw total track width)
   const xTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-80%"]);
   const smoothX = useSpring(xTransform, { stiffness: 60, damping: 20, restDelta: 0.001 });
 
@@ -54,7 +54,7 @@ export function LuminaInteractiveList() {
     <div ref={containerRef} className="relative h-[600vh] bg-[#97b0ad] z-20">
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">
         
-        {/* Горизонтальный трек: ширина 500vw для 5 карточек */}
+        {/* Horizontal Track: Fixed width for 5 cards to prevent shrinking */}
         <motion.div 
           style={{ x: smoothX }}
           className="flex flex-row flex-nowrap h-full w-[500vw] items-center will-change-transform"
@@ -73,16 +73,16 @@ export function LuminaInteractiveList() {
 }
 
 function ShowcaseItem({ item, index }: { item: any, index: number }) {
-  // Лестничная структура: чередуем направление flex
-  // 1, 3, 5 элементы (index 0, 2, 4) -> Текст вверху, Картинка внизу
-  // 2, 4 элементы (index 1, 3) -> Картинка вверху, Текст внизу
+  // Staircase structure: alternating flex direction
+  // Even index (0, 2, 4) -> Text Top, Image Bottom
+  // Odd index (1, 3) -> Image Top, Text Bottom
   const isTextTop = index % 2 === 0;
 
   return (
     <div className="w-[100vw] h-full flex items-center justify-center px-[8vw] shrink-0">
       <div className={`flex ${isTextTop ? 'flex-col' : 'flex-col-reverse'} items-start gap-[6vh] max-w-[85vw]`}>
         
-        {/* Текстовый блок */}
+        {/* Text Block */}
         <div className="flex flex-col">
           <span className="services-item text-primary/10 leading-none mb-[2vh] block text-[4vw]">
             {item.number}
@@ -95,7 +95,7 @@ function ShowcaseItem({ item, index }: { item: any, index: number }) {
           </p>
         </div>
 
-        {/* Блок изображения: Прямые углы (rounded-none) */}
+        {/* Image Block: Straight corners (rounded-none) */}
         <div className="relative w-[50vw] aspect-[16/9] overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none">
           <Image 
             src={item.image} 
@@ -105,7 +105,7 @@ function ShowcaseItem({ item, index }: { item: any, index: number }) {
             priority
             sizes="50vw"
           />
-          {/* Легкое наложение для глубины */}
+          {/* Subtle overlay for depth */}
           <div className="absolute inset-0 bg-primary/5 mix-blend-multiply pointer-events-none" />
         </div>
       </div>
