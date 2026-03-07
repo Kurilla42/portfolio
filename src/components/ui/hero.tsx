@@ -5,6 +5,7 @@ import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { Figma, MousePointer2 } from "lucide-react";
+import { HighlightWipeHeading } from "@/components/HighlightWipeHeading";
 
 export default function ShaderShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,6 @@ export default function ShaderShowcase() {
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   
-  // Transition background to #97b0ad starting from 50% scroll
   const bgOpacity = useTransform(smoothProgress, [0.5, 0.98], [0, 1]);
 
   return (
@@ -38,16 +38,14 @@ export default function ShaderShowcase() {
           priority
           unoptimized
         />
-        {/* The transition overlay to #97b0ad */}
         <motion.div 
           style={{ opacity: bgOpacity }}
           className="absolute inset-0 z-10 bg-[#97b0ad]" 
         />
-        {/* Subtle base static overlay */}
         <div className="absolute inset-0 z-0 bg-black/20" />
       </div>
 
-      {/* Screen 1: Reference-matched Layout */}
+      {/* Screen 1 */}
       <div className="relative z-20 w-full h-screen px-[4vw] pt-[4vh] pb-[2vh] flex flex-col justify-between text-white overflow-hidden">
         
         {/* TOP ROW */}
@@ -73,21 +71,20 @@ export default function ShaderShowcase() {
 
         {/* MIDDLE SECTION */}
         <div className="grid grid-cols-12 w-full mt-auto mb-0 items-end">
-          {/* Main Info Area */}
           <div className="col-span-8 flex flex-col">
             <div className="mb-[6vh]">
               <p className="text-[15px] opacity-60 mb-1 font-sans">Hi there! this is</p>
               <h2 className="text-[30px] font-sans font-bold"><span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span></h2>
             </div>
             
-            <h1 className="text-[7.5vw] font-sans font-black leading-[0.8] tracking-normal uppercase w-[110%] -ml-1">
-              Landing Pages<br />
-              For <span className="text-accent">Plumbing</span><br />
-              <span className="text-white">Calls</span>
-            </h1>
+            <HighlightWipeHeading 
+              as="h1"
+              lines={["LANDING PAGES", "FOR PLUMBING", "CALLS"]}
+              className="text-[7.5vw] font-sans font-black leading-[0.8] tracking-normal uppercase w-[110%] -ml-1"
+              stagger={0.12}
+            />
           </div>
 
-          {/* Right Side Info Area */}
           <div className="col-span-4 flex flex-col pl-[4vw]">
             <div className="space-y-6 mb-[15vh]">
                <div className="h-[1px] w-full bg-white/10" />
@@ -106,17 +103,14 @@ export default function ShaderShowcase() {
 
         {/* BOTTOM ROW */}
         <div className="grid grid-cols-12 w-full items-end">
-          <div className="col-span-4">
-          </div>
+          <div className="col-span-4" />
           <div className="col-span-4" />
           <div className="col-span-4 pl-[4vw] flex flex-col gap-6">
             <p className="text-[15px] leading-relaxed opacity-60 max-w-[280px] font-sans">
               I'm an award winning product designer specialized in financial products. I work for Fintech, Banking, Crypto & Web3
             </p>
             <div className="flex items-center gap-6 pt-4">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="opacity-40 hover:opacity-100 transition-opacity">
-                <path d="M22.56 5.86h-3.41l-1.89 6.84-1.89-6.84h-3.41l-1.89 6.84-1.89-6.84H4.77l-1.89 6.84L1 5.86h-1v12.28h3.32l1.89-6.84 1.89 6.84h3.41l1.89-6.84 1.89 6.84h3.32l1.89-6.84 1.89 6.84H23V5.86h-.44z"/>
-              </svg>
+              <span className="text-[10px] uppercase font-bold tracking-widest opacity-40 hover:opacity-100 transition-opacity font-sans">WebFlow</span>
               <Figma size={20} className="opacity-40 hover:opacity-100 transition-opacity" />
               <div className="flex items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
                  <MousePointer2 size={18} />

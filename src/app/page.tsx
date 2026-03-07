@@ -6,7 +6,7 @@ import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { ProcessSection } from '@/components/ProcessSection';
-import { ScrollRevealHeading } from '@/components/ScrollRevealHeading';
+import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import { ExperienceTextSection } from '@/components/ExperienceTextSection';
 import Link from 'next/link';
@@ -100,9 +100,10 @@ export default function Home() {
         <div className="w-full">
           
           <div className="mb-[15vh] px-[8vw]">
-            <ScrollRevealHeading as="h2" className="heading-lg text-primary tracking-tighter">
-              Integrated.
-            </ScrollRevealHeading>
+            <HighlightWipeHeading 
+              lines={["Integrated."]}
+              className="heading-lg text-primary tracking-tighter"
+            />
             <div className="flex items-center gap-4">
                <em className="accent-italic lowercase text-[4vw]">Editorial Precision.</em>
             </div>
@@ -239,9 +240,10 @@ export default function Home() {
       <section className="py-[15vh] bg-[#F5F2EB] relative z-10" id="packages">
         <div className="w-full px-[8vw]">
           <header className="mb-[15vh]">
-            <ScrollRevealHeading as="h2" className="heading-xl text-primary mb-[5vh]">
-              PRICING PLANS
-            </ScrollRevealHeading>
+            <HighlightWipeHeading 
+              lines={["PRICING PLANS"]}
+              className="heading-xl text-primary mb-[5vh]"
+            />
             <p className="body-text text-muted-foreground max-w-[45vw]">
               Choose a capacity level that fits your business stage. 
               Built for performance, scalability, and predictable lead flow.
@@ -362,9 +364,10 @@ export default function Home() {
         <div className="w-full px-[6vw]">
           <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">
             <div className="relative z-10 space-y-8 md:space-y-[6vh]">
-              <ScrollRevealHeading as="h2" className="heading-lg text-white leading-[0.9] tracking-tighter">
-                Ready to Double Your Plumbing Leads?
-              </ScrollRevealHeading>
+              <HighlightWipeHeading 
+                lines={["Ready to Double Your", "Plumbing Leads?"]}
+                className="heading-lg text-white leading-[0.9] tracking-tighter items-center"
+              />
               <Button asChild className="bg-accent text-white hover:bg-white hover:text-primary transition-all rounded-full btn h-16 md:h-[7vw] px-12 md:px-[5vw] shadow-2xl group">
                 <Link href="https://calendly.com" target="_blank" className="flex items-center gap-4 md:gap-[1.5vw]">
                   Book My Strategy Call
