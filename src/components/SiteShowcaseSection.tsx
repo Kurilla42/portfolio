@@ -50,7 +50,7 @@ export function SiteShowcaseSection() {
   const rightImageY = useTransform(smoothProgress, [0.45, 0.65], ["100px", "0px"]);
   const rightImageOpacity = useTransform(smoothProgress, [0.45, 0.6], [0, 1]);
 
-  // --- PHASE 4: STACKING (REMOVED EXIT) ---
+  // --- PHASE 4: STACKING ---
   const sectionScale = useTransform(smoothProgress, [0.8, 1], [1, 0.95]);
 
   const leftCase = PlaceHolderImages.find(img => img.id === 'case-study-2');
@@ -60,7 +60,6 @@ export function SiteShowcaseSection() {
     <div ref={containerRef} className="relative h-[350vh] bg-transparent z-10">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Dynamic content wrapper - stays underneath the next section */}
         <motion.div 
           style={{ scale: sectionScale }}
           className="w-full h-full flex items-center justify-center relative"
@@ -90,8 +89,9 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
                 style={{ x: leftTextX, scale: leftTextScale, opacity: leftTextOpacity }}
-                className="absolute heading-lg text-primary z-0 pointer-events-none text-center"
+                className="absolute text-[3.0vw] font-black text-primary z-0 pointer-events-none text-center uppercase leading-[0.85]"
               >
+                {/* Size: 3.0vw to match Calls To Action */}
                 Explore<br />How
               </motion.div>
               <motion.div 
@@ -106,8 +106,9 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
                 style={{ x: rightTextX, scale: rightTextScale, opacity: rightTextOpacity }}
-                className="absolute heading-lg text-primary z-0 pointer-events-none text-center"
+                className="absolute text-[3.0vw] font-black text-primary z-0 pointer-events-none text-center uppercase leading-[0.85]"
               >
+                {/* Size: 3.0vw to match Calls To Action */}
                 Can Look<br />Like
               </motion.div>
               <motion.div 
@@ -121,7 +122,6 @@ export function SiteShowcaseSection() {
           </div>
         </motion.div>
 
-        {/* Bottom Ambient Fade to ease the overlap */}
         <div className="absolute bottom-0 left-0 right-0 h-[20vh] bg-gradient-to-t from-black/5 to-transparent pointer-events-none z-30" />
       </div>
     </div>

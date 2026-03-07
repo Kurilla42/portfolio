@@ -1,4 +1,3 @@
-
 'use client';
 
 import React from 'react';
@@ -65,7 +64,6 @@ export function LuminaInteractiveList() {
 function ShowcaseItem({ item, index }: { item: any; index: number }) {
   return (
     <div className="relative w-full h-full group overflow-hidden">
-      {/* FULL WIDTH IMAGE BACKGROUND - UNOPTIMIZED FOR MAXIMUM QUALITY */}
       <Image
         src={item.image}
         alt={item.title}
@@ -77,10 +75,8 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
         sizes="100vw"
       />
       
-      {/* GRADIENT OVERLAY FOR TEXT READABILITY */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
 
-      {/* CONTENT OVERLAY */}
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -90,7 +86,6 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
       >
         <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 items-end w-full">
           
-          {/* TITLE LEFT */}
           <div className="md:col-span-8 text-left">
             <div className="flex items-center gap-4 mb-6">
               <span className="font-mono text-[1.1vw] text-white/50 tracking-[0.3em] uppercase block">
@@ -98,12 +93,12 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
               </span>
               <div className="h-[1px] w-[6vw] bg-white/20" />
             </div>
-            <h2 className="text-[8vw] md:text-[6.2vw] font-black text-white uppercase leading-[0.8] tracking-tighter font-sans">
+            <h2 className="text-[3.0vw] font-black text-white uppercase leading-[0.8] tracking-tighter font-sans">
+              {/* Size set to 3.0vw for editorial consistency */}
               {item.title}
             </h2>
           </div>
 
-          {/* DESCRIPTION RIGHT */}
           <div className="md:col-span-4 flex flex-col items-start md:items-end text-left md:text-right">
             <p className="body-text text-white text-[1.4vw] leading-[1.4] font-medium opacity-100 max-w-[450px]">
               {item.description}
