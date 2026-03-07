@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -14,7 +15,7 @@ const showcaseItems = [
     number: '01',
   },
   {
-    title: 'loading Speed',
+    title: 'Loading Speed',
     description:
       'Stop wasting money on Google Ads that send traffic to your homepage. Increase your Quality Score and lower CPL.',
     image:
@@ -30,7 +31,7 @@ const showcaseItems = [
     number: '03',
   },
   {
-    title: 'Ttrust Elements',
+    title: 'Trust Elements',
     description:
       'Transform your website into a 24/7 sales engine that works while you are out on service calls.',
     image:
@@ -48,11 +49,11 @@ const showcaseItems = [
 
 export function LuminaInteractiveList() {
   return (
-    <div className="relative bg-[#97b0ad] z-20">
+    <div className="relative bg-[#000] z-20">
       {showcaseItems.map((item, index) => (
         <section
           key={index}
-          className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden border-t border-primary/5 bg-[#97b0ad]"
+          className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden border-b border-white/5"
         >
           <ShowcaseItem item={item} index={index} />
         </section>
@@ -62,44 +63,53 @@ export function LuminaInteractiveList() {
 }
 
 function ShowcaseItem({ item, index }: { item: any; index: number }) {
-  // Ladder layout: 0, 2, 4 (Text Left, Image Right) | 1, 3 (Image Left, Text Right)
-  const isImageRight = index % 2 === 0;
-
   return (
-    <motion.div 
-      initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, amount: 0.3 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`flex ${
-        isImageRight ? 'flex-col md:flex-row' : 'flex-col md:flex-row-reverse'
-      } items-center gap-[6vh] w-full max-w-[85vw] mx-auto`}
-    >
-      {/* TEXT AREA */}
-      <div className="flex flex-col flex-1">
-        <span className="services-item text-primary/10 leading-none mb-[2vh] block text-[4vw]">
-          {item.number}
-        </span>
-        <h2 className="text-[3.0vw] font-black text-primary uppercase leading-[0.9] tracking-tighter font-sans">
-          {item.title}
-        </h2>
-        <p className="body-text text-primary/70 max-w-[30vw] mt-[3vh] leading-relaxed">
-          {item.description}
-        </p>
-      </div>
+    <div className="relative w-full h-full group overflow-hidden">
+      {/* FULL WIDTH IMAGE BACKGROUND */}
+      <Image
+        src={item.image}
+        alt={item.title}
+        fill
+        className="object-cover"
+        priority
+        sizes="100vw"
+      />
+      
+      {/* CINEMATIC OVERLAY */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/30 to-black/10" />
 
-      {/* IMAGE AREA */}
-      <div className="relative flex-1 aspect-[16/9] md:aspect-[4/3] w-full overflow-hidden shadow-[0_2vw_5vw_-1vw_rgba(0,0,0,0.15)] bg-primary/5 rounded-none">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover"
-          priority
-          sizes="50vw"
-        />
-        <div className="absolute inset-0 bg-primary/5 mix-blend-multiply pointer-events-none" />
-      </div>
-    </motion.div>
+      {/* CONTENT OVERLAY */}
+      <motion.div 
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: 0.3 }}
+        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+        className="relative z-10 w-full h-full flex flex-col justify-end px-[8vw] pb-[12vh]"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 items-end w-full">
+          
+          {/* TITLE LEFT */}
+          <div className="md:col-span-8 text-left">
+            <div className="flex items-center gap-4 mb-6">
+              <span className="font-mono text-[1.1vw] text-white/50 tracking-[0.3em] uppercase block">
+                [ {item.number} ]
+              </span>
+              <div className="h-[1px] w-[6vw] bg-white/20" />
+            </div>
+            <h2 className="text-[8vw] md:text-[6.2vw] font-black text-white uppercase leading-[0.8] tracking-tighter font-sans">
+              {item.title}
+            </h2>
+          </div>
+
+          {/* TEXT RIGHT */}
+          <div className="md:col-span-4 flex flex-col items-start md:items-end text-left md:text-right">
+            <p className="body-text text-white text-[1.5vw] leading-[1.4] font-medium opacity-90 max-w-[450px]">
+              {item.description}
+            </p>
+          </div>
+          
+        </div>
+      </motion.div>
+    </div>
   );
 }
