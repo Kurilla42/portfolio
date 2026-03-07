@@ -71,7 +71,7 @@ export default function ShaderShowcase() {
         </div>
 
         {/* MIDDLE SECTION */}
-        <div className="grid grid-cols-12 w-full mt-auto mb-[4vh] items-end">
+        <div className="grid grid-cols-12 w-full mt-auto mb-[2vh] items-end">
           {/* Main Info Area */}
           <div className="col-span-8 flex flex-col">
             <div className="mb-[6vh]">
@@ -141,7 +141,7 @@ export default function ShaderShowcase() {
             Precision<br />
             Engineering
           </h2>
-          <p className="text-[1.2vw] text-white/60 max-w-[30vw] leading-relaxed font-sans">
+          <p className="text-[15px] text-white/60 max-w-[30vw] leading-relaxed font-sans">
             Every landing page is a calculated piece of architecture. We don't just build sites; we build high-performance conversion machines.
           </p>
         </motion.div>
