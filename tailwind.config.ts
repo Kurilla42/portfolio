@@ -12,7 +12,7 @@ export default {
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
-        headline: ['Inter', 'sans-serif'],
+        headline: ['Anton', 'sans-serif'],
         code: ['Space Mono', 'monospace'],
       },
       colors: {
