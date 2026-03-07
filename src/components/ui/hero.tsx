@@ -21,12 +21,14 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
   }, []);
   
   // Use progress from parent if available, otherwise default to 0
-  const bgOpacity = useTransform(progress || new motion.Value(0), [0, 1], [0, 1]);
+  // Transition between the initial hero image and the experience block background
+  const secondImageOpacity = useTransform(progress || new motion.Value(0), [0, 0.8], [0, 1]);
 
   return (
     <div className="relative min-h-screen bg-transparent font-sans">
       {/* Fixed Background Layer shared with next section */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden">
+        {/* Base Hero Image */}
         <Image
           src="https://i.ibb.co/NgDy55vR/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd-upscayl-2x-upscayl-standard-4x.jpg"
           alt="Hero Background"
@@ -35,10 +37,24 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
           priority
           unoptimized
         />
+        
+        {/* Experience Background Image that fades in */}
         <motion.div 
-          style={{ opacity: bgOpacity }}
-          className="absolute inset-0 z-10 bg-[#97b0ad]" 
-        />
+          style={{ opacity: secondImageOpacity }}
+          className="absolute inset-0 z-10"
+        >
+          <Image
+            src="https://i.ibb.co/fz8VwXFC/f287897f-0106-4a17-a80c-76b912a016a7-upscayl-2x-upscayl-standard-4x.png"
+            alt="Experience Background"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
+          {/* Subtle overlay to ensure text readability */}
+          <div className="absolute inset-0 bg-black/40" />
+        </motion.div>
+
         <div className="absolute inset-0 z-0 bg-black/20" />
       </div>
 
