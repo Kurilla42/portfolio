@@ -106,7 +106,7 @@ export default function ShaderShowcase() {
         {/* BOTTOM ROW */}
         <div className="grid grid-cols-12 w-full items-end">
           <div className="col-span-4">
-            <span className="text-[10px] uppercase tracking-[0.2em] opacity-40 font-sans">(Scroll down)</span>
+            {/* Scroll down indicator removed per user request */}
           </div>
           <div className="col-span-4" />
           <div className="col-span-4 pl-[4vw] flex flex-col gap-6">
