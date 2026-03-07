@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,11 +6,11 @@
 @layer base {
   :root {
     /* Refined Palette: Based on Sage, Clay, and Warm Tones */
-    --background: 45 15% 96%;
+    --background: 184 10% 64%; /* #97b0ad equivalent */
     --foreground: 184 15% 15%;
-    --card: 45 15% 98%;
+    --card: 184 10% 68%;
     --card-foreground: 184 15% 15%;
-    --popover: 45 15% 98%;
+    --popover: 184 10% 68%;
     --popover-foreground: 184 15% 15%;
     --primary: 184 15% 22%;
     --primary-foreground: 45 15% 98%;
@@ -37,7 +38,7 @@
   }
 }
 
-/* --- Grain / Noise Effect (using specific black-felt.png) --- */
+/* --- Grain / Noise Effect --- */
 .noise-overlay {
   position: fixed;
   top: -150%;
@@ -46,8 +47,7 @@
   height: 400%;
   pointer-events: none;
   z-index: 9999;
-  /* Increased opacity for better visibility of the paper grain texture */
-  opacity: 0.08; 
+  opacity: 0.06; 
   background-image: url("https://i.ibb.co/H8T22Jm/black-felt.png");
   background-repeat: repeat;
   background-size: 128px;
@@ -68,69 +68,57 @@
   100% { transform: translate(1%,0); }
 }
 
-/* --- Swiss Typography System --- */
+/* --- Typography System --- */
 
 .hero-display {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(120px, 28vw, 480px);
   font-weight: 900;
-  @apply uppercase leading-[0.8] tracking-[-0.06em];
+  @apply uppercase leading-[0.8] tracking-[-0.05em];
 }
 
 .heading-xl {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(60px, 8.5vw, 180px);
   font-weight: 800;
   @apply uppercase leading-[0.85] tracking-[-0.04em];
 }
 
 .heading-lg {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(48px, 6.5vw, 140px);
   font-weight: 800;
   @apply uppercase leading-[0.9] tracking-[-0.04em];
 }
 
 .heading-md {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(24px, 2.8vw, 56px);
   font-weight: 700;
   @apply uppercase leading-[1.1] tracking-[-0.02em];
 }
 
 .services-item {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(40px, 5.5vw, 100px);
   font-weight: 800;
   @apply uppercase leading-[1] tracking-[-0.03em];
 }
 
 .nav-link {
   font-family: 'Space Mono', monospace;
-  font-size: clamp(10px, 0.75vw, 13px);
+  font-size: 12px;
   font-weight: 400;
-  @apply uppercase tracking-[0.25em] leading-[1.4];
+  @apply uppercase tracking-[0.2em] leading-[1.4];
 }
 
 .label, .tag {
   font-family: 'Space Mono', monospace;
-  font-size: clamp(9px, 0.65vw, 11px);
+  font-size: 11px;
   font-weight: 400;
   @apply uppercase tracking-[0.2em] leading-[1.4];
 }
 
 .body-text {
   font-family: 'Inter', sans-serif;
-  font-size: clamp(14px, 1.1vw, 22px);
+  font-size: clamp(14px, 1.1vw, 18px);
   font-weight: 400;
   @apply normal-case tracking-[-0.01em] leading-[1.6];
-}
-
-.btn {
-  font-family: 'Inter', sans-serif;
-  font-size: clamp(10px, 0.75vw, 14px);
-  font-weight: 700;
-  @apply uppercase tracking-[0.05em];
 }
 
 .accent-italic {
@@ -140,7 +128,6 @@
   color: hsl(var(--accent));
 }
 
-/* --- Precision Animation Masks --- */
 .mask-container {
   overflow: hidden;
   display: block;

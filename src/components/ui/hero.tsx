@@ -3,13 +3,19 @@
 
 import Image from "next/image";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
-import { useRef } from "react";
-import { ScrollRevealHeading } from "@/components/ScrollRevealHeading";
+import { useRef, useEffect, useState } from "react";
+import { Figma, MousePointer2 } from "lucide-react";
 
 export default function ShaderShowcase() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [greeting, setGreeting] = useState("Good morning!");
+
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour >= 12 && hour < 17) setGreeting("Good afternoon!");
+    else if (hour >= 17 || hour < 5) setGreeting("Good evening!");
+  }, []);
   
-  // Scroll tracking for content reveal
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -17,95 +23,118 @@ export default function ShaderShowcase() {
 
   const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
   
-  // Description specifically reveals based on scroll
-  const descProgress = useTransform(smoothProgress, [0.05, 0.25], [0, 1]);
+  // Transition background to #97b0ad starting from 50% scroll
+  const bgOpacity = useTransform(smoothProgress, [0.5, 0.95], [0, 1]);
 
   return (
-    <div ref={containerRef} className="relative min-h-[200vh] bg-transparent">
-      {/* Background Layer - Fully static as requested */}
-      <div className="absolute top-0 left-0 w-full h-screen z-0 overflow-hidden bg-primary">
-        <div className="relative w-full h-full">
-          <Image
-            src="https://i.ibb.co/NgDy55vR/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd-upscayl-2x-upscayl-standard-4x.jpg"
-            alt="Hero Background"
-            fill
-            className="object-cover"
-            priority
-            unoptimized
-          />
-        </div>
+    <div ref={containerRef} className="relative min-h-[200vh] bg-transparent font-sans">
+      {/* Background Layer */}
+      <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden">
+        <Image
+          src="https://i.ibb.co/NgDy55vR/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd-upscayl-2x-upscayl-standard-4x.jpg"
+          alt="Hero Background"
+          fill
+          className="object-cover"
+          priority
+          unoptimized
+        />
+        {/* The transition overlay to #97b0ad */}
+        <motion.div 
+          style={{ opacity: bgOpacity }}
+          className="absolute inset-0 z-10 bg-[#97b0ad]" 
+        />
+        {/* Subtle base static overlay */}
+        <div className="absolute inset-0 z-0 bg-black/20" />
+      </div>
+
+      {/* Screen 1: Reference-matched Layout */}
+      <div className="relative z-20 w-full h-screen px-[4vw] pt-[4vh] pb-[6vh] flex flex-col justify-between text-white overflow-hidden">
         
-        {/* Subtle static overlay for text legibility */}
-        <div className="absolute inset-0 z-10 bg-black/35" />
-      </div>
-
-      {/* Screen 1: The Main Hook - Aligned to the Left side */}
-      <div className="relative z-20 w-full px-[6vw]">
-        <div className="h-screen flex items-center justify-start">
-          <div className="max-w-[70vw] flex flex-col items-start text-left">
-            <span className="label text-white/60 mb-[4vh] block tracking-[0.3em]">
-              [ ANTON KOLESNIKOV ]
-            </span>
-            
-            <ScrollRevealHeading as="h1" className="heading-xl text-white drop-shadow-2xl">
-              High Conversion
-            </ScrollRevealHeading>
-            
-            <div className="flex flex-col mt-[1vh]">
-              <span className="accent-italic text-white brightness-110 text-[7.5vw] leading-[0.8]">Plumbing</span>
-              <ScrollRevealHeading as="h1" className="heading-xl text-white">
-                Landing Pages
-              </ScrollRevealHeading>
+        {/* TOP ROW */}
+        <div className="grid grid-cols-12 w-full items-start">
+          <div className="col-span-4">
+            <span className="text-[11px] uppercase tracking-[0.1em] opacity-60">{greeting}</span>
+          </div>
+          <div className="col-span-4 flex justify-center gap-4">
+            <span className="text-[11px] uppercase tracking-[0.1em] opacity-40">Socials /</span>
+            <span className="text-[11px] uppercase tracking-[0.1em] hover:opacity-100 opacity-60 cursor-pointer">li /</span>
+            <span className="text-[11px] uppercase tracking-[0.1em] hover:opacity-100 opacity-60 cursor-pointer">dr /</span>
+            <span className="text-[11px] uppercase tracking-[0.1em] hover:opacity-100 opacity-60 cursor-pointer">tw</span>
+          </div>
+          <div className="col-span-4 flex justify-end gap-8">
+            <div className="flex gap-4">
+              <span className="text-[11px] uppercase tracking-[0.1em] text-white">Index /</span>
+              <span className="text-[11px] uppercase tracking-[0.1em] opacity-60">About /</span>
+              <span className="text-[11px] uppercase tracking-[0.1em] opacity-60">Projects</span>
             </div>
-
-            <motion.div
-              style={{ opacity: descProgress, y: useTransform(descProgress, [0, 1], [20, 0]) }}
-              className="mt-[8vh] max-w-[32vw]"
-            >
-              <p className="body-text text-white/90 leading-relaxed border-l border-white/20 pl-6">
-                We design precision-engineered sales machines for US plumbing owners who demand predictable lead flow and dominant local authority.
-              </p>
-            </motion.div>
+            <span className="text-[11px] uppercase tracking-[0.1em] border-b border-white/40 pb-0.5 cursor-pointer">Let's talk!</span>
           </div>
         </div>
 
-        {/* Screen 2: The Core Philosophy - Also Left Weighted */}
-        <div className="h-screen flex flex-col justify-center">
-          <div className="grid md:grid-cols-2 gap-[8vw] items-start">
-            {/* Engineering Side */}
-            <div className="max-w-[40vw]">
-              <ScrollRevealHeading as="h2" className="heading-lg text-white">
-                Precision
-              </ScrollRevealHeading>
-              <span className="accent-italic text-[6.5vw] text-white/90 block -mt-[2vh] mb-[4vh]">Engineering</span>
-              <p className="body-text text-white/95 max-w-[32vw] leading-relaxed">
-                Every pixel is placed with intent. We don't just build websites; we craft high-performance conversion funnels that transform casual browsers into lifetime customers.
-              </p>
+        {/* MIDDLE SECTION */}
+        <div className="grid grid-cols-12 w-full mt-auto mb-[8vh] items-end">
+          {/* Main Info Area */}
+          <div className="col-span-8 flex flex-col">
+            <div className="mb-[6vh]">
+              <p className="text-[12px] opacity-60 mb-1">Hi there! this is</p>
+              <h2 className="text-[24px] font-bold"><span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span></h2>
             </div>
+            
+            <h1 className="text-[9.5vw] font-black leading-[0.8] tracking-[-0.05em] uppercase w-[110%] -ml-1">
+              Landing Pages<br />
+              For Plumbing<br />
+              <span className="text-accent">Calls</span>
+            </h1>
+          </div>
 
-            {/* Flow Side */}
-            <div className="max-w-[40vw] md:mt-[15vh]">
-              <ScrollRevealHeading as="h2" className="heading-lg text-white">
-                Seamless
-              </ScrollRevealHeading>
-              <span className="accent-italic text-[6.5vw] text-white/90 block -mt-[2vh] mb-[4vh]">Flow</span>
-              <p className="body-text text-white/95 max-w-[32vw] leading-relaxed">
-                From the first search click to the final service booking, your customer's journey is smooth, professional, and optimized for maximum trust.
-              </p>
+          {/* Right Side Info Area */}
+          <div className="col-span-4 flex flex-col pl-[4vw]">
+            <div className="space-y-6 mb-[15vh]">
+               <div className="h-[1px] w-full bg-white/10" />
+               <div className="space-y-2 opacity-60 text-[13px] uppercase tracking-wider font-medium">
+                  <p>Built for service businesses</p>
+                  <p>Focused on conversion</p>
+                  <p>Made for owners who care about results</p>
+               </div>
+               <div className="flex items-center justify-between group cursor-pointer pt-4">
+                  <span className="text-[13px] uppercase tracking-wider">How can I help?</span>
+                  <span className="text-xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
+               </div>
+            </div>
+          </div>
+        </div>
+
+        {/* BOTTOM ROW */}
+        <div className="grid grid-cols-12 w-full items-end">
+          <div className="col-span-4">
+            <span className="text-[10px] uppercase tracking-[0.2em] opacity-40">(Scroll down)</span>
+          </div>
+          <div className="col-span-4" />
+          <div className="col-span-4 pl-[4vw] flex flex-col gap-6">
+            <p className="text-[12px] leading-relaxed opacity-60 max-w-[280px]">
+              I'm an award winning product designer specialized in financial products. I work for Fintech, Banking, Crypto & Web3
+            </p>
+            <div className="flex items-center gap-6 pt-4">
+              {/* Webflow Minimalist Icon */}
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" className="opacity-40 hover:opacity-100 transition-opacity">
+                <path d="M22.56 5.86h-3.41l-1.89 6.84-1.89-6.84h-3.41l-1.89 6.84-1.89-6.84H4.77l-1.89 6.84L1 5.86h-1v12.28h3.32l1.89-6.84 1.89 6.84h3.41l1.89-6.84 1.89 6.84h3.32l1.89-6.84 1.89 6.84H23V5.86h-.44z"/>
+              </svg>
+              {/* Figma */}
+              <Figma size={20} className="opacity-40 hover:opacity-100 transition-opacity" />
+              {/* Cursor Icon */}
+              <div className="flex items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
+                 <MousePointer2 size={18} />
+                 <span className="text-[10px] uppercase font-bold tracking-tighter">Cursor</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Scroll Down Hint - Moved to Bottom Left to match ref */}
-      <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ duration: 2, repeat: Infinity }}
-        className="absolute bottom-[5vh] left-[6vw] flex flex-col items-start gap-[1.5vh] text-white/40 z-20 pointer-events-none"
-      >
-        <span className="tag text-white/60 tracking-[0.2em]">(Scroll down)</span>
-        <div className="w-[1px] h-[8vh] bg-gradient-to-b from-accent to-transparent" />
-      </motion.div>
+      {/* Philosophy Section Intro (Visible during scroll) */}
+      <div className="h-screen flex flex-col justify-center px-[6vw]">
+        {/* This stays empty to allow the background transition to be the focus during the second 100vh of scroll */}
+      </div>
     </div>
   );
 }
