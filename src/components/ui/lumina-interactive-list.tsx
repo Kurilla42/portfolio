@@ -49,7 +49,7 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const containerRef = useRef<HTMLDivElement | null>(null);
   
-  // Используем MotionValue для интеграции ручного расчета с Framer Motion
+  // Use MotionValue for integration of manual calculation with Framer Motion
   const progress = useMotionValue(0);
 
   useEffect(() => {
@@ -59,6 +59,8 @@ export function LuminaInteractiveList() {
 
       const rect = el.getBoundingClientRect();
       const windowHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
+      
+      // Total height of the scrollable section minus the viewport height
       const totalScrollable = rect.height - windowHeight;
       
       if (totalScrollable <= 0) {
@@ -66,7 +68,8 @@ export function LuminaInteractiveList() {
         return;
       }
 
-      // Точная логика расчета прогресса (0 → 1) внутри секции
+      // Exact logic for calculating progress (0 → 1) inside the section
+      // rect.top is the distance from viewport top to the top of the element
       const scrolledInside = Math.min(
         Math.max(-rect.top, 0),
         totalScrollable
@@ -76,7 +79,9 @@ export function LuminaInteractiveList() {
       progress.set(p);
     };
 
+    // Initial check
     handleScroll();
+    
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleScroll);
 
@@ -86,10 +91,11 @@ export function LuminaInteractiveList() {
     };
   }, [progress]);
 
-  // Мапим 0-1 в 0vw - (-400vw)
-  const xRaw = useTransform(progress, [0, 1], ['0vw', '-400vw']);
+  // Map 0-1 progress to 0vw - (-400vw) translation
+  // We use [0, 0.98] to ensure the 5th card is fully centered slightly before the very end of the scroll
+  const xRaw = useTransform(progress, [0, 0.98], ['0vw', '-400vw']);
 
-  // Добавляем пружину для плавности
+  // Add a spring for smoothness
   const x = useSpring(xRaw, {
     stiffness: 100,
     damping: 30,
