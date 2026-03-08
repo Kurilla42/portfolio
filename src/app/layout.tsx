@@ -1,7 +1,9 @@
+
 import type {Metadata} from 'next';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ScrollObserver } from "@/components/ScrollObserver";
+import { SmoothScroll } from "@/components/SmoothScroll";
 
 export const metadata: Metadata = {
   title: 'JobFlow Landing Pages | Anton Kolesnikov',
@@ -24,8 +26,10 @@ export default function RootLayout({
         {/* Grain Overlay */}
         <div className="noise-overlay" aria-hidden="true" />
         
-        <ScrollObserver />
-        {children}
+        <SmoothScroll>
+          <ScrollObserver />
+          {children}
+        </SmoothScroll>
         <Toaster />
       </body>
     </html>
