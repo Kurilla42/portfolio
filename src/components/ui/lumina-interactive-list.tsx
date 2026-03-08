@@ -76,7 +76,7 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
         sizes="100vw"
       />
       
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent pointer-events-none" />
+      {/* Оверлей удален по запросу пользователя для максимальной чистоты картинки */}
 
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
