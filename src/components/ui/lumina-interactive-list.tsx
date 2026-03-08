@@ -1,3 +1,4 @@
+
 'use client';
 
 import React from 'react';
@@ -10,7 +11,7 @@ const showcaseItems = [
     description:
       'Every element is engineered to move the visitor toward a single goal: booking a call or requesting a quote.',
     image:
-      'https://i.ibb.co/4ZGtc09G/Whisk-89cb8686ddb9da498354cec156be16b4dr.png',
+      'https://i.ibb.co/twSbTjCt/Whisk-qmyyuznivmnwiwyj1injdtytymmkrtllrgmk1sy.png',
     number: '01',
   },
   {
@@ -68,7 +69,7 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
         src={item.image}
         alt={item.title}
         fill
-        className="object-cover"
+        className="object-cover object-top"
         priority
         unoptimized
         quality={100}

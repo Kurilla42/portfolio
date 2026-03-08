@@ -21,7 +21,6 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
   }, []);
   
   // Use progress from parent if available, otherwise default to 0
-  // Transition between the initial hero image and the experience block background
   const secondImageOpacity = useTransform(progress || new motion.Value(0), [0, 0.8], [0, 1]);
 
   return (
@@ -36,6 +35,7 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
           className="object-cover"
           priority
           unoptimized
+          quality={100}
         />
         
         {/* Experience Background Image that fades in */}
@@ -44,12 +44,13 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
           className="absolute inset-0 z-10"
         >
           <Image
-            src="https://i.ibb.co/fz8VwXFC/f287897f-0106-4a17-a80c-76b912a016a7-upscayl-2x-upscayl-standard-4x.png"
+            src="https://i.ibb.co/Y6mmwvG/Whisk-b58d627825337489433466f42b316b9feg.png"
             alt="Experience Background"
             fill
             className="object-cover"
             priority
             unoptimized
+            quality={100}
           />
         </motion.div>
       </div>
