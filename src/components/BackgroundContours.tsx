@@ -31,7 +31,7 @@ export function BackgroundContours() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10 bg-[#F5F2EB]"
+      className="pointer-events-none fixed inset-0 -z-10 bg-[#F8FAFC]"
     >
       <svg
         ref={ref}
@@ -41,7 +41,7 @@ export function BackgroundContours() {
         preserveAspectRatio="xMidYMid slice"
       >
         {/* несколько плавных контуров */}
-        <g stroke="#D5D0C5" strokeWidth="1.5" fill="none">
+        <g stroke="#E2E8F0" strokeWidth="1.5" fill="none">
           <path
             d="M-100 200 C 300 80, 600 120, 1100 260 C 1500 380, 1900 320, 2100 200"
             data-wiggle="1"

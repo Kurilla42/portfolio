@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
@@ -106,7 +105,7 @@ export default function Home() {
       {/* Editorial Comparison Table Section */}
       <section 
         ref={sectionRef} 
-        className="relative py-[20vh] z-10 bg-[#F5F2EB] overflow-hidden w-full" 
+        className="relative py-[20vh] z-10 bg-[#F8FAFC] overflow-hidden w-full" 
         id="about"
       >
         <div className="w-full">
@@ -127,7 +126,7 @@ export default function Home() {
           </div>
 
           {/* Table Headers */}
-          <div className="sticky top-0 z-30 w-full border-b border-primary/10 bg-[#F5F2EB]/90 backdrop-blur-md">
+          <div className="sticky top-0 z-30 w-full border-b border-primary/10 bg-[#F8FAFC]/90 backdrop-blur-md">
             <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 px-0">
               {[
                 { label: "CRITERIA", active: false },
@@ -245,7 +244,7 @@ export default function Home() {
       </section>
 
       {/* Packages Section */}
-      <section className="py-[15vh] bg-[#F5F2EB] relative z-10" id="packages">
+      <section className="py-[15vh] bg-[#F8FAFC] relative z-10" id="packages">
         <div className="w-full px-[8vw]">
           <header className="mb-[15vh]">
             <HighlightWipeHeading 
@@ -368,7 +367,7 @@ export default function Home() {
       </section>
 
       {/* Final CTA */}
-      <section className="py-[20vh] border-t border-primary/5 bg-[#F5F2EB] relative z-10" id="contact">
+      <section className="py-[20vh] border-t border-primary/5 bg-[#F8FAFC] relative z-10" id="contact">
         <div className="w-full px-[6vw]">
           <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">
             <div className="relative z-10 space-y-8 md:space-y-[6vh]">
@@ -389,7 +388,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-[10vh] border-t border-primary/5 bg-[#F5F2EB] relative z-10">
+      <footer className="py-[10vh] border-t border-primary/5 bg-[#F8FAFC] relative z-10">
         <div className="w-full px-[6vw]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-[6vh]">
             <div className="flex items-center gap-4">

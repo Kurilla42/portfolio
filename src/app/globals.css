@@ -1,29 +1,28 @@
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Refined Palette: Based on Sage, Clay, and Warm Tones */
-    --background: 184 10% 64%; /* #97b0ad equivalent */
-    --foreground: 184 15% 15%;
-    --card: 184 10% 68%;
-    --card-foreground: 184 15% 15%;
-    --popover: 184 10% 68%;
-    --popover-foreground: 184 15% 15%;
-    --primary: 184 15% 22%;
-    --primary-foreground: 45 15% 98%;
-    --secondary: 174 15% 85%;
-    --secondary-foreground: 184 15% 20%;
-    --muted: 174 10% 88%;
-    --muted-foreground: 184 10% 45%;
-    --accent: 26 97% 54%; /* #fc7c19 equivalent */
-    --accent-foreground: 45 15% 98%;
+    /* Refined Palette: Cold White and High-Contrast Accents */
+    --background: 210 20% 98%; /* Cold white (#F8FAFC equivalent) */
+    --foreground: 222 47% 11%;
+    --card: 210 20% 98%;
+    --card-foreground: 222 47% 11%;
+    --popover: 210 20% 98%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 222 47% 11%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 20% 90%;
+    --secondary-foreground: 222 47% 11%;
+    --muted: 210 20% 92%;
+    --muted-foreground: 215 16% 47%;
+    --accent: 26 97% 54%; /* Keep the signature orange */
+    --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 184 15% 85%;
-    --input: 184 15% 85%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
     --ring: 26 97% 54%;
     --radius: 0.5rem;
   }
@@ -68,7 +67,7 @@ html.lenis, html.lenis body {
   height: 400%;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.06; 
+  opacity: 0.04; 
   background-image: url("https://i.ibb.co/H8T22Jm/black-felt.png");
   background-repeat: repeat;
   background-size: 128px;
