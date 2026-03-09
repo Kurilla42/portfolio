@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
@@ -52,21 +53,21 @@ export default function Home() {
   const [activeRow, setActiveRow] = useState<number | null>(null);
   
   const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const { scrollYProgress: heroProgress } = useScroll({
     target: heroCombinedRef,
     offset: ["start start", "end end"]
   });
 
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const { scrollYProgress: tableProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start end", "end start"]
+  });
+
+  const smoothProgress = useSpring(tableProgress, { stiffness: 100, damping: 30 });
 
   const col1Y = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
-  const col2Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); 
-  const col3Y = useTransform(smoothProgress, [0.1, 0.4], [90, 0]);  
-  const col4Y = useTransform(smoothProgress, [0.1, 0.4], [180, 0]); 
+  const col2Y = useTransform(smoothProgress, [0.1, 0.4], [120, 0]); 
+  const col3Y = useTransform(smoothProgress, [0.1, 0.4], [60, 0]);  
+  const col4Y = useTransform(smoothProgress, [0.1, 0.4], [120, 0]); 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,7 +93,7 @@ export default function Home() {
     <div className="min-h-screen bg-transparent">
       {/* Combined Background Area for Hero and Experience */}
       <div ref={heroCombinedRef} className="relative">
-        <ShaderShowcase progress={heroProgress} />
+        <ShaderShowcase progress={scrollYProgress} />
         <ExperienceTextSection />
       </div>
 
@@ -105,49 +106,52 @@ export default function Home() {
       {/* Editorial Comparison Table Section */}
       <section 
         ref={sectionRef} 
-        className="relative py-[25vh] z-10 bg-[#F5F2EB] overflow-hidden w-full" 
+        className="relative py-[20vh] z-10 bg-[#F5F2EB] overflow-hidden w-full" 
         id="about"
       >
         <div className="w-full">
           
-          <div className="mb-[15vh] px-[8vw]">
-            <HighlightWipeHeading 
-              lines={["Integrated."]}
-              className="heading-lg text-primary tracking-tighter"
-            />
-            <div className="flex items-center gap-4">
-               <em className="accent-italic lowercase text-[4vw]">Editorial Precision.</em>
+          <div className="mb-[12vh] px-[8vw] flex flex-col md:flex-row md:items-end justify-between gap-8">
+            <div>
+              <HighlightWipeHeading 
+                lines={["Integrated.", "Precise."]}
+                className="heading-lg text-primary tracking-tighter"
+              />
+              <p className="body-text text-primary/60 max-w-[30vw] mt-6">
+                A side-by-side breakdown of why focus and strategy outperform generalist design every single time.
+              </p>
+            </div>
+            <div className="pb-4">
+               <em className="accent-italic lowercase text-[3.5vw]">The Difference.</em>
             </div>
           </div>
 
           {/* Table Headers */}
-          <div className="sticky top-[20px] z-30 w-full border-b border-[#E3E0D6] bg-[#F5F2EB]/80 backdrop-blur-md">
+          <div className="sticky top-0 z-30 w-full border-b border-primary/10 bg-[#F5F2EB]/90 backdrop-blur-md">
             <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 px-0">
               {[
                 { label: "CRITERIA", active: false },
-                { label: "ANTON KOLESNIKOV", active: true, dark: true },
+                { label: "ANTON KOLESNIKOV", active: true },
                 { label: "FREELANCER", active: false },
                 { label: "AGENCY", active: false }
               ].map((header, i) => (
                 <div 
                   key={i} 
-                  className={`relative flex items-center h-[9vh] min-h-[80px] transition-colors duration-300
+                  className={`relative flex items-center h-[8vh] min-h-[60px] 
                     ${i === 0 ? 'pl-[8vw] pr-[3vw]' : i === 3 ? 'pr-[8vw] pl-[2.5vw]' : 'px-[2.5vw]'}
-                    ${header.dark && (activeRow !== null || hoveredRow !== null) ? 'bg-white/50' : ''}
                   `}
                 >
-                  <span className={`text-[0.7vw] min-text-[12px] font-semibold tracking-[0.16em] uppercase truncate transition-colors duration-300
-                    ${header.active && (activeRow !== null || hoveredRow !== null) ? 'text-primary' : 'text-[#9BA3A7]'}
+                  <span className={`text-[11px] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
+                    ${header.active ? 'text-primary' : 'text-primary/30'}
                   `}>
                     {header.label}
                   </span>
-                  {header.active && (activeRow !== null || hoveredRow !== null) && (
+                  {header.active && (
                     <motion.div 
                       layoutId="headerUnderline"
-                      className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
+                      className="absolute bottom-0 left-[2.5vw] right-[2.5vw] h-[2px] bg-accent"
                       initial={{ scaleX: 0 }}
                       animate={{ scaleX: 1 }}
-                      transition={{ duration: 0.25, ease: "easeOut" }}
                     />
                   )}
                 </div>
@@ -157,88 +161,81 @@ export default function Home() {
 
           {/* Table Body */}
           <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 relative">
+            {/* Column 1: Criteria */}
             <motion.div style={{ y: col1Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`compare-row-trigger flex flex-col justify-center pl-[8vw] pr-[3vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300 relative
-                    ${(activeRow === idx || hoveredRow === idx) ? 'bg-white/80 shadow-[0_16px_40px_rgba(0,0,0,0.06)] z-20' : idx % 2 === 0 ? 'bg-black/5' : 'bg-transparent'}`}
+                  className={`compare-row-trigger flex flex-col justify-center pl-[8vw] pr-[3vw] h-[10vh] min-h-[80px] border-b border-primary/5 transition-all duration-300 relative
+                    ${(activeRow === idx || hoveredRow === idx) ? 'text-primary' : 'text-primary/40'}`}
                 >
                   {(activeRow === idx || hoveredRow === idx) && (
                     <motion.div 
-                      initial={{ opacity: 0, x: -5 }}
+                      layoutId="rowIndicator"
+                      initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="absolute left-0 top-0 bottom-0 w-[2px] bg-accent" 
+                      className="absolute left-0 top-1/2 -translate-y-1/2 w-[4px] h-[30%] bg-accent" 
                     />
                   )}
-                  <span className={`text-[0.75vw] min-text-[13px] font-medium tracking-[0.18em] uppercase truncate transition-colors duration-300
-                    ${(activeRow === idx || hoveredRow === idx) ? 'text-primary' : 'text-[#7A858A]'}
-                  `}>
+                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase truncate">
                     {item.criterion}
                   </span>
                 </div>
               ))}
             </motion.div>
 
-            <motion.div style={{ y: col2Y }} className="flex flex-col relative z-10">
+            {/* Column 2: Anton (Main Focus) */}
+            <motion.div style={{ y: col2Y }} className="flex flex-col relative">
               {comparisonData.map((item, idx) => (
-                <motion.div 
+                <div 
                   key={idx}
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  whileHover={{ y: -2 }}
-                  className={`flex flex-col justify-center px-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
-                    ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'bg-white/90 shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.04] z-20 border-accent/20' 
-                      : idx % 2 === 0 ? 'bg-black/5' : 'bg-transparent'}`}
+                  className={`flex flex-col justify-center px-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary/5 transition-all duration-300
+                    ${(activeRow === idx || hoveredRow === idx) ? 'text-primary' : 'text-primary/80'}`}
                 >
-                  <p className={`text-[1.2vw] min-text-[18px] font-medium leading-tight truncate transition-colors duration-300
-                    ${(activeRow === idx || hoveredRow === idx) ? 'text-[#111D22]' : 'text-[#1A2C32]'}
-                  `}>
+                  <p className="text-[1.3vw] min-text-[16px] font-bold leading-tight truncate">
                     {item.me}
                   </p>
-                </motion.div>
+                </div>
               ))}
             </motion.div>
 
+            {/* Column 3: Freelancer */}
             <motion.div style={{ y: col3Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`flex flex-col justify-center px-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
-                    ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'bg-white/80 shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
-                      : idx % 2 === 0 ? 'bg-black/5 opacity-80' : 'bg-transparent opacity-80'}`}
+                  className={`flex flex-col justify-center px-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary/5 transition-all duration-300
+                    ${(activeRow === idx || hoveredRow === idx) ? 'text-primary/60' : 'text-primary/30'}`}
                 >
-                  <p className={`text-[1.1vw] min-text-[16px] font-normal leading-tight truncate transition-opacity duration-300
-                    ${(activeRow === idx || hoveredRow === idx) ? 'text-[#8FA0A5] opacity-85' : 'text-[#8FA0A5]'}
-                  `}>
+                  <p className="text-[1.1vw] min-text-[14px] font-medium leading-tight truncate">
                     {item.freelancer}
                   </p>
                 </div>
               ))}
             </motion.div>
 
+            {/* Column 4: Agency */}
             <motion.div style={{ y: col4Y }} className="flex flex-col">
               {comparisonData.map((item, idx) => (
                 <div 
                   key={idx} 
                   onMouseEnter={() => setHoveredRow(idx)}
                   onMouseLeave={() => setHoveredRow(null)}
-                  className={`flex flex-col justify-center pr-[8vw] pl-[2.5vw] h-[9vh] min-h-[80px] border-b border-[#E3E0D6] transition-all duration-300
-                    ${(activeRow === idx || hoveredRow === idx) 
-                      ? 'bg-white/80 shadow-[0_16px_40px_rgba(0,0,0,0.06)] scale-[1.01] z-20 opacity-100' 
-                      : idx % 2 === 0 ? 'bg-black/5 opacity-80' : 'bg-transparent opacity-80'}`}
+                  className={`flex flex-col justify-center pr-[8vw] pl-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary/5 transition-all duration-300
+                    ${(activeRow === idx || hoveredRow === idx) ? 'text-primary/60' : 'text-primary/30'}`}
                 >
-                  <p className={`text-[1.1vw] min-text-[16px] font-normal leading-tight truncate transition-opacity duration-300
-                    ${(activeRow === idx || hoveredRow === idx) ? 'text-[#8FA0A5] opacity-85' : 'text-[#8FA0A5]'}
-                  `}>
-                    {item.agency}
-                  </p>
+                  <div className="flex items-center justify-between gap-4">
+                    <p className="text-[1.1vw] min-text-[14px] font-medium leading-tight truncate">
+                      {item.agency}
+                    </p>
+                    <ArrowRight className={`w-4 h-4 transition-transform duration-500 ${activeRow === idx || hoveredRow === idx ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4'}`} />
+                  </div>
                 </div>
               ))}
             </motion.div>
