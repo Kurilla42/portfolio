@@ -31,7 +31,7 @@ export function BackgroundContours() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10 bg-[#F8FAFC]"
+      className="pointer-events-none fixed inset-0 -z-10 bg-[#eaeaf2]"
     >
       <svg
         ref={ref}

@@ -35,7 +35,7 @@ export function ProcessSection() {
   return (
     <div 
       ref={containerRef} 
-      className="relative h-[400vh] bg-[#F8FAFC] z-30 mt-[-100vh] shadow-[0_-20px_40px_rgba(0,0,0,0.02)]"
+      className="relative h-[400vh] bg-[#eaeaf2] z-30 mt-[-100vh] shadow-[0_-20px_40px_rgba(0,0,0,0.02)]"
       id="process"
     >
       <div className="sticky top-0 h-screen w-full flex items-center overflow-hidden">

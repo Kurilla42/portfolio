@@ -4,25 +4,25 @@
 
 @layer base {
   :root {
-    /* Refined Palette: Cold White and High-Contrast Accents */
-    --background: 210 20% 98%; /* Cold white (#F8FAFC equivalent) */
+    /* Refined Palette: Cold Grey-Blue (#eaeaf2) */
+    --background: 240 24% 93%; 
     --foreground: 222 47% 11%;
-    --card: 210 20% 98%;
+    --card: 240 24% 93%;
     --card-foreground: 222 47% 11%;
-    --popover: 210 20% 98%;
+    --popover: 240 24% 93%;
     --popover-foreground: 222 47% 11%;
     --primary: 222 47% 11%;
     --primary-foreground: 210 40% 98%;
-    --secondary: 210 20% 90%;
+    --secondary: 240 10% 88%;
     --secondary-foreground: 222 47% 11%;
-    --muted: 210 20% 92%;
+    --muted: 240 10% 90%;
     --muted-foreground: 215 16% 47%;
     --accent: 26 97% 54%; /* Keep the signature orange */
     --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --border: 214 32% 85%;
+    --input: 214 32% 85%;
     --ring: 26 97% 54%;
     --radius: 0.5rem;
   }
@@ -102,7 +102,7 @@ html.lenis, html.lenis body {
 
 .heading-lg {
   font-family: 'Inter', sans-serif;
-  @apply font-black uppercase leading-[0.85] tracking-normal;
+  @apply font-black uppercase leading-[0.8] tracking-normal;
 }
 
 .heading-md {
