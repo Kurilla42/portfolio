@@ -35,11 +35,11 @@ export function ProcessSection() {
               [ OUR METHODOLOGY ]
             </span>
             <div className="relative flex flex-col">
-              <h2 className="text-[7.5vw] font-black text-primary leading-[0.8] tracking-tighter uppercase">
+              <h2 className="heading-xl text-primary uppercase">
                 THE STEPS
               </h2>
               <div className="flex items-baseline gap-[1vw]">
-                <h2 className="text-[7.5vw] font-black text-primary leading-[0.8] tracking-tighter uppercase">
+                <h2 className="heading-xl text-primary uppercase">
                   SIMPLE TO FLOW
                 </h2>
               </div>
@@ -68,10 +68,10 @@ export function ProcessSection() {
                     className="flex items-center justify-between py-[4vh] border-b border-primary/10 group transition-colors"
                   >
                     <div className="flex items-baseline gap-[3vw]">
-                      <span className="text-[3.0vw] font-black text-primary/20 tracking-tighter uppercase font-sans">
+                      <span className="heading-md text-primary/20">
                         {step.number}
                       </span>
-                      <h3 className="text-[3.0vw] font-black text-primary tracking-tighter uppercase font-sans">
+                      <h3 className="heading-md text-primary">
                         {step.title}
                       </h3>
                     </div>

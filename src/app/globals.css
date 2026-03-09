@@ -17,7 +17,7 @@
     --secondary-foreground: 222 47% 11%;
     --muted: 240 10% 90%;
     --muted-foreground: 215 16% 47%;
-    --accent: 26 97% 54%; /* Keep the signature orange */
+    --accent: 26 97% 54%; /* Signature orange */
     --accent-foreground: 210 40% 98%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
@@ -88,31 +88,30 @@ html.lenis, html.lenis body {
   100% { transform: translate(1%,0); }
 }
 
-/* --- Typography System --- */
+/* --- Unified Typography System --- */
 
 .hero-display {
   font-family: 'Inter', sans-serif;
+  font-size: 7.5vw;
   @apply font-black uppercase leading-[0.8] tracking-normal;
 }
 
 .heading-xl {
   font-family: 'Inter', sans-serif;
+  font-size: 7.5vw;
   @apply font-black uppercase leading-[0.8] tracking-normal;
 }
 
 .heading-lg {
   font-family: 'Inter', sans-serif;
+  font-size: 7.5vw;
   @apply font-black uppercase leading-[0.8] tracking-normal;
 }
 
 .heading-md {
   font-family: 'Inter', sans-serif;
-  @apply font-black uppercase leading-[1.1] tracking-tight;
-}
-
-.services-item {
-  font-family: 'Inter', sans-serif;
-  @apply font-black uppercase leading-[1] tracking-tight;
+  font-size: 3.0vw;
+  @apply font-black uppercase leading-[1.1] tracking-tighter;
 }
 
 .nav-link {
