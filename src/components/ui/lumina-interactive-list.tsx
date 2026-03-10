@@ -52,7 +52,7 @@ export function LuminaInteractiveList() {
       {showcaseItems.map((item, index) => (
         <section
           key={index}
-          className={`sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden border-b border-white/5 ${index === 0 ? 'bg-transparent' : ''}`}
+          className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden border-b border-white/5"
         >
           <ShowcaseItem item={item} index={index} />
         </section>
@@ -62,40 +62,6 @@ export function LuminaInteractiveList() {
 }
 
 function ShowcaseItem({ item, index }: { item: any; index: number }) {
-  // First item is transparent to show the seamless background from Experience section
-  if (index === 0) {
-    return (
-      <div className="relative w-full h-full group overflow-hidden bg-transparent">
-        <motion.div 
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, amount: 0.3 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="relative z-10 w-full h-full flex flex-col justify-end px-[8vw] pb-[12vh]"
-        >
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 items-end w-full">
-            <div className="md:col-span-8 text-left">
-              <div className="flex items-center gap-4 mb-6">
-                <span className="font-mono text-[1.1vw] text-white/50 tracking-[0.3em] uppercase block">
-                  [ {item.number} ]
-                </span>
-                <div className="h-[1px] w-[6vw] bg-white/20" />
-              </div>
-              <h2 className="heading-xl text-white uppercase">
-                {item.title}
-              </h2>
-            </div>
-            <div className="md:col-span-4 flex flex-col items-start md:items-end text-left md:text-right">
-              <p className="body-text text-white text-[1.4vw] leading-[1.4] font-medium opacity-100 max-w-[450px]">
-                {item.description}
-              </p>
-            </div>
-          </div>
-        </motion.div>
-      </div>
-    );
-  }
-
   return (
     <div className="relative w-full h-full group overflow-hidden">
       <Image
@@ -123,7 +89,7 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
               </span>
               <div className="h-[1px] w-[6vw] bg-white/20" />
             </div>
-            <h2 className="heading-xl text-white uppercase">
+            <h2 className="heading-lg text-white uppercase">
               {item.title}
             </h2>
           </div>

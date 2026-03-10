@@ -19,21 +19,13 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
     else if (hour >= 17 || hour < 5) setGreeting("Good evening!");
   }, []);
   
-  // High-resolution image for seamless transition
-  const seamlessImg = "https://i.ibb.co/vvjwxJ7H/Whisk-47ca7114480041e94c14c7b154d004ebdr-upscayl-2x-upscayl-standard-4x.png";
+  const experienceImg = "https://i.ibb.co/Y6mmwvG/Whisk-b58d627825337489433466f42b316b9feg.png";
 
   const secondImageOpacity = useTransform(progress || new motion.Value(0), [0, 0.4, 0.8], [0, 1, 1]);
-  
-  // Transition the image from top to bottom as we scroll through Hero, Experience, and First Case
-  const objectPos = useTransform(
-    progress || new motion.Value(0),
-    [0, 0.4, 0.8],
-    ["top", "center", "bottom"]
-  );
 
   return (
     <div className="relative min-h-screen bg-transparent font-sans">
-      {/* Fixed Background Layer shared across initial scroll stages */}
+      {/* Fixed Background Layer */}
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden">
         {/* Base Hero Image */}
         <Image
@@ -46,22 +38,20 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
           quality={100}
         />
         
-        {/* Seamless Experience Background Image that slides & fades in */}
+        {/* Experience Background Image */}
         <motion.div 
           style={{ opacity: secondImageOpacity }}
           className="absolute inset-0 z-10"
         >
-          <motion.div style={{ objectPosition: objectPos }} className="relative w-full h-full">
-            <Image
-              src={seamlessImg}
-              alt="Experience Background"
-              fill
-              className="object-cover"
-              priority
-              unoptimized
-              quality={100}
-            />
-          </motion.div>
+          <Image
+            src={experienceImg}
+            alt="Experience Background"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+            quality={100}
+          />
         </motion.div>
       </div>
 
@@ -100,7 +90,7 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
             <HighlightWipeHeading 
               as="h1"
               lines={["LANDING PAGES", "FOR PLUMBING", "CALLS"]}
-              className="heading-xl text-white w-[110%] -ml-1"
+              className="heading-lg text-white w-[110%] -ml-1"
               stagger={0.12}
             />
           </div>
