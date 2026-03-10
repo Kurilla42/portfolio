@@ -65,7 +65,7 @@ export function ProcessSection() {
                   <motion.div
                     key={index}
                     style={{ opacity }}
-                    className="flex items-center justify-between py-[4vh] border-b border-primary/10 group transition-colors"
+                    className="flex items-center justify-between py-[4vh] border-b border-primary/10 transition-colors"
                   >
                     <div className="flex items-baseline gap-[3vw]">
                       <span className="heading-md text-primary/20">
@@ -75,12 +75,6 @@ export function ProcessSection() {
                         {step.title}
                       </h3>
                     </div>
-                    <motion.span 
-                      className="text-[2vw] text-accent opacity-0 group-hover:opacity-100 transition-opacity"
-                      initial={false}
-                    >
-                      →
-                    </motion.span>
                   </motion.div>
                 );
               })}
