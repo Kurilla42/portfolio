@@ -51,7 +51,7 @@ export function ProcessSection() {
 
           {/* Right Side: Steps List */}
           <div className="h-full flex flex-col justify-center">
-            <div className="flex flex-col w-full border-t border-primary/10">
+            <div className="flex flex-col w-full border-t border-primary">
               {steps.map((step, index) => {
                 const start = index * 0.25;
                 const end = (index + 1) * 0.25;
@@ -65,7 +65,7 @@ export function ProcessSection() {
                   <motion.div
                     key={index}
                     style={{ opacity }}
-                    className="flex items-center justify-between py-[4vh] border-b border-primary/10 transition-colors"
+                    className="flex items-center justify-between py-[4vh] border-b border-primary transition-colors"
                   >
                     <div className="flex items-baseline gap-[3vw]">
                       <span className="heading-md text-primary/20">

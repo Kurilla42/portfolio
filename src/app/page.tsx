@@ -127,7 +127,7 @@ export default function Home() {
           {/* Table Container with Horizontal Padding for Lines Effect */}
           <div className="px-[8vw]">
             {/* Table Headers */}
-            <div className="sticky top-0 z-30 w-full border-b border-primary/10 bg-[#eaeaf2]/90 backdrop-blur-md">
+            <div className="sticky top-0 z-30 w-full border-b border-primary bg-[#eaeaf2]/90 backdrop-blur-md">
               <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0">
                 {[
                   { label: "CRITERIA", active: false },
@@ -166,7 +166,7 @@ export default function Home() {
                 {comparisonData.map((item, idx) => (
                   <div 
                     key={idx} 
-                    className={`compare-row-trigger flex flex-col justify-center pr-[3vw] h-[10vh] min-h-[80px] border-b border-primary/10 transition-all duration-300 relative
+                    className={`compare-row-trigger flex flex-col justify-center pr-[3vw] h-[10vh] min-h-[80px] border-b border-primary transition-all duration-300 relative
                       ${activeRow === idx ? 'text-primary' : 'text-primary/40'}`}
                   >
                     <span className="text-[10px] font-bold tracking-[0.2em] uppercase truncate">
@@ -181,7 +181,7 @@ export default function Home() {
                 {comparisonData.map((item, idx) => (
                   <div 
                     key={idx}
-                    className={`flex flex-col justify-center px-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary/10 transition-all duration-300
+                    className={`flex flex-col justify-center px-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary transition-all duration-300
                       ${activeRow === idx ? 'text-primary' : 'text-primary/80'}`}
                   >
                     <p className="text-[1.3vw] min-text-[16px] font-bold leading-tight truncate">
@@ -196,7 +196,7 @@ export default function Home() {
                 {comparisonData.map((item, idx) => (
                   <div 
                     key={idx} 
-                    className={`flex flex-col justify-center px-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary/10 transition-all duration-300
+                    className={`flex flex-col justify-center px-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary transition-all duration-300
                       ${activeRow === idx ? 'text-primary/60' : 'text-primary/30'}`}
                   >
                     <p className="text-[1.1vw] min-text-[14px] font-medium leading-tight truncate">
@@ -211,7 +211,7 @@ export default function Home() {
                 {comparisonData.map((item, idx) => (
                   <div 
                     key={idx} 
-                    className={`flex flex-col justify-center pl-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary/10 transition-all duration-300
+                    className={`flex flex-col justify-center pl-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary transition-all duration-300
                       ${activeRow === idx ? 'text-primary/60' : 'text-primary/30'}`}
                   >
                     <p className="text-[1.1vw] min-text-[14px] font-medium leading-tight truncate">
@@ -239,9 +239,9 @@ export default function Home() {
             </p>
           </header>
 
-          <div className="pricing-table border-t border-primary/10">
+          <div className="pricing-table border-t border-primary">
             {/* Table Header */}
-            <div className="hidden md:grid grid-cols-[80px_2fr_1.5fr_1fr] py-[3vh] border-b border-primary/10 text-muted-foreground label opacity-40">
+            <div className="hidden md:grid grid-cols-[80px_2fr_1.5fr_1fr] py-[3vh] border-b border-primary text-muted-foreground label opacity-40">
               <span>Level</span>
               <span>Tier Specifications</span>
               <span>Included Resources</span>
@@ -249,7 +249,7 @@ export default function Home() {
             </div>
 
             {/* Row 1 */}
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-white/20 transition-colors">
+            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary items-start hover:bg-white/20 transition-colors">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">1</div>
               </div>
@@ -257,8 +257,8 @@ export default function Home() {
                 <span className="tier-name heading-md text-primary block mb-[2vh]">Fast Launch Starter</span>
                 <span className="tier-desc body-text text-muted-foreground block mb-[4vh]">A focused launch for small service businesses needing immediate results.</span>
                 <div className="feature-tags flex flex-wrap gap-[1vw]">
-                  <span className="feature-tag tag border border-primary/10 px-3 py-1 rounded-md">Landing Page</span>
-                  <span className="feature-tag tag border border-primary/10 px-3 py-1 rounded-md">Essential SEO</span>
+                  <span className="feature-tag tag border border-primary px-3 py-1 rounded-md">Landing Page</span>
+                  <span className="feature-tag tag border border-primary px-3 py-1 rounded-md">Essential SEO</span>
                 </div>
               </div>
               <div className="tier-details pr-[6vw] mb-[4vh] md:mb-0 space-y-[1.5vh]">
@@ -283,7 +283,7 @@ export default function Home() {
             </div>
 
             {/* Row 2 */}
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start bg-white/30 backdrop-blur-sm relative">
+            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary items-start bg-white/30 backdrop-blur-sm relative">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-accent text-white flex items-center justify-center font-bold heading-md text-xl">2</div>
               </div>
@@ -316,7 +316,7 @@ export default function Home() {
             </div>
 
             {/* Row 3 */}
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary/10 items-start hover:bg-white/20 transition-colors">
+            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary items-start hover:bg-white/20 transition-colors">
               <div className="mb-[2vh] md:mb-0">
                 <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">3</div>
               </div>
