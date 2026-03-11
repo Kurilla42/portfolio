@@ -92,19 +92,19 @@ html.lenis, html.lenis body {
 
 .hero-display {
   font-family: 'Inter', sans-serif;
-  font-size: 7.5vw;
+  font-size: 6vw;
   @apply font-black uppercase leading-[0.8] tracking-normal;
 }
 
 .heading-xl {
   font-family: 'Inter', sans-serif;
-  font-size: 7.5vw;
+  font-size: 6vw;
   @apply font-black uppercase leading-[0.8] tracking-normal;
 }
 
 .heading-lg {
   font-family: 'Inter', sans-serif;
-  font-size: 7.5vw;
+  font-size: 6vw;
   @apply font-black uppercase leading-[0.8] tracking-normal;
 }
 
