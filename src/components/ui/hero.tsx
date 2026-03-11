@@ -29,7 +29,7 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
       <div className="fixed top-0 left-0 w-full h-screen z-0 overflow-hidden">
         {/* Base Hero Image */}
         <Image
-          src="https://i.ibb.co/NgDy55vR/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd-upscayl-2x-upscayl-standard-4x.jpg"
+          src="https://i.ibb.co/MyTDsBGB/Whisk-cdcdf93c304908096814b506dbaf17a6dr.png"
           alt="Hero Background"
           fill
           className="object-cover"
