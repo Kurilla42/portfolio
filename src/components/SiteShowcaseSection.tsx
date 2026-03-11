@@ -21,41 +21,50 @@ export function SiteShowcaseSection() {
     restDelta: 0.001
   });
 
-  // --- Анимация Текста (Растворение) ---
-  const textOpacity = useTransform(smoothProgress, [0, 0.35], [1, 0]);
-  const textScale = useTransform(smoothProgress, [0, 0.35], [1, 0.95]);
+  // --- Анимация Текста (Растворение на месте) ---
+  const textOpacity = useTransform(smoothProgress, [0, 0.3], [1, 0]);
+  const textScale = useTransform(smoothProgress, [0, 0.3], [1, 0.98]);
 
   // --- Анимация Фонового Текста "YOUR SITE" ---
-  const bgTextOpacity = useTransform(smoothProgress, [0.1, 0.5], [0, 0.6]);
-  const bgTextScale = useTransform(smoothProgress, [0.1, 0.5], [0.8, 1]);
+  const bgTextOpacity = useTransform(smoothProgress, [0.1, 0.6], [0, 0.4]);
+  const bgTextScale = useTransform(smoothProgress, [0.1, 0.6], [0.9, 1]);
 
-  // --- Анимация Изображений (Выезд снизу) ---
-  const imageY = useTransform(smoothProgress, [0.1, 0.5], ["60vh", "0vh"]);
-  const imageOpacity = useTransform(smoothProgress, [0.1, 0.4], [0, 1]);
+  // --- Анимация Изображений (Выезд с самого низа) ---
+  // Начинают движение почти сразу и плавно встают в центр
+  const imageY = useTransform(smoothProgress, [0.05, 0.55], ["100vh", "0vh"]);
+  const imageOpacity = useTransform(smoothProgress, [0.05, 0.4], [0, 1]);
   
-  // Общее масштабирование секции в конце
+  // Общее масштабирование секции в конце для эффекта отдаления
   const sectionScale = useTransform(smoothProgress, [0.8, 1], [1, 0.95]);
 
   const leftCase = PlaceHolderImages.find(img => img.id === 'case-study-2');
   const rightCase = PlaceHolderImages.find(img => img.id === 'case-study-3');
 
+  const renderVerticalText = (text: string) => {
+    return text.split("").map((char, i) => (
+      <span key={i} className="block leading-[0.85]">{char}</span>
+    ));
+  };
+
   return (
-    <div ref={containerRef} className="relative h-[350vh] bg-black z-10">
+    <div ref={containerRef} className="relative h-[400vh] bg-black z-10">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
           style={{ scale: sectionScale }}
           className="w-full h-full flex items-center justify-center relative"
         >
-          {/* Central Background Text: YOUR SITE */}
+          {/* Central Background Text: YOUR SITE (Vertical / Inter) */}
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
             <motion.div 
               style={{ opacity: bgTextOpacity, scale: bgTextScale }}
-              className="flex flex-col items-center"
+              className="flex gap-[15vw] items-start"
             >
-              <div className="flex flex-col items-center accent-italic text-[10vw] lowercase leading-[0.75] text-white/40">
-                <span className="block">your</span>
-                <span className="block">site</span>
+              <div className="flex flex-col items-center font-sans font-black text-[8vw] uppercase text-white">
+                {renderVerticalText("YOUR")}
+              </div>
+              <div className="flex flex-col items-center font-sans font-black text-[8vw] uppercase text-white">
+                {renderVerticalText("SITE")}
               </div>
             </motion.div>
           </div>
@@ -66,13 +75,13 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
                 style={{ opacity: textOpacity, scale: textScale }}
-                className="absolute heading-xl text-white z-20 pointer-events-none text-center"
+                className="absolute heading-md text-white z-20 pointer-events-none text-center"
               >
                 EXPLORE<br />HOW YOUR
               </motion.div>
               <motion.div 
                 style={{ y: imageY, opacity: imageOpacity }}
-                className="relative w-[38vw] aspect-[3/4] rounded-[3vw] overflow-hidden shadow-[0_4vw_8vw_-1vw_rgba(0,0,0,0.5)] z-10"
+                className="relative w-[38vw] aspect-[3/4] rounded-[2vw] overflow-hidden shadow-[0_4vw_8vw_-1vw_rgba(0,0,0,0.8)] z-10"
               >
                 <Image 
                   src={leftCase?.imageUrl || ''} 
@@ -81,7 +90,6 @@ export function SiteShowcaseSection() {
                   className="object-cover object-top" 
                   priority 
                   unoptimized
-                  quality={100}
                 />
               </motion.div>
             </div>
@@ -90,13 +98,13 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
                 style={{ opacity: textOpacity, scale: textScale }}
-                className="absolute heading-xl text-white z-20 pointer-events-none text-center"
+                className="absolute heading-md text-white z-20 pointer-events-none text-center"
               >
                 SITE CAN<br />LOOK LIKE
               </motion.div>
               <motion.div 
                 style={{ y: imageY, opacity: imageOpacity }}
-                className="relative w-[38vw] aspect-[3/4] rounded-[3vw] overflow-hidden shadow-[0_4vw_8vw_-1vw_rgba(0,0,0,0.5)] z-10"
+                className="relative w-[38vw] aspect-[3/4] rounded-[2vw] overflow-hidden shadow-[0_4vw_8vw_-1vw_rgba(0,0,0,0.8)] z-10"
               >
                 <Image 
                   src={rightCase?.imageUrl || ''} 
@@ -105,15 +113,14 @@ export function SiteShowcaseSection() {
                   className="object-cover object-top" 
                   priority 
                   unoptimized
-                  quality={100}
                 />
               </motion.div>
             </div>
           </div>
         </motion.div>
 
-        {/* Bottom Fade Gradient for transitions */}
-        <div className="absolute bottom-0 left-0 right-0 h-[30vh] bg-gradient-to-t from-black to-transparent pointer-events-none z-30" />
+        {/* Bottom Fade Gradient for smooth transition back to light background */}
+        <div className="absolute bottom-0 left-0 right-0 h-[25vh] bg-gradient-to-t from-[#eaeaf2] to-transparent pointer-events-none z-30 opacity-0 group-data-[visible=true]:opacity-100 transition-opacity" />
       </div>
     </div>
   );
