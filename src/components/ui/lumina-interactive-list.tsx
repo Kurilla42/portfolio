@@ -1,7 +1,7 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
 
 const showcaseItems = [
@@ -62,18 +62,40 @@ export function LuminaInteractiveList() {
 }
 
 function ShowcaseItem({ item, index }: { item: any; index: number }) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Track scroll progress for this specific section
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Create smooth parallax movement for the background image
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  const smoothY = useSpring(y, { stiffness: 100, damping: 30, restDelta: 0.001 });
+
   return (
-    <div className="relative w-full h-full group overflow-hidden">
-      <Image
-        src={item.image}
-        alt={item.title}
-        fill
-        className="object-cover object-top"
-        priority
-        unoptimized
-        quality={100}
-        sizes="100vw"
-      />
+    <div ref={containerRef} className="relative w-full h-full group overflow-hidden">
+      {/* Parallax Image Container */}
+      <motion.div 
+        style={{ y: smoothY, scale: 1.1 }}
+        className="absolute inset-0 w-full h-[120%] top-[-10%]"
+      >
+        <Image
+          src={item.image}
+          alt={item.title}
+          fill
+          className="object-cover object-top"
+          priority
+          unoptimized
+          quality={100}
+          sizes="100vw"
+        />
+        {/* Dark overlay for text readability */}
+        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
+      </motion.div>
+
+      {/* Content Overlay */}
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
