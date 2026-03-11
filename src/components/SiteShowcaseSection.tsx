@@ -23,7 +23,6 @@ export function SiteShowcaseSection() {
 
   // --- Анимация Исчезающего Текста (6vw) ---
   const textOpacity = useTransform(smoothProgress, [0, 0.3], [1, 0]);
-  const textScale = useTransform(smoothProgress, [0, 0.3], [1, 0.98]);
 
   // --- Анимация Появляющегося Фонового Текста (3vw) ---
   const bgTextOpacity = useTransform(smoothProgress, [0.1, 0.6], [0, 0.4]);
@@ -53,16 +52,17 @@ export function SiteShowcaseSection() {
           style={{ scale: sectionScale }}
           className="w-full h-full flex items-center justify-center relative"
         >
-          {/* Central Background Text: YOUR SITE (Vertical / Inter / 3vw) */}
+          {/* Central Background Text: YOUR SITE (Single Column Vertical / Inter / 3vw) */}
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
             <motion.div 
               style={{ opacity: bgTextOpacity, scale: bgTextScale }}
-              className="flex gap-[25vw] items-start"
+              className="flex flex-col items-center font-sans font-black text-[3vw] heading-md uppercase text-white leading-none"
             >
-              <div className="flex flex-col items-center font-sans font-black text-[3vw] uppercase text-white leading-none">
+              <div className="flex flex-col items-center">
                 {renderVerticalText("YOUR")}
               </div>
-              <div className="flex flex-col items-center font-sans font-black text-[3vw] uppercase text-white leading-none">
+              <div className="h-[2vh]" aria-hidden="true" /> {/* Spacer between words */}
+              <div className="flex flex-col items-center">
                 {renderVerticalText("SITE")}
               </div>
             </motion.div>
@@ -73,7 +73,7 @@ export function SiteShowcaseSection() {
             {/* Left Side */}
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
-                style={{ opacity: textOpacity, scale: textScale }}
+                style={{ opacity: textOpacity }}
                 className="absolute heading-lg text-white z-20 pointer-events-none text-center"
               >
                 EXPLORE<br />HOW YOUR
@@ -96,7 +96,7 @@ export function SiteShowcaseSection() {
             {/* Right Side */}
             <div className="relative flex justify-center items-center h-full">
               <motion.div 
-                style={{ opacity: textOpacity, scale: textScale }}
+                style={{ opacity: textOpacity }}
                 className="absolute heading-lg text-white z-20 pointer-events-none text-center"
               >
                 SITE CAN<br />LOOK LIKE
@@ -117,9 +117,6 @@ export function SiteShowcaseSection() {
             </div>
           </div>
         </motion.div>
-
-        {/* Bottom Fade Gradient for smooth transition back to light background */}
-        <div className="absolute bottom-0 left-0 right-0 h-[25vh] bg-gradient-to-t from-[#eaeaf2] to-transparent pointer-events-none z-30" />
       </div>
     </div>
   );
