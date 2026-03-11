@@ -64,22 +64,22 @@ export function LuminaInteractiveList() {
 function ShowcaseItem({ item, index }: { item: any; index: number }) {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Track scroll progress for this specific section
+  // Track scroll progress for this specific section relative to its entry/exit in viewport
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end start"]
   });
 
-  // Create smooth parallax movement for the background image
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
-  const smoothY = useSpring(y, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  // More aggressive parallax movement for visibility (-20% to 20%)
+  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
+  const smoothY = useSpring(y, { stiffness: 80, damping: 20, restDelta: 0.001 });
 
   return (
     <div ref={containerRef} className="relative w-full h-full group overflow-hidden">
-      {/* Parallax Image Container */}
+      {/* Parallax Image Container - Height is 140% to allow for movement without showing gaps */}
       <motion.div 
-        style={{ y: smoothY, scale: 1.1 }}
-        className="absolute inset-0 w-full h-[120%] top-[-10%]"
+        style={{ y: smoothY, scale: 1.15 }}
+        className="absolute inset-0 w-full h-[140%] top-[-20%]"
       >
         <Image
           src={item.image}
@@ -92,7 +92,7 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
           sizes="100vw"
         />
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors duration-700" />
+        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-700" />
       </motion.div>
 
       {/* Content Overlay */}
@@ -111,7 +111,7 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
               </span>
               <div className="h-[1px] w-[6vw] bg-white/20" />
             </div>
-            <h2 className="heading-lg text-white uppercase">
+            <h2 className="heading-lg text-white uppercase text-[6vw]">
               {item.title}
             </h2>
           </div>
