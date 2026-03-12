@@ -46,10 +46,10 @@ export function ProcessSection() {
             [ OUR METHODOLOGY ]
           </span>
           <div className="relative flex flex-col">
-            <h2 className="heading-md text-primary uppercase leading-[1.1]">
+            <h2 className="heading-md text-primary uppercase leading-[1.1] text-[3vw]">
               THE STEPS
             </h2>
-            <h2 className="heading-md text-primary uppercase leading-[1.1]">
+            <h2 className="heading-md text-primary uppercase leading-[1.1] text-[3vw]">
               SIMPLE TO FLOW
             </h2>
           </div>
@@ -66,12 +66,12 @@ export function ProcessSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="flex flex-col w-full border-t border-primary/20">
+          <div className="flex flex-col w-full border-t border-primary">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="flex items-center justify-between py-[1.5vh] border-b border-primary/20"
+                className="flex items-center justify-between py-[1.5vh] border-b border-primary"
               >
                 <div className="flex items-baseline gap-[2vw]">
                   <span className="font-mono text-[1vw] text-primary/30 font-bold uppercase tracking-wider">
