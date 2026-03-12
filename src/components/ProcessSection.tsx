@@ -35,25 +35,22 @@ const itemVariants = {
 export function ProcessSection() {
   return (
     <section 
-      className="relative bg-[#eaeaf2] z-30 py-[15vh] shadow-[0_-20px_40px_rgba(0,0,0,0.02)]"
+      className="relative bg-black z-30 py-[15vh]"
       id="process"
     >
       <div className="w-full grid grid-cols-1 md:grid-cols-2 px-[8vw] gap-[8vw]">
         
         {/* Left Side: Title */}
         <div className="flex flex-col justify-start">
-          <span className="label text-muted-foreground block mb-[3vh] opacity-40">
-            [ OUR METHODOLOGY ]
-          </span>
           <div className="relative flex flex-col">
-            <h2 className="heading-md text-primary uppercase leading-[1.1] text-[3vw]">
+            <h2 className="heading-md text-white uppercase leading-[1.1] text-[3vw]">
               THE STEPS
             </h2>
-            <h2 className="heading-md text-primary uppercase leading-[1.1] text-[3vw]">
+            <h2 className="heading-md text-white uppercase leading-[1.1] text-[3vw]">
               SIMPLE TO FLOW
             </h2>
           </div>
-          <p className="max-w-[28vw] body-text mt-[4vh] text-primary/50 text-[1vw] leading-relaxed">
+          <p className="max-w-[28vw] body-text mt-[4vh] text-white/50 text-[1vw] leading-relaxed">
             A streamlined, high-performance approach from discovery call to a revenue-generating launch in just 10 days.
           </p>
         </div>
@@ -66,18 +63,18 @@ export function ProcessSection() {
           whileInView="visible"
           viewport={{ once: true, amount: 0.2 }}
         >
-          <div className="flex flex-col w-full border-t border-primary">
+          <div className="flex flex-col w-full border-t border-white/20">
             {steps.map((step, index) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
-                className="flex items-center justify-between py-[1.5vh] border-b border-primary"
+                className="flex items-center justify-between py-[1.5vh] border-b border-white/20"
               >
                 <div className="flex items-baseline gap-[2vw]">
-                  <span className="font-mono text-[1vw] text-primary/30 font-bold uppercase tracking-wider">
+                  <span className="font-mono text-[1vw] text-white/30 font-bold uppercase tracking-wider">
                     {step.number}
                   </span>
-                  <h3 className="text-[1vw] font-bold text-primary uppercase tracking-tight">
+                  <h3 className="text-[1vw] font-bold text-white uppercase tracking-tight">
                     {step.title}
                   </h3>
                 </div>

@@ -115,17 +115,17 @@ export default function Home() {
       {/* Editorial Comparison Table Section */}
       <section 
         ref={sectionRef} 
-        className="relative py-[15vh] z-10 bg-[#eaeaf2] overflow-hidden w-full" 
+        className="relative py-[15vh] z-10 bg-black overflow-hidden w-full" 
         id="about"
       >
         <div className="w-full">
           
           <div className="mb-[8vh] px-[8vw] flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div>
-              <h2 className="text-[3vw] heading-md text-primary uppercase leading-[1.1]">
+              <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1]">
                 THE DIFFERENCE. <br />PRECISION VS GENERAL.
               </h2>
-              <p className="text-[1vw] body-text text-primary/60 max-w-[30vw] mt-4 leading-relaxed">
+              <p className="text-[1vw] body-text text-white/60 max-w-[30vw] mt-4 leading-relaxed">
                 A side-by-side breakdown of why focus and strategy outperform generalist design every single time.
               </p>
             </div>
@@ -140,7 +140,7 @@ export default function Home() {
             viewport={{ once: true, amount: 0.1 }}
           >
             {/* Table Headers */}
-            <div className="w-full border-t border-b border-primary mb-0">
+            <div className="w-full border-t border-b border-white/20 mb-0">
               <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0">
                 {[
                   { label: "CRITERIA", active: false },
@@ -155,7 +155,7 @@ export default function Home() {
                     `}
                   >
                     <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
-                      ${header.active ? 'text-primary' : 'text-primary/30'}
+                      ${header.active ? 'text-white' : 'text-white/30'}
                     `}>
                       {header.label}
                     </span>
@@ -170,32 +170,32 @@ export default function Home() {
                 <motion.div 
                   key={idx}
                   variants={itemVariants}
-                  className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 border-b border-primary items-center compare-row-trigger group"
+                  className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 border-b border-white/20 items-center compare-row-trigger group"
                 >
                   {/* Criteria */}
                   <div className="py-[1.5vh] pr-[3vw] transition-all duration-300">
-                    <span className="text-[0.9vw] font-bold tracking-[0.1em] uppercase text-primary/40 group-hover:text-primary">
+                    <span className="text-[0.9vw] font-bold tracking-[0.1em] uppercase text-white/40 group-hover:text-white">
                       {item.criterion}
                     </span>
                   </div>
 
                   {/* Anton */}
                   <div className="py-[1.5vh] px-[2.5vw] transition-all duration-300 bg-white/5 group-hover:bg-white/10">
-                    <p className="text-[1vw] font-bold leading-tight truncate text-primary">
+                    <p className="text-[1vw] font-bold leading-tight truncate text-white">
                       {item.me}
                     </p>
                   </div>
 
                   {/* Freelancer */}
                   <div className="py-[1.5vh] px-[2.5vw] transition-all duration-300">
-                    <p className="text-[1vw] font-medium leading-tight truncate text-primary/40 group-hover:text-primary/60">
+                    <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60">
                       {item.freelancer}
                     </p>
                   </div>
 
                   {/* Agency */}
                   <div className="py-[1.5vh] pl-[2.5vw] transition-all duration-300">
-                    <p className="text-[1vw] font-medium leading-tight truncate text-primary/40 group-hover:text-primary/60">
+                    <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60">
                       {item.agency}
                     </p>
                   </div>
