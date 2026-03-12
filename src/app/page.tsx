@@ -45,6 +45,29 @@ const comparisonData = [
   }
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
+
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const heroCombinedRef = useRef<HTMLDivElement>(null);
@@ -54,18 +77,6 @@ export default function Home() {
     target: heroCombinedRef,
     offset: ["start start", "end end"]
   });
-
-  const { scrollYProgress: tableProgress } = useScroll({
-    target: sectionRef,
-    offset: ["start end", "end start"]
-  });
-
-  const smoothProgress = useSpring(tableProgress, { stiffness: 100, damping: 30 });
-
-  const col1Y = useTransform(smoothProgress, [0.1, 0.4], [0, 0]);
-  const col2Y = useTransform(smoothProgress, [0.1, 0.4], [120, 0]); 
-  const col3Y = useTransform(smoothProgress, [0.1, 0.4], [60, 0]);  
-  const col4Y = useTransform(smoothProgress, [0.1, 0.4], [120, 0]); 
 
   useEffect(() => {
     const handleScroll = () => {
@@ -104,30 +115,32 @@ export default function Home() {
       {/* Editorial Comparison Table Section */}
       <section 
         ref={sectionRef} 
-        className="relative py-[20vh] z-10 bg-[#eaeaf2] overflow-hidden w-full" 
+        className="relative py-[15vh] z-10 bg-[#eaeaf2] overflow-hidden w-full" 
         id="about"
       >
         <div className="w-full">
           
-          <div className="mb-[12vh] px-[8vw] flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="mb-[8vh] px-[8vw] flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div>
-              <HighlightWipeHeading 
-                lines={["Integrated.", "Precise."]}
-                className="heading-lg text-primary tracking-tighter"
-              />
-              <p className="body-text text-primary/60 max-w-[30vw] mt-6">
+              <h2 className="text-[3vw] heading-md text-primary uppercase leading-[1.1]">
+                THE DIFFERENCE. <br />PRECISION VS GENERAL.
+              </h2>
+              <p className="text-[1vw] body-text text-primary/60 max-w-[30vw] mt-4 leading-relaxed">
                 A side-by-side breakdown of why focus and strategy outperform generalist design every single time.
               </p>
             </div>
-            <div className="pb-4">
-               <em className="accent-italic lowercase text-[3.5vw]">The Difference.</em>
-            </div>
           </div>
 
-          {/* Table Container with Horizontal Padding for Lines Effect */}
-          <div className="px-[8vw]">
+          {/* Table Container */}
+          <motion.div 
+            className="px-[8vw]"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.1 }}
+          >
             {/* Table Headers */}
-            <div className="sticky top-0 z-30 w-full border-b border-primary bg-[#eaeaf2]/90 backdrop-blur-md">
+            <div className="w-full border-t border-b border-primary mb-0">
               <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0">
                 {[
                   { label: "CRITERIA", active: false },
@@ -137,91 +150,59 @@ export default function Home() {
                 ].map((header, i) => (
                   <div 
                     key={i} 
-                    className={`relative flex items-center h-[8vh] min-h-[60px] 
-                      ${i === 0 ? 'pr-[3vw]' : i === 3 ? 'pl-[2.5vw]' : 'px-[2.5vw]'}
+                    className={`relative flex items-center py-[1.5vh] 
+                      ${i === 0 ? 'pr-[3vw]' : 'px-[2.5vw]'}
                     `}
                   >
-                    <span className={`text-[11px] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
+                    <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
                       ${header.active ? 'text-primary' : 'text-primary/30'}
                     `}>
                       {header.label}
                     </span>
-                    {header.active && (
-                      <motion.div 
-                        layoutId="headerUnderline"
-                        className="absolute bottom-0 left-0 right-0 h-[2px] bg-accent"
-                        initial={{ scaleX: 0 }}
-                        animate={{ scaleX: 1 }}
-                      />
-                    )}
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Table Body */}
-            <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 relative">
-              {/* Column 1: Criteria */}
-              <motion.div style={{ y: col1Y }} className="flex flex-col">
-                {comparisonData.map((item, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`compare-row-trigger flex flex-col justify-center pr-[3vw] h-[10vh] min-h-[80px] border-b border-primary transition-all duration-300 relative
-                      ${activeRow === idx ? 'text-primary' : 'text-primary/40'}`}
-                  >
-                    <span className="text-[10px] font-bold tracking-[0.2em] uppercase truncate">
+            <div className="flex flex-col relative">
+              {comparisonData.map((item, idx) => (
+                <motion.div 
+                  key={idx}
+                  variants={itemVariants}
+                  className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 border-b border-primary items-center compare-row-trigger group"
+                >
+                  {/* Criteria */}
+                  <div className="py-[1.5vh] pr-[3vw] transition-all duration-300">
+                    <span className="text-[0.9vw] font-bold tracking-[0.1em] uppercase text-primary/40 group-hover:text-primary">
                       {item.criterion}
                     </span>
                   </div>
-                ))}
-              </motion.div>
 
-              {/* Column 2: Anton (Main Focus) */}
-              <motion.div style={{ y: col2Y }} className="flex flex-col relative">
-                {comparisonData.map((item, idx) => (
-                  <div 
-                    key={idx}
-                    className={`flex flex-col justify-center px-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary transition-all duration-300
-                      ${activeRow === idx ? 'text-primary' : 'text-primary/80'}`}
-                  >
-                    <p className="text-[1.3vw] min-text-[16px] font-bold leading-tight truncate">
+                  {/* Anton */}
+                  <div className="py-[1.5vh] px-[2.5vw] transition-all duration-300 bg-white/5 group-hover:bg-white/10">
+                    <p className="text-[1vw] font-bold leading-tight truncate text-primary">
                       {item.me}
                     </p>
                   </div>
-                ))}
-              </motion.div>
 
-              {/* Column 3: Freelancer */}
-              <motion.div style={{ y: col3Y }} className="flex flex-col">
-                {comparisonData.map((item, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`flex flex-col justify-center px-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary transition-all duration-300
-                      ${activeRow === idx ? 'text-primary/60' : 'text-primary/30'}`}
-                  >
-                    <p className="text-[1.1vw] min-text-[14px] font-medium leading-tight truncate">
+                  {/* Freelancer */}
+                  <div className="py-[1.5vh] px-[2.5vw] transition-all duration-300">
+                    <p className="text-[1vw] font-medium leading-tight truncate text-primary/40 group-hover:text-primary/60">
                       {item.freelancer}
                     </p>
                   </div>
-                ))}
-              </motion.div>
 
-              {/* Column 4: Agency */}
-              <motion.div style={{ y: col4Y }} className="flex flex-col">
-                {comparisonData.map((item, idx) => (
-                  <div 
-                    key={idx} 
-                    className={`flex flex-col justify-center pl-[2.5vw] h-[10vh] min-h-[80px] border-b border-primary transition-all duration-300
-                      ${activeRow === idx ? 'text-primary/60' : 'text-primary/30'}`}
-                  >
-                    <p className="text-[1.1vw] min-text-[14px] font-medium leading-tight truncate">
+                  {/* Agency */}
+                  <div className="py-[1.5vh] pl-[2.5vw] transition-all duration-300">
+                    <p className="text-[1vw] font-medium leading-tight truncate text-primary/40 group-hover:text-primary/60">
                       {item.agency}
                     </p>
                   </div>
-                ))}
-              </motion.div>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
         </div>
       </section>
 
