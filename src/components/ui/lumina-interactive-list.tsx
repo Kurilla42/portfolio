@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import React from 'react';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 const showcaseItems = [
@@ -54,30 +54,17 @@ export function LuminaInteractiveList() {
           key={index}
           className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden border-b border-white/5"
         >
-          <ShowcaseItem item={item} index={index} />
+          <ShowcaseItem item={item} />
         </section>
       ))}
     </div>
   );
 }
 
-function ShowcaseItem({ item, index }: { item: any; index: number }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["-20%", "20%"]);
-  const smoothY = useSpring(y, { stiffness: 80, damping: 20, restDelta: 0.001 });
-
+function ShowcaseItem({ item }: { item: any }) {
   return (
-    <div ref={containerRef} className="relative w-full h-full group overflow-hidden">
-      <motion.div 
-        style={{ y: smoothY, scale: 1.15 }}
-        className="absolute inset-0 w-full h-[140%] top-[-20%]"
-      >
+    <div className="relative w-full h-full group overflow-hidden">
+      <div className="absolute inset-0 w-full h-full">
         <Image
           src={item.image}
           alt={item.title}
@@ -86,10 +73,8 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
           priority
           unoptimized
           quality={100}
-          sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/20 transition-colors duration-700" />
-      </motion.div>
+      </div>
 
       <motion.div 
         initial={{ opacity: 0, y: 50 }}
@@ -101,17 +86,17 @@ function ShowcaseItem({ item, index }: { item: any; index: number }) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 items-end w-full">
           <div className="md:col-span-8 text-left">
             <div className="flex items-center gap-4 mb-6">
-              <span className="font-mono text-[1.1vw] text-white/50 tracking-[0.3em] uppercase block">
+              <span className="font-mono text-[1.1vw] text-white tracking-[0.3em] uppercase block drop-shadow-md">
                 [ {item.number} ]
               </span>
-              <div className="h-[1px] w-[6vw] bg-white/20" />
+              <div className="h-[1px] w-[6vw] bg-white/60 drop-shadow-md" />
             </div>
-            <h2 className="heading-lg text-white uppercase text-[6vw]">
+            <h2 className="heading-lg text-white uppercase text-[6vw] drop-shadow-lg">
               {item.title}
             </h2>
           </div>
           <div className="md:col-span-4 flex flex-col items-start md:items-end text-left md:text-right">
-            <p className="body-text text-white text-[1.4vw] leading-[1.4] font-medium opacity-100 max-w-[450px]">
+            <p className="body-text text-white text-[1.4vw] leading-[1.4] font-medium opacity-100 max-w-[450px] drop-shadow-md">
               {item.description}
             </p>
           </div>
