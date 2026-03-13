@@ -4,7 +4,6 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
-import { ProcessSection } from '@/components/ProcessSection';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import { ExperienceTextSection } from '@/components/ExperienceTextSection';
@@ -16,33 +15,35 @@ const comparisonData = [
   {
     criterion: "NICHE FOCUS",
     me: "Exclusive Plumbing & Home Services",
-    freelancer: "Generic Templates for Any Niche",
-    agency: "Juggles dozens of niches at once"
+    freelancer: "Generic Templates for Any Niche"
   },
   {
     criterion: "STRATEGY",
     me: "12+ Years in Local Lead Gen",
-    freelancer: "Pretty Sites with No Strategy",
-    agency: "No strategy owner; split teams"
+    freelancer: "Pretty Sites with No Strategy"
   },
   {
     criterion: "STRUCTURE",
     me: "Conversion-First Plumbing Layouts",
-    freelancer: "Unproven Structural Patterns",
-    agency: "Same template for every client"
+    freelancer: "Unproven Structural Patterns"
   },
   {
     criterion: "PRIMARY GOAL",
     me: "Calls & Form Submissions",
-    freelancer: "Colors, Fonts & Visuals",
-    agency: "Obsesses over traffic & clicks"
+    freelancer: "Colors, Fonts & Visuals"
   },
   {
     criterion: "SCALING",
     me: "City-Specific Ad Landing Pages",
-    freelancer: "Hard to Scale for Paid Traffic",
-    agency: "Hard to scale; needs rebuilds"
+    freelancer: "Hard to Scale for Paid Traffic"
   }
+];
+
+const steps = [
+  { number: "DAY 01", title: "Discovery" },
+  { number: "DAY 02", title: "Wireframing" },
+  { number: "DAY 03", title: "The Build" },
+  { number: "DAY 04", title: "Launch & Sync" }
 ];
 
 const containerVariants = {
@@ -71,32 +72,11 @@ const itemVariants = {
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const heroCombinedRef = useRef<HTMLDivElement>(null);
-  const [activeRow, setActiveRow] = useState<number | null>(null);
   
   const { scrollYProgress } = useScroll({
     target: heroCombinedRef,
     offset: ["start start", "end end"]
   });
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!sectionRef.current) return;
-      const viewportCenter = window.innerHeight / 2;
-      const rows = document.querySelectorAll('.compare-row-trigger');
-      let currentActive = null;
-      
-      rows.forEach((row, idx) => {
-        const rect = row.getBoundingClientRect();
-        if (rect.top < viewportCenter && rect.bottom > viewportCenter) {
-          currentActive = idx;
-        }
-      });
-      setActiveRow(currentActive);
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   return (
     <div className="min-h-screen bg-transparent">
@@ -110,99 +90,120 @@ export default function Home() {
       <LuminaInteractiveList />
       
       <SiteShowcaseSection />
-      <ProcessSection />
 
-      {/* Editorial Comparison Table Section */}
+      {/* Combined Difference & Process Section */}
       <section 
         ref={sectionRef} 
-        className="relative py-[15vh] z-10 bg-black overflow-hidden w-full" 
+        className="relative py-[15vh] z-30 bg-black overflow-hidden w-full" 
         id="about"
       >
-        <div className="w-full">
-          
-          <div className="mb-[8vh] px-[8vw] flex flex-col md:flex-row md:items-end justify-between gap-8">
-            <div>
-              <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1]">
-                THE DIFFERENCE. <br />PRECISION VS GENERAL.
+        <div className="w-full px-[8vw]">
+          <div className="grid grid-cols-12 gap-[4vw]">
+            
+            {/* Left Side: The Difference Table */}
+            <div className="col-span-12 lg:col-span-8">
+              <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[6vh]">
+                THE DIFFERENCE
               </h2>
-              <p className="text-[1vw] body-text text-white/60 max-w-[30vw] mt-4 leading-relaxed">
-                A side-by-side breakdown of why focus and strategy outperform generalist design every single time.
-              </p>
-            </div>
-          </div>
 
-          {/* Table Container */}
-          <motion.div 
-            className="px-[8vw]"
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {/* Table Headers */}
-            <div className="w-full border-t border-b border-white/20 mb-0">
-              <div className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0">
-                {[
-                  { label: "CRITERIA", active: false },
-                  { label: "ANTON KOLESNIKOV", active: true },
-                  { label: "FREELANCER", active: false },
-                  { label: "AGENCY", active: false }
-                ].map((header, i) => (
-                  <div 
-                    key={i} 
-                    className={`relative flex items-center py-[1.5vh] 
-                      ${i === 0 ? 'pr-[3vw]' : 'px-[2.5vw]'}
-                    `}
+              <motion.div 
+                className="w-full"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                {/* Table Headers */}
+                <div className="w-full border-t border-b border-white/20">
+                  <div className="grid grid-cols-[1.5fr_2fr_2fr] gap-0">
+                    {[
+                      { label: "CRITERIA", active: false },
+                      { label: "ANTON KOLESNIKOV", active: true },
+                      { label: "FREELANCER/AGENCY", active: false }
+                    ].map((header, i) => (
+                      <div 
+                        key={i} 
+                        className={`relative flex items-center py-[1.5vh] 
+                          ${i === 0 ? 'pr-[2vw]' : 'px-[2vw]'}
+                        `}
+                      >
+                        <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
+                          ${header.active ? 'text-white' : 'text-white/30'}
+                        `}>
+                          {header.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Table Body */}
+                <div className="flex flex-col relative">
+                  {comparisonData.map((item, idx) => (
+                    <motion.div 
+                      key={idx}
+                      variants={itemVariants}
+                      className="grid grid-cols-[1.5fr_2fr_2fr] gap-0 border-b border-white/20 items-center group"
+                    >
+                      {/* Criteria */}
+                      <div className="py-[1.5vh] pr-[2vw]">
+                        <span className="text-[0.9vw] font-bold tracking-[0.1em] uppercase text-white/40 group-hover:text-white transition-colors duration-300">
+                          {item.criterion}
+                        </span>
+                      </div>
+
+                      {/* Anton */}
+                      <div className="py-[1.5vh] px-[2vw] bg-white/5 group-hover:bg-white/10 transition-colors duration-300">
+                        <p className="text-[1vw] font-bold leading-tight truncate text-white">
+                          {item.me}
+                        </p>
+                      </div>
+
+                      {/* Freelancer/Agency */}
+                      <div className="py-[1.5vh] px-[2vw]">
+                        <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60 transition-colors duration-300">
+                          {item.freelancer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Right Side: Simple Steps */}
+            <div className="col-span-12 lg:col-span-4 flex flex-col">
+              <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[6vh]">
+                SIMPLE STEPS
+              </h2>
+
+              <motion.div 
+                className="flex flex-col w-full border-t border-white/20"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+              >
+                {steps.map((step, index) => (
+                  <motion.div
+                    key={index}
+                    variants={itemVariants}
+                    className="flex items-center justify-between py-[1.5vh] border-b border-white/20 group hover:bg-white/5 transition-colors duration-300"
                   >
-                    <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
-                      ${header.active ? 'text-white' : 'text-white/30'}
-                    `}>
-                      {header.label}
-                    </span>
-                  </div>
+                    <div className="flex items-baseline gap-[2vw]">
+                      <span className="font-mono text-[1vw] text-white/30 font-bold uppercase tracking-wider group-hover:text-white/60 transition-colors duration-300">
+                        {step.number}
+                      </span>
+                      <h3 className="text-[1vw] font-bold text-white uppercase tracking-tight">
+                        {step.title}
+                      </h3>
+                    </div>
+                  </motion.div>
                 ))}
-              </div>
+              </motion.div>
             </div>
 
-            {/* Table Body */}
-            <div className="flex flex-col relative">
-              {comparisonData.map((item, idx) => (
-                <motion.div 
-                  key={idx}
-                  variants={itemVariants}
-                  className="grid grid-cols-[1.2fr_2fr_1.8fr_1.8fr] gap-0 border-b border-white/20 items-center compare-row-trigger group"
-                >
-                  {/* Criteria */}
-                  <div className="py-[1.5vh] pr-[3vw] transition-all duration-300">
-                    <span className="text-[0.9vw] font-bold tracking-[0.1em] uppercase text-white/40 group-hover:text-white">
-                      {item.criterion}
-                    </span>
-                  </div>
-
-                  {/* Anton */}
-                  <div className="py-[1.5vh] px-[2.5vw] transition-all duration-300 bg-white/5 group-hover:bg-white/10">
-                    <p className="text-[1vw] font-bold leading-tight truncate text-white">
-                      {item.me}
-                    </p>
-                  </div>
-
-                  {/* Freelancer */}
-                  <div className="py-[1.5vh] px-[2.5vw] transition-all duration-300">
-                    <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60">
-                      {item.freelancer}
-                    </p>
-                  </div>
-
-                  {/* Agency */}
-                  <div className="py-[1.5vh] pl-[2.5vw] transition-all duration-300">
-                    <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60">
-                      {item.agency}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
