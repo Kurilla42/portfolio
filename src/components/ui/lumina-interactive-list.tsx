@@ -1,8 +1,9 @@
 'use client';
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
+import { cn } from '@/lib/utils';
 
 const showcaseItems = [
   {
@@ -47,61 +48,102 @@ const showcaseItems = [
 ];
 
 export function LuminaInteractiveList() {
-  return (
-    <div className="relative bg-[#000] z-20">
-      {showcaseItems.map((item, index) => (
-        <section
-          key={index}
-          className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden border-b border-white/5"
-        >
-          <ShowcaseItem item={item} />
-        </section>
-      ))}
-    </div>
-  );
-}
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
-function ShowcaseItem({ item }: { item: any }) {
   return (
-    <div className="relative w-full h-full group overflow-hidden">
-      <div className="absolute inset-0 w-full h-full">
-        <Image
-          src={item.image}
-          alt={item.title}
-          fill
-          className="object-cover object-top"
-          priority
-          unoptimized
-          quality={100}
-        />
-      </div>
+    <section className="relative h-screen w-full bg-black overflow-hidden flex flex-col md:flex-row z-20 border-b border-white/10">
+      {/* Subtle Noise/Grain Overlay for the entire section */}
+      <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-soft-light z-30 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'0%27svg%27%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E')]" />
 
-      <motion.div 
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: false, amount: 0.3 }}
-        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-10 w-full h-full flex flex-col justify-end px-[8vw] pb-[12vh]"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-x-12 items-end w-full">
-          <div className="md:col-span-8 text-left">
-            <div className="flex items-center gap-4 mb-6">
-              <span className="font-mono text-[1.1vw] text-white tracking-[0.3em] uppercase block drop-shadow-md">
-                [ {item.number} ]
-              </span>
-              <div className="h-[1px] w-[6vw] bg-white/60 drop-shadow-md" />
+      {showcaseItems.map((item, index) => {
+        const isHovered = hoveredIndex === index;
+        
+        return (
+          <motion.div
+            key={index}
+            onMouseEnter={() => setHoveredIndex(index)}
+            onMouseLeave={() => setHoveredIndex(null)}
+            className={cn(
+              "relative h-full transition-all duration-700 ease-[0.22,1,0.36,1] flex flex-col justify-end overflow-hidden border-r border-white/5 last:border-r-0 cursor-pointer group",
+              isHovered ? "flex-[4] md:flex-[5]" : "flex-1"
+            )}
+          >
+            {/* Background Image Container */}
+            <div className="absolute inset-0 z-0">
+              <Image
+                src={item.image}
+                alt={item.title}
+                fill
+                className={cn(
+                  "object-cover transition-transform duration-1000 ease-out",
+                  isHovered ? "scale-105" : "scale-110 grayscale-[50%] brightness-50"
+                )}
+                unoptimized
+              />
+              {/* Monolith Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
             </div>
-            <h2 className="heading-lg text-white uppercase text-[6vw] drop-shadow-lg">
-              {item.title}
-            </h2>
-          </div>
-          <div className="md:col-span-4 flex flex-col items-start md:items-end text-left md:text-right">
-            <p className="body-text text-white text-[1.4vw] leading-[1.4] font-medium opacity-100 max-w-[450px] drop-shadow-md">
-              {item.description}
-            </p>
-          </div>
-        </div>
-      </motion.div>
-    </div>
+
+            {/* Vertical Content (Visible when NOT hovered) */}
+            <AnimatePresence mode="wait">
+              {!isHovered && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.4 }}
+                  className="absolute inset-0 z-10 flex flex-col items-center justify-center"
+                >
+                  <span className="text-[4vw] md:text-[2vw] font-mono text-white/20 font-bold mb-[4vh]">
+                    {item.number}
+                  </span>
+                  <div className="h-[40vh] flex items-center justify-center">
+                    <h3 className="whitespace-nowrap transform -rotate-90 origin-center text-white/40 uppercase tracking-[0.4em] font-bold text-[1.5vw] md:text-[0.8vw]">
+                      {item.title}
+                    </h3>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+
+            {/* Expanded Content (Visible when hovered) */}
+            <div className="relative z-20 w-full h-full p-[4vw] flex flex-col justify-end">
+              <AnimatePresence>
+                {isHovered && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                    className="max-w-[80%]"
+                  >
+                    <div className="flex items-center gap-4 mb-4">
+                      <span className="font-mono text-[1vw] text-accent tracking-[0.2em] uppercase font-bold">
+                        [ {item.number} ]
+                      </span>
+                      <div className="h-[1px] w-[4vw] bg-accent/60" />
+                    </div>
+                    <h2 className="heading-md text-white uppercase text-[3vw] mb-6 leading-tight">
+                      {item.title}
+                    </h2>
+                    <p className="body-text text-white/80 text-[1.1vw] leading-relaxed max-w-[400px]">
+                      {item.description}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+
+            {/* Bottom Glow Indicator */}
+            <motion.div 
+              className="absolute bottom-0 left-0 h-[2px] bg-accent z-30"
+              initial={{ width: 0 }}
+              animate={{ width: isHovered ? "100%" : "0%" }}
+              transition={{ duration: 0.6 }}
+            />
+          </motion.div>
+        );
+      })}
+    </section>
   );
 }
