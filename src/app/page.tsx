@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
@@ -187,9 +188,9 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
               >
-                {/* Table Headers - Adjusted grid for max-content criteria */}
+                {/* Table Headers - Adjusted grid with fixed width for Criteria column */}
                 <div className="w-full border-t border-b border-white/20">
-                  <div className="grid grid-cols-[max-content_2fr_2fr] gap-0">
+                  <div className="grid grid-cols-[12vw_1fr_1fr] gap-0">
                     {[
                       { label: "CRITERIA", active: false },
                       { label: "ANTON KOLESNIKOV", active: true },
@@ -212,7 +213,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Table Body - Adjusted grid for max-content criteria */}
+                {/* Table Body - Consistent grid structure for all rows */}
                 <div className="flex flex-col relative">
                   {comparisonData.map((item, idx) => (
                     <motion.div 
@@ -220,7 +221,7 @@ export default function Home() {
                       variants={itemVariants}
                       whileHover="hover"
                       initial="initial"
-                      className="grid grid-cols-[max-content_2fr_2fr] gap-0 border-b border-white/20 items-stretch group cursor-default"
+                      className="grid grid-cols-[12vw_1fr_1fr] gap-0 border-b border-white/20 items-stretch group cursor-default"
                     >
                       {/* Criteria */}
                       <div className="py-[1.5vh] pr-[4vw] flex items-center overflow-hidden">
