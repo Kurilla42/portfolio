@@ -111,20 +111,27 @@ export default function Home() {
               <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[6vh]">
                 SIMPLE STEPS
               </h2>
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="relative w-full lg:w-[15vw] aspect-[16/9] rounded-2xl overflow-hidden border border-white/10"
-              >
-                <Image 
-                  src="https://i.ibb.co/yFbMvrjt/j-GIDW70qyf-Bu-P6v8-UKUwum-U8-HGo.avif"
-                  alt="Process illustration"
-                  fill
-                  className="object-cover"
-                  unoptimized
-                />
-              </motion.div>
+              <div className="flex flex-col gap-8">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative w-full lg:w-[22vw] aspect-[16/10] overflow-hidden border border-white/10"
+                >
+                  <Image 
+                    src="https://i.ibb.co/yFbMvrjt/j-GIDW70qyf-Bu-P6v8-UKUwum-U8-HGo.avif"
+                    alt="Process illustration"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </motion.div>
+                <div className="flex flex-col gap-4 max-w-[22vw]">
+                  <p className="text-[0.5vw] text-white/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
+                    My goal has always been to elevate everyday interactions into something more meaningful and crucially, quietly threading in moments of joy that catch us by surprise and stay with us for years to come.
+                  </p>
+                </div>
+              </div>
             </div>
 
             <div className="col-span-12 lg:col-span-7 flex flex-col pt-[10vh]">
