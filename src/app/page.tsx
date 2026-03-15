@@ -88,7 +88,9 @@ export default function Home() {
     <div className="min-h-screen bg-transparent">
       {/* Combined Background Area for Hero and Experience */}
       <div ref={heroCombinedRef} className="relative">
-        <ShaderShowcase progress={scrollYProgress} />
+        <div className="sticky top-0 h-screen w-full -z-10">
+          <ShaderShowcase progress={scrollYProgress} />
+        </div>
         <ExperienceTextSection />
       </div>
 
@@ -185,9 +187,9 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
               >
-                {/* Table Headers */}
+                {/* Table Headers - Adjusted grid for max-content criteria */}
                 <div className="w-full border-t border-b border-white/20">
-                  <div className="grid grid-cols-[1.5fr_2fr_2fr] gap-0">
+                  <div className="grid grid-cols-[max-content_2fr_2fr] gap-0">
                     {[
                       { label: "CRITERIA", active: false },
                       { label: "ANTON KOLESNIKOV", active: true },
@@ -196,7 +198,7 @@ export default function Home() {
                       <div 
                         key={header.label} 
                         className={`relative flex items-center py-[1.5vh] 
-                          ${i === 0 ? 'pr-[2vw]' : 'px-[2vw]'}
+                          ${i === 0 ? 'pr-[4vw]' : 'px-[2vw]'}
                           ${header.active ? 'bg-white/5' : ''}
                         `}
                       >
@@ -210,7 +212,7 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Table Body */}
+                {/* Table Body - Adjusted grid for max-content criteria */}
                 <div className="flex flex-col relative">
                   {comparisonData.map((item, idx) => (
                     <motion.div 
@@ -218,10 +220,10 @@ export default function Home() {
                       variants={itemVariants}
                       whileHover="hover"
                       initial="initial"
-                      className="grid grid-cols-[1.5fr_2fr_2fr] gap-0 border-b border-white/20 items-stretch group cursor-default"
+                      className="grid grid-cols-[max-content_2fr_2fr] gap-0 border-b border-white/20 items-stretch group cursor-default"
                     >
                       {/* Criteria */}
-                      <div className="py-[1.5vh] pr-[2vw] flex items-center overflow-hidden">
+                      <div className="py-[1.5vh] pr-[4vw] flex items-center overflow-hidden">
                          <div className="h-[1.2vw] overflow-hidden">
                            <motion.div
                              variants={rollingTextVariants}
