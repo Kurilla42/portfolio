@@ -91,14 +91,14 @@ export function LuminaInteractiveList() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
+                  transition={{ duration: 0.3 }}
                   className="absolute inset-0 z-10 flex flex-col items-center justify-center"
                 >
                   <span className="text-[4vw] md:text-[2vw] font-mono text-white/20 font-bold mb-[4vh]">
                     {item.number}
                   </span>
                   <div className="h-[40vh] flex items-center justify-center">
-                    <h3 className="whitespace-nowrap transform -rotate-90 origin-center text-white/40 uppercase tracking-[0.4em] font-bold text-[1.5vw] md:text-[0.8vw]">
+                    <h3 className="whitespace-nowrap transform -rotate-90 origin-center text-white/40 uppercase tracking-[0.4em] font-bold text-[3vw] md:text-[2vw]">
                       {item.title}
                     </h3>
                   </div>
@@ -113,22 +113,25 @@ export function LuminaInteractiveList() {
                   <motion.div
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 20 }}
+                    exit={{ opacity: 0, transition: { duration: 0.2 } }}
                     transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                    className="max-w-[80%]"
+                    className="w-full pointer-events-none"
                   >
-                    <div className="flex items-center gap-4 mb-4">
-                      <span className="font-mono text-[1vw] text-accent tracking-[0.2em] uppercase font-bold">
-                        [ {item.number} ]
-                      </span>
-                      <div className="h-[1px] w-[4vw] bg-accent/60" />
+                    {/* Fixed width inner container to prevent text squashing during flex transition */}
+                    <div className="max-w-[80%] min-w-[300px]">
+                      <div className="flex items-center gap-4 mb-4">
+                        <span className="font-mono text-[1vw] text-accent tracking-[0.2em] uppercase font-bold">
+                          [ {item.number} ]
+                        </span>
+                        <div className="h-[1px] w-[4vw] bg-accent/60" />
+                      </div>
+                      <h2 className="heading-md text-white uppercase text-[3vw] mb-6 leading-tight whitespace-nowrap">
+                        {item.title}
+                      </h2>
+                      <p className="body-text text-white/80 text-[1.1vw] leading-relaxed max-w-[400px]">
+                        {item.description}
+                      </p>
                     </div>
-                    <h2 className="heading-md text-white uppercase text-[3vw] mb-6 leading-tight">
-                      {item.title}
-                    </h2>
-                    <p className="body-text text-white/80 text-[1.1vw] leading-relaxed max-w-[400px]">
-                      {item.description}
-                    </p>
                   </motion.div>
                 )}
               </AnimatePresence>
