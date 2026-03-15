@@ -91,9 +91,9 @@ export function LuminaInteractiveList() {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0, transition: { duration: 0.1 } }}
                   transition={{ duration: 0.4 }}
-                  className="absolute inset-0 z-10 flex flex-col items-center justify-between py-[12vh]"
+                  className="absolute inset-0 z-10 flex flex-col items-center py-[8vh]"
                 >
-                  <span className="text-[4vw] md:text-[1.8vw] font-mono text-white font-bold tracking-widest">
+                  <span className="text-[4vw] md:text-[1.8vw] font-mono text-white font-bold tracking-widest mb-[12vh]">
                     {item.number}
                   </span>
                   <div className="flex-1 flex items-center justify-center">
@@ -113,11 +113,11 @@ export function LuminaInteractiveList() {
                     key="expanded-content"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, transition: { duration: 0.15 } }}
-                    transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                    exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                    transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
                     className="w-full pointer-events-none overflow-hidden"
                   >
-                    <div className="max-w-[80%] min-w-[300px]">
+                    <div className="max-w-[80%] min-w-[450px]">
                       <div className="flex items-center gap-4 mb-4">
                         <span className="font-mono text-[1vw] text-accent tracking-[0.2em] uppercase font-bold">
                           [ {item.number} ]
