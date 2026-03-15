@@ -10,6 +10,7 @@ import { ExperienceTextSection } from '@/components/ExperienceTextSection';
 import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const comparisonData = [
   {
@@ -91,92 +92,37 @@ export default function Home() {
       
       <SiteShowcaseSection />
 
-      {/* Combined Difference & Process Section */}
+      {/* Unified Difference & Process Section - STAIRS LAYOUT */}
       <section 
         ref={sectionRef} 
-        className="relative py-[15vh] z-30 bg-black overflow-hidden w-full" 
+        className="relative py-[20vh] z-30 bg-black overflow-hidden w-full" 
         id="about"
       >
-        <div className="w-full px-[8vw]">
-          <div className="grid grid-cols-12 gap-[4vw]">
-            
-            {/* Left Side: The Difference Table */}
-            <div className="col-span-12 lg:col-span-8">
-              <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[6vh]">
-                THE DIFFERENCE
-              </h2>
-
-              <motion.div 
-                className="w-full"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-              >
-                {/* Table Headers */}
-                <div className="w-full border-t border-b border-white/20">
-                  <div className="grid grid-cols-[1.5fr_2fr_2fr] gap-0">
-                    {[
-                      { label: "CRITERIA", active: false },
-                      { label: "ANTON KOLESNIKOV", active: true },
-                      { label: "FREELANCER/AGENCY", active: false }
-                    ].map((header, i) => (
-                      <div 
-                        key={i} 
-                        className={`relative flex items-center py-[1.5vh] 
-                          ${i === 0 ? 'pr-[2vw]' : 'px-[2vw]'}
-                        `}
-                      >
-                        <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
-                          ${header.active ? 'text-white' : 'text-white/30'}
-                        `}>
-                          {header.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Table Body */}
-                <div className="flex flex-col relative">
-                  {comparisonData.map((item, idx) => (
-                    <motion.div 
-                      key={idx}
-                      variants={itemVariants}
-                      className="grid grid-cols-[1.5fr_2fr_2fr] gap-0 border-b border-white/20 items-center group"
-                    >
-                      {/* Criteria */}
-                      <div className="py-[1.5vh] pr-[2vw]">
-                        <span className="text-[0.9vw] font-bold tracking-[0.1em] uppercase text-white/40 group-hover:text-white transition-colors duration-300">
-                          {item.criterion}
-                        </span>
-                      </div>
-
-                      {/* Anton */}
-                      <div className="py-[1.5vh] px-[2vw] bg-white/5 group-hover:bg-white/10 transition-colors duration-300">
-                        <p className="text-[1vw] font-bold leading-tight truncate text-white">
-                          {item.me}
-                        </p>
-                      </div>
-
-                      {/* Freelancer/Agency */}
-                      <div className="py-[1.5vh] px-[2vw]">
-                        <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60 transition-colors duration-300">
-                          {item.freelancer}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            {/* Right Side: Simple Steps */}
-            <div className="col-span-12 lg:col-span-4 flex flex-col">
+        <div className="w-full px-[8vw] flex flex-col gap-[15vh]">
+          
+          {/* TOP TIER: Heading + Image (Left) | Steps (Right) */}
+          <div className="grid grid-cols-12 gap-[4vw] items-start">
+            <div className="col-span-12 lg:col-span-7 flex flex-col">
               <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[6vh]">
                 SIMPLE STEPS
               </h2>
+              <motion.div 
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                className="relative w-full aspect-[16/9] rounded-2xl overflow-hidden border border-white/10"
+              >
+                <Image 
+                  src="https://i.ibb.co/yFbMvrjt/j-GIDW70qyf-Bu-P6v8-UKUwum-U8-HGo.avif"
+                  alt="Process illustration"
+                  fill
+                  className="object-cover"
+                  unoptimized
+                />
+              </motion.div>
+            </div>
 
+            <div className="col-span-12 lg:col-span-5 flex flex-col pt-[10vh]">
               <motion.div 
                 className="flex flex-col w-full border-t border-white/20"
                 variants={containerVariants}
@@ -202,8 +148,84 @@ export default function Home() {
                 ))}
               </motion.div>
             </div>
-
           </div>
+
+          {/* BOTTOM TIER: Table (Left) | Heading (Right) */}
+          <div className="grid grid-cols-12 gap-[4vw] items-end">
+            <div className="col-span-12 lg:col-span-9">
+              <motion.div 
+                className="w-full"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                {/* Table Headers */}
+                <div className="w-full border-t border-b border-white/20">
+                  <div className="grid grid-cols-[1.5fr_2fr_2fr] gap-0">
+                    {[
+                      { label: "CRITERIA", active: false },
+                      { label: "ANTON KOLESNIKOV", active: true },
+                      { label: "FREELANCER/AGENCY", active: false }
+                    ].map((header, i) => (
+                      <div 
+                        key={header.label} 
+                        className={`relative flex items-center py-[1.5vh] 
+                          ${i === 0 ? 'pr-[2vw]' : 'px-[2vw]'}
+                          ${header.active ? 'bg-white/5' : ''}
+                        `}
+                      >
+                        <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
+                          ${header.active ? 'text-white' : 'text-white/30'}
+                        `}>
+                          {header.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Table Body */}
+                <div className="flex flex-col relative">
+                  {comparisonData.map((item, idx) => (
+                    <motion.div 
+                      key={idx}
+                      variants={itemVariants}
+                      className="grid grid-cols-[1.5fr_2fr_2fr] gap-0 border-b border-white/20 items-stretch group"
+                    >
+                      {/* Criteria */}
+                      <div className="py-[1.5vh] pr-[2vw] flex items-center">
+                        <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-white/40 group-hover:text-white transition-colors duration-300">
+                          {item.criterion}
+                        </span>
+                      </div>
+
+                      {/* Anton */}
+                      <div className="py-[1.5vh] px-[2vw] bg-white/5 group-hover:bg-white/10 transition-colors duration-300 flex items-center">
+                        <p className="text-[1vw] font-bold leading-tight truncate text-white">
+                          {item.me}
+                        </p>
+                      </div>
+
+                      {/* Freelancer/Agency */}
+                      <div className="py-[1.5vh] px-[2vw] flex items-center">
+                        <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60 transition-colors duration-300">
+                          {item.freelancer}
+                        </p>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+
+            <div className="col-span-12 lg:col-span-3 flex flex-col items-end text-right">
+              <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[2vh]">
+                THE<br />DIFFERENCE
+              </h2>
+            </div>
+          </div>
+
         </div>
       </section>
 
