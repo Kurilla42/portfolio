@@ -30,7 +30,7 @@ const comparisonData = [
     freelancer: "Unproven Structural Patterns"
   },
   {
-    criterion: "PRIMARY GOAL",
+    criterion: "GOAL",
     me: "Calls & Form Submissions",
     freelancer: "Colors, Fonts & Visuals"
   },
