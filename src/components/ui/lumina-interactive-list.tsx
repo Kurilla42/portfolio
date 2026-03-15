@@ -52,7 +52,7 @@ export function LuminaInteractiveList() {
 
   return (
     <section className="relative h-screen w-full bg-black overflow-hidden flex flex-col md:flex-row z-20 border-b border-white/10">
-      {/* Subtle Noise/Grain Overlay for the entire section */}
+      {/* Subtle Noise/Grain Overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-soft-light z-30 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'0%27svg%27%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E')]" />
 
       {showcaseItems.map((item, index) => {
@@ -80,25 +80,24 @@ export function LuminaInteractiveList() {
                 )}
                 unoptimized
               />
-              {/* Monolith Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80" />
             </div>
 
-            {/* Vertical Content (Visible when NOT hovered) */}
-            <AnimatePresence mode="wait">
+            {/* Vertical Content (Non-hovered) */}
+            <AnimatePresence>
               {!isHovered && (
                 <motion.div
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="absolute inset-0 z-10 flex flex-col items-center justify-center"
+                  exit={{ opacity: 0, transition: { duration: 0.1 } }}
+                  transition={{ duration: 0.4 }}
+                  className="absolute inset-0 z-10 flex flex-col items-center justify-between py-[12vh]"
                 >
-                  <span className="text-[4vw] md:text-[2vw] font-mono text-white/20 font-bold mb-[4vh]">
+                  <span className="text-[4vw] md:text-[1.8vw] font-mono text-white font-bold tracking-widest">
                     {item.number}
                   </span>
-                  <div className="h-[40vh] flex items-center justify-center">
-                    <h3 className="whitespace-nowrap transform -rotate-90 origin-center text-white/40 uppercase tracking-[0.4em] font-bold text-[3vw] md:text-[2vw]">
+                  <div className="flex-1 flex items-center justify-center">
+                    <h3 className="whitespace-nowrap transform -rotate-90 origin-center text-white uppercase tracking-[0.4em] font-bold text-[3vw] md:text-[2vw]">
                       {item.title}
                     </h3>
                   </div>
@@ -106,18 +105,18 @@ export function LuminaInteractiveList() {
               )}
             </AnimatePresence>
 
-            {/* Expanded Content (Visible when hovered) */}
+            {/* Expanded Content (Hovered) */}
             <div className="relative z-20 w-full h-full p-[4vw] flex flex-col justify-end">
-              <AnimatePresence>
+              <AnimatePresence mode="wait">
                 {isHovered && (
                   <motion.div
+                    key="expanded-content"
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, transition: { duration: 0.2 } }}
-                    transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
-                    className="w-full pointer-events-none"
+                    exit={{ opacity: 0, transition: { duration: 0.15 } }}
+                    transition={{ duration: 0.5, delay: 0.1, ease: "easeOut" }}
+                    className="w-full pointer-events-none overflow-hidden"
                   >
-                    {/* Fixed width inner container to prevent text squashing during flex transition */}
                     <div className="max-w-[80%] min-w-[300px]">
                       <div className="flex items-center gap-4 mb-4">
                         <span className="font-mono text-[1vw] text-accent tracking-[0.2em] uppercase font-bold">
@@ -128,7 +127,7 @@ export function LuminaInteractiveList() {
                       <h2 className="heading-md text-white uppercase text-[3vw] mb-6 leading-tight whitespace-nowrap">
                         {item.title}
                       </h2>
-                      <p className="body-text text-white/80 text-[1.1vw] leading-relaxed max-w-[400px]">
+                      <p className="body-text text-white/80 text-[1.1vw] leading-relaxed max-w-[450px]">
                         {item.description}
                       </p>
                     </div>
