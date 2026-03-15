@@ -21,7 +21,14 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
   
   const experienceImg = "https://i.ibb.co/Y6mmwvG/Whisk-b58d627825337489433466f42b316b9feg.png";
 
+  // Background transition: fade in second image
   const secondImageOpacity = useTransform(progress || new motion.Value(0), [0, 0.4, 0.8], [0, 1, 1]);
+  
+  // Content transition: fade out Hero text early in the scroll
+  const contentOpacity = useTransform(progress || new motion.Value(0), [0, 0.2], [1, 0]);
+  
+  // Disable pointer events when content is invisible to avoid blocking interactions in the next section
+  const pointerEvents = useTransform(progress || new motion.Value(0), (p) => p > 0.2 ? 'none' : 'auto');
 
   return (
     <div className="relative min-h-screen bg-transparent font-sans">
@@ -56,7 +63,13 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
       </div>
 
       {/* Screen 1 Content */}
-      <div className="relative z-20 w-full h-screen px-[4vw] pt-[4vh] pb-[2vh] flex flex-col justify-between text-white overflow-hidden">
+      <motion.div 
+        style={{ 
+          opacity: contentOpacity,
+          pointerEvents: pointerEvents as any
+        }}
+        className="relative z-20 w-full h-screen px-[4vw] pt-[4vh] pb-[2vh] flex flex-col justify-between text-white overflow-hidden"
+      >
         
         {/* TOP ROW */}
         <div className="grid grid-cols-12 w-full items-start">
@@ -129,7 +142,7 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
     </div>
   );
 }
