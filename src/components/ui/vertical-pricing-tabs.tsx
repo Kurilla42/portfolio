@@ -18,7 +18,7 @@ const PRICING_PLANS = [
     period: "one-time",
     oldPrice: "$900",
     badge: null,
-    color: "bg-primary"
+    color: "bg-accent"
   },
   {
     id: "02",
@@ -40,7 +40,7 @@ const PRICING_PLANS = [
     period: "/mo.",
     oldPrice: "Setup from $700",
     badge: null,
-    color: "bg-primary"
+    color: "bg-accent"
   },
 ];
 
@@ -80,7 +80,7 @@ export function VerticalPricingTabs() {
 
   const variants = {
     enter: (direction: number) => ({
-      x: direction > 0 ? 20 : -20,
+      x: direction > 0 ? 10 : -10,
       opacity: 0,
     }),
     center: {
@@ -90,27 +90,27 @@ export function VerticalPricingTabs() {
     },
     exit: (direction: number) => ({
       zIndex: 0,
-      x: direction > 0 ? -20 : 20,
+      x: direction > 0 ? -10 : 10,
       opacity: 0,
     }),
   };
 
   return (
-    <section className="w-full bg-transparent py-20 md:py-32" id="packages">
+    <section className="w-full bg-black py-20 md:py-32 relative z-30" id="packages">
       <div className="w-full px-[8vw] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch min-h-[600px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch min-h-[650px]">
           {/* Left Column: Navigation Tabs */}
           <div className="lg:col-span-4 flex flex-col justify-center order-2 lg:order-1">
             <div className="space-y-4 mb-16">
-              <span className="label text-primary/40 block tracking-[0.3em]">
+              <span className="label text-white/40 block tracking-[0.3em]">
                 [ PRICING PLANS ]
               </span>
-              <h2 className="heading-md text-primary text-[3.5vw] leading-tight">
+              <h2 className="heading-md text-white text-[3.5vw] leading-tight">
                 SELECT YOUR<br />GROWTH TIER
               </h2>
             </div>
 
-            <div className="flex flex-col space-y-0 border-l border-primary/10">
+            <div className="flex flex-col space-y-0 border-l border-white/10">
               {PRICING_PLANS.map((plan, index) => {
                 const isActive = activeIndex === index;
                 return (
@@ -118,13 +118,13 @@ export function VerticalPricingTabs() {
                     key={plan.id}
                     onClick={() => handleTabClick(index)}
                     className={cn(
-                      "group relative flex items-center gap-6 py-10 px-8 text-left transition-all duration-500 border-b border-primary/10 last:border-0",
+                      "group relative flex items-center gap-6 py-10 px-8 text-left transition-all duration-500 border-b border-white/10 last:border-0",
                       isActive
-                        ? "bg-white/40"
-                        : "hover:bg-white/20"
+                        ? "bg-white/5"
+                        : "hover:bg-white/5"
                     )}
                   >
-                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-primary/10 overflow-hidden">
+                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-white/5 overflow-hidden">
                       {isActive && (
                         <motion.div
                           key={`progress-${index}-${isPaused}`}
@@ -141,14 +141,14 @@ export function VerticalPricingTabs() {
 
                     <span className={cn(
                       "font-mono text-[1vw] font-bold tabular-nums transition-colors duration-500",
-                      isActive ? "text-primary" : "text-primary/20"
+                      isActive ? "text-white" : "text-white/20"
                     )}>
                       /{plan.id}
                     </span>
 
                     <span className={cn(
                       "text-[1.8vw] font-bold tracking-tight transition-colors duration-500 uppercase",
-                      isActive ? "text-primary" : "text-primary/30"
+                      isActive ? "text-white" : "text-white/30"
                     )}>
                       {plan.title}
                     </span>
@@ -165,7 +165,7 @@ export function VerticalPricingTabs() {
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <div className="h-full rounded-[3vw] overflow-hidden bg-white/60 backdrop-blur-md border border-white shadow-2xl p-[4vw] flex flex-col">
+              <div className="h-full rounded-[3vw] overflow-hidden bg-white/5 border border-white/10 shadow-2xl p-[4vw] flex flex-col relative">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.div
                     key={activeIndex}
@@ -176,7 +176,7 @@ export function VerticalPricingTabs() {
                     exit="exit"
                     transition={{
                       x: { type: "spring", stiffness: 300, damping: 30 },
-                      opacity: { duration: 0.3 },
+                      opacity: { duration: 0.2 },
                     }}
                     className="flex flex-col h-full"
                   >
@@ -187,30 +187,30 @@ export function VerticalPricingTabs() {
                             {PRICING_PLANS[activeIndex].badge}
                           </span>
                         )}
-                        <h3 className="heading-md text-primary text-[3vw] mb-4">
+                        <h3 className="heading-md text-white text-[3vw] mb-4">
                           {PRICING_PLANS[activeIndex].title}
                         </h3>
-                        <p className="body-text text-muted-foreground text-[1.2vw] max-w-xl">
+                        <p className="body-text text-white/60 text-[1.2vw] max-w-xl">
                           {PRICING_PLANS[activeIndex].description}
                         </p>
                       </div>
                       
                       <div className="text-right">
-                        <span className="label opacity-40 block mb-2">{PRICING_PLANS[activeIndex].id === "03" ? "Starting" : "Value"}</span>
-                        <span className="label line-through opacity-30 block text-[1vw]">{PRICING_PLANS[activeIndex].oldPrice}</span>
+                        <span className="label text-white/40 block mb-2">{PRICING_PLANS[activeIndex].id === "03" ? "Starting" : "Value"}</span>
+                        <span className="label line-through text-white/20 block text-[1vw]">{PRICING_PLANS[activeIndex].oldPrice}</span>
                         <div className="flex items-baseline justify-end gap-2">
-                          <span className="heading-md text-[4vw] text-primary">{PRICING_PLANS[activeIndex].investment}</span>
-                          <span className="label opacity-40">{PRICING_PLANS[activeIndex].period}</span>
+                          <span className="heading-md text-[4vw] text-white">{PRICING_PLANS[activeIndex].investment}</span>
+                          <span className="label text-white/40">{PRICING_PLANS[activeIndex].period}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-2 gap-12 mt-12 mb-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 mb-auto">
                       <div>
-                        <span className="label text-primary/30 block mb-6 tracking-widest">[ INCLUDED RESOURCES ]</span>
+                        <span className="label text-white/30 block mb-6 tracking-widest">[ INCLUDED RESOURCES ]</span>
                         <ul className="space-y-4">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
-                            <li key={i} className="flex items-center gap-4 body-text text-primary">
+                            <li key={i} className="flex items-center gap-4 body-text text-white/80">
                               <div className={cn("w-6 h-6 rounded-full flex items-center justify-center shrink-0", PRICING_PLANS[activeIndex].color)}>
                                 <Check className="w-3.5 h-3.5 text-white" />
                               </div>
@@ -221,12 +221,12 @@ export function VerticalPricingTabs() {
                       </div>
                       
                       <div className="flex flex-col justify-end items-end h-full">
-                        <div className="bg-primary/5 rounded-[2vw] p-8 w-full border border-primary/5">
-                          <p className="body-text text-primary/60 text-[0.9vw] leading-relaxed mb-6">
+                        <div className="bg-white/5 rounded-[2vw] p-8 w-full border border-white/5">
+                          <p className="body-text text-white/50 text-[0.9vw] leading-relaxed mb-6 italic">
                             "Everything you need to stop losing leads to competitors and start winning the local market."
                           </p>
-                          <Button asChild className={cn("w-full h-[4.5vw] rounded-full text-white text-[1vw] font-bold group", PRICING_PLANS[activeIndex].id === "02" ? "bg-accent hover:scale-[1.02]" : "bg-primary")}>
-                            <Link href="#contact" className="flex items-center justify-center gap-3">
+                          <Button asChild className={cn("w-full h-[4.5vw] rounded-full text-white text-[1vw] font-bold group", PRICING_PLANS[activeIndex].id === "02" ? "bg-accent hover:scale-[1.02]" : "bg-white/10 hover:bg-white/20")}>
+                            <Link href="https://calendly.com" target="_blank" className="flex items-center justify-center gap-3">
                               Select Plan
                               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                             </Link>
@@ -241,13 +241,13 @@ export function VerticalPricingTabs() {
                 <div className="absolute bottom-10 left-10 flex gap-4 z-20">
                   <button
                     onClick={handlePrev}
-                    className="w-[3.5vw] h-[3.5vw] rounded-full bg-white border border-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all active:scale-90"
+                    className="w-[3.5vw] h-[3.5vw] rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all active:scale-90"
                   >
                     <ChevronLeft className="w-[1.2vw] h-[1.2vw]" />
                   </button>
                   <button
                     onClick={handleNext}
-                    className="w-[3.5vw] h-[3.5vw] rounded-full bg-white border border-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-white transition-all active:scale-90"
+                    className="w-[3.5vw] h-[3.5vw] rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all active:scale-90"
                   >
                     <ChevronRight className="w-[1.2vw] h-[1.2vw]" />
                   </button>
