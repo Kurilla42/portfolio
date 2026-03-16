@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef } from 'react';
+import { motion, useTransform, MotionValue } from 'framer-motion';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 const lines = [
@@ -16,15 +17,24 @@ const lines = [
   "think like designers, not marketers."
 ];
 
-export function ExperienceTextSection() {
+interface ExperienceTextSectionProps {
+  progress: MotionValue<number>;
+}
+
+export function ExperienceTextSection({ progress }: ExperienceTextSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   
+  // Появляется после того как Hero текст исчезает (0.2) и остается до начала наезда Монолита
+  const opacity = useTransform(progress, [0.15, 0.35, 0.7, 0.9], [0, 1, 1, 0]);
+  const y = useTransform(progress, [0.15, 0.35], [40, 0]);
+  
   return (
-    <section 
+    <motion.section 
       ref={containerRef} 
-      className="relative min-h-[100vh] bg-transparent flex flex-col items-center justify-center px-[8vw] py-[15vh] z-10 text-center"
+      style={{ opacity }}
+      className="absolute inset-0 bg-transparent flex flex-col items-center justify-center px-[8vw] py-[15vh] z-30 text-center pointer-events-none"
     >
-      <div className="max-w-[85vw] flex flex-col items-center">
+      <motion.div style={{ y }} className="max-w-[85vw] flex flex-col items-center">
         <span className="label text-white/40 block mb-[6vh] tracking-[0.2em] uppercase font-mono">[ THE PATTERN ]</span>
         <HighlightWipeHeading 
           as="p"
@@ -32,7 +42,7 @@ export function ExperienceTextSection() {
           className="heading-md text-white items-center"
           stagger={0.08}
         />
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
