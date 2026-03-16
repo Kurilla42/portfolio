@@ -181,13 +181,13 @@ export default function Home() {
           {/* BOTTOM TIER: Table (Left) | Heading (Right) */}
           <div className="flex flex-col lg:flex-row justify-between items-end gap-[4vw] w-full">
             <motion.div 
-              className="w-[72vw]"
+              className="w-[60vw]"
               variants={containerVariants}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
             >
-              {/* Table Headers - Fixed widths for equality (12 + 30 + 30 = 72vw) */}
+              {/* Table Headers - 12vw + 1fr (24vw) + 1fr (24vw) = 60vw */}
               <div className="w-full border-t border-b border-white/20">
                 <div className="grid grid-cols-[12vw_1fr_1fr] gap-0">
                   {[
