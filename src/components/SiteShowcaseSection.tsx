@@ -40,7 +40,9 @@ export function SiteShowcaseSection() {
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
-      <span key={i} className="block leading-[0.9]">{char}</span>
+      <span key={i} className="block leading-[0.9]">
+        {char === " " ? "\u00A0" : char}
+      </span>
     ));
   };
 
@@ -63,7 +65,7 @@ export function SiteShowcaseSection() {
               className="flex flex-col items-center font-sans font-black text-[3vw] heading-md uppercase text-white leading-none"
             >
               <div className="flex flex-col items-center">
-                {renderVerticalText("YOURSITE")}
+                {renderVerticalText("YOUR SITE")}
               </div>
             </motion.div>
           </div>
