@@ -179,110 +179,108 @@ export default function Home() {
           </div>
 
           {/* BOTTOM TIER: Table (Left) | Heading (Right) */}
-          <div className="grid grid-cols-12 gap-[4vw] items-end">
-            <div className="col-span-12 lg:col-span-9">
-              <motion.div 
-                className="w-full"
-                variants={containerVariants}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, amount: 0.1 }}
-              >
-                {/* Table Headers - Adjusted grid with fixed width for Columns to reach 72vw total */}
-                <div className="w-full border-t border-b border-white/20">
-                  <div className="grid grid-cols-[12vw_30vw_30vw] gap-0">
-                    {[
-                      { label: "CRITERIA", active: false },
-                      { label: "ANTON KOLESNIKOV", active: true },
-                      { label: "FREELANCER/AGENCY", active: false }
-                    ].map((header, i) => (
-                      <div 
-                        key={header.label} 
-                        className={`relative flex items-center py-[1.5vh] 
-                          ${i === 0 ? 'pr-[4vw]' : 'px-[2vw]'}
-                          ${header.active ? 'bg-white/5' : ''}
-                        `}
-                      >
-                        <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
-                          ${header.active ? 'text-white' : 'text-white/30'}
-                        `}>
-                          {header.label}
-                        </span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Table Body - Consistent fixed grid structure (12 + 30 + 30 = 72vw) */}
-                <div className="flex flex-col relative">
-                  {comparisonData.map((item, idx) => (
-                    <motion.div 
-                      key={idx}
-                      variants={itemVariants}
-                      whileHover="hover"
-                      initial="initial"
-                      className="grid grid-cols-[12vw_30vw_30vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
+          <div className="flex flex-col lg:flex-row justify-between items-end gap-[4vw] w-full">
+            <motion.div 
+              className="w-[72vw]"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }}
+            >
+              {/* Table Headers - Fixed widths for equality (12 + 30 + 30 = 72vw) */}
+              <div className="w-full border-t border-b border-white/20">
+                <div className="grid grid-cols-[12vw_1fr_1fr] gap-0">
+                  {[
+                    { label: "CRITERIA", active: false },
+                    { label: "ANTON KOLESNIKOV", active: true },
+                    { label: "FREELANCER/AGENCY", active: false }
+                  ].map((header, i) => (
+                    <div 
+                      key={header.label} 
+                      className={`relative flex items-center py-[1.5vh] 
+                        ${i === 0 ? 'pr-[4vw]' : 'px-[2vw]'}
+                        ${header.active ? 'bg-white/5' : ''}
+                      `}
                     >
-                      {/* Criteria */}
-                      <div className="py-[1.5vh] pr-[4vw] flex items-center overflow-hidden">
-                         <div className="h-[1.2vw] overflow-hidden">
-                           <motion.div
-                             variants={rollingTextVariants}
-                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                             className="flex flex-col"
-                           >
-                             <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-white/40 group-hover:text-white transition-colors duration-300 h-[1.2vw] flex items-center">
-                               {item.criterion}
-                             </span>
-                             <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-white h-[1.2vw] flex items-center">
-                               {item.criterion}
-                             </span>
-                           </motion.div>
-                         </div>
-                      </div>
-
-                      {/* Anton */}
-                      <div className="py-[1.5vh] px-[2vw] bg-white/5 group-hover:bg-white/10 transition-colors duration-300 flex items-center overflow-hidden">
-                        <div className="h-[1.2vw] overflow-hidden w-full">
-                           <motion.div
-                             variants={rollingTextVariants}
-                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                             className="flex flex-col"
-                           >
-                             <p className="text-[1vw] font-bold leading-tight truncate text-white h-[1.2vw] flex items-center">
-                               {item.me}
-                             </p>
-                             <p className="text-[1vw] font-bold leading-tight truncate text-white h-[1.2vw] flex items-center">
-                               {item.me}
-                             </p>
-                           </motion.div>
-                         </div>
-                      </div>
-
-                      {/* Freelancer/Agency */}
-                      <div className="py-[1.5vh] px-[2vw] flex items-center overflow-hidden">
-                        <div className="h-[1.2vw] overflow-hidden w-full">
-                           <motion.div
-                             variants={rollingTextVariants}
-                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                             className="flex flex-col"
-                           >
-                             <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60 transition-colors duration-300 h-[1.2vw] flex items-center">
-                               {item.freelancer}
-                             </p>
-                             <p className="text-[1vw] font-medium leading-tight truncate text-white h-[1.2vw] flex items-center">
-                               {item.freelancer}
-                             </p>
-                           </motion.div>
-                         </div>
-                      </div>
-                    </motion.div>
+                      <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
+                        ${header.active ? 'text-white' : 'text-white/30'}
+                      `}>
+                        {header.label}
+                      </span>
+                    </div>
                   ))}
                 </div>
-              </motion.div>
-            </div>
+              </div>
 
-            <div className="col-span-12 lg:col-span-3 flex flex-col items-end text-right">
+              {/* Table Body - Consistent grid structure */}
+              <div className="flex flex-col relative">
+                {comparisonData.map((item, idx) => (
+                  <motion.div 
+                    key={idx}
+                    variants={itemVariants}
+                    whileHover="hover"
+                    initial="initial"
+                    className="grid grid-cols-[12vw_1fr_1fr] gap-0 border-b border-white/20 items-stretch group cursor-default"
+                  >
+                    {/* Criteria */}
+                    <div className="py-[1.5vh] pr-[4vw] flex items-center overflow-hidden">
+                       <div className="h-[1.2vw] overflow-hidden">
+                         <motion.div
+                           variants={rollingTextVariants}
+                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                           className="flex flex-col"
+                         >
+                           <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-white/40 group-hover:text-white transition-colors duration-300 h-[1.2vw] flex items-center">
+                             {item.criterion}
+                           </span>
+                           <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-white h-[1.2vw] flex items-center">
+                             {item.criterion}
+                           </span>
+                         </motion.div>
+                       </div>
+                    </div>
+
+                    {/* Anton */}
+                    <div className="py-[1.5vh] px-[2vw] bg-white/5 group-hover:bg-white/10 transition-colors duration-300 flex items-center overflow-hidden">
+                      <div className="h-[1.2vw] overflow-hidden w-full">
+                         <motion.div
+                           variants={rollingTextVariants}
+                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                           className="flex flex-col"
+                         >
+                           <p className="text-[1vw] font-bold leading-tight truncate text-white h-[1.2vw] flex items-center">
+                             {item.me}
+                           </p>
+                           <p className="text-[1vw] font-bold leading-tight truncate text-white h-[1.2vw] flex items-center">
+                             {item.me}
+                           </p>
+                         </motion.div>
+                       </div>
+                    </div>
+
+                    {/* Freelancer/Agency */}
+                    <div className="py-[1.5vh] px-[2vw] flex items-center overflow-hidden">
+                      <div className="h-[1.2vw] overflow-hidden w-full">
+                         <motion.div
+                           variants={rollingTextVariants}
+                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                           className="flex flex-col"
+                         >
+                           <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60 transition-colors duration-300 h-[1.2vw] flex items-center">
+                             {item.freelancer}
+                           </p>
+                           <p className="text-[1vw] font-medium leading-tight truncate text-white h-[1.2vw] flex items-center">
+                             {item.freelancer}
+                           </p>
+                         </motion.div>
+                       </div>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
+
+            <div className="flex flex-col items-end text-right">
               <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[2vh]">
                 THE<br />DIFFERENCE
               </h2>
