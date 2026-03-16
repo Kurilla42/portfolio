@@ -12,6 +12,7 @@ import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
+import { VerticalPricingTabs } from '@/components/ui/vertical-pricing-tabs';
 
 const comparisonData = [
   {
@@ -88,15 +89,17 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-transparent">
       {/* Combined Background Area for Hero and Experience */}
-      <div ref={heroCombinedRef} className="relative">
-        <div className="sticky top-0 h-screen w-full -z-10">
+      <div ref={heroCombinedRef} className="relative h-[200vh]">
+        <div className="sticky top-0 h-screen w-full -z-10 overflow-hidden">
           <ShaderShowcase progress={scrollYProgress} />
+          <ExperienceTextSection progress={scrollYProgress} />
         </div>
-        <ExperienceTextSection />
       </div>
 
       {/* Horizontal Scroll Philosophy Section */}
-      <LuminaInteractiveList />
+      <div className="relative z-20 shadow-[0_-20vh_20vh_-10vh_rgba(0,0,0,0.5)]">
+        <LuminaInteractiveList />
+      </div>
       
       <SiteShowcaseSection />
 
@@ -187,7 +190,7 @@ export default function Home() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
             >
-              {/* Table Headers - 12vw + 1fr (24vw) + 1fr (24vw) = 60vw */}
+              {/* Table Headers */}
               <div className="w-full border-t border-b border-white/20">
                 <div className="grid grid-cols-[12vw_1fr_1fr] gap-0">
                   {[
@@ -212,7 +215,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Table Body - Consistent grid structure */}
+              {/* Table Body */}
               <div className="flex flex-col relative">
                 {comparisonData.map((item, idx) => (
                   <motion.div 
@@ -220,7 +223,7 @@ export default function Home() {
                     variants={itemVariants}
                     whileHover="hover"
                     initial="initial"
-                    className="grid grid-cols-[12vw_1fr_1fr] gap-0 border-b border-white/20 items-stretch group cursor-default"
+                    className="grid grid-cols-[12vw_24vw_24vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
                   >
                     {/* Criteria */}
                     <div className="py-[1.5vh] pr-[4vw] flex items-center overflow-hidden">
@@ -290,128 +293,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Packages Section */}
-      <section className="py-[15vh] bg-[#eaeaf2] relative z-10" id="packages">
-        <div className="w-full px-[8vw]">
-          <header className="mb-[15vh]">
-            <HighlightWipeHeading 
-              lines={["PRICING PLANS"]}
-              className="heading-xl text-primary mb-[5vh]"
-            />
-            <p className="body-text text-muted-foreground max-w-[45vw]">
-              Choose a capacity level that fits your business stage. 
-              Built for performance, scalability, and predictable lead flow.
-            </p>
-          </header>
-
-          <div className="pricing-table border-t border-primary">
-            {/* Table Header */}
-            <div className="hidden md:grid grid-cols-[80px_2fr_1.5fr_1fr] py-[3vh] border-b border-primary text-muted-foreground label opacity-40">
-              <span>Level</span>
-              <span>Tier Specifications</span>
-              <span>Included Resources</span>
-              <span>Investment</span>
-            </div>
-
-            {/* Row 1 */}
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary items-start hover:bg-white/20 transition-colors">
-              <div className="mb-[2vh] md:mb-0">
-                <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">1</div>
-              </div>
-              <div className="tier-info pr-[6vw] mb-[4vh] md:mb-0">
-                <span className="tier-name heading-md text-primary block mb-[2vh]">Fast Launch Starter</span>
-                <span className="tier-desc body-text text-muted-foreground block mb-[4vh]">A focused launch for small service businesses needing immediate results.</span>
-                <div className="feature-tags flex flex-wrap gap-[1vw]">
-                  <span className="feature-tag tag border border-primary px-3 py-1 rounded-md">Landing Page</span>
-                  <span className="feature-tag tag border border-primary px-3 py-1 rounded-md">Essential SEO</span>
-                </div>
-              </div>
-              <div className="tier-details pr-[6vw] mb-[4vh] md:mb-0 space-y-[1.5vh]">
-                <span className="detail-label label text-muted-foreground opacity-30">RESOURCES</span>
-                {["One high-converting landing page", "Mobile-optimized design", "Lead form setup", "On-page SEO fundamentals"].map((item, i) => (
-                  <div key={i} className="detail-item body-text flex items-center gap-[1vw]">
-                    <div className="w-1 h-1 rounded-full bg-primary" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <div className="tier-action flex flex-col items-start gap-[4vh]">
-                <div className="price-lockup flex flex-col">
-                  <span className="label line-through opacity-30">$900</span>
-                  <div className="flex items-baseline gap-2">
-                    <span className="amount heading-md text-4xl lg:text-5xl text-primary">$697</span>
-                    <span className="period label opacity-40">one-time</span>
-                  </div>
-                </div>
-                <Button className="btn-select rounded-full btn border border-primary text-primary h-12 md:h-[4.5vw] px-8 hover:bg-primary hover:text-white transition-all">Get Started</Button>
-              </div>
-            </div>
-
-            {/* Row 2 */}
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary items-start bg-white/30 backdrop-blur-sm relative">
-              <div className="mb-[2vh] md:mb-0">
-                <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-accent text-white flex items-center justify-center font-bold heading-md text-xl">2</div>
-              </div>
-              <div className="tier-info pr-[6vw] mb-[4vh] md:mb-0">
-                <div className="flex items-center gap-[1.5vw] mb-[2vh]">
-                  <span className="tier-name heading-md text-primary">Local Leads Pro</span>
-                  <span className="tag bg-primary text-white px-3 py-1 rounded-full">Recommended</span>
-                </div>
-                <span className="tier-desc body-text text-muted-foreground block mb-[4vh]">Our flagship multi-page solution built for dominant local SEO presence.</span>
-              </div>
-              <div className="tier-details pr-[6vw] mb-[4vh] md:mb-0 space-y-[1.5vh]">
-                <span className="detail-label label text-muted-foreground opacity-30">RESOURCES</span>
-                {["5-7 High-intent pages", "Service Area pages", "Reviews integration", "Advanced CRM Sync", "Local SEO optimization"].map((item, i) => (
-                  <div key={i} className="detail-item body-text flex items-center gap-[1vw]">
-                    <div className="w-1 h-1 rounded-full bg-accent" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <div className="tier-action flex flex-col items-start gap-[4vh]">
-                <div className="price-lockup flex flex-col">
-                  <span className="label line-through opacity-30">$1500</span>
-                  <div className="flex items-baseline gap-2">
-                    <span className="amount heading-md text-4xl lg:text-5xl text-primary">$1197</span>
-                    <span className="period label opacity-40">one-time</span>
-                  </div>
-                </div>
-                <Button className="btn-select rounded-full btn bg-accent text-white h-12 md:h-[4.5vw] px-8 hover:scale-[1.05] transition-transform shadow-xl shadow-accent/20">Select Plan</Button>
-              </div>
-            </div>
-
-            {/* Row 3 */}
-            <div className="pricing-row grid grid-cols-1 md:grid-cols-[80px_2fr_1.5fr_1fr] py-[8vh] border-b border-primary items-start hover:bg-white/20 transition-colors">
-              <div className="mb-[2vh] md:mb-0">
-                <div className="tier-badge w-12 h-12 md:w-[3.5vw] md:h-[3.5vw] rounded-full bg-primary text-white flex items-center justify-center font-bold heading-md text-xl">3</div>
-              </div>
-              <div className="tier-info pr-[6vw] mb-[4vh] md:mb-0">
-                <span className="tier-name heading-md text-primary block mb-[2vh]">Growth Sync</span>
-                <span className="tier-desc body-text text-muted-foreground block mb-[4vh]">Ongoing maintenance and conversion optimization for scaling businesses.</span>
-              </div>
-              <div className="tier-details pr-[6vw] mb-[4vh] md:mb-0 space-y-[1.5vh]">
-                <span className="detail-label label text-muted-foreground opacity-30">RESOURCES</span>
-                {["Hosting & Maintenance", "Monthly content tweaks", "UX performance audit", "Priority tech support"].map((item, i) => (
-                  <div key={i} className="detail-item body-text flex items-center gap-[1vw]">
-                    <div className="w-1 h-1 rounded-full bg-primary" />
-                    {item}
-                  </div>
-                ))}
-              </div>
-              <div className="tier-action flex flex-col items-start gap-[4vh]">
-                <div className="price-lockup flex flex-col">
-                  <span className="label opacity-40">Setup from $700</span>
-                  <div className="flex items-baseline gap-2">
-                    <span className="amount heading-md text-3xl lg:text-4xl text-primary">+$129</span>
-                    <span className="period label opacity-40">/mo.</span>
-                  </div>
-                </div>
-                <Button className="btn-select rounded-full btn border border-primary text-primary h-12 md:h-[4.5vw] px-8 hover:bg-primary hover:text-white transition-all">Contact Sales</Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Re-designed Vertical Pricing Section */}
+      <VerticalPricingTabs />
 
       {/* Final CTA */}
       <section className="py-[20vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10" id="contact">
