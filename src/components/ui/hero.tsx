@@ -102,7 +102,7 @@ export default function ShaderShowcase({ progress }: ShaderShowcaseProps) {
             
             <HighlightWipeHeading 
               as="h1"
-              lines={["LANDING PAGES", "FOR PLUMBING", "CALLS"]}
+              lines={["LANDING PAGES", "FOR PLUMBING", "LEADS"]}
               className="heading-lg text-white w-[110%] -ml-1"
               stagger={0.12}
             />
