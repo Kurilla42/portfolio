@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef } from 'react';
@@ -82,15 +81,34 @@ export default function Home() {
   
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
-      {/* 1. HERO SECTION */}
-      <section className="relative h-screen w-full overflow-hidden">
-        <ShaderShowcase />
-      </section>
+      {/* COMBINED HERO & EXPERIENCE BLOCK */}
+      <div className="relative w-full overflow-hidden">
+        {/* Shared Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
+            alt="Hero Background"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
 
-      {/* 2. EXPERIENCE SECTION */}
-      <section className="relative min-h-[80vh] bg-black py-[15vh]">
-        <ExperienceTextSection />
-      </section>
+        {/* Content Layer */}
+        <div className="relative z-10">
+          {/* 1. HERO SECTION */}
+          <section className="relative h-screen w-full">
+            <ShaderShowcase />
+          </section>
+
+          {/* 2. EXPERIENCE SECTION */}
+          <section className="relative min-h-[80vh] py-[15vh]">
+            <ExperienceTextSection />
+          </section>
+        </div>
+      </div>
 
       {/* 3. MONOLITH SECTION */}
       <section className="relative z-20 shadow-[0_-20vh_20vh_-10vh_rgba(0,0,0,0.5)]">

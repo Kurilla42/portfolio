@@ -1,7 +1,5 @@
-
 "use client";
 
-import Image from "next/image";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Figma, MousePointer2 } from "lucide-react";
@@ -17,21 +15,7 @@ export default function ShaderShowcase() {
   }, []);
   
   return (
-    <div className="relative h-screen w-full bg-black font-sans overflow-hidden">
-      {/* Background Image (Absolute, not fixed) */}
-      <div className="absolute inset-0 z-0">
-        <Image
-          src="https://i.ibb.co/MyTDsBGB/Whisk-cdcdf93c304908096814b506dbaf17a6dr.png"
-          alt="Hero Background"
-          fill
-          className="object-cover"
-          priority
-          unoptimized
-          quality={100}
-        />
-        <div className="absolute inset-0 bg-black/20" />
-      </div>
-
+    <div className="relative h-screen w-full font-sans overflow-hidden bg-transparent">
       {/* Hero Content */}
       <div className="relative z-10 w-full h-full px-[4vw] pt-[4vh] pb-[2vh] flex flex-col justify-between text-white">
         
