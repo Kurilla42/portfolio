@@ -93,7 +93,8 @@ export default function Home() {
             priority
             unoptimized
           />
-          <div className="absolute inset-0 bg-black/50" />
+          {/* Gradient Overlay: starts 50% fixed for Hero, then fades to 100% in Experience */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(0,0,0,1)_75%)]" />
         </div>
 
         {/* Content Layer */}
