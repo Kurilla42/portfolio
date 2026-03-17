@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef } from 'react';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
@@ -78,21 +78,35 @@ const rollingTextVariants = {
 
 export default function Home() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const parallaxRef = useRef<HTMLDivElement>(null);
+  
+  // Parallax logic
+  const { scrollYProgress } = useScroll({
+    target: parallaxRef,
+    offset: ["start start", "end start"]
+  });
+  
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
       {/* COMBINED HERO & EXPERIENCE BLOCK */}
-      <div className="relative w-full overflow-hidden">
-        {/* Shared Background Image */}
+      <div ref={parallaxRef} className="relative w-full overflow-hidden">
+        {/* Shared Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
-          <Image
-            src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
-            alt="Hero Background"
-            fill
-            className="object-cover"
-            priority
-            unoptimized
-          />
+          <motion.div 
+            style={{ y: backgroundY }}
+            className="absolute inset-0 h-[120%]" // Extra height for parallax travel
+          >
+            <Image
+              src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
+              alt="Hero Background"
+              fill
+              className="object-cover"
+              priority
+              unoptimized
+            />
+          </motion.div>
           {/* Gradient Overlay: starts 50% fixed for Hero, then fades to 100% in Experience */}
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(0,0,0,1)_75%)]" />
         </div>
