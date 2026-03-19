@@ -28,7 +28,7 @@ export function InfoShowcaseSection({
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   return (
-    <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
+    <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-[#0b0b0b]">
       {/* Shared Background Layer с эффектом параллакса */}
       {/* Запас в 20% высоты и сдвиг вверх на 10% исключают появление просветов */}
       <div className="absolute inset-x-0 -top-[10%] z-0 h-[120%] w-full">

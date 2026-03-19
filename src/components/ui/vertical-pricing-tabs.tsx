@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -96,7 +95,7 @@ export function VerticalPricingTabs() {
   };
 
   return (
-    <section className="w-full bg-black py-20 md:py-32 relative z-30" id="packages">
+    <section className="w-full bg-[#0b0b0b] py-20 md:py-32 relative z-30" id="packages">
       <div className="w-full px-[8vw] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch min-h-[650px]">
           {/* Left Column: Navigation Tabs */}

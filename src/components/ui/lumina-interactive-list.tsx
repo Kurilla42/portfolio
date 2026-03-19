@@ -51,7 +51,7 @@ export function LuminaInteractiveList() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative h-screen w-full bg-black overflow-hidden flex flex-col md:flex-row z-20 border-b border-white/10">
+    <section className="relative h-screen w-full bg-[#0b0b0b] overflow-hidden flex flex-col md:flex-row z-20 border-b border-white/10">
       {/* Subtle Noise/Grain Overlay */}
       <div className="absolute inset-0 pointer-events-none opacity-20 mix-blend-soft-light z-30 bg-[url('data:image/svg+xml,%3Csvg viewBox=\'0 0 256 256\' xmlns=\'0%27svg%27%3E%3Cfilter id=\'n\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23n)\'/%3E%3C/svg%3E')]" />
 

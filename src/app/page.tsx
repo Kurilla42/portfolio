@@ -127,7 +127,7 @@ export default function Home() {
       <SiteShowcaseSection />
 
       {/* STEPS SECTION */}
-      <section className="relative py-[20vh] z-30 bg-black overflow-hidden w-full" id="steps">
+      <section className="relative py-[20vh] z-30 bg-[#0b0b0b] overflow-hidden w-full" id="steps">
         <div className="w-full px-[8vw]">
           <div className="grid grid-cols-12 gap-[4vw] items-start">
             <div className="col-span-12 lg:col-span-5 flex flex-col">
