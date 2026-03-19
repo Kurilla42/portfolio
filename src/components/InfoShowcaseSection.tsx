@@ -1,7 +1,8 @@
 'use client';
 
-import React from 'react';
+import React, { useRef } from 'react';
 import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface InfoShowcaseSectionProps {
   imageSrc?: string;
@@ -14,18 +15,34 @@ export function InfoShowcaseSection({
   quote = "MY GOAL HAS ALWAYS BEEN TO ELEVATE EVERYDAY INTERACTIONS INTO SOMETHING MORE MEANINGFUL AND CRUCIALLY, QUIETLY THREADING IN MOMENTS OF JOY THAT CATCH US BY SURPRISE AND STAY WITH US FOR YEARS TO COME",
   children
 }: InfoShowcaseSectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  
+  // Настройка параллакса
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Изображение будет смещаться на 15% своей высоты для эффекта глубины
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+
   return (
-    <section className="relative w-full z-20 overflow-hidden">
-      {/* Shared Background Layer: Spans the entire height of the combined content */}
-      <div className="absolute inset-0 z-0 h-full w-full">
-        <Image
-          src={imageSrc}
-          alt="Shared Vertical Background"
-          fill
-          className="object-cover"
-          priority
-          unoptimized
-        />
+    <section ref={containerRef} className="relative w-full z-20 overflow-hidden">
+      {/* Shared Background Layer с эффектом параллакса */}
+      <div className="absolute inset-0 z-0 h-[115%] w-full">
+        <motion.div 
+          style={{ y: backgroundY }}
+          className="relative h-full w-full"
+        >
+          <Image
+            src={imageSrc}
+            alt="Shared Vertical Background"
+            fill
+            className="object-cover"
+            priority
+            unoptimized
+          />
+        </motion.div>
       </div>
 
       {/* Content Container */}
