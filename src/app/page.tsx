@@ -80,7 +80,7 @@ const rollingTextVariants = {
 export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
   
-  // Parallax logic
+  // Parallax logic for Hero
   const { scrollYProgress } = useScroll({
     target: parallaxRef,
     offset: ["start start", "end start"]
@@ -90,9 +90,8 @@ export default function Home() {
   
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
-      {/* COMBINED HERO & EXPERIENCE BLOCK */}
+      {/* 1 & 2. HERO & EXPERIENCE SECTION */}
       <div ref={parallaxRef} className="relative w-full overflow-hidden">
-        {/* Shared Background Image with Parallax */}
         <div className="absolute inset-0 z-0">
           <motion.div 
             style={{ y: backgroundY }}
@@ -111,12 +110,9 @@ export default function Home() {
         </div>
 
         <div className="relative z-10">
-          {/* 1. HERO SECTION */}
           <section className="relative h-screen w-full">
             <ShaderShowcase />
           </section>
-
-          {/* 2. EXPERIENCE SECTION */}
           <section className="relative min-h-[80vh] py-[15vh]">
             <ExperienceTextSection />
           </section>
@@ -205,7 +201,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. INFO SHOWCASE BLOCK (IN FO) */}
+      {/* 6. INFO SHOWCASE BLOCK (IN FO) - 2 SCREEN HEIGHTS */}
       <InfoShowcaseSection />
 
       {/* 7. DIFFERENCE TABLE SECTION */}
@@ -219,7 +215,6 @@ export default function Home() {
               whileInView="visible"
               viewport={{ once: true, amount: 0.1 }}
             >
-              {/* Table Headers */}
               <div className="w-full border-t border-b border-white/20">
                 <div className="grid grid-cols-[12vw_1fr_1fr] gap-0">
                   {[
@@ -244,7 +239,6 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Table Body */}
               <div className="flex flex-col relative">
                 {comparisonData.map((item, idx) => (
                   <motion.div 

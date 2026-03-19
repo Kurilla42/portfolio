@@ -17,7 +17,7 @@ export function InfoShowcaseSection({
   return (
     <div ref={containerRef} className="relative h-[200vh] bg-black overflow-visible z-20">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-        {/* Background Image - Full brightness, no parallax */}
+        {/* Background Image - Full brightness, static */}
         <div className="absolute inset-0 z-0">
           <Image
             src={imageSrc}
@@ -28,7 +28,7 @@ export function InfoShowcaseSection({
           />
         </div>
 
-        {/* Massive Typography Layer - Moved to top, size increased to 30vw */}
+        {/* Massive Typography Layer - Fixed at the top, 30vw size */}
         <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between px-[5vw] pt-[2vh] pointer-events-none">
           <h2 className="text-[30vw] font-black leading-[0.8] text-white/20 tracking-tighter select-none">
             IN
@@ -38,9 +38,9 @@ export function InfoShowcaseSection({
           </h2>
         </div>
 
-        {/* Central Content - Static position */}
-        <div className="relative z-20 flex flex-col items-center max-w-[50vw] text-center mt-[10vh]">
-          {/* Vertical Brackets with characters */}
+        {/* Central Content - Center of the screen */}
+        <div className="relative z-20 flex flex-col items-center max-w-[50vw] text-center mt-[12vh]">
+          {/* Stylized Brackets and Vertical Characters */}
           <div className="flex flex-col items-center mb-12">
             <div className="text-accent text-[4vw] leading-none mb-2">「</div>
             <div className="flex flex-col items-center gap-2 py-4">
