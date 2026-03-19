@@ -120,7 +120,7 @@ export default function Home() {
       </div>
 
       {/* 3. MONOLITH SECTION */}
-      <section className="relative z-20 shadow-[0_-20vh_20vh_-10vh_rgba(0,0,0,0.5)]">
+      <section className="relative z-20">
         <LuminaInteractiveList />
       </section>
       
@@ -152,7 +152,7 @@ export default function Home() {
                 </motion.div>
                 <div className="flex flex-col gap-4 max-w-[22vw]">
                   <p className="text-[12px] text-white/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
-                    My goal has always been to elevate everyday interactions into something more meaningful and crucially, quietly threading in moments of joy that catch us by surprise and stay with us for years to come.
+                    My goal has always been to elevate everyday interactions into something more meaningful and crucially, quietly threading in moments of joy.
                   </p>
                 </div>
               </div>
@@ -201,7 +201,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. INFO SHOWCASE BLOCK (IN FO) - 2 SCREEN HEIGHTS */}
+      {/* 6. NEW BLOCK IN FO - Height 2 screens (200vh) */}
       <InfoShowcaseSection />
 
       {/* 7. DIFFERENCE TABLE SECTION */}
