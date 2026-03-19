@@ -80,7 +80,6 @@ const rollingTextVariants = {
 export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
   
-  // Parallax logic for Hero
   const { scrollYProgress } = useScroll({
     target: parallaxRef,
     offset: ["start start", "end start"]
@@ -90,7 +89,7 @@ export default function Home() {
   
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
-      {/* 1 & 2. HERO & EXPERIENCE SECTION */}
+      {/* HERO & EXPERIENCE SECTION */}
       <div ref={parallaxRef} className="relative w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
           <motion.div 
@@ -119,15 +118,15 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 3. MONOLITH SECTION */}
+      {/* MONOLITH SECTION */}
       <section className="relative z-20">
         <LuminaInteractiveList />
       </section>
       
-      {/* 4. SHOWCASE SECTION */}
+      {/* SHOWCASE SECTION */}
       <SiteShowcaseSection />
 
-      {/* 5. STEPS SECTION */}
+      {/* STEPS SECTION */}
       <section className="relative py-[20vh] z-30 bg-black overflow-hidden w-full" id="steps">
         <div className="w-full px-[8vw]">
           <div className="grid grid-cols-12 gap-[4vw] items-start">
@@ -201,121 +200,120 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. NEW BLOCK IN FO - Height 2 screens (200vh) */}
-      <InfoShowcaseSection />
+      {/* INFO SHOWCASE + DIFFERENCE TABLE (Shared Background) */}
+      <InfoShowcaseSection>
+        <section className="relative py-[20vh] z-30 overflow-hidden w-full" id="difference">
+          <div className="w-full px-[8vw]">
+            <div className="flex flex-col lg:flex-row justify-center items-end gap-[4vw] w-full">
+              <motion.div 
+                className="w-[72vw]"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.1 }}
+              >
+                <div className="w-full border-t border-b border-white/20">
+                  <div className="grid grid-cols-[12vw_1fr_1fr] gap-0">
+                    {[
+                      { label: "CRITERIA", active: false },
+                      { label: "ANTON KOLESNIKOV", active: true },
+                      { label: "FREELANCER/AGENCY", active: false }
+                    ].map((header, i) => (
+                      <div 
+                        key={header.label} 
+                        className={`relative flex items-center py-[1.5vh] 
+                          ${i === 0 ? 'pr-[4vw]' : 'px-[2vw]'}
+                          ${header.active ? 'bg-white/5' : ''}
+                        `}
+                      >
+                        <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
+                          ${header.active ? 'text-white' : 'text-white/30'}
+                        `}>
+                          {header.label}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-      {/* 7. DIFFERENCE TABLE SECTION */}
-      <section className="relative py-[20vh] z-30 bg-black overflow-hidden w-full" id="difference">
-        <div className="w-full px-[8vw]">
-          <div className="flex flex-col lg:flex-row justify-center items-end gap-[4vw] w-full">
-            <motion.div 
-              className="w-[72vw]"
-              variants={containerVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.1 }}
-            >
-              <div className="w-full border-t border-b border-white/20">
-                <div className="grid grid-cols-[12vw_1fr_1fr] gap-0">
-                  {[
-                    { label: "CRITERIA", active: false },
-                    { label: "ANTON KOLESNIKOV", active: true },
-                    { label: "FREELANCER/AGENCY", active: false }
-                  ].map((header, i) => (
-                    <div 
-                      key={header.label} 
-                      className={`relative flex items-center py-[1.5vh] 
-                        ${i === 0 ? 'pr-[4vw]' : 'px-[2vw]'}
-                        ${header.active ? 'bg-white/5' : ''}
-                      `}
+                <div className="flex flex-col relative">
+                  {comparisonData.map((item, idx) => (
+                    <motion.div 
+                      key={idx}
+                      variants={itemVariants}
+                      whileHover="hover"
+                      initial="initial"
+                      className="grid grid-cols-[12vw_30vw_30vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
                     >
-                      <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
-                        ${header.active ? 'text-white' : 'text-white/30'}
-                      `}>
-                        {header.label}
-                      </span>
-                    </div>
+                      <div className="py-[1.5vh] pr-[4vw] flex items-center overflow-hidden">
+                         <div className="h-[1.2vw] overflow-hidden">
+                           <motion.div
+                             variants={rollingTextVariants}
+                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                             className="flex flex-col"
+                           >
+                             <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-white/40 group-hover:text-white transition-colors duration-300 h-[1.2vw] flex items-center">
+                               {item.criterion}
+                             </span>
+                             <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-white h-[1.2vw] flex items-center">
+                               {item.criterion}
+                             </span>
+                           </motion.div>
+                         </div>
+                      </div>
+
+                      <div className="py-[1.5vh] px-[2vw] bg-white/5 group-hover:bg-white/10 transition-colors duration-300 flex items-center overflow-hidden">
+                        <div className="h-[1.2vw] overflow-hidden w-full">
+                           <motion.div
+                             variants={rollingTextVariants}
+                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                             className="flex flex-col"
+                           >
+                             <p className="text-[1vw] font-bold leading-tight truncate text-white h-[1.2vw] flex items-center">
+                               {item.me}
+                             </p>
+                             <p className="text-[1vw] font-bold leading-tight truncate text-white h-[1.2vw] flex items-center">
+                               {item.me}
+                             </p>
+                           </motion.div>
+                         </div>
+                      </div>
+
+                      <div className="py-[1.5vh] px-[2vw] flex items-center overflow-hidden">
+                        <div className="h-[1.2vw] overflow-hidden w-full">
+                           <motion.div
+                             variants={rollingTextVariants}
+                             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                             className="flex flex-col"
+                           >
+                             <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60 transition-colors duration-300 h-[1.2vw] flex items-center">
+                               {item.freelancer}
+                             </p>
+                             <p className="text-[1vw] font-medium leading-tight truncate text-white h-[1.2vw] flex items-center">
+                               {item.freelancer}
+                             </p>
+                           </motion.div>
+                         </div>
+                      </div>
+                    </motion.div>
                   ))}
                 </div>
+              </motion.div>
+
+              <div className="flex flex-col items-end text-right hidden lg:flex">
+                <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[2vh]">
+                  THE<br />DIFFERENCE
+                </h2>
               </div>
-
-              <div className="flex flex-col relative">
-                {comparisonData.map((item, idx) => (
-                  <motion.div 
-                    key={idx}
-                    variants={itemVariants}
-                    whileHover="hover"
-                    initial="initial"
-                    className="grid grid-cols-[12vw_30vw_30vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
-                  >
-                    <div className="py-[1.5vh] pr-[4vw] flex items-center overflow-hidden">
-                       <div className="h-[1.2vw] overflow-hidden">
-                         <motion.div
-                           variants={rollingTextVariants}
-                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                           className="flex flex-col"
-                         >
-                           <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-white/40 group-hover:text-white transition-colors duration-300 h-[1.2vw] flex items-center">
-                             {item.criterion}
-                           </span>
-                           <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-white h-[1.2vw] flex items-center">
-                             {item.criterion}
-                           </span>
-                         </motion.div>
-                       </div>
-                    </div>
-
-                    <div className="py-[1.5vh] px-[2vw] bg-white/5 group-hover:bg-white/10 transition-colors duration-300 flex items-center overflow-hidden">
-                      <div className="h-[1.2vw] overflow-hidden w-full">
-                         <motion.div
-                           variants={rollingTextVariants}
-                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                           className="flex flex-col"
-                         >
-                           <p className="text-[1vw] font-bold leading-tight truncate text-white h-[1.2vw] flex items-center">
-                             {item.me}
-                           </p>
-                           <p className="text-[1vw] font-bold leading-tight truncate text-white h-[1.2vw] flex items-center">
-                             {item.me}
-                           </p>
-                         </motion.div>
-                       </div>
-                    </div>
-
-                    <div className="py-[1.5vh] px-[2vw] flex items-center overflow-hidden">
-                      <div className="h-[1.2vw] overflow-hidden w-full">
-                         <motion.div
-                           variants={rollingTextVariants}
-                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                           className="flex flex-col"
-                         >
-                           <p className="text-[1vw] font-medium leading-tight truncate text-white/40 group-hover:text-white/60 transition-colors duration-300 h-[1.2vw] flex items-center">
-                             {item.freelancer}
-                           </p>
-                           <p className="text-[1vw] font-medium leading-tight truncate text-white h-[1.2vw] flex items-center">
-                             {item.freelancer}
-                           </p>
-                         </motion.div>
-                       </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
-
-            <div className="flex flex-col items-end text-right hidden lg:flex">
-              <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[2vh]">
-                THE<br />DIFFERENCE
-              </h2>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </InfoShowcaseSection>
 
-      {/* 8. PRICING SECTION */}
+      {/* PRICING SECTION */}
       <VerticalPricingTabs />
 
-      {/* 9. FINAL CTA */}
+      {/* FINAL CTA */}
       <section className="py-[20vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10" id="contact">
         <div className="w-full px-[6vw]">
           <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">

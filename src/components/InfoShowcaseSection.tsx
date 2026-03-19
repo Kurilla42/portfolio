@@ -1,23 +1,26 @@
 'use client';
 
+import React from 'react';
 import Image from 'next/image';
 
 interface InfoShowcaseSectionProps {
   imageSrc?: string;
   quote?: string;
+  children?: React.ReactNode;
 }
 
 export function InfoShowcaseSection({
   imageSrc = "https://i.ibb.co/xqjNS2sj/202603190505.jpg",
-  quote = "MY GOAL HAS ALWAYS BEEN TO ELEVATE EVERYDAY INTERACTIONS INTO SOMETHING MORE MEANINGFUL AND CRUCIALLY, QUIETLY THREADING IN MOMENTS OF JOY THAT CATCH US BY SURPRISE AND STAY WITH US FOR YEARS TO COME"
+  quote = "MY GOAL HAS ALWAYS BEEN TO ELEVATE EVERYDAY INTERACTIONS INTO SOMETHING MORE MEANINGFUL AND CRUCIALLY, QUIETLY THREADING IN MOMENTS OF JOY THAT CATCH US BY SURPRISE AND STAY WITH US FOR YEARS TO COME",
+  children
 }: InfoShowcaseSectionProps) {
   return (
-    <section className="relative w-full z-20 overflow-hidden" style={{ height: '200vh' }}>
-      {/* Background Layer: Covers all 200vh to use the full vertical image */}
+    <section className="relative w-full z-20 overflow-hidden">
+      {/* Shared Background Layer: Spans the entire height of the combined content */}
       <div className="absolute inset-0 z-0 h-full w-full">
         <Image
           src={imageSrc}
-          alt="Showcase Vertical Background"
+          alt="Shared Vertical Background"
           fill
           className="object-cover"
           priority
@@ -26,14 +29,14 @@ export function InfoShowcaseSection({
       </div>
 
       {/* Content Container */}
-      <div className="relative z-10 w-full h-full flex flex-col">
+      <div className="relative z-10 w-full flex flex-col">
         
         {/* FIRST BLOCK (100vh): IN FO Typography */}
         <div className="h-screen w-full flex items-start justify-between px-[5vw] pt-[5vh] pointer-events-none">
-          <h2 className="text-[30vw] font-black leading-none text-white/15 tracking-tighter select-none font-sans">
+          <h2 className="text-[30vw] font-black leading-none text-white tracking-tighter select-none font-sans">
             IN
           </h2>
-          <h2 className="text-[30vw] font-black leading-none text-white/15 tracking-tighter select-none font-sans">
+          <h2 className="text-[30vw] font-black leading-none text-white tracking-tighter select-none font-sans">
             FO
           </h2>
         </div>
@@ -55,6 +58,13 @@ export function InfoShowcaseSection({
             {quote}
           </p>
         </div>
+
+        {/* THIRD PART: Comparison Table or other Children */}
+        {children && (
+          <div className="relative w-full">
+            {children}
+          </div>
+        )}
 
       </div>
     </section>
