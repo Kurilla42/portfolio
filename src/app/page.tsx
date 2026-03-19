@@ -205,7 +205,7 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 6. NEW INFO BLOCK */}
+      {/* 6. INFO SHOWCASE BLOCK (IN FO) */}
       <InfoShowcaseSection />
 
       {/* 7. DIFFERENCE TABLE SECTION */}
