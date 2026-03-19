@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 
@@ -29,18 +28,18 @@ export function InfoShowcaseSection({
           />
         </div>
 
-        {/* Massive Typography Layer - Static 10vw size */}
-        <div className="absolute inset-0 z-10 flex items-center justify-between px-[10vw] pointer-events-none">
-          <h2 className="text-[10vw] font-black leading-none text-white/20 tracking-tighter select-none">
+        {/* Massive Typography Layer - Moved to top, size increased to 30vw */}
+        <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between px-[5vw] pt-[2vh] pointer-events-none">
+          <h2 className="text-[30vw] font-black leading-[0.8] text-white/20 tracking-tighter select-none">
             IN
           </h2>
-          <h2 className="text-[10vw] font-black leading-none text-white/20 tracking-tighter select-none">
+          <h2 className="text-[30vw] font-black leading-[0.8] text-white/20 tracking-tighter select-none">
             FO
           </h2>
         </div>
 
         {/* Central Content - Static position */}
-        <div className="relative z-20 flex flex-col items-center max-w-[50vw] text-center">
+        <div className="relative z-20 flex flex-col items-center max-w-[50vw] text-center mt-[10vh]">
           {/* Vertical Brackets with characters */}
           <div className="flex flex-col items-center mb-12">
             <div className="text-accent text-[4vw] leading-none mb-2">「</div>
