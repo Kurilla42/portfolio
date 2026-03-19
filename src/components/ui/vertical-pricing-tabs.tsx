@@ -3,9 +3,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { ChevronLeft, ChevronRight, Check, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Check } from "lucide-react";
 
 const PRICING_PLANS = [
   {
@@ -55,11 +53,6 @@ export function VerticalPricingTabs() {
     setActiveIndex((prev) => (prev + 1) % PRICING_PLANS.length);
   }, []);
 
-  const handlePrev = useCallback(() => {
-    setDirection(-1);
-    setActiveIndex((prev) => (prev - 1 + PRICING_PLANS.length) % PRICING_PLANS.length);
-  }, []);
-
   const handleTabClick = (index: number) => {
     if (index === activeIndex) return;
     setDirection(index > activeIndex ? 1 : -1);
@@ -97,7 +90,7 @@ export function VerticalPricingTabs() {
   return (
     <section className="w-full bg-[#0b0b0b] py-20 md:py-32 relative z-30" id="packages">
       <div className="w-full px-[8vw] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch min-h-[650px]">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch min-h-[600px]">
           {/* Left Column: Navigation Tabs */}
           <div className="lg:col-span-4 flex flex-col justify-center order-2 lg:order-1">
             <div className="space-y-4 mb-16">
@@ -164,7 +157,7 @@ export function VerticalPricingTabs() {
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <div className="h-full rounded-[3vw] overflow-hidden bg-white/5 border border-white/10 shadow-2xl p-[4vw] flex flex-col relative">
+              <div className="h-full rounded-[3vw] overflow-hidden p-[4vw] flex flex-col relative">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.div
                     key={activeIndex}
@@ -221,36 +214,14 @@ export function VerticalPricingTabs() {
                       
                       <div className="flex flex-col justify-end items-end h-full">
                         <div className="bg-white/5 rounded-[2vw] p-8 w-full border border-white/5">
-                          <p className="body-text text-white/50 text-[0.9vw] leading-relaxed mb-6 italic">
+                          <p className="body-text text-white/50 text-[0.9vw] leading-relaxed italic">
                             "Everything you need to stop losing leads to competitors and start winning the local market."
                           </p>
-                          <Button asChild className={cn("w-full h-[4.5vw] rounded-full text-white text-[1vw] font-bold group", PRICING_PLANS[activeIndex].id === "02" ? "bg-accent hover:scale-[1.02]" : "bg-white/10 hover:bg-white/20")}>
-                            <Link href="https://calendly.com" target="_blank" className="flex items-center justify-center gap-3">
-                              Select Plan
-                              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                            </Link>
-                          </Button>
                         </div>
                       </div>
                     </div>
                   </motion.div>
                 </AnimatePresence>
-
-                {/* Controls */}
-                <div className="absolute bottom-10 left-10 flex gap-4 z-20">
-                  <button
-                    onClick={handlePrev}
-                    className="w-[3.5vw] h-[3.5vw] rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all active:scale-90"
-                  >
-                    <ChevronLeft className="w-[1.2vw] h-[1.2vw]" />
-                  </button>
-                  <button
-                    onClick={handleNext}
-                    className="w-[3.5vw] h-[3.5vw] rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all active:scale-90"
-                  >
-                    <ChevronRight className="w-[1.2vw] h-[1.2vw]" />
-                  </button>
-                </div>
               </div>
             </div>
           </div>
