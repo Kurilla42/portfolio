@@ -23,13 +23,15 @@ export function InfoShowcaseSection({
     offset: ["start end", "end start"]
   });
 
-  // Изображение будет смещаться на 15% своей высоты для эффекта глубины
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  // Изображение теперь выше секции и смещается так, чтобы всегда перекрывать края
+  // Смещаем от 0% до 10% относительно контейнера высотой 120%, который начинается с -10%
+  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   return (
-    <section ref={containerRef} className="relative w-full z-20 overflow-hidden">
+    <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
       {/* Shared Background Layer с эффектом параллакса */}
-      <div className="absolute inset-0 z-0 h-[115%] w-full">
+      {/* Запас в 20% высоты и сдвиг вверх на 10% исключают появление просветов */}
+      <div className="absolute inset-x-0 -top-[10%] z-0 h-[120%] w-full">
         <motion.div 
           style={{ y: backgroundY }}
           className="relative h-full w-full"
