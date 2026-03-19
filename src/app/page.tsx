@@ -12,6 +12,7 @@ import ShaderShowcase from "@/components/ui/hero";
 import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { VerticalPricingTabs } from '@/components/ui/vertical-pricing-tabs';
+import { InfoShowcaseSection } from '@/components/InfoShowcaseSection';
 
 const comparisonData = [
   {
@@ -77,7 +78,6 @@ const rollingTextVariants = {
 };
 
 export default function Home() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
   
   // Parallax logic
@@ -96,7 +96,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <motion.div 
             style={{ y: backgroundY }}
-            className="absolute inset-0 h-[120%]" // Extra height for parallax travel
+            className="absolute inset-0 h-[120%]" 
           >
             <Image
               src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
@@ -107,11 +107,9 @@ export default function Home() {
               unoptimized
             />
           </motion.div>
-          {/* Gradient Overlay: starts 50% fixed for Hero, then fades to 100% in Experience */}
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(0,0,0,1)_75%)]" />
         </div>
 
-        {/* Content Layer */}
         <div className="relative z-10">
           {/* 1. HERO SECTION */}
           <section className="relative h-screen w-full">
@@ -133,15 +131,9 @@ export default function Home() {
       {/* 4. SHOWCASE SECTION */}
       <SiteShowcaseSection />
 
-      {/* 5. PROCESS & DIFFERENCE */}
-      <section 
-        ref={sectionRef} 
-        className="relative py-[20vh] z-30 bg-black overflow-hidden w-full" 
-        id="about"
-      >
-        <div className="w-full px-[8vw] flex flex-col gap-[15vh]">
-          
-          {/* TOP TIER: Steps */}
+      {/* 5. STEPS SECTION */}
+      <section className="relative py-[20vh] z-30 bg-black overflow-hidden w-full" id="steps">
+        <div className="w-full px-[8vw]">
           <div className="grid grid-cols-12 gap-[4vw] items-start">
             <div className="col-span-12 lg:col-span-5 flex flex-col">
               <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[6vh]">
@@ -210,8 +202,15 @@ export default function Home() {
               </motion.div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* BOTTOM TIER: Table */}
+      {/* 6. NEW INFO BLOCK */}
+      <InfoShowcaseSection />
+
+      {/* 7. DIFFERENCE TABLE SECTION */}
+      <section className="relative py-[20vh] z-30 bg-black overflow-hidden w-full" id="difference">
+        <div className="w-full px-[8vw]">
           <div className="flex flex-col lg:flex-row justify-center items-end gap-[4vw] w-full">
             <motion.div 
               className="w-[72vw]"
@@ -316,14 +315,13 @@ export default function Home() {
               </h2>
             </div>
           </div>
-
         </div>
       </section>
 
-      {/* 6. PRICING SECTION */}
+      {/* 8. PRICING SECTION */}
       <VerticalPricingTabs />
 
-      {/* 7. FINAL CTA */}
+      {/* 9. FINAL CTA */}
       <section className="py-[20vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10" id="contact">
         <div className="w-full px-[6vw]">
           <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">
@@ -344,7 +342,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* FOOTER */}
       <footer className="py-[10vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10">
         <div className="w-full px-[6vw]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-[6vh]">
