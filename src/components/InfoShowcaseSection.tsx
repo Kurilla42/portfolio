@@ -13,21 +13,23 @@ export function InfoShowcaseSection({
 }: InfoShowcaseSectionProps) {
   return (
     <section className="relative w-full z-20" style={{ height: '200vh' }}>
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden bg-black">
-        {/* Background Image - Full brightness */}
-        <div className="absolute inset-0 z-0">
-          <Image
-            src={imageSrc}
-            alt="Showcase Background"
-            fill
-            className="object-cover"
-            priority
-            unoptimized
-          />
-        </div>
+      {/* Единый фоновый слой, который закреплен (sticky) на протяжении всех 200vh */}
+      <div className="sticky top-0 h-screen w-full z-0 overflow-hidden bg-black">
+        <Image
+          src={imageSrc}
+          alt="Showcase Background"
+          fill
+          className="object-cover"
+          priority
+          unoptimized
+        />
+      </div>
 
-        {/* Massive Typography Layer - 30vw size, positioned at top */}
-        <div className="absolute inset-x-0 top-0 z-10 flex items-start justify-between px-[5vw] pt-[5vh] pointer-events-none">
+      {/* Контейнер для контента, который скроллится поверх закрепленного фона */}
+      <div className="absolute inset-0 z-10">
+        
+        {/* ПЕРВЫЙ БЛОК (100vh): Массивная типография */}
+        <div className="h-screen w-full flex items-start justify-between px-[5vw] pt-[5vh] pointer-events-none">
           <h2 className="text-[30vw] font-black leading-none text-white/15 tracking-tighter select-none font-sans">
             IN
           </h2>
@@ -36,9 +38,9 @@ export function InfoShowcaseSection({
           </h2>
         </div>
 
-        {/* Central Content */}
-        <div className="relative z-20 flex flex-col items-center max-w-[70vw] text-center mt-[15vh]">
-          {/* Stylized Brackets and Vertical Characters - Pixel perfect to ref */}
+        {/* ВТОРОЙ БЛОК (100vh): Текст и скобки */}
+        <div className="h-screen w-full flex flex-col items-center justify-center text-center px-[4vw]">
+          {/* Стилизованные скобки и вертикальные символы */}
           <div className="flex flex-col items-center mb-16">
             <div className="text-accent text-[3.5vw] leading-none mb-1 font-light opacity-90">「</div>
             <div className="flex flex-col items-center gap-1 py-2">
@@ -48,11 +50,12 @@ export function InfoShowcaseSection({
             <div className="text-accent text-[3.5vw] leading-none mt-1 font-light opacity-90">」</div>
           </div>
 
-          {/* Quote Text - Centered, Uppercase, Tracking */}
+          {/* Цитата */}
           <p className="text-white text-[1.2vw] leading-[1.6] font-bold uppercase tracking-[0.05em] max-w-[42vw] drop-shadow-lg">
             {quote}
           </p>
         </div>
+
       </div>
     </section>
   );
