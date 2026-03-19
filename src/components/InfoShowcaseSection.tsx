@@ -12,12 +12,12 @@ export function InfoShowcaseSection({
   quote = "MY GOAL HAS ALWAYS BEEN TO ELEVATE EVERYDAY INTERACTIONS INTO SOMETHING MORE MEANINGFUL AND CRUCIALLY, QUIETLY THREADING IN MOMENTS OF JOY THAT CATCH US BY SURPRISE AND STAY WITH US FOR YEARS TO COME"
 }: InfoShowcaseSectionProps) {
   return (
-    <section className="relative w-full z-20" style={{ height: '200vh' }}>
-      {/* Единый фоновый слой, который закреплен (sticky) на протяжении всех 200vh */}
-      <div className="sticky top-0 h-screen w-full z-0 overflow-hidden bg-black">
+    <section className="relative w-full z-20 overflow-hidden" style={{ height: '200vh' }}>
+      {/* Background Layer: Covers all 200vh to use the full vertical image */}
+      <div className="absolute inset-0 z-0 h-full w-full">
         <Image
           src={imageSrc}
-          alt="Showcase Background"
+          alt="Showcase Vertical Background"
           fill
           className="object-cover"
           priority
@@ -25,10 +25,10 @@ export function InfoShowcaseSection({
         />
       </div>
 
-      {/* Контейнер для контента, который скроллится поверх закрепленного фона */}
-      <div className="absolute inset-0 z-10">
+      {/* Content Container */}
+      <div className="relative z-10 w-full h-full flex flex-col">
         
-        {/* ПЕРВЫЙ БЛОК (100vh): Массивная типография */}
+        {/* FIRST BLOCK (100vh): IN FO Typography */}
         <div className="h-screen w-full flex items-start justify-between px-[5vw] pt-[5vh] pointer-events-none">
           <h2 className="text-[30vw] font-black leading-none text-white/15 tracking-tighter select-none font-sans">
             IN
@@ -38,9 +38,9 @@ export function InfoShowcaseSection({
           </h2>
         </div>
 
-        {/* ВТОРОЙ БЛОК (100vh): Текст и скобки */}
+        {/* SECOND BLOCK (100vh): Quote and Brackets */}
         <div className="h-screen w-full flex flex-col items-center justify-center text-center px-[4vw]">
-          {/* Стилизованные скобки и вертикальные символы */}
+          {/* Stylized brackets and vertical symbols */}
           <div className="flex flex-col items-center mb-16">
             <div className="text-accent text-[3.5vw] leading-none mb-1 font-light opacity-90">「</div>
             <div className="flex flex-col items-center gap-1 py-2">
@@ -50,7 +50,7 @@ export function InfoShowcaseSection({
             <div className="text-accent text-[3.5vw] leading-none mt-1 font-light opacity-90">」</div>
           </div>
 
-          {/* Цитата */}
+          {/* Quote */}
           <p className="text-white text-[1.2vw] leading-[1.6] font-bold uppercase tracking-[0.05em] max-w-[42vw] drop-shadow-lg">
             {quote}
           </p>
