@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from 'framer-motion';
@@ -19,14 +18,14 @@ const lines = [
 
 export function ExperienceTextSection() {
   return (
-    <div className="w-full flex flex-col items-center justify-center px-[8vw] text-center">
-      <div className="max-w-[85vw] flex flex-col items-center">
+    <div className="w-full flex flex-col items-center justify-center px-6 md:px-[8vw] text-center">
+      <div className="w-full md:max-w-[85vw] flex flex-col items-center">
         <motion.span 
           initial={{ opacity: 0, y: 10 }}
           whileInView={{ opacity: 0.4, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="label text-white block mb-[6vh] tracking-[0.2em] uppercase font-mono"
+          className="label text-white block mb-8 md:mb-[6vh] tracking-[0.2em] uppercase font-mono text-[10px] md:text-xs"
         >
           [ THE PATTERN ]
         </motion.span>
@@ -34,7 +33,7 @@ export function ExperienceTextSection() {
         <HighlightWipeHeading 
           as="p"
           lines={lines}
-          className="heading-md text-white items-center"
+          className="text-xl sm:text-2xl md:text-[3.0vw] font-black uppercase leading-[1.3] md:leading-[1.1] text-white items-center tracking-tighter"
           stagger={0.08}
           triggerOnce={true}
         />

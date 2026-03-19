@@ -88,16 +88,16 @@ export function VerticalPricingTabs() {
   };
 
   return (
-    <section className="w-full bg-[#0b0b0b] py-20 md:py-32 relative z-30" id="packages">
-      <div className="w-full px-[8vw] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-stretch min-h-[600px]">
+    <section className="w-full bg-[#0b0b0b] py-16 md:py-32 relative z-30" id="packages">
+      <div className="w-full px-6 md:px-[8vw] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-stretch min-h-[500px] md:min-h-[600px]">
           {/* Left Column: Navigation Tabs */}
           <div className="lg:col-span-4 flex flex-col justify-center order-2 lg:order-1">
-            <div className="space-y-4 mb-16">
-              <span className="label text-white/40 block tracking-[0.3em]">
+            <div className="space-y-4 mb-10 md:mb-16">
+              <span className="label text-white/40 block tracking-[0.3em] text-[10px] md:text-xs">
                 [ PRICING PLANS ]
               </span>
-              <h2 className="heading-md text-white text-[3.5vw] leading-tight">
+              <h2 className="text-3xl md:text-[3.5vw] font-black uppercase leading-tight text-white tracking-tighter">
                 SELECT YOUR<br />GROWTH TIER
               </h2>
             </div>
@@ -110,7 +110,7 @@ export function VerticalPricingTabs() {
                     key={plan.id}
                     onClick={() => handleTabClick(index)}
                     className={cn(
-                      "group relative flex items-center gap-6 py-10 px-8 text-left transition-all duration-500 border-b border-white/10 last:border-0",
+                      "group relative flex items-center gap-4 md:gap-6 py-6 md:py-10 px-6 md:px-8 text-left transition-all duration-500 border-b border-white/10 last:border-0",
                       isActive
                         ? "bg-white/5"
                         : "hover:bg-white/5"
@@ -132,14 +132,14 @@ export function VerticalPricingTabs() {
                     </div>
 
                     <span className={cn(
-                      "font-mono text-[1vw] font-bold tabular-nums transition-colors duration-500",
+                      "font-mono text-xs md:text-[1vw] font-bold tabular-nums transition-colors duration-500",
                       isActive ? "text-white" : "text-white/20"
                     )}>
                       /{plan.id}
                     </span>
 
                     <span className={cn(
-                      "text-[1.8vw] font-bold tracking-tight transition-colors duration-500 uppercase",
+                      "text-lg md:text-[1.8vw] font-bold tracking-tight transition-colors duration-500 uppercase",
                       isActive ? "text-white" : "text-white/30"
                     )}>
                       {plan.title}
@@ -157,7 +157,7 @@ export function VerticalPricingTabs() {
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <div className="h-full rounded-[3vw] overflow-hidden p-[4vw] flex flex-col relative">
+              <div className="h-full rounded-[2rem] md:rounded-[3vw] overflow-hidden p-6 md:p-[4vw] flex flex-col relative bg-white/5 border border-white/5">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.div
                     key={activeIndex}
@@ -172,39 +172,39 @@ export function VerticalPricingTabs() {
                     }}
                     className="flex flex-col h-full"
                   >
-                    <div className="flex justify-between items-start mb-8">
-                      <div>
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-8 gap-6">
+                      <div className="w-full">
                         {PRICING_PLANS[activeIndex].badge && (
-                          <span className="tag bg-accent text-white px-4 py-1.5 rounded-full mb-4 inline-block">
+                          <span className="tag bg-accent text-white px-3 py-1 rounded-full mb-4 inline-block text-[10px]">
                             {PRICING_PLANS[activeIndex].badge}
                           </span>
                         )}
-                        <h3 className="heading-md text-white text-[3vw] mb-4">
+                        <h3 className="text-2xl md:text-[3vw] font-black uppercase text-white mb-4">
                           {PRICING_PLANS[activeIndex].title}
                         </h3>
-                        <p className="body-text text-white/60 text-[1.2vw] max-w-xl">
+                        <p className="text-sm md:text-[1.2vw] text-white/60 leading-relaxed max-w-xl font-medium">
                           {PRICING_PLANS[activeIndex].description}
                         </p>
                       </div>
                       
-                      <div className="text-right">
-                        <span className="label text-white/40 block mb-2">{PRICING_PLANS[activeIndex].id === "03" ? "Starting" : "Value"}</span>
-                        <span className="label line-through text-white/20 block text-[1vw]">{PRICING_PLANS[activeIndex].oldPrice}</span>
-                        <div className="flex items-baseline justify-end gap-2">
-                          <span className="heading-md text-[4vw] text-white">{PRICING_PLANS[activeIndex].investment}</span>
-                          <span className="label text-white/40">{PRICING_PLANS[activeIndex].period}</span>
+                      <div className="text-left md:text-right w-full md:w-auto">
+                        <span className="label text-white/40 block mb-2 text-[10px]">{PRICING_PLANS[activeIndex].id === "03" ? "Starting" : "Value"}</span>
+                        <span className="label line-through text-white/20 block text-[10px] md:text-[1vw]">{PRICING_PLANS[activeIndex].oldPrice}</span>
+                        <div className="flex items-baseline md:justify-end gap-2">
+                          <span className="text-3xl md:text-[4vw] font-black text-white">{PRICING_PLANS[activeIndex].investment}</span>
+                          <span className="label text-white/40 text-[10px]">{PRICING_PLANS[activeIndex].period}</span>
                         </div>
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mt-12 mb-auto">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-6 md:mt-12 mb-auto">
                       <div>
-                        <span className="label text-white/30 block mb-6 tracking-widest">[ INCLUDED RESOURCES ]</span>
+                        <span className="label text-white/30 block mb-6 tracking-widest text-[10px] uppercase font-mono">[ INCLUDED RESOURCES ]</span>
                         <ul className="space-y-4">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
-                            <li key={i} className="flex items-center gap-4 body-text text-white/80">
-                              <div className={cn("w-6 h-6 rounded-full flex items-center justify-center shrink-0", PRICING_PLANS[activeIndex].color)}>
-                                <Check className="w-3.5 h-3.5 text-white" />
+                            <li key={i} className="flex items-center gap-4 text-sm md:text-base text-white/80 font-medium">
+                              <div className={cn("w-5 h-5 md:w-6 md:h-6 rounded-full flex items-center justify-center shrink-0", PRICING_PLANS[activeIndex].color)}>
+                                <Check className="w-3 h-3 md:w-3.5 md:h-3.5 text-white" />
                               </div>
                               {resource}
                             </li>
@@ -212,9 +212,9 @@ export function VerticalPricingTabs() {
                         </ul>
                       </div>
                       
-                      <div className="flex flex-col justify-end items-end h-full">
+                      <div className="flex flex-col justify-end items-end h-full hidden md:flex">
                         <div className="bg-white/5 rounded-[2vw] p-8 w-full border border-white/5">
-                          <p className="body-text text-white/50 text-[0.9vw] leading-relaxed italic">
+                          <p className="text-sm md:text-[0.9vw] text-white/50 leading-relaxed italic font-medium">
                             "Everything you need to stop losing leads to competitors and start winning the local market."
                           </p>
                         </div>

@@ -112,7 +112,7 @@ export default function Home() {
           <section className="relative h-screen w-full">
             <ShaderShowcase />
           </section>
-          <section className="relative min-h-[80vh] py-[15vh]">
+          <section className="relative min-h-[80vh] py-[10vh] md:py-[15vh]">
             <ExperienceTextSection />
           </section>
         </div>
@@ -127,11 +127,11 @@ export default function Home() {
       <SiteShowcaseSection />
 
       {/* STEPS SECTION */}
-      <section className="relative py-[20vh] z-30 bg-[#0b0b0b] overflow-hidden w-full" id="steps">
-        <div className="w-full px-[8vw]">
-          <div className="grid grid-cols-12 gap-[4vw] items-start">
+      <section className="relative py-[10vh] md:py-[20vh] z-30 bg-[#0b0b0b] overflow-hidden w-full" id="steps">
+        <div className="w-full px-6 md:px-[8vw]">
+          <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start">
             <div className="col-span-12 lg:col-span-5 flex flex-col">
-              <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[6vh]">
+              <h2 className="text-3xl md:text-[3vw] heading-md text-white uppercase leading-[1.1] mb-8 md:mb-[6vh]">
                 SIMPLE STEPS
               </h2>
               <div className="flex flex-col gap-8">
@@ -149,15 +149,15 @@ export default function Home() {
                     unoptimized
                   />
                 </motion.div>
-                <div className="flex flex-col gap-4 max-w-[22vw]">
-                  <p className="text-[12px] text-white/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
+                <div className="flex flex-col gap-4 w-full md:max-w-[22vw]">
+                  <p className="text-[11px] md:text-[12px] text-white/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
                     My goal has always been to elevate everyday interactions into something more meaningful and crucially, quietly threading in moments of joy.
                   </p>
                 </div>
               </div>
             </div>
 
-            <div className="col-span-12 lg:col-span-7 flex flex-col pt-[10vh]">
+            <div className="col-span-12 lg:col-span-7 flex flex-col pt-0 lg:pt-[10vh]">
               <motion.div 
                 className="flex flex-col w-full border-t border-white/20"
                 variants={containerVariants}
@@ -171,22 +171,22 @@ export default function Home() {
                     variants={itemVariants}
                     whileHover="hover"
                     initial="initial"
-                    className="flex items-center justify-between py-[1.5vh] border-b border-white/20 group hover:bg-white/5 transition-colors duration-300 cursor-default"
+                    className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-white/20 group hover:bg-white/5 transition-colors duration-300 cursor-default"
                   >
-                    <div className="flex items-baseline gap-[2vw] overflow-hidden">
-                      <span className="font-mono text-[1vw] text-white/30 font-bold uppercase tracking-wider group-hover:text-white/60 transition-colors duration-300">
+                    <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden">
+                      <span className="font-mono text-sm md:text-[1vw] text-white/30 font-bold uppercase tracking-wider group-hover:text-white/60 transition-colors duration-300">
                         {step.number}
                       </span>
-                      <div className="h-[2.4vw] overflow-hidden">
+                      <div className="h-8 md:h-[2.4vw] overflow-hidden">
                         <motion.div
                           variants={rollingTextVariants}
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-[2vw] font-bold text-white uppercase tracking-tight h-[2.4vw] flex items-center">
+                          <h3 className="text-xl md:text-[2vw] font-bold text-white uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
                             {step.title}
                           </h3>
-                          <h3 className="text-[2vw] font-bold text-white uppercase tracking-tight h-[2.4vw] flex items-center">
+                          <h3 className="text-xl md:text-[2vw] font-bold text-white uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
                             {step.title}
                           </h3>
                         </motion.div>
@@ -200,19 +200,26 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INFO SHOWCASE + DIFFERENCE TABLE (Shared Background) */}
+      {/* INFO SHOWCASE + DIFFERENCE TABLE */}
       <InfoShowcaseSection>
-        <section className="relative py-[20vh] z-30 overflow-hidden w-full" id="difference">
-          <div className="w-full px-[8vw]">
+        <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="difference">
+          <div className="w-full px-6 md:px-[8vw]">
             <div className="flex flex-col lg:flex-row justify-center items-end gap-[4vw] w-full">
               <motion.div 
-                className="w-[72vw]"
+                className="w-full lg:w-[72vw]"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
               >
-                <div className="w-full border-t border-b border-white/20">
+                {/* Mobile Header for Table */}
+                <div className="lg:hidden mb-6">
+                  <h2 className="text-3xl heading-md text-white uppercase leading-[1.1]">
+                    THE DIFFERENCE
+                  </h2>
+                </div>
+
+                <div className="w-full border-t border-b border-white/20 hidden lg:block">
                   <div className="grid grid-cols-[12vw_1fr_1fr] gap-0">
                     {[
                       { label: "CRITERIA", active: false },
@@ -236,7 +243,25 @@ export default function Home() {
                   </div>
                 </div>
 
-                <div className="flex flex-col relative">
+                {/* Mobile version of the comparison */}
+                <div className="flex flex-col lg:hidden space-y-8">
+                  {comparisonData.map((item, idx) => (
+                    <div key={idx} className="flex flex-col space-y-3 border-b border-white/10 pb-6">
+                      <span className="text-[10px] font-mono text-accent uppercase tracking-widest">{item.criterion}</span>
+                      <div className="bg-white/5 p-4 rounded-lg">
+                        <span className="text-[10px] text-white/40 uppercase block mb-1">Anton Kolesnikov</span>
+                        <p className="text-sm font-bold text-white">{item.me}</p>
+                      </div>
+                      <div className="p-4 border border-white/5 rounded-lg">
+                        <span className="text-[10px] text-white/40 uppercase block mb-1">Freelancer/Agency</span>
+                        <p className="text-sm font-medium text-white/60">{item.freelancer}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                {/* Desktop version of the comparison */}
+                <div className="hidden lg:flex flex-col relative">
                   {comparisonData.map((item, idx) => (
                     <motion.div 
                       key={idx}
@@ -314,34 +339,34 @@ export default function Home() {
       <VerticalPricingTabs />
 
       {/* FINAL CTA */}
-      <section className="py-[20vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10" id="contact">
-        <div className="w-full px-[6vw]">
-          <div className="bg-primary text-white p-12 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-3xl md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">
+      <section className="py-[10vh] md:py-[20vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10" id="contact">
+        <div className="w-full px-6 md:px-[6vw]">
+          <div className="bg-primary text-white p-8 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-[2rem] md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">
             <div className="relative z-10 space-y-8 md:space-y-[6vh]">
               <HighlightWipeHeading 
                 lines={["Ready to Double Your", "Plumbing Leads?"]}
-                className="heading-lg text-white leading-[0.9] tracking-tighter items-center"
+                className="text-3xl md:heading-lg text-white leading-[0.9] tracking-tighter items-center"
               />
-              <Button asChild className="bg-accent text-white hover:bg-white hover:text-primary transition-all rounded-full btn h-16 md:h-[7vw] px-12 md:px-[5vw] shadow-2xl group">
+              <Button asChild className="bg-accent text-white hover:bg-white hover:text-primary transition-all rounded-full btn h-14 md:h-[7vw] px-8 md:px-[5vw] shadow-2xl group text-base md:text-xl">
                 <Link href="https://calendly.com" target="_blank" className="flex items-center gap-4 md:gap-[1.5vw]">
                   Book My Strategy Call
-                  <ArrowRight className="w-6 h-6 md:w-[1.8vw] md:h-[1.8vw] group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight className="w-5 h-5 md:w-[1.8vw] md:h-[1.8vw] group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <p className="tag opacity-50">Limited availability for monthly intakes.</p>
+              <p className="tag opacity-50 text-[10px] md:text-xs">Limited availability for monthly intakes.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <footer className="py-[10vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10">
-        <div className="w-full px-[6vw]">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-[6vh]">
+      <footer className="py-[6vh] md:py-[10vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10">
+        <div className="w-full px-6 md:px-[6vw]">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-[6vh]">
             <div className="flex items-center gap-4">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center text-white heading-md">J</div>
-              <span className="heading-md text-primary">JobFlow Landing Pages</span>
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-primary flex items-center justify-center text-white heading-md text-sm md:text-base">J</div>
+              <span className="text-base md:heading-md text-primary font-bold">JobFlow Landing Pages</span>
             </div>
-            <div className="tag text-muted-foreground opacity-60">
+            <div className="tag text-muted-foreground opacity-60 text-center md:text-left text-[10px] md:text-xs">
               &copy; {new Date().getFullYear()} Anton Kolesnikov. Precision Engineered for Results.
             </div>
           </div>
