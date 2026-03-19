@@ -9,7 +9,7 @@ interface InfoShowcaseSectionProps {
 }
 
 export function InfoShowcaseSection({
-  imageSrc = "https://i.ibb.co/TqPBr5F1/Whisk-3864d9b3b89f45385ae4b571ebd64a53dr.jpg",
+  imageSrc = "https://i.ibb.co/xqjNS2sj/202603190505.jpg",
   quote = "My goal has always been to elevate everyday interactions into something more meaningful and crucially, quietly threading in moments of joy that catch us by surprise and stay with us for years to come"
 }: InfoShowcaseSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
