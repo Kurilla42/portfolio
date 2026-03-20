@@ -157,7 +157,8 @@ export function VerticalPricingTabs() {
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              <div className="h-full rounded-[2rem] md:rounded-[3vw] overflow-hidden p-6 md:p-[4vw] flex flex-col relative bg-white/5 border border-white/5">
+              {/* Removed background and borders as requested */}
+              <div className="h-full flex flex-col relative p-0 md:pl-[4vw]">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.div
                     key={activeIndex}
@@ -187,7 +188,7 @@ export function VerticalPricingTabs() {
                         </p>
                       </div>
                       
-                      <div className="text-left md:text-right w-full md:w-auto">
+                      <div className="text-left md:text-right w-full md:w-auto shrink-0">
                         <span className="label text-white/40 block mb-2 text-[10px]">{PRICING_PLANS[activeIndex].id === "03" ? "Starting" : "Value"}</span>
                         <span className="label line-through text-white/20 block text-[10px] md:text-[1vw]">{PRICING_PLANS[activeIndex].oldPrice}</span>
                         <div className="flex items-baseline md:justify-end gap-2">
@@ -212,6 +213,7 @@ export function VerticalPricingTabs() {
                         </ul>
                       </div>
                       
+                      {/* Removed any additional buttons as requested */}
                       <div className="flex flex-col justify-end items-end h-full hidden md:flex">
                         <div className="bg-white/5 rounded-[2vw] p-8 w-full border border-white/5">
                           <p className="text-sm md:text-[0.9vw] text-white/50 leading-relaxed italic font-medium">
