@@ -59,8 +59,7 @@ export function InfoShowcaseSection({
         {/* SECOND BLOCK: Quote */}
         <div className="h-screen w-full flex flex-col items-center justify-center text-center px-6 md:px-[4vw]">
           <div className="flex flex-col items-center mb-10 md:mb-16">
-            <div className="text-accent text-5xl md:text-[3.5vw] leading-none mb-1 font-light opacity-90">「</div>
-            <div className="relative w-12 h-16 md:w-16 md:h-20 my-2">
+            <div className="relative w-24 h-32 md:w-32 md:h-40">
               <Image 
                 src="https://i.ibb.co/JR9GrQfJ/image.png"
                 alt="Decorative Icon"
@@ -69,7 +68,6 @@ export function InfoShowcaseSection({
                 unoptimized
               />
             </div>
-            <div className="text-accent text-5xl md:text-[3.5vw] leading-none mt-1 font-light opacity-90">」</div>
           </div>
 
           <p className="text-white text-base sm:text-lg md:text-[1.2vw] leading-[1.6] font-bold uppercase tracking-[0.05em] max-w-full md:max-w-[42vw] drop-shadow-lg">
