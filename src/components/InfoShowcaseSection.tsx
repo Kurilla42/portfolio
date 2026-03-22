@@ -70,7 +70,7 @@ export function InfoShowcaseSection({
             </div>
           </div>
 
-          <p className="text-white text-base sm:text-lg md:text-[1.2vw] leading-[1.6] font-bold uppercase tracking-[0.05em] max-w-full md:max-w-[42vw] drop-shadow-lg">
+          <p className="text-xl sm:text-2xl md:text-[3.0vw] font-black uppercase leading-[1.3] md:leading-[1.1] text-white tracking-tighter max-w-full md:max-w-[80vw] drop-shadow-lg">
             {quote}
           </p>
         </div>
