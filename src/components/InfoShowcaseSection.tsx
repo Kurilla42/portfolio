@@ -60,9 +60,14 @@ export function InfoShowcaseSection({
         <div className="h-screen w-full flex flex-col items-center justify-center text-center px-6 md:px-[4vw]">
           <div className="flex flex-col items-center mb-10 md:mb-16">
             <div className="text-accent text-5xl md:text-[3.5vw] leading-none mb-1 font-light opacity-90">「</div>
-            <div className="flex flex-col items-center gap-1 py-2">
-              <span className="text-accent text-2xl md:text-[2.2vw] font-serif font-bold leading-tight">簡</span>
-              <span className="text-accent text-2xl md:text-[2.2vw] font-serif font-bold leading-tight">介</span>
+            <div className="relative w-12 h-16 md:w-16 md:h-20 my-2">
+              <Image 
+                src="https://i.ibb.co/JR9GrQfJ/image.png"
+                alt="Decorative Icon"
+                fill
+                className="object-contain"
+                unoptimized
+              />
             </div>
             <div className="text-accent text-5xl md:text-[3.5vw] leading-none mt-1 font-light opacity-90">」</div>
           </div>
