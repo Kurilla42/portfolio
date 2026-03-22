@@ -21,7 +21,6 @@ export function SiteShowcaseSection() {
   });
 
   // --- Анимация Исчезающего Бокового Текста ---
-  // Исправлено: увеличил leading с 0.8 до 0.95, чтобы буквы не наезжали друг на друга
   const textOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
 
   // --- Анимация Изображений ---
@@ -43,7 +42,7 @@ export function SiteShowcaseSection() {
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
-      <span key={i} className="block leading-[0.9]">
+      <span key={i} className="block leading-[0.95]">
         {char === " " ? "\u00A0" : char}
       </span>
     ));
@@ -99,10 +98,10 @@ export function SiteShowcaseSection() {
           {/* Main Stage */}
           <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 items-center px-6 md:px-[4vw] relative z-10 gap-8 md:gap-0">
             {/* Left Side */}
-            <div className="relative flex justify-center items-center h-[40vh] md:h-full">
+            <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
               <motion.div 
                 style={{ opacity: textOpacity }}
-                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none text-center leading-[0.95] tracking-tight"
+                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[0.95] tracking-tight"
               >
                 EXPLORE<br />HOW YOUR
               </motion.div>
@@ -122,10 +121,10 @@ export function SiteShowcaseSection() {
             </div>
 
             {/* Right Side */}
-            <div className="relative flex justify-center items-center h-[40vh] md:h-full">
+            <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
               <motion.div 
                 style={{ opacity: textOpacity }}
-                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none text-center leading-[0.95] tracking-tight"
+                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[0.95] tracking-tight"
               >
                 SITE CAN<br />LOOK LIKE
               </motion.div>

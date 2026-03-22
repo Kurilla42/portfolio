@@ -46,7 +46,8 @@ const steps = [
   { number: "DAY 01", title: "Discovery" },
   { number: "DAY 02", title: "Wireframing" },
   { number: "DAY 03", title: "The Build" },
-  { number: "DAY 04", title: "Launch & Sync" }
+  { number: "DAY 04", title: "Launch & Sync" },
+  { number: "DAY 05", title: "Scale & Support" }
 ];
 
 const containerVariants = {
