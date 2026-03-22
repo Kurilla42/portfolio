@@ -28,8 +28,8 @@ export function SiteShowcaseSection() {
   const imageOpacity = useTransform(smoothProgress, [0.05, 0.4], [0, 1]);
   
   // --- Анимация Центрального Блока ---
-  // Картинка появляется вместе с карточками, но исчезает в конце (0.65 -> 0.8)
-  const centralImageOpacity = useTransform(smoothProgress, [0.1, 0.4, 0.65, 0.8], [0, 1, 1, 0]);
+  // Картинка теперь видна с самого начала (0 -> 0.65) и статична (нет y: imageY)
+  const centralImageOpacity = useTransform(smoothProgress, [0, 0.65, 0.8], [1, 1, 0]);
   // Текст появляется только после того, как картинка начала исчезать (0.75 -> 0.95)
   const centralTextOpacity = useTransform(smoothProgress, [0.75, 0.95], [0, 1]);
   const bgTextScale = useTransform(smoothProgress, [0.1, 0.6], [0.8, 1]);
@@ -60,12 +60,12 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Центральная картинка (исчезает в конце) */}
+              {/* Центральная картинка (теперь статична и видна сразу) */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
                   scale: bgTextScale,
-                  y: imageY 
+                  // y: imageY удалено, чтобы картинка была статичной
                 }}
                 className="absolute z-10 w-[15vw] h-[20vw] md:w-[12vw] md:h-[15vw]"
               >
@@ -83,7 +83,6 @@ export function SiteShowcaseSection() {
                 style={{ 
                   opacity: centralTextOpacity, 
                   scale: bgTextScale,
-                  y: imageY 
                 }}
                 className="flex flex-col items-center font-sans font-black text-4xl sm:text-6xl md:text-[3vw] uppercase text-white leading-none"
               >

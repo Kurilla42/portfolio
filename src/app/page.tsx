@@ -106,7 +106,8 @@ export default function Home() {
               unoptimized
             />
           </motion.div>
-          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(0,0,0,1)_75%)]" />
+          {/* Transition to #0b0b0b instead of black */}
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(11,11,11,1)_75%)]" />
         </div>
 
         <div className="relative z-10">
