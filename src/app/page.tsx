@@ -206,7 +206,7 @@ export default function Home() {
           <div className="w-full px-6 md:px-[8vw]">
             <div className="flex flex-col lg:flex-row justify-center items-end gap-[4vw] w-full">
               <motion.div 
-                className="w-full lg:w-[72vw]"
+                className="w-full lg:w-[61.2vw]"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -220,7 +220,7 @@ export default function Home() {
                 </div>
 
                 <div className="w-full border-t border-b border-white/20 hidden lg:block">
-                  <div className="grid grid-cols-[12vw_1fr_1fr] gap-0">
+                  <div className="grid grid-cols-[10.2vw_1fr_1fr] gap-0">
                     {[
                       { label: "CRITERIA", active: false },
                       { label: "ANTON KOLESNIKOV", active: true },
@@ -229,7 +229,7 @@ export default function Home() {
                       <div 
                         key={header.label} 
                         className={`relative flex items-center py-[1.5vh] 
-                          ${i === 0 ? 'pr-[4vw]' : 'px-[2vw]'}
+                          ${i === 0 ? 'pr-[3.4vw]' : 'px-[1.7vw]'}
                           ${header.active ? 'bg-white/5' : ''}
                         `}
                       >
@@ -268,9 +268,9 @@ export default function Home() {
                       variants={itemVariants}
                       whileHover="hover"
                       initial="initial"
-                      className="grid grid-cols-[12vw_30vw_30vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
+                      className="grid grid-cols-[10.2vw_25.5vw_25.5vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
                     >
-                      <div className="py-[1.5vh] pr-[4vw] flex items-center overflow-hidden">
+                      <div className="py-[1.5vh] pr-[3.4vw] flex items-center overflow-hidden">
                          <div className="h-[1.2vw] overflow-hidden">
                            <motion.div
                              variants={rollingTextVariants}
@@ -287,7 +287,7 @@ export default function Home() {
                          </div>
                       </div>
 
-                      <div className="py-[1.5vh] px-[2vw] bg-white/5 group-hover:bg-white/10 transition-colors duration-300 flex items-center overflow-hidden">
+                      <div className="py-[1.5vh] px-[1.7vw] bg-white/5 group-hover:bg-white/10 transition-colors duration-300 flex items-center overflow-hidden">
                         <div className="h-[1.2vw] overflow-hidden w-full">
                            <motion.div
                              variants={rollingTextVariants}
@@ -304,7 +304,7 @@ export default function Home() {
                          </div>
                       </div>
 
-                      <div className="py-[1.5vh] px-[2vw] flex items-center overflow-hidden">
+                      <div className="py-[1.5vh] px-[1.7vw] flex items-center overflow-hidden">
                         <div className="h-[1.2vw] overflow-hidden w-full">
                            <motion.div
                              variants={rollingTextVariants}
