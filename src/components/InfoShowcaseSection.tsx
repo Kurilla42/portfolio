@@ -48,10 +48,10 @@ export function InfoShowcaseSection({
         
         {/* FIRST BLOCK: Typography */}
         <div className="h-screen w-full flex items-start justify-between px-6 md:px-[5vw] pt-[10vh] md:pt-[5vh] pointer-events-none">
-          <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-white tracking-tighter select-none">
+          <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-white tracking-tight select-none">
             IN
           </h2>
-          <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-white tracking-tighter select-none">
+          <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-white tracking-tight select-none">
             FO
           </h2>
         </div>
