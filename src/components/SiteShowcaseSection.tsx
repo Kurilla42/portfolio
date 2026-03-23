@@ -13,18 +13,18 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Значительно замедленная анимация (растянута на больший диапазон скролла)
-  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
-  const containersEntryY = useTransform(scrollYProgress, [0, 0.45], ["100vh", "0vh"]);
-  const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.35], [0, 1]);
+  // Значительно замедленная анимация (растянута на большой диапазон скролла)
+  const textOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
+  const containersEntryY = useTransform(scrollYProgress, [0, 0.55], ["100vh", "0vh"]);
+  const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.45], [0, 1]);
   
-  // Центральные элементы (также замедлены)
-  const centralImageOpacity = useTransform(scrollYProgress, [0, 0.25, 0.4], [1, 1, 0]);
-  const centralTextOpacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
-  const centralScale = useTransform(scrollYProgress, [0, 0.4], [0.8, 1]);
+  // Центральные элементы
+  const centralImageOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [1, 1, 0]);
+  const centralTextOpacity = useTransform(scrollYProgress, [0.5, 0.75], [0, 1]);
+  const centralScale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
-  const leftImg = "https://i.ibb.co/dwF6JyH3/2026-03-23-23-59-45.jpg";
-  const rightImg = "https://i.ibb.co/20vdRYyK/2026-03-24-00-00-03.jpg";
+  const leftImg = "https://i.ibb.co/vCTHQpHw/2026-03-24-00-17-55.jpg";
+  const rightImg = "https://i.ibb.co/zT5LSZKy/2026-03-24-00-17-08.jpg";
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
@@ -49,14 +49,14 @@ export function SiteShowcaseSection() {
         style={{ y: containersEntryY, opacity: containersEntryOpacity }}
         whileHover="hover"
         initial="initial"
-        className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
+        className="relative w-[85vw] md:w-[42vw] aspect-[16/11] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
       >
-        {/* Основное изображение: object-cover чтобы не было полос */}
+        {/* Основное изображение: заполняет контейнер полностью */}
         <motion.div
           variants={{
             hover: { scale: 1.05 }
           }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
           className="w-full h-full relative"
         >
           <Image 
@@ -68,16 +68,16 @@ export function SiteShowcaseSection() {
           />
         </motion.div>
 
-        {/* Мини-изображение: выезжает сверху. Используем object-cover для миниатюры */}
+        {/* Мини-изображение: выезжает сверху при ховере */}
         <motion.div
           variants={{
             initial: { y: "-120%", x: "-50%", opacity: 0 },
             hover: { y: "-50%", x: "-50%", opacity: 1 }
           }}
-          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none"
         >
-          <div className="relative w-full h-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] border border-white/10 overflow-hidden">
+          <div className="relative w-full h-full border border-white/20 overflow-hidden bg-black/20">
             <Image 
               src={src} 
               alt="Case Study Preview" 
@@ -92,7 +92,7 @@ export function SiteShowcaseSection() {
         <motion.div 
           variants={{
             initial: { opacity: 0 },
-            hover: { opacity: 0.4 }
+            hover: { opacity: 0.5 }
           }}
           className="absolute inset-0 bg-black z-20 pointer-events-none"
         />
@@ -101,7 +101,7 @@ export function SiteShowcaseSection() {
   );
 
   return (
-    <div ref={containerRef} className="relative h-[200vh] z-10">
+    <div ref={containerRef} className="relative h-[250vh] z-10">
       {/* Статичный фон */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -121,7 +121,7 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Декоративная иконка (увеличена обратно на 30%, до 8vw) */}
+              {/* Декоративная иконка (увеличена до 8vw) */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
