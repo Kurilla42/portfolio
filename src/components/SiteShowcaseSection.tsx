@@ -1,39 +1,33 @@
-
 "use client";
 
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 
 export function SiteShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Увеличиваем высоту контейнера для более плавного и долгого скролла внутри кейсов
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
   });
 
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 80,
-    damping: 25,
-    restDelta: 0.001
-  });
+  // Use raw progress to remove the "floaty" parallax-like spring effect
+  const progress = scrollYProgress;
 
-  // ЭТАП 1: Вход (ускорено на 60% относительно базовых значений)
-  const textOpacity = useTransform(smoothProgress, [0, 0.04], [1, 0]);
-  const containersEntryY = useTransform(smoothProgress, [0, 0.08], ["100vh", "0vh"]);
-  const containersEntryOpacity = useTransform(smoothProgress, [0, 0.06], [0, 1]);
+  // ЭТАП 1: Вход (ускорено на 60%)
+  const textOpacity = useTransform(progress, [0, 0.04], [1, 0]);
+  const containersEntryY = useTransform(progress, [0, 0.08], ["100vh", "0vh"]);
+  const containersEntryOpacity = useTransform(progress, [0, 0.06], [0, 1]);
   
   // Центральные элементы
-  const centralImageOpacity = useTransform(smoothProgress, [0, 0.07, 0.1], [1, 1, 0]);
-  const centralTextOpacity = useTransform(smoothProgress, [0.09, 0.13], [0, 1]);
-  const centralScale = useTransform(smoothProgress, [0, 0.08], [0.8, 1]);
+  const centralImageOpacity = useTransform(progress, [0, 0.07, 0.1], [1, 1, 0]);
+  const centralTextOpacity = useTransform(progress, [0.09, 0.13], [0, 1]);
+  const centralScale = useTransform(progress, [0, 0.08], [0.8, 1]);
 
   // ЭТАП 2: Внутренний скролл изображений
-  // Используем смещение в процентах от высоты самого изображения. 
-  // -91.66% позволяет увидеть самый низ длинного скриншота.
-  const innerImageScroll = useTransform(smoothProgress, [0.14, 0.98], ["0%", "-91.66%"]);
+  // -91.66% позволяет увидеть самый низ длинного скриншота при h-auto
+  const innerImageScroll = useTransform(progress, [0.14, 0.98], ["0%", "-91.66%"]);
 
   const caseStudyImg = "https://i.ibb.co/hFSrMwz5/1.jpg";
 
@@ -47,7 +41,7 @@ export function SiteShowcaseSection() {
 
   return (
     <div ref={containerRef} className="relative h-[800vh] z-10">
-      {/* Background Image Layer */}
+      {/* Background Image Layer - Static */}
       <div className="absolute inset-0 z-0">
         <Image 
           src="https://i.ibb.co/Y7Rzv80G/1.jpg"
@@ -56,7 +50,6 @@ export function SiteShowcaseSection() {
           className="object-cover"
           unoptimized
         />
-        {/* Затемнение фона как в блоке шагов */}
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
@@ -68,7 +61,7 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Central decorative image - уменьшена на 30% */}
+              {/* Central decorative image */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 

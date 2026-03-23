@@ -2,7 +2,6 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
-import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface InfoShowcaseSectionProps {
   imageSrc?: string;
@@ -17,31 +16,18 @@ export function InfoShowcaseSection({
 }: InfoShowcaseSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
-
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden">
-      {/* Shared Background Layer with Parallax */}
-      <div className="absolute inset-x-0 -top-[15%] z-0 h-[130%] w-full">
-        <motion.div 
-          style={{ y: backgroundY }}
-          className="relative h-full w-full"
-        >
-          <Image
-            src={imageSrc}
-            alt="Parallax Background"
-            fill
-            className="object-cover"
-            priority
-            unoptimized
-          />
-        </motion.div>
-        {/* Darkening overlay removed as per user request */}
+      {/* Shared Background Layer - Static (Parallax removed) */}
+      <div className="absolute inset-0 z-0 h-full w-full">
+        <Image
+          src={imageSrc}
+          alt="Section Background"
+          fill
+          className="object-cover"
+          priority
+          unoptimized
+        />
       </div>
 
       {/* Content Container */}
