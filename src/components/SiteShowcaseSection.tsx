@@ -13,7 +13,7 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Значительно замедленная анимация (растянута на большой диапазон скролла)
+  // Замедленная на 60% анимация входа (сокращенные диапазоны для быстрого старта, но плавной динамики)
   const textOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
   const containersEntryY = useTransform(scrollYProgress, [0, 0.55], ["100vh", "0vh"]);
   const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.45], [0, 1]);
@@ -51,19 +51,20 @@ export function SiteShowcaseSection() {
         initial="initial"
         className="relative w-[85vw] md:w-[42vw] aspect-[16/11] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
       >
-        {/* Основное изображение: заполняет контейнер полностью */}
+        {/* Основное изображение: теперь занимает 100% ширины, не обрезаясь по бокам */}
         <motion.div
           variants={{
             hover: { scale: 1.05 }
           }}
           transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full h-full relative"
+          className="w-full h-full relative flex flex-col"
         >
           <Image 
             src={src} 
             alt="Case Study" 
-            fill
-            className="object-cover object-top"
+            width={1920}
+            height={1080}
+            className="w-full h-auto object-top"
             unoptimized
           />
         </motion.div>
@@ -75,14 +76,15 @@ export function SiteShowcaseSection() {
             hover: { y: "-50%", x: "-50%", opacity: 1 }
           }}
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none"
+          className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none overflow-hidden"
         >
-          <div className="relative w-full h-full border border-white/20 overflow-hidden bg-black/20">
+          <div className="relative w-full h-full border border-white/20 bg-black/20 flex flex-col">
             <Image 
               src={src} 
               alt="Case Study Preview" 
-              fill
-              className="object-cover object-top"
+              width={1920}
+              height={1080}
+              className="w-full h-auto object-top"
               unoptimized
             />
           </div>
@@ -102,7 +104,7 @@ export function SiteShowcaseSection() {
 
   return (
     <div ref={containerRef} className="relative h-[250vh] z-10">
-      {/* Статичный фон */}
+      {/* Статичный фон, такой же как в блоке с шагами */}
       <div className="absolute inset-0 z-0">
         <Image 
           src="https://i.ibb.co/Y7Rzv80G/1.jpg"
@@ -121,7 +123,7 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Декоративная иконка (увеличена до 8vw) */}
+              {/* Декоративная иконка (размер 8vw) */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
