@@ -13,7 +13,7 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Значительно замедленная анимация входа (растянута на большую часть скролла)
+  // Значительно замедленная анимация входа
   const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
   const containersEntryY = useTransform(scrollYProgress, [0, 0.85], ["100vh", "0vh"]);
   const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.7], [0, 1]);
@@ -49,9 +49,9 @@ export function SiteShowcaseSection() {
         style={{ y: containersEntryY, opacity: containersEntryOpacity }}
         whileHover="hover"
         initial="initial"
-        className="relative w-[85vw] md:w-[42vw] aspect-[16/8.5] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
+        className="relative w-[85vw] md:w-[42vw] md:h-[23.62vw] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
       >
-        {/* Основное изображение: теперь контейнер подогнан под его высоту */}
+        {/* Основное изображение: занимает всю ширину, высота адаптируется */}
         <motion.div
           variants={{
             hover: { scale: 1.05 }
@@ -121,7 +121,7 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Центральная иконка увеличена на 30% (8vw -> 10.4vw) */}
+              {/* Центральная иконка увеличена на 30% */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
