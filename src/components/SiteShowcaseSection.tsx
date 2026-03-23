@@ -20,26 +20,26 @@ export function SiteShowcaseSection() {
     restDelta: 0.001
   });
 
-  // ЭТАП 1: Вход (0.0 -> 0.3)
-  const textOpacity = useTransform(smoothProgress, [0, 0.15], [1, 0]);
-  const containersEntryY = useTransform(smoothProgress, [0, 0.3], ["100vh", "0vh"]);
-  const containersEntryOpacity = useTransform(smoothProgress, [0, 0.2], [0, 1]);
+  // ЭТАП 1: Вход (ускорено на 30% - финал на 0.2 вместо 0.3)
+  const textOpacity = useTransform(smoothProgress, [0, 0.1], [1, 0]);
+  const containersEntryY = useTransform(smoothProgress, [0, 0.2], ["100vh", "0vh"]);
+  const containersEntryOpacity = useTransform(smoothProgress, [0, 0.14], [0, 1]);
   
-  // Центральные элементы
-  const centralImageOpacity = useTransform(smoothProgress, [0, 0.25, 0.35], [1, 1, 0]);
-  const centralTextOpacity = useTransform(smoothProgress, [0.3, 0.45], [0, 1]);
-  const centralScale = useTransform(smoothProgress, [0, 0.3], [0.8, 1]);
+  // Центральные элементы (ускорено на 30%)
+  const centralImageOpacity = useTransform(smoothProgress, [0, 0.17, 0.24], [1, 1, 0]);
+  const centralTextOpacity = useTransform(smoothProgress, [0.21, 0.32], [0, 1]);
+  const centralScale = useTransform(smoothProgress, [0, 0.21], [0.8, 1]);
 
-  // ЭТАП 2: Внутренний скролл изображений (0.35 -> 0.95)
+  // ЭТАП 2: Внутренний скролл изображений (начинается раньше - с 0.25)
   // При высоте h-[600%] (6x контейнера), чтобы дойти до низа, нужно сместить на 5/6 высоты.
   // 5 / 6 = 0.8333... или -83.33%
-  const innerImageScroll = useTransform(smoothProgress, [0.35, 0.95], ["0%", "-83.33%"]);
+  const innerImageScroll = useTransform(smoothProgress, [0.25, 0.95], ["0%", "-83.33%"]);
 
   const caseStudyImg = "https://i.ibb.co/hFSrMwz5/1.jpg";
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
-      <span key={i} className="block leading-[1.4] mb-1">
+      <span key={i} className="block leading-[1.1] mb-1">
         {char === " " ? "\u00A0" : char}
       </span>
     ));
