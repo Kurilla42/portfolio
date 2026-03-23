@@ -51,7 +51,7 @@ export function SiteShowcaseSection() {
           className="object-cover"
           unoptimized
         />
-        <div className="absolute inset-0 bg-black/70" />
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
@@ -64,13 +64,13 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Central decorative image */}
+              {/* Central decorative image - Reduced size by 30% */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
                   scale: bgTextScale,
                 }}
-                className="absolute z-10 w-[24vw] h-[32vw] md:w-[24vw] md:h-[30vw]"
+                className="absolute z-10 w-[16.8vw] h-[22.4vw] md:w-[16.8vw] md:h-[21vw]"
               >
                 <Image 
                   src="https://i.ibb.co/JR9GrQfJ/image.png"
@@ -103,13 +103,13 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
               <motion.div 
                 style={{ opacity: textOpacity }}
-                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[0.95] tracking-tight"
+                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] tracking-tight"
               >
                 EXPLORE<br />HOW YOUR
               </motion.div>
               <motion.div 
                 style={{ y: imageY, opacity: imageOpacity }}
-                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden shadow-[0_4vw_8vw_-1vw_rgba(0,0,0,0.8)] z-10"
+                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden z-10"
               >
                 <Image 
                   src={leftCase?.imageUrl || ''} 
@@ -126,13 +126,13 @@ export function SiteShowcaseSection() {
             <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
               <motion.div 
                 style={{ opacity: textOpacity }}
-                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[0.95] tracking-tight"
+                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] tracking-tight"
               >
                 SITE CAN<br />LOOK LIKE
               </motion.div>
               <motion.div 
                 style={{ y: imageY, opacity: imageOpacity }}
-                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden shadow-[0_4vw_8vw_-1vw_rgba(0,0,0,0.8)] z-10"
+                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden z-10"
               >
                 <Image 
                   src={rightCase?.imageUrl || ''} 
