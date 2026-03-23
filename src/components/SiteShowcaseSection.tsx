@@ -31,8 +31,8 @@ export function SiteShowcaseSection() {
   const centralScale = useTransform(smoothProgress, [0, 0.08], [0.8, 1]);
 
   // ЭТАП 2: Внутренний скролл изображений
-  // Теперь контейнер h-[1200%], значит нужно сместить на 11/12 высоты, чтобы дойти до конца.
-  // 11 / 12 = 0.91666... или -91.66%
+  // Используем смещение в процентах от высоты самого изображения. 
+  // -91.66% позволяет увидеть самый низ длинного скриншота.
   const innerImageScroll = useTransform(smoothProgress, [0.14, 0.98], ["0%", "-91.66%"]);
 
   const caseStudyImg = "https://i.ibb.co/hFSrMwz5/1.jpg";
@@ -119,15 +119,12 @@ export function SiteShowcaseSection() {
               >
                 <motion.div 
                   style={{ y: innerImageScroll }}
-                  className="relative w-full h-[1200%]"
+                  className="w-full flex flex-col"
                 >
-                  <Image 
+                  <img 
                     src={caseStudyImg} 
                     alt="Case Study Left" 
-                    fill 
-                    className="object-cover object-top" 
-                    priority 
-                    unoptimized
+                    className="w-full h-auto block"
                   />
                 </motion.div>
               </motion.div>
@@ -148,15 +145,12 @@ export function SiteShowcaseSection() {
               >
                 <motion.div 
                   style={{ y: innerImageScroll }}
-                  className="relative w-full h-[1200%]"
+                  className="w-full flex flex-col"
                 >
-                  <Image 
+                  <img 
                     src={caseStudyImg} 
                     alt="Case Study Right" 
-                    fill 
-                    className="object-cover object-top" 
-                    priority 
-                    unoptimized
+                    className="w-full h-auto block"
                   />
                 </motion.div>
               </motion.div>
