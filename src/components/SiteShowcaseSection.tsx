@@ -8,7 +8,7 @@ import Image from 'next/image';
 export function SiteShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
-  // Увеличиваем высоту контейнера, чтобы хватило места на входную анимацию и внутренний скролл
+  // Увеличиваем высоту контейнера для более плавного и долгого скролла внутри кейсов
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -21,7 +21,6 @@ export function SiteShowcaseSection() {
   });
 
   // ЭТАП 1: Вход (ускорено на 60% относительно базовых значений)
-  // Контейнеры и текст теперь появляются/исчезают в самом начале скролла (до 0.12-0.14)
   const textOpacity = useTransform(smoothProgress, [0, 0.04], [1, 0]);
   const containersEntryY = useTransform(smoothProgress, [0, 0.08], ["100vh", "0vh"]);
   const containersEntryOpacity = useTransform(smoothProgress, [0, 0.06], [0, 1]);
@@ -31,10 +30,10 @@ export function SiteShowcaseSection() {
   const centralTextOpacity = useTransform(smoothProgress, [0.09, 0.13], [0, 1]);
   const centralScale = useTransform(smoothProgress, [0, 0.08], [0.8, 1]);
 
-  // ЭТАП 2: Внутренний скролл изображений (начинается очень рано - с 0.14)
-  // При высоте h-[600%] (6x контейнера), чтобы дойти до низа, нужно сместить на 5/6 высоты.
-  // 5 / 6 = 0.8333... или -83.33%
-  const innerImageScroll = useTransform(smoothProgress, [0.14, 0.95], ["0%", "-83.33%"]);
+  // ЭТАП 2: Внутренний скролл изображений
+  // Теперь контейнер h-[1200%], значит нужно сместить на 11/12 высоты, чтобы дойти до конца.
+  // 11 / 12 = 0.91666... или -91.66%
+  const innerImageScroll = useTransform(smoothProgress, [0.14, 0.98], ["0%", "-91.66%"]);
 
   const caseStudyImg = "https://i.ibb.co/hFSrMwz5/1.jpg";
 
@@ -48,7 +47,7 @@ export function SiteShowcaseSection() {
 
   return (
     <div ref={containerRef} className="relative h-[800vh] z-10">
-      {/* Background Image */}
+      {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <Image 
           src="https://i.ibb.co/Y7Rzv80G/1.jpg"
@@ -57,6 +56,7 @@ export function SiteShowcaseSection() {
           className="object-cover"
           unoptimized
         />
+        {/* Затемнение фона как в блоке шагов */}
         <div className="absolute inset-0 bg-black/60" />
       </div>
 
@@ -68,13 +68,13 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Central decorative image - Уменьшена на 30% */}
+              {/* Central decorative image - уменьшена на 30% */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
                   scale: centralScale,
                 }}
-                className="absolute z-10 w-[11.7vw] h-[14.7vw] md:w-[11.7vw] md:h-[14.7vw]"
+                className="absolute z-10 w-[8vw] h-[10vw] md:w-[8vw] md:h-[10vw]"
               >
                 <Image 
                   src="https://i.ibb.co/JR9GrQfJ/image.png"
@@ -115,11 +115,11 @@ export function SiteShowcaseSection() {
               
               <motion.div 
                 style={{ y: containersEntryY, opacity: containersEntryOpacity }}
-                className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10 border border-white/5"
+                className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10"
               >
                 <motion.div 
                   style={{ y: innerImageScroll }}
-                  className="relative w-full h-[600%]"
+                  className="relative w-full h-[1200%]"
                 >
                   <Image 
                     src={caseStudyImg} 
@@ -144,11 +144,11 @@ export function SiteShowcaseSection() {
               
               <motion.div 
                 style={{ y: containersEntryY, opacity: containersEntryOpacity }}
-                className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10 border border-white/5"
+                className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10"
               >
                 <motion.div 
                   style={{ y: innerImageScroll }}
-                  className="relative w-full h-[600%]"
+                  className="relative w-full h-[1200%]"
                 >
                   <Image 
                     src={caseStudyImg} 
