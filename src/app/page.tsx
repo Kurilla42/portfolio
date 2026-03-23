@@ -359,6 +359,8 @@ export default function Home() {
             className="object-cover"
             unoptimized
           />
+          {/* Darkness Overlay matching Steps section */}
+          <div className="absolute inset-0 bg-black/60" />
         </div>
 
         <div className="relative z-10 w-full h-full px-6 md:px-[8vw] flex flex-col items-center justify-center text-center">

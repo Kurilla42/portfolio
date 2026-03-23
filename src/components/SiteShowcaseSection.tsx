@@ -13,26 +13,20 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Плавная пружина для всех трансформаций
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 80,
     damping: 25,
     restDelta: 0.001
   });
 
-  // --- Анимация Исчезающего Бокового Текста ---
   const textOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
-
-  // --- Анимация Изображений ---
   const imageY = useTransform(smoothProgress, [0.05, 0.6], ["100vh", "0vh"]);
   const imageOpacity = useTransform(smoothProgress, [0.05, 0.4], [0, 1]);
   
-  // --- Анимация Центрального Блока ---
   const centralImageOpacity = useTransform(smoothProgress, [0, 0.65, 0.8], [1, 1, 0]);
   const centralTextOpacity = useTransform(smoothProgress, [0.75, 0.95], [0, 1]);
   const bgTextScale = useTransform(smoothProgress, [0.1, 0.6], [0.8, 1]);
 
-  // Общее масштабирование секции в конце
   const sectionScale = useTransform(smoothProgress, [0.8, 1], [1, 0.95]);
 
   const leftCase = PlaceHolderImages.find(img => img.id === 'case-study-2');
@@ -70,7 +64,7 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Центральная картинка */}
+              {/* Central decorative image */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
@@ -87,7 +81,7 @@ export function SiteShowcaseSection() {
                 />
               </motion.div>
 
-              {/* Текст YOUR SITE */}
+              {/* YOUR SITE Text */}
               <motion.div 
                 style={{ 
                   opacity: centralTextOpacity, 
