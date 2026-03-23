@@ -28,9 +28,7 @@ export function SiteShowcaseSection() {
   const imageOpacity = useTransform(smoothProgress, [0.05, 0.4], [0, 1]);
   
   // --- Анимация Центрального Блока ---
-  // Картинка теперь видна с самого начала (0 -> 0.65) и статична (нет y: imageY)
   const centralImageOpacity = useTransform(smoothProgress, [0, 0.65, 0.8], [1, 1, 0]);
-  // Текст появляется только после того, как картинка начала исчезать (0.75 -> 0.95)
   const centralTextOpacity = useTransform(smoothProgress, [0.75, 0.95], [0, 1]);
   const bgTextScale = useTransform(smoothProgress, [0.1, 0.6], [0.8, 1]);
 
@@ -42,14 +40,26 @@ export function SiteShowcaseSection() {
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
-      <span key={i} className="block leading-[0.95]">
+      <span key={i} className="block leading-[1.4] mb-1">
         {char === " " ? "\u00A0" : char}
       </span>
     ));
   };
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] bg-[#0b0b0b] z-10">
+    <div ref={containerRef} className="relative h-[400vh] z-10">
+      {/* Background Image */}
+      <div className="absolute inset-0 z-0">
+        <Image 
+          src="https://i.ibb.co/Y7Rzv80G/1.jpg"
+          alt="Showcase Background"
+          fill
+          className="object-cover"
+          unoptimized
+        />
+        <div className="absolute inset-0 bg-black/70" />
+      </div>
+
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
@@ -60,14 +70,13 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Центральная картинка (теперь статична и видна сразу) */}
+              {/* Центральная картинка */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
                   scale: bgTextScale,
-                  // y: imageY удалено, чтобы картинка была статичной
                 }}
-                className="absolute z-10 w-[15vw] h-[20vw] md:w-[12vw] md:h-[15vw]"
+                className="absolute z-10 w-[24vw] h-[32vw] md:w-[24vw] md:h-[30vw]"
               >
                 <Image 
                   src="https://i.ibb.co/JR9GrQfJ/image.png"
@@ -78,7 +87,7 @@ export function SiteShowcaseSection() {
                 />
               </motion.div>
 
-              {/* Текст YOUR SITE (появляется в самом конце) */}
+              {/* Текст YOUR SITE */}
               <motion.div 
                 style={{ 
                   opacity: centralTextOpacity, 

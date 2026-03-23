@@ -95,7 +95,7 @@ export default function Home() {
         <div className="absolute inset-0 z-0">
           <motion.div 
             style={{ y: backgroundY }}
-            className="absolute inset-0 h-[120%]" 
+            className="absolute inset-0 h-[120%] -top-[10%]" 
           >
             <Image
               src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
@@ -106,7 +106,6 @@ export default function Home() {
               unoptimized
             />
           </motion.div>
-          {/* Transition to #0b0b0b instead of black */}
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(11,11,11,1)_75%)]" />
         </div>
 
@@ -129,8 +128,20 @@ export default function Home() {
       <SiteShowcaseSection />
 
       {/* STEPS SECTION */}
-      <section className="relative py-[10vh] md:py-[20vh] z-30 bg-[#0b0b0b] overflow-hidden w-full" id="steps">
-        <div className="w-full px-6 md:px-[8vw]">
+      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="steps">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://i.ibb.co/Y7Rzv80G/1.jpg"
+            alt="Steps Background"
+            fill
+            className="object-cover"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-black/60" />
+        </div>
+
+        <div className="relative z-10 w-full px-6 md:px-[8vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start">
             <div className="col-span-12 lg:col-span-5 flex flex-col">
               <h2 className="text-3xl md:text-[3vw] heading-md text-white uppercase leading-[1.1] mb-8 md:mb-[6vh]">

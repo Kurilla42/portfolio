@@ -11,7 +11,7 @@ interface InfoShowcaseSectionProps {
 }
 
 export function InfoShowcaseSection({
-  imageSrc = "https://i.ibb.co/xqjNS2sj/202603190505.jpg",
+  imageSrc = "https://i.ibb.co/Y7Rzv80G/1.jpg",
   quote = "MY GOAL HAS ALWAYS BEEN TO ELEVATE EVERYDAY INTERACTIONS INTO SOMETHING MORE MEANINGFUL AND CRUCIALLY, QUIETLY THREADING IN MOMENTS OF JOY THAT CATCH US BY SURPRISE AND STAY WITH US FOR YEARS TO COME",
   children
 }: InfoShowcaseSectionProps) {
@@ -25,7 +25,7 @@ export function InfoShowcaseSection({
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
   return (
-    <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-[#0b0b0b]">
+    <section ref={containerRef} className="relative w-full z-20 overflow-hidden">
       {/* Shared Background Layer */}
       <div className="absolute inset-x-0 -top-[10%] z-0 h-[120%] w-full">
         <motion.div 
@@ -41,6 +41,7 @@ export function InfoShowcaseSection({
             unoptimized
           />
         </motion.div>
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       {/* Content Container */}

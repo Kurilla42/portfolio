@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Check } from "lucide-react";
+import Image from 'next/image';
 
 const PRICING_PLANS = [
   {
@@ -88,8 +89,20 @@ export function VerticalPricingTabs() {
   };
 
   return (
-    <section className="w-full bg-[#0b0b0b] py-16 md:py-32 relative z-30" id="packages">
-      <div className="w-full px-6 md:px-[8vw] mx-auto">
+    <section className="w-full py-16 md:py-32 relative z-30" id="packages">
+      {/* Background Image Layer */}
+      <div className="absolute inset-0 z-0">
+        <Image 
+          src="https://i.ibb.co/Y7Rzv80G/1.jpg"
+          alt="Pricing Background"
+          fill
+          className="object-cover"
+          unoptimized
+        />
+        <div className="absolute inset-0 bg-black/70" />
+      </div>
+
+      <div className="relative z-10 w-full px-6 md:px-[8vw] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-stretch min-h-[500px] md:min-h-[600px]">
           {/* Left Column: Navigation Tabs */}
           <div className="lg:col-span-4 flex flex-col justify-center order-2 lg:order-1">
@@ -157,7 +170,6 @@ export function VerticalPricingTabs() {
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
-              {/* Removed background and borders as requested */}
               <div className="h-full flex flex-col relative p-0 md:pl-[4vw]">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.div
@@ -213,7 +225,6 @@ export function VerticalPricingTabs() {
                         </ul>
                       </div>
                       
-                      {/* Removed any additional buttons as requested */}
                       <div className="flex flex-col justify-end items-end h-full hidden md:flex">
                         <div className="bg-white/5 rounded-[2vw] p-8 w-full border border-white/5">
                           <p className="text-sm md:text-[0.9vw] text-white/50 leading-relaxed italic font-medium">
