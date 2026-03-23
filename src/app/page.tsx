@@ -349,7 +349,7 @@ export default function Home() {
       <VerticalPricingTabs />
 
       {/* FINAL CTA SECTION */}
-      <section className="relative py-[15vh] md:py-[25vh] z-30 overflow-hidden w-full" id="contact">
+      <section className="relative h-screen z-30 overflow-hidden w-full" id="contact">
         {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image 
@@ -359,10 +359,9 @@ export default function Home() {
             className="object-cover"
             unoptimized
           />
-          <div className="absolute inset-0 bg-black/50" />
         </div>
 
-        <div className="relative z-10 w-full px-6 md:px-[8vw] flex flex-col items-center justify-center text-center">
+        <div className="relative z-10 w-full h-full px-6 md:px-[8vw] flex flex-col items-center justify-center text-center">
           <div className="w-full md:max-w-[85vw] flex flex-col items-center">
             <motion.span 
               initial={{ opacity: 0, y: 10 }}
@@ -387,20 +386,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <footer className="py-[6vh] md:py-[10vh] bg-[#0b0b0b] relative z-40">
-        <div className="w-full px-6 md:px-[6vw]">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-[6vh]">
-            <div className="flex items-center gap-4">
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-white/10 flex items-center justify-center text-white heading-md text-sm md:text-base">J</div>
-              <span className="text-base md:heading-md text-white/80 font-bold uppercase tracking-tight">JobFlow Landing Pages</span>
-            </div>
-            <div className="tag text-white/40 text-center md:text-right text-[10px] md:text-xs font-mono uppercase tracking-[0.1em]">
-              &copy; {new Date().getFullYear()} Anton Kolesnikov. Precision Engineered for Results.
-            </div>
-          </div>
-        </div>
-      </footer>
     </div>
   );
 }
