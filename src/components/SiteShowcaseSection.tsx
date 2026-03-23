@@ -13,15 +13,15 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Замедленная на 60% анимация входа (сокращенные диапазоны для быстрого старта, но плавной динамики)
-  const textOpacity = useTransform(scrollYProgress, [0, 0.25], [1, 0]);
-  const containersEntryY = useTransform(scrollYProgress, [0, 0.55], ["100vh", "0vh"]);
-  const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.45], [0, 1]);
+  // Значительно замедленная анимация входа (растянута на большую часть скролла)
+  const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
+  const containersEntryY = useTransform(scrollYProgress, [0, 0.85], ["100vh", "0vh"]);
+  const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.7], [0, 1]);
   
   // Центральные элементы
-  const centralImageOpacity = useTransform(scrollYProgress, [0, 0.3, 0.5], [1, 1, 0]);
-  const centralTextOpacity = useTransform(scrollYProgress, [0.5, 0.75], [0, 1]);
-  const centralScale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
+  const centralImageOpacity = useTransform(scrollYProgress, [0, 0.35, 0.6], [1, 1, 0]);
+  const centralTextOpacity = useTransform(scrollYProgress, [0.6, 0.9], [0, 1]);
+  const centralScale = useTransform(scrollYProgress, [0, 0.6], [0.8, 1]);
 
   const leftImg = "https://i.ibb.co/vCTHQpHw/2026-03-24-00-17-55.jpg";
   const rightImg = "https://i.ibb.co/zT5LSZKy/2026-03-24-00-17-08.jpg";
@@ -38,7 +38,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] tracking-tight"
+        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] tracking-tight"
       >
         {label.split("<br />").map((line, i) => (
           <span key={i} className="block">{line}</span>
@@ -49,9 +49,9 @@ export function SiteShowcaseSection() {
         style={{ y: containersEntryY, opacity: containersEntryOpacity }}
         whileHover="hover"
         initial="initial"
-        className="relative w-[85vw] md:w-[42vw] aspect-[16/11] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
+        className="relative w-[85vw] md:w-[42vw] aspect-[16/8.5] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
       >
-        {/* Основное изображение: теперь занимает 100% ширины, не обрезаясь по бокам */}
+        {/* Основное изображение: теперь контейнер подогнан под его высоту */}
         <motion.div
           variants={{
             hover: { scale: 1.05 }
@@ -69,7 +69,7 @@ export function SiteShowcaseSection() {
           />
         </motion.div>
 
-        {/* Мини-изображение: выезжает сверху при ховере */}
+        {/* Мини-изображение при ховере */}
         <motion.div
           variants={{
             initial: { y: "-120%", x: "-50%", opacity: 0 },
@@ -90,7 +90,7 @@ export function SiteShowcaseSection() {
           </div>
         </motion.div>
         
-        {/* Затемняющий оверлей при ховере */}
+        {/* Затемняющий оверлей */}
         <motion.div 
           variants={{
             initial: { opacity: 0 },
@@ -104,7 +104,6 @@ export function SiteShowcaseSection() {
 
   return (
     <div ref={containerRef} className="relative h-[250vh] z-10">
-      {/* Статичный фон, такой же как в блоке с шагами */}
       <div className="absolute inset-0 z-0">
         <Image 
           src="https://i.ibb.co/Y7Rzv80G/1.jpg"
@@ -119,17 +118,16 @@ export function SiteShowcaseSection() {
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="w-full h-full flex items-center justify-center relative">
           
-          {/* Центральные элементы */}
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Декоративная иконка (размер 8vw) */}
+              {/* Центральная иконка увеличена на 30% (8vw -> 10.4vw) */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
                   scale: centralScale,
                 }}
-                className="absolute z-10 w-[8vw] h-[10vw]"
+                className="absolute z-10 w-[10.4vw] h-[13vw]"
               >
                 <Image 
                   src="https://i.ibb.co/JR9GrQfJ/image.png"
@@ -140,7 +138,6 @@ export function SiteShowcaseSection() {
                 />
               </motion.div>
 
-              {/* Вертикальный текст */}
               <motion.div 
                 style={{ 
                   opacity: centralTextOpacity,
@@ -156,7 +153,6 @@ export function SiteShowcaseSection() {
             </div>
           </div>
 
-          {/* Сцена с кейсами */}
           <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 items-center px-6 md:px-[4vw] relative z-10 gap-8 md:gap-[4vw]">
             <ShowcaseCard src={leftImg} label="EXPLORE<br />HOW YOUR" />
             <ShowcaseCard src={rightImg} label="SITE CAN<br />LOOK LIKE" />
