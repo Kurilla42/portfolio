@@ -2,14 +2,11 @@
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { Button } from '@/components/ui/button';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import { ExperienceTextSection } from '@/components/ExperienceTextSection';
-import Link from 'next/link';
 import ShaderShowcase from "@/components/ui/hero";
-import { ArrowRight } from 'lucide-react';
 import Image from 'next/image';
 import { VerticalPricingTabs } from '@/components/ui/vertical-pricing-tabs';
 import { InfoShowcaseSection } from '@/components/InfoShowcaseSection';
@@ -351,35 +348,54 @@ export default function Home() {
       {/* PRICING SECTION */}
       <VerticalPricingTabs />
 
-      {/* FINAL CTA */}
-      <section className="py-[10vh] md:py-[20vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10" id="contact">
-        <div className="w-full px-6 md:px-[6vw]">
-          <div className="bg-primary text-white p-8 md:p-[8vw] text-center max-w-[1200px] mx-auto rounded-[2rem] md:rounded-[4vw] shadow-[0_4vw_10vw_-2vw_rgba(29,38,37,0.3)] relative overflow-hidden">
-            <div className="relative z-10 space-y-8 md:space-y-[6vh]">
-              <HighlightWipeHeading 
-                lines={["Ready to Double Your", "Plumbing Leads?"]}
-                className="text-3xl md:heading-lg text-white leading-[0.9] tracking-tighter items-center"
-              />
-              <Button asChild className="bg-accent text-white hover:bg-white hover:text-primary transition-all rounded-full btn h-14 md:h-[7vw] px-8 md:px-[5vw] shadow-2xl group text-base md:text-xl">
-                <Link href="https://calendly.com" target="_blank" className="flex items-center gap-4 md:gap-[1.5vw]">
-                  Book My Strategy Call
-                  <ArrowRight className="w-5 h-5 md:w-[1.8vw] md:h-[1.8vw] group-hover:translate-x-1 transition-transform" />
-                </Link>
-              </Button>
-              <p className="tag opacity-50 text-[10px] md:text-xs">Limited availability for monthly intakes.</p>
-            </div>
+      {/* FINAL CTA SECTION */}
+      <section className="relative py-[15vh] md:py-[25vh] z-30 overflow-hidden w-full" id="contact">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://i.ibb.co/Gf1L4KfQ/generated-image-18.jpg"
+            alt="Final CTA Background"
+            fill
+            className="object-cover"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-black/50" />
+        </div>
+
+        <div className="relative z-10 w-full px-6 md:px-[8vw] flex flex-col items-center justify-center text-center">
+          <div className="w-full md:max-w-[85vw] flex flex-col items-center">
+            <motion.span 
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 0.4, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="label text-white block mb-8 md:mb-[6vh] tracking-[0.2em] uppercase font-mono text-[10px] md:text-xs"
+            >
+              [ GET STARTED ]
+            </motion.span>
+            
+            <HighlightWipeHeading 
+              lines={["Ready to Double Your", "Plumbing Leads?"]}
+              className="text-xl sm:text-2xl md:text-[3.0vw] font-black uppercase leading-[1.3] md:leading-[1.1] text-white items-center tracking-tighter"
+              stagger={0.08}
+              triggerOnce={true}
+            />
+            
+            <p className="tag opacity-50 text-white mt-8 text-[10px] md:text-xs uppercase tracking-widest font-mono">
+              Limited availability for monthly intakes.
+            </p>
           </div>
         </div>
       </section>
 
-      <footer className="py-[6vh] md:py-[10vh] border-t border-primary/5 bg-[#eaeaf2] relative z-10">
+      <footer className="py-[6vh] md:py-[10vh] bg-[#0b0b0b] relative z-40">
         <div className="w-full px-6 md:px-[6vw]">
           <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-[6vh]">
             <div className="flex items-center gap-4">
-              <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-primary flex items-center justify-center text-white heading-md text-sm md:text-base">J</div>
-              <span className="text-base md:heading-md text-primary font-bold">JobFlow Landing Pages</span>
+              <div className="w-8 h-8 md:w-10 md:h-10 rounded-lg md:rounded-xl bg-white/10 flex items-center justify-center text-white heading-md text-sm md:text-base">J</div>
+              <span className="text-base md:heading-md text-white/80 font-bold uppercase tracking-tight">JobFlow Landing Pages</span>
             </div>
-            <div className="tag text-muted-foreground opacity-60 text-center md:text-left text-[10px] md:text-xs">
+            <div className="tag text-white/40 text-center md:text-right text-[10px] md:text-xs font-mono uppercase tracking-[0.1em]">
               &copy; {new Date().getFullYear()} Anton Kolesnikov. Precision Engineered for Results.
             </div>
           </div>
