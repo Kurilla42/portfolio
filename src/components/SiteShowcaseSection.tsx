@@ -12,24 +12,18 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Use raw progress to remove the "floaty" parallax-like spring effect
-  const progress = scrollYProgress;
-
-  // ЭТАП 1: Вход (ускорено на 60%)
-  const textOpacity = useTransform(progress, [0, 0.04], [1, 0]);
-  const containersEntryY = useTransform(progress, [0, 0.08], ["100vh", "0vh"]);
-  const containersEntryOpacity = useTransform(progress, [0, 0.06], [0, 1]);
+  // Скорость анимации: умеренное ускорение (30% от первоначального)
+  const textOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
+  const containersEntryY = useTransform(scrollYProgress, [0, 0.15], ["100vh", "0vh"]);
+  const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.12], [0, 1]);
   
   // Центральные элементы
-  const centralImageOpacity = useTransform(progress, [0, 0.07, 0.1], [1, 1, 0]);
-  const centralTextOpacity = useTransform(progress, [0.09, 0.13], [0, 1]);
-  const centralScale = useTransform(progress, [0, 0.08], [0.8, 1]);
+  const centralImageOpacity = useTransform(scrollYProgress, [0, 0.1, 0.15], [1, 1, 0]);
+  const centralTextOpacity = useTransform(scrollYProgress, [0.15, 0.22], [0, 1]);
+  const centralScale = useTransform(scrollYProgress, [0, 0.15], [0.7, 1]);
 
-  // ЭТАП 2: Внутренний скролл изображений
-  // -91.66% позволяет увидеть самый низ длинного скриншота при h-auto
-  const innerImageScroll = useTransform(progress, [0.14, 0.98], ["0%", "-91.66%"]);
-
-  const caseStudyImg = "https://i.ibb.co/hFSrMwz5/1.jpg";
+  const leftImg = "https://i.ibb.co/dwF6JyH3/2026-03-23-23-59-45.jpg";
+  const rightImg = "https://i.ibb.co/20vdRYyK/2026-03-24-00-00-03.jpg";
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
@@ -39,9 +33,75 @@ export function SiteShowcaseSection() {
     ));
   };
 
+  const ShowcaseCard = ({ src, label }: { src: string, label: string }) => (
+    <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
+      <motion.div 
+        style={{ opacity: textOpacity }}
+        className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] tracking-tight"
+      >
+        {label.split("<br />").map((line, i) => (
+          <span key={i} className="block">{line}</span>
+        ))}
+      </motion.div>
+      
+      <motion.div 
+        style={{ y: containersEntryY, opacity: containersEntryOpacity }}
+        whileHover="hover"
+        initial="initial"
+        className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
+      >
+        {/* Основное изображение: объект-контейн, чтобы было видно полностью */}
+        <motion.div
+          variants={{
+            hover: { scale: 1.05 }
+          }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="w-full h-full relative"
+        >
+          <Image 
+            src={src} 
+            alt="Case Study" 
+            fill
+            className="object-contain"
+            unoptimized
+          />
+        </motion.div>
+
+        {/* Мини-изображение, выезжающее сверху в центр при ховере */}
+        <motion.div
+          variants={{
+            initial: { y: "-120%", x: "-50%", opacity: 0 },
+            hover: { y: "-50%", x: "-50%", opacity: 1 }
+          }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute top-1/2 left-1/2 w-[50%] h-[50%] z-30 pointer-events-none"
+        >
+          <div className="relative w-full h-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] border border-white/10">
+            <Image 
+              src={src} 
+              alt="Case Study Preview" 
+              fill
+              className="object-cover"
+              unoptimized
+            />
+          </div>
+        </motion.div>
+        
+        {/* Затемняющий оверлей при ховере для акцента на миниатюре */}
+        <motion.div 
+          variants={{
+            initial: { opacity: 0 },
+            hover: { opacity: 0.4 }
+          }}
+          className="absolute inset-0 bg-black z-20 pointer-events-none"
+        />
+      </motion.div>
+    </div>
+  );
+
   return (
-    <div ref={containerRef} className="relative h-[800vh] z-10">
-      {/* Background Image Layer - Static */}
+    <div ref={containerRef} className="relative h-[200vh] z-10">
+      {/* Статичный фон */}
       <div className="absolute inset-0 z-0">
         <Image 
           src="https://i.ibb.co/Y7Rzv80G/1.jpg"
@@ -54,20 +114,19 @@ export function SiteShowcaseSection() {
       </div>
 
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-        
         <div className="w-full h-full flex items-center justify-center relative">
           
-          {/* Central Background Elements */}
+          {/* Центральные элементы */}
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Central decorative image */}
+              {/* Декоративная иконка (уменьшена на 30% от 8vw) */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
                   scale: centralScale,
                 }}
-                className="absolute z-10 w-[8vw] h-[10vw] md:w-[8vw] md:h-[10vw]"
+                className="absolute z-10 w-[5.6vw] h-[7vw]"
               >
                 <Image 
                   src="https://i.ibb.co/JR9GrQfJ/image.png"
@@ -78,7 +137,7 @@ export function SiteShowcaseSection() {
                 />
               </motion.div>
 
-              {/* Vertical Text Revealed after icon fades */}
+              {/* Вертикальный текст */}
               <motion.div 
                 style={{ 
                   opacity: centralTextOpacity,
@@ -94,61 +153,10 @@ export function SiteShowcaseSection() {
             </div>
           </div>
 
-          {/* Main Stage: Case Study Containers */}
+          {/* Сцена с кейсами */}
           <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 items-center px-6 md:px-[4vw] relative z-10 gap-8 md:gap-[4vw]">
-            
-            {/* Left Case Container */}
-            <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
-              <motion.div 
-                style={{ opacity: textOpacity }}
-                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] tracking-tight"
-              >
-                EXPLORE<br />HOW YOUR
-              </motion.div>
-              
-              <motion.div 
-                style={{ y: containersEntryY, opacity: containersEntryOpacity }}
-                className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10"
-              >
-                <motion.div 
-                  style={{ y: innerImageScroll }}
-                  className="w-full flex flex-col"
-                >
-                  <img 
-                    src={caseStudyImg} 
-                    alt="Case Study Left" 
-                    className="w-full h-auto block"
-                  />
-                </motion.div>
-              </motion.div>
-            </div>
-
-            {/* Right Case Container */}
-            <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
-              <motion.div 
-                style={{ opacity: textOpacity }}
-                className="absolute text-3xl sm:text-4xl md:text-[6vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] tracking-tight"
-              >
-                SITE CAN<br />LOOK LIKE
-              </motion.div>
-              
-              <motion.div 
-                style={{ y: containersEntryY, opacity: containersEntryOpacity }}
-                className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10"
-              >
-                <motion.div 
-                  style={{ y: innerImageScroll }}
-                  className="w-full flex flex-col"
-                >
-                  <img 
-                    src={caseStudyImg} 
-                    alt="Case Study Right" 
-                    className="w-full h-auto block"
-                  />
-                </motion.div>
-              </motion.div>
-            </div>
-
+            <ShowcaseCard src={leftImg} label="EXPLORE<br />HOW YOUR" />
+            <ShowcaseCard src={rightImg} label="SITE CAN<br />LOOK LIKE" />
           </div>
         </div>
       </div>
