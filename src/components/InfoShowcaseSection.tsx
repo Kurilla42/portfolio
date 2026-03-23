@@ -41,7 +41,7 @@ export function InfoShowcaseSection({
             unoptimized
           />
         </motion.div>
-        <div className="absolute inset-0 bg-black/60" />
+        {/* Darkening overlay removed as per user request */}
       </div>
 
       {/* Content Container */}
