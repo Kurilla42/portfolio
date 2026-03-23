@@ -30,9 +30,10 @@ export function SiteShowcaseSection() {
   const centralTextOpacity = useTransform(smoothProgress, [0.3, 0.45], [0, 1]);
   const centralScale = useTransform(smoothProgress, [0, 0.3], [0.8, 1]);
 
-  // ЭТАП 2: Внутренний скролл изображений (0.3 -> 0.9)
-  // Мы смещаем изображение вверх внутри overflow-hidden контейнера
-  const innerImageScroll = useTransform(smoothProgress, [0.35, 0.9], ["0%", "-85%"]);
+  // ЭТАП 2: Внутренний скролл изображений (0.35 -> 0.95)
+  // При высоте h-[600%] (6x контейнера), чтобы дойти до низа, нужно сместить на 5/6 высоты.
+  // 5 / 6 = 0.8333... или -83.33%
+  const innerImageScroll = useTransform(smoothProgress, [0.35, 0.95], ["0%", "-83.33%"]);
 
   const caseStudyImg = "https://i.ibb.co/hFSrMwz5/1.jpg";
 
@@ -117,7 +118,7 @@ export function SiteShowcaseSection() {
               >
                 <motion.div 
                   style={{ y: innerImageScroll }}
-                  className="relative w-full h-[600%]" // Делаем высоту картинки намного больше контейнера
+                  className="relative w-full h-[600%]"
                 >
                   <Image 
                     src={caseStudyImg} 
