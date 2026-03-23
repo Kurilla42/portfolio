@@ -64,7 +64,7 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Central decorative image - Reduced size by 30% */}
+              {/* Central decorative image - Reduced size by 30% as requested earlier */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
@@ -81,7 +81,7 @@ export function SiteShowcaseSection() {
                 />
               </motion.div>
 
-              {/* YOUR SITE Text */}
+              {/* YOUR SITE Text - Now Vertical as requested */}
               <motion.div 
                 style={{ 
                   opacity: centralTextOpacity, 
@@ -109,7 +109,7 @@ export function SiteShowcaseSection() {
               </motion.div>
               <motion.div 
                 style={{ y: imageY, opacity: imageOpacity }}
-                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden z-10"
+                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden z-10 shadow-none border border-white/5"
               >
                 <Image 
                   src={leftCase?.imageUrl || ''} 
@@ -132,7 +132,7 @@ export function SiteShowcaseSection() {
               </motion.div>
               <motion.div 
                 style={{ y: imageY, opacity: imageOpacity }}
-                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden z-10"
+                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden z-10 shadow-none border border-white/5"
               >
                 <Image 
                   src={rightCase?.imageUrl || ''} 
