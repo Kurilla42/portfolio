@@ -1,13 +1,14 @@
+
 "use client";
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import Image from 'next/image';
-import { PlaceHolderImages } from '@/lib/placeholder-images';
 
 export function SiteShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   
+  // Увеличиваем высоту контейнера, чтобы хватило места на входную анимацию и внутренний скролл
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"]
@@ -19,18 +20,21 @@ export function SiteShowcaseSection() {
     restDelta: 0.001
   });
 
-  const textOpacity = useTransform(smoothProgress, [0, 0.2], [1, 0]);
-  const imageY = useTransform(smoothProgress, [0.05, 0.6], ["100vh", "0vh"]);
-  const imageOpacity = useTransform(smoothProgress, [0.05, 0.4], [0, 1]);
+  // ЭТАП 1: Вход (0.0 -> 0.3)
+  const textOpacity = useTransform(smoothProgress, [0, 0.15], [1, 0]);
+  const containersEntryY = useTransform(smoothProgress, [0, 0.3], ["100vh", "0vh"]);
+  const containersEntryOpacity = useTransform(smoothProgress, [0, 0.2], [0, 1]);
   
-  const centralImageOpacity = useTransform(smoothProgress, [0, 0.65, 0.8], [1, 1, 0]);
-  const centralTextOpacity = useTransform(smoothProgress, [0.75, 0.95], [0, 1]);
-  const bgTextScale = useTransform(smoothProgress, [0.1, 0.6], [0.8, 1]);
+  // Центральные элементы
+  const centralImageOpacity = useTransform(smoothProgress, [0, 0.25, 0.35], [1, 1, 0]);
+  const centralTextOpacity = useTransform(smoothProgress, [0.3, 0.45], [0, 1]);
+  const centralScale = useTransform(smoothProgress, [0, 0.3], [0.8, 1]);
 
-  const sectionScale = useTransform(smoothProgress, [0.8, 1], [1, 0.95]);
+  // ЭТАП 2: Внутренний скролл изображений (0.3 -> 0.9)
+  // Мы смещаем изображение вверх внутри overflow-hidden контейнера
+  const innerImageScroll = useTransform(smoothProgress, [0.35, 0.9], ["0%", "-85%"]);
 
-  const leftCase = PlaceHolderImages.find(img => img.id === 'case-study-2');
-  const rightCase = PlaceHolderImages.find(img => img.id === 'case-study-3');
+  const caseStudyImg = "https://i.ibb.co/hFSrMwz5/1.jpg";
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
@@ -41,7 +45,7 @@ export function SiteShowcaseSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] z-10">
+    <div ref={containerRef} className="relative h-[800vh] z-10">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -56,21 +60,19 @@ export function SiteShowcaseSection() {
 
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        <motion.div 
-          style={{ scale: sectionScale }}
-          className="w-full h-full flex items-center justify-center relative"
-        >
+        <div className="w-full h-full flex items-center justify-center relative">
+          
           {/* Central Background Elements */}
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Central decorative image - Reduced size by 30% as requested earlier */}
+              {/* Central decorative image - Уменьшена на 30% */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
-                  scale: bgTextScale,
+                  scale: centralScale,
                 }}
-                className="absolute z-10 w-[16.8vw] h-[22.4vw] md:w-[16.8vw] md:h-[21vw]"
+                className="absolute z-10 w-[11.7vw] h-[14.7vw] md:w-[11.7vw] md:h-[14.7vw]"
               >
                 <Image 
                   src="https://i.ibb.co/JR9GrQfJ/image.png"
@@ -81,11 +83,11 @@ export function SiteShowcaseSection() {
                 />
               </motion.div>
 
-              {/* YOUR SITE Text - Now Vertical as requested */}
+              {/* Vertical Text Revealed after icon fades */}
               <motion.div 
                 style={{ 
-                  opacity: centralTextOpacity, 
-                  scale: bgTextScale,
+                  opacity: centralTextOpacity,
+                  scale: centralScale
                 }}
                 className="flex flex-col items-center font-sans font-black text-4xl sm:text-6xl md:text-[3vw] uppercase text-white leading-none"
               >
@@ -97,9 +99,10 @@ export function SiteShowcaseSection() {
             </div>
           </div>
 
-          {/* Main Stage */}
-          <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 items-center px-6 md:px-[4vw] relative z-10 gap-8 md:gap-0">
-            {/* Left Side */}
+          {/* Main Stage: Case Study Containers */}
+          <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 items-center px-6 md:px-[4vw] relative z-10 gap-8 md:gap-[4vw]">
+            
+            {/* Left Case Container */}
             <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
               <motion.div 
                 style={{ opacity: textOpacity }}
@@ -107,22 +110,28 @@ export function SiteShowcaseSection() {
               >
                 EXPLORE<br />HOW YOUR
               </motion.div>
+              
               <motion.div 
-                style={{ y: imageY, opacity: imageOpacity }}
-                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden z-10 shadow-none border border-white/5"
+                style={{ y: containersEntryY, opacity: containersEntryOpacity }}
+                className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10 border border-white/5"
               >
-                <Image 
-                  src={leftCase?.imageUrl || ''} 
-                  alt="Case Study Left" 
-                  fill 
-                  className="object-cover object-top" 
-                  priority 
-                  unoptimized
-                />
+                <motion.div 
+                  style={{ y: innerImageScroll }}
+                  className="relative w-full h-[600%]" // Делаем высоту картинки намного больше контейнера
+                >
+                  <Image 
+                    src={caseStudyImg} 
+                    alt="Case Study Left" 
+                    fill 
+                    className="object-cover object-top" 
+                    priority 
+                    unoptimized
+                  />
+                </motion.div>
               </motion.div>
             </div>
 
-            {/* Right Side */}
+            {/* Right Case Container */}
             <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
               <motion.div 
                 style={{ opacity: textOpacity }}
@@ -130,22 +139,29 @@ export function SiteShowcaseSection() {
               >
                 SITE CAN<br />LOOK LIKE
               </motion.div>
+              
               <motion.div 
-                style={{ y: imageY, opacity: imageOpacity }}
-                className="relative w-[70vw] md:w-[38vw] aspect-[3/4] rounded-2xl md:rounded-[2vw] overflow-hidden z-10 shadow-none border border-white/5"
+                style={{ y: containersEntryY, opacity: containersEntryOpacity }}
+                className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10 border border-white/5"
               >
-                <Image 
-                  src={rightCase?.imageUrl || ''} 
-                  alt="Case Study Right" 
-                  fill 
-                  className="object-cover object-top" 
-                  priority 
-                  unoptimized
-                />
+                <motion.div 
+                  style={{ y: innerImageScroll }}
+                  className="relative w-full h-[600%]"
+                >
+                  <Image 
+                    src={caseStudyImg} 
+                    alt="Case Study Right" 
+                    fill 
+                    className="object-cover object-top" 
+                    priority 
+                    unoptimized
+                  />
+                </motion.div>
               </motion.div>
             </div>
+
           </div>
-        </motion.div>
+        </div>
       </div>
     </div>
   );
