@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef } from 'react';
@@ -12,15 +13,15 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Скорость анимации: умеренное ускорение (30% от первоначального)
-  const textOpacity = useTransform(scrollYProgress, [0, 0.08], [1, 0]);
-  const containersEntryY = useTransform(scrollYProgress, [0, 0.15], ["100vh", "0vh"]);
-  const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.12], [0, 1]);
+  // Значительно замедленная анимация (растянута на больший диапазон скролла)
+  const textOpacity = useTransform(scrollYProgress, [0, 0.2], [1, 0]);
+  const containersEntryY = useTransform(scrollYProgress, [0, 0.45], ["100vh", "0vh"]);
+  const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.35], [0, 1]);
   
-  // Центральные элементы
-  const centralImageOpacity = useTransform(scrollYProgress, [0, 0.1, 0.15], [1, 1, 0]);
-  const centralTextOpacity = useTransform(scrollYProgress, [0.15, 0.22], [0, 1]);
-  const centralScale = useTransform(scrollYProgress, [0, 0.15], [0.7, 1]);
+  // Центральные элементы (также замедлены)
+  const centralImageOpacity = useTransform(scrollYProgress, [0, 0.25, 0.4], [1, 1, 0]);
+  const centralTextOpacity = useTransform(scrollYProgress, [0.4, 0.6], [0, 1]);
+  const centralScale = useTransform(scrollYProgress, [0, 0.4], [0.8, 1]);
 
   const leftImg = "https://i.ibb.co/dwF6JyH3/2026-03-23-23-59-45.jpg";
   const rightImg = "https://i.ibb.co/20vdRYyK/2026-03-24-00-00-03.jpg";
@@ -50,7 +51,7 @@ export function SiteShowcaseSection() {
         initial="initial"
         className="relative w-[85vw] md:w-[42vw] aspect-[16/10] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
       >
-        {/* Основное изображение: объект-контейн, чтобы было видно полностью */}
+        {/* Основное изображение: object-cover чтобы не было полос */}
         <motion.div
           variants={{
             hover: { scale: 1.05 }
@@ -62,32 +63,32 @@ export function SiteShowcaseSection() {
             src={src} 
             alt="Case Study" 
             fill
-            className="object-contain"
+            className="object-cover object-top"
             unoptimized
           />
         </motion.div>
 
-        {/* Мини-изображение, выезжающее сверху в центр при ховере */}
+        {/* Мини-изображение: выезжает сверху. Используем object-cover для миниатюры */}
         <motion.div
           variants={{
             initial: { y: "-120%", x: "-50%", opacity: 0 },
             hover: { y: "-50%", x: "-50%", opacity: 1 }
           }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute top-1/2 left-1/2 w-[50%] h-[50%] z-30 pointer-events-none"
+          className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none"
         >
-          <div className="relative w-full h-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] border border-white/10">
+          <div className="relative w-full h-full shadow-[0_35px_60px_-15px_rgba(0,0,0,0.6)] border border-white/10 overflow-hidden">
             <Image 
               src={src} 
               alt="Case Study Preview" 
               fill
-              className="object-cover"
+              className="object-cover object-top"
               unoptimized
             />
           </div>
         </motion.div>
         
-        {/* Затемняющий оверлей при ховере для акцента на миниатюре */}
+        {/* Затемняющий оверлей при ховере */}
         <motion.div 
           variants={{
             initial: { opacity: 0 },
@@ -120,13 +121,13 @@ export function SiteShowcaseSection() {
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Декоративная иконка (уменьшена на 30% от 8vw) */}
+              {/* Декоративная иконка (увеличена обратно на 30%, до 8vw) */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
                   scale: centralScale,
                 }}
-                className="absolute z-10 w-[5.6vw] h-[7vw]"
+                className="absolute z-10 w-[8vw] h-[10vw]"
               >
                 <Image 
                   src="https://i.ibb.co/JR9GrQfJ/image.png"
