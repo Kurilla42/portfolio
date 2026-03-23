@@ -20,20 +20,21 @@ export function SiteShowcaseSection() {
     restDelta: 0.001
   });
 
-  // ЭТАП 1: Вход (ускорено на 30% - финал на 0.2 вместо 0.3)
-  const textOpacity = useTransform(smoothProgress, [0, 0.1], [1, 0]);
-  const containersEntryY = useTransform(smoothProgress, [0, 0.2], ["100vh", "0vh"]);
-  const containersEntryOpacity = useTransform(smoothProgress, [0, 0.14], [0, 1]);
+  // ЭТАП 1: Вход (ускорено на 60% относительно базовых значений)
+  // Контейнеры и текст теперь появляются/исчезают в самом начале скролла (до 0.12-0.14)
+  const textOpacity = useTransform(smoothProgress, [0, 0.04], [1, 0]);
+  const containersEntryY = useTransform(smoothProgress, [0, 0.08], ["100vh", "0vh"]);
+  const containersEntryOpacity = useTransform(smoothProgress, [0, 0.06], [0, 1]);
   
-  // Центральные элементы (ускорено на 30%)
-  const centralImageOpacity = useTransform(smoothProgress, [0, 0.17, 0.24], [1, 1, 0]);
-  const centralTextOpacity = useTransform(smoothProgress, [0.21, 0.32], [0, 1]);
-  const centralScale = useTransform(smoothProgress, [0, 0.21], [0.8, 1]);
+  // Центральные элементы
+  const centralImageOpacity = useTransform(smoothProgress, [0, 0.07, 0.1], [1, 1, 0]);
+  const centralTextOpacity = useTransform(smoothProgress, [0.09, 0.13], [0, 1]);
+  const centralScale = useTransform(smoothProgress, [0, 0.08], [0.8, 1]);
 
-  // ЭТАП 2: Внутренний скролл изображений (начинается раньше - с 0.25)
+  // ЭТАП 2: Внутренний скролл изображений (начинается очень рано - с 0.14)
   // При высоте h-[600%] (6x контейнера), чтобы дойти до низа, нужно сместить на 5/6 высоты.
   // 5 / 6 = 0.8333... или -83.33%
-  const innerImageScroll = useTransform(smoothProgress, [0.25, 0.95], ["0%", "-83.33%"]);
+  const innerImageScroll = useTransform(smoothProgress, [0.14, 0.95], ["0%", "-83.33%"]);
 
   const caseStudyImg = "https://i.ibb.co/hFSrMwz5/1.jpg";
 
