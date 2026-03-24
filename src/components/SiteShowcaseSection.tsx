@@ -37,7 +37,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] md:leading-[2.2] tracking-tight"
+        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] md:leading-[1.4] tracking-tight"
       >
         {label.split("<br />").map((line, i) => (
           <span key={i} className="block">{line}</span>
