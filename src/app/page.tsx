@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef } from 'react';
@@ -87,9 +86,9 @@ export default function Home() {
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   
-  // Плавное проявление контента Hero по мере ухода шторки
-  const heroContentOpacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
-  const heroContentScale = useTransform(scrollYProgress, [0.1, 0.4], [0.95, 1]);
+  // Ускоренное появление контента Hero синхронно с новой скоростью шторки
+  const heroContentOpacity = useTransform(scrollYProgress, [0, 0.12], [0, 1]);
+  const heroContentScale = useTransform(scrollYProgress, [0, 0.12], [0.98, 1]);
 
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
@@ -152,7 +151,7 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 w-full px-6 md:px-[8vw]">
-          {/* Decorative smaller image inside Steps block */}
+          {/* Decorative image inside Steps block */}
           <div className="flex justify-center mb-10 md:mb-16">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -417,4 +416,3 @@ export default function Home() {
     </div>
   );
 }
-
