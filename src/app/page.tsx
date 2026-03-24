@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState } from 'react';
@@ -179,7 +178,7 @@ export default function Home() {
                 </motion.div>
                 <div className="flex flex-col gap-4 w-full md:max-w-[22vw]">
                   <p className="text-[11px] md:text-[12px] text-primary/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
-                    My goal has always been to elevate everyday interactions into something more meaningful and crucially, quietly threading in moments of joy.
+                    My goal has always been to elevate everyday interactions into something more meaningful and संस्कृतेन सह, quietly threading in moments of joy.
                   </p>
                 </div>
               </div>
@@ -229,7 +228,7 @@ export default function Home() {
       </section>
 
       <InfoShowcaseSection>
-        <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="difference">
+        <section className="relative pb-[10vh] md:pb-[20vh] pt-0 z-30 overflow-hidden w-full" id="difference">
           <div className="w-full px-6 md:px-[8vw]">
             <div className="flex flex-col lg:flex-row justify-center items-end gap-[4vw] w-full">
               <motion.div 
