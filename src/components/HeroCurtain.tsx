@@ -19,7 +19,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       <div className="flex-[0.5]" />
 
       {/* Middle/Bottom Section: Massive L P P L */}
-      <div className="flex-1 flex items-end justify-center px-[4vw] pb-4">
+      <div className="flex-1 flex items-end justify-center px-[4vw] pb-[calc(1rem+2vh)]">
         <motion.div 
           initial={{ y: 0, opacity: 1 }}
           animate={{ 
