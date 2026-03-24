@@ -217,7 +217,7 @@ export function VerticalPricingTabs() {
                   >
                     <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-6">
                       <div className="w-full">
-                        <p className="text-xl md:text-[2vw] font-normal text-white leading-tight max-w-2xl mb-8 uppercase tracking-tight font-sans">
+                        <p className="text-xl md:text-[1vw] font-normal text-white leading-tight max-w-2xl mb-8 uppercase tracking-tight font-sans">
                           {PRICING_PLANS[activeIndex].description}
                         </p>
                         <div className="mb-10">
@@ -243,15 +243,15 @@ export function VerticalPricingTabs() {
                         <span className="text-white/70 block mb-4 tracking-widest text-[10px] md:text-[0.7vw] uppercase font-sans">WHAT'S INCLUDED</span>
                         <ul className="space-y-3 mb-10">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
-                            <li key={i} className="flex items-start gap-4 text-[10px] md:text-[1vw] text-white/80 font-sans leading-relaxed">
-                              <div className="mt-2 w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                            <li key={i} className="flex items-start gap-4 text-[10px] md:text-[1vw] text-white/70 font-sans leading-relaxed">
+                              <div className="mt-2.5 w-1 h-1 rounded-full bg-white shrink-0" />
                               {resource}
                             </li>
                           ))}
                         </ul>
 
                         <div className="max-w-2xl mb-8">
-                          <p className="text-sm md:text-[1vw] text-white/60 leading-relaxed font-sans">
+                          <p className="text-sm md:text-[1vw] text-white/70 leading-relaxed font-sans">
                             {PRICING_PLANS[activeIndex].footerText}
                           </p>
                         </div>
