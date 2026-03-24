@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
@@ -124,7 +125,8 @@ export default function Home() {
                 unoptimized
               />
             </motion.div>
-            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(11,11,11,1)_75%)]" />
+            {/* Uniform overlay without bottom darkening as requested */}
+            <div className="absolute inset-0 bg-black/50" />
           </div>
 
           {/* Hero Content Layer - Animates automatically based on isLifted state */}
@@ -143,9 +145,25 @@ export default function Home() {
       </div>
 
       {/* EXPERIENCE SECTION */}
-      <div ref={parallaxRef} className="relative z-20">
-        <section className="relative min-h-[80vh] py-[10vh] md:py-[15vh]">
-          <ExperienceTextSection />
+      <div ref={parallaxRef} className="relative z-20 overflow-hidden">
+        <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh]">
+          {/* Background Image - Same as Hero */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
+              alt="Experience Background"
+              fill
+              className="object-cover"
+              priority
+              unoptimized
+            />
+            {/* Darkening Gradient: Starts at text top, reaches 100% at "The problem" line */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,11,0)_0%,rgba(11,11,11,0)_20%,rgba(11,11,11,1)_65%)]" />
+          </div>
+
+          <div className="relative z-10">
+            <ExperienceTextSection />
+          </div>
         </section>
       </div>
 
