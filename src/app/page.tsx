@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
@@ -93,7 +92,8 @@ export default function Home() {
     offset: ["start start", "end start"]
   });
   
-  const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  // Removed parallax to match Experience section positioning exactly
+  // const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   // Trigger automatic curtain lift on first scroll
   useMotionValueEvent(heroScroll, "change", (latest) => {
@@ -112,20 +112,17 @@ export default function Home() {
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Background Layer */}
           <div className="absolute inset-0 z-0">
-            <motion.div 
-              style={{ y: backgroundY }}
-              className="absolute inset-0 h-[120%] -top-[10%]" 
-            >
+            <div className="absolute inset-0">
               <Image
                 src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
                 alt="Hero Background"
                 fill
-                className="object-cover"
+                className="object-cover object-center"
                 priority
                 unoptimized
               />
-            </motion.div>
-            {/* Uniform overlay without bottom darkening as requested */}
+            </div>
+            {/* Uniform overlay without filters */}
             <div className="absolute inset-0 bg-black/50" />
           </div>
 
@@ -147,13 +144,13 @@ export default function Home() {
       {/* EXPERIENCE SECTION */}
       <div ref={parallaxRef} className="relative z-20 overflow-hidden">
         <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh]">
-          {/* Background Image - Same as Hero */}
+          {/* Background Image - Same positioning as Hero */}
           <div className="absolute inset-0 z-0">
             <Image
               src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
               alt="Experience Background"
               fill
-              className="object-cover"
+              className="object-cover object-center"
               priority
               unoptimized
             />

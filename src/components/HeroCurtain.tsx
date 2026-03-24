@@ -13,7 +13,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       initial={{ y: "0%" }}
       animate={{ y: isLifted ? "-105%" : "0%" }}
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-0 z-[100] w-full h-screen bg-black/40 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
+      className="fixed inset-0 z-[100] w-full h-screen bg-black/70 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
     >
       {/* Top Spacer to push letters to the middle/bottom */}
       <div className="flex-[0.5]" />
@@ -40,14 +40,14 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
         </motion.div>
       </div>
 
-      {/* Bottom Section: White line with WHATS LPPL? */}
+      {/* Bottom Section: Transparent line with WHATS LPPL? centered */}
       <motion.div 
         initial={{ opacity: 1 }}
         animate={{ opacity: isLifted ? 0 : 1 }}
         transition={{ duration: 0.8 }}
-        className="h-[6vh] w-full bg-white flex items-center px-[4vw] relative overflow-hidden shrink-0"
+        className="h-[6vh] w-full bg-black/40 flex items-center justify-center px-[4vw] relative overflow-hidden shrink-0 border-t border-white/5"
       >
-        <span className="font-mono text-[10px] md:text-xs font-black text-black tracking-[0.4em] uppercase">
+        <span className="font-mono text-[14px] md:text-[18px] font-black text-white tracking-[0.4em] uppercase">
           WHATS LPPL?
         </span>
         <motion.div 
