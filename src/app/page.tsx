@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef } from 'react';
@@ -10,6 +11,7 @@ import ShaderShowcase from "@/components/ui/hero";
 import Image from 'next/image';
 import { VerticalPricingTabs } from '@/components/ui/vertical-pricing-tabs';
 import { InfoShowcaseSection } from '@/components/InfoShowcaseSection';
+import { HeroCurtain } from '@/components/HeroCurtain';
 
 const comparisonData = [
   {
@@ -85,8 +87,15 @@ export default function Home() {
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   
+  // Плавное проявление контента Hero по мере ухода шторки
+  const heroContentOpacity = useTransform(scrollYProgress, [0.1, 0.3], [0, 1]);
+  const heroContentScale = useTransform(scrollYProgress, [0.1, 0.4], [0.95, 1]);
+
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
+      {/* HERO CURTAIN EFFECT */}
+      <HeroCurtain />
+
       {/* HERO & EXPERIENCE SECTION */}
       <div ref={parallaxRef} className="relative w-full overflow-hidden">
         <div className="absolute inset-0 z-0">
@@ -108,7 +117,12 @@ export default function Home() {
 
         <div className="relative z-10">
           <section className="relative h-screen w-full">
-            <ShaderShowcase />
+            <motion.div 
+              style={{ opacity: heroContentOpacity, scale: heroContentScale }}
+              className="h-full w-full"
+            >
+              <ShaderShowcase />
+            </motion.div>
           </section>
           <section className="relative min-h-[80vh] py-[10vh] md:py-[15vh]">
             <ExperienceTextSection />
@@ -126,7 +140,6 @@ export default function Home() {
 
       {/* STEPS SECTION */}
       <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="steps">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://i.ibb.co/Y7Rzv80G/1.jpg"
@@ -139,6 +152,24 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 w-full px-6 md:px-[8vw]">
+          {/* Decorative smaller image inside Steps block */}
+          <div className="flex justify-center mb-10 md:mb-16">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 0.6, y: 0 }}
+              transition={{ duration: 1 }}
+              className="relative w-[15vw] h-[20vh] grayscale brightness-75 contrast-125"
+            >
+              <Image 
+                src="https://i.ibb.co/4nMDGV6K/generated-image-12312312.png"
+                alt="Process Context"
+                fill
+                className="object-contain"
+                unoptimized
+              />
+            </motion.div>
+          </div>
+
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start">
             <div className="col-span-12 lg:col-span-5 flex flex-col">
               <h2 className="text-3xl md:text-[3vw] heading-md text-white uppercase leading-[1.1] mb-8 md:mb-[6vh]">
@@ -222,7 +253,6 @@ export default function Home() {
                 whileInView="visible"
                 viewport={{ once: true, amount: 0.1 }}
               >
-                {/* Mobile Header for Table */}
                 <div className="lg:hidden mb-6">
                   <h2 className="text-3xl heading-md text-white uppercase leading-[1.1]">
                     THE DIFFERENCE
@@ -253,7 +283,6 @@ export default function Home() {
                   </div>
                 </div>
 
-                {/* Mobile version of the comparison */}
                 <div className="flex flex-col lg:hidden space-y-8">
                   {comparisonData.map((item, idx) => (
                     <div key={idx} className="flex flex-col space-y-3 border-b border-white/10 pb-6">
@@ -270,7 +299,6 @@ export default function Home() {
                   ))}
                 </div>
 
-                {/* Desktop version of the comparison */}
                 <div className="hidden lg:flex flex-col relative">
                   {comparisonData.map((item, idx) => (
                     <motion.div 
@@ -350,7 +378,6 @@ export default function Home() {
 
       {/* FINAL CTA SECTION */}
       <section className="relative h-screen z-30 overflow-hidden w-full" id="contact">
-        {/* Background Image */}
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://i.ibb.co/Gf1L4KfQ/generated-image-18.jpg"
@@ -359,7 +386,6 @@ export default function Home() {
             className="object-cover"
             unoptimized
           />
-          {/* Darkness Overlay matching Steps section */}
           <div className="absolute inset-0 bg-black/60" />
         </div>
 
@@ -391,3 +417,4 @@ export default function Home() {
     </div>
   );
 }
+
