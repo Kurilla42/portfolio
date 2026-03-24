@@ -128,7 +128,7 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="flex flex-col items-center font-sans font-black text-4xl sm:text-6xl md:text-[3vw] uppercase text-primary leading-none"
+                className="flex flex-col items-center font-sans font-bold text-xl md:text-[2vw] uppercase text-primary tracking-tight leading-none"
               >
                 <div className="flex flex-col items-center">
                   {renderVerticalText("YOUR SITE")}
