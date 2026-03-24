@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
@@ -81,52 +81,38 @@ export default function Home() {
   const parallaxRef = useRef<HTMLDivElement>(null);
   const [isLifted, setIsLifted] = useState(false);
   
-  // Scroll progress for general parallax and triggers
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroSectionRef,
     offset: ["start start", "end start"]
   });
 
-  const { scrollYProgress } = useScroll({
-    target: parallaxRef,
-    offset: ["start start", "end start"]
-  });
-  
-  // Removed parallax to match Experience section positioning exactly
-  // const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-
-  // Trigger automatic curtain lift on first scroll
   useMotionValueEvent(heroScroll, "change", (latest) => {
     if (latest > 0.01 && !isLifted) {
       setIsLifted(true);
     }
   });
 
+  const bgImage = "https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg";
+
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
-      {/* HERO CURTAIN EFFECT - Controlled by state triggered by scroll */}
       <HeroCurtain isLifted={isLifted} />
 
-      {/* HERO SECTION WITH STICKY REVEAL BUFFER */}
+      {/* HERO SECTION */}
       <div ref={heroSectionRef} className="relative h-[135vh] w-full">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
-          {/* Background Layer */}
           <div className="absolute inset-0 z-0">
-            <div className="absolute inset-0">
-              <Image
-                src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
-                alt="Hero Background"
-                fill
-                className="object-cover object-center"
-                priority
-                unoptimized
-              />
-            </div>
-            {/* Uniform overlay without filters */}
+            <Image
+              src={bgImage}
+              alt="Hero Background"
+              fill
+              className="object-cover object-center"
+              priority
+              unoptimized
+            />
             <div className="absolute inset-0 bg-black/50" />
           </div>
 
-          {/* Hero Content Layer - Animates automatically based on isLifted state */}
           <motion.div 
             initial={{ opacity: 0, scale: 0.98 }}
             animate={{ 
@@ -142,20 +128,19 @@ export default function Home() {
       </div>
 
       {/* EXPERIENCE SECTION */}
-      <div ref={parallaxRef} className="relative z-20 overflow-hidden">
-        <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh]">
-          {/* Background Image - Same positioning as Hero */}
+      <div ref={parallaxRef} className="relative z-20">
+        <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh] overflow-hidden">
           <div className="absolute inset-0 z-0">
             <Image
-              src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
+              src={bgImage}
               alt="Experience Background"
               fill
               className="object-cover object-center"
               priority
               unoptimized
             />
-            {/* Darkening Gradient: Starts at text top, reaches 100% at "The problem" line */}
-            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(11,11,11,0)_0%,rgba(11,11,11,0)_20%,rgba(11,11,11,1)_65%)]" />
+            {/* Matches Hero overlay at the top (50%) and fades to full black */}
+            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,1)_75%)]" />
           </div>
 
           <div className="relative z-10">
@@ -164,15 +149,12 @@ export default function Home() {
         </section>
       </div>
 
-      {/* MONOLITH SECTION */}
       <section className="relative z-20">
         <LuminaInteractiveList />
       </section>
       
-      {/* SHOWCASE SECTION */}
       <SiteShowcaseSection />
 
-      {/* STEPS SECTION */}
       <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="steps">
         <div className="absolute inset-0 z-0">
           <Image 
@@ -274,7 +256,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* INFO SHOWCASE + DIFFERENCE TABLE */}
       <InfoShowcaseSection>
         <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="difference">
           <div className="w-full px-6 md:px-[8vw]">
@@ -406,10 +387,8 @@ export default function Home() {
         </section>
       </InfoShowcaseSection>
 
-      {/* PRICING SECTION */}
       <VerticalPricingTabs />
 
-      {/* FINAL CTA SECTION */}
       <section className="relative h-screen z-30 overflow-hidden w-full" id="contact">
         <div className="absolute inset-0 z-0">
           <Image 
