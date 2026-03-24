@@ -154,7 +154,19 @@ export default function Home() {
       
       <SiteShowcaseSection />
 
-      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full bg-[#1b1c17]" id="steps">
+      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="steps">
+        {/* Background Image Layer */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="https://i.ibb.co/Y7Rzv80G/1.jpg"
+            alt="Steps Background"
+            fill
+            className="object-cover"
+            unoptimized
+          />
+          <div className="absolute inset-0 bg-black/70" />
+        </div>
+
         <div className="relative z-10 w-full px-6 md:px-[8vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start">
             <div className="col-span-12 lg:col-span-5 flex flex-col">
@@ -162,20 +174,6 @@ export default function Home() {
                 SIMPLE STEPS
               </h2>
               <div className="flex flex-col gap-8">
-                <motion.div 
-                  initial={{ opacity: 0, scale: 0.98 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative w-full lg:w-[22vw] aspect-[16/10] overflow-hidden border border-white/10"
-                >
-                  <Image 
-                    src="https://i.ibb.co/yFbMvrjt/j-GIDW70qyf-Bu-P6v8-UKUwum-U8-HGo.avif"
-                    alt="Process illustration"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </motion.div>
                 <div className="flex flex-col gap-4 w-full md:max-w-[22vw]">
                   <p className="text-[11px] md:text-[12px] text-white/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
                     My goal has always been to elevate everyday interactions into something more meaningful and संस्कृтеen सह, quietly threading in moments of joy.
