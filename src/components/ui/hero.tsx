@@ -65,13 +65,13 @@ export default function ShaderShowcase() {
           <div className="col-span-12 md:col-span-4 flex flex-col md:pl-[4vw]">
             <div className="space-y-6 md:space-y-[1.5vw] md:mb-[15vh]">
                <div className="h-[1px] w-full bg-white/10" />
-               <div className="space-y-2 md:space-y-[0.6vw] opacity-60 text-xs md:text-[0.8vw] uppercase tracking-wider font-medium font-sans text-white">
+               <div className="space-y-2 md:space-y-[0.6vw] text-xs md:text-[1vw] uppercase tracking-wider font-medium font-sans text-white/60">
                   <p>Built for service businesses</p>
                   <p>Focused on conversion</p>
                   <p>Made for owners who care about results</p>
                </div>
                <div className="flex items-center justify-between group cursor-pointer pt-4 md:pt-[1vw]">
-                  <span className="text-xs md:text-[0.8vw] uppercase tracking-wider font-sans">How can I help?</span>
+                  <span className="text-xs md:text-[1vw] uppercase tracking-wider font-sans opacity-100">How can I help?</span>
                   <span className="text-xl md:text-[1.4vw] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
                </div>
             </div>
@@ -83,7 +83,7 @@ export default function ShaderShowcase() {
           <div className="col-span-4 hidden md:block" />
           <div className="col-span-4 hidden md:block" />
           <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col gap-4 md:gap-[1.5vw]">
-            <p className="text-xs md:text-[0.8vw] leading-relaxed opacity-60 max-w-full md:max-w-[15vw] font-sans">
+            <p className="text-xs md:text-[1vw] leading-relaxed opacity-60 max-w-full md:max-w-[18vw] font-sans">
               I'm an award winning product designer specialized in lead generation for local home service businesses.
             </p>
             <div className="flex items-center gap-6 md:gap-[1.5vw] pt-2 md:pt-[1vw]">
