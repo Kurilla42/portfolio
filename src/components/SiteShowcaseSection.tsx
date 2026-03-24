@@ -38,7 +38,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] tracking-tight"
+        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-primary z-20 pointer-events-none leading-[1.1] tracking-tight"
       >
         {label.split("<br />").map((line, i) => (
           <span key={i} className="block">{line}</span>
@@ -49,9 +49,8 @@ export function SiteShowcaseSection() {
         style={{ y: containersEntryY, opacity: containersEntryOpacity }}
         whileHover="hover"
         initial="initial"
-        className="relative w-[85vw] md:w-[42vw] md:h-[23.62vw] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
+        className="relative w-[85vw] md:w-[42vw] h-[23.62vw] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
       >
-        {/* Основное изображение: занимает всю ширину, высота адаптируется */}
         <motion.div
           variants={{
             hover: { scale: 1.05 }
@@ -69,7 +68,6 @@ export function SiteShowcaseSection() {
           />
         </motion.div>
 
-        {/* Мини-изображение при ховере */}
         <motion.div
           variants={{
             initial: { y: "-120%", x: "-50%", opacity: 0 },
@@ -78,7 +76,7 @@ export function SiteShowcaseSection() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none overflow-hidden"
         >
-          <div className="relative w-full h-full border border-white/20 bg-black/20 flex flex-col">
+          <div className="relative w-full h-full border border-primary/20 bg-black/20 flex flex-col">
             <Image 
               src={src} 
               alt="Case Study Preview" 
@@ -90,11 +88,10 @@ export function SiteShowcaseSection() {
           </div>
         </motion.div>
         
-        {/* Затемняющий оверлей */}
         <motion.div 
           variants={{
             initial: { opacity: 0 },
-            hover: { opacity: 0.5 }
+            hover: { opacity: 0.2 }
           }}
           className="absolute inset-0 bg-black z-20 pointer-events-none"
         />
@@ -103,31 +100,19 @@ export function SiteShowcaseSection() {
   );
 
   return (
-    <div ref={containerRef} className="relative h-[250vh] z-10">
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="https://i.ibb.co/Y7Rzv80G/1.jpg"
-          alt="Showcase Background"
-          fill
-          className="object-cover"
-          unoptimized
-        />
-        <div className="absolute inset-0 bg-black/60" />
-      </div>
-
+    <div ref={containerRef} className="relative h-[180vh] z-10 bg-[#e5e3dd]">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="w-full h-full flex items-center justify-center relative">
           
           <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
             <div className="relative flex items-center justify-center">
               
-              {/* Центральная иконка увеличена на 30% */}
               <motion.div 
                 style={{ 
                   opacity: centralImageOpacity, 
                   scale: centralScale,
                 }}
-                className="absolute z-10 w-[10.4vw] h-[13vw]"
+                className="absolute z-10 w-[8vw] h-[10vw]"
               >
                 <Image 
                   src="https://i.ibb.co/JR9GrQfJ/image.png"
@@ -143,7 +128,7 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="flex flex-col items-center font-sans font-black text-4xl sm:text-6xl md:text-[3vw] uppercase text-white leading-none"
+                className="flex flex-col items-center font-sans font-black text-4xl sm:text-6xl md:text-[3vw] uppercase text-primary leading-none"
               >
                 <div className="flex flex-col items-center">
                   {renderVerticalText("YOUR SITE")}

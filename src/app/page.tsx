@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState } from 'react';
@@ -139,7 +140,6 @@ export default function Home() {
               priority
               unoptimized
             />
-            {/* Matches Hero overlay at the top (50%) and fades to full black */}
             <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,1)_75%)]" />
           </div>
 
@@ -155,39 +155,11 @@ export default function Home() {
       
       <SiteShowcaseSection />
 
-      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="steps">
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://i.ibb.co/Y7Rzv80G/1.jpg"
-            alt="Steps Background"
-            fill
-            className="object-cover"
-            unoptimized
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
-
+      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full bg-[#e5e3dd]" id="steps">
         <div className="relative z-10 w-full px-6 md:px-[8vw]">
-          <div className="flex justify-center mb-10 md:mb-16">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 0.6, y: 0 }}
-              transition={{ duration: 1 }}
-              className="relative w-[15vw] h-[20vh] grayscale brightness-75 contrast-125"
-            >
-              <Image 
-                src="https://i.ibb.co/4nMDGV6K/generated-image-12312312.png"
-                alt="Process Context"
-                fill
-                className="object-contain"
-                unoptimized
-              />
-            </motion.div>
-          </div>
-
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start">
             <div className="col-span-12 lg:col-span-5 flex flex-col">
-              <h2 className="text-3xl md:text-[3vw] heading-md text-white uppercase leading-[1.1] mb-8 md:mb-[6vh]">
+              <h2 className="text-3xl md:text-[3vw] heading-md text-primary uppercase leading-[1.1] mb-8 md:mb-[6vh]">
                 SIMPLE STEPS
               </h2>
               <div className="flex flex-col gap-8">
@@ -195,7 +167,7 @@ export default function Home() {
                   initial={{ opacity: 0, scale: 0.98 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative w-full lg:w-[22vw] aspect-[16/10] overflow-hidden border border-white/10"
+                  className="relative w-full lg:w-[22vw] aspect-[16/10] overflow-hidden border border-primary/10"
                 >
                   <Image 
                     src="https://i.ibb.co/yFbMvrjt/j-GIDW70qyf-Bu-P6v8-UKUwum-U8-HGo.avif"
@@ -206,7 +178,7 @@ export default function Home() {
                   />
                 </motion.div>
                 <div className="flex flex-col gap-4 w-full md:max-w-[22vw]">
-                  <p className="text-[11px] md:text-[12px] text-white/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
+                  <p className="text-[11px] md:text-[12px] text-primary/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
                     My goal has always been to elevate everyday interactions into something more meaningful and crucially, quietly threading in moments of joy.
                   </p>
                 </div>
@@ -215,7 +187,7 @@ export default function Home() {
 
             <div className="col-span-12 lg:col-span-7 flex flex-col pt-0 lg:pt-[10vh]">
               <motion.div 
-                className="flex flex-col w-full border-t border-white/20"
+                className="flex flex-col w-full border-t border-primary/20"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -227,10 +199,10 @@ export default function Home() {
                     variants={itemVariants}
                     whileHover="hover"
                     initial="initial"
-                    className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-white/20 group hover:bg-white/5 transition-colors duration-300 cursor-default"
+                    className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-primary/20 group hover:bg-primary/5 transition-colors duration-300 cursor-default"
                   >
                     <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden">
-                      <span className="font-mono text-sm md:text-[1vw] text-white/30 font-bold uppercase tracking-wider group-hover:text-white/60 transition-colors duration-300">
+                      <span className="font-mono text-sm md:text-[1vw] text-primary/30 font-bold uppercase tracking-wider group-hover:text-primary/60 transition-colors duration-300">
                         {step.number}
                       </span>
                       <div className="h-8 md:h-[2.4vw] overflow-hidden">
@@ -239,10 +211,10 @@ export default function Home() {
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-xl md:text-[2vw] font-bold text-white uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
+                          <h3 className="text-xl md:text-[2vw] font-bold text-primary uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
                             {step.title}
                           </h3>
-                          <h3 className="text-xl md:text-[2vw] font-bold text-white uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
+                          <h3 className="text-xl md:text-[2vw] font-bold text-primary uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
                             {step.title}
                           </h3>
                         </motion.div>
