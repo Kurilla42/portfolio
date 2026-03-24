@@ -44,10 +44,11 @@ export default function ShaderShowcase() {
           </div>
         </div>
 
-        {/* MIDDLE SECTION */}
-        <div className="grid grid-cols-12 w-full mt-auto mb-10 md:mb-0 items-end gap-10 md:gap-0">
+        {/* BOTTOM AREA (COMBINED) */}
+        <div className="grid grid-cols-12 w-full mt-auto items-end gap-10 md:gap-0">
+          {/* Main Heading & Identity */}
           <div className="col-span-12 md:col-span-8 flex flex-col">
-            <div className="mb-6 md:mb-[4vh]">
+            <div className="mb-4 md:mb-[3vh]">
               <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">Hi there! this is</p>
               <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter">
                 <span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span>
@@ -62,31 +63,18 @@ export default function ShaderShowcase() {
             />
           </div>
 
-          <div className="col-span-12 md:col-span-4 flex flex-col md:pl-[4vw]">
-            <div className="space-y-6 md:space-y-[1.5vw] md:mb-[15vh]">
-               <div className="h-[1px] w-full bg-white/10" />
-               <div className="space-y-2 md:space-y-[0.6vw] text-xs md:text-[1vw] uppercase tracking-wider font-medium font-sans text-white/60">
-                  <p>Built for service businesses</p>
-                  <p>Focused on conversion</p>
-                  <p>Made for owners who care about results</p>
-               </div>
-               <div className="flex items-center justify-between group cursor-pointer pt-4 md:pt-[1vw]">
-                  <span className="text-xs md:text-[1vw] uppercase tracking-wider font-sans opacity-100">How can I help?</span>
-                  <span className="text-xl md:text-[1.4vw] group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">↗</span>
-               </div>
+          {/* Bio & Links */}
+          <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col gap-4 md:gap-[1.5vw] pb-1">
+            <div className="space-y-2 md:space-y-[0.6vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-sans text-white/60 mb-2">
+              <p>Built for service businesses</p>
+              <p>Focused on conversion</p>
             </div>
-          </div>
-        </div>
 
-        {/* BOTTOM ROW */}
-        <div className="grid grid-cols-12 w-full items-end gap-6 md:gap-0">
-          <div className="col-span-4 hidden md:block" />
-          <div className="col-span-4 hidden md:block" />
-          <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col gap-4 md:gap-[1.5vw]">
             <p className="text-xs md:text-[1vw] leading-relaxed opacity-60 max-w-full md:max-w-[18vw] font-sans">
               I'm an award winning product designer specialized in lead generation for local home service businesses.
             </p>
-            <div className="flex items-center gap-6 md:gap-[1.5vw] pt-2 md:pt-[1vw]">
+            
+            <div className="flex items-center gap-6 md:gap-[1.5vw] pt-2 md:pt-0">
               <span className="text-[10px] md:text-[0.7vw] uppercase font-bold tracking-widest opacity-40 hover:opacity-100 transition-opacity font-sans">WebFlow</span>
               <Figma className="w-[18px] md:w-[1.2vw] h-[18px] md:h-[1.2vw] opacity-40 hover:opacity-100 transition-opacity" />
               <div className="flex items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
