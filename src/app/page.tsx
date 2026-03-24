@@ -1,7 +1,7 @@
 'use client';
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
@@ -79,31 +79,34 @@ const rollingTextVariants = {
 export default function Home() {
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const [isLifted, setIsLifted] = useState(false);
   
-  // Scroll progress specifically for the Hero reveal
+  // Scroll progress for general parallax and triggers
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroSectionRef,
     offset: ["start start", "end start"]
   });
 
-  // Scroll progress for general parallax
   const { scrollYProgress } = useScroll({
     target: parallaxRef,
     offset: ["start start", "end start"]
   });
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-  
-  // Hero content reveals only after/during curtain movement
-  const heroContentOpacity = useTransform(heroScroll, [0.1, 0.4], [0, 1]);
-  const heroContentScale = useTransform(heroScroll, [0, 0.4], [0.98, 1]);
+
+  // Trigger automatic curtain lift on first scroll
+  useMotionValueEvent(heroScroll, "change", (latest) => {
+    if (latest > 0.01 && !isLifted) {
+      setIsLifted(true);
+    }
+  });
 
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
-      {/* HERO CURTAIN EFFECT - Controlled by heroScroll */}
-      <HeroCurtain scrollProgress={heroScroll} />
+      {/* HERO CURTAIN EFFECT - Controlled by state triggered by scroll */}
+      <HeroCurtain isLifted={isLifted} />
 
-      {/* HERO SECTION WITH STICKY REVEAL */}
+      {/* HERO SECTION WITH STICKY REVEAL BUFFER */}
       <div ref={heroSectionRef} className="relative h-[135vh] w-full">
         <div className="sticky top-0 h-screen w-full overflow-hidden">
           {/* Background Layer */}
@@ -124,9 +127,14 @@ export default function Home() {
             <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(11,11,11,1)_75%)]" />
           </div>
 
-          {/* Hero Content Layer */}
+          {/* Hero Content Layer - Animates automatically based on isLifted state */}
           <motion.div 
-            style={{ opacity: heroContentOpacity, scale: heroContentScale }}
+            initial={{ opacity: 0, scale: 0.98 }}
+            animate={{ 
+              opacity: isLifted ? 1 : 0, 
+              scale: isLifted ? 1 : 0.98 
+            }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="relative z-10 h-full w-full"
           >
             <ShaderShowcase />
@@ -163,7 +171,6 @@ export default function Home() {
         </div>
 
         <div className="relative z-10 w-full px-6 md:px-[8vw]">
-          {/* Decorative image inside Steps block */}
           <div className="flex justify-center mb-10 md:mb-16">
             <motion.div 
               initial={{ opacity: 0, y: 20 }}

@@ -1,31 +1,29 @@
 'use client';
 
 import React from 'react';
-import { motion, MotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 interface HeroCurtainProps {
-  scrollProgress: MotionValue<number>;
+  isLifted: boolean;
 }
 
-export function HeroCurtain({ scrollProgress }: HeroCurtainProps) {
-  // Шторка уходит полностью за первую треть (0.3) скролла Hero-контейнера
-  const curtainY = useTransform(scrollProgress, [0, 0.4], ["0%", "-105%"]);
-  
-  // Прозрачность шторки и букв исчезает чуть раньше, чем она улетает
-  const curtainOpacity = useTransform(scrollProgress, [0, 0.3], [1, 0]);
-  
-  // Анимация букв вверх для динамики
-  const lettersY = useTransform(scrollProgress, [0, 0.3], [0, -150]);
-
+export function HeroCurtain({ isLifted }: HeroCurtainProps) {
   return (
     <motion.div 
-      style={{ y: curtainY }}
+      initial={{ y: "0%" }}
+      animate={{ y: isLifted ? "-105%" : "0%" }}
+      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[100] w-full h-screen bg-black/40 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
     >
       {/* Middle Section: L P P L */}
       <div className="flex-1 flex items-center justify-center px-[8vw]">
         <motion.div 
-          style={{ y: lettersY, opacity: curtainOpacity }}
+          initial={{ y: 0, opacity: 1 }}
+          animate={{ 
+            y: isLifted ? -150 : 0, 
+            opacity: isLifted ? 0 : 1 
+          }}
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="w-full flex justify-between items-center"
         >
           {["L", "P", "P", "L"].map((char, i) => (
@@ -41,7 +39,9 @@ export function HeroCurtain({ scrollProgress }: HeroCurtainProps) {
 
       {/* Bottom Section: White line with WHATS LPPL? */}
       <motion.div 
-        style={{ opacity: curtainOpacity }}
+        initial={{ opacity: 1 }}
+        animate={{ opacity: isLifted ? 0 : 1 }}
+        transition={{ duration: 0.8 }}
         className="h-[6vh] w-full bg-white flex items-center px-[4vw] relative overflow-hidden shrink-0"
       >
         <span className="font-mono text-[10px] md:text-xs font-black text-black tracking-[0.4em] uppercase">
