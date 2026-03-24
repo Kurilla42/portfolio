@@ -45,8 +45,14 @@ export function InfoShowcaseSection({
 
         {/* SECOND BLOCK: Quote */}
         <div className="h-screen w-full flex flex-col items-center justify-center text-center px-6 md:px-[4vw]">
-          <div className="flex flex-col items-center mb-10 md:mb-16">
-            <div className="relative w-24 h-32 md:w-32 md:h-40">
+          <p className="text-xl sm:text-2xl md:text-[3.0vw] font-black uppercase leading-[1.3] md:leading-[1.1] text-white tracking-tighter max-w-full md:max-w-[80vw] drop-shadow-lg mb-12 md:mb-16">
+            {quote}
+          </p>
+
+          {/* Decorative Line with Image in Gap */}
+          <div className="w-full max-w-[92vw] flex items-center gap-6 px-4 opacity-60">
+            <div className="flex-1 h-[1px] bg-white/40" />
+            <div className="relative w-16 h-20 md:w-20 md:h-28 shrink-0">
               <Image 
                 src="https://i.ibb.co/JR9GrQfJ/image.png"
                 alt="Decorative Icon"
@@ -55,11 +61,8 @@ export function InfoShowcaseSection({
                 unoptimized
               />
             </div>
+            <div className="flex-1 h-[1px] bg-white/40" />
           </div>
-
-          <p className="text-xl sm:text-2xl md:text-[3.0vw] font-black uppercase leading-[1.3] md:leading-[1.1] text-white tracking-tighter max-w-full md:max-w-[80vw] drop-shadow-lg">
-            {quote}
-          </p>
         </div>
 
         {/* THIRD PART: Comparison Table */}
