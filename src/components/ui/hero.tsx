@@ -18,7 +18,7 @@ export default function ShaderShowcase() {
   return (
     <div className="relative h-screen w-full font-sans overflow-hidden bg-transparent">
       {/* Hero Content */}
-      <div className="relative z-10 w-full h-full px-6 md:px-[4vw] pt-6 md:pt-[4vh] pb-8 md:pb-[2vh] flex flex-col justify-between text-white">
+      <div className="relative z-10 w-full h-full px-6 md:px-[4vw] pt-6 md:pt-[4vh] pb-8 md:pb-[4vh] flex flex-col justify-between text-white">
         
         {/* TOP ROW */}
         <div className="grid grid-cols-12 w-full items-start gap-4">
@@ -64,17 +64,15 @@ export default function ShaderShowcase() {
           </div>
 
           {/* Bio & Links */}
-          <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col gap-4 md:gap-[1.5vw] pb-1">
-            <div className="space-y-2 md:space-y-[0.6vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-sans text-white/60 mb-2">
+          <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col gap-4 md:gap-[1.5vw]">
+            <div className="w-full h-[1px] bg-white/20 mb-1" />
+            <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-sans text-white/60 mb-2">
               <p>Built for service businesses</p>
               <p>Focused on conversion</p>
+              <p>Made for owners who care about results</p>
             </div>
 
-            <p className="text-xs md:text-[1vw] leading-relaxed opacity-60 max-w-full md:max-w-[18vw] font-sans">
-              I'm an award winning product designer specialized in lead generation for local home service businesses.
-            </p>
-            
-            <div className="flex items-center gap-6 md:gap-[1.5vw] pt-2 md:pt-0">
+            <div className="flex items-center gap-6 md:gap-[1.5vw] pt-2 md:pt-0 pb-1">
               <span className="text-[10px] md:text-[0.7vw] uppercase font-bold tracking-widest opacity-40 hover:opacity-100 transition-opacity font-sans">WebFlow</span>
               <Figma className="w-[18px] md:w-[1.2vw] h-[18px] md:h-[1.2vw] opacity-40 hover:opacity-100 transition-opacity" />
               <div className="flex items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
