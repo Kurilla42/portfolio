@@ -220,10 +220,10 @@ export function VerticalPricingTabs() {
                   >
                     <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-6">
                       <div className="w-full">
-                        <p className="text-sm md:text-[1vw] font-normal text-white leading-tight max-w-2xl mb-8">
+                        <p className="text-sm md:text-[1.2vw] font-bold text-white leading-tight max-w-2xl mb-8 uppercase tracking-tight">
                           {PRICING_PLANS[activeIndex].description}
                         </p>
-                        <div className="mb-8">
+                        <div className="mb-10">
                           <span className="text-white/30 block mb-2 tracking-widest text-[10px] md:text-[0.7vw] uppercase font-sans">WHO IS THIS FOR</span>
                           <p className="text-sm md:text-[1vw] text-white/70 leading-relaxed font-sans">
                             {PRICING_PLANS[activeIndex].whoIsThisFor}
@@ -241,25 +241,24 @@ export function VerticalPricingTabs() {
                       </div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-8">
-                      <div>
+                    <div className="flex flex-col mb-8">
+                      <div className="mb-10">
                         <span className="text-white/30 block mb-4 tracking-widest text-[10px] md:text-[0.7vw] uppercase font-sans">WHAT'S INCLUDED</span>
-                        <ul className="space-y-3">
+                        <ul className="space-y-3 mb-10">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
                             <li key={i} className="flex items-start gap-4 text-[10px] md:text-[1vw] text-white/80 font-sans leading-relaxed">
-                              <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white shrink-0" />
+                              <div className="mt-2 w-1.5 h-1.5 rounded-full bg-white shrink-0" />
                               {resource}
                             </li>
                           ))}
                         </ul>
-                      </div>
-                      
-                      <div className="flex flex-col justify-between h-full">
-                        <div className="bg-white/5 rounded-2xl p-6 w-full border border-white/5 mb-6">
-                          <p className="text-sm md:text-[0.9vw] text-white/60 leading-relaxed italic font-sans">
-                            "{PRICING_PLANS[activeIndex].footerText}"
+
+                        <div className="max-w-2xl mb-8">
+                          <p className="text-sm md:text-[1vw] text-white/60 leading-relaxed font-sans">
+                            {PRICING_PLANS[activeIndex].footerText}
                           </p>
                         </div>
+
                         <div className="flex justify-start">
                           <Button 
                             variant="link" 
