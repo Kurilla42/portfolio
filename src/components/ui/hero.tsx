@@ -44,35 +44,44 @@ export default function ShaderShowcase() {
           </div>
         </div>
 
-        {/* BOTTOM AREA (COMBINED) */}
-        <div className="grid grid-cols-12 w-full mt-auto items-end gap-10 md:gap-0">
-          {/* Main Heading & Identity */}
-          <div className="col-span-12 md:col-span-8 flex flex-col">
-            <div className="mb-4 md:mb-[3vh]">
+        {/* BOTTOM AREA */}
+        <div className="w-full mt-auto flex flex-col">
+          
+          {/* TOP ALIGNED ROW (Identity & Bio) */}
+          <div className="grid grid-cols-12 w-full items-start gap-4 md:gap-0 mb-6 md:mb-[2vh]">
+            {/* Identity */}
+            <div className="col-span-12 md:col-span-8 flex flex-col">
               <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">Hi there! this is</p>
               <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter">
                 <span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span>
               </h2>
             </div>
-            
-            <HighlightWipeHeading 
-              as="h1"
-              lines={["LANDING PAGES", "FOR PLUMBING", "LEADS"]}
-              className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-white w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
-              stagger={0.12}
-            />
+
+            {/* Bio with Line aligned to "Hi there!" */}
+            <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col pt-1.5 md:pt-[0.3vw]">
+              <div className="w-full h-[1px] bg-white/20 mb-4 md:mb-[1.5vw]" />
+              <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-sans text-white/60">
+                <p>Built for service businesses</p>
+                <p>Focused on conversion</p>
+                <p>Made for owners who care about results</p>
+              </div>
+            </div>
           </div>
 
-          {/* Bio & Links */}
-          <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col gap-4 md:gap-[1.5vw]">
-            <div className="w-full h-[1px] bg-white/20 mb-1" />
-            <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-sans text-white/60 mb-2">
-              <p>Built for service businesses</p>
-              <p>Focused on conversion</p>
-              <p>Made for owners who care about results</p>
+          {/* BOTTOM ALIGNED ROW (Heading & Icons) */}
+          <div className="grid grid-cols-12 w-full items-end gap-4 md:gap-0">
+            {/* Main Heading */}
+            <div className="col-span-12 md:col-span-8">
+              <HighlightWipeHeading 
+                as="h1"
+                lines={["LANDING PAGES", "FOR PLUMBING", "LEADS"]}
+                className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-white w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
+                stagger={0.12}
+              />
             </div>
 
-            <div className="flex items-center gap-6 md:gap-[1.5vw] pt-2 md:pt-0 pb-1">
+            {/* Links & Icons aligned to "LEADS" */}
+            <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex items-center gap-6 md:gap-[1.5vw] pb-1">
               <span className="text-[10px] md:text-[0.7vw] uppercase font-bold tracking-widest opacity-40 hover:opacity-100 transition-opacity font-sans">WebFlow</span>
               <Figma className="w-[18px] md:w-[1.2vw] h-[18px] md:h-[1.2vw] opacity-40 hover:opacity-100 transition-opacity" />
               <div className="flex items-center gap-1 opacity-40 hover:opacity-100 transition-opacity">
@@ -81,6 +90,7 @@ export default function ShaderShowcase() {
               </div>
             </div>
           </div>
+          
         </div>
       </div>
     </div>
