@@ -15,21 +15,24 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[100] w-full h-screen bg-black/40 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
     >
-      {/* Middle Section: L P P L */}
-      <div className="flex-1 flex items-center justify-center px-[8vw]">
+      {/* Top Spacer to push letters to the middle/bottom */}
+      <div className="flex-[0.5]" />
+
+      {/* Middle/Bottom Section: Massive L P P L */}
+      <div className="flex-1 flex items-end justify-center px-[4vw] pb-4">
         <motion.div 
           initial={{ y: 0, opacity: 1 }}
           animate={{ 
-            y: isLifted ? -150 : 0, 
+            y: isLifted ? -200 : 0, 
             opacity: isLifted ? 0 : 1 
           }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full flex justify-between items-center"
+          className="w-full flex justify-between items-end"
         >
           {["L", "P", "P", "L"].map((char, i) => (
             <span 
               key={i} 
-              className="font-headline text-[15vw] md:text-[20vw] leading-none text-white tracking-tighter drop-shadow-2xl"
+              className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-white tracking-tighter drop-shadow-2xl"
             >
               {char}
             </span>
