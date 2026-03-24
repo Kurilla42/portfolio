@@ -47,8 +47,10 @@ export default function ShaderShowcase() {
         <div className="grid grid-cols-12 w-full mt-auto mb-10 md:mb-0 items-end gap-10 md:gap-0">
           <div className="col-span-12 md:col-span-8 flex flex-col">
             <div className="mb-6 md:mb-[6vh]">
-              <p className="text-sm opacity-60 mb-1 font-sans">Hi there! this is</p>
-              <h2 className="text-xl md:text-[24px] font-sans font-bold"><span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span></h2>
+              <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">Hi there! this is</p>
+              <h2 className="text-[6vw] md:text-[2.2vw] font-sans font-bold leading-tight tracking-tight">
+                <span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span>
+              </h2>
             </div>
             
             <HighlightWipeHeading 
