@@ -141,7 +141,7 @@ export function VerticalPricingTabs() {
               <span className="text-white/40 block tracking-[0.3em] font-sans text-[10px] md:text-[0.7vw] uppercase">
                 PRICING PLANS
               </span>
-              <h2 className="text-3xl md:text-[3.5vw] font-black uppercase leading-tight text-white tracking-tighter font-headline">
+              <h2 className="text-3xl md:text-[3.5vw] font-black uppercase leading-tight text-white tracking-tighter font-sans">
                 SELECT YOUR<br />GROWTH TIER
               </h2>
             </div>
@@ -221,26 +221,28 @@ export function VerticalPricingTabs() {
                           {PRICING_PLANS[activeIndex].description}
                         </p>
                         <div className="mb-10">
-                          <span className="text-white/70 block mb-2 tracking-widest text-[10px] md:text-[0.7vw] uppercase font-sans">WHO IS THIS FOR</span>
+                          <span className="text-white/70 block mb-2 tracking-widest text-[10px] md:text-[1vw] uppercase font-sans">WHO IS THIS FOR</span>
                           <p className="text-sm md:text-[1vw] text-white/70 leading-relaxed font-sans">
                             {PRICING_PLANS[activeIndex].whoIsThisFor}
                           </p>
                         </div>
                       </div>
                       
-                      <div className="text-left md:text-right w-full md:w-auto shrink-0">
-                        <span className="text-white/40 block mb-2 text-[10px] md:text-[0.7vw] font-sans uppercase tracking-widest">Investment</span>
-                        <span className="line-through text-white/20 block text-[10px] md:text-[1vw] font-mono">{PRICING_PLANS[activeIndex].oldPrice}</span>
-                        <div className="flex items-baseline md:justify-end gap-2">
-                          <span className="text-3xl md:text-[4vw] font-black text-white font-headline">{PRICING_PLANS[activeIndex].investment}</span>
-                          <span className="text-white/40 text-[10px] md:text-[0.7vw] font-mono">{PRICING_PLANS[activeIndex].period}</span>
+                      <div className="text-left md:text-right w-full md:w-auto shrink-0 pt-2">
+                        <div className="flex items-baseline md:justify-end gap-4">
+                          <span className="line-through text-white/20 text-[20px] md:text-[2vw] font-mono">
+                            {PRICING_PLANS[activeIndex].oldPrice}
+                          </span>
+                          <span className="text-3xl md:text-[4vw] font-black text-white font-headline">
+                            {PRICING_PLANS[activeIndex].investment}
+                          </span>
                         </div>
                       </div>
                     </div>
 
                     <div className="flex flex-col mb-8">
                       <div className="mb-10">
-                        <span className="text-white/70 block mb-4 tracking-widest text-[10px] md:text-[0.7vw] uppercase font-sans">WHAT'S INCLUDED</span>
+                        <span className="text-white/70 block mb-4 tracking-widest text-[10px] md:text-[1vw] uppercase font-sans">WHAT'S INCLUDED</span>
                         <ul className="space-y-3 mb-10">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
                             <li key={i} className="flex items-start gap-4 text-[10px] md:text-[1vw] text-white/70 font-sans leading-relaxed">
@@ -259,7 +261,7 @@ export function VerticalPricingTabs() {
                         <div className="flex justify-start">
                           <Button 
                             variant="link" 
-                            className="text-white p-0 h-auto font-bold uppercase tracking-[0.2em] text-[10px] md:text-[0.9vw] underline underline-offset-8 decoration-white/30 hover:decoration-white transition-all font-sans"
+                            className="text-white p-0 h-auto font-bold uppercase tracking-[0.2em] text-[10px] md:text-[1vw] underline underline-offset-8 decoration-white/30 hover:decoration-white transition-all font-sans"
                           >
                             {PRICING_PLANS[activeIndex].buttonText}
                           </Button>
