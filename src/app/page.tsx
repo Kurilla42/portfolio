@@ -77,8 +77,16 @@ const rollingTextVariants = {
 };
 
 export default function Home() {
+  const heroSectionRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
   
+  // Scroll progress specifically for the Hero reveal
+  const { scrollYProgress: heroScroll } = useScroll({
+    target: heroSectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Scroll progress for general parallax
   const { scrollYProgress } = useScroll({
     target: parallaxRef,
     offset: ["start start", "end start"]
@@ -86,47 +94,51 @@ export default function Home() {
   
   const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   
-  // Ускоренное появление контента Hero синхронно с новой скоростью шторки
-  const heroContentOpacity = useTransform(scrollYProgress, [0, 0.12], [0, 1]);
-  const heroContentScale = useTransform(scrollYProgress, [0, 0.12], [0.98, 1]);
+  // Hero content reveals only after/during curtain movement
+  const heroContentOpacity = useTransform(heroScroll, [0.1, 0.4], [0, 1]);
+  const heroContentScale = useTransform(heroScroll, [0, 0.4], [0.98, 1]);
 
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
-      {/* HERO CURTAIN EFFECT */}
-      <HeroCurtain />
+      {/* HERO CURTAIN EFFECT - Controlled by heroScroll */}
+      <HeroCurtain scrollProgress={heroScroll} />
 
-      {/* HERO & EXPERIENCE SECTION */}
-      <div ref={parallaxRef} className="relative w-full overflow-hidden">
-        <div className="absolute inset-0 z-0">
-          <motion.div 
-            style={{ y: backgroundY }}
-            className="absolute inset-0 h-[120%] -top-[10%]" 
-          >
-            <Image
-              src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
-              alt="Hero Background"
-              fill
-              className="object-cover"
-              priority
-              unoptimized
-            />
-          </motion.div>
-          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(11,11,11,1)_75%)]" />
-        </div>
-
-        <div className="relative z-10">
-          <section className="relative h-screen w-full">
+      {/* HERO SECTION WITH STICKY REVEAL */}
+      <div ref={heroSectionRef} className="relative h-[135vh] w-full">
+        <div className="sticky top-0 h-screen w-full overflow-hidden">
+          {/* Background Layer */}
+          <div className="absolute inset-0 z-0">
             <motion.div 
-              style={{ opacity: heroContentOpacity, scale: heroContentScale }}
-              className="h-full w-full"
+              style={{ y: backgroundY }}
+              className="absolute inset-0 h-[120%] -top-[10%]" 
             >
-              <ShaderShowcase />
+              <Image
+                src="https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg"
+                alt="Hero Background"
+                fill
+                className="object-cover"
+                priority
+                unoptimized
+              />
             </motion.div>
-          </section>
-          <section className="relative min-h-[80vh] py-[10vh] md:py-[15vh]">
-            <ExperienceTextSection />
-          </section>
+            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,0.5)_50%,rgba(11,11,11,1)_75%)]" />
+          </div>
+
+          {/* Hero Content Layer */}
+          <motion.div 
+            style={{ opacity: heroContentOpacity, scale: heroContentScale }}
+            className="relative z-10 h-full w-full"
+          >
+            <ShaderShowcase />
+          </motion.div>
         </div>
+      </div>
+
+      {/* EXPERIENCE SECTION */}
+      <div ref={parallaxRef} className="relative z-20">
+        <section className="relative min-h-[80vh] py-[10vh] md:py-[15vh]">
+          <ExperienceTextSection />
+        </section>
       </div>
 
       {/* MONOLITH SECTION */}
