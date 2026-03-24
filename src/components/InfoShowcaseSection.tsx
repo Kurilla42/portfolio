@@ -2,6 +2,7 @@
 
 import React, { useRef } from 'react';
 import Image from 'next/image';
+import { motion, useScroll, useTransform } from 'framer-motion';
 
 interface InfoShowcaseSectionProps {
   imageSrc?: string;
@@ -16,18 +17,33 @@ export function InfoShowcaseSection({
 }: InfoShowcaseSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "end start"]
+  });
+
+  // Параллакс эффект: изображение смещается сверху вниз
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden">
-      {/* Shared Background Layer */}
+      {/* Shared Background Layer with Parallax */}
       <div className="absolute inset-0 z-0 h-full w-full">
-        <Image
-          src={imageSrc}
-          alt="Section Background"
-          fill
-          className="object-cover"
-          priority
-          unoptimized
-        />
+        <motion.div 
+          style={{ y }}
+          className="absolute -top-[20%] left-0 w-full h-[120%]"
+        >
+          <Image
+            src={imageSrc}
+            alt="Section Background"
+            fill
+            className="object-cover object-top"
+            priority
+            unoptimized
+          />
+        </motion.div>
+        {/* Затемнение для читаемости текста */}
+        <div className="absolute inset-0 bg-black/40 z-[1]" />
       </div>
 
       {/* Content Container */}
