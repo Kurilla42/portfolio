@@ -49,7 +49,7 @@ const PRICING_PLANS = [
     investment: "$1197",
     period: "one-time",
     oldPrice: "$1500",
-    badge: "Recommended",
+    badge: null,
     color: "bg-white"
   },
   {
@@ -166,7 +166,7 @@ export function VerticalPricingTabs() {
                       {isActive && (
                         <motion.div
                           key={`progress-${index}-${isPaused}`}
-                          className={cn("absolute top-0 left-0 w-full origin-top", plan.color)}
+                          className={cn("absolute top-0 left-0 w-full origin-top bg-white")}
                           initial={{ height: "0%" }}
                           animate={isPaused ? { height: "0%" } : { height: "100%" }}
                           transition={{
@@ -188,7 +188,7 @@ export function VerticalPricingTabs() {
                       "text-lg md:text-[1.2vw] font-bold tracking-tight transition-colors duration-500 uppercase",
                       isActive ? "text-white" : "text-white/30"
                     )}>
-                      {plan.title.split(":")[0]}
+                      {plan.title}
                     </span>
                   </button>
                 );
@@ -220,15 +220,10 @@ export function VerticalPricingTabs() {
                   >
                     <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-6">
                       <div className="w-full">
-                        {PRICING_PLANS[activeIndex].badge && (
-                          <span className="bg-white/10 text-white px-3 py-1 rounded-full mb-4 inline-block text-[10px] md:text-[0.6vw] font-sans uppercase tracking-widest">
-                            {PRICING_PLANS[activeIndex].badge}
-                          </span>
-                        )}
-                        <p className="text-2xl md:text-[2.5vw] font-normal text-white leading-tight max-w-2xl mb-6">
+                        <p className="text-sm md:text-[1vw] font-normal text-white leading-tight max-w-2xl mb-8">
                           {PRICING_PLANS[activeIndex].description}
                         </p>
-                        <div className="mb-6">
+                        <div className="mb-8">
                           <span className="text-white/30 block mb-2 tracking-widest text-[10px] md:text-[0.7vw] uppercase font-sans">WHO IS THIS FOR</span>
                           <p className="text-sm md:text-[1vw] text-white/70 leading-relaxed font-sans">
                             {PRICING_PLANS[activeIndex].whoIsThisFor}
@@ -251,7 +246,7 @@ export function VerticalPricingTabs() {
                         <span className="text-white/30 block mb-4 tracking-widest text-[10px] md:text-[0.7vw] uppercase font-sans">WHAT'S INCLUDED</span>
                         <ul className="space-y-3">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
-                            <li key={i} className="flex items-start gap-4 text-[10px] md:text-[0.7vw] text-white/80 font-sans leading-relaxed">
+                            <li key={i} className="flex items-start gap-4 text-[10px] md:text-[1vw] text-white/80 font-sans leading-relaxed">
                               <div className="mt-1.5 w-1.5 h-1.5 rounded-full bg-white shrink-0" />
                               {resource}
                             </li>
