@@ -76,7 +76,7 @@ export function SiteShowcaseSection() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none overflow-hidden"
         >
-          <div className="relative w-full h-full border border-primary/20 bg-black/20 flex flex-col">
+          <div className="relative w-full h-full border border-primary/20 bg-black/20 flex flex-col shadow-2xl shadow-black/50">
             <Image 
               src={src} 
               alt="Case Study Preview" 
