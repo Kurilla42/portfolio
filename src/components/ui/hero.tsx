@@ -47,9 +47,9 @@ export default function ShaderShowcase() {
         {/* MIDDLE SECTION */}
         <div className="grid grid-cols-12 w-full mt-auto mb-10 md:mb-0 items-end gap-10 md:gap-0">
           <div className="col-span-12 md:col-span-8 flex flex-col">
-            <div className="mb-6 md:mb-[6vh]">
+            <div className="mb-6 md:mb-[4vh]">
               <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">Hi there! this is</p>
-              <h2 className="text-[6vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tight">
+              <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter">
                 <span className="text-white">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span>
               </h2>
             </div>
@@ -57,7 +57,7 @@ export default function ShaderShowcase() {
             <HighlightWipeHeading 
               as="h1"
               lines={["LANDING PAGES", "FOR PLUMBING", "LEADS"]}
-              className="text-4xl sm:text-5xl md:heading-lg text-white w-full md:w-[110%] -ml-0 md:-ml-1"
+              className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-white w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
               stagger={0.12}
             />
           </div>
