@@ -76,7 +76,7 @@ const rollingTextVariants = {
   hover: { y: '-50%' }
 };
 
-export default function Home() {
+export function Home() {
   const combinedRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
@@ -146,8 +146,8 @@ export default function Home() {
         {/* EXPERIENCE SECTION */}
         <div ref={parallaxRef} className="relative z-20">
           <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh] overflow-hidden">
-            {/* Gradient transition to next section */}
-            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,1)_85%)]" />
+            {/* Gradient transition to next section: reaches 100% black at the critical line of text */}
+            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,1)_65%)]" />
             
             <div className="relative z-10">
               <ExperienceTextSection />
@@ -405,3 +405,5 @@ export default function Home() {
     </div>
   );
 }
+
+export default Home;

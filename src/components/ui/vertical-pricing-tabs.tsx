@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect, useCallback } from "react";
@@ -11,7 +10,8 @@ const PRICING_PLANS = [
   {
     id: "01",
     title: "Ready-Made Landing Page",
-    description: "Quick launch using my template, tailored specifically for plumbing services in the US",
+    description: "Ready-Made High-Converting Landing Page",
+    subdescription: "Quick launch using my template, tailored specifically for plumbing services in the US",
     whoIsThisFor: "Small plumbing companies and independent contractors who need a proper website \"yesterday,\" without lengthy approval processes or custom design wait times.",
     resources: [
       "Landing page setup using my template optimized for leads and calls",
@@ -33,7 +33,8 @@ const PRICING_PLANS = [
   {
     id: "02",
     title: "Custom Website/Landing Page",
-    description: "Tailored design and structure to match your brand, services, and local region",
+    description: "Custom Website/Landing Page for Your Business",
+    subdescription: "Tailored design and structure to match your brand, services, and local region",
     whoIsThisFor: "Companies that want to stand out from competitors, get a scalable site designed for growth, and prioritize maximum conversions",
     resources: [
       "Personalized wireframe and structure for your services, USPs, and target areas",
@@ -55,7 +56,8 @@ const PRICING_PLANS = [
   {
     id: "03",
     title: "Fast AI-Powered Landing Page",
-    description: "Affordable solution: AI-generated landing page with my setup, so you finally have a working site",
+    description: "Fast AI-Powered Landing Page",
+    subdescription: "Affordable solution: AI-generated landing page with my setup, so you finally have a working site",
     whoIsThisFor: "Those just starting a plumbing business or wanting to test online ads with minimal investment",
     resources: [
       "AI-tool creation of a landing page based on your brief",
@@ -138,9 +140,6 @@ export function VerticalPricingTabs() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-stretch min-h-[600px] md:min-h-[750px]">
           <div className="lg:col-span-4 flex flex-col justify-center order-2 lg:order-1">
             <div className="space-y-4 mb-10 md:mb-16">
-              <span className="text-white/40 block tracking-[0.3em] font-sans text-[10px] md:text-[0.7vw] uppercase">
-                PRICING PLANS
-              </span>
               <h2 className="text-3xl md:text-[3.5vw] font-black uppercase leading-tight text-white tracking-tighter font-sans">
                 SELECT YOUR<br />GROWTH TIER
               </h2>
@@ -218,7 +217,7 @@ export function VerticalPricingTabs() {
                     <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-6">
                       <div className="w-full">
                         <p className="text-xl md:text-[1vw] font-normal text-white leading-tight max-w-2xl mb-8 uppercase tracking-tight font-sans">
-                          {PRICING_PLANS[activeIndex].description}
+                          {PRICING_PLANS[activeIndex].subdescription}
                         </p>
                         <div className="mb-10">
                           <span className="text-white/70 block mb-2 tracking-widest text-[10px] md:text-[1vw] uppercase font-sans">WHO IS THIS FOR</span>
@@ -246,7 +245,7 @@ export function VerticalPricingTabs() {
                         <ul className="space-y-3 mb-10">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
                             <li key={i} className="flex items-start gap-4 text-[10px] md:text-[1vw] text-white/70 font-sans leading-relaxed">
-                              <div className="mt-2.5 w-1 h-1 rounded-full bg-white shrink-0" />
+                              <div className="mt-2.5 w-1.5 h-1.5 rounded-full bg-white shrink-0" />
                               {resource}
                             </li>
                           ))}
