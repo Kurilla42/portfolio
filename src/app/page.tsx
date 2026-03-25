@@ -1,7 +1,7 @@
 'use client';
 
 import { useRef, useState } from 'react';
-import { motion, useScroll, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useMotionValueEvent, useTransform } from 'framer-motion';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
@@ -77,6 +77,7 @@ const rollingTextVariants = {
 };
 
 export default function Home() {
+  const combinedRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const parallaxRef = useRef<HTMLDivElement>(null);
   const [isLifted, setIsLifted] = useState(false);
@@ -85,6 +86,13 @@ export default function Home() {
     target: heroSectionRef,
     offset: ["start start", "end start"]
   });
+
+  const { scrollYProgress: combinedScroll } = useScroll({
+    target: combinedRef,
+    offset: ["start start", "end end"]
+  });
+
+  const bgY = useTransform(combinedScroll, [0, 1], ["0%", "20%"]);
 
   useMotionValueEvent(heroScroll, "change", (latest) => {
     if (latest > 0.01 && !isLifted) {
@@ -98,54 +106,54 @@ export default function Home() {
     <div className="min-h-screen bg-[#eaeaf2]">
       <HeroCurtain isLifted={isLifted} />
 
-      {/* HERO SECTION */}
-      <div ref={heroSectionRef} className="relative h-[135vh] w-full">
-        <div className="sticky top-0 h-screen w-full overflow-hidden">
-          <div className="absolute inset-0 z-0">
+      {/* COMBINED HERO & EXPERIENCE WRAPPER FOR SHARED BACKGROUND */}
+      <div ref={combinedRef} className="relative z-0">
+        {/* SHARED PARALLAX BACKGROUND */}
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <motion.div 
+            style={{ y: bgY }}
+            className="absolute -top-[15%] left-0 w-full h-[130%]"
+          >
             <Image
               src={bgImage}
-              alt="Hero Background"
+              alt="Shared Background"
               fill
               className="object-cover object-center"
               priority
               unoptimized
             />
             <div className="absolute inset-0 bg-black/50" />
-          </div>
-
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.98 }}
-            animate={{ 
-              opacity: isLifted ? 1 : 0, 
-              scale: isLifted ? 1 : 0.98 
-            }}
-            transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative z-10 h-full w-full"
-          >
-            <ShaderShowcase />
           </motion.div>
         </div>
-      </div>
 
-      {/* EXPERIENCE SECTION */}
-      <div ref={parallaxRef} className="relative z-20">
-        <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh] overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <Image
-              src={bgImage}
-              alt="Experience Background"
-              fill
-              className="object-cover object-center"
-              priority
-              unoptimized
-            />
-            <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgba(0,0,0,0.5)_0%,rgba(0,0,0,1)_75%)]" />
+        {/* HERO SECTION */}
+        <div ref={heroSectionRef} className="relative h-[135vh] w-full z-10">
+          <div className="sticky top-0 h-screen w-full overflow-hidden">
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.98 }}
+              animate={{ 
+                opacity: isLifted ? 1 : 0, 
+                scale: isLifted ? 1 : 0.98 
+              }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              className="relative z-10 h-full w-full"
+            >
+              <ShaderShowcase />
+            </motion.div>
           </div>
+        </div>
 
-          <div className="relative z-10">
-            <ExperienceTextSection />
-          </div>
-        </section>
+        {/* EXPERIENCE SECTION */}
+        <div ref={parallaxRef} className="relative z-20">
+          <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh] overflow-hidden">
+            {/* Gradient transition to next section */}
+            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,1)_85%)]" />
+            
+            <div className="relative z-10">
+              <ExperienceTextSection />
+            </div>
+          </section>
+        </div>
       </div>
 
       <section className="relative z-20">
@@ -155,7 +163,6 @@ export default function Home() {
       <SiteShowcaseSection />
 
       <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="steps">
-        {/* Background Image Layer */}
         <div className="absolute inset-0 z-0">
           <Image 
             src="https://i.ibb.co/Y7Rzv80G/1.jpg"
