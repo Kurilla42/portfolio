@@ -22,7 +22,7 @@ export function ExperienceTextSection() {
         <HighlightWipeHeading 
           as="p"
           lines={lines}
-          className="text-xl sm:text-2xl md:text-[3.0vw] font-black uppercase leading-[1.3] md:leading-[1.1] text-white items-center tracking-tighter"
+          className="text-xl sm:text-2xl md:text-[3.0vw] font-medium uppercase leading-[1.3] md:leading-[1.1] text-white items-center tracking-tighter"
           stagger={0.08}
           triggerOnce={true}
         />
