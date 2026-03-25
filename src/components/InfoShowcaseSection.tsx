@@ -42,8 +42,6 @@ export function InfoShowcaseSection({
             unoptimized
           />
         </motion.div>
-        {/* Затемнение для читаемости текста */}
-        <div className="absolute inset-0 bg-black/40 z-[1]" />
       </div>
 
       {/* Content Container */}
