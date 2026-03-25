@@ -53,19 +53,19 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2
+      staggerChildren: 0.15,
+      delayChildren: 0.1
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 10 },
+  hidden: { opacity: 0, y: 50 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      duration: 0.6,
+      duration: 0.8,
       ease: [0.22, 1, 0.36, 1]
     }
   }
@@ -197,7 +197,6 @@ export function Home() {
                     key={index}
                     variants={itemVariants}
                     whileHover="hover"
-                    initial="initial"
                     className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-white/20 group hover:bg-white/5 transition-colors duration-300 cursor-default"
                   >
                     <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden">
