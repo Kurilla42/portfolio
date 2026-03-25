@@ -245,7 +245,7 @@ export function Home() {
                 </div>
 
                 <div className="w-full border-t border-b border-white/20 hidden lg:block">
-                  <div className="grid grid-cols-[11.22vw_1fr_1fr] gap-0">
+                  <div className="grid grid-cols-[15vw_1fr_1fr] gap-0">
                     {[
                       { label: "CRITERIA", active: false },
                       { label: "ANTON KOLESNIKOV", active: true },
@@ -291,7 +291,7 @@ export function Home() {
                       variants={itemVariants}
                       whileHover="hover"
                       initial="initial"
-                      className="grid grid-cols-[11.22vw_22.95vw_22.95vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
+                      className="grid grid-cols-[15vw_21.06vw_21.06vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
                     >
                       <div className="py-[1.5vh] pr-[3.4vw] flex items-center overflow-hidden">
                          <div className="h-[1.2vw] overflow-hidden">
@@ -348,7 +348,7 @@ export function Home() {
                 </div>
               </motion.div>
 
-              <div className="flex flex-col items-end text-right hidden lg:flex">
+              <div className="flex flex-col items-start text-left hidden lg:flex">
                 <h2 className="text-[3vw] heading-md text-white uppercase leading-[1.1] mb-[2vh]">
                   THE<br />DIFFERENCE
                 </h2>
