@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useRef } from 'react';
@@ -29,7 +28,7 @@ export function HighlightWipeHeading({
     <Component ref={ref} className={cn("flex flex-col", className)}>
       {lines.map((line, index) => (
         <span key={index} className="relative overflow-hidden inline-block w-fit py-1 mb-1">
-          {/* Animated Orange Bar */}
+          {/* Animated Dark Bar */}
           <motion.span
             initial={{ x: '-101%' }}
             animate={isInView ? { x: ['-101%', '0%', '101%'] } : { x: '-101%' }}
@@ -39,7 +38,7 @@ export function HighlightWipeHeading({
               ease: [0.4, 0, 0.2, 1],
               delay: delay + (index * stagger),
             }}
-            className="absolute inset-0 bg-[#fc7c19] z-10 block"
+            className="absolute inset-0 bg-[#111111] z-10 block"
             style={{ height: '115%', top: '-7.5%' }}
           />
           
