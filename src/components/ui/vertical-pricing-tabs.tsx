@@ -137,9 +137,10 @@ export function VerticalPricingTabs() {
       </div>
 
       <div className="relative z-10 w-full px-6 md:px-[8vw] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-stretch min-h-[600px] md:min-h-[750px]">
-          <div className="lg:col-span-4 flex flex-col justify-center order-2 lg:order-1">
-            <div className="space-y-4 mb-10 md:mb-16">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start min-h-[600px] md:min-h-[750px]">
+          {/* Left Column: Heading and Navigation (Raised to the Top) */}
+          <div className="lg:col-span-4 flex flex-col justify-start order-2 lg:order-1 pt-0">
+            <div className="space-y-4 mb-8 md:mb-[4vw]">
               <h2 className="text-3xl md:text-[3.5vw] font-black uppercase leading-tight text-white tracking-tighter font-sans">
                 SELECT YOUR<br />GROWTH TIER
               </h2>
@@ -153,7 +154,7 @@ export function VerticalPricingTabs() {
                     key={plan.id}
                     onClick={() => handleTabClick(index)}
                     className={cn(
-                      "group relative flex items-center gap-4 md:gap-6 py-6 md:py-8 px-6 md:px-8 text-left transition-all duration-500 border-b border-white/10 last:border-0",
+                      "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-b border-white/10 last:border-0",
                       isActive
                         ? "bg-white/5"
                         : "hover:bg-white/5"
@@ -193,6 +194,7 @@ export function VerticalPricingTabs() {
             </div>
           </div>
 
+          {/* Right Column: Content */}
           <div className="lg:col-span-8 flex flex-col order-1 lg:order-2">
             <div 
               className="relative h-full"
