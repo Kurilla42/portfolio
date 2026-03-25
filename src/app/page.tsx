@@ -184,7 +184,7 @@ export function Home() {
               </div>
             </div>
 
-            <div className="col-span-12 lg:col-span-7 flex flex-col pt-0 lg:pt-[10vh]">
+            <div className="col-span-12 lg:col-span-7 flex flex-col pt-0">
               <motion.div 
                 className="flex flex-col w-full border-t border-white/20"
                 variants={containerVariants}
