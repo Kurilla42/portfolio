@@ -245,7 +245,7 @@ export function Home() {
                 </div>
 
                 <div className="w-full border-t border-b border-white/20 hidden lg:block">
-                  <div className="grid grid-cols-[15vw_1fr_1fr] gap-0">
+                  <div className="grid grid-cols-[15vw_21.06vw_21.06vw] gap-0">
                     {[
                       { label: "CRITERIA", active: false },
                       { label: "ANTON KOLESNIKOV", active: true },
