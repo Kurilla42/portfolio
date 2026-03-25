@@ -12,7 +12,7 @@ const lines = [
   "The problem wasn't traffic. It wasn't the budget.",
   "It was <span class='font-kurale font-bold'>5 specific things</span> that most web designers",
   "simply don't think about — because they",
-  "think like designers, <span class='font-kurale font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#b68d4d] to-[#c99b5d] inline-block text-[3.1vw]'>not marketers</span>"
+  "think like designers, <span class='font-kurale font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#f4e1b6] to-[#6d4813] inline-block text-[3.1vw]'>not marketers</span>"
 ];
 
 export function ExperienceTextSection() {
