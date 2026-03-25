@@ -106,9 +106,7 @@ export function Home() {
     <div className="min-h-screen bg-[#eaeaf2]">
       <HeroCurtain isLifted={isLifted} />
 
-      {/* COMBINED HERO & EXPERIENCE WRAPPER FOR SHARED BACKGROUND */}
       <div ref={combinedRef} className="relative z-0">
-        {/* SHARED PARALLAX BACKGROUND */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.div 
             style={{ y: bgY }}
@@ -126,7 +124,6 @@ export function Home() {
           </motion.div>
         </div>
 
-        {/* HERO SECTION */}
         <div ref={heroSectionRef} className="relative h-[135vh] w-full z-10">
           <div className="sticky top-0 h-screen w-full overflow-hidden">
             <motion.div 
@@ -143,10 +140,8 @@ export function Home() {
           </div>
         </div>
 
-        {/* EXPERIENCE SECTION */}
         <div ref={parallaxRef} className="relative z-20">
           <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh] overflow-hidden">
-            {/* Gradient transition to next section: reaches 100% black at the critical line of text */}
             <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,1)_65%)]" />
             
             <div className="relative z-10">
@@ -235,9 +230,9 @@ export function Home() {
       <InfoShowcaseSection>
         <section className="relative pb-[10vh] md:pb-[20vh] pt-0 z-30 overflow-hidden w-full" id="difference">
           <div className="w-full px-6 md:px-[8vw]">
-            <div className="flex flex-col lg:flex-row justify-center items-end gap-[4vw] w-full">
+            <div className="flex flex-col lg:flex-row justify-center items-start gap-[4vw] w-full">
               <motion.div 
-                className="w-full lg:w-[61.2vw]"
+                className="w-full lg:w-[57.12vw]"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -250,7 +245,7 @@ export function Home() {
                 </div>
 
                 <div className="w-full border-t border-b border-white/20 hidden lg:block">
-                  <div className="grid grid-cols-[10.2vw_1fr_1fr] gap-0">
+                  <div className="grid grid-cols-[11.22vw_1fr_1fr] gap-0">
                     {[
                       { label: "CRITERIA", active: false },
                       { label: "ANTON KOLESNIKOV", active: true },
@@ -296,7 +291,7 @@ export function Home() {
                       variants={itemVariants}
                       whileHover="hover"
                       initial="initial"
-                      className="grid grid-cols-[10.2vw_25.5vw_25.5vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
+                      className="grid grid-cols-[11.22vw_22.95vw_22.95vw] gap-0 border-b border-white/20 items-stretch group cursor-default"
                     >
                       <div className="py-[1.5vh] pr-[3.4vw] flex items-center overflow-hidden">
                          <div className="h-[1.2vw] overflow-hidden">
