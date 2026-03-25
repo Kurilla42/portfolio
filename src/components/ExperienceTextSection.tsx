@@ -10,9 +10,9 @@ const lines = [
   "but generated almost no calls.",
   "",
   "The problem wasn't traffic. It wasn't the budget.",
-  "It was 5 specific things that most web designers",
+  "It was <span class='font-ruslan'>5 specific things</span> that most web designers",
   "simply don't think about — because they",
-  "think like designers, not marketers."
+  "think like designers, <span class='font-ruslan'>not marketers</span>"
 ];
 
 export function ExperienceTextSection() {

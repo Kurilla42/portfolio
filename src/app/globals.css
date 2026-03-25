@@ -143,6 +143,10 @@ html.lenis, html.lenis body {
   color: hsl(var(--accent));
 }
 
+.font-ruslan {
+  font-family: 'Ruslan Display', serif;
+}
+
 .mask-container {
   overflow: hidden;
   display: block;

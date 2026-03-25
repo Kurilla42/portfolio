@@ -54,7 +54,7 @@ export function HighlightWipeHeading({
             }}
             className="relative z-0 block whitespace-nowrap"
           >
-            {line}
+            <span dangerouslySetInnerHTML={{ __html: line }} />
           </motion.span>
         </span>
       ))}
