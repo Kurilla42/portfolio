@@ -117,8 +117,8 @@ export function LuminaInteractiveList() {
               )}
             </AnimatePresence>
 
-            {/* Expanded Content (Hovered) */}
-            <div className="relative z-20 w-full h-full p-[4vw] flex flex-col justify-end">
+            {/* Expanded Content (Hovered) - Centered */}
+            <div className="relative z-20 w-full h-full p-[4vw] flex flex-col items-center justify-center text-center">
               <AnimatePresence mode="wait">
                 {isHovered && (
                   <motion.div
@@ -126,17 +126,18 @@ export function LuminaInteractiveList() {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, transition: { duration: 0.1 } }}
-                    transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
-                    className="w-full pointer-events-none overflow-hidden"
+                    transition={{ duration: 0.5, delay: 0.2, ease: "easeOut" }}
+                    className="w-full max-w-[600px] pointer-events-none overflow-hidden flex flex-col items-center"
                   >
-                    <div className="max-w-[80%] min-w-[450px]">
-                      <div className="flex items-center gap-4 mb-4">
+                    <div className="flex flex-col items-center">
+                      <div className="flex items-center justify-center gap-4 mb-4">
+                        <div className="h-[1px] w-[3vw] bg-[#c7b684]/60" />
                         <span className="font-mono text-[1vw] text-[#c7b684] tracking-[0.2em] uppercase font-bold">
                           [ {item.number} ]
                         </span>
-                        <div className="h-[1px] w-[4vw] bg-[#c7b684]/60" />
+                        <div className="h-[1px] w-[3vw] bg-[#c7b684]/60" />
                       </div>
-                      <h2 className="heading-md text-[#e0ded8] uppercase text-[3vw] mb-6 leading-tight whitespace-nowrap">
+                      <h2 className="heading-md text-[#e0ded8] uppercase text-[3vw] mb-6 leading-tight">
                         {item.title}
                       </h2>
                       <p className="body-text text-[#e0ded8]/80 text-[1.1vw] leading-relaxed max-w-[450px]">
