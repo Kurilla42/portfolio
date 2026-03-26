@@ -11,6 +11,7 @@ interface HighlightWipeHeadingProps {
   stagger?: number;
   triggerOnce?: boolean;
   delay?: number;
+  trigger?: boolean;
 }
 
 export function HighlightWipeHeading({
@@ -20,9 +21,13 @@ export function HighlightWipeHeading({
   stagger = 0.1,
   triggerOnce = true,
   delay = 0,
+  trigger,
 }: HighlightWipeHeadingProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: triggerOnce, amount: 0.2 });
+  
+  // Если передан внешний триггер, используем его. Иначе используем useInView.
+  const active = trigger !== undefined ? trigger : isInView;
 
   return (
     <Component ref={ref} className={cn("flex flex-col", className)}>
@@ -31,7 +36,7 @@ export function HighlightWipeHeading({
           {/* Animated Accent Bar */}
           <motion.span
             initial={{ x: '-101%' }}
-            animate={isInView ? { x: ['-101%', '0%', '101%'] } : { x: '-101%' }}
+            animate={active ? { x: ['-101%', '0%', '101%'] } : { x: '-101%' }}
             transition={{
               duration: 1.1,
               times: [0, 0.4, 1],
@@ -45,7 +50,7 @@ export function HighlightWipeHeading({
           {/* Text revealed behind the bar */}
           <motion.span
             initial={{ clipPath: 'inset(0 100% 0 0)' }}
-            animate={isInView ? { clipPath: ['inset(0 100% 0 0)', 'inset(0 100% 0 0)', 'inset(0 0% 0 0)'] } : { clipPath: 'inset(0 100% 0 0)' }}
+            animate={active ? { clipPath: ['inset(0 100% 0 0)', 'inset(0 100% 0 0)', 'inset(0 0% 0 0)'] } : { clipPath: 'inset(0 100% 0 0)' }}
             transition={{
               duration: 1.1,
               times: [0, 0.4, 1],

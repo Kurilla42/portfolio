@@ -5,7 +5,11 @@ import { useEffect, useState } from "react";
 import { Figma, MousePointer2 } from "lucide-react";
 import { HighlightWipeHeading } from "@/components/HighlightWipeHeading";
 
-export default function ShaderShowcase() {
+interface ShaderShowcaseProps {
+  isLifted?: boolean;
+}
+
+export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
   const [greeting, setGreeting] = useState("Good morning!");
 
   useEffect(() => {
@@ -65,6 +69,8 @@ export default function ShaderShowcase() {
                 lines={["LANDING PAGES", "FOR PLUMBING", "LEADS"]}
                 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
                 stagger={0.12}
+                trigger={isLifted}
+                delay={0.6}
               />
             </div>
 

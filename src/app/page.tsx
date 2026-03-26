@@ -135,7 +135,7 @@ export function Home() {
               transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="relative z-10 h-full w-full"
             >
-              <ShaderShowcase />
+              <ShaderShowcase isLifted={isLifted} />
             </motion.div>
           </div>
         </div>
