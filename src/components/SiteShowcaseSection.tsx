@@ -22,8 +22,8 @@ export function SiteShowcaseSection() {
   const centralTextOpacity = useTransform(scrollYProgress, [0.6, 0.9], [0, 1]);
   const centralScale = useTransform(scrollYProgress, [0, 0.6], [0.8, 1]);
 
-  const leftImg = "https://i.ibb.co/vCTHQpHw/2026-03-24-00-17-55.jpg";
-  const rightImg = "https://i.ibb.co/zT5LSZKy/2026-03-24-00-17-08.jpg";
+  const leftImg = "https://i.ibb.co/sdMw1xpg/2026-03-26-12-52-03.jpg";
+  const rightImg = "https://i.ibb.co/jZf5xxMd/2026-03-26-12-51-49.jpg";
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
@@ -48,7 +48,7 @@ export function SiteShowcaseSection() {
         style={{ y: containersEntryY, opacity: containersEntryOpacity }}
         whileHover="hover"
         initial="initial"
-        className="relative w-[85vw] md:w-[42vw] h-[23.62vw] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
+        className="relative w-[85vw] md:w-[42vw] aspect-[1920/1080] bg-[#1a1a1a] rounded-none overflow-hidden z-10 cursor-pointer group"
       >
         <motion.div
           variants={{
