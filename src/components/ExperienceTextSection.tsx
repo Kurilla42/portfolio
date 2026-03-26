@@ -10,9 +10,9 @@ const lines = [
   "but generated almost no calls.",
   "",
   "The problem wasn't traffic. It wasn't the budget.",
-  "It was <span class='font-kurale font-bold'>5 specific things</span> that most web designers",
+  "It was <span class='font-kurale font-bold text-[#c7b684]'>5 specific things</span> that most web designers",
   "simply don't think about — because they",
-  "think like designers, <span class='font-kurale font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#f4e1b6] to-[#6d4813] inline-block text-[3.1vw]'>not marketers</span>"
+  "think like designers, <span class='font-kurale font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#c7b684] to-[#c7b684] inline-block text-[3.1vw]'>not marketers</span>"
 ];
 
 export function ExperienceTextSection() {
@@ -22,7 +22,7 @@ export function ExperienceTextSection() {
         <HighlightWipeHeading 
           as="p"
           lines={lines}
-          className="text-xl sm:text-2xl md:text-[3.0vw] font-medium uppercase leading-[1.3] md:leading-[1.1] text-white items-center tracking-tighter"
+          className="text-xl sm:text-2xl md:text-[3.0vw] font-medium uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-center tracking-tighter"
           stagger={0.08}
           triggerOnce={true}
         />

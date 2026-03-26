@@ -51,7 +51,7 @@ export function LuminaInteractiveList() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="relative h-screen w-full overflow-hidden flex flex-col md:flex-row z-20 border-b border-white/10">
+    <section className="relative h-screen w-full overflow-hidden flex flex-col md:flex-row z-20 border-b border-[#e0ded8]/10">
       {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <Image 
@@ -76,7 +76,7 @@ export function LuminaInteractiveList() {
             onMouseEnter={() => setHoveredIndex(index)}
             onMouseLeave={() => setHoveredIndex(null)}
             className={cn(
-              "relative h-full transition-all duration-700 ease-[0.22,1,0.36,1] flex flex-col justify-end overflow-hidden border-r border-white/5 last:border-r-0 cursor-pointer group",
+              "relative h-full transition-all duration-700 ease-[0.22,1,0.36,1] flex flex-col justify-end overflow-hidden border-r border-[#e0ded8]/5 last:border-r-0 cursor-pointer group",
               isHovered ? "flex-[4] md:flex-[5]" : "flex-1"
             )}
           >
@@ -105,11 +105,11 @@ export function LuminaInteractiveList() {
                   transition={{ duration: 0.4 }}
                   className="absolute inset-0 z-10 flex flex-col items-center py-[8vh]"
                 >
-                  <span className="text-[4vw] md:text-[1.8vw] font-mono text-white font-bold tracking-widest mb-[12vh]">
+                  <span className="text-[4vw] md:text-[1.8vw] font-mono text-[#e0ded8] font-bold tracking-widest mb-[12vh]">
                     {item.number}
                   </span>
                   <div className="flex-1 flex items-center justify-center">
-                    <h3 className="whitespace-nowrap transform -rotate-90 origin-center text-white uppercase tracking-[0.4em] font-bold text-[3vw] md:text-[2vw]">
+                    <h3 className="whitespace-nowrap transform -rotate-90 origin-center text-[#e0ded8] uppercase tracking-[0.4em] font-bold text-[3vw] md:text-[2vw]">
                       {item.title}
                     </h3>
                   </div>
@@ -131,15 +131,15 @@ export function LuminaInteractiveList() {
                   >
                     <div className="max-w-[80%] min-w-[450px]">
                       <div className="flex items-center gap-4 mb-4">
-                        <span className="font-mono text-[1vw] text-accent tracking-[0.2em] uppercase font-bold">
+                        <span className="font-mono text-[1vw] text-[#c7b684] tracking-[0.2em] uppercase font-bold">
                           [ {item.number} ]
                         </span>
-                        <div className="h-[1px] w-[4vw] bg-accent/60" />
+                        <div className="h-[1px] w-[4vw] bg-[#c7b684]/60" />
                       </div>
-                      <h2 className="heading-md text-white uppercase text-[3vw] mb-6 leading-tight whitespace-nowrap">
+                      <h2 className="heading-md text-[#e0ded8] uppercase text-[3vw] mb-6 leading-tight whitespace-nowrap">
                         {item.title}
                       </h2>
-                      <p className="body-text text-white/80 text-[1.1vw] leading-relaxed max-w-[450px]">
+                      <p className="body-text text-[#e0ded8]/80 text-[1.1vw] leading-relaxed max-w-[450px]">
                         {item.description}
                       </p>
                     </div>
@@ -150,7 +150,7 @@ export function LuminaInteractiveList() {
 
             {/* Bottom Glow Indicator */}
             <motion.div 
-              className="absolute bottom-0 left-0 h-[2px] bg-accent z-30"
+              className="absolute bottom-0 left-0 h-[2px] bg-[#c7b684] z-30"
               initial={{ width: 0 }}
               animate={{ width: isHovered ? "100%" : "0%" }}
               transition={{ duration: 0.6 }}

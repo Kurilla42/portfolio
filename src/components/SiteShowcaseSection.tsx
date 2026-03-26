@@ -37,7 +37,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-white z-20 pointer-events-none leading-[1.1] md:leading-[1.2] tracking-tight"
+        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-[1.1] md:leading-[1.2] tracking-tight"
       >
         {label.split("<br />").map((line, i) => (
           <span key={i} className="block">{line}</span>
@@ -75,7 +75,7 @@ export function SiteShowcaseSection() {
           transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
           className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none overflow-hidden"
         >
-          <div className="relative w-full h-full border border-white/20 bg-black/20 flex flex-col shadow-2xl shadow-black/50">
+          <div className="relative w-full h-full border border-[#e0ded8]/20 bg-black/20 flex flex-col shadow-2xl shadow-black/50">
             <Image 
               src={src} 
               alt="Case Study Preview" 
@@ -139,7 +139,7 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="flex flex-col items-center font-sans font-bold text-xl md:text-[2vw] uppercase text-white tracking-tight leading-none"
+                className="flex flex-col items-center font-sans font-bold text-xl md:text-[2vw] uppercase text-[#e0ded8] tracking-tight leading-none"
               >
                 <div className="flex flex-col items-center">
                   {renderVerticalText("YOUR SITE")}

@@ -4,26 +4,26 @@
 
 @layer base {
   :root {
-    /* Refined Palette: Cold Grey-Blue (#eaeaf2) */
+    /* Refined Palette: Based on #e0ded8 and #c7b684 */
     --background: 240 24% 93%; 
-    --foreground: 222 47% 11%;
+    --foreground: 45 11% 15%;
     --card: 240 24% 93%;
-    --card-foreground: 222 47% 11%;
+    --card-foreground: 45 11% 15%;
     --popover: 240 24% 93%;
-    --popover-foreground: 222 47% 11%;
+    --popover-foreground: 45 11% 15%;
     --primary: 222 47% 11%;
-    --primary-foreground: 210 40% 98%;
+    --primary-foreground: 45 11% 87%;
     --secondary: 240 10% 88%;
     --secondary-foreground: 222 47% 11%;
     --muted: 240 10% 90%;
     --muted-foreground: 215 16% 47%;
-    --accent: 26 97% 54%; /* Signature orange */
-    --accent-foreground: 210 40% 98%;
+    --accent: 45 38% 65%; /* #c7b684 */
+    --accent-foreground: 45 11% 87%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
     --border: 214 32% 85%;
     --input: 214 32% 85%;
-    --ring: 26 97% 54%;
+    --ring: 45 38% 65%;
     --radius: 0.5rem;
   }
 }

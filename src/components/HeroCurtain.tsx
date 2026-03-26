@@ -32,7 +32,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
           {["L", "P", "P", "L"].map((char, i) => (
             <span 
               key={i} 
-              className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-white tracking-tighter drop-shadow-2xl"
+              className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl"
             >
               {char}
             </span>
@@ -45,16 +45,16 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
         initial={{ opacity: 1 }}
         animate={{ opacity: isLifted ? 0 : 1 }}
         transition={{ duration: 0.8 }}
-        className="h-[6vh] w-full bg-black/40 flex items-center justify-center px-[4vw] relative overflow-hidden shrink-0 border-t border-white/5"
+        className="h-[6vh] w-full bg-black/40 flex items-center justify-center px-[4vw] relative overflow-hidden shrink-0 border-t border-[#e0ded8]/5"
       >
-        <span className="font-mono text-[14px] md:text-[18px] font-black text-white tracking-[0.4em] uppercase">
+        <span className="font-mono text-[14px] md:text-[18px] font-black text-[#e0ded8] tracking-[0.4em] uppercase">
           WHATS LPPL?
         </span>
         <motion.div 
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
           transition={{ duration: 1.5, ease: "easeInOut" }}
-          className="absolute bottom-0 left-0 w-full h-[3px] bg-accent origin-left"
+          className="absolute bottom-0 left-0 w-full h-[3px] bg-[#c7b684] origin-left"
         />
       </motion.div>
     </motion.div>
