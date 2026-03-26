@@ -3,16 +3,14 @@
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 const lines = [
-  "After 12 years of internet marketing and studying",
-  "hundreds of local service websites, I noticed",
-  "a pattern: the same mistakes showed up again",
-  "and again. Pages that looked professional",
-  "but generated almost no calls.",
+  "After 12 years in internet marketing, I found",
+  "why so many local service websites",
+  "fail to generate calls.",
   "",
-  "The problem wasn't traffic. It wasn't the budget.",
-  "It was <span class='font-kurale font-bold text-[#c7b684]'>5 specific things</span> that most web designers",
-  "simply don't think about — because they",
-  "think like designers, <span class='font-kurale font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#c7b684] to-[#c7b684] inline-block text-[3.1vw]'>not marketers</span>"
+  "It’s not the traffic or the budget — it’s",
+  "<span class='font-kurale font-bold text-[#c7b684]'>5 costly mistakes</span> web designers make",
+  "when they focus on looks instead of",
+  "<span class='font-kurale font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#c7b684] to-[#c7b684] inline-block text-[3.1vw]'>conversions</span>"
 ];
 
 export function ExperienceTextSection() {
