@@ -27,7 +27,7 @@ export function SiteShowcaseSection() {
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
-      <span key={i} className="block leading-[1.1] mb-1">
+      <span key={i} className="block leading-[0.85] mb-0.5">
         {char === " " ? "\u00A0" : char}
       </span>
     ));
@@ -139,7 +139,7 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="flex flex-col items-center font-kurale font-bold text-xl md:text-[2vw] uppercase text-[#c7b684] tracking-tight leading-none"
+                className="flex flex-col items-center font-kurale font-bold text-xl md:text-[2.5vw] uppercase text-[#c7b684] tracking-tight leading-none"
               >
                 <div className="flex flex-col items-center">
                   {renderVerticalText("YOUR SITE")}
