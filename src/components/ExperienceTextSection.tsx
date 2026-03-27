@@ -10,9 +10,9 @@ const part1 = [
 
 const part2 = [
   "It’s not the traffic or the budget — it’s",
-  "<span class='font-kurale font-bold text-[#c7b684] text-[3.1vw]'>5 costly mistakes</span> web designers make",
+  "<span class='font-kurale font-bold text-[#c7b684] text-[3.2vw]'>5 costly mistakes</span> web designers make",
   "when they focus on looks instead of",
-  "<span class='font-kurale font-bold text-[#c7b684] text-[3.1vw]'>conversions</span>"
+  "<span class='font-kurale font-bold text-[#c7b684] text-[3.2vw]'>conversions</span>"
 ];
 
 export function ExperienceTextSection() {
