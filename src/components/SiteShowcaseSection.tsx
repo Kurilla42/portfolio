@@ -27,7 +27,7 @@ export function SiteShowcaseSection() {
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
-      <span key={i} className="block leading-[0.6] mb-0.5">
+      <span key={i} className="block leading-[0.8] mb-1">
         {char === " " ? "\u00A0" : char}
       </span>
     ));
