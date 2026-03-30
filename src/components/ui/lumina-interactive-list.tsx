@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, {
@@ -64,9 +63,9 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const sections = useMemo(() => showcaseItems.map(item => ({
     background: item.image,
-    leftLabel: <span className="font-sans text-[1.1vw] font-bold tracking-[0.2em]">{item.title}</span>,
-    title: <div className="max-w-[45vw] mx-auto normal-case font-sans font-medium text-[2.2vw] leading-[1.2] opacity-90 tracking-tight">{item.description}</div>,
-    rightLabel: <span className="font-sans text-[1.1vw] font-bold tracking-[0.2em]">{item.title}</span>,
+    leftLabel: <span className="font-sans text-[2vw] font-bold tracking-[0.2em]">{item.title}</span>,
+    title: <div className="max-w-[45vw] mx-auto normal-case font-sans font-medium text-[1vw] leading-[1.2] opacity-90 tracking-tight">{item.description}</div>,
+    rightLabel: <span className="font-sans text-[2vw] font-bold tracking-[0.2em]">{item.title}</span>,
   })), []);
 
   return (
@@ -75,7 +74,7 @@ export function LuminaInteractiveList() {
       fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "transparent",
+        overlay: "rgba(0,0,0,0.3)",
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
@@ -160,8 +159,8 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       initialIndex = 0,
       colors = {
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.35)",
-        pageBg: "#ffffff",
+        overlay: "rgba(0,0,0,0.3)",
+        pageBg: "#eaeaf2",
         stageBg: "#000000",
       },
       apiRef,
@@ -443,7 +442,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
     const cssVars: CSSProperties = {
       ["--fx-font" as any]: fontFamily,
       ["--fx-text" as any]: colors.text ?? "#e0ded8",
-      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.35)",
+      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.3)",
       ["--fx-page-bg" as any]: colors.pageBg ?? "#eaeaf2",
       ["--fx-stage-bg" as any]: colors.stageBg ?? "#000",
       ["--fx-gap" as any]: `${gap}rem`,
