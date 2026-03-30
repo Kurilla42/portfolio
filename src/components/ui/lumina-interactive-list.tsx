@@ -75,7 +75,7 @@ export function LuminaInteractiveList() {
       fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.6)",
+        overlay: "transparent",
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
@@ -594,7 +594,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-bg-img {
             position: absolute; inset: -10% 0 -10% 0;
             width: 100%; height: 120%; object-fit: cover;
-            filter: brightness(0.6);
+            filter: brightness(1);
             opacity: 0;
             will-change: transform, opacity;
           }
