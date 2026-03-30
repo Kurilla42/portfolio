@@ -239,7 +239,7 @@ export function Home() {
               >
                 <div className="lg:hidden mb-6">
                   <h2 className="text-3xl heading-md text-[#e0ded8] uppercase leading-[1.1]">
-                    THE DIFFERENCE
+                    EXPLORE THE DIFFERENCE
                   </h2>
                 </div>
 
@@ -349,7 +349,7 @@ export function Home() {
 
               <div className="flex flex-col items-start text-left hidden lg:flex">
                 <h2 className="text-[3vw] heading-md text-[#e0ded8] uppercase leading-[1.1] mb-[2vh]">
-                  THE<br />DIFFERENCE
+                  EXPLORE THE<br />DIFFERENCE
                 </h2>
               </div>
             </div>
@@ -360,13 +360,14 @@ export function Home() {
       <VerticalPricingTabs />
 
       <section className="relative h-screen z-30 overflow-hidden w-full" id="contact">
-        <div className="absolute inset-0 z-0">
+        <div className="absolute inset-0 z-0 h-full w-full">
           <Image 
             src="https://i.ibb.co/Gf1L4KfQ/generated-image-18.jpg"
             alt="Final CTA Background"
             fill
-            className="object-cover"
+            className="object-cover object-center"
             unoptimized
+            priority
           />
           <div className="absolute inset-0 bg-black/60" />
         </div>

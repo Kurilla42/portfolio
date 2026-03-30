@@ -105,11 +105,11 @@ export function LuminaInteractiveList() {
                   transition={{ duration: 0.4 }}
                   className="absolute inset-0 z-10 flex flex-col items-center py-[8vh]"
                 >
-                  <span className="text-[4vw] md:text-[1.8vw] font-mono text-[#e0ded8] font-bold tracking-widest mb-[12vh]">
+                  <span className="text-[4vw] md:text-[1.5vw] font-mono text-[#e0ded8] font-bold tracking-widest mb-[12vh]">
                     {item.number}
                   </span>
                   <div className="flex-1 flex items-center justify-center">
-                    <h3 className="whitespace-nowrap transform -rotate-90 origin-center text-[#e0ded8] uppercase tracking-[0.4em] font-bold text-[3vw] md:text-[2vw]">
+                    <h3 className="whitespace-nowrap transform -rotate-90 origin-center text-[#e0ded8] uppercase tracking-[0.4em] font-bold text-[3vw] md:text-[1.8vw]">
                       {item.title}
                     </h3>
                   </div>

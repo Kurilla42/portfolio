@@ -27,7 +27,7 @@ export function SiteShowcaseSection() {
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
-      <span key={i} className="block leading-[0.5] mb-0.5">
+      <span key={i} className="block leading-[0.6] mb-0.5">
         {char === " " ? "\u00A0" : char}
       </span>
     ));
@@ -37,7 +37,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-[1.1] md:leading-[1.2] tracking-tight"
+        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-[1.3] md:leading-[1.4] tracking-tight"
       >
         {label.split("<br />").map((line, i) => (
           <span key={i} className="block">{line}</span>

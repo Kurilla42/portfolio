@@ -3,7 +3,7 @@
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 const part1 = [
-  "After 12 years in internet marketing, I found",
+  "After <span class='font-kurale font-bold text-[#c7b684] text-[3.2vw]'>12 years</span> in internet marketing, I found",
   "why so many local service websites",
   "fail to generate calls"
 ];

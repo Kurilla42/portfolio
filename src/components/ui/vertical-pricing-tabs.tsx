@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect, useCallback, useRef } from "react";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import Image from 'next/image';
 import { Button } from "@/components/ui/button";
@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 const PRICING_PLANS = [
   {
     id: "01",
-    title: "Ready-Made Landing Page",
+    title: "Ready-Made Landing",
     description: "Ready-Made High-Converting Landing Page",
     subdescription: "Quick launch using my template, tailored specifically for plumbing services in the US",
     whoIsThisFor: "Small plumbing companies and independent contractors who need a proper website \"yesterday,\" without lengthy approval processes or custom design wait times.",
@@ -32,7 +32,7 @@ const PRICING_PLANS = [
   },
   {
     id: "02",
-    title: "Custom Website/Landing Page",
+    title: "Custom Website/Landing",
     description: "Custom Website/Landing Page for Your Business",
     subdescription: "Tailored design and structure to match your brand, services, and local region",
     whoIsThisFor: "Companies that want to stand out from competitors, get a scalable site designed for growth, and prioritize maximum conversions",
@@ -55,7 +55,7 @@ const PRICING_PLANS = [
   },
   {
     id: "03",
-    title: "Fast AI-Powered Landing Page",
+    title: "Fast AI-Powered Landing",
     description: "Fast AI-Powered Landing Page",
     subdescription: "Affordable solution: AI-generated landing page with my setup, so you finally have a working site",
     whoIsThisFor: "Those just starting a plumbing business or wanting to test online ads with minimal investment",
@@ -83,6 +83,8 @@ export function VerticalPricingTabs() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: true, amount: 0.2 });
 
   const handleNext = useCallback(() => {
     setDirection(1);
@@ -97,14 +99,14 @@ export function VerticalPricingTabs() {
   };
 
   useEffect(() => {
-    if (isPaused) return;
+    if (isPaused || !isInView) return;
 
     const interval = setInterval(() => {
       handleNext();
     }, AUTO_PLAY_DURATION);
 
     return () => clearInterval(interval);
-  }, [activeIndex, isPaused, handleNext]);
+  }, [activeIndex, isPaused, handleNext, isInView]);
 
   const variants = {
     enter: (direction: number) => ({
@@ -124,7 +126,7 @@ export function VerticalPricingTabs() {
   };
 
   return (
-    <section className="w-full py-16 md:py-32 relative z-30" id="packages">
+    <section ref={containerRef} className="w-full py-16 md:py-32 relative z-30" id="packages">
       <div className="absolute inset-0 z-0">
         <Image 
           src="https://i.ibb.co/Y7Rzv80G/1.jpg"
@@ -161,7 +163,7 @@ export function VerticalPricingTabs() {
                     )}
                   >
                     <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#e0ded8]/5 overflow-hidden">
-                      {isActive && (
+                      {isActive && isInView && (
                         <motion.div
                           key={`progress-${index}-${isPaused}`}
                           className={cn("absolute top-0 left-0 w-full origin-top bg-[#c7b684]")}
