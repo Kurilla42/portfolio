@@ -6,9 +6,9 @@ import { motion, useSpring } from 'framer-motion';
 export function CustomCursor() {
   const [isVisible, setIsVisible] = useState(false);
   
-  // Настройки пружины для плавного следования с задержкой
-  const mouseX = useSpring(0, { stiffness: 500, damping: 28, mass: 0.5 });
-  const mouseY = useSpring(0, { stiffness: 500, damping: 28, mass: 0.5 });
+  // Настройки пружины: уменьшена жесткость (stiffness) и увеличена масса для большего эффекта задержки
+  const mouseX = useSpring(0, { stiffness: 150, damping: 20, mass: 1 });
+  const mouseY = useSpring(0, { stiffness: 150, damping: 20, mass: 1 });
 
   useEffect(() => {
     // Проверка на наличие тач-скрина (скрываем на мобилках)
@@ -17,8 +17,9 @@ export function CustomCursor() {
 
     const handleMouseMove = (e: MouseEvent) => {
       if (!isVisible) setIsVisible(true);
-      mouseX.set(e.clientX - 10); // Центрируем (круг 20px / 2)
-      mouseY.set(e.clientY - 10);
+      // Центрируем: новый размер 14px, значит смещение -7px
+      mouseX.set(e.clientX - 7); 
+      mouseY.set(e.clientY - 7);
     };
 
     const handleMouseLeave = () => setIsVisible(false);
@@ -41,7 +42,7 @@ export function CustomCursor() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 w-5 h-5 bg-[#e0ded8] rounded-full pointer-events-none z-[9999] mix-blend-difference"
+      className="fixed top-0 left-0 w-[14px] h-[14px] bg-[#e0ded8] rounded-full pointer-events-none z-[9999] mix-blend-difference"
       style={{
         x: mouseX,
         y: mouseY,
