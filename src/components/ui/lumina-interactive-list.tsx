@@ -64,27 +64,22 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const sections = useMemo(() => showcaseItems.map(item => ({
     background: item.image,
-    leftLabel: <span className="font-mono">{item.number}</span>,
-    title: item.title,
-    rightLabel: (
-      <p className="max-w-[20vw] text-left lowercase normal-case opacity-60 font-sans tracking-normal leading-relaxed text-[1vw]">
-        {item.description}
-      </p>
-    )
+    leftLabel: <span className="font-sans text-[1.1vw] font-bold tracking-[0.2em]">{item.title}</span>,
+    title: <div className="max-w-[45vw] mx-auto normal-case font-sans font-medium text-[2.2vw] leading-[1.2] opacity-90 tracking-tight">{item.description}</div>,
+    rightLabel: <span className="font-sans text-[1.1vw] font-bold tracking-[0.2em]">{item.title}</span>,
   })), []);
 
   return (
     <FullScreenScrollFX
       sections={sections}
-      fontFamily="Anton, sans-serif"
+      fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.5)",
+        overlay: "rgba(0,0,0,0.6)",
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
-      header={<span className="text-[8vw] opacity-10">STRATEGY</span>}
-      footer="CONVERSION FLOW"
+      showProgress={false}
     />
   );
 }
@@ -131,7 +126,6 @@ export type FullScreenFXProps = {
   debug?: boolean;
   durations?: Durations;
   reduceMotion?: boolean;
-  smoothScroll?: boolean; 
   bgTransition?: "fade" | "wipe"; 
   parallaxAmount?: number;        
   currentIndex?: number;
@@ -150,11 +144,11 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       sections,
       className,
       style,
-      fontFamily = 'Anton, sans-serif',
+      fontFamily = 'Inter, sans-serif',
       header,
       footer,
       gap = 1,
-      gridPaddingX = 2,
+      gridPaddingX = 4,
       showProgress = true,
       debug = false,
       durations = { change: 0.7, snap: 800 },
@@ -395,8 +389,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       leftItemRefs.current.forEach((el, i) => {
         el.classList.toggle("active", i === to);
         gsap.to(el, {
-          opacity: i === to ? 1 : 0.35,
-          x: i === to ? 10 : 0,
+          opacity: i === to ? 1 : 0.15,
           duration: D * 0.6,
           ease: "power3.out",
         });
@@ -404,8 +397,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       rightItemRefs.current.forEach((el, i) => {
         el.classList.toggle("active", i === to);
         gsap.to(el, {
-          opacity: i === to ? 1 : 0.35,
-          x: i === to ? -10 : 0,
+          opacity: i === to ? 1 : 0.15,
           duration: D * 0.6,
           ease: "power3.out",
         });
@@ -456,7 +448,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       ["--fx-stage-bg" as any]: colors.stageBg ?? "#000",
       ["--fx-gap" as any]: `${gap}rem`,
       ["--fx-grid-px" as any]: `${gridPaddingX}rem`,
-      ["--fx-row-gap" as any]: "10px",
+      ["--fx-row-gap" as any]: "3vh",
     };
 
     return (
@@ -520,9 +512,9 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
                       const isString = typeof s.title === "string";
                       return (
                         <div key={`C-${s.id ?? sIdx}`} className={`fx-featured ${sIdx === index ? "active" : ""}`}>
-                          <h3 className="fx-featured-title">
+                          <div className="fx-featured-title">
                             {isString ? splitWords(s.title as string) : s.title}
-                          </h3>
+                          </div>
                           <WordsCollector
                             onReady={() => {
                               if (tempWordBucket.current.length) {
@@ -602,7 +594,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-bg-img {
             position: absolute; inset: -10% 0 -10% 0;
             width: 100%; height: 120%; object-fit: cover;
-            filter: brightness(0.8);
+            filter: brightness(0.6);
             opacity: 0;
             will-change: transform, opacity;
           }
@@ -616,14 +608,14 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-content {
             grid-column: 1 / 13;
             position: absolute; inset: 0;
-            display: grid; grid-template-columns: 1fr 1.3fr 1fr;
+            display: grid; grid-template-columns: 1fr 1.5fr 1fr;
             align-items: center;
             height: 100%;
             padding: 0 var(--fx-grid-px);
           }
 
           .fx-left, .fx-right {
-            height: 60vh;
+            height: 70vh;
             overflow: hidden;
             display: grid; align-content: center;
           }
@@ -634,38 +626,37 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-item {
             color: var(--fx-text);
             font-weight: 800;
-            letter-spacing: 0em;
+            letter-spacing: 0.1em;
             line-height: 1;
             margin: calc(var(--fx-row-gap) / 2) 0;
-            opacity: 0.35;
-            transition: opacity 0.3s ease, transform 0.3s ease;
+            opacity: 0.15;
+            transition: opacity 0.4s ease;
             position: relative;
-            font-size: clamp(1rem, 2.4vw, 1.8rem);
             user-select: none;
             cursor: pointer;
+            white-space: nowrap;
           }
           .fx-left-item.active, .fx-right-item.active { opacity: 1; }
-          .fx-left-item.active { transform: translateX(10px); padding-left: 16px; }
-          .fx-right-item.active { transform: translateX(-10px); padding-right: 16px; }
-
-          .fx-left-item.active::before,
-          .fx-right-item.active::after {
-            content: "";
-            position: absolute; top: 50%; transform: translateY(-50%);
-            width: 6px; height: 6px; background: var(--fx-text); border-radius: 50%;
+          
+          .fx-left-item::before {
+            content: "•";
+            position: absolute; left: -1.5vw; opacity: 0;
+            transition: opacity 0.3s ease;
           }
-          .fx-left-item.active::before { left: 0; }
-          .fx-right-item.active::after { right: 0; }
+          .fx-right-item::after {
+            content: "•";
+            position: absolute; right: -1.5vw; opacity: 0;
+            transition: opacity 0.3s ease;
+          }
+          .fx-left-item.active::before, .fx-right-item.active::after { opacity: 1; }
 
           .fx-center {
-            display: grid; place-items: center; text-align: center; height: 60vh; overflow: hidden;
+            display: grid; place-items: center; text-align: center; height: 70vh; overflow: hidden;
           }
-          .fx-featured { position: absolute; opacity: 0; visibility: hidden; }
+          .fx-featured { position: absolute; opacity: 0; visibility: hidden; width: 100%; }
           .fx-featured.active { opacity: 1; visibility: visible; }
           .fx-featured-title {
             margin: 0; color: var(--fx-text);
-            font-weight: 900; letter-spacing: -0.01em;
-            font-size: clamp(2rem, 7.5vw, 6rem);
           }
           .fx-word-mask { display: inline-block; overflow: hidden; vertical-align: middle; }
           .fx-word { display: inline-block; vertical-align: middle; }
@@ -673,7 +664,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-footer {
             grid-column: 1 / 13; align-self: end; padding-bottom: 5vh; text-align: center;
           }
-          .fx-footer-title { color: var(--fx-text); font-size: clamp(1.6rem, 7vw, 7rem); font-weight: 900; letter-spacing: -0.01em; line-height: 0.9; }
+          .fx-footer-title { color: var(--fx-text); font-size: 5vw; font-weight: 900; letter-spacing: -0.01em; line-height: 0.9; }
           .fx-progress { width: 200px; height: 2px; margin: 1rem auto 0; background: rgba(245,245,245,0.28); position: relative; }
           .fx-progress-fill { position: absolute; inset: 0 auto 0 0; width: 0%; background: var(--fx-text); height: 100%; transition: width 0.3s ease; }
           .fx-progress-numbers { position: absolute; inset: auto 0 100% 0; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--fx-text); }
@@ -683,9 +674,8 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
               grid-template-columns: 1fr; row-gap: 3vh;
               place-items: center;
             }
-            .fx-left, .fx-right, .fx-center { height: auto; }
-            .fx-left, .fx-right { justify-items: center; }
-            .fx-track { transform: none !important; }
+            .fx-left, .fx-right { display: none; }
+            .fx-center { grid-column: 1 / 2; }
           }
         ` }} />
       </div>
