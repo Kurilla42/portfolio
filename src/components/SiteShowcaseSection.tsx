@@ -12,7 +12,7 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Значительно замедленная анимация входа: расширяем диапазоны скролла
+  // Значительно замедленная анимация входа
   const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
   const containersEntryY = useTransform(scrollYProgress, [0, 0.95], ["100vh", "0vh"]);
   const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
@@ -37,7 +37,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-[1.3] md:leading-[1.4] tracking-tight"
+        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-[1.5] md:leading-[1.7] tracking-tight"
       >
         {label.split("<br />").map((line, i) => (
           <span key={i} className="block">{line}</span>
@@ -48,10 +48,11 @@ export function SiteShowcaseSection() {
         style={{ y: containersEntryY, opacity: containersEntryOpacity }}
         className="relative flex flex-col items-start z-10"
       >
+        {/* Container resized by 10% (85vw -> 76.5vw, 42vw -> 37.8vw) */}
         <motion.div 
           whileHover="hover"
           initial="initial"
-          className="relative w-[85vw] md:w-[42vw] aspect-[1920/1080] bg-[#1a1a1a] rounded-none overflow-hidden cursor-pointer group"
+          className="relative w-[76.5vw] md:w-[37.8vw] aspect-[1920/1080] bg-transparent rounded-none overflow-hidden cursor-pointer group"
         >
           <motion.div
             variants={{
@@ -65,7 +66,7 @@ export function SiteShowcaseSection() {
               alt="Case Study" 
               width={1920}
               height={1080}
-              className="w-full h-auto object-top"
+              className="w-full h-auto object-contain"
               unoptimized
             />
           </motion.div>
@@ -84,7 +85,7 @@ export function SiteShowcaseSection() {
                 alt="Case Study Preview" 
                 width={1920}
                 height={1080}
-                className="w-full h-auto object-top"
+                className="w-full h-auto object-contain"
                 unoptimized
               />
             </div>
@@ -133,7 +134,7 @@ export function SiteShowcaseSection() {
                   opacity: centralImageOpacity, 
                   scale: centralScale,
                 }}
-                className="absolute z-10 w-[10.4vw] h-[13vw]"
+                className="absolute z-10 w-[13.52vw] h-[16.9vw]" // Increased by 30% from 10.4/13
               >
                 <Image 
                   src="https://i.ibb.co/zWwNcSSf/image.png"
