@@ -144,9 +144,12 @@ export function SiteShowcaseSection() {
                 }}
                 className="font-kurale font-bold text-[3vw] uppercase text-[#c7b684] tracking-tight text-center"
               >
-                <div className="flex flex-col items-center leading-[1.3]">
-                  <span>YOUR</span>
-                  <span>SITE</span>
+                <div className="flex flex-col items-center leading-[1.1]">
+                  {"YOUR SITE".split("").map((char, i) => (
+                    <span key={i} className={char === " " ? "h-[0.5em]" : ""}>
+                      {char}
+                    </span>
+                  ))}
                 </div>
               </motion.div>
 
