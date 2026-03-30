@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef } from 'react';
@@ -25,14 +26,6 @@ export function SiteShowcaseSection() {
   const leftImg = "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg";
   const rightImg = "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg";
 
-  const renderVerticalText = (text: string) => {
-    return text.split("").map((char, i) => (
-      <span key={i} className="block leading-[0.8] mb-1">
-        {char === " " ? "\u00A0" : char}
-      </span>
-    ));
-  };
-
   const ShowcaseCard = ({ src, label, subLabel }: { src: string, label: string, subLabel: string }) => (
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
@@ -48,11 +41,10 @@ export function SiteShowcaseSection() {
         style={{ y: containersEntryY, opacity: containersEntryOpacity }}
         className="relative flex flex-col items-start z-10"
       >
-        {/* Container resized by 10% (85vw -> 76.5vw, 42vw -> 37.8vw) */}
         <motion.div 
           whileHover="hover"
           initial="initial"
-          className="relative w-[76.5vw] md:w-[37.8vw] aspect-[1920/1080] bg-transparent rounded-none overflow-hidden cursor-pointer group"
+          className="relative w-[76.5vw] md:w-[37.8vw] aspect-[4/3] bg-transparent rounded-none overflow-hidden cursor-pointer group"
         >
           <motion.div
             variants={{
@@ -64,9 +56,9 @@ export function SiteShowcaseSection() {
             <Image 
               src={src} 
               alt="Case Study" 
-              width={1920}
-              height={1080}
-              className="w-full h-auto object-contain"
+              width={1600}
+              height={1200}
+              className="w-full h-full object-contain"
               unoptimized
             />
           </motion.div>
@@ -83,9 +75,9 @@ export function SiteShowcaseSection() {
               <Image 
                 src={src} 
                 alt="Case Study Preview" 
-                width={1920}
-                height={1080}
-                className="w-full h-auto object-contain"
+                width={1600}
+                height={1200}
+                className="w-full h-full object-contain"
                 unoptimized
               />
             </div>
@@ -134,7 +126,7 @@ export function SiteShowcaseSection() {
                   opacity: centralImageOpacity, 
                   scale: centralScale,
                 }}
-                className="absolute z-10 w-[13.52vw] h-[16.9vw]" // Increased by 30% from 10.4/13
+                className="absolute z-10 w-[13.52vw] h-[16.9vw]"
               >
                 <Image 
                   src="https://i.ibb.co/zWwNcSSf/image.png"
@@ -150,10 +142,11 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="flex flex-col items-center font-kurale font-bold text-[3vw] uppercase text-[#c7b684] tracking-tight leading-[0.85]"
+                className="font-kurale font-bold text-[3vw] uppercase text-[#c7b684] tracking-tight text-center"
               >
-                <div className="flex flex-col items-center">
-                  {renderVerticalText("YOUR SITE")}
+                <div className="flex flex-col items-center leading-[1.3]">
+                  <span>YOUR</span>
+                  <span>SITE</span>
                 </div>
               </motion.div>
 
