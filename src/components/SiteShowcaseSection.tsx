@@ -22,8 +22,8 @@ export function SiteShowcaseSection() {
   const centralTextOpacity = useTransform(scrollYProgress, [0.6, 0.9], [0, 1]);
   const centralScale = useTransform(scrollYProgress, [0, 0.6], [0.8, 1]);
 
-  const leftImg = "https://i.ibb.co/sdMw1xpg/2026-03-26-12-52-03.jpg";
-  const rightImg = "https://i.ibb.co/jZf5xxMd/2026-03-26-12-51-49.jpg";
+  const leftImg = "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg";
+  const rightImg = "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg";
 
   const renderVerticalText = (text: string) => {
     return text.split("").map((char, i) => (
