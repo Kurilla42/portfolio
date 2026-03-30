@@ -3,6 +3,7 @@ import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
 import { ScrollObserver } from "@/components/ScrollObserver";
 import { SmoothScroll } from "@/components/SmoothScroll";
+import { CustomCursor } from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
   title: 'JobFlow Landing Pages | Anton Kolesnikov',
@@ -24,6 +25,8 @@ export default function RootLayout({
       <body className="antialiased selection:bg-accent selection:text-accent-foreground overflow-x-hidden relative bg-[#eaeaf2]">
         {/* Grain Overlay */}
         <div className="noise-overlay" aria-hidden="true" />
+        
+        <CustomCursor />
         
         <SmoothScroll>
           <ScrollObserver />
