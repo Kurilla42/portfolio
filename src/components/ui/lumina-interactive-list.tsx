@@ -64,7 +64,7 @@ export function LuminaInteractiveList() {
   const sections = useMemo(() => showcaseItems.map(item => ({
     background: item.image,
     leftLabel: <span className="font-sans text-[2vw] font-bold tracking-[0.2em]">{item.title}</span>,
-    title: <div className="max-w-[45vw] mx-auto normal-case font-sans font-medium text-[1vw] leading-[1.2] opacity-90 tracking-tight">{item.description}</div>,
+    title: <div className="max-w-[35vw] mx-auto normal-case font-sans font-medium text-[1vw] leading-[1.2] opacity-90 tracking-tight">{item.description}</div>,
     rightLabel: <span className="font-sans text-[2vw] font-bold tracking-[0.2em]">{item.title}</span>,
   })), []);
 
@@ -74,7 +74,7 @@ export function LuminaInteractiveList() {
       fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.3)",
+        overlay: "rgba(0,0,0,0.2)",
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
@@ -159,7 +159,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       initialIndex = 0,
       colors = {
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.3)",
+        overlay: "rgba(0,0,0,0.2)",
         pageBg: "#eaeaf2",
         stageBg: "#000000",
       },
@@ -442,7 +442,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
     const cssVars: CSSProperties = {
       ["--fx-font" as any]: fontFamily,
       ["--fx-text" as any]: colors.text ?? "#e0ded8",
-      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.3)",
+      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.2)",
       ["--fx-page-bg" as any]: colors.pageBg ?? "#eaeaf2",
       ["--fx-stage-bg" as any]: colors.stageBg ?? "#000",
       ["--fx-gap" as any]: `${gap}rem`,
@@ -634,6 +634,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             user-select: none;
             cursor: pointer;
             white-space: nowrap;
+            font-size: 2vw;
           }
           .fx-left-item.active, .fx-right-item.active { opacity: 1; }
           
@@ -656,6 +657,8 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-featured.active { opacity: 1; visibility: visible; }
           .fx-featured-title {
             margin: 0; color: var(--fx-text);
+            font-size: 1vw;
+            max-width: 35vw;
           }
           .fx-word-mask { display: inline-block; overflow: hidden; vertical-align: middle; }
           .fx-word { display: inline-block; vertical-align: middle; }
