@@ -20,7 +20,7 @@ if (typeof window !== "undefined") {
 
 const showcaseItems = [
   {
-    title: 'Mobile-First Layouts',
+    title: 'Mobile - first',
     description:
       'Every element is engineered to move the visitor toward a single goal: booking a call or requesting a quote.',
     image:
@@ -63,9 +63,9 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const sections = useMemo(() => showcaseItems.map(item => ({
     background: item.image,
-    leftLabel: <span className="font-sans text-[2vw] font-bold tracking-[0.2em]">{item.title}</span>,
+    leftLabel: <span className="font-kurale font-bold text-[2vw] text-[#c7b684] tracking-tight">{item.title}</span>,
     title: <div className="max-w-[35vw] mx-auto normal-case font-sans font-medium text-[1vw] leading-[1.2] opacity-90 tracking-tight">{item.description}</div>,
-    rightLabel: <span className="font-sans text-[2vw] font-bold tracking-[0.2em]">{item.title}</span>,
+    rightLabel: <span className="font-kurale font-bold text-[2vw] text-[#c7b684] tracking-tight">{item.title}</span>,
   })), []);
 
   return (
@@ -74,7 +74,7 @@ export function LuminaInteractiveList() {
       fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.1)", // Затемнение 10%
+        overlay: "rgba(0,0,0,0.1)", // 10% overlay
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
@@ -575,7 +575,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             letter-spacing: -0.02em;
           }
 
-          .fx-fixed-section { height: ${Math.max(1, total + 1)}00vh; position: relative; }
+          .fx-fixed-section { height: ${(total + 1) * 70}vh; position: relative; }
           .fx-fixed { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; background: var(--fx-page-bg); }
 
           .fx-grid {
@@ -629,7 +629,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             line-height: 1;
             margin: calc(var(--fx-row-gap) / 2) 0;
             opacity: 0.15;
-            transition: opacity 0.4s ease;
+            transition: opacity 0.4s ease, transform 0.4s ease;
             position: relative;
             user-select: none;
             cursor: pointer;
