@@ -63,9 +63,9 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const sections = useMemo(() => showcaseItems.map(item => ({
     background: item.image,
-    leftLabel: <span className="font-kurale font-bold text-[2vw] text-[#c7b684] tracking-tight">{item.title}</span>,
-    title: <div className="max-w-[35vw] mx-auto normal-case font-sans font-medium text-[1vw] leading-[1.2] opacity-90 tracking-tight">{item.description}</div>,
-    rightLabel: <span className="font-kurale font-bold text-[2vw] text-[#c7b684] tracking-tight">{item.title}</span>,
+    leftLabel: <span className="font-kurale font-bold text-[3vw] text-[#c7b684] tracking-tight">{item.title}</span>,
+    title: <div className="max-w-[35vw] mx-auto normal-case font-sans font-medium text-[2vw] leading-[1.2] opacity-90 tracking-tight">{item.description}</div>,
+    rightLabel: <span className="font-kurale font-bold text-[3vw] text-[#c7b684] tracking-tight">{item.title}</span>,
   })), []);
 
   return (
@@ -222,7 +222,8 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       const top = el.offsetTop;
       const h = el.offsetHeight;
       const arr: number[] = [];
-      for (let i = 0; i < total; i++) arr.push(top + (h * i) / total);
+      // Reduce the scroll length by 30% by reducing the multiplier
+      for (let i = 0; i < total; i++) arr.push(top + (h * i * 0.7) / total);
       sectionTopRef.current = arr;
     };
 
@@ -575,7 +576,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             letter-spacing: -0.02em;
           }
 
-          .fx-fixed-section { height: ${total * 70}vh; position: relative; }
+          .fx-fixed-section { height: ${total * 50}vh; position: relative; }
           .fx-fixed { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; background: var(--fx-page-bg); }
 
           .fx-grid {
@@ -634,7 +635,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             user-select: none;
             cursor: pointer;
             white-space: nowrap;
-            font-size: 2vw;
           }
           .fx-left-item.active, .fx-right-item.active { opacity: 1; }
           
@@ -657,10 +657,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-featured.active { opacity: 1; visibility: visible; }
           .fx-featured-title {
             margin: 0; color: var(--fx-text);
-            font-size: 1vw;
-            max-width: 35vw;
-            margin-left: auto;
-            margin-right: auto;
           }
           .fx-word-mask { display: inline-block; overflow: hidden; vertical-align: middle; }
           .fx-word { display: inline-block; vertical-align: middle; }
