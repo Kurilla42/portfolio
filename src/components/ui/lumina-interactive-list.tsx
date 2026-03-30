@@ -74,7 +74,7 @@ export function LuminaInteractiveList() {
       fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.2)",
+        overlay: "rgba(0,0,0,0.1)", // Затемнение 10%
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
@@ -159,7 +159,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       initialIndex = 0,
       colors = {
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.2)",
+        overlay: "rgba(0,0,0,0.1)",
         pageBg: "#eaeaf2",
         stageBg: "#000000",
       },
@@ -442,7 +442,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
     const cssVars: CSSProperties = {
       ["--fx-font" as any]: fontFamily,
       ["--fx-text" as any]: colors.text ?? "#e0ded8",
-      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.2)",
+      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.1)",
       ["--fx-page-bg" as any]: colors.pageBg ?? "#eaeaf2",
       ["--fx-stage-bg" as any]: colors.stageBg ?? "#000",
       ["--fx-gap" as any]: `${gap}rem`,
@@ -653,12 +653,14 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-center {
             display: grid; place-items: center; text-align: center; height: 70vh; overflow: hidden;
           }
-          .fx-featured { position: absolute; opacity: 0; visibility: hidden; width: 100%; }
+          .fx-featured { position: absolute; opacity: 0; visibility: hidden; width: 100%; display: flex; justify-content: center; align-items: center; }
           .fx-featured.active { opacity: 1; visibility: visible; }
           .fx-featured-title {
             margin: 0; color: var(--fx-text);
             font-size: 1vw;
             max-width: 35vw;
+            margin-left: auto;
+            margin-right: auto;
           }
           .fx-word-mask { display: inline-block; overflow: hidden; vertical-align: middle; }
           .fx-word { display: inline-block; vertical-align: middle; }
