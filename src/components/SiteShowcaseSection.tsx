@@ -99,9 +99,11 @@ export function SiteShowcaseSection() {
           />
         </motion.div>
         
-        <span className="mt-4 text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest">
-          {subLabel}
-        </span>
+        <div className="flex flex-col mt-4">
+          <span className="text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest">
+            {subLabel}
+          </span>
+        </div>
       </motion.div>
     </div>
   );
@@ -131,10 +133,10 @@ export function SiteShowcaseSection() {
                   opacity: centralImageOpacity, 
                   scale: centralScale,
                 }}
-                className="absolute z-10 w-[8vw] h-[10vw]"
+                className="absolute z-10 w-[10.4vw] h-[13vw]"
               >
                 <Image 
-                  src="https://i.ibb.co/JR9GrQfJ/image.png"
+                  src="https://i.ibb.co/zWwNcSSf/image.png"
                   alt="Decorative center element"
                   fill
                   className="object-contain"
@@ -147,7 +149,7 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="flex flex-col items-center font-kurale font-bold text-xl md:text-[3.0vw] uppercase text-[#c7b684] tracking-tight leading-none"
+                className="flex flex-col items-center font-kurale font-bold text-[3vw] uppercase text-[#c7b684] tracking-tight leading-[0.85]"
               >
                 <div className="flex flex-col items-center">
                   {renderVerticalText("YOUR SITE")}
