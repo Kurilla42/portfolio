@@ -74,7 +74,7 @@ export function LuminaInteractiveList() {
       fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.1)", // 10% overlay
+        overlay: "rgba(0,0,0,0.2)", // 20% overlay as requested
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
@@ -159,7 +159,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       initialIndex = 0,
       colors = {
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.1)",
+        overlay: "rgba(0,0,0,0.2)",
         pageBg: "#eaeaf2",
         stageBg: "#000000",
       },
@@ -442,7 +442,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
     const cssVars: CSSProperties = {
       ["--fx-font" as any]: fontFamily,
       ["--fx-text" as any]: colors.text ?? "#e0ded8",
-      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.1)",
+      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.2)",
       ["--fx-page-bg" as any]: colors.pageBg ?? "#eaeaf2",
       ["--fx-stage-bg" as any]: colors.stageBg ?? "#000",
       ["--fx-gap" as any]: `${gap}rem`,
@@ -575,7 +575,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             letter-spacing: -0.02em;
           }
 
-          .fx-fixed-section { height: ${(total + 1) * 70}vh; position: relative; }
+          .fx-fixed-section { height: ${total * 70}vh; position: relative; }
           .fx-fixed { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; background: var(--fx-page-bg); }
 
           .fx-grid {
