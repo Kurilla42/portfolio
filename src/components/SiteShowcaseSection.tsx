@@ -24,7 +24,7 @@ export function SiteShowcaseSection() {
   const centralScale = useTransform(scrollYProgress, [0, 0.6], [0.8, 1]);
 
   const leftImg = "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg";
-  const rightImg = "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg";
+  const rightImg = "https://i.ibb.co/bgFv3GL7/202603310107.jpg";
 
   const ShowcaseCard = ({ src, label, subLabel }: { src: string, label: string, subLabel: string }) => (
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
@@ -144,7 +144,7 @@ export function SiteShowcaseSection() {
                 }}
                 className="font-kurale font-bold text-[3vw] uppercase text-[#c7b684] tracking-tight text-center"
               >
-                <div className="flex flex-col items-center leading-[1.1]">
+                <div className="flex flex-col items-center leading-[1.0]">
                   {"YOUR SITE".split("").map((char, i) => (
                     <span key={i} className={char === " " ? "h-[0.5em]" : ""}>
                       {char}
