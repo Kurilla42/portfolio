@@ -63,9 +63,17 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const sections = useMemo(() => showcaseItems.map(item => ({
     background: item.image,
-    leftLabel: <span className="font-kurale font-bold text-[3vw] text-[#c7b684] tracking-tight">{item.title}</span>,
-    title: "", // Центральная часть пуста
-    rightLabel: <div className="max-w-[25vw] normal-case font-sans font-medium text-[1vw] leading-[1.4] text-[#e0ded8] opacity-90 tracking-tight text-right">{item.description}</div>,
+    leftLabel: (
+      <span className="font-headline text-[6vw] leading-[0.9] text-[#e0ded8] tracking-tight uppercase">
+        {item.title}
+      </span>
+    ),
+    title: "", 
+    rightLabel: (
+      <div className="max-w-[25vw] normal-case font-sans font-medium text-[1vw] leading-[1.4] text-[#e0ded8] opacity-90 tracking-tight text-right">
+        {item.description}
+      </div>
+    ),
   })), []);
 
   return (
@@ -74,7 +82,7 @@ export function LuminaInteractiveList() {
       fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.20)", // Затемнение 20%
+        overlay: "rgba(0,0,0,0.20)", 
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
@@ -178,15 +186,8 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
     const fixedSectionRef = useRef<HTMLDivElement | null>(null);
 
     const bgRefs = useRef<HTMLImageElement[]>([]);
-    const wordRefs = useRef<HTMLSpanElement[][]>([]);
-
-    const leftTrackRef = useRef<HTMLDivElement | null>(null);
-    const rightTrackRef = useRef<HTMLDivElement | null>(null);
     const leftItemRefs = useRef<HTMLDivElement[]>([]);
     const rightItemRefs = useRef<HTMLDivElement[]>([]);
-
-    const progressFillRef = useRef<HTMLDivElement | null>(null);
-    const currentNumberRef = useRef<HTMLSpanElement | null>(null);
 
     const stRef = useRef<ScrollTrigger | null>(null);
     const lastIndexRef = useRef(index);
@@ -206,51 +207,30 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       const top = el.offsetTop;
       const h = el.offsetHeight;
       const arr: number[] = [];
-      // Уменьшаем количество скролла на 30% путем настройки шага прокрутки
       const scrollHeightMultiplier = 0.7; 
       for (let i = 0; i < total; i++) arr.push(top + (h * i * scrollHeightMultiplier) / total);
       sectionTopRef.current = arr;
     };
 
-    const measureAndCenterLists = (toIndex = index, animate = true) => {
-      const centerTrack = (
-        container: HTMLDivElement | null,
-        items: HTMLDivElement[],
-        isRight: boolean
-      ) => {
-        if (!container || items.length === 0) return;
-        const first = items[0];
-        const second = items[1];
-        const contRect = container.getBoundingClientRect();
-        let rowH = first.getBoundingClientRect().height;
-        if (second) {
-          rowH = second.getBoundingClientRect().top - first.getBoundingClientRect().top;
-        }
-        const targetY = contRect.height / 2 - rowH / 2 - toIndex * rowH;
-        const prop = isRight ? rightTrackRef : leftTrackRef;
-        if (!prop.current) return;
-        if (animate) {
-          gsap.to(prop.current, {
-            y: targetY,
-            duration: (durations.change ?? 0.7) * 0.9,
-            ease: "power3.out",
-          });
-        } else {
-          gsap.set(prop.current, { y: targetY });
-        }
-      };
-
-      measureRAF(() => {
-        measureRAF(() => {
-          centerTrack(leftTrackRef.current, leftItemRefs.current, false);
-          centerTrack(rightTrackRef.current, rightItemRefs.current, true);
+    const updateStaticLists = (toIndex = index) => {
+      leftItemRefs.current.forEach((el, i) => {
+        if (!el) return;
+        gsap.to(el, {
+          opacity: i === toIndex ? 1 : 0,
+          pointerEvents: i === toIndex ? "auto" : "none",
+          duration: durations.change ?? 0.7,
+          ease: "power2.out",
         });
       });
-    };
-
-    const measureRAF = (fn: () => void) => {
-      if (typeof window === "undefined") return;
-      requestAnimationFrame(() => requestAnimationFrame(fn));
+      rightItemRefs.current.forEach((el, i) => {
+        if (!el) return;
+        gsap.to(el, {
+          opacity: i === toIndex ? 1 : 0,
+          pointerEvents: i === toIndex ? "auto" : "none",
+          duration: durations.change ?? 0.7,
+          ease: "power2.out",
+        });
+      });
     };
 
     useLayoutEffect(() => {
@@ -259,11 +239,11 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       const fs = fixedSectionRef.current;
       if (!fixed || !fs || total === 0) return;
 
-      gsap.set(bgRefs.current, { opacity: 0, scale: 1.04, yPercent: 0 });
-      if (bgRefs.current[0]) gsap.set(bgRefs.current[0], { opacity: 1, scale: 1 });
+      gsap.set(bgRefs.current, { opacity: 0, scale: 1.04 });
+      if (bgRefs.current[index]) gsap.set(bgRefs.current[index], { opacity: 1, scale: 1 });
 
       computePositions();
-      measureAndCenterLists(index, false);
+      updateStaticLists(index);
 
       const st = ScrollTrigger.create({
         trigger: fs,
@@ -276,8 +256,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           const prog = self.progress;
           const target = Math.min(total - 1, Math.floor(prog * total));
           if (target !== lastIndexRef.current && !isAnimatingRef.current) {
-            const next = lastIndexRef.current + (target > lastIndexRef.current ? 1 : -1);
-            goTo(next, false);
+            goTo(target, false);
           }
         },
       });
@@ -286,7 +265,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
 
       const ro = new ResizeObserver(() => {
         computePositions();
-        measureAndCenterLists(lastIndexRef.current, false);
         ScrollTrigger.refresh();
       });
       ro.observe(fs);
@@ -296,7 +274,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
         st.kill();
         stRef.current = null;
       };
-    }, [total, initialIndex, motionOff, bgTransition, parallaxAmount]);
+    }, [total, initialIndex, motionOff]);
 
     const changeSection = (to: number) => {
       if (to === lastIndexRef.current || isAnimatingRef.current) return;
@@ -326,24 +304,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
         }
       }
 
-      measureAndCenterLists(to, true);
-
-      leftItemRefs.current.forEach((el, i) => {
-        el.classList.toggle("active", i === to);
-        gsap.to(el, {
-          opacity: i === to ? 1 : 0.1,
-          duration: D * 0.6,
-          ease: "power3.out",
-        });
-      });
-      rightItemRefs.current.forEach((el, i) => {
-        el.classList.toggle("active", i === to);
-        gsap.to(el, {
-          opacity: i === to ? 1 : 0.1,
-          duration: D * 0.6,
-          ease: "power3.out",
-        });
-      });
+      updateStaticLists(to);
 
       gsap.delayedCall(D, () => {
         lastIndexRef.current = to;
@@ -386,7 +347,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       ["--fx-stage-bg" as any]: colors.stageBg ?? "#000",
       ["--fx-gap" as any]: `${gap}rem`,
       ["--fx-grid-px" as any]: `${gridPaddingX}rem`,
-      ["--fx-row-gap" as any]: "5vh",
     };
 
     return (
@@ -425,41 +385,28 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
 
               <div className="fx-grid">
                 <div className="fx-content">
-                  <div className="fx-left" role="list">
-                    <div className="fx-track" ref={leftTrackRef}>
-                      {sections.map((s, i) => (
-                        <div
-                          key={`L-${s.id ?? i}`}
-                          className={`fx-item fx-left-item ${i === index ? "active" : ""}`}
-                          ref={(el) => el && (leftItemRefs.current[i] = el)}
-                          onClick={() => goTo(i)}
-                          role="button"
-                          tabIndex={0}
-                        >
-                          {s.leftLabel}
-                        </div>
-                      ))}
-                    </div>
+                  <div className="fx-column fx-left">
+                    {sections.map((s, i) => (
+                      <div
+                        key={`L-${s.id ?? i}`}
+                        className={`fx-static-item fx-left-item ${i === index ? "active" : ""}`}
+                        ref={(el) => el && (leftItemRefs.current[i] = el)}
+                      >
+                        {s.leftLabel}
+                      </div>
+                    ))}
                   </div>
 
-                  {/* Центральная часть скрыта в соответствии с запросом */}
-                  <div className="fx-center" style={{ display: 'none' }} />
-
-                  <div className="fx-right" role="list">
-                    <div className="fx-track" ref={rightTrackRef}>
-                      {sections.map((s, i) => (
-                        <div
-                          key={`R-${s.id ?? i}`}
-                          className={`fx-item fx-right-item ${i === index ? "active" : ""}`}
-                          ref={(el) => el && (rightItemRefs.current[i] = el)}
-                          onClick={() => goTo(i)}
-                          role="button"
-                          tabIndex={0}
-                        >
-                          {s.rightLabel}
-                        </div>
-                      ))}
-                    </div>
+                  <div className="fx-column fx-right">
+                    {sections.map((s, i) => (
+                      <div
+                        key={`R-${s.id ?? i}`}
+                        className={`fx-static-item fx-right-item ${i === index ? "active" : ""}`}
+                        ref={(el) => el && (rightItemRefs.current[i] = el)}
+                      >
+                        {s.rightLabel}
+                      </div>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -474,7 +421,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             background: var(--fx-page-bg);
             color: #000;
             font-family: var(--fx-font);
-            text-transform: uppercase;
             letter-spacing: -0.02em;
           }
 
@@ -496,7 +442,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-bg-img {
             position: absolute; inset: -10% 0 -10% 0;
             width: 100%; height: 120%; object-fit: cover;
-            filter: brightness(1);
             opacity: 0;
             will-change: transform, opacity;
           }
@@ -505,45 +450,47 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           .fx-content {
             grid-column: 1 / 13;
             position: absolute; inset: 0;
-            display: grid; grid-template-columns: 1fr 1fr;
+            display: flex;
+            justify-content: space-between;
             align-items: center;
             height: 100%;
             padding: 0 var(--fx-grid-px);
           }
 
-          .fx-left, .fx-right {
-            height: 70vh;
-            overflow: hidden;
-            display: grid; align-content: center;
-          }
-          .fx-left { justify-items: start; }
-          .fx-right { justify-items: end; }
-          .fx-track { will-change: transform; }
-
-          .fx-item {
-            color: var(--fx-text);
-            font-weight: 800;
-            letter-spacing: 0.1em;
-            line-height: 1.2;
-            margin: calc(var(--fx-row-gap) / 2) 0;
-            opacity: 0.1;
-            transition: opacity 0.4s ease;
+          .fx-column {
             position: relative;
-            user-select: none;
-            cursor: pointer;
+            height: 100%;
+            display: flex;
+            align-items: center;
           }
-          .fx-left-item.active, .fx-right-item.active { opacity: 1; }
-          
-          .fx-center {
-            display: none;
+
+          .fx-left { flex: 1; justify-content: flex-start; }
+          .fx-right { flex: 1; justify-content: flex-end; }
+
+          .fx-static-item {
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.7s ease;
+          }
+
+          .fx-left-item { left: 0; text-align: left; }
+          .fx-right-item { right: 0; text-align: right; }
+
+          .fx-static-item.active {
+            opacity: 1;
+            pointer-events: auto;
+            position: relative;
           }
 
           @media (max-width: 900px) {
             .fx-content {
-              grid-template-columns: 1fr; row-gap: 3vh;
-              place-items: center;
+              flex-direction: column;
+              justify-content: center;
+              gap: 5vh;
             }
-            .fx-left, .fx-right { display: none; }
+            .fx-column { height: auto; align-items: center; }
+            .fx-left-item, .fx-right-item { text-align: center; }
           }
         ` }} />
       </div>
