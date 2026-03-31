@@ -63,9 +63,9 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const sections = useMemo(() => showcaseItems.map(item => ({
     background: item.image,
-    leftLabel: <span className="font-kurale font-bold text-[3vw] text-[#c7b684] tracking-tight">{item.title}</span>,
-    title: <div className="max-w-[45vw] mx-auto normal-case font-sans font-medium text-[2vw] leading-[1.2] opacity-100 tracking-tight">{item.description}</div>,
-    rightLabel: <span className="font-kurale font-bold text-[3vw] text-[#c7b684] tracking-tight">{item.title}</span>,
+    leftLabel: <span className="font-kurale font-bold text-[2vw] text-[#c7b684] tracking-tight">{item.title}</span>,
+    title: <div className="max-w-[45vw] mx-auto normal-case font-sans font-medium text-[3vw] leading-[1.2] opacity-100 tracking-tight">{item.description}</div>,
+    rightLabel: <span className="font-kurale font-bold text-[2vw] text-[#c7b684] tracking-tight">{item.title}</span>,
   })), []);
 
   return (
@@ -105,6 +105,14 @@ type Durations = Partial<{
 }>;
 
 export type FullScreenFXAPI = {
+  next: () => void;
+  prev: () => void;
+  goTo: (index: number) => void;
+  getIndex: () => number;
+  refresh: () => void;
+};
+
+export type FullScreenFXAPI_ = {
   next: () => void;
   prev: () => void;
   goTo: (index: number) => void;
