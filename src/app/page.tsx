@@ -4,7 +4,6 @@ import { useRef, useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, useTransform } from 'framer-motion';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
-import { LuminaInteractiveList } from '@/components/ui/lumina-interactive-list';
 import { ExperienceTextSection } from '@/components/ExperienceTextSection';
 import ShaderShowcase from "@/components/ui/hero";
 import Image from 'next/image';
@@ -116,7 +115,7 @@ export function Home() {
               src={bgImage}
               alt="Shared Background"
               fill
-              className="object-cover object-center"
+              className="absolute inset-0 object-cover object-center"
               priority
               unoptimized
             />
@@ -150,10 +149,6 @@ export function Home() {
           </section>
         </div>
       </div>
-
-      <section className="relative z-20">
-        <LuminaInteractiveList />
-      </section>
       
       <SiteShowcaseSection />
 
@@ -196,7 +191,7 @@ export function Home() {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    whileHover="hover"
+                    whileInView="hover"
                     className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default"
                   >
                     <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden">
