@@ -63,9 +63,9 @@ const showcaseItems = [
 export function LuminaInteractiveList() {
   const sections = useMemo(() => showcaseItems.map(item => ({
     background: item.image,
-    leftLabel: <span className="font-kurale font-bold text-[2vw] text-[#c7b684] tracking-tight">{item.title}</span>,
-    title: <div className="max-w-[45vw] mx-auto normal-case font-sans font-medium text-[3vw] leading-[1.2] opacity-100 tracking-tight">{item.description}</div>,
-    rightLabel: <span className="font-kurale font-bold text-[2vw] text-[#c7b684] tracking-tight">{item.title}</span>,
+    leftLabel: <span className="font-kurale font-bold text-[3vw] text-[#c7b684] tracking-tight">{item.title}</span>,
+    title: "", // Центральная часть пуста
+    rightLabel: <div className="max-w-[25vw] normal-case font-sans font-medium text-[1vw] leading-[1.4] text-[#e0ded8] opacity-90 tracking-tight text-right">{item.description}</div>,
   })), []);
 
   return (
@@ -74,7 +74,7 @@ export function LuminaInteractiveList() {
       fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.15)", // 15% dimming
+        overlay: "rgba(0,0,0,0.20)", // Затемнение 20%
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
@@ -105,14 +105,6 @@ type Durations = Partial<{
 }>;
 
 export type FullScreenFXAPI = {
-  next: () => void;
-  prev: () => void;
-  goTo: (index: number) => void;
-  getIndex: () => number;
-  refresh: () => void;
-};
-
-export type FullScreenFXAPI_ = {
   next: () => void;
   prev: () => void;
   goTo: (index: number) => void;
@@ -167,7 +159,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       initialIndex = 0,
       colors = {
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.15)",
+        overlay: "rgba(0,0,0,0.20)",
         pageBg: "#eaeaf2",
         stageBg: "#000000",
       },
@@ -208,29 +200,15 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
     }, []);
     const motionOff = reduceMotion ?? prefersReduced;
 
-    const tempWordBucket = useRef<HTMLSpanElement[]>([]);
-    const splitWords = (text: string) => {
-      const words = text.split(/\s+/).filter(Boolean);
-      return words.map((w, i) => (
-        <span className="fx-word-mask" key={i}>
-          <span className="fx-word" ref={(el) => el && tempWordBucket.current.push(el)}>{w}</span>
-          {i < words.length - 1 ? " " : null}
-        </span>
-      ));
-    };
-
-    const WordsCollector = ({ onReady }: { onReady: () => void }) => {
-      useEffect(() => onReady(), []); 
-      return null;
-    };
-
     const computePositions = () => {
       const el = fixedSectionRef.current;
       if (!el) return;
       const top = el.offsetTop;
       const h = el.offsetHeight;
       const arr: number[] = [];
-      for (let i = 0; i < total; i++) arr.push(top + (h * i * 0.7) / total);
+      // Уменьшаем количество скролла на 30% путем настройки шага прокрутки
+      const scrollHeightMultiplier = 0.7; 
+      for (let i = 0; i < total; i++) arr.push(top + (h * i * scrollHeightMultiplier) / total);
       sectionTopRef.current = arr;
     };
 
@@ -284,15 +262,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       gsap.set(bgRefs.current, { opacity: 0, scale: 1.04, yPercent: 0 });
       if (bgRefs.current[0]) gsap.set(bgRefs.current[0], { opacity: 1, scale: 1 });
 
-      wordRefs.current.forEach((words, sIdx) => {
-        words.forEach((w) => {
-          gsap.set(w, {
-            yPercent: sIdx === index ? 0 : 100,
-            opacity: sIdx === index ? 1 : 0,
-          });
-        });
-      });
-
       computePositions();
       measureAndCenterLists(index, false);
 
@@ -314,10 +283,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       });
 
       stRef.current = st;
-
-      if (initialIndex && initialIndex > 0 && initialIndex < total) {
-        requestAnimationFrame(() => goTo(initialIndex, false));
-      }
 
       const ro = new ResizeObserver(() => {
         computePositions();
@@ -342,37 +307,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       if (!isControlled) setLocalIndex(to);
       onIndexChange?.(to);
 
-      if (currentNumberRef.current) {
-        currentNumberRef.current.textContent = String(to + 1).padStart(2, "0");
-      }
-      if (progressFillRef.current) {
-        const p = (to / (total - 1 || 1)) * 100;
-        progressFillRef.current.style.width = `${p}%`;
-      }
-
       const D = durations.change ?? 0.7;
-
-      const outWords = wordRefs.current[from] || [];
-      const inWords = wordRefs.current[to] || [];
-      if (outWords.length) {
-        gsap.to(outWords, {
-          yPercent: down ? -100 : 100,
-          opacity: 0,
-          duration: D * 0.6,
-          stagger: down ? 0.03 : -0.03,
-          ease: "power3.out",
-        });
-      }
-      if (inWords.length) {
-        gsap.set(inWords, { yPercent: down ? 100 : -100, opacity: 0 });
-        gsap.to(inWords, {
-          yPercent: 0,
-          opacity: 1,
-          duration: D,
-          stagger: down ? 0.05 : -0.05,
-          ease: "power3.out",
-        });
-      }
 
       const prevBg = bgRefs.current[from];
       const newBg = bgRefs.current[to];
@@ -396,7 +331,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       leftItemRefs.current.forEach((el, i) => {
         el.classList.toggle("active", i === to);
         gsap.to(el, {
-          opacity: i === to ? 1 : 0.15,
+          opacity: i === to ? 1 : 0.1,
           duration: D * 0.6,
           ease: "power3.out",
         });
@@ -404,7 +339,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       rightItemRefs.current.forEach((el, i) => {
         el.classList.toggle("active", i === to);
         gsap.to(el, {
-          opacity: i === to ? 1 : 0.15,
+          opacity: i === to ? 1 : 0.1,
           duration: D * 0.6,
           ease: "power3.out",
         });
@@ -443,19 +378,15 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       refresh: () => ScrollTrigger.refresh(),
     }));
 
-    useEffect(() => {
-      measureAndCenterLists(index, false);
-    }, []);
-
     const cssVars: CSSProperties = {
       ["--fx-font" as any]: fontFamily,
       ["--fx-text" as any]: colors.text ?? "#e0ded8",
-      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.15)",
+      ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.20)",
       ["--fx-page-bg" as any]: colors.pageBg ?? "#eaeaf2",
       ["--fx-stage-bg" as any]: colors.stageBg ?? "#000",
       ["--fx-gap" as any]: `${gap}rem`,
       ["--fx-grid-px" as any]: `${gridPaddingX}rem`,
-      ["--fx-row-gap" as any]: "3vh",
+      ["--fx-row-gap" as any]: "5vh",
     };
 
     return (
@@ -493,8 +424,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
               </div>
 
               <div className="fx-grid">
-                {header && <div className="fx-header">{header}</div>}
-
                 <div className="fx-content">
                   <div className="fx-left" role="list">
                     <div className="fx-track" ref={leftTrackRef}>
@@ -513,27 +442,8 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
                     </div>
                   </div>
 
-                  <div className="fx-center">
-                    {sections.map((s, sIdx) => {
-                      tempWordBucket.current = [];
-                      const isString = typeof s.title === "string";
-                      return (
-                        <div key={`C-${s.id ?? sIdx}`} className={`fx-featured ${sIdx === index ? "active" : ""}`}>
-                          <div className="fx-featured-title">
-                            {isString ? splitWords(s.title as string) : s.title}
-                          </div>
-                          <WordsCollector
-                            onReady={() => {
-                              if (tempWordBucket.current.length) {
-                                wordRefs.current[sIdx] = [...tempWordBucket.current];
-                              }
-                              tempWordBucket.current = [];
-                            }}
-                          />
-                        </div>
-                      );
-                    })}
-                  </div>
+                  {/* Центральная часть скрыта в соответствии с запросом */}
+                  <div className="fx-center" style={{ display: 'none' }} />
 
                   <div className="fx-right" role="list">
                     <div className="fx-track" ref={rightTrackRef}>
@@ -552,21 +462,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
                     </div>
                   </div>
                 </div>
-
-                <div className="fx-footer">
-                  {footer && <div className="fx-footer-title">{footer}</div>}
-                  {showProgress && (
-                    <div className="fx-progress">
-                      <div className="fx-progress-numbers">
-                        <span ref={currentNumberRef}>{String(index + 1).padStart(2, "0")}</span>
-                        <span>{String(total).padStart(2, "0")}</span>
-                      </div>
-                      <div className="fx-progress-bar">
-                        <div className="fx-progress-fill" ref={progressFillRef} />
-                      </div>
-                    </div>
-                  )}
-                </div>
               </div>
             </div>
           </div>
@@ -583,7 +478,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             letter-spacing: -0.02em;
           }
 
-          .fx-fixed-section { height: ${total * 50}vh; position: relative; }
+          .fx-fixed-section { height: ${total * 35}vh; position: relative; }
           .fx-fixed { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; background: var(--fx-page-bg); }
 
           .fx-grid {
@@ -607,15 +502,10 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
           }
           .fx-bg-overlay { position: absolute; inset: 0; background: var(--fx-overlay); }
 
-          .fx-header {
-            grid-column: 1 / 13; align-self: start; padding-top: 6vh;
-            font-size: clamp(2rem, 9vw, 9rem); line-height: 0.86; text-align: center; color: var(--fx-text);
-          }
-
           .fx-content {
             grid-column: 1 / 13;
             position: absolute; inset: 0;
-            display: grid; grid-template-columns: 1fr 1.5fr 1fr;
+            display: grid; grid-template-columns: 1fr 1fr;
             align-items: center;
             height: 100%;
             padding: 0 var(--fx-grid-px);
@@ -634,56 +524,19 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             color: var(--fx-text);
             font-weight: 800;
             letter-spacing: 0.1em;
-            line-height: 1;
+            line-height: 1.2;
             margin: calc(var(--fx-row-gap) / 2) 0;
-            opacity: 0.15;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 0.1;
+            transition: opacity 0.4s ease;
             position: relative;
             user-select: none;
             cursor: pointer;
-            white-space: nowrap;
           }
           .fx-left-item.active, .fx-right-item.active { opacity: 1; }
           
-          .fx-left-item::before {
-            content: "•";
-            position: absolute; left: -1.5vw; opacity: 0;
-            transition: opacity 0.3s ease;
-          }
-          .fx-right-item::after {
-            content: "•";
-            position: absolute; right: -1.5vw; opacity: 0;
-            transition: opacity 0.3s ease;
-          }
-          .fx-left-item.active::before, .fx-right-item.active::after { opacity: 1; }
-
           .fx-center {
-            display: grid; place-items: center; text-align: center; height: 70vh; overflow: hidden;
+            display: none;
           }
-          .fx-featured { 
-            position: absolute; 
-            opacity: 0; 
-            visibility: hidden; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            padding: 3vh 4vw;
-            max-width: 35vw;
-          }
-          .fx-featured.active { opacity: 1; visibility: visible; }
-          .fx-featured-title {
-            margin: 0; color: var(--fx-text);
-          }
-          .fx-word-mask { display: inline-block; overflow: hidden; vertical-align: middle; }
-          .fx-word { display: inline-block; vertical-align: middle; }
-
-          .fx-footer {
-            grid-column: 1 / 13; align-self: end; padding-bottom: 5vh; text-align: center;
-          }
-          .fx-footer-title { color: var(--fx-text); font-size: 5vw; font-weight: 900; letter-spacing: -0.01em; line-height: 0.9; }
-          .fx-progress { width: 200px; height: 2px; margin: 1rem auto 0; background: rgba(245,245,245,0.28); position: relative; }
-          .fx-progress-fill { position: absolute; inset: 0 auto 0 0; width: 0%; background: var(--fx-text); height: 100%; transition: width 0.3s ease; }
-          .fx-progress-numbers { position: absolute; inset: auto 0 100% 0; display: flex; justify-content: space-between; font-size: 0.8rem; color: var(--fx-text); }
 
           @media (max-width: 900px) {
             .fx-content {
@@ -691,7 +544,6 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
               place-items: center;
             }
             .fx-left, .fx-right { display: none; }
-            .fx-center { grid-column: 1 / 2; }
           }
         ` }} />
       </div>
