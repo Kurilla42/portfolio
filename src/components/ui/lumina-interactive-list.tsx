@@ -22,7 +22,7 @@ const showcaseItems = [
   {
     title: 'Mobile - first',
     description:
-      'Every element is engineered to move the visitor toward a single goal: booking a call or requesting a quote.',
+      'More than 70% of visitors come from mobile, so your page must convert on a phone first',
     image:
       'https://i.ibb.co/4ZGtc09G/Whisk-89cb8686ddb9da498354cec156be16b4dr.png',
     number: '01',
@@ -30,32 +30,32 @@ const showcaseItems = [
   {
     title: 'Loading Speed',
     description:
-      'Stop wasting money on Google Ads that send traffic to your homepage. Increase your Quality Score and lower CPL.',
+      'In plumbing, every second matters - a 3-second delay can cost the call.',
     image:
       'https://i.ibb.co/1t2yTNhv/Whisk-26ffea690ffcaab8e1f4de3f2a4f3d7bdr.png',
     number: '02',
   },
   {
-    title: 'Strong Offers',
-    description:
-      "Deeply understand your customer's pain points. Clean design that reflects the professionalism of your crew.",
-    image:
-      'https://i.ibb.co/Pz3d7g2S/Whisk-wedn4atn3etz5gtntqgz5gtl2kzy00cm1ujztem.jpg',
-    number: '03',
-  },
-  {
     title: 'Trust Elements',
     description:
-      'Transform your website into a 24/7 sales engine that works while you are out on service calls.',
+      '3 trust signals can be enough: reviews, license, real photos',
     image:
       'https://i.ibb.co/mV4xt97Z/Whisk-1ugn5kjmzm2nkzgotezmwktl3itm00sm0mgotaj.png',
-    number: '04',
+    number: '03',
   },
   {
     title: 'Calls To Action',
     description:
-      'Proven triggers that turn casual browsers into booked appointments, optimized for high conversion rates.',
+      '1 page, 1 goal, 1 clear CTA - turns visits into calls',
     image: 'https://i.ibb.co/93bwJt4W/orange-portrait-004.jpg',
+    number: '04',
+  },
+  {
+    title: 'Strong Offers',
+    description:
+      "1 strong offer gives people a reason to act now",
+    image:
+      'https://i.ibb.co/Pz3d7g2S/Whisk-wedn4atn3etz5gtntqgz5gtl2kzy00cm1ujztem.jpg',
     number: '05',
   },
 ];
@@ -64,7 +64,7 @@ export function LuminaInteractiveList() {
   const sections = useMemo(() => showcaseItems.map(item => ({
     background: item.image,
     leftLabel: <span className="font-kurale font-bold text-[3vw] text-[#c7b684] tracking-tight">{item.title}</span>,
-    title: <div className="max-w-[35vw] mx-auto normal-case font-sans font-medium text-[2vw] leading-[1.2] opacity-90 tracking-tight">{item.description}</div>,
+    title: <div className="max-w-[45vw] mx-auto normal-case font-sans font-medium text-[2vw] leading-[1.2] opacity-100 tracking-tight">{item.description}</div>,
     rightLabel: <span className="font-kurale font-bold text-[3vw] text-[#c7b684] tracking-tight">{item.title}</span>,
   })), []);
 
@@ -659,11 +659,8 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            backdrop-filter: blur(16px);
-            background: rgba(0,0,0,0.1);
             padding: 3vh 4vw;
-            border-radius: 4rem;
-            max-width: 50vw;
+            max-width: 35vw;
           }
           .fx-featured.active { opacity: 1; visibility: visible; }
           .fx-featured-title {
