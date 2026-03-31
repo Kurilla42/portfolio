@@ -1,5 +1,7 @@
+
 "use client";
 
+import { motion } from 'framer-motion';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 const part1 = [
@@ -14,10 +16,61 @@ const part2 = [
   "when they focus on looks instead of <span class='font-kurale font-bold text-[#c7b684] text-[3.2vw]'>conversions</span>"
 ];
 
+const conversionPoints = [
+  {
+    number: "01",
+    title: "Mobile - first",
+    description: "More than 70% of visitors come from mobile, so your page must convert on a phone first"
+  },
+  {
+    number: "02",
+    title: "Loading Speed",
+    description: "In plumbing, every second matters - a 3-second delay can cost the call."
+  },
+  {
+    number: "03",
+    title: "Trust Elements",
+    description: "3 trust signals can be enough: reviews, license, real photos"
+  },
+  {
+    number: "04",
+    title: "Calls To Action",
+    description: "1 page, 1 goal, 1 clear CTA - turns visits into calls"
+  },
+  {
+    number: "05",
+    title: "Strong Offers",
+    description: "1 strong offer gives people a reason to act now"
+  }
+];
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.8
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.22, 1, 0.36, 1]
+    }
+  }
+};
+
 export function ExperienceTextSection() {
   return (
     <div className="w-full flex flex-col items-center justify-center px-6 md:px-[8vw]">
-      <div className="w-full md:max-w-[85vw] flex flex-col gap-12 md:gap-16">
+      <div className="w-full md:max-w-[85vw] flex flex-col gap-12 md:gap-24">
         {/* Top / Left Part */}
         <div className="w-full flex justify-start">
           <HighlightWipeHeading 
@@ -40,6 +93,34 @@ export function ExperienceTextSection() {
             delay={0.4}
           />
         </div>
+
+        {/* 5 Points Grid */}
+        <motion.div 
+          className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-[2vw] mt-12 md:mt-8"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {conversionPoints.map((point, idx) => (
+            <motion.div 
+              key={idx} 
+              className="flex flex-col items-start text-left"
+              variants={itemVariants}
+            >
+              <span className="font-mono text-[10px] md:text-[0.7vw] text-[#e0ded8]/40 mb-3 tracking-widest">
+                [{point.number}]
+              </span>
+              <h3 className="font-headline text-2xl md:text-[3vw] text-[#e0ded8] leading-none mb-4 uppercase">
+                {point.title}
+              </h3>
+              <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-6" />
+              <p className="font-mono text-[11px] md:text-[0.9vw] uppercase tracking-widest text-[#e0ded8]/60 leading-relaxed">
+                {point.description}
+              </p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </div>
   );
