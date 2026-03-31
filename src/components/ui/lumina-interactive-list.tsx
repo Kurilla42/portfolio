@@ -74,7 +74,7 @@ export function LuminaInteractiveList() {
       fontFamily="Inter, sans-serif"
       colors={{
         text: "#e0ded8",
-        overlay: "rgba(0,0,0,0.15)", // Установлено затемнение 15%
+        overlay: "rgba(0,0,0,0.15)", // 15% dimming
         pageBg: "#eaeaf2",
         stageBg: "#000",
       }}
@@ -656,14 +656,14 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             position: absolute; 
             opacity: 0; 
             visibility: hidden; 
-            width: 100%; 
             display: flex; 
             justify-content: center; 
             align-items: center; 
-            backdrop-filter: blur(12px);
-            background: rgba(0,0,0,0.05);
-            padding: 4vh 2vw;
-            border-radius: 3rem;
+            backdrop-filter: blur(16px);
+            background: rgba(0,0,0,0.1);
+            padding: 3vh 4vw;
+            border-radius: 4rem;
+            max-width: 50vw;
           }
           .fx-featured.active { opacity: 1; visibility: visible; }
           .fx-featured-title {
