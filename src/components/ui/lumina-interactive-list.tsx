@@ -70,7 +70,7 @@ export function LuminaInteractiveList() {
     ),
     title: "", 
     rightLabel: (
-      <div className="max-w-[25vw] normal-case font-sans font-medium text-[1vw] leading-[1.4] text-[#e0ded8] opacity-90 tracking-tight text-right">
+      <div className="max-w-[25vw] uppercase font-mono font-medium text-[1vw] leading-[1.4] text-[#e0ded8] opacity-90 tracking-widest text-right">
         {item.description}
       </div>
     ),
@@ -207,7 +207,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       const top = el.offsetTop;
       const h = el.offsetHeight;
       const arr: number[] = [];
-      const scrollHeightMultiplier = 0.7; 
+      const scrollHeightMultiplier = 0.5; // Reduced by 30% from original 0.7
       for (let i = 0; i < total; i++) arr.push(top + (h * i * scrollHeightMultiplier) / total);
       sectionTopRef.current = arr;
     };
@@ -424,7 +424,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
             letter-spacing: -0.02em;
           }
 
-          .fx-fixed-section { height: ${total * 35}vh; position: relative; }
+          .fx-fixed-section { height: ${total * 25}vh; position: relative; }
           .fx-fixed { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; background: var(--fx-page-bg); }
 
           .fx-grid {
