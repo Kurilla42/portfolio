@@ -67,7 +67,7 @@ export function InfoShowcaseSection({
           {/* Decorative Line with Image in Gap */}
           <div className="w-full flex items-center justify-center gap-8 md:gap-[4vw] px-4">
             <div className="flex-1 h-[1px] bg-[#e0ded8]" />
-            <div className="relative w-24 h-24 md:w-[9vw] md:h-[9vw] shrink-0">
+            <div className="relative w-48 h-48 md:w-[18vw] md:h-[18vw] shrink-0">
               <Image 
                 src="https://i.ibb.co/nN2y7dpt/generated-image-12-removebg-preview.png"
                 alt="Decorative Icon"
