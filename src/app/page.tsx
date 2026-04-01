@@ -171,7 +171,8 @@ export function Home() {
               <h2 className="text-3xl md:text-[3vw] font-headline text-[#e0ded8] uppercase leading-[1.1] mb-8 md:mb-[4vh] tracking-normal">
                 SIMPLE STEPS
               </h2>
-              <div className="relative w-full max-w-[20vw] aspect-video overflow-hidden group">
+              
+              <div className="relative w-full max-w-[20vw] aspect-video overflow-hidden group mb-8">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -185,6 +186,17 @@ export function Home() {
                     unoptimized
                   />
                 </motion.div>
+              </div>
+
+              {/* Decorative Image Between Picture and Steps */}
+              <div className="relative w-full max-w-[15vw] h-[25vh] md:h-[35vh] mt-[-5vh] md:mt-[-10vh] ml-auto lg:ml-[8vw] z-20 pointer-events-none">
+                <Image 
+                  src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
+                  alt="Plumbing Specialist"
+                  fill
+                  className="object-contain object-bottom"
+                  unoptimized
+                />
               </div>
             </div>
 
