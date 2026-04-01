@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useRef } from 'react';
@@ -22,9 +23,9 @@ export function InfoShowcaseSection({
     offset: ["start end", "end start"]
   });
 
-  // Parallax effect: image moves slightly slower than scroll to create depth
-  // We use a taller container and start from 0 to avoid gaps at the top
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  // Parallax effect: image moves within a larger container to avoid gaps
+  // We use -10% to 10% range and a taller div positioned at -10% top
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
@@ -35,7 +36,7 @@ export function InfoShowcaseSection({
         <div className="absolute inset-0 z-0 h-full w-full bg-black overflow-hidden">
           <motion.div 
             style={{ y }}
-            className="absolute top-0 left-0 w-full h-[140vh]" 
+            className="absolute -top-[10%] left-0 w-full h-[150vh]" 
           >
             <Image
               src={imageSrc}
@@ -46,7 +47,7 @@ export function InfoShowcaseSection({
               unoptimized
             />
             {/* Fade to black transition: pushed to the very bottom of the image container */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 50% via-black/20 75% via-black/80 90% to-black" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 60% via-black/40 80% via-black/90 95% to-black" />
           </motion.div>
         </div>
 
