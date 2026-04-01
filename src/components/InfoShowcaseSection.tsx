@@ -23,20 +23,19 @@ export function InfoShowcaseSection({
     offset: ["start end", "end start"]
   });
 
-  // Parallax effect: image moves within a larger container to avoid gaps
-  // We use -10% to 10% range and a taller div positioned at -10% top
-  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+  // Parallax effect: reduced intensity to [-5%, 5%] to avoid gaps
+  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
       {/* COMBINED BLOCK: IN FO + Quote with SPLIT BACKGROUND (200vh) */}
       <div className="relative min-h-[200vh] w-full flex flex-col">
         
-        {/* Background Layer: Image pinned to top, fading to black at the bottom */}
+        {/* Background Layer: Image pinned to top with safe offset */}
         <div className="absolute inset-0 z-0 h-full w-full bg-black overflow-hidden">
           <motion.div 
             style={{ y }}
-            className="absolute -top-[10%] left-0 w-full h-[150vh]" 
+            className="absolute -top-[5%] left-0 w-full h-[140vh]" 
           >
             <Image
               src={imageSrc}
@@ -46,8 +45,8 @@ export function InfoShowcaseSection({
               priority
               unoptimized
             />
-            {/* Fade to black transition: pushed to the very bottom of the image container */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 60% via-black/40 80% via-black/90 95% to-black" />
+            {/* Fade to black transition: Darkening starts at the very bottom (85%+) */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% via-black/70 95% to-black" />
           </motion.div>
         </div>
 
