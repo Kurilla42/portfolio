@@ -44,8 +44,8 @@ export function InfoShowcaseSection({
               priority
               unoptimized
             />
-            {/* Затемнение начинается ровно от текста (примерно с 85% высоты картинки) */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 70% via-[#0f0f0f]/80 85% to-[#0f0f0f]" />
+            {/* Затемнение начинается ровно от текста манифеста, верхняя часть чистая */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-[#0f0f0f]" />
           </motion.div>
         </div>
 

@@ -120,7 +120,8 @@ export function Home() {
               priority
               unoptimized
             />
-            <div className="absolute inset-0 bg-[#0f0f0f]/60" />
+            {/* Removed full-screen overlay filter, added bottom gradient only */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-[#0f0f0f]" />
           </motion.div>
         </div>
 
