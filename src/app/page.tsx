@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState } from 'react';
@@ -15,7 +14,7 @@ import { HeroCurtain } from '@/components/HeroCurtain';
 const steps = [
   { number: "DAY 01", title: "Choose Your Service" },
   { number: "DAY 02", title: "Complete the Brief" },
-  { number: "DAY 03", title: "Build the Landing Page" },
+  { number: "DAY 03", title: "Build the Landing" },
   { number: "DAY 04", title: "Test & Connect CRM" },
   { number: "DAY 05", title: "Deploy & Launch" }
 ];
@@ -134,7 +133,7 @@ export function Home() {
                 opacity: isLifted ? 1 : 0, 
                 scale: isLifted ? 1 : 0.98 
               }}
-              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1, delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
               className="relative z-10 h-full w-full"
             >
               <ShaderShowcase isLifted={isLifted} />
