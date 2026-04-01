@@ -103,7 +103,7 @@ export function Home() {
   const bgVideoUrl = "https://i.ibb.co/DD1rRjBJ/ezgif-com-video-to-gif-converter-1.gif";
 
   return (
-    <div className="min-h-screen bg-[#eaeaf2]">
+    <div className="min-h-screen bg-[#000000]">
       <HeroCurtain isLifted={isLifted} />
 
       <div ref={combinedRef} className="relative z-0">
@@ -203,10 +203,10 @@ export function Home() {
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-xl md:text-[2vw] font-sans font-black text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-xl md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
-                          <h3 className="text-xl md:text-[2vw] font-sans font-black text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-xl md:text-[2vw] font-mono font-bold text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
                         </motion.div>
