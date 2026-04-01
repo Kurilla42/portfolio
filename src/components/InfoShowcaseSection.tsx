@@ -11,7 +11,7 @@ interface InfoShowcaseSectionProps {
 }
 
 export function InfoShowcaseSection({
-  imageSrc = "https://i.ibb.co/LDgsQj1v/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd.jpg",
+  imageSrc = "https://images.unsplash.com/photo-1659353588842-891391e6fcd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwbHVtYmVyJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc3MTM0OTIzMHww&ixlib=rb-4.1.0&q=80&w=1080",
   quote = "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build high-converting landing pages, uniquely crafted from user insights and proven conversion principles - always setting you apart from the competition",
   children
 }: InfoShowcaseSectionProps) {
@@ -22,36 +22,37 @@ export function InfoShowcaseSection({
     offset: ["start end", "end start"]
   });
 
-  // Parallax effect for the image layer
+  // Parallax effect: image moves slightly slower than scroll to create depth
+  // We use a taller container and start from 0 to avoid gaps at the top
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
-      {/* COMBINED BLOCK: IN FO + Quote with SPLIT BACKGROUND */}
+      {/* COMBINED BLOCK: IN FO + Quote with SPLIT BACKGROUND (200vh) */}
       <div className="relative min-h-[200vh] w-full flex flex-col">
         
-        {/* Background Layer: Split between Image (top) and Black (bottom) */}
-        <div className="absolute inset-0 z-0 h-full w-full bg-black">
+        {/* Background Layer: Image pinned to top, fading to black at the bottom */}
+        <div className="absolute inset-0 z-0 h-full w-full bg-black overflow-hidden">
           <motion.div 
             style={{ y }}
-            className="absolute top-0 left-0 w-full h-[130vh]" // Image container limited to top portion
+            className="absolute top-0 left-0 w-full h-[140vh]" 
           >
             <Image
               src={imageSrc}
               alt="Section Background"
               fill
-              className="object-cover object-top" // Prioritize showing the top part of the image
+              className="object-cover object-top" 
               priority
               unoptimized
             />
-            {/* Fade to black transition: starts around 30% of the image height */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 30% via-black/40 60% via-black/90 85% to-black" />
+            {/* Fade to black transition: pushed to the very bottom of the image container */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 50% via-black/20 75% via-black/80 90% to-black" />
           </motion.div>
         </div>
 
         {/* Content Area for IN FO and Quote */}
         <div className="relative z-10 flex flex-col items-center w-full">
-           {/* Big Letters - Placed at the top over the image */}
+           {/* Big Letters - Over the top of the image */}
            <div className="w-full flex items-start justify-between px-6 md:px-[5vw] pt-[15vh] md:pt-[10vh] pointer-events-none">
               <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
                 IN
@@ -61,8 +62,8 @@ export function InfoShowcaseSection({
               </h2>
            </div>
            
-           {/* Manifesto Text - Positioned lower, where image fades into black */}
-           <div className="w-full text-center px-6 md:px-[4vw] pt-[40vh] md:pt-[55vh] pb-[20vh]">
+           {/* Manifesto Text - Placed lower, transition area */}
+           <div className="w-full text-center px-6 md:px-[4vw] pt-[60vh] md:pt-[80vh] pb-[20vh]">
              <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl">
                {quote}
              </p>
