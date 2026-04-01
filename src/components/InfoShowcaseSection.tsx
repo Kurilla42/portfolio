@@ -68,10 +68,10 @@ export function InfoShowcaseSection({
       </div>
 
       {/* Decorative and Additional Content Area */}
-      <div className="relative z-10 w-full bg-black flex flex-col items-center pb-0 pt-0">
-        <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-2 md:mb-4">
+      <div className="relative z-10 w-full bg-black flex flex-col items-center pb-12 pt-12">
+        <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-8 md:mb-12">
           <div className="flex-1 h-[1px] bg-white/20" />
-          <div className="relative w-[3.9375vw] h-[3.9375vw] shrink-0">
+          <div className="relative w-[4.725vw] h-[4.725vw] shrink-0">
             <Image 
               src="https://i.ibb.co/WpR3h82f/generated-image-12-removebg-preview.png"
               alt="Decorative Icon"
