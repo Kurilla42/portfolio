@@ -169,7 +169,7 @@ export function Home() {
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start relative">
             
-            {/* Decorative Image Between Picture and Steps - Centered with 3rd Step */}
+            {/* Decorative Image - Positioned further left and matching steps height */}
             <div className="absolute left-[41.6%] top-[58%] -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
               <Image 
                 src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
