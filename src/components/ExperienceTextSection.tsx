@@ -1,19 +1,18 @@
-
 "use client";
 
 import { motion } from 'framer-motion';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 const part1 = [
-  "After <span class='font-kurale font-bold text-[#c7b684] text-[3.2vw]'>12 years</span> in internet marketing, I found",
+  "After 12 years in internet marketing, I found",
   "why so many local service websites",
   "fail to generate calls"
 ];
 
 const part2 = [
   "It’s not the traffic or the budget. It’s",
-  "<span class='font-kurale font-bold text-[#c7b684] text-[3.2vw]'>5 costly mistakes</span> web designers make",
-  "when they focus on looks instead of <span class='font-kurale font-bold text-[#c7b684] text-[3.2vw]'>conversions</span>"
+  "5 costly mistakes web designers make",
+  "when they focus on looks instead of conversions"
 ];
 
 const conversionPoints = [

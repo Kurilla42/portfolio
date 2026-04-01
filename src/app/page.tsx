@@ -91,7 +91,9 @@ export function Home() {
     offset: ["start start", "end end"]
   });
 
-  const bgY = useTransform(combinedScroll, [0, 1], ["0%", "20%"]);
+  // Эффект "воспроизведения" через скролл: смещение и легкое масштабирование
+  const bgY = useTransform(combinedScroll, [0, 1], ["0%", "25%"]);
+  const bgScale = useTransform(combinedScroll, [0, 1], [1, 1.1]);
 
   useMotionValueEvent(heroScroll, "change", (latest) => {
     if (latest > 0.01 && !isLifted) {
@@ -99,27 +101,28 @@ export function Home() {
     }
   });
 
-  const bgImage = "https://i.ibb.co/RTS1fr60/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg";
+  const bgVideoUrl = "https://i.ibb.co/DD8y83tz/ezgif-com-video-to-webp-converter.webp";
 
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
       <HeroCurtain isLifted={isLifted} />
 
       <div ref={combinedRef} className="relative z-0">
+        {/* Фоновый слой для Hero и Experience */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.div 
-            style={{ y: bgY }}
-            className="absolute -top-[15%] left-0 w-full h-[130%]"
+            style={{ y: bgY, scale: bgScale }}
+            className="absolute -top-[20%] left-0 w-full h-[140%]"
           >
             <Image
-              src={bgImage}
-              alt="Shared Background"
+              src={bgVideoUrl}
+              alt="Scroll-reactive background"
               fill
               className="absolute inset-0 object-cover object-center"
               priority
               unoptimized
             />
-            <div className="absolute inset-0 bg-black/50" />
+            <div className="absolute inset-0 bg-black/60" />
           </motion.div>
         </div>
 
@@ -173,7 +176,7 @@ export function Home() {
               <div className="flex flex-col gap-8">
                 <div className="flex flex-col gap-4 w-full md:max-w-[22vw]">
                   <p className="text-[11px] md:text-[12px] text-[#e0ded8]/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
-                    My goal has always been to elevate everyday interactions into something more meaningful and संस्कृтеen सह, quietly threading in moments of joy.
+                    My goal has always been to elevate everyday interactions into something more meaningful and সংস্কৃтеen सह, quietly threading in moments of joy.
                   </p>
                 </div>
               </div>
