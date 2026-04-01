@@ -235,8 +235,8 @@ export function Home() {
 
       <InfoShowcaseSection>
         <section className="relative pb-[10vh] md:pb-[20vh] pt-0 z-30 overflow-hidden w-full" id="difference">
-          <div className="w-full px-6 md:px-[8vw]">
-            <div className="flex flex-col lg:flex-row justify-center items-start gap-[4vw] w-full">
+          <div className="w-full px-6 md:px-[4vw]">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-[4vw] w-full">
               <motion.div 
                 className="w-full lg:w-[57.12vw]"
                 variants={containerVariants}
@@ -245,8 +245,8 @@ export function Home() {
                 viewport={{ once: true, amount: 0.1 }}
               >
                 <div className="lg:hidden mb-6">
-                  <h2 className="text-3xl font-headline font-black text-[#e0ded8] uppercase leading-[1.1] tracking-tighter">
-                    EXPLORE THE DIFFERENCE
+                  <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
+                    EXPLORE THE<br />DIFFERENCE
                   </h2>
                 </div>
 
@@ -355,7 +355,7 @@ export function Home() {
               </motion.div>
 
               <div className="flex flex-col items-start text-left hidden lg:flex">
-                <h2 className="text-[3vw] font-headline font-black text-[#e0ded8] uppercase leading-[1.1] mb-[2vh] tracking-tighter">
+                <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
                   EXPLORE THE<br />DIFFERENCE
                 </h2>
               </div>
