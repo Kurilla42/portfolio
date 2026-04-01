@@ -121,8 +121,8 @@ export function Home() {
               priority
               unoptimized
             />
-            {/* Solid overlay returned for hero video */}
-            <div className="absolute inset-0 bg-[#0f0f0f]/40" />
+            {/* Solid overlay returned for hero video - set to black as requested */}
+            <div className="absolute inset-0 bg-black/40" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-[#0f0f0f]" />
           </motion.div>
         </div>
