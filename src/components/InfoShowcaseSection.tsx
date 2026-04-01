@@ -23,15 +23,15 @@ export function InfoShowcaseSection({
     offset: ["start end", "end start"]
   });
 
-  // Параллакс с минимальной интенсивностью для исключения зазоров
+  // Параллакс с минимальной интенсивностью и отступом -5% для исключения зазоров
   const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
-      {/* Объединенный блок: IN FO + Манифест (200vh) */}
-      <div className="relative min-h-[200vh] w-full flex flex-col">
+      {/* Объединенный блок: IN FO + Манифест (Высота уменьшена до 160vh) */}
+      <div className="relative min-h-[160vh] w-full flex flex-col">
         
-        {/* Фоновый слой: Картинка в верхней части с параллаксом */}
+        {/* Фоновый слой: Картинка в верхней части */}
         <div className="absolute inset-0 z-0 h-full w-full bg-black overflow-hidden">
           <motion.div 
             style={{ y }}
@@ -51,7 +51,7 @@ export function InfoShowcaseSection({
         </div>
 
         {/* Контент: Буквы и Текст манифеста */}
-        <div className="relative z-10 flex flex-col items-center w-full">
+        <div className="relative z-10 flex flex-col items-center w-full h-full">
            {/* Большие буквы IN FO */}
            <div className="w-full flex items-start justify-between px-6 md:px-[5vw] pt-[15vh] md:pt-[10vh] pointer-events-none">
               <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
@@ -62,8 +62,8 @@ export function InfoShowcaseSection({
               </h2>
            </div>
            
-           {/* Текст манифеста: поднят выше для наложения на нижнюю часть картинки */}
-           <div className="w-full text-center px-6 md:px-[4vw] pt-[30vh] md:pt-[45vh] pb-[20vh]">
+           {/* Текст манифеста: Расположен на нижней части картинки */}
+           <div className="w-full text-center px-6 md:px-[4vw] pt-[30vh] md:pt-[45vh] pb-[10vh] mt-auto">
              <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl">
                {quote}
              </p>
