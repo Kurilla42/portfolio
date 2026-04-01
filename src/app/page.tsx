@@ -220,7 +220,9 @@ export function Home() {
         </div>
       </section>
 
-      <InfoShowcaseSection>
+      <InfoShowcaseSection
+        quote="MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build <span class='text-[#c7b684]'>high-converting</span> landing pages, uniquely crafted from user insights and proven conversion principles - always <span class='text-[#c7b684]'>setting you apart</span> from the competition"
+      >
         <section className="relative pb-[10vh] md:pb-[20vh] pt-0 z-30 overflow-hidden w-full" id="difference">
           <div className="w-full px-6 md:px-[4vw]">
             <div className="flex flex-col lg:flex-row justify-between items-start gap-[4vw] w-full">

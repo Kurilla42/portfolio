@@ -59,9 +59,10 @@ export function InfoShowcaseSection({
            
            {/* Manifest Quote */}
            <div className="w-full text-center px-6 md:px-[4vw] pt-[30vh] md:pt-[45vh] pb-0 mt-auto">
-             <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl">
-               {quote}
-             </p>
+             <p 
+               className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl"
+               dangerouslySetInnerHTML={{ __html: quote }}
+             />
            </div>
         </div>
       </div>
@@ -70,7 +71,7 @@ export function InfoShowcaseSection({
       <div className="relative z-10 w-full bg-black flex flex-col items-center pb-[10vh] pt-0">
         <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-2 md:mb-4">
           <div className="flex-1 h-[1px] bg-white/20" />
-          <div className="relative w-[1.75vw] h-[1.75vw] md:w-[2.25vw] md:h-[2.25vw] shrink-0">
+          <div className="relative w-[0.875vw] h-[0.875vw] shrink-0">
             <Image 
               src="https://i.ibb.co/WpR3h82f/generated-image-12-removebg-preview.png"
               alt="Decorative Icon"
