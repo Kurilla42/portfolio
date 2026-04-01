@@ -40,11 +40,11 @@ const comparisonData = [
 ];
 
 const steps = [
-  { number: "DAY 01", title: "Discovery" },
-  { number: "DAY 02", title: "Wireframing" },
-  { number: "DAY 03", title: "The Build" },
-  { number: "DAY 04", title: "Launch & Sync" },
-  { number: "DAY 05", title: "Scale & Support" }
+  { number: "DAY 01", title: "Choose Your Service" },
+  { number: "DAY 02", title: "Complete the Brief" },
+  { number: "DAY 03", title: "Build the Landing Page" },
+  { number: "DAY 04", title: "Test & Connect CRM" },
+  { number: "DAY 05", title: "Deploy & Launch" }
 ];
 
 const containerVariants = {
