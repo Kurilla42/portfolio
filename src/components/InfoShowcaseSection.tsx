@@ -12,7 +12,7 @@ interface InfoShowcaseSectionProps {
 
 export function InfoShowcaseSection({
   imageSrc = "https://i.ibb.co/xqjNS2sj/202603190505.jpg",
-  quote = "MY GOAL HAS ALWAYS BEEN TO ELEVATE EVERYDAY INTERACTIONS INTO SOMETHING MORE MEANINGFUL AND CRUCIALLY, QUIETLY THREADING IN MOMENTS OF JOY THAT CATCH US BY SURPRISE AND STAY WITH US FOR YEARS TO COME",
+  quote = "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build high-converting landing pages, uniquely crafted from user insights and proven conversion principles - always setting you apart from the competition",
   children
 }: InfoShowcaseSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -59,7 +59,7 @@ export function InfoShowcaseSection({
 
         {/* SECOND BLOCK: Quote and Decorative Line */}
         <div className="w-full flex flex-col items-center text-center px-6 md:px-[4vw] pt-[5vh] pb-[5vh] md:pb-[8vh]">
-          <p className="text-xl sm:text-2xl md:text-[3.0vw] font-black uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-tighter max-w-full md:max-w-[80vw] drop-shadow-lg mb-12 md:mb-16">
+          <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] drop-shadow-lg mb-12 md:mb-16">
             {quote}
           </p>
 
