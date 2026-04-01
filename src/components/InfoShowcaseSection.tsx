@@ -26,9 +26,9 @@ export function InfoShowcaseSection({
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
-      {/* FIRST BLOCK: Typography with BACKGROUND IMAGE */}
-      <div className="relative min-h-[70vh] md:min-h-screen w-full overflow-hidden">
-        {/* Background Layer strictly for this part */}
+      {/* COMBINED BLOCK: IN FO + Quote with BACKGROUND IMAGE */}
+      <div className="relative min-h-screen w-full overflow-hidden flex flex-col">
+        {/* Background Layer */}
         <div className="absolute inset-0 z-0 h-full w-full">
           <motion.div 
             style={{ y }}
@@ -42,32 +42,38 @@ export function InfoShowcaseSection({
               priority
               unoptimized
             />
-            {/* Fade out to the bottom background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black" />
+            {/* Fade out transition: starts around 30% and goes to solid black */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 via-black/40 via-black/80 to-black" />
           </motion.div>
         </div>
 
-        {/* Big Letters */}
-        <div className="relative z-10 h-full w-full flex items-start justify-between px-6 md:px-[5vw] pt-[15vh] md:pt-[10vh] pointer-events-none">
-          <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
-            IN
-          </h2>
-          <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
-            FO
-          </h2>
+        {/* Content Area for IN FO and Quote */}
+        <div className="relative z-10 flex flex-col items-center w-full">
+           {/* Big Letters */}
+           <div className="w-full flex items-start justify-between px-6 md:px-[5vw] pt-[15vh] md:pt-[10vh] pointer-events-none">
+              <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
+                IN
+              </h2>
+              <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
+                FO
+              </h2>
+           </div>
+           
+           {/* Manifesto Text */}
+           <div className="w-full text-center px-6 md:px-[4vw] pt-[5vh] pb-[10vh] md:pb-[15vh]">
+             <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto">
+               {quote}
+             </p>
+           </div>
         </div>
       </div>
 
-      {/* SECOND BLOCK: Quote and Decorative Line (Solid Black Background) */}
-      <div className="relative z-10 w-full flex flex-col items-center text-center px-6 md:px-[4vw] pt-[5vh] pb-[5vh] md:pb-[8vh] bg-black">
-        <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mb-12 md:mb-16">
-          {quote}
-        </p>
-
-        {/* Decorative Line with Image in Gap */}
-        <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto">
+      {/* SEPARATE SECTION: Decorative Lines and Comparison Table */}
+      <div className="relative z-10 w-full bg-black flex flex-col items-center">
+        {/* Decorative Line with Image Gap */}
+        <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-16 md:mb-24">
           <div className="flex-1 h-[1px] bg-white" />
-          <div className="relative w-72 h-72 md:w-[60vw] md:h-[60vw] shrink-0">
+          <div className="relative w-[35vw] h-[35vw] md:w-[45vw] md:h-[45vw] shrink-0">
             <Image 
               src="https://i.ibb.co/nN2y7dpt/generated-image-12-removebg-preview.png"
               alt="Decorative Icon"
@@ -78,14 +84,14 @@ export function InfoShowcaseSection({
           </div>
           <div className="flex-1 h-[1px] bg-white" />
         </div>
-      </div>
 
-      {/* THIRD PART: Comparison Table / Children (Solid Black Background) */}
-      {children && (
-        <div className="relative z-10 w-full bg-black">
-          {children}
-        </div>
-      )}
+        {/* Comparison Table (Children) */}
+        {children && (
+          <div className="w-full">
+            {children}
+          </div>
+        )}
+      </div>
     </section>
   );
 }
