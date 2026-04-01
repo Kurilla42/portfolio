@@ -101,7 +101,7 @@ export function Home() {
     }
   });
 
-  const bgVideoUrl = "https://i.ibb.co/DD8y83tz/ezgif-com-video-to-webp-converter.webp";
+  const bgVideoUrl = "https://i.ibb.co/DD1rRjBJ/ezgif-com-video-to-gif-converter-1.gif";
 
   return (
     <div className="min-h-screen bg-[#eaeaf2]">
