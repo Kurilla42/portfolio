@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useRef } from 'react';
@@ -63,8 +64,8 @@ export function InfoShowcaseSection({
             {quote}
           </p>
 
-          {/* New Image Replacement for Lines/Icon */}
-          <div className="relative w-[80px] h-[110px] md:w-[120px] md:h-[160px] shrink-0 mx-auto">
+          {/* Increased size (approx 5x) for Decorative Image */}
+          <div className="relative w-[400px] h-[550px] md:w-[600px] md:h-[800px] shrink-0 mx-auto">
             <Image 
               src="https://i.ibb.co/RqTMzB6/44513.png"
               alt="Decorative Accent"

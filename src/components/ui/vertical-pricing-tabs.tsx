@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -138,7 +139,7 @@ export function VerticalPricingTabs() {
         <div className="absolute inset-0 bg-black/70" />
       </div>
 
-      <div className="relative z-10 w-full px-6 md:px-[8vw] mx-auto">
+      <div className="relative z-10 w-full px-6 md:px-[4vw] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start min-h-[600px] md:min-h-[750px]">
           {/* Left Column: Heading and Navigation (Raised to the Top) */}
           <div className="lg:col-span-4 flex flex-col justify-start order-2 lg:order-1 pt-0">
@@ -213,7 +214,7 @@ export function VerticalPricingTabs() {
                     animate="center"
                     exit="exit"
                     transition={{
-                      x: { type: "spring", stiffness: 300, stiffness: 300, damping: 30 },
+                      x: { type: "spring", stiffness: 300, damping: 30 },
                       opacity: { duration: 0.2 },
                     }}
                     className="flex flex-col h-full"
