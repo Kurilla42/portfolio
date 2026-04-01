@@ -169,8 +169,8 @@ export function Home() {
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start relative">
             
-            {/* Decorative Image - Positioned further left and matching steps height */}
-            <div className="absolute left-[41.6%] top-[58%] -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
+            {/* Decorative Image - Now centered in the whole block */}
+            <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
               <Image 
                 src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
                 alt="Plumbing Specialist"
@@ -202,7 +202,8 @@ export function Home() {
               </div>
             </div>
 
-            <div className="col-span-12 lg:col-span-7 flex flex-col pt-0 relative">
+            {/* Steps column starts at col 8 (approx 60%) and is fit to content */}
+            <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col pt-0 relative">
               <motion.div 
                 className="flex flex-col w-full border-t border-[#e0ded8]/20"
                 variants={containerVariants}
@@ -216,9 +217,9 @@ export function Home() {
                     variants={itemVariants}
                     whileHover="hover"
                     initial="initial"
-                    className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default"
+                    className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default w-fit min-w-full lg:min-w-0"
                   >
-                    <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden">
+                    <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden pr-8">
                       <span className="font-mono text-sm md:text-[1vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
                         {step.number}
                       </span>
@@ -231,7 +232,7 @@ export function Home() {
                           <h3 className="text-xl md:text-[2vw] font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
                             {step.title}
                           </h3>
-                          <h3 className="text-xl md:text-[2vw] font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
+                          <h3 className="text-xl md:text-[2vw] font-bold text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
                             {step.title}
                           </h3>
                         </motion.div>
