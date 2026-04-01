@@ -22,15 +22,11 @@ export function InfoShowcaseSection({
     offset: ["start end", "end start"]
   });
 
-  // Параллакс с низкой интенсивностью
   const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
-      {/* Объединенный блок: IN FO + Манифест */}
       <div className="relative min-h-[160vh] w-full flex flex-col">
-        
-        {/* Фоновый слой */}
         <div className="absolute inset-0 z-0 h-full w-full bg-black overflow-hidden">
           <motion.div 
             style={{ y }}
@@ -44,14 +40,11 @@ export function InfoShowcaseSection({
               priority
               unoptimized
             />
-            {/* Затемнение начинается ровно от текста манифеста */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-black" />
           </motion.div>
         </div>
 
-        {/* Контент: Буквы и Текст манифеста */}
         <div className="relative z-10 flex flex-col items-center w-full h-full">
-           {/* Большие буквы IN FO */}
            <div className="w-full flex items-start justify-between px-6 md:px-[5vw] pt-[15vh] md:pt-[10vh] pointer-events-none">
               <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
                 IN
@@ -61,7 +54,6 @@ export function InfoShowcaseSection({
               </h2>
            </div>
            
-           {/* Текст манифеста */}
            <div className="w-full text-center px-6 md:px-[4vw] pt-[30vh] md:pt-[45vh] pb-0 mt-auto">
              <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl">
                {quote}
@@ -70,12 +62,10 @@ export function InfoShowcaseSection({
         </div>
       </div>
 
-      {/* Отдельная секция: Линии и Таблица на черном фоне */}
       <div className="relative z-10 w-full bg-black flex flex-col items-center pb-[15vh] pt-0">
-        {/* Декоративная линия с иконкой */}
         <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-2 md:mb-4">
           <div className="flex-1 h-[1px] bg-white/20" />
-          <div className="relative w-[7vw] h-[7vw] md:w-[9vw] md:h-[9vw] shrink-0">
+          <div className="relative w-[3.5vw] h-[3.5vw] md:w-[4.5vw] md:h-[4.5vw] shrink-0">
             <Image 
               src="https://i.ibb.co/WpR3h82f/generated-image-12-removebg-preview.png"
               alt="Decorative Icon"
@@ -87,7 +77,6 @@ export function InfoShowcaseSection({
           <div className="flex-1 h-[1px] bg-white/20" />
         </div>
 
-        {/* Дочерние элементы */}
         {children && (
           <div className="w-full">
             {children}

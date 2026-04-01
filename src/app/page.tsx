@@ -120,7 +120,6 @@ export function Home() {
               priority
               unoptimized
             />
-            {/* Solid black overlay */}
             <div className="absolute inset-0 bg-black/50" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-black" />
           </motion.div>
@@ -159,7 +158,6 @@ export function Home() {
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start relative">
             
-            {/* Decorative Image */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
               <Image 
                 src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
