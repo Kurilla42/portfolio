@@ -12,7 +12,7 @@ interface InfoShowcaseSectionProps {
 }
 
 export function InfoShowcaseSection({
-  imageSrc = "https://i.ibb.co/xqjNS2sj/202603190505.jpg",
+  imageSrc = "https://i.ibb.co/LDgsQj1v/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd.jpg",
   quote = "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build high-converting landing pages, uniquely crafted from user insights and proven conversion principles - always setting you apart from the competition",
   children
 }: InfoShowcaseSectionProps) {
@@ -42,6 +42,8 @@ export function InfoShowcaseSection({
             priority
             unoptimized
           />
+          {/* Bottom Fade Gradient for smooth transition to the next block */}
+          <div className="absolute inset-x-0 bottom-0 h-[40%] bg-gradient-to-t from-black via-black/40 to-transparent" />
         </motion.div>
       </div>
 
@@ -65,9 +67,9 @@ export function InfoShowcaseSection({
           </p>
 
           {/* Decorative Line with Image in Gap */}
-          <div className="w-full flex items-center justify-center gap-4 md:gap-[2vw] px-4">
-            <div className="flex-1 h-[1px] bg-[#e0ded8]" />
-            <div className="relative w-56 h-56 md:w-[22vw] md:h-[22vw] shrink-0">
+          <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4">
+            <div className="flex-1 h-[1px] bg-white" />
+            <div className="relative w-72 h-72 md:w-[35vw] md:h-[35vw] shrink-0">
               <Image 
                 src="https://i.ibb.co/nN2y7dpt/generated-image-12-removebg-preview.png"
                 alt="Decorative Icon"
@@ -76,7 +78,7 @@ export function InfoShowcaseSection({
                 unoptimized
               />
             </div>
-            <div className="flex-1 h-[1px] bg-[#e0ded8]" />
+            <div className="flex-1 h-[1px] bg-white" />
           </div>
         </div>
 
