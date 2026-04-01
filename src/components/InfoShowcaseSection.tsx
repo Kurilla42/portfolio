@@ -12,7 +12,7 @@ interface InfoShowcaseSectionProps {
 
 export function InfoShowcaseSection({
   imageSrc = "https://i.ibb.co/LDgsQj1v/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd.jpg",
-  quote = "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build high-converting landing pages, uniquely crafted from user insights and proven conversion principles - always setting you apart from the competition",
+  quote = "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build <span class='text-[#c7b684]'>high-converting</span> landing pages, uniquely crafted from user insights and proven conversion principles - always <span class='text-[#c7b684]'>setting you apart</span> from the competition",
   children
 }: InfoShowcaseSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -71,7 +71,7 @@ export function InfoShowcaseSection({
       <div className="relative z-10 w-full bg-black flex flex-col items-center pb-[10vh] pt-0">
         <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-2 md:mb-4">
           <div className="flex-1 h-[1px] bg-white/20" />
-          <div className="relative w-[0.875vw] h-[0.875vw] shrink-0">
+          <div className="relative w-[2.625vw] h-[2.625vw] shrink-0">
             <Image 
               src="https://i.ibb.co/WpR3h82f/generated-image-12-removebg-preview.png"
               alt="Decorative Icon"
