@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState } from 'react';
@@ -121,7 +120,7 @@ export function Home() {
               priority
               unoptimized
             />
-            <div className="absolute inset-0 bg-black/60" />
+            <div className="absolute inset-0 bg-[#1d1e1c]/60" />
           </motion.div>
         </div>
 
@@ -143,7 +142,7 @@ export function Home() {
 
         <div ref={parallaxRef} className="relative z-20">
           <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh] overflow-hidden">
-            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,1)_65%)]" />
+            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,#1d1e1c_65%)]" />
             
             <div className="relative z-10">
               <ExperienceTextSection />
@@ -163,7 +162,7 @@ export function Home() {
             className="object-cover"
             unoptimized
           />
-          <div className="absolute inset-0 bg-black/70" />
+          <div className="absolute inset-0 bg-[#1d1e1c]/70" />
         </div>
 
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
@@ -376,7 +375,7 @@ export function Home() {
             unoptimized
             priority
           />
-          <div className="absolute inset-0 bg-black/60" />
+          <div className="absolute inset-0 bg-[#1d1e1c]/60" />
         </div>
 
         <div className="relative z-10 w-full h-full px-6 md:px-[8vw] flex flex-col items-center justify-center text-center">

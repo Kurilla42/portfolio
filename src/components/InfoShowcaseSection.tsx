@@ -26,12 +26,12 @@ export function InfoShowcaseSection({
   const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
-    <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
+    <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-[#1d1e1c]">
       {/* Объединенный блок: IN FO + Манифест (Высота 160vh) */}
       <div className="relative min-h-[160vh] w-full flex flex-col">
         
         {/* Фоновый слой: Картинка в верхней части */}
-        <div className="absolute inset-0 z-0 h-full w-full bg-black overflow-hidden">
+        <div className="absolute inset-0 z-0 h-full w-full bg-[#1d1e1c] overflow-hidden">
           <motion.div 
             style={{ y }}
             className="absolute -top-[5%] left-0 w-full h-[140vh]" 
@@ -45,7 +45,7 @@ export function InfoShowcaseSection({
               unoptimized
             />
             {/* Затемнение начинается ровно от текста (примерно с 85% высоты картинки) */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 70% via-black/80 85% to-black" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 70% via-[#1d1e1c]/80 85% to-[#1d1e1c]" />
           </motion.div>
         </div>
 
@@ -71,7 +71,7 @@ export function InfoShowcaseSection({
       </div>
 
       {/* Отдельная секция: Линии и Таблица на черном фоне */}
-      <div className="relative z-10 w-full bg-black flex flex-col items-center pb-[15vh] pt-0">
+      <div className="relative z-10 w-full bg-[#1d1e1c] flex flex-col items-center pb-[15vh] pt-0">
         {/* Декоративная линия с иконкой - Уменьшена в 2 раза относительно предыдущего состояния */}
         <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-2 md:mb-4">
           <div className="flex-1 h-[1px] bg-white/20" />
