@@ -169,7 +169,7 @@ export function Home() {
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start relative">
             
-            {/* Decorative Image - Now centered in the whole block */}
+            {/* Decorative Image - Centered in the block */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
               <Image 
                 src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
@@ -189,7 +189,7 @@ export function Home() {
               </p>
             </div>
 
-            {/* Steps column starts at col 8 (approx 60%) and is fit to content */}
+            {/* Steps column starts at col 8 (approx 60%) */}
             <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col pt-0 relative">
               <motion.div 
                 className="flex flex-col w-full lg:w-fit border-t border-[#e0ded8]/20"
@@ -216,10 +216,10 @@ export function Home() {
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-xl md:text-[2vw] font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-xl md:text-[2vw] font-headline font-black text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
-                          <h3 className="text-xl md:text-[2vw] font-bold text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-xl md:text-[2vw] font-headline font-black text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
                         </motion.div>
@@ -245,7 +245,7 @@ export function Home() {
                 viewport={{ once: true, amount: 0.1 }}
               >
                 <div className="lg:hidden mb-6">
-                  <h2 className="text-3xl heading-md text-[#e0ded8] uppercase leading-[1.1]">
+                  <h2 className="text-3xl font-headline font-black text-[#e0ded8] uppercase leading-[1.1] tracking-tighter">
                     EXPLORE THE DIFFERENCE
                   </h2>
                 </div>
@@ -355,7 +355,7 @@ export function Home() {
               </motion.div>
 
               <div className="flex flex-col items-start text-left hidden lg:flex">
-                <h2 className="text-[3vw] heading-md text-[#e0ded8] uppercase leading-[1.1] mb-[2vh]">
+                <h2 className="text-[3vw] font-headline font-black text-[#e0ded8] uppercase leading-[1.1] mb-[2vh] tracking-tighter">
                   EXPLORE THE<br />DIFFERENCE
                 </h2>
               </div>
