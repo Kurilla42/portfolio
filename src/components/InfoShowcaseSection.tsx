@@ -64,15 +64,11 @@ export function InfoShowcaseSection({
             {quote}
           </p>
 
-          {/* Increased size (approx 5x) for Decorative Image */}
-          <div className="relative w-[400px] h-[550px] md:w-[600px] md:h-[800px] shrink-0 mx-auto">
-            <Image 
-              src="https://i.ibb.co/RqTMzB6/44513.png"
-              alt="Decorative Accent"
-              fill
-              className="object-contain"
-              unoptimized
-            />
+          {/* Restored Decorative Line with Center Circle */}
+          <div className="w-full h-[1px] bg-[#e0ded8]/20 relative">
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-[2vw] md:h-[2vw] bg-[#eaeaf2] rounded-full flex items-center justify-center border border-[#e0ded8]/20">
+              <div className="w-1.5 h-1.5 rounded-full bg-[#c7b684]" />
+            </div>
           </div>
         </div>
 
