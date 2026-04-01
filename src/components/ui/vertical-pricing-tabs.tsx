@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -174,7 +175,7 @@ export function VerticalPricingTabs() {
                     </span>
 
                     <span className={cn(
-                      "text-lg md:text-[1.2vw] font-bold tracking-tight transition-colors duration-500 uppercase",
+                      "text-lg md:text-[1.2vw] font-mono font-bold tracking-tight transition-colors duration-500 uppercase",
                       isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/30"
                     )}>
                       {plan.title}
@@ -209,12 +210,12 @@ export function VerticalPricingTabs() {
                   >
                     <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-6">
                       <div className="w-full">
-                        <p className="text-xl md:text-[1vw] font-normal text-[#e0ded8] leading-tight max-w-2xl mb-8 uppercase tracking-tight font-sans">
+                        <p className="text-xl md:text-[1vw] font-mono font-normal text-[#e0ded8] leading-tight max-w-2xl mb-8 uppercase tracking-tight">
                           {PRICING_PLANS[activeIndex].subdescription}
                         </p>
                         <div className="mb-10">
-                          <span className="text-[#e0ded8]/70 block mb-2 tracking-widest text-[10px] md:text-[1vw] uppercase font-sans">WHO IS THIS FOR</span>
-                          <p className="text-sm md:text-[1vw] text-[#e0ded8]/70 leading-relaxed font-sans">
+                          <span className="text-[#e0ded8]/70 block mb-2 tracking-widest text-[10px] md:text-[1vw] uppercase font-mono">WHO IS THIS FOR</span>
+                          <p className="text-sm md:text-[1vw] font-mono text-[#e0ded8]/70 leading-relaxed">
                             {PRICING_PLANS[activeIndex].whoIsThisFor}
                           </p>
                         </div>
@@ -234,10 +235,10 @@ export function VerticalPricingTabs() {
 
                     <div className="flex flex-col mb-8">
                       <div className="mb-10">
-                        <span className="text-[#e0ded8]/70 block mb-4 tracking-widest text-[10px] md:text-[1vw] uppercase font-sans">WHAT'S INCLUDED</span>
+                        <span className="text-[#e0ded8]/70 block mb-4 tracking-widest text-[10px] md:text-[1vw] uppercase font-mono">WHAT'S INCLUDED</span>
                         <ul className="space-y-3 mb-10">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
-                            <li key={i} className="flex items-start gap-4 text-[10px] md:text-[1vw] text-[#e0ded8]/70 font-sans leading-relaxed">
+                            <li key={i} className="flex items-start gap-4 text-[10px] md:text-[1vw] text-[#e0ded8]/70 font-mono leading-relaxed">
                               <div className="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#c7b684] shrink-0" />
                               {resource}
                             </li>
@@ -245,7 +246,7 @@ export function VerticalPricingTabs() {
                         </ul>
 
                         <div className="max-w-2xl mb-8">
-                          <p className="text-sm md:text-[1vw] text-[#e0ded8]/70 leading-relaxed font-sans">
+                          <p className="text-sm md:text-[1vw] font-mono text-[#e0ded8]/70 leading-relaxed">
                             {PRICING_PLANS[activeIndex].footerText}
                           </p>
                         </div>
@@ -253,7 +254,7 @@ export function VerticalPricingTabs() {
                         <div className="flex justify-start">
                           <Button 
                             variant="link" 
-                            className="text-[#e0ded8] p-0 h-auto font-bold uppercase tracking-[0.2em] text-[10px] md:text-[1vw] underline underline-offset-8 decoration-[#e0ded8]/30 hover:decoration-[#e0ded8] transition-all font-sans"
+                            className="text-[#e0ded8] p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[10px] md:text-[1vw] underline underline-offset-8 decoration-[#e0ded8]/30 hover:decoration-[#e0ded8] transition-all"
                           >
                             {PRICING_PLANS[activeIndex].buttonText}
                           </Button>

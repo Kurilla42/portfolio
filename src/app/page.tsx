@@ -173,7 +173,7 @@ export function Home() {
               <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              <p className="text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest max-w-[25vw] leading-relaxed ml-[1vw]">
+              <p className="text-base md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest max-w-[25vw] leading-relaxed ml-[1vw]">
                 No confusion, no delays. Just a simple process to get your site live
               </p>
             </div>
@@ -195,7 +195,7 @@ export function Home() {
                     className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default w-full"
                   >
                     <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden pr-8">
-                      <span className="font-mono text-sm md:text-[1vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
+                      <span className="font-mono text-xl md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
                         {step.number}
                       </span>
                       <div className="h-8 md:h-[2.4vw] overflow-hidden">
@@ -254,7 +254,7 @@ export function Home() {
                           ${header.active ? 'bg-[#e0ded8]/5' : ''}
                         `}
                       >
-                        <span className={`text-[1vw] font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
+                        <span className={`text-[1vw] font-mono font-bold tracking-[0.2em] uppercase truncate transition-colors duration-300
                           ${header.active ? 'text-[#e0ded8]' : 'text-[#e0ded8]/30'}
                         `}>
                           {header.label}
@@ -269,12 +269,12 @@ export function Home() {
                     <div key={idx} className="flex flex-col space-y-3 border-b border-[#e0ded8]/10 pb-6">
                       <span className="text-[10px] font-mono text-[#c7b684] uppercase tracking-widest">{item.criterion}</span>
                       <div className="bg-[#e0ded8]/5 p-4 rounded-lg">
-                        <span className="text-[10px] text-[#e0ded8]/40 uppercase block mb-1">Anton Kolesnikov</span>
-                        <p className="text-sm font-bold text-[#e0ded8]">{item.me}</p>
+                        <span className="text-[10px] font-mono text-[#e0ded8]/40 uppercase block mb-1">Anton Kolesnikov</span>
+                        <p className="text-sm font-mono font-bold text-[#e0ded8]">{item.me}</p>
                       </div>
                       <div className="p-4 border border-[#e0ded8]/5 rounded-lg">
-                        <span className="text-[10px] text-[#e0ded8]/40 uppercase block mb-1">Freelancer/Agency</span>
-                        <p className="text-sm font-medium text-[#e0ded8]/60">{item.freelancer}</p>
+                        <span className="text-[10px] font-mono text-[#e0ded8]/40 uppercase block mb-1">Freelancer/Agency</span>
+                        <p className="text-sm font-mono font-medium text-[#e0ded8]/60">{item.freelancer}</p>
                       </div>
                     </div>
                   ))}
@@ -296,10 +296,10 @@ export function Home() {
                              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                              className="flex flex-col"
                            >
-                             <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-[#e0ded8]/40 group-hover:text-[#e0ded8] transition-colors duration-300 h-[1.2vw] flex items-center">
+                             <span className="text-[1vw] font-mono font-bold tracking-[0.1em] uppercase text-[#e0ded8]/40 group-hover:text-[#e0ded8] transition-colors duration-300 h-[1.2vw] flex items-center">
                                {item.criterion}
                              </span>
-                             <span className="text-[1vw] font-bold tracking-[0.1em] uppercase text-[#e0ded8] h-[1.2vw] flex items-center">
+                             <span className="text-[1vw] font-mono font-bold tracking-[0.1em] uppercase text-[#e0ded8] h-[1.2vw] flex items-center">
                                {item.criterion}
                              </span>
                            </motion.div>
@@ -313,10 +313,10 @@ export function Home() {
                              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                              className="flex flex-col"
                            >
-                             <p className="text-[1vw] font-bold leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
+                             <p className="text-[1vw] font-mono font-bold leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
                                {item.me}
                              </p>
-                             <p className="text-[1vw] font-bold leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
+                             <p className="text-[1vw] font-mono font-bold leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
                                {item.me}
                              </p>
                            </motion.div>
@@ -330,10 +330,10 @@ export function Home() {
                              transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                              className="flex flex-col"
                            >
-                             <p className="text-[1vw] font-medium leading-tight truncate text-[#e0ded8]/40 group-hover:text-[#e0ded8]/60 transition-colors duration-300 h-[1.2vw] flex items-center">
+                             <p className="text-[1vw] font-mono font-medium leading-tight truncate text-[#e0ded8]/40 group-hover:text-[#e0ded8]/60 transition-colors duration-300 h-[1.2vw] flex items-center">
                                {item.freelancer}
                              </p>
-                             <p className="text-[1vw] font-medium leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
+                             <p className="text-[1vw] font-mono font-medium leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
                                {item.freelancer}
                              </p>
                            </motion.div>
