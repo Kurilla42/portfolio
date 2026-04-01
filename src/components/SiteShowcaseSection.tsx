@@ -27,7 +27,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-2xl sm:text-3xl md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-tight whitespace-nowrap"
+        className="absolute text-2xl sm:text-3xl md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-normal whitespace-nowrap"
       >
         {label}
       </motion.div>
@@ -136,7 +136,7 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="font-kurale font-bold text-[3vw] uppercase text-[#c7b684] tracking-tight text-center"
+                className="font-kurale font-bold text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
               >
                 <div className="flex flex-col items-center leading-[1.0]">
                   {"YOUR SITE".split("").map((char, i) => (
