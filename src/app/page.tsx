@@ -182,24 +182,8 @@ export function Home() {
 
             <div className="col-span-12 lg:col-span-5 flex flex-col">
               <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-12 md:mb-[6vh] tracking-tight">
-                SIMPLE STEPS
+                SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              
-              <div className="relative w-full max-w-[20vw] aspect-video overflow-hidden group mb-8">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                  className="w-full h-full"
-                >
-                  <Image 
-                    src="https://i.ibb.co/b5vKSp4R/202604011547.jpg"
-                    alt="Process Illustration"
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </motion.div>
-              </div>
             </div>
 
             {/* Steps column starts at col 8 (approx 60%) and is fit to content */}
