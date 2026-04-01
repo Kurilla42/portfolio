@@ -12,12 +12,10 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Значительно замедленная анимация входа
   const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
   const containersEntryY = useTransform(scrollYProgress, [0, 0.95], ["100vh", "0vh"]);
   const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
   
-  // Центральные элементы
   const centralImageOpacity = useTransform(scrollYProgress, [0, 0.35, 0.6], [1, 1, 0]);
   const centralTextOpacity = useTransform(scrollYProgress, [0.6, 0.9], [0, 1]);
   const centralScale = useTransform(scrollYProgress, [0, 0.6], [0.8, 1]);
@@ -29,7 +27,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-2xl sm:text-3xl md:text-[5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-tight whitespace-nowrap"
+        className="absolute text-2xl sm:text-3xl md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-tight whitespace-nowrap"
       >
         {label}
       </motion.div>
@@ -100,7 +98,6 @@ export function SiteShowcaseSection() {
 
   return (
     <div ref={containerRef} className="relative h-[180vh] z-10">
-      {/* Background Image Layer */}
       <div className="absolute inset-0 z-0">
         <Image 
           src="https://i.ibb.co/Y7Rzv80G/1.jpg"

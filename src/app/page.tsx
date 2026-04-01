@@ -91,7 +91,6 @@ export function Home() {
     offset: ["start start", "end end"]
   });
 
-  // Эффект "воспроизведения" через скролл: смещение и легкое масштабирование
   const bgY = useTransform(combinedScroll, [0, 1], ["0%", "25%"]);
   const bgScale = useTransform(combinedScroll, [0, 1], [1, 1.1]);
 
@@ -108,7 +107,6 @@ export function Home() {
       <HeroCurtain isLifted={isLifted} />
 
       <div ref={combinedRef} className="relative z-0">
-        {/* Фоновый слой для Hero и Experience */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.div 
             style={{ y: bgY, scale: bgScale }}
@@ -167,18 +165,26 @@ export function Home() {
           <div className="absolute inset-0 bg-black/70" />
         </div>
 
-        <div className="relative z-10 w-full px-6 md:px-[8vw]">
+        <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start">
             <div className="col-span-12 lg:col-span-5 flex flex-col">
-              <h2 className="text-3xl md:text-[3vw] heading-md text-[#e0ded8] uppercase leading-[1.1] mb-8 md:mb-[6vh]">
+              <h2 className="text-3xl md:text-[3vw] font-headline text-[#e0ded8] uppercase leading-[1.1] mb-8 md:mb-[4vh] tracking-normal">
                 SIMPLE STEPS
               </h2>
-              <div className="flex flex-col gap-8">
-                <div className="flex flex-col gap-4 w-full md:max-w-[22vw]">
-                  <p className="text-[11px] md:text-[12px] text-[#e0ded8]/50 leading-relaxed uppercase tracking-[0.15em] font-mono">
-                    My goal has always been to elevate everyday interactions into something more meaningful and সংস্কৃтеen सह, quietly threading in moments of joy.
-                  </p>
-                </div>
+              <div className="relative w-full max-w-[22vw] aspect-[3/4] overflow-hidden group">
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                  className="w-full h-full"
+                >
+                  <Image 
+                    src="https://i.ibb.co/b5vKSp4R/202604011547.jpg"
+                    alt="Process Illustration"
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
+                </motion.div>
               </div>
             </div>
 

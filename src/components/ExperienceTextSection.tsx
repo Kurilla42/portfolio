@@ -69,7 +69,8 @@ const itemVariants = {
 export function ExperienceTextSection() {
   return (
     <div className="w-full flex flex-col items-center justify-center px-6 md:px-[4vw]">
-      <div className="w-full md:max-w-[85vw] flex flex-col gap-12 md:gap-24">
+      {/* Manifesto Content - Using max-w-full to match Hero heading alignment */}
+      <div className="w-full md:max-w-full flex flex-col gap-12 md:gap-24">
         {/* Top / Left Part */}
         <div className="w-full flex justify-start">
           <HighlightWipeHeading 
@@ -93,7 +94,7 @@ export function ExperienceTextSection() {
           />
         </div>
 
-        {/* 5 Points Grid - Added 4vw horizontal padding to keep it at 8vw effective padding */}
+        {/* 5 Points Grid - Adjusted with internal padding to maintain original look below manifesto */}
         <motion.div 
           className="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-[2vw] mt-12 md:mt-8 md:px-[4vw]"
           variants={containerVariants}
