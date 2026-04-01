@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState } from 'react';
@@ -10,6 +11,14 @@ import Image from 'next/image';
 import { VerticalPricingTabs } from '@/components/ui/vertical-pricing-tabs';
 import { InfoShowcaseSection } from '@/components/InfoShowcaseSection';
 import { HeroCurtain } from '@/components/HeroCurtain';
+
+const steps = [
+  { number: "DAY 01", title: "Choose Your Service" },
+  { number: "DAY 02", title: "Complete the Brief" },
+  { number: "DAY 03", title: "Build the Landing Page" },
+  { number: "DAY 04", title: "Test & Connect CRM" },
+  { number: "DAY 05", title: "Deploy & Launch" }
+];
 
 const comparisonData = [
   {
@@ -37,14 +46,6 @@ const comparisonData = [
     me: "City-Specific Ad Landing Pages",
     freelancer: "Hard to Scale for Paid Traffic"
   }
-];
-
-const steps = [
-  { number: "DAY 01", title: "Choose Your Service" },
-  { number: "DAY 02", title: "Complete the Brief" },
-  { number: "DAY 03", title: "Build the Landing Page" },
-  { number: "DAY 04", title: "Test & Connect CRM" },
-  { number: "DAY 05", title: "Deploy & Launch" }
 ];
 
 const containerVariants = {
@@ -120,7 +121,8 @@ export function Home() {
               priority
               unoptimized
             />
-            {/* Removed full-screen overlay filter, added bottom gradient only */}
+            {/* Solid overlay returned for hero video */}
+            <div className="absolute inset-0 bg-[#0f0f0f]/40" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-[#0f0f0f]" />
           </motion.div>
         </div>
@@ -158,7 +160,7 @@ export function Home() {
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start relative">
             
-            {/* Decorative Image - Centered in the block */}
+            {/* Decorative Image */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
               <Image 
                 src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
@@ -178,7 +180,6 @@ export function Home() {
               </p>
             </div>
 
-            {/* Steps column starts at col 8 (approx 60%) */}
             <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col pt-0 relative">
               <motion.div 
                 className="flex flex-col w-full lg:w-fit border-t border-[#e0ded8]/20"
