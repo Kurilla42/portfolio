@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState } from 'react';
@@ -166,9 +167,21 @@ export function Home() {
         </div>
 
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
-          <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start">
+          <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start relative">
+            
+            {/* Decorative Image Between Picture and Steps - Centered with 3rd Step */}
+            <div className="absolute left-[41.6%] top-[58%] -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
+              <Image 
+                src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
+                alt="Plumbing Specialist"
+                fill
+                className="object-contain object-center"
+                unoptimized
+              />
+            </div>
+
             <div className="col-span-12 lg:col-span-5 flex flex-col">
-              <h2 className="text-3xl md:text-[3vw] font-headline text-[#e0ded8] uppercase leading-[1.1] mb-8 md:mb-[4vh] tracking-normal">
+              <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-12 md:mb-[6vh] tracking-tight">
                 SIMPLE STEPS
               </h2>
               
@@ -187,20 +200,9 @@ export function Home() {
                   />
                 </motion.div>
               </div>
-
-              {/* Decorative Image Between Picture and Steps */}
-              <div className="relative w-full max-w-[15vw] h-[25vh] md:h-[35vh] mt-[-5vh] md:mt-[-10vh] ml-auto lg:ml-[8vw] z-20 pointer-events-none">
-                <Image 
-                  src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
-                  alt="Plumbing Specialist"
-                  fill
-                  className="object-contain object-bottom"
-                  unoptimized
-                />
-              </div>
             </div>
 
-            <div className="col-span-12 lg:col-span-7 flex flex-col pt-0">
+            <div className="col-span-12 lg:col-span-7 flex flex-col pt-0 relative">
               <motion.div 
                 className="flex flex-col w-full border-t border-[#e0ded8]/20"
                 variants={containerVariants}
