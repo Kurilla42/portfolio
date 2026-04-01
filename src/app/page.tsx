@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState } from 'react';
@@ -116,7 +117,7 @@ export function Home() {
               src={bgVideoUrl}
               alt="Scroll-reactive background"
               fill
-              className="absolute inset-0 object-cover object-center"
+              className="absolute inset-0 object-cover object-center blur-[10px]"
               priority
               unoptimized
             />
