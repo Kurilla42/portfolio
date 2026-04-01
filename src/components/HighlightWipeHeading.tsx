@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useRef } from 'react';
@@ -32,7 +33,7 @@ export function HighlightWipeHeading({
   return (
     <Component ref={ref} className={cn("flex flex-col", className)}>
       {lines.map((line, index) => (
-        <span key={index} className="relative overflow-hidden inline-block w-fit py-1 mb-1">
+        <span key={index} className="relative overflow-hidden inline-block w-fit py-4 -my-3">
           {/* Animated Accent Bar */}
           <motion.span
             initial={{ x: '-101%' }}
