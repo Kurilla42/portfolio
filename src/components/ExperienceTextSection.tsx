@@ -4,15 +4,15 @@ import { motion } from 'framer-motion';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 const part1 = [
-  "After 12 years in internet marketing, I found",
+  "After <span class='text-accent'>12 years</span> in internet marketing, I found",
   "why so many local service websites",
   "fail to generate calls"
 ];
 
 const part2 = [
   "It’s not the traffic or the budget. It’s",
-  "5 costly mistakes web designers make",
-  "when they focus on looks instead of conversions"
+  "<span class='text-accent'>5 costly mistakes</span> web designers make",
+  "when they focus on looks instead of <span class='text-accent'>conversions</span>"
 ];
 
 const conversionPoints = [
