@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState } from 'react';
@@ -121,9 +120,9 @@ export function Home() {
               priority
               unoptimized
             />
-            {/* Solid overlay returned for hero video - set to black as requested */}
+            {/* Solid black overlay */}
             <div className="absolute inset-0 bg-black/50" />
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-[#0f0f0f]" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-black" />
           </motion.div>
         </div>
 
@@ -145,7 +144,7 @@ export function Home() {
 
         <div ref={parallaxRef} className="relative z-20">
           <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh] overflow-hidden">
-            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,#0f0f0f_65%)]" />
+            <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,black_65%)]" />
             
             <div className="relative z-10">
               <ExperienceTextSection />
@@ -156,7 +155,7 @@ export function Home() {
       
       <SiteShowcaseSection />
 
-      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full bg-[#0f0f0f]" id="steps">
+      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full bg-black" id="steps">
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start relative">
             
@@ -366,7 +365,7 @@ export function Home() {
             unoptimized
             priority
           />
-          <div className="absolute inset-0 bg-[#0f0f0f]/60" />
+          <div className="absolute inset-0 bg-black/60" />
         </div>
 
         <div className="relative z-10 w-full h-full px-6 md:px-[8vw] flex flex-col items-center justify-center text-center">

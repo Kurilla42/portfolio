@@ -11,7 +11,7 @@ interface InfoShowcaseSectionProps {
 }
 
 export function InfoShowcaseSection({
-  imageSrc = "https://i.ibb.co/LDgsQj1v/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd.jpg",
+  imageSrc = "https://images.unsplash.com/photo-1659353588842-891391e6fcd4?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw5fHxwbHVtYmVyJTIwcHJvZmVzc2lvbmFsfGVufDB8fHx8MTc3MTM0OTIzMHww&ixlib=rb-4.1.0&q=80&w=1080",
   quote = "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build high-converting landing pages, uniquely crafted from user insights and proven conversion principles - always setting you apart from the competition",
   children
 }: InfoShowcaseSectionProps) {
@@ -22,16 +22,16 @@ export function InfoShowcaseSection({
     offset: ["start end", "end start"]
   });
 
-  // Параллакс с низкой интенсивностью и отступом -5% для исключения зазоров
+  // Параллакс с низкой интенсивностью
   const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
-    <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-[#0f0f0f]">
-      {/* Объединенный блок: IN FO + Манифест (Высота 160vh) */}
+    <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
+      {/* Объединенный блок: IN FO + Манифест */}
       <div className="relative min-h-[160vh] w-full flex flex-col">
         
-        {/* Фоновый слой: Картинка в верхней части */}
-        <div className="absolute inset-0 z-0 h-full w-full bg-[#0f0f0f] overflow-hidden">
+        {/* Фоновый слой */}
+        <div className="absolute inset-0 z-0 h-full w-full bg-black overflow-hidden">
           <motion.div 
             style={{ y }}
             className="absolute -top-[5%] left-0 w-full h-[140vh]" 
@@ -44,8 +44,8 @@ export function InfoShowcaseSection({
               priority
               unoptimized
             />
-            {/* Затемнение начинается ровно от текста манифеста, верхняя часть чистая */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-[#0f0f0f]" />
+            {/* Затемнение начинается ровно от текста манифеста */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-black" />
           </motion.div>
         </div>
 
@@ -61,7 +61,7 @@ export function InfoShowcaseSection({
               </h2>
            </div>
            
-           {/* Текст манифеста: Расположен на нижней части картинки, где начинается затемнение */}
+           {/* Текст манифеста */}
            <div className="w-full text-center px-6 md:px-[4vw] pt-[30vh] md:pt-[45vh] pb-0 mt-auto">
              <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl">
                {quote}
@@ -70,8 +70,8 @@ export function InfoShowcaseSection({
         </div>
       </div>
 
-      {/* Отдельная секция: Линии и Таблица на темном фоне */}
-      <div className="relative z-10 w-full bg-[#0f0f0f] flex flex-col items-center pb-[15vh] pt-0">
+      {/* Отдельная секция: Линии и Таблица на черном фоне */}
+      <div className="relative z-10 w-full bg-black flex flex-col items-center pb-[15vh] pt-0">
         {/* Декоративная линия с иконкой */}
         <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-2 md:mb-4">
           <div className="flex-1 h-[1px] bg-white/20" />
@@ -87,7 +87,7 @@ export function InfoShowcaseSection({
           <div className="flex-1 h-[1px] bg-white/20" />
         </div>
 
-        {/* Дочерние элементы (Заголовок и Таблица сравнения) */}
+        {/* Дочерние элементы */}
         {children && (
           <div className="w-full">
             {children}

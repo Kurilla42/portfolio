@@ -66,7 +66,7 @@ export function SiteShowcaseSection() {
             transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
             className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none overflow-hidden"
           >
-            <div className="relative w-full h-full border border-[#e0ded8]/20 bg-[#0f0f0f]/20 flex flex-col shadow-2xl shadow-black/50">
+            <div className="relative w-full h-full border border-[#e0ded8]/20 bg-black/20 flex flex-col shadow-2xl shadow-black/50">
               <Image 
                 src={src} 
                 alt="Case Study Preview" 
@@ -83,7 +83,7 @@ export function SiteShowcaseSection() {
               initial: { opacity: 0 },
               hover: { opacity: 0.2 }
             }}
-            className="absolute inset-0 bg-[#0f0f0f] z-20 pointer-events-none"
+            className="absolute inset-0 bg-black z-20 pointer-events-none"
           />
         </motion.div>
         
@@ -97,7 +97,7 @@ export function SiteShowcaseSection() {
   );
 
   return (
-    <div ref={containerRef} className="relative h-[180vh] z-10 bg-[#0f0f0f]">
+    <div ref={containerRef} className="relative h-[180vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="w-full h-full flex items-center justify-center relative">
           

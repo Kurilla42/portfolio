@@ -35,7 +35,7 @@ const itemVariants = {
 export function ProcessSection() {
   return (
     <section 
-      className="relative bg-[#0f0f0f] z-30 py-[15vh]"
+      className="relative bg-black z-30 py-[15vh]"
       id="process"
     >
       <div className="w-full grid grid-cols-1 md:grid-cols-2 px-[8vw] gap-[8vw]">

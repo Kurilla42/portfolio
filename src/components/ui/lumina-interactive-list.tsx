@@ -84,7 +84,7 @@ export function LuminaInteractiveList() {
         text: "#e0ded8",
         overlay: "rgba(0,0,0,0.20)", 
         pageBg: "#eaeaf2",
-        stageBg: "#0f0f0f",
+        stageBg: "black",
       }}
       showProgress={false}
     />
@@ -169,7 +169,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
         text: "#e0ded8",
         overlay: "rgba(0,0,0,0.20)",
         pageBg: "#eaeaf2",
-        stageBg: "#0f0f0f",
+        stageBg: "black",
       },
       apiRef,
       ariaLabel = "Full screen scroll slideshow",
@@ -344,7 +344,7 @@ const FullScreenScrollFX = forwardRef<HTMLDivElement, FullScreenFXProps>(
       ["--fx-text" as any]: colors.text ?? "#e0ded8",
       ["--fx-overlay" as any]: colors.overlay ?? "rgba(0,0,0,0.20)",
       ["--fx-page-bg" as any]: colors.pageBg ?? "#eaeaf2",
-      ["--fx-stage-bg" as any]: colors.stageBg ?? "#0f0f0f",
+      ["--fx-stage-bg" as any]: colors.stageBg ?? "black",
       ["--fx-gap" as any]: `${gap}rem`,
       ["--fx-grid-px" as any]: `${gridPaddingX}rem`,
     };
