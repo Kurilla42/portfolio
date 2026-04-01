@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useRef } from 'react';
@@ -23,7 +22,7 @@ export function InfoShowcaseSection({
     offset: ["start end", "end start"]
   });
 
-  // Параллакс с минимальной интенсивностью и отступом -5% для исключения зазоров
+  // Параллакс с низкой интенсивностью и отступом -5% для исключения зазоров
   const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
@@ -45,8 +44,8 @@ export function InfoShowcaseSection({
               priority
               unoptimized
             />
-            {/* Затемнение в самом низу картинки для перехода в черный фон */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% via-black/70 95% to-black" />
+            {/* Затемнение начинается ровно от текста (примерно с 85% высоты картинки) */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 70% via-black/80 85% to-black" />
           </motion.div>
         </div>
 
@@ -62,7 +61,7 @@ export function InfoShowcaseSection({
               </h2>
            </div>
            
-           {/* Текст манифеста: Расположен на нижней части картинки */}
+           {/* Текст манифеста: Расположен на нижней части картинки, где начинается затемнение */}
            <div className="w-full text-center px-6 md:px-[4vw] pt-[30vh] md:pt-[45vh] pb-[10vh] mt-auto">
              <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl">
                {quote}
@@ -73,7 +72,7 @@ export function InfoShowcaseSection({
 
       {/* Отдельная секция: Линии и Таблица на черном фоне */}
       <div className="relative z-10 w-full bg-black flex flex-col items-center pb-[15vh]">
-        {/* Декоративная линия с иконкой - Уменьшена в 3 раза */}
+        {/* Декоративная линия с иконкой - Уменьшена в 3 раза и помещена в начало блока */}
         <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-12 md:mb-16">
           <div className="flex-1 h-[1px] bg-white/20" />
           <div className="relative w-[14vw] h-[14vw] md:w-[18vw] md:h-[18vw] shrink-0">
