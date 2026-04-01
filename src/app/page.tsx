@@ -205,7 +205,7 @@ export function Home() {
             {/* Steps column starts at col 8 (approx 60%) and is fit to content */}
             <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col pt-0 relative">
               <motion.div 
-                className="flex flex-col w-full border-t border-[#e0ded8]/20"
+                className="flex flex-col w-full lg:w-fit border-t border-[#e0ded8]/20"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -217,7 +217,7 @@ export function Home() {
                     variants={itemVariants}
                     whileHover="hover"
                     initial="initial"
-                    className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default w-fit min-w-full lg:min-w-0"
+                    className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default w-full"
                   >
                     <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden pr-8">
                       <span className="font-mono text-sm md:text-[1vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
@@ -229,10 +229,10 @@ export function Home() {
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-xl md:text-[2vw] font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
+                          <h3 className="text-xl md:text-[2vw] font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
-                          <h3 className="text-xl md:text-[2vw] font-bold text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center">
+                          <h3 className="text-xl md:text-[2vw] font-bold text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
                         </motion.div>
