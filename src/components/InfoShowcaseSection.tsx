@@ -28,7 +28,7 @@ export function InfoShowcaseSection({
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
-      {/* Объединенный блок: IN FO + Манифест (Высота уменьшена до 160vh) */}
+      {/* Объединенный блок: IN FO + Манифест (Высота 160vh) */}
       <div className="relative min-h-[160vh] w-full flex flex-col">
         
         {/* Фоновый слой: Картинка в верхней части */}
@@ -73,10 +73,10 @@ export function InfoShowcaseSection({
 
       {/* Отдельная секция: Линии и Таблица на черном фоне */}
       <div className="relative z-10 w-full bg-black flex flex-col items-center pb-[15vh]">
-        {/* Декоративная линия с иконкой */}
-        <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-16 md:mb-24">
-          <div className="flex-1 h-[1px] bg-white" />
-          <div className="relative w-[42vw] h-[42vw] md:w-[54vw] md:h-[54vw] shrink-0">
+        {/* Декоративная линия с иконкой - Уменьшена в 3 раза */}
+        <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-12 md:mb-16">
+          <div className="flex-1 h-[1px] bg-white/20" />
+          <div className="relative w-[14vw] h-[14vw] md:w-[18vw] md:h-[18vw] shrink-0">
             <Image 
               src="https://i.ibb.co/nN2y7dpt/generated-image-12-removebg-preview.png"
               alt="Decorative Icon"
@@ -85,10 +85,10 @@ export function InfoShowcaseSection({
               unoptimized
             />
           </div>
-          <div className="flex-1 h-[1px] bg-white" />
+          <div className="flex-1 h-[1px] bg-white/20" />
         </div>
 
-        {/* Дочерние элементы (Таблица сравнения) */}
+        {/* Дочерние элементы (Заголовок и Таблица сравнения) */}
         {children && (
           <div className="w-full">
             {children}
