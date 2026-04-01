@@ -22,17 +22,17 @@ export function InfoShowcaseSection({
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "15%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
       {/* COMBINED BLOCK: IN FO + Quote with BACKGROUND IMAGE */}
-      <div className="relative min-h-screen w-full overflow-hidden flex flex-col">
+      <div className="relative min-h-[200vh] w-full overflow-hidden flex flex-col">
         {/* Background Layer */}
         <div className="absolute inset-0 z-0 h-full w-full">
           <motion.div 
             style={{ y }}
-            className="absolute -top-[10%] left-0 w-full h-[120%]"
+            className="absolute -top-[20%] left-0 w-full h-[140%]"
           >
             <Image
               src={imageSrc}
@@ -43,7 +43,7 @@ export function InfoShowcaseSection({
               unoptimized
             />
             {/* Fade out transition: starts around 30% and goes to solid black */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 via-black/40 via-black/80 to-black" />
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 30% via-black/40 60% via-black/80 85% to-black" />
           </motion.div>
         </div>
 
@@ -60,7 +60,7 @@ export function InfoShowcaseSection({
            </div>
            
            {/* Manifesto Text */}
-           <div className="w-full text-center px-6 md:px-[4vw] pt-[5vh] pb-[10vh] md:pb-[15vh]">
+           <div className="w-full text-center px-6 md:px-[4vw] pt-[20vh] pb-[20vh] md:pb-[30vh]">
              <p className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto">
                {quote}
              </p>
