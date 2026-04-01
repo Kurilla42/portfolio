@@ -153,18 +153,7 @@ export function Home() {
       
       <SiteShowcaseSection />
 
-      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full" id="steps">
-        <div className="absolute inset-0 z-0">
-          <Image 
-            src="https://i.ibb.co/Y7Rzv80G/1.jpg"
-            alt="Steps Background"
-            fill
-            className="object-cover"
-            unoptimized
-          />
-          <div className="absolute inset-0 bg-[#0f0f0f]/70" />
-        </div>
-
+      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full bg-[#0f0f0f]" id="steps">
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start relative">
             

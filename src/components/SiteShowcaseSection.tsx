@@ -97,18 +97,7 @@ export function SiteShowcaseSection() {
   );
 
   return (
-    <div ref={containerRef} className="relative h-[180vh] z-10">
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="https://i.ibb.co/Y7Rzv80G/1.jpg"
-          alt="Showcase Background"
-          fill
-          className="object-cover"
-          unoptimized
-        />
-        <div className="absolute inset-0 bg-[#0f0f0f]/70" />
-      </div>
-
+    <div ref={containerRef} className="relative h-[180vh] z-10 bg-[#0f0f0f]">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         <div className="w-full h-full flex items-center justify-center relative">
           

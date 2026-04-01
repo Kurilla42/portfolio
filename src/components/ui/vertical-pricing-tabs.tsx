@@ -126,18 +126,7 @@ export function VerticalPricingTabs() {
   };
 
   return (
-    <section ref={containerRef} className="w-full py-16 md:py-32 relative z-30" id="packages">
-      <div className="absolute inset-0 z-0">
-        <Image 
-          src="https://i.ibb.co/Y7Rzv80G/1.jpg"
-          alt="Pricing Background"
-          fill
-          className="object-cover"
-          unoptimized
-        />
-        <div className="absolute inset-0 bg-[#0f0f0f]/70" />
-      </div>
-
+    <section ref={containerRef} className="w-full py-16 md:py-32 relative z-30 bg-[#0f0f0f]" id="packages">
       <div className="relative z-10 w-full px-6 md:px-[4vw] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start min-h-[600px] md:min-h-[750px]">
           {/* Left Column: Heading and Navigation (Raised to the Top) */}
