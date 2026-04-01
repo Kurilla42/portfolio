@@ -13,7 +13,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       initial={{ y: "0%" }}
       animate={{ y: isLifted ? "-105%" : "0%" }}
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-0 z-[100] w-full h-screen bg-[#1d1e1c]/70 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
+      className="fixed inset-0 z-[100] w-full h-screen bg-[#0f0f0f]/70 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
     >
       {/* Top Spacer to push letters to the middle/bottom */}
       <div className="flex-[0.5]" />
@@ -45,7 +45,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
         initial={{ opacity: 1 }}
         animate={{ opacity: isLifted ? 0 : 1 }}
         transition={{ duration: 0.8 }}
-        className="h-[6vh] w-full bg-[#1d1e1c]/40 flex items-center justify-center px-[4vw] relative overflow-hidden shrink-0 border-t border-[#e0ded8]/5"
+        className="h-[6vh] w-full bg-[#0f0f0f]/40 flex items-center justify-center px-[4vw] relative overflow-hidden shrink-0 border-t border-[#e0ded8]/5"
       >
         <span className="font-mono text-[14px] md:text-[18px] font-black text-[#e0ded8] tracking-[0.4em] uppercase">
           WHATS LPPL?

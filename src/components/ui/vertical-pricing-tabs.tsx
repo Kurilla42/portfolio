@@ -135,7 +135,7 @@ export function VerticalPricingTabs() {
           className="object-cover"
           unoptimized
         />
-        <div className="absolute inset-0 bg-[#1d1e1c]/70" />
+        <div className="absolute inset-0 bg-[#0f0f0f]/70" />
       </div>
 
       <div className="relative z-10 w-full px-6 md:px-[4vw] mx-auto">
