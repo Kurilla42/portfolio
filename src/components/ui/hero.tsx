@@ -79,8 +79,8 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
               {/* Divider Line */}
               <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-4 md:mb-[1.5vw]" />
               
-              {/* Manifesto Text */}
-              <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-sans text-[#e0ded8]/60 mb-8 md:mb-[3vw]">
+              {/* Manifesto Text - Changed font-sans to font-mono */}
+              <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw]">
                 <p>Built for service businesses</p>
                 <p>Focused on conversion</p>
                 <p>Made for owners who care about results</p>
