@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef } from 'react';
@@ -30,11 +29,9 @@ export function SiteShowcaseSection() {
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-3xl sm:text-4xl md:text-[5vw] font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-[1.5] md:leading-[1.7] tracking-tight"
+        className="absolute text-2xl sm:text-3xl md:text-[5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-tight whitespace-nowrap"
       >
-        {label.split("<br />").map((line, i) => (
-          <span key={i} className="block">{line}</span>
-        ))}
+        {label}
       </motion.div>
       
       <motion.div 
@@ -159,12 +156,12 @@ export function SiteShowcaseSection() {
           <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 items-center px-6 md:px-[4vw] relative z-10 gap-8 md:gap-[4vw]">
             <ShowcaseCard 
               src={leftImg} 
-              label="EXPLORE<br />HOW YOUR" 
+              label="EXPLORE HOW YOUR" 
               subLabel="template 1"
             />
             <ShowcaseCard 
               src={rightImg} 
-              label="SITE CAN<br />LOOK LIKE" 
+              label="SITE CAN LOOK LIKE" 
               subLabel="template 2"
             />
           </div>

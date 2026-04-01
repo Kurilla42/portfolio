@@ -33,7 +33,7 @@ const comparisonData = [
     freelancer: "Colors, Fonts & Visuals"
   },
   {
-    criterion: "SCALING",
+    criterion: "NICHE SCALING",
     me: "City-Specific Ad Landing Pages",
     freelancer: "Hard to Scale for Paid Traffic"
   }
@@ -194,7 +194,7 @@ export function Home() {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    whileInView="hover"
+                    whileHover="hover"
                     className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default"
                   >
                     <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden">
