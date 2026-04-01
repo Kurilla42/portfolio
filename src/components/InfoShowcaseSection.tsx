@@ -63,19 +63,15 @@ export function InfoShowcaseSection({
             {quote}
           </p>
 
-          {/* Decorative Line with Image in Gap */}
-          <div className="w-full max-w-[94vw] flex items-center gap-4 md:gap-8 px-4">
-            <div className="flex-1 h-[2px] bg-[#e0ded8] opacity-100" />
-            <div className="relative w-[52px] h-[73px] md:w-[73px] md:h-[104px] shrink-0">
-              <Image 
-                src="https://i.ibb.co/zWwNcSSf/image.png"
-                alt="Decorative Icon"
-                fill
-                className="object-contain"
-                unoptimized
-              />
-            </div>
-            <div className="flex-1 h-[2px] bg-[#e0ded8] opacity-100" />
+          {/* New Image Replacement for Lines/Icon */}
+          <div className="relative w-[80px] h-[110px] md:w-[120px] md:h-[160px] shrink-0 mx-auto">
+            <Image 
+              src="https://i.ibb.co/RqTMzB6/44513.png"
+              alt="Decorative Accent"
+              fill
+              className="object-contain"
+              unoptimized
+            />
           </div>
         </div>
 

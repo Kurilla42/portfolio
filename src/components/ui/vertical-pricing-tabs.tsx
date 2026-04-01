@@ -143,7 +143,7 @@ export function VerticalPricingTabs() {
           {/* Left Column: Heading and Navigation (Raised to the Top) */}
           <div className="lg:col-span-4 flex flex-col justify-start order-2 lg:order-1 pt-0">
             <div className="space-y-4 mb-8 md:mb-[4vw]">
-              <h2 className="text-3xl md:text-[3.5vw] font-black uppercase leading-tight text-[#e0ded8] tracking-tighter font-sans">
+              <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
                 SELECT YOUR<br />GROWTH TIER
               </h2>
             </div>
@@ -213,7 +213,7 @@ export function VerticalPricingTabs() {
                     animate="center"
                     exit="exit"
                     transition={{
-                      x: { type: "spring", stiffness: 300, damping: 30 },
+                      x: { type: "spring", stiffness: 300, stiffness: 300, damping: 30 },
                       opacity: { duration: 0.2 },
                     }}
                     className="flex flex-col h-full"
