@@ -64,11 +64,19 @@ export function InfoShowcaseSection({
             {quote}
           </p>
 
-          {/* Restored Decorative Line with Center Circle */}
-          <div className="w-full h-[1px] bg-[#e0ded8]/20 relative">
-            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-8 h-8 md:w-[2vw] md:h-[2vw] bg-[#eaeaf2] rounded-full flex items-center justify-center border border-[#e0ded8]/20">
-              <div className="w-1.5 h-1.5 rounded-full bg-[#c7b684]" />
+          {/* Decorative Line with Image in Gap */}
+          <div className="w-full flex items-center justify-center gap-8 md:gap-[4vw] px-4">
+            <div className="flex-1 h-[1px] bg-[#e0ded8]/30" />
+            <div className="relative w-10 h-10 md:w-[3vw] md:h-[3vw] shrink-0">
+              <Image 
+                src="https://i.ibb.co/nN2y7dpt/generated-image-12-removebg-preview.png"
+                alt="Decorative Icon"
+                fill
+                className="object-contain"
+                unoptimized
+              />
             </div>
+            <div className="flex-1 h-[1px] bg-[#e0ded8]/30" />
           </div>
         </div>
 
