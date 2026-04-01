@@ -171,7 +171,7 @@ export function Home() {
               <h2 className="text-3xl md:text-[3vw] font-headline text-[#e0ded8] uppercase leading-[1.1] mb-8 md:mb-[4vh] tracking-normal">
                 SIMPLE STEPS
               </h2>
-              <div className="relative w-full max-w-[22vw] aspect-[3/4] overflow-hidden group">
+              <div className="relative w-full max-w-[15.4vw] aspect-video overflow-hidden group">
                 <motion.div
                   whileHover={{ scale: 1.05 }}
                   transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
@@ -201,6 +201,7 @@ export function Home() {
                     key={index}
                     variants={itemVariants}
                     whileHover="hover"
+                    initial="initial"
                     className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default"
                   >
                     <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden">
