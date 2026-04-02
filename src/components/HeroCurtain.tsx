@@ -37,8 +37,8 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
           </div>
 
-          {/* Central Image */}
-          <div className="relative w-[15vw] md:w-[20vw] aspect-square mb-[2vh] md:mb-[5vh] shrink-0">
+          {/* Central Image - Increased to match letter size */}
+          <div className="relative w-[22vw] md:w-[30vw] aspect-square mb-[1vh] md:mb-[2vh] shrink-0">
             <Image 
               src="https://i.ibb.co/LzYz8M3F/Whisk-4c956caa38384ae948e4da1d2626c136dr-removebg-preview.png"
               alt="Decorative accent"
