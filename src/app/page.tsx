@@ -396,7 +396,7 @@ export function Home() {
                     </motion.div>
                   </div>
 
-                  {/* Center Column: Overlay Image - Increased size by 4x original */}
+                  {/* Center Column: Overlay Image */}
                   <div className="col-span-12 md:col-span-2 flex justify-center py-8 md:py-0">
                     <motion.div
                       initial={{ opacity: 0, scale: 0.8 }}
@@ -405,7 +405,7 @@ export function Home() {
                       className="relative w-[100vw] md:w-[60vw] aspect-square"
                     >
                       <Image 
-                        src="https://i.ibb.co/RTMpJyND/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
+                        src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
                         alt="Decorative Overlay"
                         fill
                         className="object-contain"
