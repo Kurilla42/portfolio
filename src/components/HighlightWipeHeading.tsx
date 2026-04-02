@@ -31,7 +31,7 @@ export function HighlightWipeHeading({
   return (
     <Component ref={ref} className={cn("flex flex-col", className)}>
       {lines.map((line, index) => (
-        <span key={index} className="relative overflow-hidden inline-block w-fit py-2 md:py-4 -my-1 md:-my-2">
+        <span key={index} className="relative overflow-hidden inline-block w-fit py-0.5 md:py-4">
           {/* Animated Accent Bar */}
           <motion.span
             initial={{ x: '-101%' }}
