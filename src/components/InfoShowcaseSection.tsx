@@ -66,7 +66,7 @@ export function InfoShowcaseSection({
 
         {/* IN FO Letters */}
         <div className="relative z-10 flex flex-col items-center w-full h-full">
-           <div className="w-full flex items-start justify-between px-6 md:px-[5vw] pt-[15vh] md:pt-[10vh] pointer-events-none">
+           <div className="w-full flex items-start justify-between px-6 md:px-[5vw] pt-[5vh] md:pt-[10vh] pointer-events-none">
               <h2 className="text-[40vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
                 IN
               </h2>
@@ -77,12 +77,25 @@ export function InfoShowcaseSection({
            
            {/* Manifest Quote with Highlight Wipe Animation */}
            <div className="w-full text-left md:text-center px-6 md:px-[4vw] pt-[35vh] md:pt-[45vh] pb-8 mt-auto">
-             <HighlightWipeHeading
-                lines={quoteLines}
-                className="text-[8vw] md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start md:items-center text-left md:text-center tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl"
-                stagger={0.1}
-                triggerOnce={true}
-             />
+             {/* Mobile Version: Joined lines for natural flow without "illogical breaks" */}
+             <div className="md:hidden">
+                <HighlightWipeHeading
+                  lines={[quoteLines.join(' ')]}
+                  className="text-[8vw] font-headline uppercase leading-[1.2] text-[#e0ded8] items-start text-left tracking-normal max-w-full drop-shadow-2xl"
+                  stagger={0.1}
+                  triggerOnce={true}
+                />
+             </div>
+             
+             {/* Desktop Version: Separate lines for original stagger animation */}
+             <div className="hidden md:block">
+                <HighlightWipeHeading
+                  lines={quoteLines}
+                  className="text-[3.0vw] font-headline uppercase leading-[1.1] text-[#e0ded8] items-center text-center tracking-normal max-w-[85vw] mx-auto drop-shadow-2xl"
+                  stagger={0.1}
+                  triggerOnce={true}
+                />
+             </div>
            </div>
         </div>
       </div>
