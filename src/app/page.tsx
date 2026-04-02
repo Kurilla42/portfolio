@@ -211,10 +211,10 @@ export function Home() {
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-[5vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[5vw] md:text-[2vw] font-headline font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
-                          <h3 className="text-[5vw] md:text-[2vw] font-mono font-bold text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[5vw] md:text-[2vw] font-headline font-bold text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
                         </motion.div>
@@ -436,37 +436,30 @@ export function Home() {
                   <div className="md:hidden flex flex-col items-center w-full pt-4 h-full">
                     {/* Header at Top Center */}
                     <motion.h2 
-                      className="text-[12vw] font-headline text-white uppercase tracking-tighter whitespace-nowrap mb-12"
+                      className="text-[12vw] font-headline text-white uppercase tracking-tighter whitespace-nowrap mb-2"
                       initial={{ opacity: 0, y: -20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                     >
                       COME SAY HELLO
                     </motion.h2>
 
-                    {/* Horizontal Center Row: Links [Left] Icon [Center] Links [Right] */}
-                    <div className="flex flex-row items-center justify-between w-full mt-auto mb-12 gap-2">
-                       {/* Left Links */}
-                       <div className="flex flex-col items-start gap-2 text-[3vw] font-mono text-white/80 uppercase">
-                         <Link href="#">[ FACEBOOK ]</Link>
-                         <Link href="mailto:sterlet.prod@gmail.com">sterlet.prod@gmail.com</Link>
-                       </div>
+                    {/* Icon - Positioned under heading (very close) */}
+                    <div className="relative w-[30vw] aspect-square mb-6">
+                       <Image 
+                          src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
+                          alt="Decorative Overlay"
+                          fill
+                          className="object-contain"
+                          unoptimized
+                        />
+                    </div>
 
-                       {/* Central Icon - 2x Smaller */}
-                       <div className="relative w-[30vw] aspect-square shrink-0">
-                         <Image 
-                            src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
-                            alt="Decorative Overlay"
-                            fill
-                            className="object-contain"
-                            unoptimized
-                          />
-                       </div>
-
-                       {/* Right Links */}
-                       <div className="flex flex-col items-end gap-2 text-[3vw] font-mono text-white/80 uppercase text-right">
-                         <Link href="#">[ INSTAGRAM ]</Link>
-                         <Link href="tel:+79127582210">WhatsApp +7 (912) 758-22-10</Link>
-                       </div>
+                    {/* Vertical Links Stack */}
+                    <div className="flex flex-col items-center gap-3 text-[3.5vw] font-mono text-white/80 uppercase text-center mt-auto pb-10">
+                       <Link href="#">[ FACEBOOK ]</Link>
+                       <Link href="#">[ INSTAGRAM ]</Link>
+                       <Link href="mailto:sterlet.prod@gmail.com">sterlet.prod@gmail.com</Link>
+                       <Link href="tel:+79127582210">WhatsApp +7 (912) 758-22-10</Link>
                     </div>
                   </div>
                 </div>
@@ -474,8 +467,6 @@ export function Home() {
                 {/* Decorative Elements */}
                 <div className="absolute top-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ ANTON KOLESNIKOV ]</div>
                 <div className="absolute top-4 right-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ COPYRIGHT 2026 ]</div>
-                <div className="absolute bottom-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest hidden md:block">LINKEDIN →</div>
-                <div className="absolute bottom-4 right-4 font-mono text-[10px] text-white/30 uppercase tracking-widest hidden md:block">FACEBOOK →</div>
              </div>
           </div>
         </div>
