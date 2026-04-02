@@ -50,7 +50,7 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
         {/* BOTTOM AREA */}
         <div className="w-full mt-auto flex flex-col">
           
-          {/* Identity Section (Starts above everything else) */}
+          {/* Identity Section */}
           <div className="grid grid-cols-12 w-full gap-4 md:gap-0 mb-6 md:mb-[2vh]">
             <div className="col-span-12 flex flex-col">
               <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">Hi there! this is</p>
@@ -60,14 +60,14 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
             </div>
           </div>
 
-          {/* Main Heading & Manifesto Section (Aligned horizontally) */}
+          {/* Main Heading & Manifesto Section */}
           <div className="grid grid-cols-12 w-full items-start gap-4 md:gap-0">
-            {/* Left Column: Heading */}
+            {/* Left Column: Heading - Increased size 2x for mobile */}
             <div className="col-span-12 md:col-span-8">
               <HighlightWipeHeading 
                 as="h1"
                 lines={["LANDING PAGES", "FOR PLUMBING", "LEADS"]}
-                className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
+                className="text-7xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
                 stagger={0.12}
                 trigger={isLifted}
                 delay={0.6}
@@ -79,14 +79,14 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
               {/* Divider Line */}
               <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-4 md:mb-[1.5vw]" />
               
-              {/* Manifesto Text - Changed font-sans to font-mono */}
-              <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw]">
+              {/* Manifesto Text - Increased size to text-2xl on mobile, left aligned 2nd line */}
+              <div className="space-y-1 md:space-y-[0.3vw] text-2xl md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw]">
                 <p>Built for service businesses</p>
-                <p>Focused on conversion</p>
+                <p className="text-left md:text-right">Focused on conversion</p>
                 <p>Made for owners who care about results</p>
               </div>
 
-              {/* Links & Icons (Increased by 30%) */}
+              {/* Links & Icons */}
               <div className="flex items-center gap-8 md:gap-[2.5vw] mt-auto">
                 <span className="text-[12px] md:text-[0.91vw] uppercase font-bold tracking-widest opacity-40 hover:opacity-100 transition-opacity font-sans">WebFlow</span>
                 <Figma className="w-[23px] md:w-[1.56vw] h-[23px] md:h-[1.56vw] opacity-40 hover:opacity-100 transition-opacity" />

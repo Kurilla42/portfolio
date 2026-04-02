@@ -19,9 +19,9 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[100] w-full h-screen bg-black/70 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
     >
-      {/* MOBILE LAYOUT (Only visible on mobile) */}
+      {/* MOBILE LAYOUT */}
       <div className="md:hidden relative flex-1 flex flex-col">
-        {/* Central Icon - Absolute centered */}
+        {/* Central Icon - Absolute centered and enlarged 3x */}
         <div className="absolute inset-0 flex items-center justify-center">
           <motion.div 
             initial={{ opacity: 1, scale: 1 }}
@@ -42,7 +42,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
           </motion.div>
         </div>
 
-        {/* Letters - Bottom positioned */}
+        {/* Letters - Bottom positioned, increased 50% from 22vw to 33vw */}
         <div className="mt-auto px-[4vw] pb-[2vh]">
           <motion.div 
             initial={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
             className="w-full flex justify-between items-end"
           >
             {['L', 'P', 'P', 'L'].map((char, i) => (
-              <span key={i} className="font-headline text-[22vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">
+              <span key={i} className="font-headline text-[33vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">
                 {char}
               </span>
             ))}
@@ -62,7 +62,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
         </div>
       </div>
 
-      {/* DESKTOP LAYOUT (Only visible on desktop) */}
+      {/* DESKTOP LAYOUT */}
       <div className="hidden md:flex flex-col flex-1">
         <div className="flex-[0.8]" />
         <div className="flex-1 flex items-center justify-center px-[4vw]">
