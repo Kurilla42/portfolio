@@ -47,6 +47,13 @@ const comparisonData = [
   }
 ];
 
+const quoteLines = [
+  "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build",
+  "<span class='text-[#c7b684]'>high-converting</span> landing pages, uniquely crafted from user",
+  "insights and proven conversion principles - always",
+  "<span class='text-[#c7b684]'>setting you apart</span> from the competition"
+];
+
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -221,7 +228,7 @@ export function Home() {
       </section>
 
       <InfoShowcaseSection
-        quote="MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build <span class='text-[#c7b684]'>high-converting</span> landing pages, uniquely crafted from user insights and proven conversion principles - always <span class='text-[#c7b684]'>setting you apart</span> from the competition"
+        quoteLines={quoteLines}
       >
         <section className="relative pb-16 pt-8 z-30 overflow-hidden w-full" id="difference">
           <div className="w-full px-6 md:px-[4vw]">

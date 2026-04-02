@@ -3,16 +3,22 @@
 import React, { useRef } from 'react';
 import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
+import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 interface InfoShowcaseSectionProps {
   imageSrc?: string;
-  quote?: string;
+  quoteLines?: string[];
   children?: React.ReactNode;
 }
 
 export function InfoShowcaseSection({
   imageSrc = "https://i.ibb.co/LDgsQj1v/Whisk-yiomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd.jpg",
-  quote = "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build <span class='text-[#c7b684]'>high-converting</span> landing pages, uniquely crafted from user insights and proven conversion principles - always <span class='text-[#c7b684]'>setting you apart</span> from the competition",
+  quoteLines = [
+    "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build",
+    "<span class='text-[#c7b684]'>high-converting</span> landing pages, uniquely crafted from user",
+    "insights and proven conversion principles - always",
+    "<span class='text-[#c7b684]'>setting you apart</span> from the competition"
+  ],
   children
 }: InfoShowcaseSectionProps) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -57,11 +63,13 @@ export function InfoShowcaseSection({
               </h2>
            </div>
            
-           {/* Manifest Quote */}
+           {/* Manifest Quote with Highlight Wipe Animation */}
            <div className="w-full text-center px-6 md:px-[4vw] pt-[30vh] md:pt-[45vh] pb-0 mt-auto">
-             <p 
-               className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl"
-               dangerouslySetInnerHTML={{ __html: quote }}
+             <HighlightWipeHeading
+                lines={quoteLines}
+                className="text-xl sm:text-2xl md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-center tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl"
+                stagger={0.1}
+                triggerOnce={true}
              />
            </div>
         </div>

@@ -88,21 +88,20 @@ export function SiteShowcaseSection() {
               className="absolute inset-0 bg-black z-20 pointer-events-none"
             />
           </motion.div>
-
-          <Link 
-            href={href}
-            className="absolute -bottom-2 right-0 translate-y-full group/link z-30"
-          >
-            <span className="text-[10px] md:text-[0.7vw] font-mono text-[#e0ded8]/40 group-hover/link:text-[#c7b684] transition-colors uppercase tracking-[0.5em] [writing-mode:vertical-rl] rotate-180 block whitespace-nowrap">
-              VIEW WORK
-            </span>
-          </Link>
         </div>
         
-        <div className="flex flex-col mt-4">
+        <div className="flex flex-row justify-between items-center w-full mt-4">
           <span className="text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest">
             {subLabel}
           </span>
+          <Link 
+            href={href}
+            className="group/link"
+          >
+            <span className="text-[1vw] font-mono text-[#e0ded8]/40 group-hover/link:text-[#c7b684] transition-colors uppercase tracking-widest block whitespace-nowrap">
+              VIEW WORK
+            </span>
+          </Link>
         </div>
       </motion.div>
     </div>
@@ -137,7 +136,7 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="font-kurale font-bold text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
+                className="font-mono font-bold text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
               >
                 <div className="flex flex-col items-center leading-[1.0]">
                   {"YOUR SITE".split("").map((char, i) => (
