@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState } from 'react';
@@ -179,7 +180,7 @@ export function Home() {
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              <p className="text-[3.5vw] md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-[1vw]">
+              <p className="text-[3.5vw] md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-[1vw] whitespace-normal">
                 No confusion, no delays. Just a simple process to get your site live
               </p>
             </div>

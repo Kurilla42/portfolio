@@ -1,3 +1,4 @@
+
 'use client';
 
 import React, { useRef } from 'react';
@@ -55,10 +56,10 @@ export function InfoShowcaseSection({
         {/* IN FO Letters */}
         <div className="relative z-10 flex flex-col items-center w-full h-full">
            <div className="w-full flex items-start justify-between px-6 md:px-[5vw] pt-[15vh] md:pt-[10vh] pointer-events-none">
-              <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
+              <h2 className="text-[40vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
                 IN
               </h2>
-              <h2 className="text-[25vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
+              <h2 className="text-[40vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
                 FO
               </h2>
            </div>
