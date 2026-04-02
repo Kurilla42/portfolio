@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState } from 'react';
@@ -366,7 +367,7 @@ export function Home() {
       {/* FINAL CTA SECTION - REDESIGNED */}
       <section className="relative w-full bg-black py-16 px-6 md:px-[4vw] z-30" id="contact">
         <div className="relative w-full aspect-[21/9] min-h-[500px] bg-black overflow-hidden flex items-center justify-center">
-          {/* Internal Frame with Padding - Reduced by half */}
+          {/* Internal Frame with Padding */}
           <div className="absolute inset-0 p-2 md:p-[1vw]">
              <div className="relative w-full h-full overflow-hidden border border-white/10 group">
                 <Image 
@@ -389,19 +390,19 @@ export function Home() {
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                     >
-                      <h2 className="text-[10vw] md:text-[8vw] font-headline text-white leading-[0.8] uppercase tracking-tighter drop-shadow-2xl">
+                      <h2 className="text-[10vw] md:text-[8vw] font-headline text-white leading-[0.9] uppercase tracking-tighter drop-shadow-2xl">
                         COME<br />SAY<br />HELLO
                       </h2>
                     </motion.div>
                   </div>
 
-                  {/* Center Column: Overlay Image - Increased size by 2x */}
+                  {/* Center Column: Overlay Image - Increased size by 4x original */}
                   <div className="col-span-12 md:col-span-2 flex justify-center py-8 md:py-0">
                     <motion.div
                       initial={{ opacity: 0, scale: 0.8 }}
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ duration: 1, delay: 0.2 }}
-                      className="relative w-[80vw] md:w-[30vw] aspect-square"
+                      className="relative w-[100vw] md:w-[60vw] aspect-square"
                     >
                       <Image 
                         src="https://i.ibb.co/RTMpJyND/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
@@ -429,7 +430,7 @@ export function Home() {
                   </div>
                 </div>
 
-                {/* Decorative Elements - Updated text content */}
+                {/* Decorative Elements */}
                 <div className="absolute top-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ ANTON KOLESNIKOV ]</div>
                 <div className="absolute top-4 right-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ COPYRIGHT 2026 ]</div>
                 <div className="absolute bottom-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">LINKEDIN →</div>

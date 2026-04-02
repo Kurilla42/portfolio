@@ -129,8 +129,8 @@ export function VerticalPricingTabs() {
   return (
     <section ref={containerRef} className="w-full pb-16 md:pb-32 pt-24 relative z-30 bg-black" id="packages">
       <div className="relative z-10 w-full px-6 md:px-[4vw] mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start min-h-[600px] md:min-h-[750px]">
-          {/* Left Column: Heading and Navigation (Raised to the Top) */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
+          {/* Left Column: Heading and Navigation */}
           <div className="lg:col-span-4 flex flex-col justify-start order-2 lg:order-1 pt-0">
             <div className="space-y-4 mb-8 md:mb-[4vw]">
               <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
@@ -186,10 +186,10 @@ export function VerticalPricingTabs() {
             </div>
           </div>
 
-          {/* Right Column: Content */}
+          {/* Right Column: Content - Fixed height based on first tab to prevent layout shifts */}
           <div className="lg:col-span-8 flex flex-col order-1 lg:order-2">
             <div 
-              className="relative h-full"
+              className="relative min-h-[600px] md:min-h-[750px]"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
