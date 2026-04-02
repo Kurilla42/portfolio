@@ -3,6 +3,7 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
+import Link from 'next/link';
 
 export function SiteShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -23,7 +24,7 @@ export function SiteShowcaseSection() {
   const leftImg = "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg";
   const rightImg = "https://i.ibb.co/bgFv3GL7/202603310107.jpg";
 
-  const ShowcaseCard = ({ src, label, subLabel }: { src: string, label: string, subLabel: string }) => (
+  const ShowcaseCard = ({ src, label, subLabel, href }: { src: string, label: string, subLabel: string, href: string }) => (
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
@@ -36,56 +37,67 @@ export function SiteShowcaseSection() {
         style={{ y: containersEntryY, opacity: containersEntryOpacity }}
         className="relative flex flex-col items-start z-10"
       >
-        <motion.div 
-          whileHover="hover"
-          initial="initial"
-          className="relative w-[76.5vw] md:w-[37.8vw] aspect-[4/3] bg-transparent rounded-none overflow-hidden cursor-pointer group"
-        >
-          <motion.div
-            variants={{
-              hover: { scale: 1.05 }
-            }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="w-full h-full relative flex flex-col"
+        <div className="relative">
+          <motion.div 
+            whileHover="hover"
+            initial="initial"
+            className="relative w-[76.5vw] md:w-[37.8vw] aspect-[4/3] bg-transparent rounded-none overflow-hidden cursor-pointer group"
           >
-            <Image 
-              src={src} 
-              alt="Case Study" 
-              width={1600}
-              height={1200}
-              className="w-full h-full object-contain"
-              unoptimized
-            />
-          </motion.div>
-
-          <motion.div
-            variants={{
-              initial: { y: "-120%", x: "-50%", opacity: 0 },
-              hover: { y: "-50%", x: "-50%", opacity: 1 }
-            }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none overflow-hidden"
-          >
-            <div className="relative w-full h-full border border-[#e0ded8]/20 bg-black/20 flex flex-col shadow-2xl shadow-black/50">
+            <motion.div
+              variants={{
+                hover: { scale: 1.05 }
+              }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full h-full relative flex flex-col"
+            >
               <Image 
                 src={src} 
-                alt="Case Study Preview" 
+                alt="Case Study" 
                 width={1600}
                 height={1200}
                 className="w-full h-full object-contain"
                 unoptimized
               />
-            </div>
+            </motion.div>
+
+            <motion.div
+              variants={{
+                initial: { y: "-120%", x: "-50%", opacity: 0 },
+                hover: { y: "-50%", x: "-50%", opacity: 1 }
+              }}
+              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none overflow-hidden"
+            >
+              <div className="relative w-full h-full border border-[#e0ded8]/20 bg-black/20 flex flex-col shadow-2xl shadow-black/50">
+                <Image 
+                  src={src} 
+                  alt="Case Study Preview" 
+                  width={1600}
+                  height={1200}
+                  className="w-full h-full object-contain"
+                  unoptimized
+                />
+              </div>
+            </motion.div>
+            
+            <motion.div 
+              variants={{
+                initial: { opacity: 0 },
+                hover: { opacity: 0.2 }
+              }}
+              className="absolute inset-0 bg-black z-20 pointer-events-none"
+            />
           </motion.div>
-          
-          <motion.div 
-            variants={{
-              initial: { opacity: 0 },
-              hover: { opacity: 0.2 }
-            }}
-            className="absolute inset-0 bg-black z-20 pointer-events-none"
-          />
-        </motion.div>
+
+          <Link 
+            href={href}
+            className="absolute -bottom-2 right-0 translate-y-full group/link z-30"
+          >
+            <span className="text-[10px] md:text-[0.7vw] font-mono text-[#e0ded8]/40 group-hover/link:text-[#c7b684] transition-colors uppercase tracking-[0.5em] [writing-mode:vertical-rl] rotate-180 block whitespace-nowrap">
+              VIEW WORK
+            </span>
+          </Link>
+        </div>
         
         <div className="flex flex-col mt-4">
           <span className="text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest">
@@ -144,11 +156,13 @@ export function SiteShowcaseSection() {
               src={leftImg} 
               label="EXPLORE HOW YOUR" 
               subLabel="template 1"
+              href="/case1"
             />
             <ShowcaseCard 
               src={rightImg} 
               label="SITE CAN LOOK LIKE" 
               subLabel="template 2"
+              href="/case2"
             />
           </div>
         </div>
