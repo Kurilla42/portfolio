@@ -17,7 +17,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[100] w-full h-screen bg-black/70 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
     >
-      {/* Reduced top spacer to lift content higher */}
+      {/* Top spacer adjusted to push content slightly lower */}
       <div className="flex-[0.4]" />
 
       {/* Middle Section: Centered vertically with refined spacing */}
@@ -31,7 +31,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="w-full flex justify-center items-end gap-[2vw] md:gap-[3vw]"
         >
-          {/* First L and P - pulled closer to center */}
+          {/* First L and P */}
           <div className="flex items-end justify-start gap-[1.5vw] md:gap-[2vw]">
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
@@ -48,7 +48,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
             />
           </div>
 
-          {/* Second P and L - pulled closer to center */}
+          {/* Second P and L */}
           <div className="flex items-end justify-end gap-[1.5vw] md:gap-[2vw]">
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
