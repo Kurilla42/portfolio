@@ -78,7 +78,7 @@ const PRICING_PLANS = [
 
 const AUTO_PLAY_DURATION = 10000;
 
-const TEXT_STYLE_MATCH = "font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-widest text-[#e0ded8]/60 leading-relaxed";
+const TEXT_STYLE_MATCH = "font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-widest text-[#e0ded8] leading-relaxed";
 
 export function VerticalPricingTabs() {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -214,7 +214,7 @@ export function VerticalPricingTabs() {
                           {PRICING_PLANS[activeIndex].subdescription}
                         </p>
                         <div className="mb-10">
-                          <span className={cn(TEXT_STYLE_MATCH, "block mb-2 text-[#e0ded8]/70")}>WHO IS THIS FOR</span>
+                          <span className={cn(TEXT_STYLE_MATCH, "block mb-2")}>WHO IS THIS FOR</span>
                           <p className={TEXT_STYLE_MATCH}>
                             {PRICING_PLANS[activeIndex].whoIsThisFor}
                           </p>
@@ -235,7 +235,7 @@ export function VerticalPricingTabs() {
 
                     <div className="flex flex-col mb-8">
                       <div className="mb-10">
-                        <span className={cn(TEXT_STYLE_MATCH, "block mb-4 text-[#e0ded8]/70")}>WHAT'S INCLUDED</span>
+                        <span className={cn(TEXT_STYLE_MATCH, "block mb-4")}>WHAT'S INCLUDED</span>
                         <ul className="space-y-3 mb-10">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
                             <li key={i} className={cn(TEXT_STYLE_MATCH, "flex items-start gap-4")}>
