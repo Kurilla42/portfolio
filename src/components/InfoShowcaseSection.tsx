@@ -59,7 +59,7 @@ export function InfoShowcaseSection({
               priority
               unoptimized
             />
-            {/* Gradient Overlay */}
+            {/* Gradient Overlay - applied to both mobile and desktop images */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 60% to-black" />
           </motion.div>
         </div>
