@@ -177,7 +177,7 @@ export function Home() {
             </div>
 
             <div className="col-span-12 lg:col-span-5 flex flex-col">
-              <h2 className="text-6xl sm:text-7xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
+              <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
               <p className="text-xl md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-[1vw]">
@@ -201,7 +201,7 @@ export function Home() {
                     initial="initial"
                     className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default w-full"
                   >
-                    <div className="flex items-baseline gap-6 md:gap-[2vw] overflow-hidden pr-8">
+                    <div className="flex items-center gap-6 md:gap-[2vw] overflow-hidden pr-8">
                       <span className="font-mono text-xl md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
                         {step.number}
                       </span>

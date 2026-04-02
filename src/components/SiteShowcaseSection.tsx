@@ -29,7 +29,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-5xl sm:text-3xl md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-normal whitespace-nowrap"
+        className="absolute text-4xl sm:text-3xl md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-normal whitespace-nowrap"
       >
         {label}
       </motion.div>
@@ -137,7 +137,7 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="font-mono font-bold text-6xl md:text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
+                className="font-mono font-bold text-4xl md:text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
               >
                 <div className="flex flex-row md:flex-col items-center leading-[1.0]">
                   <span>YOUR SITE</span>

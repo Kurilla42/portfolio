@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from "framer-motion";
@@ -38,8 +39,8 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
             <span className="md:text-[0.7vw] uppercase tracking-[0.1em] hover:opacity-100 opacity-60 cursor-pointer font-sans">dr /</span>
             <span className="md:text-[0.7vw] uppercase tracking-[0.1em] hover:opacity-100 opacity-60 cursor-pointer font-sans">tw</span>
           </div>
-          <div className="col-span-12 md:col-span-4 flex justify-end gap-[4vw] md:gap-[2vw]">
-            <div className="flex gap-[2vw] md:gap-[1vw]">
+          <div className="col-span-12 md:col-span-4 flex justify-end gap-2 sm:gap-[4vw] md:gap-[2vw]">
+            <div className="flex gap-2 sm:gap-[2vw] md:gap-[1vw]">
               <span className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] text-[#e0ded8] font-sans">Index /</span>
               <span className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] opacity-60 font-sans">About /</span>
             </div>
@@ -62,12 +63,12 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
 
           {/* Main Heading & Manifesto Section */}
           <div className="grid grid-cols-12 w-full items-start gap-4 md:gap-0">
-            {/* Left Column: Heading - Increased size 2x for mobile */}
+            {/* Left Column: Heading - Balanced size for mobile */}
             <div className="col-span-12 md:col-span-8">
               <HighlightWipeHeading 
                 as="h1"
                 lines={["LANDING PAGES", "FOR PLUMBING", "LEADS"]}
-                className="text-7xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
+                className="text-5xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
                 stagger={0.12}
                 trigger={isLifted}
                 delay={0.6}
@@ -79,7 +80,7 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
               {/* Divider Line */}
               <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-4 md:mb-[1.5vw]" />
               
-              {/* Manifesto Text - Increased size to text-2xl on mobile, left aligned 2nd line */}
+              {/* Manifesto Text */}
               <div className="space-y-1 md:space-y-[0.3vw] text-2xl md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw]">
                 <p>Built for service businesses</p>
                 <p className="text-left md:text-right">Focused on conversion</p>
@@ -87,12 +88,12 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
               </div>
 
               {/* Links & Icons */}
-              <div className="flex items-center gap-8 md:gap-[2.5vw] mt-auto">
-                <span className="text-[12px] md:text-[0.91vw] uppercase font-bold tracking-widest opacity-40 hover:opacity-100 transition-opacity font-sans">WebFlow</span>
-                <Figma className="w-[23px] md:w-[1.56vw] h-[23px] md:h-[1.56vw] opacity-40 hover:opacity-100 transition-opacity" />
+              <div className="flex items-center justify-between md:justify-start gap-4 md:gap-[2.5vw] mt-auto">
+                <span className="text-[11px] md:text-[0.91vw] uppercase font-bold tracking-widest opacity-40 hover:opacity-100 transition-opacity font-sans">WebFlow</span>
+                <Figma className="w-[20px] md:w-[1.56vw] h-[20px] md:h-[1.56vw] opacity-40 hover:opacity-100 transition-opacity" />
                 <div className="flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity">
-                   <MousePointer2 className="w-[21px] md:w-[1.43vw] h-[21px] md:h-[1.43vw]" />
-                   <span className="text-[12px] md:text-[0.91vw] uppercase font-bold tracking-tighter font-sans">Cursor</span>
+                   <MousePointer2 className="w-[18px] md:w-[1.43vw] h-[18px] md:h-[1.43vw]" />
+                   <span className="text-[11px] md:text-[0.91vw] uppercase font-bold tracking-tighter font-sans">Cursor</span>
                 </div>
               </div>
             </div>
