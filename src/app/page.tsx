@@ -4,7 +4,6 @@
 import { useRef, useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, useTransform } from 'framer-motion';
 import { SiteShowcaseSection } from '@/components/SiteShowcaseSection';
-import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 import { ExperienceTextSection } from '@/components/ExperienceTextSection';
 import ShaderShowcase from "@/components/ui/hero";
 import Image from 'next/image';
@@ -364,7 +363,7 @@ export function Home() {
 
       <VerticalPricingTabs />
 
-      {/* FINAL CTA SECTION - REDESIGNED */}
+      {/* FINAL CTA SECTION */}
       <section className="relative w-full bg-black py-16 px-6 md:px-[4vw] z-30" id="contact">
         <div className="relative w-full aspect-[21/9] min-h-[500px] bg-black overflow-hidden flex items-center justify-center">
           {/* Internal Frame with Padding */}
@@ -378,8 +377,8 @@ export function Home() {
                   unoptimized
                   priority
                 />
-                {/* 15% Darkness Overlay */}
-                <div className="absolute inset-0 bg-black/15 transition-all duration-1000" />
+                {/* 25% Darkness Overlay */}
+                <div className="absolute inset-0 bg-black/25 transition-all duration-1000" />
                 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 z-10 p-8 md:p-[4vw] grid grid-cols-12 items-center">
@@ -418,7 +417,7 @@ export function Home() {
                   {/* Right Column: Contact Links */}
                   <div className="col-span-12 md:col-span-5 flex flex-col md:items-end md:text-right">
                     <motion.div 
-                      className="flex flex-col gap-4 md:gap-6 font-mono text-[3.5vw] md:text-[1.2vw] uppercase tracking-widest text-white/70"
+                      className="flex flex-col gap-4 md:gap-6 font-mono text-[3.5vw] md:text-[1.2vw] uppercase tracking-widest text-white"
                       initial={{ opacity: 0, x: 50 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 1, delay: 0.4 }}
@@ -426,7 +425,7 @@ export function Home() {
                       <Link href="#" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
                       <Link href="#" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
                       <Link href="mailto:sterlet.prod@gmail.com" className="hover:text-[#c7b684] transition-colors">sterlet.prod@gmail.com</Link>
-                      <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">+7 (912) 758-22-10</Link>
+                      <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">WHATSUP +7 (912) 758-22-10</Link>
                     </motion.div>
                   </div>
                 </div>
