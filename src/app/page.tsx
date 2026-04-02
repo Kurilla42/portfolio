@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState } from 'react';
@@ -425,7 +424,7 @@ export function Home() {
                       <Link href="#" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
                       <Link href="#" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
                       <Link href="mailto:sterlet.prod@gmail.com" className="hover:text-[#c7b684] transition-colors">sterlet.prod@gmail.com</Link>
-                      <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">WHATSUP +7 (912) 758-22-10</Link>
+                      <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">WhatsApp +7 (912) 758-22-10</Link>
                     </motion.div>
                   </div>
                 </div>
