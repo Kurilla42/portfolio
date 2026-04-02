@@ -17,11 +17,11 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[100] w-full h-screen bg-black/70 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
     >
-      {/* Top Spacer to push letters to the middle/bottom */}
-      <div className="flex-[0.5]" />
+      {/* Reduced top spacer to lift content higher */}
+      <div className="flex-[0.4]" />
 
-      {/* Middle/Bottom Section: Massive L P [IMAGE] P L */}
-      <div className="flex-1 flex items-end justify-center px-[4vw] pb-[calc(1rem+2vh)]">
+      {/* Middle Section: Centered vertically with increased spacing */}
+      <div className="flex-1 flex items-center justify-center px-[4vw]">
         <motion.div 
           initial={{ y: 0, opacity: 1 }}
           animate={{ 
@@ -29,16 +29,16 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
             opacity: isLifted ? 0 : 1 
           }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full flex justify-between items-end gap-2"
+          className="w-full flex justify-center items-end gap-[5vw] md:gap-[8vw]"
         >
-          {/* First L and P */}
-          <div className="flex items-end justify-start gap-[2vw]">
+          {/* First L and P with increased internal gap */}
+          <div className="flex items-end justify-start gap-[4vw] md:gap-[6vw]">
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
           </div>
 
-          {/* Central Image - Increased to match letter size, lowered by removing bottom margin */}
-          <div className="relative w-[22vw] md:w-[30vw] aspect-square mb-[-1vh] md:mb-[-2vh] shrink-0">
+          {/* Central Image - Lowered to sit on the baseline */}
+          <div className="relative w-[22vw] md:w-[30vw] aspect-square mb-[-1.5vh] md:mb-[-3vh] shrink-0">
             <Image 
               src="https://i.ibb.co/LzYz8M3F/Whisk-4c956caa38384ae948e4da1d2626c136dr-removebg-preview.png"
               alt="Decorative accent"
@@ -48,15 +48,18 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
             />
           </div>
 
-          {/* Second P and L */}
-          <div className="flex items-end justify-end gap-[2vw]">
+          {/* Second P and L with increased internal gap */}
+          <div className="flex items-end justify-end gap-[4vw] md:gap-[6vw]">
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
           </div>
         </motion.div>
       </div>
 
-      {/* Bottom Section: Transparent line with WHATS LPPL? centered */}
+      {/* Bottom Section Spacer */}
+      <div className="flex-[0.4]" />
+
+      {/* Bottom bar with WHATS LPPL? */}
       <motion.div 
         initial={{ opacity: 1 }}
         animate={{ opacity: isLifted ? 0 : 1 }}
