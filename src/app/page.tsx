@@ -183,7 +183,7 @@ export function Home() {
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              <p className="text-[3.3vw] md:text-[0.9vw] text-[#e0ded8]/40 uppercase font-mono tracking-tight w-full max-w-full leading-relaxed opacity-60">
+              <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed w-full max-w-full">
                 No confusion, no delays. Just a simple process to get your site live
               </p>
             </div>
