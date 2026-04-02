@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useRef, useState } from 'react';
@@ -179,7 +180,7 @@ export function Home() {
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              <p className="text-[3.5vw] md:text-[3.5vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-0 whitespace-normal">
+              <p className="text-[3.5vw] md:text-[0.9vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-0 whitespace-normal">
                 No confusion, no delays. Just a simple process to get your site live
               </p>
             </div>
@@ -204,16 +205,16 @@ export function Home() {
                       <span className="font-mono text-[3vw] md:text-[3vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
                         {step.number}
                       </span>
-                      <div className="h-[4vw] overflow-hidden">
+                      <div className="h-[4vw] md:h-[3.5vw] overflow-hidden">
                         <motion.div
                           variants={rollingTextVariants}
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-[3vw] md:text-[3vw] font-mono font-bold text-[#e0ded8] uppercase tracking-widest h-[4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[3vw] md:text-[3vw] font-mono font-bold text-[#e0ded8] uppercase tracking-widest h-[4vw] md:h-[3.5vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
-                          <h3 className="text-[3vw] md:text-[3vw] font-mono font-bold text-[#c7b684] uppercase tracking-widest h-[4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[3vw] md:text-[3vw] font-mono font-bold text-[#c7b684] uppercase tracking-widest h-[4vw] md:h-[3.5vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
                         </motion.div>
@@ -366,7 +367,6 @@ export function Home() {
       {/* FINAL CTA SECTION */}
       <section className="relative w-full bg-black py-16 px-6 md:px-[4vw] z-30" id="contact">
         <div className="relative w-full aspect-[21/9] min-h-[500px] bg-black overflow-hidden flex items-center justify-center">
-          {/* Internal Frame with Padding */}
           <div className="absolute inset-0 p-2 md:p-[1vw]">
              <div className="relative w-full h-full overflow-hidden border border-white/10 group">
                 <Image 
@@ -377,15 +377,12 @@ export function Home() {
                   unoptimized
                   priority
                 />
-                {/* 35% Darkness Overlay */}
                 <div className="absolute inset-0 bg-black/35 transition-all duration-1000" />
                 
-                {/* Content Overlay */}
                 <div className="absolute inset-0 z-10 p-8 md:p-[4vw] flex flex-col items-center">
                   
                   {/* DESKTOP CONTENT GRID */}
                   <div className="hidden md:grid grid-cols-12 items-center w-full h-full">
-                    {/* Left Column: COME SAY HELLO */}
                     <div className="md:col-span-5">
                       <motion.div
                         initial={{ opacity: 0, x: -50 }}
@@ -398,7 +395,6 @@ export function Home() {
                       </motion.div>
                     </div>
 
-                    {/* Center Column: Overlay Image */}
                     <div className="md:col-span-2 flex justify-center py-8 md:py-0">
                       <motion.div
                         initial={{ opacity: 0, scale: 0.8 }}
@@ -416,7 +412,6 @@ export function Home() {
                       </motion.div>
                     </div>
 
-                    {/* Right Column: Contact Links */}
                     <div className="md:col-span-5 flex flex-col md:items-end md:text-right">
                       <motion.div 
                         className="flex flex-col gap-4 md:gap-6 font-mono text-[1.2vw] uppercase tracking-widest text-white"
@@ -434,7 +429,6 @@ export function Home() {
 
                   {/* MOBILE SPECIFIC LAYOUT */}
                   <div className="md:hidden flex flex-col items-center w-full pt-4 h-full">
-                    {/* Header at Top Center */}
                     <motion.h2 
                       className="text-[12vw] font-headline text-white uppercase tracking-tighter whitespace-nowrap mb-2"
                       initial={{ opacity: 0, y: -20 }}
@@ -443,7 +437,6 @@ export function Home() {
                       COME SAY HELLO
                     </motion.h2>
 
-                    {/* Icon - Positioned under heading (very close) */}
                     <div className="relative w-[15vw] aspect-square mb-6">
                        <Image 
                           src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
@@ -454,7 +447,6 @@ export function Home() {
                         />
                     </div>
 
-                    {/* Vertical Links Stack */}
                     <div className="flex flex-col items-center gap-3 text-[3.5vw] font-mono text-white/80 uppercase text-center mt-auto pb-10">
                        <Link href="#">[ FACEBOOK ]</Link>
                        <Link href="#">[ INSTAGRAM ]</Link>
@@ -464,7 +456,6 @@ export function Home() {
                   </div>
                 </div>
 
-                {/* Decorative Elements */}
                 <div className="absolute top-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ ANTON KOLESNIKOV ]</div>
                 <div className="absolute top-4 right-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ COPYRIGHT 2026 ]</div>
              </div>
