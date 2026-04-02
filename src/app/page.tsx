@@ -201,19 +201,19 @@ export function Home() {
                     className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default w-full"
                   >
                     <div className="flex items-center gap-6 md:gap-[2vw] overflow-hidden pr-8">
-                      <span className="font-mono text-[5vw] md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
+                      <span className="font-mono text-[5vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
                         {step.number}
                       </span>
-                      <div className="h-8 md:h-[2.4vw] overflow-hidden">
+                      <div className="h-[6vw] overflow-hidden">
                         <motion.div
                           variants={rollingTextVariants}
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-[5vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-widest h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[5vw] font-mono font-bold text-[#e0ded8] uppercase tracking-widest h-[6vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
-                          <h3 className="text-[5vw] md:text-[2vw] font-mono font-bold text-[#c7b684] uppercase tracking-widest h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[5vw] font-mono font-bold text-[#c7b684] uppercase tracking-widest h-[6vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
                         </motion.div>
