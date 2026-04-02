@@ -22,7 +22,7 @@ const steps = [
 const comparisonData = [
   {
     criterion: "NICHE FOCUS",
-    me: "Exclusive Plumbing & Home Services",
+    me: "Exclusive Home Services",
     freelancer: "Generic Templates for Any Niche"
   },
   {
