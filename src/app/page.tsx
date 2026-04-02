@@ -10,6 +10,7 @@ import Image from 'next/image';
 import { VerticalPricingTabs } from '@/components/ui/vertical-pricing-tabs';
 import { InfoShowcaseSection } from '@/components/InfoShowcaseSection';
 import { HeroCurtain } from '@/components/HeroCurtain';
+import Link from 'next/link';
 
 const steps = [
   { number: "DAY 01", title: "Choose Your Service" },
@@ -140,7 +141,7 @@ export function Home() {
                 opacity: isLifted ? 1 : 0, 
                 scale: isLifted ? 1 : 0.98 
               }}
-              transition={{ duration: 1, delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="relative z-10 h-full w-full"
             >
               <ShaderShowcase isLifted={isLifted} />
@@ -362,41 +363,78 @@ export function Home() {
 
       <VerticalPricingTabs />
 
-      <section className="relative h-screen z-30 overflow-hidden w-full" id="contact">
-        <div className="absolute inset-0 z-0 h-full w-full">
-          <Image 
-            src="https://i.ibb.co/Gf1L4KfQ/generated-image-18.jpg"
-            alt="Final CTA Background"
-            fill
-            className="object-cover object-center"
-            unoptimized
-            priority
-          />
-          <div className="absolute inset-0 bg-black/60" />
-        </div>
+      {/* FINAL CTA SECTION - REDESIGNED */}
+      <section className="relative w-full bg-black py-16 px-6 md:px-[4vw] z-30" id="contact">
+        <div className="relative w-full aspect-[21/9] min-h-[500px] bg-black overflow-hidden flex items-center justify-center">
+          {/* Internal Frame with Padding */}
+          <div className="absolute inset-0 p-4 md:p-[2vw]">
+             <div className="relative w-full h-full overflow-hidden border border-white/10 group">
+                <Image 
+                  src="https://i.ibb.co/wFqwsVGc/i-EHXOE8-MWd2v-Ga9-Prmwyjtm35-A.png"
+                  alt="Final CTA Background"
+                  fill
+                  className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000"
+                  unoptimized
+                  priority
+                />
+                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-1000" />
+                
+                {/* Content Overlay */}
+                <div className="absolute inset-0 z-10 p-8 md:p-[4vw] grid grid-cols-12 items-center">
+                  
+                  {/* Left Column: COME SAY HELLO */}
+                  <div className="col-span-12 md:col-span-5">
+                    <motion.div
+                      initial={{ opacity: 0, x: -50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                    >
+                      <h2 className="text-[10vw] md:text-[8vw] font-headline text-white leading-[0.8] uppercase tracking-tighter drop-shadow-2xl">
+                        COME<br />SAY<br />HELLO
+                      </h2>
+                    </motion.div>
+                  </div>
 
-        <div className="relative z-10 w-full h-full px-6 md:px-[8vw] flex flex-col items-center justify-center text-center">
-          <div className="w-full md:max-w-[85vw] flex flex-col items-center">
-            <motion.span 
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 0.4, y: 0 }}
-              transition={{ duration: 0.8 }}
-              viewport={{ once: true }}
-              className="label text-[#e0ded8] block mb-8 md:mb-[6vh] tracking-[0.2em] uppercase font-mono text-[10px] md:text-xs"
-            >
-              [ GET STARTED ]
-            </motion.span>
-            
-            <HighlightWipeHeading 
-              lines={["Ready to Double Your", "Plumbing Leads?"]}
-              className="text-xl sm:text-2xl md:text-[3.0vw] font-black uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-center tracking-tighter"
-              stagger={0.08}
-              triggerOnce={true}
-            />
-            
-            <p className="tag opacity-50 text-[#e0ded8] mt-8 text-[10px] md:text-xs uppercase tracking-widest font-mono">
-              Limited availability for monthly intakes.
-            </p>
+                  {/* Center Column: Overlay Image */}
+                  <div className="col-span-12 md:col-span-2 flex justify-center py-8 md:py-0">
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileInView={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 1, delay: 0.2 }}
+                      className="relative w-[40vw] md:w-[15vw] aspect-square"
+                    >
+                      <Image 
+                        src="https://i.ibb.co/RTMpJyND/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
+                        alt="Decorative Overlay"
+                        fill
+                        className="object-contain"
+                        unoptimized
+                      />
+                    </motion.div>
+                  </div>
+
+                  {/* Right Column: Contact Links */}
+                  <div className="col-span-12 md:col-span-5 flex flex-col md:items-end md:text-right">
+                    <motion.div 
+                      className="flex flex-col gap-4 md:gap-6 font-mono text-[3.5vw] md:text-[1.2vw] uppercase tracking-widest text-white/70"
+                      initial={{ opacity: 0, x: 50 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 1, delay: 0.4 }}
+                    >
+                      <Link href="#" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
+                      <Link href="#" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
+                      <Link href="mailto:sterlet.prod@gmail.com" className="hover:text-[#c7b684] transition-colors">sterlet.prod@gmail.com</Link>
+                      <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">+7 (912) 758-22-10</Link>
+                    </motion.div>
+                  </div>
+                </div>
+
+                {/* Decorative Elements */}
+                <div className="absolute top-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ MASSON WONG ]</div>
+                <div className="absolute top-4 right-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ COPYRIGHT 2024 ]</div>
+                <div className="absolute bottom-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">LINKEDIN →</div>
+                <div className="absolute bottom-4 right-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">INSTAGRAM →</div>
+             </div>
           </div>
         </div>
       </section>
