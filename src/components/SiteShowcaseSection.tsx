@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef } from 'react';
@@ -139,7 +140,7 @@ export function SiteShowcaseSection() {
                 className="font-mono font-bold text-[12vw] md:text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
               >
                 <div className="flex flex-row md:flex-col items-center leading-[1.0]">
-                  <span>YOUR SITE</span>
+                  <span className="md:hidden">YOUR SITE</span>
                   <div className="hidden md:flex flex-col items-center">
                     {"YOUR SITE".split("").map((char, i) => (
                       <span key={i} className={char === " " ? "h-[0.5em]" : ""}>
