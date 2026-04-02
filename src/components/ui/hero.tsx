@@ -62,7 +62,7 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
 
           {/* Main Heading & Manifesto Section */}
           <div className="grid grid-cols-12 w-full items-start gap-4 md:gap-0">
-            {/* Left Column: Heading - Proportional VW for Mobile */}
+            {/* Left Column: Heading */}
             <div className="col-span-12 md:col-span-8">
               <HighlightWipeHeading 
                 as="h1"
@@ -79,10 +79,10 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
               {/* Divider Line */}
               <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-4 md:mb-[1.5vw]" />
               
-              {/* Manifesto Text - Sized to match step points */}
-              <div className="space-y-1 md:space-y-[0.3vw] text-[4.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw]">
+              {/* Manifesto Text */}
+              <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw] text-left">
                 <p>Built for service businesses</p>
-                <p className="text-left">Focused on conversion</p>
+                <p>Focused on conversion</p>
                 <p>Made for owners who care about results</p>
               </div>
 

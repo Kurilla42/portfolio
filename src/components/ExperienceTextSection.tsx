@@ -74,7 +74,7 @@ export function ExperienceTextSection() {
           <HighlightWipeHeading 
             as="p"
             lines={part1}
-            className="text-[7vw] md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start text-left tracking-normal"
+            className="text-[8vw] md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start text-left tracking-normal"
             stagger={0.08}
             triggerOnce={true}
           />
@@ -84,7 +84,7 @@ export function ExperienceTextSection() {
           <HighlightWipeHeading 
             as="p"
             lines={part2}
-            className="text-[7vw] md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start text-left tracking-normal"
+            className="text-[8vw] md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start text-left tracking-normal"
             stagger={0.08}
             triggerOnce={true}
             delay={0.4}

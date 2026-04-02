@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -129,10 +128,10 @@ export function VerticalPricingTabs() {
     <section ref={containerRef} className="w-full pb-16 md:pb-32 pt-24 relative z-30 bg-black" id="packages">
       <div className="relative z-10 w-full px-6 md:px-[4vw] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-          {/* Left Column: Heading and Navigation */}
-          <div className="lg:col-span-4 flex flex-col justify-start order-2 lg:order-1 pt-0">
+          {/* Left Column: Heading and Navigation (Order 1 for Mobile) */}
+          <div className="lg:col-span-4 flex flex-col justify-start order-1 lg:order-1 pt-0">
             <div className="space-y-4 mb-8 md:mb-[4vw]">
-              <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
+              <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
                 SELECT YOUR<br />GROWTH TIER
               </h2>
             </div>
@@ -174,7 +173,7 @@ export function VerticalPricingTabs() {
                     </span>
 
                     <span className={cn(
-                      "text-lg md:text-[1.2vw] font-mono font-bold tracking-tight transition-colors duration-500 uppercase",
+                      "text-[5vw] md:text-[1.2vw] font-mono font-bold tracking-tight transition-colors duration-500 uppercase",
                       isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/30"
                     )}>
                       {plan.title}
@@ -185,10 +184,10 @@ export function VerticalPricingTabs() {
             </div>
           </div>
 
-          {/* Right Column: Content - Fixed height based on largest tab to prevent layout shifts */}
-          <div className="lg:col-span-8 flex flex-col order-1 lg:order-2">
+          {/* Right Column: Content (Order 2 for Mobile) */}
+          <div className="lg:col-span-8 flex flex-col order-2 lg:order-2">
             <div 
-              className="relative min-h-[700px] md:min-h-[850px]"
+              className="relative min-h-[500px] md:min-h-[850px]"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
@@ -207,14 +206,14 @@ export function VerticalPricingTabs() {
                     }}
                     className="flex flex-col h-full"
                   >
-                    <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-6">
+                    <div className="flex flex-col md:flex-row justify-between items-start mb-6 gap-6 pt-8 md:pt-0">
                       <div className="w-full">
-                        <p className="text-xl md:text-[1vw] font-mono font-normal text-[#e0ded8] leading-tight max-w-2xl mb-8 uppercase tracking-tight">
+                        <p className="text-[3.5vw] md:text-[1vw] font-mono font-normal text-[#e0ded8] leading-tight max-w-2xl mb-8 uppercase tracking-tight">
                           {PRICING_PLANS[activeIndex].subdescription}
                         </p>
                         <div className="mb-10">
                           <span className="text-[#e0ded8]/70 block mb-2 tracking-widest text-[10px] md:text-[1vw] uppercase font-mono">WHO IS THIS FOR</span>
-                          <p className="text-sm md:text-[1vw] font-mono text-[#e0ded8]/70 leading-relaxed">
+                          <p className="text-[3.5vw] md:text-[1vw] font-mono text-[#e0ded8]/70 leading-relaxed">
                             {PRICING_PLANS[activeIndex].whoIsThisFor}
                           </p>
                         </div>
@@ -237,7 +236,7 @@ export function VerticalPricingTabs() {
                         <span className="text-[#e0ded8]/70 block mb-4 tracking-widest text-[10px] md:text-[1vw] uppercase font-mono">WHAT'S INCLUDED</span>
                         <ul className="space-y-3 mb-10">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
-                            <li key={i} className="flex items-start gap-4 text-[10px] md:text-[1vw] text-[#e0ded8]/70 font-mono leading-relaxed">
+                            <li key={i} className="flex items-start gap-4 text-[3.5vw] md:text-[1vw] text-[#e0ded8]/70 font-mono leading-relaxed">
                               <div className="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#c7b684] shrink-0" />
                               {resource}
                             </li>
@@ -245,7 +244,7 @@ export function VerticalPricingTabs() {
                         </ul>
 
                         <div className="max-w-2xl mb-8">
-                          <p className="text-sm md:text-[1vw] font-mono text-[#e0ded8]/70 leading-relaxed">
+                          <p className="text-[3.5vw] md:text-[1vw] font-mono text-[#e0ded8]/70 leading-relaxed">
                             {PRICING_PLANS[activeIndex].footerText}
                           </p>
                         </div>

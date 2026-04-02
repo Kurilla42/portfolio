@@ -176,10 +176,10 @@ export function Home() {
             </div>
 
             <div className="col-span-12 lg:col-span-5 flex flex-col">
-              <h2 className="text-[10vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
+              <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              <p className="text-[4.5vw] md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-[1vw]">
+              <p className="text-[3.5vw] md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-[1vw]">
                 No confusion, no delays. Just a simple process to get your site live
               </p>
             </div>
@@ -241,7 +241,7 @@ export function Home() {
                 viewport={{ once: true, amount: 0.1 }}
               >
                 <div className="lg:hidden mb-6">
-                  <h2 className="text-[10vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
+                  <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
                     EXPLORE THE<br />DIFFERENCE
                   </h2>
                 </div>
@@ -273,7 +273,7 @@ export function Home() {
                 <div className="flex flex-col lg:hidden space-y-8">
                   {comparisonData.map((item, idx) => (
                     <div key={idx} className="flex flex-col space-y-3 border-b border-[#e0ded8]/10 pb-6">
-                      <span className="text-[3vw] font-mono text-[#c7b684] uppercase tracking-widest">{item.criterion}</span>
+                      <span className="text-[3.5vw] font-mono text-[#c7b684] uppercase tracking-widest">{item.criterion}</span>
                       <div className="bg-[#e0ded8]/5 p-4 rounded-lg">
                         <span className="text-[2.5vw] font-mono text-[#e0ded8]/40 uppercase block mb-1">Anton Kolesnikov</span>
                         <p className="text-[3.5vw] font-mono font-bold text-[#e0ded8]">{item.me}</p>
@@ -380,60 +380,101 @@ export function Home() {
                 <div className="absolute inset-0 bg-black/35 transition-all duration-1000" />
                 
                 {/* Content Overlay */}
-                <div className="absolute inset-0 z-10 p-8 md:p-[4vw] grid grid-cols-12 items-center">
+                <div className="absolute inset-0 z-10 p-8 md:p-[4vw] flex flex-col items-center">
                   
-                  {/* Left Column: COME SAY HELLO */}
-                  <div className="col-span-12 md:col-span-5">
-                    <motion.div
-                      initial={{ opacity: 0, x: -50 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                    >
-                      <h2 className="text-[10vw] md:text-[8vw] font-headline text-white leading-[0.9] uppercase tracking-tighter drop-shadow-2xl">
-                        COME<br />SAY<br />HELLO
-                      </h2>
-                    </motion.div>
+                  {/* DESKTOP CONTENT GRID */}
+                  <div className="hidden md:grid grid-cols-12 items-center w-full h-full">
+                    {/* Left Column: COME SAY HELLO */}
+                    <div className="md:col-span-5">
+                      <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+                      >
+                        <h2 className="md:text-[8vw] font-headline text-white leading-[0.9] uppercase tracking-tighter drop-shadow-2xl">
+                          COME<br />SAY<br />HELLO
+                        </h2>
+                      </motion.div>
+                    </div>
+
+                    {/* Center Column: Overlay Image */}
+                    <div className="md:col-span-2 flex justify-center py-8 md:py-0">
+                      <motion.div
+                        initial={{ opacity: 0, scale: 0.8 }}
+                        whileInView={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                        className="relative md:w-[60vw] aspect-square"
+                      >
+                        <Image 
+                          src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
+                          alt="Decorative Overlay"
+                          fill
+                          className="object-contain"
+                          unoptimized
+                        />
+                      </motion.div>
+                    </div>
+
+                    {/* Right Column: Contact Links */}
+                    <div className="md:col-span-5 flex flex-col md:items-end md:text-right">
+                      <motion.div 
+                        className="flex flex-col gap-4 md:gap-6 font-mono text-[1.2vw] uppercase tracking-widest text-white"
+                        initial={{ opacity: 0, x: 50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 1, delay: 0.4 }}
+                      >
+                        <Link href="#" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
+                        <Link href="#" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
+                        <Link href="mailto:sterlet.prod@gmail.com" className="hover:text-[#c7b684] transition-colors">sterlet.prod@gmail.com</Link>
+                        <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">WhatsApp +7 (912) 758-22-10</Link>
+                      </motion.div>
+                    </div>
                   </div>
 
-                  {/* Center Column: Overlay Image */}
-                  <div className="col-span-12 md:col-span-2 flex justify-center py-8 md:py-0">
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 1, delay: 0.2 }}
-                      className="relative w-[100vw] md:w-[60vw] aspect-square"
+                  {/* MOBILE SPECIFIC LAYOUT */}
+                  <div className="md:hidden flex flex-col items-center w-full pt-4 h-full">
+                    {/* Header at Top Center */}
+                    <motion.h2 
+                      className="text-[12vw] font-headline text-white uppercase tracking-tighter whitespace-nowrap mb-12"
+                      initial={{ opacity: 0, y: -20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
                     >
-                      <Image 
-                        src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
-                        alt="Decorative Overlay"
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
-                    </motion.div>
-                  </div>
+                      COME SAY HELLO
+                    </motion.h2>
 
-                  {/* Right Column: Contact Links */}
-                  <div className="col-span-12 md:col-span-5 flex flex-col md:items-end md:text-right">
-                    <motion.div 
-                      className="flex flex-col gap-4 md:gap-6 font-mono text-[4vw] md:text-[1.2vw] uppercase tracking-widest text-white"
-                      initial={{ opacity: 0, x: 50 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ duration: 1, delay: 0.4 }}
-                    >
-                      <Link href="#" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
-                      <Link href="#" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
-                      <Link href="mailto:sterlet.prod@gmail.com" className="hover:text-[#c7b684] transition-colors">sterlet.prod@gmail.com</Link>
-                      <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">WhatsApp +7 (912) 758-22-10</Link>
-                    </motion.div>
+                    {/* Horizontal Center Row: Links [Left] Icon [Center] Links [Right] */}
+                    <div className="flex flex-row items-center justify-between w-full mt-auto mb-12 gap-2">
+                       {/* Left Links */}
+                       <div className="flex flex-col items-start gap-2 text-[3vw] font-mono text-white/80 uppercase">
+                         <Link href="#">[ FACEBOOK ]</Link>
+                         <Link href="mailto:sterlet.prod@gmail.com">sterlet.prod@gmail.com</Link>
+                       </div>
+
+                       {/* Central Icon - 2x Smaller */}
+                       <div className="relative w-[30vw] aspect-square shrink-0">
+                         <Image 
+                            src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
+                            alt="Decorative Overlay"
+                            fill
+                            className="object-contain"
+                            unoptimized
+                          />
+                       </div>
+
+                       {/* Right Links */}
+                       <div className="flex flex-col items-end gap-2 text-[3vw] font-mono text-white/80 uppercase text-right">
+                         <Link href="#">[ INSTAGRAM ]</Link>
+                         <Link href="tel:+79127582210">WhatsApp +7 (912) 758-22-10</Link>
+                       </div>
+                    </div>
                   </div>
                 </div>
 
                 {/* Decorative Elements */}
                 <div className="absolute top-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ ANTON KOLESNIKOV ]</div>
                 <div className="absolute top-4 right-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">[ COPYRIGHT 2026 ]</div>
-                <div className="absolute bottom-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">LINKEDIN →</div>
-                <div className="absolute bottom-4 right-4 font-mono text-[10px] text-white/30 uppercase tracking-widest">FACEBOOK →</div>
+                <div className="absolute bottom-4 left-4 font-mono text-[10px] text-white/30 uppercase tracking-widest hidden md:block">LINKEDIN →</div>
+                <div className="absolute bottom-4 right-4 font-mono text-[10px] text-white/30 uppercase tracking-widest hidden md:block">FACEBOOK →</div>
              </div>
           </div>
         </div>
