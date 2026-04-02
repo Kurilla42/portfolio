@@ -4,7 +4,6 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
-import Image from 'next/image';
 import { Button } from "@/components/ui/button";
 
 const PRICING_PLANS = [
@@ -186,10 +185,10 @@ export function VerticalPricingTabs() {
             </div>
           </div>
 
-          {/* Right Column: Content - Fixed height based on first tab to prevent layout shifts */}
+          {/* Right Column: Content - Fixed height based on largest tab to prevent layout shifts */}
           <div className="lg:col-span-8 flex flex-col order-1 lg:order-2">
             <div 
-              className="relative min-h-[600px] md:min-h-[750px]"
+              className="relative min-h-[700px] md:min-h-[850px]"
               onMouseEnter={() => setIsPaused(true)}
               onMouseLeave={() => setIsPaused(false)}
             >
