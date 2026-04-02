@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -128,7 +129,7 @@ export function VerticalPricingTabs() {
     <section ref={containerRef} className="w-full pb-16 md:pb-32 pt-24 relative z-30 bg-black" id="packages">
       <div className="relative z-10 w-full px-6 md:px-[4vw] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
-          {/* Left Column: Heading and Navigation (Order 1 for Mobile) */}
+          {/* Left Column: Heading and Navigation */}
           <div className="lg:col-span-4 flex flex-col justify-start order-1 lg:order-1 pt-0">
             <div className="space-y-4 mb-8 md:mb-[4vw]">
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
@@ -166,7 +167,7 @@ export function VerticalPricingTabs() {
                     </div>
 
                     <span className={cn(
-                      "font-mono text-xs md:text-[0.8vw] font-bold tabular-nums transition-colors duration-500",
+                      "font-mono text-[3.5vw] md:text-[0.8vw] font-bold tabular-nums transition-colors duration-500",
                       isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/20"
                     )}>
                       /{plan.id}
@@ -184,7 +185,7 @@ export function VerticalPricingTabs() {
             </div>
           </div>
 
-          {/* Right Column: Content (Order 2 for Mobile) */}
+          {/* Right Column: Content */}
           <div className="lg:col-span-8 flex flex-col order-2 lg:order-2">
             <div 
               className="relative min-h-[500px] md:min-h-[850px]"
@@ -212,7 +213,7 @@ export function VerticalPricingTabs() {
                           {PRICING_PLANS[activeIndex].subdescription}
                         </p>
                         <div className="mb-10">
-                          <span className="text-[#e0ded8]/70 block mb-2 tracking-widest text-[10px] md:text-[1vw] uppercase font-mono">WHO IS THIS FOR</span>
+                          <span className="text-[#e0ded8]/70 block mb-2 tracking-widest text-[2.5vw] md:text-[1vw] uppercase font-mono">WHO IS THIS FOR</span>
                           <p className="text-[3.5vw] md:text-[1vw] font-mono text-[#e0ded8]/70 leading-relaxed">
                             {PRICING_PLANS[activeIndex].whoIsThisFor}
                           </p>
@@ -221,10 +222,10 @@ export function VerticalPricingTabs() {
                       
                       <div className="text-left md:text-right w-full md:w-auto shrink-0 pt-2">
                         <div className="flex items-baseline md:justify-end gap-4">
-                          <span className="line-through text-[#e0ded8]/20 text-[20px] md:text-[2vw] font-mono">
+                          <span className="line-through text-[#e0ded8]/20 text-[5vw] md:text-[2vw] font-mono">
                             {PRICING_PLANS[activeIndex].oldPrice}
                           </span>
-                          <span className="text-3xl md:text-[4vw] font-black text-[#e0ded8] font-headline">
+                          <span className="text-[8vw] md:text-[4vw] font-black text-[#e0ded8] font-headline">
                             {PRICING_PLANS[activeIndex].investment}
                           </span>
                         </div>
@@ -233,7 +234,7 @@ export function VerticalPricingTabs() {
 
                     <div className="flex flex-col mb-8">
                       <div className="mb-10">
-                        <span className="text-[#e0ded8]/70 block mb-4 tracking-widest text-[10px] md:text-[1vw] uppercase font-mono">WHAT'S INCLUDED</span>
+                        <span className="text-[#e0ded8]/70 block mb-4 tracking-widest text-[2.5vw] md:text-[1vw] uppercase font-mono">WHAT'S INCLUDED</span>
                         <ul className="space-y-3 mb-10">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
                             <li key={i} className="flex items-start gap-4 text-[3.5vw] md:text-[1vw] text-[#e0ded8]/70 font-mono font-normal leading-relaxed">
@@ -252,7 +253,7 @@ export function VerticalPricingTabs() {
                         <div className="flex justify-start">
                           <Button 
                             variant="link" 
-                            className="text-[#e0ded8] p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[10px] md:text-[1vw] underline underline-offset-8 decoration-[#e0ded8]/30 hover:decoration-[#e0ded8] transition-all"
+                            className="text-[#e0ded8] p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[3.5vw] md:text-[1vw] underline underline-offset-8 decoration-[#e0ded8]/30 hover:decoration-[#e0ded8] transition-all"
                           >
                             {PRICING_PLANS[activeIndex].buttonText}
                           </Button>
