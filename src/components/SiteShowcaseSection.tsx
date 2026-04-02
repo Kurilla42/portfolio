@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef } from 'react';
@@ -120,7 +121,7 @@ export function SiteShowcaseSection() {
                   opacity: centralImageOpacity, 
                   scale: centralScale,
                 }}
-                className="absolute z-10 w-[27vw] md:w-[13.52vw] h-[34vw] md:h-[16.9vw]"
+                className="absolute z-10 w-[54vw] md:w-[13.52vw] h-[68vw] md:h-[16.9vw]"
               >
                 <Image 
                   src="https://i.ibb.co/zWwNcSSf/image.png"
@@ -139,7 +140,7 @@ export function SiteShowcaseSection() {
                 className="font-mono font-bold text-6xl md:text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
               >
                 <div className="flex flex-row md:flex-col items-center leading-[1.0]">
-                  <span className="md:hidden">YOUR SITE</span>
+                  <span>YOUR SITE</span>
                   <div className="hidden md:flex flex-col items-center">
                     {"YOUR SITE".split("").map((char, i) => (
                       <span key={i} className={char === " " ? "h-[0.5em]" : ""}>

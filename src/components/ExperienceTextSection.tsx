@@ -1,3 +1,4 @@
+
 "use client";
 
 import { motion } from 'framer-motion';
@@ -80,11 +81,11 @@ export function ExperienceTextSection() {
           />
         </div>
 
-        <div className="w-full flex justify-end">
+        <div className="w-full flex justify-start md:justify-end">
           <HighlightWipeHeading 
             as="p"
             lines={part2}
-            className="text-xl sm:text-2xl md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-end text-right tracking-normal"
+            className="text-xl sm:text-2xl md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start text-left md:items-end md:text-right tracking-normal"
             stagger={0.08}
             triggerOnce={true}
             delay={0.4}
