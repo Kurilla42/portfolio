@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 
 interface HeroCurtainProps {
   isLifted: boolean;
@@ -32,7 +33,10 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
           {["L", "P", "P", "L"].map((char, i) => (
             <span 
               key={i} 
-              className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl"
+              className={cn(
+                "font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block",
+                i < 2 && "-scale-x-100"
+              )}
             >
               {char}
             </span>
