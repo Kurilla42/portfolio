@@ -34,12 +34,12 @@ export function InfoShowcaseSection({
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
-      <div className="relative min-h-[100vh] md:min-h-[160vh] w-full flex flex-col">
+      <div className="relative min-h-[120vh] md:min-h-[160vh] w-full flex flex-col">
         {/* Background Layer */}
         <div className="absolute inset-0 z-0 h-full w-full bg-black overflow-hidden">
           <motion.div 
             style={{ y }}
-            className="absolute -top-[5%] left-0 w-full h-[120vh] md:h-[140vh]" 
+            className="absolute -top-[5%] left-0 w-full h-[140vh] md:h-[140vh]" 
           >
             {/* Desktop Image */}
             <Image
@@ -76,10 +76,10 @@ export function InfoShowcaseSection({
            </div>
            
            {/* Manifest Quote with Highlight Wipe Animation */}
-           <div className="w-full text-center px-6 md:px-[4vw] pt-[10vh] md:pt-[45vh] pb-8 mt-auto">
+           <div className="w-full text-left md:text-center px-6 md:px-[4vw] pt-[35vh] md:pt-[45vh] pb-8 mt-auto">
              <HighlightWipeHeading
                 lines={quoteLines}
-                className="text-[8vw] md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-center tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl"
+                className="text-[8vw] md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start md:items-center text-left md:text-center tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl"
                 stagger={0.1}
                 triggerOnce={true}
              />
