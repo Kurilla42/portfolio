@@ -227,7 +227,7 @@ export function Home() {
           <div className="w-full px-6 md:px-[4vw]">
             <div className="flex flex-col lg:flex-row justify-between items-start gap-[4vw] w-full">
               <motion.div 
-                className="w-full lg:w-[57.12vw]"
+                className="w-full lg:w-[60vw]"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -240,7 +240,7 @@ export function Home() {
                 </div>
 
                 <div className="w-full border-t border-b border-[#e0ded8]/20 hidden lg:block">
-                  <div className="grid grid-cols-[15vw_21.06vw_21.06vw] gap-0">
+                  <div className="grid grid-cols-[15vw_22.5vw_22.5vw] gap-0">
                     {[
                       { label: "CRITERIA", active: false },
                       { label: "ANTON KOLESNIKOV", active: true },
@@ -286,7 +286,7 @@ export function Home() {
                       variants={itemVariants}
                       whileHover="hover"
                       initial="initial"
-                      className="grid grid-cols-[15vw_21.06vw_21.06vw] gap-0 border-b border-[#e0ded8]/20 items-stretch group cursor-default"
+                      className="grid grid-cols-[15vw_22.5vw_22.5vw] gap-0 border-b border-[#e0ded8]/20 items-stretch group cursor-default"
                     >
                       <div className="py-[1.5vh] pr-[3.4vw] flex items-center overflow-hidden">
                          <div className="h-[1.2vw] overflow-hidden">
