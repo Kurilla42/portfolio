@@ -60,14 +60,14 @@ const containerVariants = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.15,
+      staggerChildren: 0.1,
       delayChildren: 0.1
     }
   }
 };
 
 const itemVariants = {
-  hidden: { opacity: 0, y: 50 },
+  hidden: { opacity: 0, y: 15 },
   visible: {
     opacity: 1,
     y: 0,
@@ -162,10 +162,12 @@ export function Home() {
       
       <SiteShowcaseSection />
 
-      <section className="relative py-[10vh] md:py-[20vh] z-30 overflow-hidden w-full bg-black" id="steps">
+      {/* STEPS SECTION */}
+      <section className="relative py-[12vh] md:py-[20vh] z-30 overflow-hidden w-full bg-black" id="steps">
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
-          <div className="grid grid-cols-12 gap-10 md:gap-[4vw] items-start relative">
+          <div className="grid grid-cols-12 gap-10 md:gap-0 items-center relative">
             
+            {/* CENTRAL DECORATIVE ICON (PC ONLY) */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
               <Image 
                 src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
@@ -176,18 +178,20 @@ export function Home() {
               />
             </div>
 
+            {/* LEFT COLUMN: HEADLINE */}
             <div className="col-span-12 lg:col-span-5 flex flex-col">
-              <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
+              <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-6 md:mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              <p className="text-[3.5vw] md:text-[0.9vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-0 whitespace-normal">
+              <p className="text-[3.5vw] md:text-[0.9vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed whitespace-normal opacity-60">
                 No confusion, no delays. Just a simple process to get your site live
               </p>
             </div>
 
-            <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col pt-0 relative">
+            {/* RIGHT COLUMN: STEPS LIST */}
+            <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col pt-4 md:pt-0 relative">
               <motion.div 
-                className="flex flex-col w-full lg:w-fit border-t border-[#e0ded8]/20"
+                className="flex flex-col w-full border-t border-[#e0ded8]/20"
                 variants={containerVariants}
                 initial="hidden"
                 whileInView="visible"
@@ -197,28 +201,18 @@ export function Home() {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    whileHover="hover"
-                    initial="initial"
-                    className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default w-full"
+                    className="flex items-center py-6 md:py-[1.8vh] border-b border-[#e0ded8]/20 group transition-colors duration-300 cursor-default w-full"
                   >
-                    <div className="flex items-center gap-6 md:gap-[2vw] overflow-hidden pr-8">
-                      <span className="font-mono text-[4vw] md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
+                    <div className="flex items-center gap-6 md:gap-[3vw] w-full">
+                      {/* DAY NUMBER */}
+                      <span className="font-mono text-[4vw] md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider shrink-0">
                         {step.number}
                       </span>
-                      <div className="h-[4vw] md:h-[2.5vw] overflow-hidden">
-                        <motion.div
-                          variants={rollingTextVariants}
-                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                          className="flex flex-col"
-                        >
-                          <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-widest h-[4vw] md:h-[2.5vw] flex items-center whitespace-nowrap">
-                            {step.title}
-                          </h3>
-                          <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#c7b684] uppercase tracking-widest h-[4vw] md:h-[2.5vw] flex items-center whitespace-nowrap">
-                            {step.title}
-                          </h3>
-                        </motion.div>
-                      </div>
+                      
+                      {/* STEP TITLE */}
+                      <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight flex items-center whitespace-nowrap">
+                        {step.title}
+                      </h3>
                     </div>
                   </motion.div>
                 ))}
@@ -430,7 +424,7 @@ export function Home() {
                   {/* MOBILE SPECIFIC LAYOUT */}
                   <div className="md:hidden flex flex-col items-center w-full pt-4 h-full">
                     <motion.h2 
-                      className="text-[12vw] font-headline text-white uppercase tracking-tighter whitespace-nowrap mb-2"
+                      className="text-[12vw] font-headline text-white uppercase tracking-tighter whitespace-nowrap mb-2 text-center"
                       initial={{ opacity: 0, y: -20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                     >
