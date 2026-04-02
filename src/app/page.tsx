@@ -32,7 +32,7 @@ const comparisonData = [
   },
   {
     criterion: "STRUCTURE",
-    me: "Conversion-First Plumbing Layouts",
+    me: "Conversion-First Layouts",
     freelancer: "Unproven Structural Patterns"
   },
   {
