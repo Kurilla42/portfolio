@@ -10,6 +10,8 @@ interface HeroCurtainProps {
 }
 
 export function HeroCurtain({ isLifted }: HeroCurtainProps) {
+  const iconUrl = "https://i.ibb.co/LzYz8M3F/Whisk-4c956caa38384ae948e4da1d2626c136dr-removebg-preview.png";
+
   return (
     <motion.div 
       initial={{ y: "0%" }}
@@ -17,49 +19,87 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       className="fixed inset-0 z-[100] w-full h-screen bg-black/70 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
     >
-      {/* Top spacer significantly increased to push content lower */}
-      <div className="flex-[0.8]" />
-
-      {/* Middle Section: Centered vertically but shifted lower by spacers */}
-      <div className="flex-1 flex items-center justify-center px-[4vw]">
-        <motion.div 
-          initial={{ y: 0, opacity: 1 }}
-          animate={{ 
-            y: isLifted ? -200 : 0, 
-            opacity: isLifted ? 0 : 1 
-          }}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full flex justify-center items-end gap-[2vw] md:gap-[3vw]"
-        >
-          {/* First L and P */}
-          <div className="flex items-end justify-start gap-[1.5vw] md:gap-[2vw]">
-            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
-            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
-          </div>
-
-          {/* Central Image - Base-aligned or slightly lower */}
-          <div className="relative w-[22vw] md:w-[30vw] aspect-square mb-[-4vh] md:mb-[-6vh] shrink-0">
+      {/* MOBILE LAYOUT (Only visible on mobile) */}
+      <div className="md:hidden relative flex-1 flex flex-col">
+        {/* Central Icon - Absolute centered */}
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div 
+            initial={{ opacity: 1, scale: 1 }}
+            animate={{ 
+              opacity: isLifted ? 0 : 1,
+              scale: isLifted ? 0.8 : 1
+            }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-[66vw] aspect-square"
+          >
             <Image 
-              src="https://i.ibb.co/LzYz8M3F/Whisk-4c956caa38384ae948e4da1d2626c136dr-removebg-preview.png"
+              src={iconUrl}
               alt="Decorative accent"
               fill
               className="object-contain"
               unoptimized
             />
-          </div>
+          </motion.div>
+        </div>
 
-          {/* Second P and L */}
-          <div className="flex items-end justify-end gap-[1.5vw] md:gap-[2vw]">
-            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
-            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
-          </div>
-        </motion.div>
+        {/* Letters - Bottom positioned */}
+        <div className="mt-auto px-[4vw] pb-[2vh]">
+          <motion.div 
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ 
+              opacity: isLifted ? 0 : 1,
+              y: isLifted ? -100 : 0
+            }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full flex justify-between items-end"
+          >
+            {['L', 'P', 'P', 'L'].map((char, i) => (
+              <span key={i} className="font-headline text-[22vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">
+                {char}
+              </span>
+            ))}
+          </motion.div>
+        </div>
       </div>
 
-      {/* Bottom Section Spacer decreased to allow the shift */}
-      <div className="flex-[0.3]" />
+      {/* DESKTOP LAYOUT (Only visible on desktop) */}
+      <div className="hidden md:flex flex-col flex-1">
+        <div className="flex-[0.8]" />
+        <div className="flex-1 flex items-center justify-center px-[4vw]">
+          <motion.div 
+            initial={{ y: 0, opacity: 1 }}
+            animate={{ 
+              y: isLifted ? -200 : 0, 
+              opacity: isLifted ? 0 : 1 
+            }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full flex justify-center items-end gap-[3vw]"
+          >
+            <div className="flex items-end justify-start gap-[2vw]">
+              <span className="font-headline text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">L</span>
+              <span className="font-headline text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">P</span>
+            </div>
 
-      {/* Bottom bar with WHATS LPPL? */}
+            <div className="relative w-[30vw] aspect-square mb-[-6vh] shrink-0">
+              <Image 
+                src={iconUrl}
+                alt="Decorative accent"
+                fill
+                className="object-contain"
+                unoptimized
+              />
+            </div>
+
+            <div className="flex items-end justify-end gap-[2vw]">
+              <span className="font-headline text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">P</span>
+              <span className="font-headline text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">L</span>
+            </div>
+          </motion.div>
+        </div>
+        <div className="flex-[0.3]" />
+      </div>
+
+      {/* SHARED BOTTOM BAR */}
       <motion.div 
         initial={{ opacity: 1 }}
         animate={{ opacity: isLifted ? 0 : 1 }}
