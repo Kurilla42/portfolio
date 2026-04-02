@@ -376,8 +376,8 @@ export function Home() {
                   unoptimized
                   priority
                 />
-                {/* 25% Darkness Overlay */}
-                <div className="absolute inset-0 bg-black/25 transition-all duration-1000" />
+                {/* 35% Darkness Overlay */}
+                <div className="absolute inset-0 bg-black/35 transition-all duration-1000" />
                 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 z-10 p-8 md:p-[4vw] grid grid-cols-12 items-center">
