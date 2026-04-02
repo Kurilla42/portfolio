@@ -133,7 +133,7 @@ export function Home() {
           </motion.div>
         </div>
 
-        <div ref={heroSectionRef} className="relative h-[135vh] w-full z-10">
+        <div heroSectionRef={heroSectionRef} className="relative h-[135vh] w-full z-10">
           <div className="sticky top-0 h-screen w-full overflow-hidden">
             <motion.div 
               initial={{ opacity: 0, scale: 0.98 }}
@@ -183,7 +183,7 @@ export function Home() {
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-6 md:mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              <p className="text-[3.5vw] md:text-[0.9vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed whitespace-normal opacity-60">
+              <p className="text-[3.5vw] md:text-[0.9vw] text-[#e0ded8]/40 uppercase font-mono tracking-tight w-full max-w-[90%] md:max-w-full leading-relaxed whitespace-normal opacity-60">
                 No confusion, no delays. Just a simple process to get your site live
               </p>
             </div>
@@ -210,7 +210,7 @@ export function Home() {
                       </span>
                       
                       {/* STEP TITLE */}
-                      <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight flex items-center whitespace-nowrap">
+                      <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight flex items-center whitespace-normal md:whitespace-nowrap">
                         {step.title}
                       </h3>
                     </div>
