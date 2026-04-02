@@ -1,4 +1,3 @@
-
 "use client";
 
 import { motion } from 'framer-motion';
@@ -75,7 +74,7 @@ export function ExperienceTextSection() {
           <HighlightWipeHeading 
             as="p"
             lines={part1}
-            className="text-xl sm:text-2xl md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start text-left tracking-normal"
+            className="text-[7vw] md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start text-left tracking-normal"
             stagger={0.08}
             triggerOnce={true}
           />
@@ -85,7 +84,7 @@ export function ExperienceTextSection() {
           <HighlightWipeHeading 
             as="p"
             lines={part2}
-            className="text-xl sm:text-2xl md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start text-left md:items-end md:text-right tracking-normal"
+            className="text-[7vw] md:text-[3vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-start text-left tracking-normal"
             stagger={0.08}
             triggerOnce={true}
             delay={0.4}
@@ -108,11 +107,11 @@ export function ExperienceTextSection() {
               <span className="font-mono text-[10px] md:text-[0.7vw] text-[#e0ded8]/40 mb-3 tracking-widest">
                 [{point.number}]
               </span>
-              <h3 className="font-headline text-2xl md:text-[3vw] text-[#e0ded8] leading-none mb-4 uppercase">
+              <h3 className="font-headline text-[8vw] md:text-[3vw] text-[#e0ded8] leading-none mb-4 uppercase">
                 {point.title}
               </h3>
               <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-6" />
-              <p className="font-mono text-[11px] md:text-[0.9vw] uppercase tracking-widest text-[#e0ded8]/60 leading-relaxed">
+              <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-widest text-[#e0ded8]/60 leading-relaxed">
                 {point.description}
               </p>
             </motion.div>

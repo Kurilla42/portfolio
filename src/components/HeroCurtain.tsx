@@ -42,7 +42,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
           </motion.div>
         </div>
 
-        {/* Letters - Bottom positioned, increased 50% from 22vw to 33vw */}
+        {/* Letters - Bottom positioned, using VW for full width coverage */}
         <div className="mt-auto px-[4vw] pb-[2vh]">
           <motion.div 
             initial={{ opacity: 1, y: 0 }}
@@ -54,7 +54,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
             className="w-full flex justify-between items-end"
           >
             {['L', 'P', 'P', 'L'].map((char, i) => (
-              <span key={i} className="font-headline text-[33vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">
+              <span key={i} className="font-headline text-[40vw] leading-[0.7] text-[#e0ded8] tracking-tighter drop-shadow-2xl">
                 {char}
               </span>
             ))}

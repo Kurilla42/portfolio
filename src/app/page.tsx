@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState } from 'react';
@@ -177,10 +176,10 @@ export function Home() {
             </div>
 
             <div className="col-span-12 lg:col-span-5 flex flex-col">
-              <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
+              <h2 className="text-[10vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              <p className="text-xl md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-[1vw]">
+              <p className="text-[4.5vw] md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-[1vw]">
                 No confusion, no delays. Just a simple process to get your site live
               </p>
             </div>
@@ -202,7 +201,7 @@ export function Home() {
                     className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default w-full"
                   >
                     <div className="flex items-center gap-6 md:gap-[2vw] overflow-hidden pr-8">
-                      <span className="font-mono text-xl md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
+                      <span className="font-mono text-[5vw] md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
                         {step.number}
                       </span>
                       <div className="h-8 md:h-[2.4vw] overflow-hidden">
@@ -211,10 +210,10 @@ export function Home() {
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-xl md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[5vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
-                          <h3 className="text-xl md:text-[2vw] font-mono font-bold text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[5vw] md:text-[2vw] font-mono font-bold text-[#c7b684] uppercase tracking-tight h-8 md:h-[2.4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
                         </motion.div>
@@ -242,7 +241,7 @@ export function Home() {
                 viewport={{ once: true, amount: 0.1 }}
               >
                 <div className="lg:hidden mb-6">
-                  <h2 className="text-4xl sm:text-5xl md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
+                  <h2 className="text-[10vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
                     EXPLORE THE<br />DIFFERENCE
                   </h2>
                 </div>
@@ -274,14 +273,14 @@ export function Home() {
                 <div className="flex flex-col lg:hidden space-y-8">
                   {comparisonData.map((item, idx) => (
                     <div key={idx} className="flex flex-col space-y-3 border-b border-[#e0ded8]/10 pb-6">
-                      <span className="text-[10px] font-mono text-[#c7b684] uppercase tracking-widest">{item.criterion}</span>
+                      <span className="text-[3vw] font-mono text-[#c7b684] uppercase tracking-widest">{item.criterion}</span>
                       <div className="bg-[#e0ded8]/5 p-4 rounded-lg">
-                        <span className="text-[10px] font-mono text-[#e0ded8]/40 uppercase block mb-1">Anton Kolesnikov</span>
-                        <p className="text-sm font-mono font-bold text-[#e0ded8]">{item.me}</p>
+                        <span className="text-[2.5vw] font-mono text-[#e0ded8]/40 uppercase block mb-1">Anton Kolesnikov</span>
+                        <p className="text-[3.5vw] font-mono font-bold text-[#e0ded8]">{item.me}</p>
                       </div>
                       <div className="p-4 border border-[#e0ded8]/5 rounded-lg">
-                        <span className="text-[10px] font-mono text-[#e0ded8]/40 uppercase block mb-1">Freelancer/Agency</span>
-                        <p className="text-sm font-mono font-medium text-[#e0ded8]/60">{item.freelancer}</p>
+                        <span className="text-[2.5vw] font-mono text-[#e0ded8]/40 uppercase block mb-1">Freelancer/Agency</span>
+                        <p className="text-[3.5vw] font-mono font-medium text-[#e0ded8]/60">{item.freelancer}</p>
                       </div>
                     </div>
                   ))}
@@ -417,7 +416,7 @@ export function Home() {
                   {/* Right Column: Contact Links */}
                   <div className="col-span-12 md:col-span-5 flex flex-col md:items-end md:text-right">
                     <motion.div 
-                      className="flex flex-col gap-4 md:gap-6 font-mono text-[3.5vw] md:text-[1.2vw] uppercase tracking-widest text-white"
+                      className="flex flex-col gap-4 md:gap-6 font-mono text-[4vw] md:text-[1.2vw] uppercase tracking-widest text-white"
                       initial={{ opacity: 0, x: 50 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       transition={{ duration: 1, delay: 0.4 }}

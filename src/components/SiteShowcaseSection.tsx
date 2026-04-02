@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef } from 'react';
@@ -29,7 +28,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-4xl sm:text-3xl md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-normal whitespace-nowrap"
+        className="absolute text-[10vw] md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-normal whitespace-nowrap"
       >
         {label}
       </motion.div>
@@ -92,14 +91,14 @@ export function SiteShowcaseSection() {
         </div>
         
         <div className="flex flex-row justify-between items-center w-full mt-4">
-          <span className="text-xl md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest">
+          <span className="text-[4.5vw] md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest">
             {subLabel}
           </span>
           <Link 
             href={href}
             className="group/link"
           >
-            <span className="text-xl md:text-[1vw] font-mono text-[#e0ded8]/40 group-hover/link:text-[#c7b684] transition-colors uppercase tracking-widest block whitespace-nowrap">
+            <span className="text-[4.5vw] md:text-[1vw] font-mono text-[#e0ded8]/40 group-hover/link:text-[#c7b684] transition-colors uppercase tracking-widest block whitespace-nowrap">
               VIEW WORK
             </span>
           </Link>
@@ -137,7 +136,7 @@ export function SiteShowcaseSection() {
                   opacity: centralTextOpacity,
                   scale: centralScale
                 }}
-                className="font-mono font-bold text-4xl md:text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
+                className="font-mono font-bold text-[12vw] md:text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
               >
                 <div className="flex flex-row md:flex-col items-center leading-[1.0]">
                   <span>YOUR SITE</span>
