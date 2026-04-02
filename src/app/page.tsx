@@ -179,7 +179,7 @@ export function Home() {
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
-              <p className="text-[3.5vw] md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-[1vw] whitespace-normal">
+              <p className="text-[3.5vw] md:text-[3.5vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest w-full max-w-full leading-relaxed ml-0 md:ml-0 whitespace-normal">
                 No confusion, no delays. Just a simple process to get your site live
               </p>
             </div>
@@ -201,19 +201,19 @@ export function Home() {
                     className="flex items-center justify-between py-6 md:py-[1.5vh] border-b border-[#e0ded8]/20 group hover:bg-[#e0ded8]/5 transition-colors duration-300 cursor-default w-full"
                   >
                     <div className="flex items-center gap-6 md:gap-[2vw] overflow-hidden pr-8">
-                      <span className="font-mono text-[5vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
+                      <span className="font-mono text-[3vw] md:text-[3vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider group-hover:text-[#e0ded8]/60 transition-colors duration-300">
                         {step.number}
                       </span>
-                      <div className="h-[6vw] overflow-hidden">
+                      <div className="h-[4vw] overflow-hidden">
                         <motion.div
                           variants={rollingTextVariants}
                           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                           className="flex flex-col"
                         >
-                          <h3 className="text-[5vw] font-mono font-bold text-[#e0ded8] uppercase tracking-widest h-[6vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[3vw] md:text-[3vw] font-mono font-bold text-[#e0ded8] uppercase tracking-widest h-[4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
-                          <h3 className="text-[5vw] font-mono font-bold text-[#c7b684] uppercase tracking-widest h-[6vw] flex items-center whitespace-nowrap">
+                          <h3 className="text-[3vw] md:text-[3vw] font-mono font-bold text-[#c7b684] uppercase tracking-widest h-[4vw] flex items-center whitespace-nowrap">
                             {step.title}
                           </h3>
                         </motion.div>
@@ -444,7 +444,7 @@ export function Home() {
                     </motion.h2>
 
                     {/* Icon - Positioned under heading (very close) */}
-                    <div className="relative w-[30vw] aspect-square mb-6">
+                    <div className="relative w-[15vw] aspect-square mb-6">
                        <Image 
                           src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
                           alt="Decorative Overlay"
