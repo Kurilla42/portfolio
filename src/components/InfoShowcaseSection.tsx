@@ -7,12 +7,14 @@ import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 interface InfoShowcaseSectionProps {
   imageSrc?: string;
+  mobileImageSrc?: string;
   quoteLines?: string[];
   children?: React.ReactNode;
 }
 
 export function InfoShowcaseSection({
   imageSrc = "https://i.ibb.co/LDgsQj1v/Whisk-yiomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd.jpg",
+  mobileImageSrc,
   quoteLines = [
     "MY GOAL HAS ALWAYS BEEN TO grow revenue for my clients. I build",
     "<span class='text-[#c7b684]'>high-converting</span> landing pages, uniquely crafted from user",
@@ -39,15 +41,25 @@ export function InfoShowcaseSection({
             style={{ y }}
             className="absolute -top-[5%] left-0 w-full h-[120vh] md:h-[140vh]" 
           >
+            {/* Desktop Image */}
             <Image
               src={imageSrc}
-              alt="Section Background"
+              alt="Section Background Desktop"
               fill
-              className="object-contain md:object-cover object-center md:object-top" 
+              className="hidden md:block object-cover object-top" 
               priority
               unoptimized
             />
-            {/* Gradient Overlay starts exactly at the text area */}
+            {/* Mobile Image */}
+            <Image
+              src={mobileImageSrc || imageSrc}
+              alt="Section Background Mobile"
+              fill
+              className="block md:hidden object-cover object-center" 
+              priority
+              unoptimized
+            />
+            {/* Gradient Overlay */}
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 60% to-black" />
           </motion.div>
         </div>

@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState } from 'react';
@@ -230,6 +229,7 @@ export function Home() {
 
       <InfoShowcaseSection
         quoteLines={quoteLines}
+        mobileImageSrc="https://i.ibb.co/kVJpKgR9/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd-upscayl-2x-upscayl-standard-4x.jpg"
       >
         <section className="relative pb-16 pt-8 z-30 overflow-hidden w-full" id="difference">
           <div className="w-full px-6 md:px-[4vw]">
