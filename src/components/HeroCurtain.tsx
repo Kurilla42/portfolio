@@ -31,10 +31,10 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
           className="w-full flex justify-between items-end gap-2"
         >
-          {/* First L and P (mirrored) */}
+          {/* First L and P */}
           <div className="flex items-end justify-start gap-[2vw]">
-            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block -scale-x-100">L</span>
-            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block -scale-x-100">P</span>
+            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
+            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
           </div>
 
           {/* Central Image */}
