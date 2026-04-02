@@ -38,7 +38,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
           </div>
 
           {/* Central Image - Lowered to sit on the baseline */}
-          <div className="relative w-[22vw] md:w-[30vw] aspect-square mb-[-1.5vh] md:mb-[-3vh] shrink-0">
+          <div className="relative w-[22vw] md:w-[30vw] aspect-square mb-[-5vh] md:mb-[-8vh] shrink-0">
             <Image 
               src="https://i.ibb.co/LzYz8M3F/Whisk-4c956caa38384ae948e4da1d2626c136dr-removebg-preview.png"
               alt="Decorative accent"
