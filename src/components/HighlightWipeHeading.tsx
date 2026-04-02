@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useRef } from 'react';
@@ -27,13 +26,12 @@ export function HighlightWipeHeading({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: triggerOnce, amount: 0.2 });
   
-  // Если передан внешний триггер, используем его. Иначе используем useInView.
   const active = trigger !== undefined ? trigger : isInView;
 
   return (
     <Component ref={ref} className={cn("flex flex-col", className)}>
       {lines.map((line, index) => (
-        <span key={index} className="relative overflow-hidden inline-block w-fit py-10 -my-8">
+        <span key={index} className="relative overflow-hidden inline-block w-fit py-2 md:py-10 -my-1 md:-my-8">
           {/* Animated Accent Bar */}
           <motion.span
             initial={{ x: '-101%' }}

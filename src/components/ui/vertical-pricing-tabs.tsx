@@ -31,7 +31,7 @@ const PRICING_PLANS = [
   },
   {
     id: "02",
-    title: "Custom Website/Landing",
+    title: "CUSTOM LANDING",
     description: "Custom Website/Landing Page for Your Business",
     subdescription: "Tailored design and structure to match your brand, services, and local region",
     whoIsThisFor: "Companies that want to stand out from competitors, get a scalable site designed for growth, and prioritize maximum conversions",
@@ -54,7 +54,7 @@ const PRICING_PLANS = [
   },
   {
     id: "03",
-    title: "Fast AI-Powered Landing",
+    title: "AI-POWERED LANDING",
     description: "Fast AI-Powered Landing Page",
     subdescription: "Affordable solution: AI-generated landing page with my setup, so you finally have a working site",
     whoIsThisFor: "Those just starting a plumbing business or wanting to test online ads with minimal investment",
@@ -236,7 +236,7 @@ export function VerticalPricingTabs() {
                         <span className="text-[#e0ded8]/70 block mb-4 tracking-widest text-[10px] md:text-[1vw] uppercase font-mono">WHAT'S INCLUDED</span>
                         <ul className="space-y-3 mb-10">
                           {PRICING_PLANS[activeIndex].resources.map((resource, i) => (
-                            <li key={i} className="flex items-start gap-4 text-[3.5vw] md:text-[1vw] text-[#e0ded8]/70 font-mono leading-relaxed">
+                            <li key={i} className="flex items-start gap-4 text-[3.5vw] md:text-[1vw] text-[#e0ded8]/70 font-mono font-normal leading-relaxed">
                               <div className="mt-2.5 w-1.5 h-1.5 rounded-full bg-[#c7b684] shrink-0" />
                               {resource}
                             </li>

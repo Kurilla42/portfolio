@@ -1,4 +1,3 @@
-
 'use client';
 
 import React, { useRef } from 'react';
@@ -33,18 +32,18 @@ export function InfoShowcaseSection({
 
   return (
     <section ref={containerRef} className="relative w-full z-20 overflow-hidden bg-black">
-      <div className="relative min-h-[160vh] w-full flex flex-col">
+      <div className="relative min-h-[100vh] md:min-h-[160vh] w-full flex flex-col">
         {/* Background Layer */}
         <div className="absolute inset-0 z-0 h-full w-full bg-black overflow-hidden">
           <motion.div 
             style={{ y }}
-            className="absolute -top-[5%] left-0 w-full h-[140vh]" 
+            className="absolute -top-[5%] left-0 w-full h-[120vh] md:h-[140vh]" 
           >
             <Image
               src={imageSrc}
               alt="Section Background"
               fill
-              className="object-cover object-top" 
+              className="object-contain md:object-cover object-center md:object-top" 
               priority
               unoptimized
             />
@@ -65,7 +64,7 @@ export function InfoShowcaseSection({
            </div>
            
            {/* Manifest Quote with Highlight Wipe Animation */}
-           <div className="w-full text-center px-6 md:px-[4vw] pt-[30vh] md:pt-[45vh] pb-0 mt-auto">
+           <div className="w-full text-center px-6 md:px-[4vw] pt-[10vh] md:pt-[45vh] pb-8 mt-auto">
              <HighlightWipeHeading
                 lines={quoteLines}
                 className="text-[8vw] md:text-[3.0vw] font-headline uppercase leading-[1.3] md:leading-[1.1] text-[#e0ded8] items-center tracking-normal max-w-full md:max-w-[85vw] mx-auto drop-shadow-2xl"
@@ -77,10 +76,10 @@ export function InfoShowcaseSection({
       </div>
 
       {/* Decorative and Additional Content Area */}
-      <div className="relative z-10 w-full bg-black flex flex-col items-center pb-12 pt-12">
+      <div className="relative z-10 w-full bg-black flex flex-col items-center pb-8 md:pb-12 pt-4 md:pt-12">
         <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-8 md:mb-12">
           <div className="flex-1 h-[1px] bg-white/20" />
-          <div className="relative w-[6.725vw] h-[6.725vw] shrink-0">
+          <div className="relative w-[13.5vw] md:w-[6.725vw] h-[13.5vw] md:h-[6.725vw] shrink-0">
             <Image 
               src="https://i.ibb.co/q37Hg9DS/generated-image-12-removebg-preview-1.png"
               alt="Decorative Icon"
