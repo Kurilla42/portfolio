@@ -81,7 +81,7 @@ export function InfoShowcaseSection({
           <div className="flex-1 h-[1px] bg-white/20" />
           <div className="relative w-[6.725vw] h-[6.725vw] shrink-0">
             <Image 
-              src="https://i.ibb.co/WpR3h82f/generated-image-12-removebg-preview.png"
+              src="https://i.ibb.co/q37Hg9DS/generated-image-12-removebg-preview-1.png"
               alt="Decorative Icon"
               fill
               className="object-contain"
