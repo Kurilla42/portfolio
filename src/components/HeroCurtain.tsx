@@ -3,6 +3,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { cn } from '@/lib/utils';
+import Image from 'next/image';
 
 interface HeroCurtainProps {
   isLifted: boolean;
@@ -19,7 +20,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       {/* Top Spacer to push letters to the middle/bottom */}
       <div className="flex-[0.5]" />
 
-      {/* Middle/Bottom Section: Massive L P P L */}
+      {/* Middle/Bottom Section: Massive L P [IMAGE] P L */}
       <div className="flex-1 flex items-end justify-center px-[4vw] pb-[calc(1rem+2vh)]">
         <motion.div 
           initial={{ y: 0, opacity: 1 }}
@@ -28,19 +29,30 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
             opacity: isLifted ? 0 : 1 
           }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full flex justify-between items-end"
+          className="w-full flex justify-between items-end gap-2"
         >
-          {["L", "P", "P", "L"].map((char, i) => (
-            <span 
-              key={i} 
-              className={cn(
-                "font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block",
-                i < 2 && "-scale-x-100"
-              )}
-            >
-              {char}
-            </span>
-          ))}
+          {/* First L and P (mirrored) */}
+          <div className="flex items-end justify-start gap-[2vw]">
+            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block -scale-x-100">L</span>
+            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block -scale-x-100">P</span>
+          </div>
+
+          {/* Central Image */}
+          <div className="relative w-[15vw] md:w-[20vw] aspect-square mb-[2vh] md:mb-[5vh] shrink-0">
+            <Image 
+              src="https://i.ibb.co/LzYz8M3F/Whisk-4c956caa38384ae948e4da1d2626c136dr-removebg-preview.png"
+              alt="Decorative accent"
+              fill
+              className="object-contain"
+              unoptimized
+            />
+          </div>
+
+          {/* Second P and L */}
+          <div className="flex items-end justify-end gap-[2vw]">
+            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
+            <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
+          </div>
         </motion.div>
       </div>
 
