@@ -374,11 +374,12 @@ export function Home() {
                   src="https://i.ibb.co/wFqwsVGc/i-EHXOE8-MWd2v-Ga9-Prmwyjtm35-A.png"
                   alt="Final CTA Background"
                   fill
-                  className="object-cover object-center grayscale hover:grayscale-0 transition-all duration-1000"
+                  className="object-cover object-center blur-sm transition-all duration-1000"
                   unoptimized
                   priority
                 />
-                <div className="absolute inset-0 bg-black/40 group-hover:bg-black/20 transition-all duration-1000" />
+                {/* 15% Darkness Overlay */}
+                <div className="absolute inset-0 bg-black/15 transition-all duration-1000" />
                 
                 {/* Content Overlay */}
                 <div className="absolute inset-0 z-10 p-8 md:p-[4vw] grid grid-cols-12 items-center">
