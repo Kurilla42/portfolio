@@ -20,7 +20,7 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
       {/* Reduced top spacer to lift content higher */}
       <div className="flex-[0.4]" />
 
-      {/* Middle Section: Centered vertically with increased spacing */}
+      {/* Middle Section: Centered vertically with refined spacing */}
       <div className="flex-1 flex items-center justify-center px-[4vw]">
         <motion.div 
           initial={{ y: 0, opacity: 1 }}
@@ -29,16 +29,16 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
             opacity: isLifted ? 0 : 1 
           }}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full flex justify-center items-end gap-[5vw] md:gap-[8vw]"
+          className="w-full flex justify-center items-end gap-[2vw] md:gap-[3vw]"
         >
-          {/* First L and P with increased internal gap */}
-          <div className="flex items-end justify-start gap-[4vw] md:gap-[6vw]">
+          {/* First L and P - pulled closer to center */}
+          <div className="flex items-end justify-start gap-[1.5vw] md:gap-[2vw]">
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
           </div>
 
           {/* Central Image - Lowered to sit on the baseline */}
-          <div className="relative w-[22vw] md:w-[30vw] aspect-square mb-[-5vh] md:mb-[-8vh] shrink-0">
+          <div className="relative w-[22vw] md:w-[30vw] aspect-square mb-[-8vh] md:mb-[-12vh] shrink-0">
             <Image 
               src="https://i.ibb.co/LzYz8M3F/Whisk-4c956caa38384ae948e4da1d2626c136dr-removebg-preview.png"
               alt="Decorative accent"
@@ -48,8 +48,8 @@ export function HeroCurtain({ isLifted }: HeroCurtainProps) {
             />
           </div>
 
-          {/* Second P and L with increased internal gap */}
-          <div className="flex items-end justify-end gap-[4vw] md:gap-[6vw]">
+          {/* Second P and L - pulled closer to center */}
+          <div className="flex items-end justify-end gap-[1.5vw] md:gap-[2vw]">
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">P</span>
             <span className="font-headline text-[22vw] md:text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl inline-block">L</span>
           </div>
