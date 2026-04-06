@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Figma, MousePointer2 } from "lucide-react";
 import { HighlightWipeHeading } from "@/components/HighlightWipeHeading";
+import Link from "next/link";
 
 interface ShaderShowcaseProps {
   isLifted?: boolean;
@@ -24,26 +25,17 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
       <div className="relative z-10 w-full h-full px-6 md:px-[4vw] pt-6 md:pt-[4vh] pb-8 md:pb-[4vh] flex flex-col justify-between text-[#e0ded8]">
         
         {/* TOP ROW */}
-        <div className="grid grid-cols-12 w-full items-start gap-4">
-          <div className="col-span-12 md:col-span-4 flex justify-between md:block">
+        <div className="flex w-full items-start justify-between">
+          <div>
             <span className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] opacity-60 font-sans">{greeting}</span>
-            <div className="flex md:hidden gap-4">
-               <span className="text-[10px] uppercase tracking-[0.1em] opacity-60 font-sans">li</span>
-               <span className="text-[10px] uppercase tracking-[0.1em] opacity-60 font-sans">dr</span>
-            </div>
           </div>
-          <div className="col-span-4 hidden md:flex justify-center gap-[1vw]">
-            <span className="md:text-[0.7vw] uppercase tracking-[0.1em] opacity-40 font-sans">Socials /</span>
-            <span className="md:text-[0.7vw] uppercase tracking-[0.1em] hover:opacity-100 opacity-60 cursor-pointer font-sans">li /</span>
-            <span className="md:text-[0.7vw] uppercase tracking-[0.1em] hover:opacity-100 opacity-60 cursor-pointer font-sans">dr /</span>
-            <span className="md:text-[0.7vw] uppercase tracking-[0.1em] hover:opacity-100 opacity-60 cursor-pointer font-sans">tw</span>
-          </div>
-          <div className="col-span-12 md:col-span-4 flex justify-end gap-2 sm:gap-[4vw] md:gap-[2vw]">
-            <div className="flex gap-2 sm:gap-[2vw] md:gap-[1vw]">
-              <span className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] text-[#e0ded8] font-sans">Index /</span>
-              <span className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] opacity-60 font-sans">About /</span>
-            </div>
-            <span className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] border-b border-[#e0ded8]/40 pb-0.5 cursor-pointer font-sans">Let's talk!</span>
+          <div>
+            <Link 
+              href="#contact" 
+              className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] border-b border-[#e0ded8]/40 pb-0.5 cursor-pointer font-sans hover:border-[#e0ded8] transition-colors"
+            >
+              Let's talk!
+            </Link>
           </div>
         </div>
 

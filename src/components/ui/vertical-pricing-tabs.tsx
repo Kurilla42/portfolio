@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const PRICING_PLANS = [
   {
@@ -253,10 +254,13 @@ export function VerticalPricingTabs() {
 
                         <div className="flex justify-start">
                           <Button 
+                            asChild
                             variant="link" 
                             className="text-[#e0ded8] p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[3.5vw] md:text-[1vw] underline underline-offset-8 decoration-[#e0ded8]/30 hover:decoration-[#e0ded8] transition-all"
                           >
-                            {PRICING_PLANS[activeIndex].buttonText}
+                            <Link href="#contact">
+                              {PRICING_PLANS[activeIndex].buttonText}
+                            </Link>
                           </Button>
                         </div>
                       </div>
