@@ -1,4 +1,3 @@
-
 'use client';
 
 import { useRef, useState } from 'react';
@@ -201,18 +200,42 @@ export function Home() {
                   <motion.div
                     key={index}
                     variants={itemVariants}
-                    className="flex items-center py-6 md:py-[1.8vh] border-b border-[#e0ded8]/20 group transition-colors duration-300 cursor-default w-full"
+                    whileHover="hover"
+                    initial="initial"
+                    className="flex items-center py-6 md:py-[1.8vh] border-b border-[#e0ded8]/20 group transition-colors duration-300 cursor-default w-full overflow-hidden"
                   >
                     <div className="flex items-center gap-6 md:gap-[3vw] w-full">
                       {/* DAY NUMBER */}
-                      <span className="font-mono text-[4vw] md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider shrink-0">
-                        {step.number}
-                      </span>
+                      <div className="h-[4vw] md:h-[2vw] overflow-hidden shrink-0">
+                        <motion.div
+                          variants={rollingTextVariants}
+                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                          className="flex flex-col"
+                        >
+                          <span className="font-mono text-[4vw] md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider h-[4vw] md:h-[2vw] flex items-center">
+                            {step.number}
+                          </span>
+                          <span className="font-mono text-[4vw] md:text-[2vw] text-[#e0ded8] font-bold uppercase tracking-wider h-[4vw] md:h-[2vw] flex items-center">
+                            {step.number}
+                          </span>
+                        </motion.div>
+                      </div>
                       
                       {/* STEP TITLE */}
-                      <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight flex items-center whitespace-normal">
-                        {step.title}
-                      </h3>
+                      <div className="h-[4vw] md:h-[2vw] overflow-hidden w-full">
+                        <motion.div
+                          variants={rollingTextVariants}
+                          transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+                          className="flex flex-col"
+                        >
+                          <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight h-[4vw] md:h-[2vw] flex items-center whitespace-normal">
+                            {step.title}
+                          </h3>
+                          <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#c7b684] uppercase tracking-tight h-[4vw] md:h-[2vw] flex items-center whitespace-normal">
+                            {step.title}
+                          </h3>
+                        </motion.div>
+                      </div>
                     </div>
                   </motion.div>
                 ))}
