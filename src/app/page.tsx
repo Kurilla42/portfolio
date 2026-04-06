@@ -107,7 +107,8 @@ export function Home() {
     }
   });
 
-  const bgVideoUrl = "https://i.ibb.co/DD1rRjBJ/ezgif-com-video-to-gif-converter-1.gif";
+  const bgDesktopUrl = "https://i.ibb.co/DD1rRjBJ/ezgif-com-video-to-gif-converter-1.gif";
+  const bgMobileUrl = "https://i.ibb.co/qYZ8Bq2k/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg";
 
   return (
     <div className="min-h-screen bg-[#000000]">
@@ -119,13 +120,22 @@ export function Home() {
             style={{ y: bgY, scale: bgScale }}
             className="absolute -top-[20%] left-0 w-full h-[140%]"
           >
+            {/* Desktop Background (GIF) */}
             <Image
-              src={bgVideoUrl}
-              alt="Scroll-reactive background"
+              src={bgDesktopUrl}
+              alt="Scroll-reactive background desktop"
               fill
-              className="absolute inset-0 object-cover object-center blur-[10px]"
+              className="hidden md:block absolute inset-0 object-cover object-center blur-[10px]"
               priority
               unoptimized
+            />
+            {/* Mobile Background (Static Image) */}
+            <Image
+              src={bgMobileUrl}
+              alt="Scroll-reactive background mobile"
+              fill
+              className="block md:hidden absolute inset-0 object-cover object-center blur-[10px]"
+              priority
             />
             <div className="absolute inset-0 bg-black/50" />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 85% to-black" />
