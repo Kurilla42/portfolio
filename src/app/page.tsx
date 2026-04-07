@@ -446,8 +446,8 @@ export function Home() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.4 }}
                       >
-                        <Link href="#" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
-                        <Link href="#" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
+                        <Link href="https://www.facebook.com/profile.php?id=61585447957089" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
+                        <Link href="https://www.instagram.com/will_dukalis?igsh=MTN2OHM4aGZua2JvZQ==" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
                         <Link href="mailto:sterlet.prod@gmail.com" className="hover:text-[#c7b684] transition-colors">sterlet.prod@gmail.com</Link>
                         <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">WhatsApp +7 (912) 758-22-10</Link>
                       </motion.div>
@@ -475,8 +475,8 @@ export function Home() {
                     </div>
 
                     <div className="flex flex-col items-center gap-3 text-[3.5vw] font-mono text-white/80 uppercase text-center mt-auto pb-10">
-                       <Link href="#">[ FACEBOOK ]</Link>
-                       <Link href="#">[ INSTAGRAM ]</Link>
+                       <Link href="https://www.facebook.com/profile.php?id=61585447957089" target="_blank" rel="noopener noreferrer">[ FACEBOOK ]</Link>
+                       <Link href="https://www.instagram.com/will_dukalis?igsh=MTN2OHM4aGZua2JvZQ==" target="_blank" rel="noopener noreferrer">[ INSTAGRAM ]</Link>
                        <Link href="mailto:sterlet.prod@gmail.com">sterlet.prod@gmail.com</Link>
                        <Link href="tel:+79127582210">WhatsApp +7 (912) 758-22-10</Link>
                     </div>
