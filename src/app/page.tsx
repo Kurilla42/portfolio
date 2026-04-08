@@ -193,7 +193,8 @@ export function Home() {
                 SIMPLE STEPS TO<br />GET YOUR SITE
               </h2>
               <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed w-full max-w-full">
-                No confusion, no delays. Just a simple process to get your site live
+                <span className="md:hidden">No confusion, no delays</span>
+                <span className="hidden md:inline">No confusion, no delays. Just a simple process to get your site live</span>
               </p>
             </div>
 
@@ -416,7 +417,7 @@ export function Home() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <h2 className="md:text-[8vw] font-headline text-white leading-[0.9] uppercase tracking-tighter drop-shadow-2xl">
+                        <h2 className="md:text-[8vw] font-headline text-white leading-[0.9] uppercase tracking-tight drop-shadow-2xl">
                           COME<br />SAY<br />HELLO
                         </h2>
                       </motion.div>
@@ -457,7 +458,7 @@ export function Home() {
                   {/* MOBILE SPECIFIC LAYOUT */}
                   <div className="md:hidden flex flex-col items-center w-full pt-4 h-full">
                     <motion.h2 
-                      className="text-[12vw] font-headline text-white uppercase tracking-tighter whitespace-nowrap mb-2 text-center"
+                      className="text-[12vw] font-headline text-white uppercase tracking-tight whitespace-nowrap mb-2 text-center"
                       initial={{ opacity: 0, y: -20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                     >

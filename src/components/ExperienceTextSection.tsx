@@ -24,7 +24,7 @@ const conversionPoints = [
   {
     number: "02",
     title: "Loading Speed",
-    description: "In plumbing, every second matters - a 3-second delay can cost the call."
+    description: "In plumbing, every second matters - a 3-second delay can cost the call"
   },
   {
     number: "03",

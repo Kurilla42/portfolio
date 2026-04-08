@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef } from 'react';
@@ -29,7 +28,7 @@ export function SiteShowcaseSection() {
     <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
       <motion.div 
         style={{ opacity: textOpacity }}
-        className="absolute text-[12vw] md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-normal whitespace-nowrap"
+        className="absolute text-[12vw] md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-tight z-20 pointer-events-none leading-none whitespace-nowrap"
       >
         {label}
       </motion.div>
