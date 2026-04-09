@@ -82,10 +82,9 @@ const rollingTextVariants = {
   hover: { y: '-50%' }
 };
 
-export function Home() {
+export default function Home() {
   const combinedRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLDivElement>(null);
-  const parallaxRef = useRef<HTMLDivElement>(null);
   const [isLifted, setIsLifted] = useState(false);
   
   const { scrollYProgress: heroScroll } = useScroll({
@@ -120,19 +119,17 @@ export function Home() {
             style={{ y: bgY, scale: bgScale }}
             className="absolute -top-[20%] left-0 w-full h-[140%]"
           >
-            {/* Desktop Background (GIF) */}
             <Image
               src={bgDesktopUrl}
-              alt="Scroll-reactive background desktop"
+              alt="Background desktop"
               fill
               className="hidden md:block absolute inset-0 object-cover object-center blur-[10px]"
               priority
               unoptimized
             />
-            {/* Mobile Background (Static Image) */}
             <Image
               src={bgMobileUrl}
-              alt="Scroll-reactive background mobile"
+              alt="Background mobile"
               fill
               className="block md:hidden absolute inset-0 object-cover object-center blur-[10px]"
               priority
@@ -158,10 +155,9 @@ export function Home() {
           </div>
         </div>
 
-        <div ref={parallaxRef} className="relative z-20">
+        <div className="relative z-20">
           <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh] overflow-hidden">
             <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,black_65%)]" />
-            
             <div className="relative z-10">
               <ExperienceTextSection />
             </div>
@@ -171,12 +167,9 @@ export function Home() {
       
       <SiteShowcaseSection />
 
-      {/* STEPS SECTION */}
       <section className="relative py-[12vh] md:py-[20vh] z-30 overflow-hidden w-full bg-black" id="steps">
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-0 items-center relative">
-            
-            {/* CENTRAL DECORATIVE ICON (PC ONLY) */}
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
               <Image 
                 src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
@@ -187,7 +180,6 @@ export function Home() {
               />
             </div>
 
-            {/* LEFT COLUMN: HEADLINE */}
             <div className="col-span-12 lg:col-span-5 flex flex-col">
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
                 SIMPLE STEPS TO<br />GET YOUR SITE
@@ -198,7 +190,6 @@ export function Home() {
               </p>
             </div>
 
-            {/* RIGHT COLUMN: STEPS LIST */}
             <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col pt-4 md:pt-0 relative">
               <motion.div 
                 className="flex flex-col w-full border-t border-[#e0ded8]/20"
@@ -216,7 +207,6 @@ export function Home() {
                     className="flex items-center py-6 md:py-[1.8vh] border-b border-[#e0ded8]/20 group transition-colors duration-300 cursor-default w-full overflow-hidden"
                   >
                     <div className="flex items-center gap-6 md:gap-[3vw] w-full">
-                      {/* DAY NUMBER */}
                       <div className="h-[4vw] md:h-[2vw] overflow-hidden shrink-0">
                         <motion.div
                           variants={rollingTextVariants}
@@ -232,7 +222,6 @@ export function Home() {
                         </motion.div>
                       </div>
                       
-                      {/* STEP TITLE */}
                       <div className="h-[4vw] md:h-[2vw] overflow-hidden w-full">
                         <motion.div
                           variants={rollingTextVariants}
@@ -392,7 +381,6 @@ export function Home() {
 
       <VerticalPricingTabs />
 
-      {/* FINAL CTA SECTION */}
       <section className="relative w-full bg-black py-16 px-6 md:px-[4vw] z-30" id="contact">
         <div className="relative w-full aspect-[21/9] min-h-[500px] bg-black overflow-hidden flex items-center justify-center">
           <div className="absolute inset-0 p-2 md:p-[1vw]">
@@ -408,8 +396,6 @@ export function Home() {
                 <div className="absolute inset-0 bg-black/35 transition-all duration-1000" />
                 
                 <div className="absolute inset-0 z-10 p-8 md:p-[4vw] flex flex-col items-center">
-                  
-                  {/* DESKTOP CONTENT GRID */}
                   <div className="hidden md:grid grid-cols-12 items-center w-full h-full">
                     <div className="md:col-span-5">
                       <motion.div
@@ -455,7 +441,6 @@ export function Home() {
                     </div>
                   </div>
 
-                  {/* MOBILE SPECIFIC LAYOUT */}
                   <div className="md:hidden flex flex-col items-center w-full pt-4 h-full">
                     <motion.h2 
                       className="text-[12vw] font-headline text-white uppercase tracking-tight whitespace-nowrap mb-2 text-center"
@@ -493,5 +478,3 @@ export function Home() {
     </div>
   );
 }
-
-export default Home;

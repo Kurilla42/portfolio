@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Figma, MousePointer2 } from "lucide-react";
 import { HighlightWipeHeading } from "@/components/HighlightWipeHeading";
@@ -21,10 +20,8 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
   
   return (
     <div className="relative h-screen w-full font-sans overflow-hidden bg-transparent">
-      {/* Hero Content */}
       <div className="relative z-10 w-full h-full px-6 md:px-[4vw] pt-6 md:pt-[4vh] pb-8 md:pb-[4vh] flex flex-col justify-between text-[#e0ded8]">
         
-        {/* TOP ROW */}
         <div className="flex w-full items-start justify-between">
           <div>
             <span className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] opacity-60 font-sans">{greeting}</span>
@@ -39,10 +36,7 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
           </div>
         </div>
 
-        {/* BOTTOM AREA */}
         <div className="w-full mt-auto flex flex-col">
-          
-          {/* Identity Section */}
           <div className="grid grid-cols-12 w-full gap-4 md:gap-0 mb-6 md:mb-[2vh]">
             <div className="col-span-12 flex flex-col">
               <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">Hi there! this is</p>
@@ -52,9 +46,7 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
             </div>
           </div>
 
-          {/* Main Heading & Manifesto Section */}
           <div className="grid grid-cols-12 w-full items-start gap-4 md:gap-0">
-            {/* Left Column: Heading */}
             <div className="col-span-12 md:col-span-8">
               <HighlightWipeHeading 
                 as="h1"
@@ -66,19 +58,15 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
               />
             </div>
 
-            {/* Right Column: Manifesto and Icons */}
             <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col pt-1.5 md:pt-[0.5vw]">
-              {/* Divider Line */}
               <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-4 md:mb-[1.5vw]" />
               
-              {/* Manifesto Text */}
               <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw] text-left">
                 <p>Built for service businesses</p>
                 <p>Focused on conversion</p>
                 <p>Made for owners who care about results</p>
               </div>
 
-              {/* Links & Icons */}
               <div className="flex items-center justify-between md:justify-start gap-4 md:gap-[2.5vw] mt-auto">
                 <span className="text-[11px] md:text-[0.91vw] uppercase font-bold tracking-widest opacity-40 hover:opacity-100 transition-opacity font-sans">WebFlow</span>
                 <Figma className="w-[20px] md:w-[1.56vw] h-[20px] md:h-[1.56vw] opacity-40 hover:opacity-100 transition-opacity" />
@@ -89,7 +77,6 @@ export default function ShaderShowcase({ isLifted }: ShaderShowcaseProps) {
               </div>
             </div>
           </div>
-          
         </div>
       </div>
     </div>
