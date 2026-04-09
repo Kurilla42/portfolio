@@ -435,7 +435,7 @@ export default function Home() {
                       >
                         <Link href="https://www.facebook.com/profile.php?id=61585447957089" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
                         <Link href="https://www.instagram.com/will_dukalis?igsh=MTN2OHM4aGZua2JvZQ==" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
-                        <Link href="mailto:sterlet.prod@gmail.com" className="hover:text-[#c7b684] transition-colors">sterlet.prod@gmail.com</Link>
+                        <Link href="mailto:plumbing.landing@gmail.com" className="hover:text-[#c7b684] transition-colors">plumbing.landing@gmail.com</Link>
                         <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">WhatsApp +7 (912) 758-22-10</Link>
                       </motion.div>
                     </div>
@@ -463,7 +463,7 @@ export default function Home() {
                     <div className="flex flex-col items-center gap-3 text-[3.5vw] font-mono text-white/80 uppercase text-center mt-auto pb-10">
                        <Link href="https://www.facebook.com/profile.php?id=61585447957089" target="_blank" rel="noopener noreferrer">[ FACEBOOK ]</Link>
                        <Link href="https://www.instagram.com/will_dukalis?igsh=MTN2OHM4aGZua2JvZQ==" target="_blank" rel="noopener noreferrer">[ INSTAGRAM ]</Link>
-                       <Link href="mailto:sterlet.prod@gmail.com">sterlet.prod@gmail.com</Link>
+                       <Link href="mailto:plumbing.landing@gmail.com">plumbing.landing@gmail.com</Link>
                        <Link href="tel:+79127582210">WhatsApp +7 (912) 758-22-10</Link>
                     </div>
                   </div>
