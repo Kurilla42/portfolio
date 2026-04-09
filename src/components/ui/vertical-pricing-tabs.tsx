@@ -47,7 +47,7 @@ const PRICING_PLANS = [
     ],
     footerText: "You get a unique website that strengthens your brand, addresses objections, and systematically turns traffic into calls and leads.",
     buttonText: "Discuss Custom Project",
-    investment: "$1197",
+    investment: "$1897",
     period: "one-time",
     oldPrice: "$1500",
     badge: null,
