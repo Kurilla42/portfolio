@@ -65,7 +65,7 @@ export function SiteShowcaseSection() {
         {/* Разделенный начальный текст */}
         <motion.div 
           style={{ opacity: headingOpacity }}
-          className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-6 md:px-[4vw]"
+          className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-[15%]"
         >
           <h2 className="text-[8vw] md:text-[3.5vw] font-headline font-black uppercase text-[#e0ded8] leading-[0.9] tracking-tight w-[40%] md:w-[35%]">
             EXPLORE HOW YOUR
