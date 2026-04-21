@@ -119,8 +119,8 @@ export function SiteShowcaseSection() {
                     </div>
                     {/* Empty Space: 25% to 50% */}
                     <div className="col-span-1" />
-                    {/* Text starts at 50% (col-span starts at index 2 out of 4) */}
-                    <div className="col-span-1 flex flex-col justify-center">
+                    {/* Text starts at 50% and spans to the end */}
+                    <div className="col-span-2 flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
@@ -128,15 +128,11 @@ export function SiteShowcaseSection() {
                         {item.description}
                       </p>
                     </div>
-                    {/* Final gap: 75% to 100% */}
-                    <div className="col-span-1" />
                   </div>
                 ) : (
                   <div className="grid grid-cols-4 w-full h-full">
-                    {/* Empty Space: 0% to 25% */}
-                    <div className="col-span-1" />
-                    {/* Text ends at 50% (occupies 2nd column) */}
-                    <div className="col-span-1 flex flex-col justify-center text-right">
+                    {/* Text starts from left edge and ends at 50% */}
+                    <div className="col-span-2 flex flex-col justify-center text-right">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
