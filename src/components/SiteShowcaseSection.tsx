@@ -109,12 +109,12 @@ export function SiteShowcaseSection() {
               }}
               className="relative w-full h-[25vh] md:h-[22vh] flex items-center will-change-transform border-b border-[#e0ded8]/20"
             >
-              <div className="flex w-full h-full items-center justify-between">
+              <div className="flex w-full items-center justify-between">
                 
                 {item.layout === 'left' ? (
                   <>
-                    {/* Картинка Слева */}
-                    <div className="w-[42%] md:w-[35%] h-full relative overflow-hidden">
+                    {/* Картинка Слева 16:9 */}
+                    <div className="w-[42%] md:w-[35%] aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
@@ -148,8 +148,8 @@ export function SiteShowcaseSection() {
                     </div>
                     {/* Пустое пространство в центре */}
                     <div className="flex-1" />
-                    {/* Картинка Справа */}
-                    <div className="w-[42%] md:w-[35%] h-full relative overflow-hidden">
+                    {/* Картинка Справа 16:9 */}
+                    <div className="w-[42%] md:w-[35%] aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
