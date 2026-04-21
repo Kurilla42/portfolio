@@ -59,19 +59,20 @@ export function SiteShowcaseSection() {
   ];
 
   return (
-    <div ref={containerRef} className="relative h-[450vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[400vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Начальный текст: EXPLORE HOW... */}
+        {/* Разделенный начальный текст */}
         <motion.div 
           style={{ opacity: headingOpacity }}
-          className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6"
+          className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-6 md:px-[4vw]"
         >
-          <div className="text-center">
-            <h2 className="text-[12vw] md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] leading-none tracking-tight">
-              EXPLORE HOW YOUR<br />SITE CAN LOOK LIKE
-            </h2>
-          </div>
+          <h2 className="text-[8vw] md:text-[3.5vw] font-headline font-black uppercase text-[#e0ded8] leading-[0.9] tracking-tight w-[40%] md:w-[35%]">
+            EXPLORE HOW YOUR
+          </h2>
+          <h2 className="text-[8vw] md:text-[3.5vw] font-headline font-black uppercase text-[#e0ded8] leading-[0.9] tracking-tight w-[40%] md:w-[35%] text-right">
+            SITE CAN LOOK LIKE
+          </h2>
         </motion.div>
 
         {/* Центральная декоративная иконка */}
@@ -91,7 +92,7 @@ export function SiteShowcaseSection() {
           />
         </motion.div>
 
-        {/* Контейнер для кейсов */}
+        {/* Контейнер для кейсов "лесенкой" */}
         <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-[4vh] py-[5vh]">
           {cases.map((item, idx) => (
             <motion.div
@@ -102,12 +103,12 @@ export function SiteShowcaseSection() {
               }}
               className="relative w-full h-[25vh] md:h-[22vh] flex items-center will-change-transform"
             >
-              <div className={`grid grid-cols-12 w-full h-full items-center gap-6 md:gap-[4vw]`}>
+              <div className="flex w-full h-full items-center justify-between">
                 
                 {item.layout === 'left' ? (
                   <>
-                    {/* Картинка Слева */}
-                    <div className="col-span-6 h-full relative overflow-hidden">
+                    {/* Картинка Слева - Ширина как у "Choose Your Service" пропорций */}
+                    <div className="w-[42%] md:w-[35%] h-full relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
@@ -116,8 +117,10 @@ export function SiteShowcaseSection() {
                         unoptimized
                       />
                     </div>
-                    {/* Описание Справа */}
-                    <div className="col-span-6 flex flex-col justify-center">
+                    {/* Пустое пространство в центре */}
+                    <div className="flex-1" />
+                    {/* Описание Справа - Симметричный размер */}
+                    <div className="w-[42%] md:w-[35%] flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
@@ -128,8 +131,8 @@ export function SiteShowcaseSection() {
                   </>
                 ) : (
                   <>
-                    {/* Описание Слева */}
-                    <div className="col-span-6 flex flex-col justify-center text-right">
+                    {/* Описание Слева - Симметричный размер */}
+                    <div className="w-[42%] md:w-[35%] flex flex-col justify-center text-right">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
@@ -137,8 +140,10 @@ export function SiteShowcaseSection() {
                         {item.description}
                       </p>
                     </div>
-                    {/* Картинка Справа */}
-                    <div className="col-span-6 h-full relative overflow-hidden">
+                    {/* Пустое пространство в центре */}
+                    <div className="flex-1" />
+                    {/* Картинка Справа - Симметричный размер */}
+                    <div className="w-[42%] md:w-[35%] h-full relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
