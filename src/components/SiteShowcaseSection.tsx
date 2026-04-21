@@ -10,21 +10,21 @@ const cases = [
     id: "01",
     title: "RESIDENTIAL MASTERPIECE",
     description: "COMPLETE BATHROOM OVERHAUL FOR A HISTORIC HOME IN BROOKLYN. MODERN FIXTURES MEET CLASSIC AESTHETICS.",
-    image: "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg",
+    image: "https://i.ibb.co/jZf5xxMd/2026-03-26-12-51-49.jpg",
     layout: "left"
   },
   {
     id: "02",
     title: "COMMERCIAL INFRASTRUCTURE",
     description: "EFFICIENCY-DRIVEN PLUMBING SYSTEMS FOR A NEW TECH HUB. 24/7 RELIABILITY FOR CRITICAL OPERATIONS.",
-    image: "https://i.ibb.co/bgFv3GL7/202603310107.jpg",
+    image: "https://i.ibb.co/sdMw1xpg/2026-03-26-12-52-03.jpg",
     layout: "right"
   },
   {
     id: "03",
     title: "EMERGENCY RESPONSE HUB",
     description: "RAPID DEPLOYMENT SYSTEM FOR COMMERCIAL LEAK DETECTION. MINIMIZED DOWNTIME BY 40% FOR OUR KEY CLIENT.",
-    image: "https://i.ibb.co/LDgsQj1v/Whisk-yiomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd.jpg",
+    image: "https://i.ibb.co/b5vKSp4R/202604011547.jpg",
     layout: "left"
   }
 ];
