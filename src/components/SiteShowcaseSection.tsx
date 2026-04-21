@@ -93,7 +93,13 @@ export function SiteShowcaseSection() {
         </motion.div>
 
         {/* Контейнер для кейсов "лесенкой" */}
-        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-[4vh] py-[5vh]">
+        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center py-[5vh]">
+          {/* Верхняя линия (по аналогии с блоком шагов) */}
+          <motion.div 
+            style={{ opacity: case1Opacity }}
+            className="w-full h-[1px] bg-[#e0ded8]/20"
+          />
+          
           {cases.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -101,13 +107,13 @@ export function SiteShowcaseSection() {
                 y: caseTransforms[idx].y, 
                 opacity: caseTransforms[idx].opacity 
               }}
-              className="relative w-full h-[25vh] md:h-[22vh] flex items-center will-change-transform"
+              className="relative w-full h-[25vh] md:h-[22vh] flex items-center will-change-transform border-b border-[#e0ded8]/20"
             >
               <div className="flex w-full h-full items-center justify-between">
                 
                 {item.layout === 'left' ? (
                   <>
-                    {/* Картинка Слева - Ширина как у "Choose Your Service" пропорций */}
+                    {/* Картинка Слева */}
                     <div className="w-[42%] md:w-[35%] h-full relative overflow-hidden">
                       <Image 
                         src={item.image}
@@ -119,7 +125,7 @@ export function SiteShowcaseSection() {
                     </div>
                     {/* Пустое пространство в центре */}
                     <div className="flex-1" />
-                    {/* Описание Справа - Симметричный размер */}
+                    {/* Описание Справа */}
                     <div className="w-[42%] md:w-[35%] flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
@@ -131,7 +137,7 @@ export function SiteShowcaseSection() {
                   </>
                 ) : (
                   <>
-                    {/* Описание Слева - Симметричный размер */}
+                    {/* Описание Слева */}
                     <div className="w-[42%] md:w-[35%] flex flex-col justify-center text-right">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
@@ -142,7 +148,7 @@ export function SiteShowcaseSection() {
                     </div>
                     {/* Пустое пространство в центре */}
                     <div className="flex-1" />
-                    {/* Картинка Справа - Симметричный размер */}
+                    {/* Картинка Справа */}
                     <div className="w-[42%] md:w-[35%] h-full relative overflow-hidden">
                       <Image 
                         src={item.image}
