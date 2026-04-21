@@ -37,12 +37,10 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Анимация начального текста и декоративного элемента
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const centralIconOpacity = useTransform(scrollYProgress, [0, 0.15, 0.4], [1, 1, 0]);
   const centralScale = useTransform(scrollYProgress, [0, 0.4], [0.8, 1]);
 
-  // Тайминги для появления кейсов (последовательно)
   const case1Y = useTransform(scrollYProgress, [0.15, 0.35], ["100vh", "0vh"]);
   const case1Opacity = useTransform(scrollYProgress, [0.15, 0.25], [0, 1]);
 
@@ -62,7 +60,6 @@ export function SiteShowcaseSection() {
     <div ref={containerRef} className="relative h-[400vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Разделенный начальный текст с отступами 15% */}
         <motion.div 
           style={{ opacity: headingOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-[15%]"
@@ -75,7 +72,6 @@ export function SiteShowcaseSection() {
           </h2>
         </motion.div>
 
-        {/* Центральная декоративная иконка */}
         <motion.div 
           style={{ 
             opacity: centralIconOpacity, 
@@ -92,9 +88,7 @@ export function SiteShowcaseSection() {
           />
         </motion.div>
 
-        {/* Контейнер для кейсов "лесенкой" */}
         <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center py-[5vh]">
-          {/* Верхняя линия (появляется с первым кейсом) */}
           <motion.div 
             style={{ opacity: case1Opacity }}
             className="w-full h-[1px] bg-[#e0ded8]/20"
@@ -109,12 +103,12 @@ export function SiteShowcaseSection() {
               }}
               className="relative w-full h-[25vh] md:h-[22vh] flex items-center will-change-transform border-b border-[#e0ded8]/20"
             >
-              <div className="flex w-full items-center justify-between">
+              <div className="flex w-full items-center">
                 
                 {item.layout === 'left' ? (
-                  <>
-                    {/* Картинка Слева 16:9, ширина 25% */}
-                    <div className="w-[42%] md:w-[25%] aspect-video relative overflow-hidden">
+                  <div className="grid grid-cols-4 w-full h-full">
+                    {/* Image Left: 0% to 25% */}
+                    <div className="col-span-1 aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
@@ -123,10 +117,10 @@ export function SiteShowcaseSection() {
                         unoptimized
                       />
                     </div>
-                    {/* Пустое пространство в центре (симметрия) */}
-                    <div className="flex-1" />
-                    {/* Описание Справа, ширина 25% */}
-                    <div className="w-[42%] md:w-[25%] flex flex-col justify-center">
+                    {/* Empty Space: 25% to 50% */}
+                    <div className="col-span-1" />
+                    {/* Text starts at 50% (col-span starts at index 2 out of 4) */}
+                    <div className="col-span-1 flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
@@ -134,11 +128,15 @@ export function SiteShowcaseSection() {
                         {item.description}
                       </p>
                     </div>
-                  </>
+                    {/* Final gap: 75% to 100% */}
+                    <div className="col-span-1" />
+                  </div>
                 ) : (
-                  <>
-                    {/* Описание Слева, ширина 25% */}
-                    <div className="w-[42%] md:w-[25%] flex flex-col justify-center text-right">
+                  <div className="grid grid-cols-4 w-full h-full">
+                    {/* Empty Space: 0% to 25% */}
+                    <div className="col-span-1" />
+                    {/* Text ends at 50% (occupies 2nd column) */}
+                    <div className="col-span-1 flex flex-col justify-center text-right">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
@@ -146,10 +144,10 @@ export function SiteShowcaseSection() {
                         {item.description}
                       </p>
                     </div>
-                    {/* Пустое пространство в центре */}
-                    <div className="flex-1" />
-                    {/* Картинка Справа 16:9, ширина 25% */}
-                    <div className="w-[42%] md:w-[25%] aspect-video relative overflow-hidden">
+                    {/* Empty Space: 50% to 75% */}
+                    <div className="col-span-1" />
+                    {/* Image Right: 75% to 100% */}
+                    <div className="col-span-1 aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
@@ -158,7 +156,7 @@ export function SiteShowcaseSection() {
                         unoptimized
                       />
                     </div>
-                  </>
+                  </div>
                 )}
 
               </div>
