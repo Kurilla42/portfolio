@@ -1,9 +1,33 @@
+
 "use client";
 
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
-import Link from 'next/link';
+
+const cases = [
+  {
+    id: "01",
+    title: "RESIDENTIAL MASTERPIECE",
+    description: "COMPLETE BATHROOM OVERHAUL FOR A HISTORIC HOME IN BROOKLYN. MODERN FIXTURES MEET CLASSIC AESTHETICS.",
+    image: "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg",
+    layout: "left"
+  },
+  {
+    id: "02",
+    title: "COMMERCIAL INFRASTRUCTURE",
+    description: "EFFICIENCY-DRIVEN PLUMBING SYSTEMS FOR A NEW TECH HUB. 24/7 RELIABILITY FOR CRITICAL OPERATIONS.",
+    image: "https://i.ibb.co/bgFv3GL7/202603310107.jpg",
+    layout: "right"
+  },
+  {
+    id: "03",
+    title: "EMERGENCY RESPONSE HUB",
+    description: "RAPID DEPLOYMENT SYSTEM FOR COMMERCIAL LEAK DETECTION. MINIMIZED DOWNTIME BY 40% FOR OUR KEY CLIENT.",
+    image: "https://i.ibb.co/LDgsQj1v/Whisk-yiomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd.jpg",
+    layout: "left"
+  }
+];
 
 export function SiteShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -13,161 +37,124 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  const textOpacity = useTransform(scrollYProgress, [0, 0.4], [1, 0]);
-  const containersEntryY = useTransform(scrollYProgress, [0, 0.95], ["100vh", "0vh"]);
-  const containersEntryOpacity = useTransform(scrollYProgress, [0, 0.8], [0, 1]);
-  
-  const centralImageOpacity = useTransform(scrollYProgress, [0, 0.35, 0.6], [1, 1, 0]);
-  const centralTextOpacity = useTransform(scrollYProgress, [0.6, 0.9], [0, 1]);
-  const centralScale = useTransform(scrollYProgress, [0, 0.6], [0.8, 1]);
+  // Анимация начального текста и декоративного элемента
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
+  const centralIconOpacity = useTransform(scrollYProgress, [0, 0.15, 0.4], [1, 1, 0]);
+  const centralScale = useTransform(scrollYProgress, [0, 0.4], [0.8, 1]);
 
-  const leftImg = "https://i.ibb.co/xqqg1DhS/Computer-monitor-on-202603301741.jpg";
-  const rightImg = "https://i.ibb.co/bgFv3GL7/202603310107.jpg";
+  // Тайминги для появления кейсов
+  const case1Y = useTransform(scrollYProgress, [0.15, 0.35], ["100vh", "0vh"]);
+  const case1Opacity = useTransform(scrollYProgress, [0.15, 0.25], [0, 1]);
 
-  const ShowcaseCard = ({ src, label, subLabel, href }: { src: string, label: string, subLabel: string, href: string }) => (
-    <div className="relative flex flex-col justify-center items-center h-[40vh] md:h-full text-center">
-      <motion.div 
-        style={{ opacity: textOpacity }}
-        className="absolute text-[12vw] md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] z-20 pointer-events-none leading-none tracking-tight z-20 pointer-events-none leading-none whitespace-nowrap"
-      >
-        {label}
-      </motion.div>
-      
-      <motion.div 
-        style={{ y: containersEntryY, opacity: containersEntryOpacity }}
-        className="relative flex flex-col items-start z-10"
-      >
-        <div className="relative">
-          <motion.div 
-            whileHover="hover"
-            initial="initial"
-            className="relative w-[76.5vw] md:w-[37.8vw] aspect-[4/3] bg-transparent rounded-none overflow-hidden cursor-pointer group"
-          >
-            <motion.div
-              variants={{
-                hover: { scale: 1.05 }
-              }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full h-full relative flex flex-col"
-            >
-              <Image 
-                src={src} 
-                alt="Case Study" 
-                width={1600}
-                height={1200}
-                className="w-full h-full object-contain"
-                unoptimized
-              />
-            </motion.div>
+  const case2Y = useTransform(scrollYProgress, [0.4, 0.6], ["100vh", "0vh"]);
+  const case2Opacity = useTransform(scrollYProgress, [0.4, 0.5], [0, 1]);
 
-            <motion.div
-              variants={{
-                initial: { y: "-120%", x: "-50%", opacity: 0 },
-                hover: { y: "-50%", x: "-50%", opacity: 1 }
-              }}
-              transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-              className="absolute top-1/2 left-1/2 w-[60%] h-[60%] z-30 pointer-events-none overflow-hidden"
-            >
-              <div className="relative w-full h-full border border-[#e0ded8]/20 bg-black/20 flex flex-col shadow-2xl shadow-black/50">
-                <Image 
-                  src={src} 
-                  alt="Case Study Preview" 
-                  width={1600}
-                  height={1200}
-                  className="w-full h-full object-contain"
-                  unoptimized
-                />
-              </div>
-            </motion.div>
-            
-            <motion.div 
-              variants={{
-                initial: { opacity: 0 },
-                hover: { opacity: 0.2 }
-              }}
-              className="absolute inset-0 bg-black z-20 pointer-events-none"
-            />
-          </motion.div>
-        </div>
-        
-        <div className="flex flex-row justify-between items-center w-full mt-4">
-          <span className="text-[3.5vw] md:text-[1vw] text-[#e0ded8]/40 uppercase font-mono tracking-widest">
-            {subLabel}
-          </span>
-          <Link 
-            href={href}
-            className="group/link"
-          >
-            <span className="text-[3.5vw] md:text-[1vw] font-mono text-[#e0ded8]/40 group-hover/link:text-[#c7b684] transition-colors uppercase tracking-widest block whitespace-nowrap">
-              VIEW WORK
-            </span>
-          </Link>
-        </div>
-      </motion.div>
-    </div>
-  );
+  const case3Y = useTransform(scrollYProgress, [0.65, 0.85], ["100vh", "0vh"]);
+  const case3Opacity = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
+
+  const caseTransforms = [
+    { y: case1Y, opacity: case1Opacity },
+    { y: case2Y, opacity: case2Opacity },
+    { y: case3Y, opacity: case3Opacity }
+  ];
 
   return (
-    <div ref={containerRef} className="relative h-[180vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[450vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
-        <div className="w-full h-full flex items-center justify-center relative">
-          
-          <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none px-6">
-            <div className="relative flex items-center justify-center">
-              
-              <motion.div 
-                style={{ 
-                  opacity: centralImageOpacity, 
-                  scale: centralScale,
-                }}
-                className="absolute z-10 w-[54vw] md:w-[13.52vw] h-[68vw] md:h-[16.9vw]"
-              >
-                <Image 
-                  src="https://i.ibb.co/zWwNcSSf/image.png"
-                  alt="Decorative center element"
-                  fill
-                  className="object-contain"
-                  unoptimized
-                />
-              </motion.div>
-
-              <motion.div 
-                style={{ 
-                  opacity: centralTextOpacity,
-                  scale: centralScale
-                }}
-                className="font-mono font-bold text-[12vw] md:text-[3vw] uppercase text-[#c7b684] tracking-normal text-center"
-              >
-                <div className="flex flex-row md:flex-col items-center leading-[1.0]">
-                  <span className="md:hidden">YOUR SITE</span>
-                  <div className="hidden md:flex flex-col items-center">
-                    {"YOUR SITE".split("").map((char, i) => (
-                      <span key={i} className={char === " " ? "h-[0.5em]" : ""}>
-                        {char}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-
-            </div>
+        
+        {/* Начальный текст: EXPLORE HOW... */}
+        <motion.div 
+          style={{ opacity: headingOpacity }}
+          className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6"
+        >
+          <div className="text-center">
+            <h2 className="text-[12vw] md:text-[4.5vw] font-headline font-black uppercase text-[#e0ded8] leading-none tracking-tight">
+              EXPLORE HOW YOUR<br />SITE CAN LOOK LIKE
+            </h2>
           </div>
+        </motion.div>
 
-          <div className="w-full h-full grid grid-cols-1 md:grid-cols-2 items-center px-6 md:px-[4vw] relative z-10 gap-8 md:gap-[4vw]">
-            <ShowcaseCard 
-              src={leftImg} 
-              label="EXPLORE HOW YOUR" 
-              subLabel="template 1"
-              href="/case1"
-            />
-            <ShowcaseCard 
-              src={rightImg} 
-              label="SITE CAN LOOK LIKE" 
-              subLabel="template 2"
-              href="/case2"
-            />
-          </div>
+        {/* Центральная декоративная иконка */}
+        <motion.div 
+          style={{ 
+            opacity: centralIconOpacity, 
+            scale: centralScale,
+          }}
+          className="absolute z-10 w-[54vw] md:w-[13.52vw] h-[68vw] md:h-[16.9vw]"
+        >
+          <Image 
+            src="https://i.ibb.co/zWwNcSSf/image.png"
+            alt="Decorative icon"
+            fill
+            className="object-contain"
+            unoptimized
+          />
+        </motion.div>
+
+        {/* Контейнер для кейсов */}
+        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-[4vh] py-[5vh]">
+          {cases.map((item, idx) => (
+            <motion.div
+              key={item.id}
+              style={{ 
+                y: caseTransforms[idx].y, 
+                opacity: caseTransforms[idx].opacity 
+              }}
+              className="relative w-full h-[25vh] md:h-[22vh] flex items-center will-change-transform"
+            >
+              <div className={`grid grid-cols-12 w-full h-full items-center gap-6 md:gap-[4vw]`}>
+                
+                {item.layout === 'left' ? (
+                  <>
+                    {/* Картинка Слева */}
+                    <div className="col-span-6 h-full relative overflow-hidden">
+                      <Image 
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
+                    {/* Описание Справа */}
+                    <div className="col-span-6 flex flex-col justify-center">
+                      <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8] uppercase tracking-[0.1em]">
+                        {item.description}
+                      </p>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {/* Описание Слева */}
+                    <div className="col-span-6 flex flex-col justify-center text-right">
+                      <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8] uppercase tracking-[0.1em]">
+                        {item.description}
+                      </p>
+                    </div>
+                    {/* Картинка Справа */}
+                    <div className="col-span-6 h-full relative overflow-hidden">
+                      <Image 
+                        src={item.image}
+                        alt={item.title}
+                        fill
+                        className="object-cover"
+                        unoptimized
+                      />
+                    </div>
+                  </>
+                )}
+
+              </div>
+            </motion.div>
+          ))}
         </div>
+
       </div>
     </div>
   );
