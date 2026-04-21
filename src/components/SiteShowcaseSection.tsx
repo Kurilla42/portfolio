@@ -113,8 +113,8 @@ export function SiteShowcaseSection() {
                 
                 {item.layout === 'left' ? (
                   <>
-                    {/* Картинка Слева 16:9, ширина 35% */}
-                    <div className="w-[42%] md:w-[35%] aspect-video relative overflow-hidden">
+                    {/* Картинка Слева 16:9, ширина 25% */}
+                    <div className="w-[42%] md:w-[25%] aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
@@ -125,8 +125,8 @@ export function SiteShowcaseSection() {
                     </div>
                     {/* Пустое пространство в центре (симметрия) */}
                     <div className="flex-1" />
-                    {/* Описание Справа, ширина 35% */}
-                    <div className="w-[42%] md:w-[35%] flex flex-col justify-center">
+                    {/* Описание Справа, ширина 25% */}
+                    <div className="w-[42%] md:w-[25%] flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
@@ -137,8 +137,8 @@ export function SiteShowcaseSection() {
                   </>
                 ) : (
                   <>
-                    {/* Описание Слева, ширина 35% */}
-                    <div className="w-[42%] md:w-[35%] flex flex-col justify-center text-right">
+                    {/* Описание Слева, ширина 25% */}
+                    <div className="w-[42%] md:w-[25%] flex flex-col justify-center text-right">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
@@ -148,8 +148,8 @@ export function SiteShowcaseSection() {
                     </div>
                     {/* Пустое пространство в центре */}
                     <div className="flex-1" />
-                    {/* Картинка Справа 16:9, ширина 35% */}
-                    <div className="w-[42%] md:w-[35%] aspect-video relative overflow-hidden">
+                    {/* Картинка Справа 16:9, ширина 25% */}
+                    <div className="w-[42%] md:w-[25%] aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
