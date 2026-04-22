@@ -49,7 +49,7 @@ const PRICING_PLANS = [
     buttonText: "Discuss Custom Project",
     investment: "$1897",
     period: "one-time",
-    oldPrice: "$1500",
+    oldPrice: "$2500",
     badge: null,
     color: "bg-white"
   },
