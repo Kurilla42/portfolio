@@ -8,14 +8,14 @@ const cases = [
   {
     id: "01",
     title: "RESIDENTIAL MASTERPIECE",
-    description: "COMPLETE BATHROOM OVERHAUL FOR A HISTORIC HOME IN BROOKLYN. MODERN FIXTURES MEET CLASSIC AESTHETICS.",
+    description: "DEMO PROJECT: A CONVERSION-OPTIMIZED LANDING PAGE BUILT FOR A RESIDENTIAL PLUMBING COMPANY SERVING UPPER MANHATTAN. DESIGNED AROUND MOBILE-FIRST UX WITH CLICK-TO-CALL, TRUST SIGNALS ABOVE THE FOLD, AND LOCAL SEO STRUCTURE FOR \"NEAR ME\" SEARCHES.",
     image: "https://i.ibb.co/NgFktWnH/2026-04-22-20-48-13.png",
     layout: "left"
   },
   {
     id: "02",
     title: "COMMERCIAL INFRASTRUCTURE",
-    description: "EFFICIENCY-DRIVEN PLUMBING SYSTEMS FOR A NEW TECH HUB. 24/7 RELIABILITY FOR CRITICAL OPERATIONS.",
+    description: "DEMO PROJECT: A MULTI-PAGE SITE CONCEPT FOR A COMMERCIAL PLUMBING CONTRACTOR. BUILT TO HANDLE B2B LEAD CAPTURE, 24/7 EMERGENCY POSITIONING, AND SERVICE AREA TARGETING ACROSS MULTIPLE LOCATIONS.",
     image: "https://i.ibb.co/ZRY8rbdP/2026-04-22-20-46-21.png",
     layout: "right"
   }
@@ -93,7 +93,7 @@ export function SiteShowcaseSection() {
                 
                 {item.layout === 'left' ? (
                   <>
-                    {/* Left: Image Container (30% width roughly via col-span and sizing) */}
+                    {/* Left: Image Container (30% width) */}
                     <div className="col-span-1 aspect-video relative overflow-hidden w-[120%]">
                       <Image 
                         src={item.image}
@@ -138,7 +138,7 @@ export function SiteShowcaseSection() {
                     <div className="col-span-1 px-[2vw] flex items-center justify-center">
                       <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                     </div>
-                    {/* Right: Image Container (30% width roughly via sizing) */}
+                    {/* Right: Image Container (30% width) */}
                     <div className="col-span-1 aspect-video relative overflow-hidden w-[120%] justify-self-end">
                       <Image 
                         src={item.image}
