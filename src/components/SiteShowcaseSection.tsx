@@ -45,9 +45,10 @@ export function SiteShowcaseSection() {
   ];
 
   return (
-    <div ref={containerRef} className="relative h-[300vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[200vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
+        {/* Initial Text Overlay with 15% Padding */}
         <motion.div 
           style={{ opacity: headingOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-[15%]"
@@ -60,6 +61,7 @@ export function SiteShowcaseSection() {
           </h2>
         </motion.div>
 
+        {/* Central Decorative Icon */}
         <motion.div 
           style={{ 
             opacity: centralIconOpacity, 
@@ -76,6 +78,7 @@ export function SiteShowcaseSection() {
           />
         </motion.div>
 
+        {/* Cases List */}
         <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-16 py-[5vh]">
           {cases.map((item, idx) => (
             <motion.div
@@ -90,18 +93,21 @@ export function SiteShowcaseSection() {
                 
                 {item.layout === 'left' ? (
                   <>
+                    {/* Left: Image Container (30% width roughly via col-span and sizing) */}
                     <div className="col-span-1 aspect-video relative overflow-hidden w-[120%]">
                       <Image 
                         src={item.image}
                         alt={item.title}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         unoptimized
                       />
                     </div>
+                    {/* Gap: Line connecting image to text */}
                     <div className="col-span-1 px-[2vw] flex items-center justify-center">
                       <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                     </div>
+                    {/* Right: Text Container starting at 50% */}
                     <div className="col-span-2 flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title} 
@@ -116,6 +122,7 @@ export function SiteShowcaseSection() {
                   </>
                 ) : (
                   <>
+                    {/* Left: Text Container ending at 50% */}
                     <div className="col-span-2 flex flex-col justify-center text-right">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         <span className="mr-3 text-[2.5vw] md:text-[1vw] font-mono font-bold text-[#e0ded8]/40 tracking-[0.2em]">
@@ -127,15 +134,17 @@ export function SiteShowcaseSection() {
                         {item.description}
                       </p>
                     </div>
+                    {/* Gap: Line connecting text to image */}
                     <div className="col-span-1 px-[2vw] flex items-center justify-center">
                       <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                     </div>
+                    {/* Right: Image Container (30% width roughly via sizing) */}
                     <div className="col-span-1 aspect-video relative overflow-hidden w-[120%] justify-self-end">
                       <Image 
                         src={item.image}
                         alt={item.title}
                         fill
-                        className="object-cover"
+                        className="object-contain"
                         unoptimized
                       />
                     </div>
