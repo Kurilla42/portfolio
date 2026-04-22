@@ -19,13 +19,6 @@ const cases = [
     description: "EFFICIENCY-DRIVEN PLUMBING SYSTEMS FOR A NEW TECH HUB. 24/7 RELIABILITY FOR CRITICAL OPERATIONS.",
     image: "https://i.ibb.co/sdMw1xpg/2026-03-26-12-52-03.jpg",
     layout: "right"
-  },
-  {
-    id: "03",
-    title: "EMERGENCY RESPONSE HUB",
-    description: "RAPID DEPLOYMENT SYSTEM FOR COMMERCIAL LEAK DETECTION. MINIMIZED DOWNTIME BY 40% FOR OUR KEY CLIENT.",
-    image: "https://i.ibb.co/b5vKSp4R/202604011547.jpg",
-    layout: "left"
   }
 ];
 
@@ -37,29 +30,29 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
+  // Заголовки и иконка исчезают в начале
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const centralIconOpacity = useTransform(scrollYProgress, [0, 0.15, 0.4], [1, 1, 0]);
-  const centralScale = useTransform(scrollYProgress, [0, 0.4], [0.8, 1]);
+  const centralIconOpacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
+  const centralScale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
-  const case1Y = useTransform(scrollYProgress, [0.15, 0.35], ["100vh", "0vh"]);
-  const case1Opacity = useTransform(scrollYProgress, [0.15, 0.25], [0, 1]);
+  // Анимация для первого кейса (30% -> 55% прогресса)
+  const case1Y = useTransform(scrollYProgress, [0.15, 0.45], ["100vh", "0vh"]);
+  const case1Opacity = useTransform(scrollYProgress, [0.15, 0.35], [0, 1]);
 
-  const case2Y = useTransform(scrollYProgress, [0.4, 0.6], ["100vh", "0vh"]);
-  const case2Opacity = useTransform(scrollYProgress, [0.4, 0.5], [0, 1]);
-
-  const case3Y = useTransform(scrollYProgress, [0.65, 0.85], ["100vh", "0vh"]);
-  const case3Opacity = useTransform(scrollYProgress, [0.65, 0.75], [0, 1]);
+  // Анимация для второго кейса (60% -> 90% прогресса)
+  const case2Y = useTransform(scrollYProgress, [0.55, 0.85], ["100vh", "0vh"]);
+  const case2Opacity = useTransform(scrollYProgress, [0.55, 0.75], [0, 1]);
 
   const caseTransforms = [
     { y: case1Y, opacity: case1Opacity },
-    { y: case2Y, opacity: case2Opacity },
-    { y: case3Y, opacity: case3Opacity }
+    { y: case2Y, opacity: case2Opacity }
   ];
 
   return (
     <div ref={containerRef} className="relative h-[400vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
+        {/* Начальные заголовки */}
         <motion.div 
           style={{ opacity: headingOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-[15%]"
@@ -72,6 +65,7 @@ export function SiteShowcaseSection() {
           </h2>
         </motion.div>
 
+        {/* Центральная декоративная иконка */}
         <motion.div 
           style={{ 
             opacity: centralIconOpacity, 
@@ -88,7 +82,7 @@ export function SiteShowcaseSection() {
           />
         </motion.div>
 
-        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center py-[5vh]">
+        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-16 py-[5vh]">
           {cases.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -96,14 +90,14 @@ export function SiteShowcaseSection() {
                 y: caseTransforms[idx].y, 
                 opacity: caseTransforms[idx].opacity 
               }}
-              className="relative w-full h-[25vh] md:h-[22vh] flex items-center will-change-transform"
+              className="relative w-full h-[25vh] md:h-[28vh] flex items-center will-change-transform"
             >
-              <div className="flex w-full items-center">
+              <div className="flex w-full items-center h-full">
                 
                 {item.layout === 'left' ? (
-                  <div className="grid grid-cols-4 w-full h-full">
-                    {/* Image Left: 0% to 25% */}
-                    <div className="col-span-1 aspect-video relative overflow-hidden">
+                  <div className="flex w-full h-full items-center">
+                    {/* Картинка: 30% ширины */}
+                    <div className="w-[30%] aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
@@ -112,37 +106,37 @@ export function SiteShowcaseSection() {
                         unoptimized
                       />
                     </div>
-                    {/* Bridge Line Space: 25% to 50% */}
-                    <div className="col-span-1 flex items-center px-[2vw]">
+                    {/* Мостик: 20% ширины */}
+                    <div className="w-[20%] px-[2vw]">
                       <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                     </div>
-                    {/* Text starts at 50% and spans to the end */}
-                    <div className="col-span-2 flex flex-col justify-center">
+                    {/* Текст: 50% ширины (начинается ровно с середины экрана) */}
+                    <div className="w-[50%] flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
-                      <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8] uppercase tracking-[0.1em]">
+                      <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8]/40 uppercase tracking-[0.2em]">
                         {item.description}
                       </p>
                     </div>
                   </div>
                 ) : (
-                  <div className="grid grid-cols-4 w-full h-full">
-                    {/* Text starts from left edge and ends at 50% */}
-                    <div className="col-span-2 flex flex-col justify-center text-right">
+                  <div className="flex w-full h-full items-center">
+                    {/* Текст: 50% ширины (заканчивается ровно на середине экрана) */}
+                    <div className="w-[50%] flex flex-col justify-center text-right">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title}
                       </h3>
-                      <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8] uppercase tracking-[0.1em]">
+                      <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8]/40 uppercase tracking-[0.2em]">
                         {item.description}
                       </p>
                     </div>
-                    {/* Bridge Line Space: 50% to 75% */}
-                    <div className="col-span-1 flex items-center px-[2vw]">
+                    {/* Мостик: 20% ширины */}
+                    <div className="w-[20%] px-[2vw]">
                       <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                     </div>
-                    {/* Image Right: 75% to 100% */}
-                    <div className="col-span-1 aspect-video relative overflow-hidden">
+                    {/* Картинка: 30% ширины */}
+                    <div className="w-[30%] aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
                         alt={item.title}
