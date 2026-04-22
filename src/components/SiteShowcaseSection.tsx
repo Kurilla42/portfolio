@@ -30,16 +30,13 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Заголовки и иконка исчезают в начале
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const centralIconOpacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
   const centralScale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
-  // Анимация для первого кейса (30% -> 55% прогресса)
   const case1Y = useTransform(scrollYProgress, [0.15, 0.45], ["100vh", "0vh"]);
   const case1Opacity = useTransform(scrollYProgress, [0.15, 0.35], [0, 1]);
 
-  // Анимация для второго кейса (60% -> 90% прогресса)
   const case2Y = useTransform(scrollYProgress, [0.55, 0.85], ["100vh", "0vh"]);
   const case2Opacity = useTransform(scrollYProgress, [0.55, 0.75], [0, 1]);
 
@@ -52,7 +49,6 @@ export function SiteShowcaseSection() {
     <div ref={containerRef} className="relative h-[400vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Начальные заголовки */}
         <motion.div 
           style={{ opacity: headingOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-[15%]"
@@ -65,7 +61,6 @@ export function SiteShowcaseSection() {
           </h2>
         </motion.div>
 
-        {/* Центральная декоративная иконка */}
         <motion.div 
           style={{ 
             opacity: centralIconOpacity, 
@@ -96,7 +91,6 @@ export function SiteShowcaseSection() {
                 
                 {item.layout === 'left' ? (
                   <div className="flex w-full h-full items-center">
-                    {/* Картинка: 30% ширины */}
                     <div className="w-[30%] aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
@@ -106,14 +100,15 @@ export function SiteShowcaseSection() {
                         unoptimized
                       />
                     </div>
-                    {/* Мостик: 20% ширины */}
                     <div className="w-[20%] px-[2vw]">
                       <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                     </div>
-                    {/* Текст: 50% ширины (начинается ровно с середины экрана) */}
                     <div className="w-[50%] flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
-                        {item.title}
+                        {item.title} 
+                        <span className="ml-3 text-[2.5vw] md:text-[1vw] font-mono font-bold text-[#e0ded8]/40 tracking-[0.2em]">
+                          [ CASE 1 ]
+                        </span>
                       </h3>
                       <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8]/40 uppercase tracking-[0.2em]">
                         {item.description}
@@ -122,20 +117,20 @@ export function SiteShowcaseSection() {
                   </div>
                 ) : (
                   <div className="flex w-full h-full items-center">
-                    {/* Текст: 50% ширины (заканчивается ровно на середине экрана) */}
                     <div className="w-[50%] flex flex-col justify-center text-right">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
+                        <span className="mr-3 text-[2.5vw] md:text-[1vw] font-mono font-bold text-[#e0ded8]/40 tracking-[0.2em]">
+                          [ CASE 2 ]
+                        </span>
                         {item.title}
                       </h3>
                       <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8]/40 uppercase tracking-[0.2em]">
                         {item.description}
                       </p>
                     </div>
-                    {/* Мостик: 20% ширины */}
                     <div className="w-[20%] px-[2vw]">
                       <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                     </div>
-                    {/* Картинка: 30% ширины */}
                     <div className="w-[30%] aspect-video relative overflow-hidden">
                       <Image 
                         src={item.image}
