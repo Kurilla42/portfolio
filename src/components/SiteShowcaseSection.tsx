@@ -89,11 +89,6 @@ export function SiteShowcaseSection() {
         </motion.div>
 
         <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center py-[5vh]">
-          <motion.div 
-            style={{ opacity: case1Opacity }}
-            className="w-full h-[1px] bg-[#e0ded8]/20"
-          />
-          
           {cases.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -101,7 +96,7 @@ export function SiteShowcaseSection() {
                 y: caseTransforms[idx].y, 
                 opacity: caseTransforms[idx].opacity 
               }}
-              className="relative w-full h-[25vh] md:h-[22vh] flex items-center will-change-transform border-b border-[#e0ded8]/20"
+              className="relative w-full h-[25vh] md:h-[22vh] flex items-center will-change-transform"
             >
               <div className="flex w-full items-center">
                 
@@ -117,8 +112,10 @@ export function SiteShowcaseSection() {
                         unoptimized
                       />
                     </div>
-                    {/* Empty Space: 25% to 50% */}
-                    <div className="col-span-1" />
+                    {/* Bridge Line Space: 25% to 50% */}
+                    <div className="col-span-1 flex items-center px-[2vw]">
+                      <div className="w-full h-[1px] bg-[#e0ded8]/20" />
+                    </div>
                     {/* Text starts at 50% and spans to the end */}
                     <div className="col-span-2 flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
@@ -140,8 +137,10 @@ export function SiteShowcaseSection() {
                         {item.description}
                       </p>
                     </div>
-                    {/* Empty Space: 50% to 75% */}
-                    <div className="col-span-1" />
+                    {/* Bridge Line Space: 50% to 75% */}
+                    <div className="col-span-1 flex items-center px-[2vw]">
+                      <div className="w-full h-[1px] bg-[#e0ded8]/20" />
+                    </div>
                     {/* Image Right: 75% to 100% */}
                     <div className="col-span-1 aspect-video relative overflow-hidden">
                       <Image 
