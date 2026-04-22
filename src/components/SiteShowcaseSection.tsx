@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useRef } from 'react';
@@ -10,14 +9,14 @@ const cases = [
     id: "01",
     title: "RESIDENTIAL MASTERPIECE",
     description: "COMPLETE BATHROOM OVERHAUL FOR A HISTORIC HOME IN BROOKLYN. MODERN FIXTURES MEET CLASSIC AESTHETICS.",
-    image: "https://i.ibb.co/jZf5xxMd/2026-03-26-12-51-49.jpg",
+    image: "https://i.ibb.co/NgFktWnH/2026-04-22-20-48-13.png",
     layout: "left"
   },
   {
     id: "02",
     title: "COMMERCIAL INFRASTRUCTURE",
     description: "EFFICIENCY-DRIVEN PLUMBING SYSTEMS FOR A NEW TECH HUB. 24/7 RELIABILITY FOR CRITICAL OPERATIONS.",
-    image: "https://i.ibb.co/sdMw1xpg/2026-03-26-12-52-03.jpg",
+    image: "https://i.ibb.co/ZRY8rbdP/2026-04-22-20-46-21.png",
     layout: "right"
   }
 ];
@@ -46,7 +45,7 @@ export function SiteShowcaseSection() {
   ];
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[300vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
@@ -85,13 +84,13 @@ export function SiteShowcaseSection() {
                 y: caseTransforms[idx].y, 
                 opacity: caseTransforms[idx].opacity 
               }}
-              className="relative w-full h-[25vh] md:h-[28vh] flex items-center will-change-transform"
+              className="relative w-full h-[28vh] flex items-center will-change-transform"
             >
-              <div className="flex w-full items-center h-full">
+              <div className="grid grid-cols-4 w-full items-center h-full">
                 
                 {item.layout === 'left' ? (
-                  <div className="flex w-full h-full items-center">
-                    <div className="w-[30%] aspect-video relative overflow-hidden">
+                  <>
+                    <div className="col-span-1 aspect-video relative overflow-hidden w-[120%]">
                       <Image 
                         src={item.image}
                         alt={item.title}
@@ -100,10 +99,10 @@ export function SiteShowcaseSection() {
                         unoptimized
                       />
                     </div>
-                    <div className="w-[20%] px-[2vw]">
+                    <div className="col-span-1 px-[2vw] flex items-center justify-center">
                       <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                     </div>
-                    <div className="w-[50%] flex flex-col justify-center">
+                    <div className="col-span-2 flex flex-col justify-center">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         {item.title} 
                         <span className="ml-3 text-[2.5vw] md:text-[1vw] font-mono font-bold text-[#e0ded8]/40 tracking-[0.2em]">
@@ -114,10 +113,10 @@ export function SiteShowcaseSection() {
                         {item.description}
                       </p>
                     </div>
-                  </div>
+                  </>
                 ) : (
-                  <div className="flex w-full h-full items-center">
-                    <div className="w-[50%] flex flex-col justify-center text-right">
+                  <>
+                    <div className="col-span-2 flex flex-col justify-center text-right">
                       <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
                         <span className="mr-3 text-[2.5vw] md:text-[1vw] font-mono font-bold text-[#e0ded8]/40 tracking-[0.2em]">
                           [ CASE 2 ]
@@ -128,10 +127,10 @@ export function SiteShowcaseSection() {
                         {item.description}
                       </p>
                     </div>
-                    <div className="w-[20%] px-[2vw]">
+                    <div className="col-span-1 px-[2vw] flex items-center justify-center">
                       <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                     </div>
-                    <div className="w-[30%] aspect-video relative overflow-hidden">
+                    <div className="col-span-1 aspect-video relative overflow-hidden w-[120%] justify-self-end">
                       <Image 
                         src={item.image}
                         alt={item.title}
@@ -140,7 +139,7 @@ export function SiteShowcaseSection() {
                         unoptimized
                       />
                     </div>
-                  </div>
+                  </>
                 )}
 
               </div>
