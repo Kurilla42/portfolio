@@ -144,19 +144,21 @@ export function VerticalPricingTabs() {
             <div className="flex flex-col space-y-0">
               {PRICING_PLANS.map((plan, index) => {
                 const isActive = activeIndex === index;
-                // No border-b for index 1 (2nd item)
-                const isSecondItem = index === 1;
+                // Package 1 (index 0) and Package 2 (index 1) should not have bottom borders
+                const hasBottomBorder = index !== 0 && index !== 1 && index !== PRICING_PLANS.length - 1;
                 
                 return (
                   <React.Fragment key={plan.id}>
                     {index === 2 && (
-                      <div className="py-6 md:py-[2vw] pointer-events-none" aria-hidden="true" />
+                      <div className="py-6 md:py-[2vw] flex items-center px-6 md:px-[2vw]" aria-hidden="true">
+                        <div className="w-full h-[1px] bg-[#c7b684]" />
+                      </div>
                     )}
                     <button
                       onClick={() => handleTabClick(index)}
                       className={cn(
-                        "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-l border-[#e0ded8]/10 last:border-0",
-                        !isSecondItem && "border-b border-[#e0ded8]/10",
+                        "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-l border-[#e0ded8]/10",
+                        hasBottomBorder && "border-b border-[#e0ded8]/10",
                         isActive
                           ? "bg-[#e0ded8]/5"
                           : "hover:bg-[#e0ded8]/5"
