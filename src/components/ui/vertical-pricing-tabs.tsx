@@ -28,7 +28,7 @@ const PRICING_PLANS = [
     investment: "$697",
     period: "one-time",
     oldPrice: "$900",
-    badge: null,
+    badge: "most popular",
     color: "bg-white"
   },
   {
@@ -141,7 +141,7 @@ export function VerticalPricingTabs() {
               </h2>
             </div>
 
-            <div className="flex flex-col space-y-0 border-l border-[#e0ded8]/10">
+            <div className="flex flex-col space-y-0">
               {PRICING_PLANS.map((plan, index) => {
                 const isActive = activeIndex === index;
                 return (
@@ -152,7 +152,7 @@ export function VerticalPricingTabs() {
                     <button
                       onClick={() => handleTabClick(index)}
                       className={cn(
-                        "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-b border-[#e0ded8]/10 last:border-0",
+                        "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-b border-l border-[#e0ded8]/10 last:border-0",
                         isActive
                           ? "bg-[#e0ded8]/5"
                           : "hover:bg-[#e0ded8]/5"
@@ -180,12 +180,19 @@ export function VerticalPricingTabs() {
                         /{plan.id}
                       </span>
 
-                      <span className={cn(
-                        "text-[5vw] md:text-[1.2vw] font-mono font-bold tracking-tight transition-colors duration-500 uppercase",
-                        isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/30"
-                      )}>
-                        {plan.title}
-                      </span>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className={cn(
+                          "text-[5vw] md:text-[1.2vw] font-mono font-bold tracking-tight transition-colors duration-500 uppercase",
+                          isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/30"
+                        )}>
+                          {plan.title}
+                        </span>
+                        {plan.badge && (
+                          <span className="px-2 py-0.5 bg-[#c7b684] text-black text-[2vw] md:text-[0.6vw] font-mono font-bold uppercase tracking-wider rounded-sm">
+                            {plan.badge}
+                          </span>
+                        )}
+                      </div>
                     </button>
                   </React.Fragment>
                 );
