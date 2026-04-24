@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
@@ -32,7 +33,7 @@ const PRICING_PLANS = [
   },
   {
     id: "02",
-    title: "CUSTOM LANDING",
+    title: "CUSTOM SITE",
     description: "Custom Website/Landing Page for Your Business",
     subdescription: "Tailored design and structure to match your brand, services, and local region",
     whoIsThisFor: "Companies that want to stand out from competitors, get a scalable site designed for growth, and prioritize maximum conversions",
@@ -47,28 +48,29 @@ const PRICING_PLANS = [
     ],
     footerText: "You get a unique website that strengthens your brand, addresses objections, and systematically turns traffic into calls and leads.",
     buttonText: "Discuss Custom Project",
-    investment: "$1897",
+    investment: "$2997",
     period: "one-time",
-    oldPrice: "$2500",
+    oldPrice: "$5000",
     badge: null,
     color: "bg-white"
   },
   {
     id: "03",
-    title: "AI-POWERED LANDING",
-    description: "Fast AI-Powered Landing Page",
-    subdescription: "Affordable solution: AI-generated landing page with my setup, so you finally have a working site",
-    whoIsThisFor: "Those just starting a plumbing business or wanting to test online ads with minimal investment",
+    title: "ADD GOOGLE ADS SETUP",
+    description: "Professional Google Ads Management",
+    subdescription: "High-performance search campaigns to drive immediate calls to your plumbing business",
+    whoIsThisFor: "Contractors who want a steady flow of high-intent leads and are ready to invest in paid traffic to dominate their local market.",
     resources: [
-      "AI-tool creation of a landing page based on your brief",
-      "Light tweaks to structure and blocks for your services (no complex custom design)",
-      "Swap of logo, contact info, basic texts, and images",
-      "Setup of lead forms and call buttons, with functionality testing",
-      "Basic SEO structure for local searches (titles, H1s, URLs, \"near me\" blocks)",
-      "30-day guarantee on forms and integrations"
+      "Comprehensive keyword research for local plumbing services",
+      "High-converting ad copy writing and A/B testing",
+      "Precise location targeting (Radius or Zip-code based)",
+      "Conversion tracking setup (Calls, Forms, WhatsApp)",
+      "Negative keyword list management to save your budget",
+      "Bi-weekly performance reports and optimizations",
+      "Campaign management for the first 30 days"
     ],
-    footerText: "In just a few days, you get a working site ready for ads or your Google Business Profile.",
-    buttonText: "Launch AI Landing Page",
+    footerText: "Start getting calls from customers actively searching for plumbers in your area today with a professionally managed campaign.",
+    buttonText: "Request Ads Setup",
     investment: "$397",
     period: "one-time",
     oldPrice: "$600",
@@ -143,45 +145,49 @@ export function VerticalPricingTabs() {
               {PRICING_PLANS.map((plan, index) => {
                 const isActive = activeIndex === index;
                 return (
-                  <button
-                    key={plan.id}
-                    onClick={() => handleTabClick(index)}
-                    className={cn(
-                      "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-b border-[#e0ded8]/10 last:border-0",
-                      isActive
-                        ? "bg-[#e0ded8]/5"
-                        : "hover:bg-[#e0ded8]/5"
+                  <React.Fragment key={plan.id}>
+                    {index === 2 && (
+                      <div className="py-6 md:py-[2vw] border-b border-[#e0ded8]/10 pointer-events-none" aria-hidden="true" />
                     )}
-                  >
-                    <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#e0ded8]/5 overflow-hidden">
-                      {isActive && isInView && (
-                        <motion.div
-                          key={`progress-${index}-${isPaused}`}
-                          className={cn("absolute top-0 left-0 w-full origin-top bg-[#c7b684]")}
-                          initial={{ height: "0%" }}
-                          animate={isPaused ? { height: "0%" } : { height: "100%" }}
-                          transition={{
-                            duration: AUTO_PLAY_DURATION / 1000,
-                            ease: "linear",
-                          }}
-                        />
+                    <button
+                      onClick={() => handleTabClick(index)}
+                      className={cn(
+                        "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-b border-[#e0ded8]/10 last:border-0",
+                        isActive
+                          ? "bg-[#e0ded8]/5"
+                          : "hover:bg-[#e0ded8]/5"
                       )}
-                    </div>
+                    >
+                      <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#e0ded8]/5 overflow-hidden">
+                        {isActive && isInView && (
+                          <motion.div
+                            key={`progress-${index}-${isPaused}`}
+                            className={cn("absolute top-0 left-0 w-full origin-top bg-[#c7b684]")}
+                            initial={{ height: "0%" }}
+                            animate={isPaused ? { height: "0%" } : { height: "100%" }}
+                            transition={{
+                              duration: AUTO_PLAY_DURATION / 1000,
+                              ease: "linear",
+                            }}
+                          />
+                        )}
+                      </div>
 
-                    <span className={cn(
-                      "font-mono text-[3.5vw] md:text-[0.8vw] font-bold tabular-nums transition-colors duration-500",
-                      isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/20"
-                    )}>
-                      /{plan.id}
-                    </span>
+                      <span className={cn(
+                        "font-mono text-[3.5vw] md:text-[0.8vw] font-bold tabular-nums transition-colors duration-500",
+                        isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/20"
+                      )}>
+                        /{plan.id}
+                      </span>
 
-                    <span className={cn(
-                      "text-[5vw] md:text-[1.2vw] font-mono font-bold tracking-tight transition-colors duration-500 uppercase",
-                      isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/30"
-                    )}>
-                      {plan.title}
-                    </span>
-                  </button>
+                      <span className={cn(
+                        "text-[5vw] md:text-[1.2vw] font-mono font-bold tracking-tight transition-colors duration-500 uppercase",
+                        isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/30"
+                      )}>
+                        {plan.title}
+                      </span>
+                    </button>
+                  </React.Fragment>
                 );
               })}
             </div>
