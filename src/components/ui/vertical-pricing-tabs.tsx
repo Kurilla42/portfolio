@@ -58,7 +58,7 @@ const PRICING_PLANS = [
     id: "03",
     title: "ADD GOOGLE ADS SETUP",
     description: "Professional Google Ads Management",
-    subdescription: "High-performance search campaigns to drive immediate calls to your plumbing business",
+    subdescription: "Start getting calls from day one. I set up your Google Ads campaigns targeting your city searches",
     whoIsThisFor: "Contractors who want a steady flow of high-intent leads and are ready to invest in paid traffic to dominate their local market.",
     resources: [
       "Comprehensive keyword research for local plumbing services",
@@ -71,9 +71,9 @@ const PRICING_PLANS = [
     ],
     footerText: "Start getting calls from customers actively searching for plumbers in your area today with a professionally managed campaign.",
     buttonText: "Request Ads Setup",
-    investment: "$397",
+    investment: "$497",
     period: "one-time",
-    oldPrice: "$600",
+    oldPrice: "$800",
     badge: null,
     color: "bg-white"
   },
@@ -144,15 +144,19 @@ export function VerticalPricingTabs() {
             <div className="flex flex-col space-y-0">
               {PRICING_PLANS.map((plan, index) => {
                 const isActive = activeIndex === index;
+                // No border-b for index 1 (2nd item)
+                const isSecondItem = index === 1;
+                
                 return (
                   <React.Fragment key={plan.id}>
                     {index === 2 && (
-                      <div className="py-6 md:py-[2vw] border-b border-[#e0ded8]/10 pointer-events-none" aria-hidden="true" />
+                      <div className="py-6 md:py-[2vw] pointer-events-none" aria-hidden="true" />
                     )}
                     <button
                       onClick={() => handleTabClick(index)}
                       className={cn(
-                        "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-b border-l border-[#e0ded8]/10 last:border-0",
+                        "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-l border-[#e0ded8]/10 last:border-0",
+                        !isSecondItem && "border-b border-[#e0ded8]/10",
                         isActive
                           ? "bg-[#e0ded8]/5"
                           : "hover:bg-[#e0ded8]/5"
@@ -188,7 +192,7 @@ export function VerticalPricingTabs() {
                           {plan.title}
                         </span>
                         {plan.badge && (
-                          <span className="px-2 py-0.5 bg-[#c7b684] text-black text-[2vw] md:text-[0.6vw] font-mono font-bold uppercase tracking-wider rounded-sm">
+                          <span className="px-2 py-0.5 bg-[#c7b684] text-black text-[2vw] md:text-[0.6vw] font-mono font-bold uppercase tracking-wider rounded-sm ml-2">
                             {plan.badge}
                           </span>
                         )}
