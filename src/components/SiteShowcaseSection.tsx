@@ -4,22 +4,26 @@
 import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
+import { Lock } from 'lucide-react';
 
 const cases = [
   {
     id: "01",
     image: "https://i.ibb.co/NgFktWnH/2026-04-22-20-48-13.png",
-    layout: "left"
+    layout: "left",
+    domain: "bears-plumbing.com"
   },
   {
     id: "02",
     image: "https://i.ibb.co/ZRY8rbdP/2026-04-22-20-46-21.png",
-    layout: "right"
+    layout: "right",
+    domain: "expert-plumbing.app"
   },
   {
     id: "03",
     image: "https://i.ibb.co/GvnyyDvB/2026-04-28-13-03-19.png",
-    layout: "left"
+    layout: "left",
+    domain: "thelen-mechanical.com"
   }
 ];
 
@@ -93,7 +97,7 @@ export function SiteShowcaseSection() {
                 y: caseTransforms[idx].y, 
                 opacity: caseTransforms[idx].opacity 
               }}
-              className="relative w-full h-[32vh] flex items-center will-change-transform"
+              className="relative w-full h-[36vh] flex items-center will-change-transform"
             >
               <div className="grid grid-cols-12 w-full items-center h-full relative">
                 {/* Background Large Number */}
@@ -105,9 +109,23 @@ export function SiteShowcaseSection() {
                   </span>
                 </div>
 
-                {item.layout === 'left' ? (
-                  <div className="col-span-12 md:col-span-5 flex flex-col relative z-10">
-                    <div className="rounded-sm border border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)] overflow-hidden">
+                <div className={`${item.layout === 'left' ? 'col-span-12 md:col-span-5' : 'col-span-12 md:col-start-8 md:col-span-5'} flex flex-col relative z-10`}>
+                  {/* Browser Mockup Container */}
+                  <div className="browser-mockup group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
+                    {/* Browser Chrome */}
+                    <div className="browser-chrome h-9 bg-[#1C1C20] flex items-center px-4 gap-4">
+                      <div className="traffic-lights flex gap-2">
+                        <span className="dot w-3 h-3 rounded-full bg-[#FF5F57]"></span>
+                        <span className="dot w-3 h-3 rounded-full bg-[#FEBC2E]"></span>
+                        <span className="dot w-3 h-3 rounded-full bg-[#28C840]"></span>
+                      </div>
+                      <div className="url-bar flex-1 h-[22px] bg-[#0E0E12] rounded-md px-3 flex items-center gap-1.5 font-mono text-[11px] text-white/50">
+                        <Lock size={11} className="text-white/50 shrink-0" />
+                        <span className="truncate">{item.domain}</span>
+                      </div>
+                    </div>
+                    {/* Browser Content */}
+                    <div className="browser-content block leading-[0]">
                       <div className="aspect-video relative overflow-hidden bg-[#111]">
                         <Image 
                           src={item.image}
@@ -118,36 +136,17 @@ export function SiteShowcaseSection() {
                         />
                       </div>
                     </div>
-                    <div className="flex items-center mt-4 gap-4">
-                       <div className="flex-1 h-[1px] bg-white/20" />
-                       <div className="flex justify-between items-center gap-6 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 shrink-0">
-                         <span>TEMPLATE {parseInt(item.id)}</span>
-                         <span className="text-[#e0ded8]">VIEW FULL</span>
-                       </div>
-                    </div>
                   </div>
-                ) : (
-                  <div className="col-span-12 md:col-start-8 md:col-span-5 flex flex-col relative z-10">
-                    <div className="rounded-sm border border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)] overflow-hidden">
-                      <div className="aspect-video relative overflow-hidden bg-[#111]">
-                        <Image 
-                          src={item.image}
-                          alt={`Case ${item.id}`}
-                          fill
-                          className="object-contain"
-                          unoptimized
-                        />
-                      </div>
-                    </div>
-                    <div className="flex items-center mt-4 gap-4">
-                       <div className="flex justify-between items-center gap-6 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 shrink-0">
-                         <span className="text-[#e0ded8]">VIEW FULL</span>
-                         <span>TEMPLATE {parseInt(item.id)}</span>
-                       </div>
-                       <div className="flex-1 h-[1px] bg-white/20" />
-                    </div>
+
+                  {/* Caption with decorative line */}
+                  <div className={`flex items-center mt-6 gap-4 ${item.layout === 'right' ? 'flex-row-reverse' : ''}`}>
+                     <div className={`flex justify-between items-center gap-6 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 shrink-0 ${item.layout === 'right' ? 'flex-row-reverse' : ''}`}>
+                       <span className="text-[#e0ded8]">VIEW FULL</span>
+                       <span>TEMPLATE {parseInt(item.id)}</span>
+                     </div>
+                     <div className="flex-1 h-[1px] bg-white/20" />
                   </div>
-                )}
+                </div>
               </div>
             </motion.div>
           ))}
