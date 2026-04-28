@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef, useState } from 'react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import Image from 'next/image';
 import { Lock } from 'lucide-react';
 import Link from 'next/link';
@@ -11,7 +11,7 @@ import { Button } from '@/components/ui/button';
 const cases = [
   {
     id: "01",
-    name: "Empire State Plumbing (Manhattan)",
+    name: "Empire State Plumbing",
     image: "https://i.ibb.co/4RTpwFsR/2026-04-28-20-44-06.png",
     domain: "bears-plumbing.com",
     href: "/case1",
@@ -37,6 +37,7 @@ const cases = [
 
 export function SiteShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [showCases, setShowCases] = useState(false);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -45,21 +46,32 @@ export function SiteShowcaseSection() {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-  // Скорректированная анимация: меньше движения по Y, чтобы избежать наложений
-  const case1Y = useTransform(scrollYProgress, [0.1, 0.3], ["5vh", "0vh"]);
-  const case1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
+  // Trigger staggered animation after heading disappears
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (latest > 0.12 && !showCases) {
+      setShowCases(true);
+    }
+  });
 
-  const case2Y = useTransform(scrollYProgress, [0.35, 0.55], ["5vh", "0vh"]);
-  const case2Opacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1]);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.25,
+        delayChildren: 0.1
+      }
+    }
+  };
 
-  const case3Y = useTransform(scrollYProgress, [0.6, 0.8], ["5vh", "0vh"]);
-  const case3Opacity = useTransform(scrollYProgress, [0.6, 0.75], [0, 1]);
-
-  const caseTransforms = [
-    { y: case1Y, opacity: case1Opacity },
-    { y: case2Y, opacity: case2Opacity },
-    { y: case3Y, opacity: case3Opacity }
-  ];
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.8, ease: [0.22, 1, 0.36, 1] }
+    }
+  };
 
   return (
     <div ref={containerRef} className="relative h-[300vh] z-10 bg-black">
@@ -92,19 +104,21 @@ export function SiteShowcaseSection() {
         </motion.div>
 
         {/* Case List */}
-        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-8 py-[2vh]">
+        <motion.div 
+          variants={containerVariants}
+          initial="hidden"
+          animate={showCases ? "visible" : "hidden"}
+          className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-8 py-[2vh]"
+        >
           {cases.map((item, idx) => (
             <motion.div
               key={item.id}
-              style={{ 
-                y: caseTransforms[idx].y, 
-                opacity: caseTransforms[idx].opacity 
-              }}
+              variants={itemVariants}
               className="relative w-full h-[26vh] flex items-center will-change-transform"
             >
-              <div className="grid grid-cols-12 w-full items-center h-full relative gap-8 md:gap-0">
-                {/* Left Side: Browser Mockup (Reduced size by 15% from previous 80% -> ~68%) */}
-                <div className="col-span-12 md:col-span-4 flex flex-col relative z-10 w-full">
+              <div className="grid grid-cols-12 w-full items-center h-full relative gap-0">
+                {/* Left Side: Browser Mockup (15% smaller than the original grid layout) */}
+                <div className="col-span-12 md:col-span-4 flex flex-col relative z-10 w-full items-start">
                   <div className="browser-mockup w-full md:w-[68%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
                       <div className="traffic-lights flex gap-2">
@@ -131,8 +145,8 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Connection Line (как в блоке шагов) */}
-                <div className="hidden md:block md:col-span-2">
+                {/* Connection Line with equal spacing */}
+                <div className="hidden md:flex md:col-span-2 items-center justify-center px-8">
                   <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                 </div>
 
@@ -152,7 +166,7 @@ export function SiteShowcaseSection() {
                       <Button 
                         asChild 
                         variant="link" 
-                        className="p-0 h-auto text-[#e0ded8] font-mono font-bold uppercase tracking-[0.2em] text-[3vw] md:text-[0.8vw] underline underline-offset-8 decoration-[#e0ded8]/20 hover:decoration-[#e0ded8] transition-all"
+                        className="p-0 h-auto text-[#e0ded8] font-mono font-bold uppercase tracking-[0.2em] text-[3vw] md:text-[0.8vw] no-underline hover:text-[#c7b684] transition-all"
                       >
                         <Link href={item.href}>[ VIEW FULL ]</Link>
                       </Button>
@@ -162,7 +176,7 @@ export function SiteShowcaseSection() {
               </div>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
 
       </div>
     </div>
