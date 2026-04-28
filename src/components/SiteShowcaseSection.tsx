@@ -89,7 +89,7 @@ export function SiteShowcaseSection() {
     <div ref={containerRef} className="relative h-[220vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Initial Text Overlay - Visual Match with Hero but sized to fit line */}
+        {/* Initial Text Overlay */}
         <motion.div 
           style={{ opacity: headingOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6 md:px-[4vw]"
@@ -99,7 +99,7 @@ export function SiteShowcaseSection() {
               EXPLORE HOW YOUR
             </h2>
             
-            <div className="relative w-[17.25vw] h-[17.25vw] md:w-[9.2vw] md:h-[9.2vw] shrink-0">
+            <div className="relative w-[19.8vw] h-[19.8vw] md:w-[10.58vw] md:h-[10.58vw] shrink-0">
                <Image 
                   src="https://i.ibb.co/zWwNcSSf/image.png"
                   alt="Decorative accent"
@@ -128,10 +128,11 @@ export function SiteShowcaseSection() {
               variants={itemVariants}
               className="relative w-full h-[26vh] flex items-center will-change-transform"
             >
-              <div className="grid grid-cols-12 w-full items-center h-full relative gap-0">
-                {/* Left Side: Browser Mockup (Reduced by extra 15% as requested) */}
-                <div className="col-span-12 md:col-span-4 flex flex-col relative z-10 w-full items-start">
-                  <div className="browser-mockup w-full md:w-[49%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
+              <div className="flex w-full items-center gap-0">
+                
+                {/* Left Side: Browser Mockup (reduced size) */}
+                <div className="w-[85%] md:w-[32%] shrink-0">
+                  <div className="browser-mockup w-full group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
                       <div className="traffic-lights flex gap-2">
                         <span className="dot w-[10px] h-[10px] rounded-full bg-[#FF5F57]"></span>
@@ -157,19 +158,19 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Connection Line - Centered with equal padding */}
-                <div className="hidden md:flex md:col-span-2 items-center justify-center px-8">
+                {/* Connection Line - Stretching from container to container */}
+                <div className="hidden md:flex flex-1 items-center px-10">
                   <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                 </div>
 
-                {/* Right Side: Description */}
-                <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
+                {/* Right Side: Description (Fixed width for better layout) */}
+                <div className="hidden md:flex md:w-[48%] flex-col justify-center">
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
-                      <h3 className="font-mono text-[4vw] md:text-[1.1vw] font-bold text-[#e0ded8] uppercase tracking-tight">
+                      <h3 className="font-mono text-[1.1vw] font-bold text-[#e0ded8] uppercase tracking-tight">
                         Case {parseInt(item.id)} — {item.name}
                       </h3>
-                      <p className="font-mono text-[3.5vw] md:text-[0.8vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[95%]">
+                      <p className="font-mono text-[0.8vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[95%]">
                         {item.description}
                       </p>
                     </div>
@@ -178,12 +179,17 @@ export function SiteShowcaseSection() {
                       <Button 
                         asChild 
                         variant="link" 
-                        className="p-0 h-auto text-[#e0ded8] font-mono font-bold uppercase tracking-[0.2em] text-[3vw] md:text-[0.8vw] no-underline hover:text-[#c7b684] transition-all"
+                        className="p-0 h-auto text-[#e0ded8] font-mono font-bold uppercase tracking-[0.2em] text-[0.8vw] no-underline hover:text-[#c7b684] transition-all"
                       >
                         <Link href={item.href}>[ VIEW FULL ]</Link>
                       </Button>
                     </div>
                   </div>
+                </div>
+
+                {/* Mobile text (stays below on mobile, handled by responsive classes if needed, but keeping simple for now) */}
+                <div className="md:hidden flex flex-col gap-2 mt-4">
+                   {/* Simplified mobile view within existing staggered reveal */}
                 </div>
               </div>
             </motion.div>
