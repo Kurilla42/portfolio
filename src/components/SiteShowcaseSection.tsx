@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { Lock } from 'lucide-react';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const cases = [
   {
@@ -38,6 +39,7 @@ const cases = [
 export function SiteShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [showCases, setShowCases] = useState(false);
+  const isMobile = useIsMobile();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -45,6 +47,13 @@ export function SiteShowcaseSection() {
   });
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  
+  // Only for mobile: move the list up as we scroll through the 280vh container
+  const mobileListY = useTransform(
+    scrollYProgress, 
+    [0.15, 0.9], 
+    ["0%", "-60%"]
+  );
 
   // Handle bidirectional visibility for cases
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
@@ -120,13 +129,14 @@ export function SiteShowcaseSection() {
           variants={containerVariants}
           initial="hidden"
           animate={showCases ? "visible" : "hidden"}
-          className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-8 py-[2vh]"
+          style={{ y: isMobile ? mobileListY : 0 }}
+          className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col md:justify-center justify-start gap-12 md:gap-8 py-[15vh] md:py-[2vh]"
         >
           {cases.map((item, idx) => (
             <motion.div
               key={item.id}
               variants={itemVariants}
-              className="relative w-full h-[28vh] md:h-[26vh] flex items-center will-change-transform"
+              className="relative w-full h-auto md:h-[26vh] flex items-center will-change-transform shrink-0"
             >
               <div className="flex w-full flex-col md:flex-row items-center md:items-center gap-4 md:gap-0">
                 
