@@ -24,7 +24,7 @@ const cases = [
   {
     id: "03",
     name: "Thelen Plumbing Co",
-    image: "https://i.ibb.co/cKG5pMtj/2026-04-28-20-43-41.png",
+    image: "https://i.ibb.co/q30RfBHv/2026-04-28-20-49-48.png",
     domain: "thelen-mechanical.com",
     description: "Swiss-editorial minimalism applied to plumbing: oversized black headlines, cream paper background, a single terracotta accent. Reads like a magazine spread rather than a contractor's website — the boldest visual direction of the three."
   }
@@ -40,13 +40,14 @@ export function SiteShowcaseSection() {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-  const case1Y = useTransform(scrollYProgress, [0.1, 0.3], ["10vh", "0vh"]);
+  // Скорректированная анимация: меньше движения по Y, чтобы избежать наложений
+  const case1Y = useTransform(scrollYProgress, [0.1, 0.3], ["5vh", "0vh"]);
   const case1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
 
-  const case2Y = useTransform(scrollYProgress, [0.35, 0.55], ["10vh", "0vh"]);
+  const case2Y = useTransform(scrollYProgress, [0.35, 0.55], ["5vh", "0vh"]);
   const case2Opacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1]);
 
-  const case3Y = useTransform(scrollYProgress, [0.6, 0.8], ["10vh", "0vh"]);
+  const case3Y = useTransform(scrollYProgress, [0.6, 0.8], ["5vh", "0vh"]);
   const case3Opacity = useTransform(scrollYProgress, [0.6, 0.75], [0, 1]);
 
   const caseTransforms = [
@@ -84,7 +85,7 @@ export function SiteShowcaseSection() {
               className="relative w-full h-[26vh] flex items-center will-change-transform"
             >
               <div className="grid grid-cols-12 w-full items-center h-full relative gap-8 md:gap-0">
-                {/* Left Side: Browser Mockup */}
+                {/* Left Side: Browser Mockup (уменьшен на 20%) */}
                 <div className="col-span-12 md:col-span-4 flex flex-col relative z-10 w-full">
                   <div className="browser-mockup w-full md:w-[80%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
@@ -112,7 +113,7 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Connection Line */}
+                {/* Connection Line (как в блоке шагов) */}
                 <div className="hidden md:block md:col-span-2">
                   <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                 </div>
