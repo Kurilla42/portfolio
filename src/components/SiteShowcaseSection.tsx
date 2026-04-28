@@ -46,15 +46,23 @@ export function SiteShowcaseSection() {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-  // Trigger staggered animation after heading disappears
+  // Handle bidirectional visibility for cases
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest > 0.12 && !showCases) {
-      setShowCases(true);
+    if (latest > 0.12) {
+      if (!showCases) setShowCases(true);
+    } else {
+      if (showCases) setShowCases(false);
     }
   });
 
   const containerVariants = {
-    hidden: { opacity: 0 },
+    hidden: { 
+      opacity: 0,
+      transition: {
+        staggerChildren: 0.1,
+        staggerDirection: -1
+      }
+    },
     visible: {
       opacity: 1,
       transition: {
@@ -65,7 +73,11 @@ export function SiteShowcaseSection() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { 
+      opacity: 0, 
+      y: 20,
+      transition: { duration: 0.4, ease: "easeOut" }
+    },
     visible: { 
       opacity: 1, 
       y: 0,
@@ -74,10 +86,10 @@ export function SiteShowcaseSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[300vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[220vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Initial Text Overlay */}
+        {/* Initial Text Overlay - Visual Match with Hero */}
         <motion.div 
           style={{ opacity: headingOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6 md:px-[4vw]"
@@ -117,9 +129,9 @@ export function SiteShowcaseSection() {
               className="relative w-full h-[26vh] flex items-center will-change-transform"
             >
               <div className="grid grid-cols-12 w-full items-center h-full relative gap-0">
-                {/* Left Side: Browser Mockup (15% smaller than the original grid layout) */}
+                {/* Left Side: Browser Mockup (reduced by 35% overall: 20% then 15%) */}
                 <div className="col-span-12 md:col-span-4 flex flex-col relative z-10 w-full items-start">
-                  <div className="browser-mockup w-full md:w-[68%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
+                  <div className="browser-mockup w-full md:w-[58%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
                       <div className="traffic-lights flex gap-2">
                         <span className="dot w-[10px] h-[10px] rounded-full bg-[#FF5F57]"></span>
@@ -145,7 +157,7 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Connection Line with equal spacing */}
+                {/* Connection Line - Styled like process steps with equal padding */}
                 <div className="hidden md:flex md:col-span-2 items-center justify-center px-8">
                   <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                 </div>
