@@ -98,7 +98,7 @@ export function SiteShowcaseSection() {
               <div className="grid grid-cols-12 w-full items-center h-full">
                 {item.layout === 'left' ? (
                   <div className="col-span-12 md:col-span-5 flex flex-col">
-                    <div className="border border-[#e0ded8]/20 p-[2px]">
+                    <div className="rounded-sm border border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)] overflow-hidden">
                       <div className="aspect-video relative overflow-hidden">
                         <Image 
                           src={item.image}
@@ -116,7 +116,7 @@ export function SiteShowcaseSection() {
                   </div>
                 ) : (
                   <div className="col-span-12 md:col-start-8 md:col-span-5 flex flex-col">
-                    <div className="border border-[#e0ded8]/20 p-[2px]">
+                    <div className="rounded-sm border border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)] overflow-hidden">
                       <div className="aspect-video relative overflow-hidden">
                         <Image 
                           src={item.image}
