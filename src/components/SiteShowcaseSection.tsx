@@ -87,7 +87,7 @@ export function SiteShowcaseSection() {
               <div className="grid grid-cols-12 w-full items-center h-full relative gap-8 md:gap-0">
                 {/* Левая часть: скриншот */}
                 <div className="col-span-12 md:col-span-5 flex flex-col relative z-10 w-full">
-                  <div className="browser-mockup w-full md:w-[90%] group/browser rounded-[8px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
+                  <div className="browser-mockup w-full md:w-[72%] group/browser rounded-[8px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-3 gap-3">
                       <div className="traffic-lights flex gap-1.5">
                         <span className="dot w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
