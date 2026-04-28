@@ -99,7 +99,7 @@ export function SiteShowcaseSection() {
               EXPLORE HOW YOUR
             </h2>
             
-            <div className="relative w-[19.8vw] h-[19.8vw] md:w-[10.58vw] md:h-[10.58vw] shrink-0">
+            <div className="relative w-[23.76vw] h-[23.76vw] md:w-[10.58vw] md:h-[10.58vw] shrink-0">
                <Image 
                   src="https://i.ibb.co/zWwNcSSf/image.png"
                   alt="Decorative accent"
@@ -126,11 +126,11 @@ export function SiteShowcaseSection() {
             <motion.div
               key={item.id}
               variants={itemVariants}
-              className="relative w-full h-[26vh] flex items-center will-change-transform"
+              className="relative w-full h-[45vh] md:h-[26vh] flex items-center will-change-transform"
             >
-              <div className="flex w-full items-center gap-0">
+              <div className="flex w-full flex-col md:flex-row items-center md:items-center gap-4 md:gap-0">
                 
-                {/* Left Side: Browser Mockup - Reduced to ~23.1% (additional 5% smaller) */}
+                {/* Left Side: Browser Mockup */}
                 <div className="w-[85%] md:w-[23.1%] shrink-0">
                   <div className="browser-mockup w-full group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
@@ -163,7 +163,7 @@ export function SiteShowcaseSection() {
                   <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                 </div>
 
-                {/* Right Side: Description */}
+                {/* Right Side: Description (Desktop) */}
                 <div className="hidden md:flex md:w-[48%] flex-col justify-center">
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
@@ -187,8 +187,25 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Mobile text placeholder */}
-                <div className="md:hidden flex flex-col gap-2 mt-4">
+                {/* Mobile text content */}
+                <div className="md:hidden flex flex-col gap-3 mt-4 text-center px-4">
+                  <div className="flex flex-col gap-1">
+                    <h3 className="font-mono text-[3.5vw] font-bold text-[#e0ded8] uppercase tracking-tight">
+                      Case {parseInt(item.id)} — {item.name}
+                    </h3>
+                    <p className="font-mono text-[2.8vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                  <div className="flex justify-center">
+                    <Button 
+                      asChild 
+                      variant="link" 
+                      className="p-0 h-auto text-[#e0ded8] font-mono font-bold uppercase tracking-[0.2em] text-[3vw] no-underline hover:text-[#c7b684] transition-all"
+                    >
+                      <Link href={item.href}>[ VIEW FULL ]</Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
             </motion.div>
