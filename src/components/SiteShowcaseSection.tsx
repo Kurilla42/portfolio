@@ -9,18 +9,24 @@ import { Lock } from 'lucide-react';
 const cases = [
   {
     id: "01",
+    name: "Empire State Plumbing (Manhattan)",
     image: "https://i.ibb.co/NgFktWnH/2026-04-22-20-48-13.png",
-    domain: "bears-plumbing.com"
+    domain: "bears-plumbing.com",
+    description: "Deep navy paired with yellow CTAs — the classic \"trusted local contractor\" feel, but built on a disciplined grid with careful typography. The team is shown through real on-site photography instead of stock, which sells the brand as a genuine neighborhood operation rather than a national franchise."
   },
   {
     id: "02",
+    name: "ProFlow Plumbing",
     image: "https://i.ibb.co/ZRY8rbdP/2026-04-22-20-46-21.png",
-    domain: "expert-plumbing.app"
+    domain: "expert-plumbing.app",
+    description: "Warm cream background, slab-serif headlines, and gradient accent bars segment the page into clear narrative blocks. The execution leans editorial — more premium than typical competitors in the space, without losing the human, trust-driven tone a local service business needs."
   },
   {
     id: "03",
+    name: "Thelen Plumbing Co",
     image: "https://i.ibb.co/GvnyyDvB/2026-04-28-13-03-19.png",
-    domain: "thelen-mechanical.com"
+    domain: "thelen-mechanical.com",
+    description: "Swiss-editorial minimalism applied to plumbing: oversized black headlines, cream paper background, a single terracotta accent. Reads like a magazine spread rather than a contractor's website — the boldest visual direction of the three."
   }
 ];
 
@@ -34,7 +40,7 @@ export function SiteShowcaseSection() {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-  // Настройка анимаций для компактного появления стопкой слева
+  // Настройка анимаций для появления
   const case1Y = useTransform(scrollYProgress, [0.1, 0.3], ["100vh", "0vh"]);
   const case1Opacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
 
@@ -68,7 +74,7 @@ export function SiteShowcaseSection() {
         </motion.div>
 
         {/* Список кейсов */}
-        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-2 py-[2vh]">
+        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-4 py-[2vh]">
           {cases.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -76,14 +82,12 @@ export function SiteShowcaseSection() {
                 y: caseTransforms[idx].y, 
                 opacity: caseTransforms[idx].opacity 
               }}
-              className="relative w-full h-[28vh] flex items-center will-change-transform"
+              className="relative w-full h-[30vh] flex items-center will-change-transform"
             >
-              <div className="grid grid-cols-12 w-full items-center h-full relative">
-                {/* Все элементы выровнены по левому краю */}
-                <div className="col-span-12 md:col-span-5 items-start flex flex-col relative z-10 w-full">
-                  {/* Контейнер браузерного мокапа - уменьшен для вертикальной компактности */}
-                  <div className="browser-mockup w-[75%] group/browser rounded-[8px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
-                    {/* Панель браузера */}
+              <div className="grid grid-cols-12 w-full items-center h-full relative gap-8 md:gap-0">
+                {/* Левая часть: скриншот */}
+                <div className="col-span-12 md:col-span-5 flex flex-col relative z-10 w-full">
+                  <div className="browser-mockup w-full md:w-[90%] group/browser rounded-[8px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-3 gap-3">
                       <div className="traffic-lights flex gap-1.5">
                         <span className="dot w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
@@ -95,7 +99,6 @@ export function SiteShowcaseSection() {
                         <span className="truncate">{item.domain}</span>
                       </div>
                     </div>
-                    {/* Контент браузера */}
                     <div className="browser-content block leading-[0]">
                       <div className="aspect-video relative overflow-hidden bg-[#111]">
                         <Image 
@@ -108,14 +111,22 @@ export function SiteShowcaseSection() {
                       </div>
                     </div>
                   </div>
+                </div>
 
-                  {/* Подпись с декоративной линией */}
-                  <div className="flex items-center mt-3 gap-3 w-[75%]">
-                     <div className="flex justify-between items-center gap-4 font-mono text-[2.5vw] md:text-[0.7vw] uppercase tracking-tight text-[#e0ded8]/60 shrink-0">
-                       <span className="text-[#e0ded8]">VIEW FULL</span>
-                       <span>TEMPLATE {parseInt(item.id)}</span>
-                     </div>
-                     <div className="flex-1 h-[1px] bg-white/10" />
+                {/* Соединительная линия */}
+                <div className="hidden md:block md:col-span-1">
+                  <div className="w-full h-[1px] bg-[#e0ded8]/20" />
+                </div>
+
+                {/* Правая часть: текст */}
+                <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
+                  <div className="flex flex-col gap-2">
+                    <h3 className="font-mono text-[4vw] md:text-[1.1vw] font-bold text-[#e0ded8] uppercase tracking-tight">
+                      Case {parseInt(item.id)} — {item.name}
+                    </h3>
+                    <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[90%]">
+                      {item.description}
+                    </p>
                   </div>
                 </div>
               </div>
