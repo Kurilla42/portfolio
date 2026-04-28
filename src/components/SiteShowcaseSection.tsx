@@ -89,17 +89,17 @@ export function SiteShowcaseSection() {
     <div ref={containerRef} className="relative h-[220vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Initial Text Overlay - Visual Match with Hero */}
+        {/* Initial Text Overlay - Visual Match with Hero but sized to fit line */}
         <motion.div 
           style={{ opacity: headingOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6 md:px-[4vw]"
         >
-          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-[4vw]">
-            <h2 className="text-[12vw] md:text-[6vw] font-headline font-black uppercase text-[#e0ded8] leading-[0.9] tracking-tight text-center md:text-left">
-              EXPLORE HOW<br />YOUR
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-[2vw] w-full">
+            <h2 className="text-[9vw] md:text-[4.4vw] font-headline font-black uppercase text-[#e0ded8] leading-none tracking-tight text-center md:text-left whitespace-nowrap">
+              EXPLORE HOW YOUR
             </h2>
             
-            <div className="relative w-[15vw] h-[15vw] md:w-[8vw] md:h-[8vw] shrink-0">
+            <div className="relative w-[17.25vw] h-[17.25vw] md:w-[9.2vw] md:h-[9.2vw] shrink-0">
                <Image 
                   src="https://i.ibb.co/zWwNcSSf/image.png"
                   alt="Decorative accent"
@@ -109,8 +109,8 @@ export function SiteShowcaseSection() {
                />
             </div>
 
-            <h2 className="text-[12vw] md:text-[6vw] font-headline font-black uppercase text-[#e0ded8] leading-[0.9] tracking-tight text-center md:text-right">
-              SITE CAN<br />LOOK LIKE
+            <h2 className="text-[9vw] md:text-[4.4vw] font-headline font-black uppercase text-[#e0ded8] leading-none tracking-tight text-center md:text-right whitespace-nowrap">
+              SITE CAN LOOK LIKE
             </h2>
           </div>
         </motion.div>
@@ -129,9 +129,9 @@ export function SiteShowcaseSection() {
               className="relative w-full h-[26vh] flex items-center will-change-transform"
             >
               <div className="grid grid-cols-12 w-full items-center h-full relative gap-0">
-                {/* Left Side: Browser Mockup (reduced by 35% overall: 20% then 15%) */}
+                {/* Left Side: Browser Mockup (Reduced by extra 15% as requested) */}
                 <div className="col-span-12 md:col-span-4 flex flex-col relative z-10 w-full items-start">
-                  <div className="browser-mockup w-full md:w-[58%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
+                  <div className="browser-mockup w-full md:w-[49%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
                       <div className="traffic-lights flex gap-2">
                         <span className="dot w-[10px] h-[10px] rounded-full bg-[#FF5F57]"></span>
@@ -157,7 +157,7 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Connection Line - Styled like process steps with equal padding */}
+                {/* Connection Line - Centered with equal padding */}
                 <div className="hidden md:flex md:col-span-2 items-center justify-center px-8">
                   <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                 </div>
