@@ -10,21 +10,21 @@ const cases = [
   {
     id: "01",
     name: "Empire State Plumbing (Manhattan)",
-    image: "https://i.ibb.co/NgFktWnH/2026-04-22-20-48-13.png",
+    image: "https://i.ibb.co/4RTpwFsR/2026-04-28-20-44-06.png",
     domain: "bears-plumbing.com",
     description: "Deep navy paired with yellow CTAs — the classic \"trusted local contractor\" feel, but built on a disciplined grid with careful typography. The team is shown through real on-site photography instead of stock, which sells the brand as a genuine neighborhood operation rather than a national franchise."
   },
   {
     id: "02",
     name: "ProFlow Plumbing",
-    image: "https://i.ibb.co/ZRY8rbdP/2026-04-22-20-46-21.png",
+    image: "https://i.ibb.co/kg7YRdSz/2026-04-28-20-44-39.png",
     domain: "expert-plumbing.app",
     description: "Warm cream background, slab-serif headlines, and gradient accent bars segment the page into clear narrative blocks. The execution leans editorial — more premium than typical competitors in the space, without losing the human, trust-driven tone a local service business needs."
   },
   {
     id: "03",
     name: "Thelen Plumbing Co",
-    image: "https://i.ibb.co/GvnyyDvB/2026-04-28-13-03-19.png",
+    image: "https://i.ibb.co/cKG5pMtj/2026-04-28-20-43-41.png",
     domain: "thelen-mechanical.com",
     description: "Swiss-editorial minimalism applied to plumbing: oversized black headlines, cream paper background, a single terracotta accent. Reads like a magazine spread rather than a contractor's website — the boldest visual direction of the three."
   }
@@ -40,14 +40,13 @@ export function SiteShowcaseSection() {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-  // Скорректированные диапазоны: уменьшена амплитуда Y с 40vh до 20vh для предотвращения нахлеста
-  const case1Y = useTransform(scrollYProgress, [0.1, 0.3], ["20vh", "0vh"]);
+  const case1Y = useTransform(scrollYProgress, [0.1, 0.3], ["10vh", "0vh"]);
   const case1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
 
-  const case2Y = useTransform(scrollYProgress, [0.35, 0.55], ["20vh", "0vh"]);
+  const case2Y = useTransform(scrollYProgress, [0.35, 0.55], ["10vh", "0vh"]);
   const case2Opacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1]);
 
-  const case3Y = useTransform(scrollYProgress, [0.6, 0.8], ["20vh", "0vh"]);
+  const case3Y = useTransform(scrollYProgress, [0.6, 0.8], ["10vh", "0vh"]);
   const case3Opacity = useTransform(scrollYProgress, [0.6, 0.75], [0, 1]);
 
   const caseTransforms = [
@@ -60,7 +59,7 @@ export function SiteShowcaseSection() {
     <div ref={containerRef} className="relative h-[300vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Начальный текстовый оверлей */}
+        {/* Initial Text Overlay */}
         <motion.div 
           style={{ opacity: headingOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-[15%]"
@@ -73,7 +72,7 @@ export function SiteShowcaseSection() {
           </h2>
         </motion.div>
 
-        {/* Список кейсов - центрирован по вертикали */}
+        {/* Case List */}
         <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-8 py-[2vh]">
           {cases.map((item, idx) => (
             <motion.div
@@ -85,27 +84,27 @@ export function SiteShowcaseSection() {
               className="relative w-full h-[26vh] flex items-center will-change-transform"
             >
               <div className="grid grid-cols-12 w-full items-center h-full relative gap-8 md:gap-0">
-                {/* Левая часть: скриншот в браузере (на 20% меньше исходного) */}
+                {/* Left Side: Browser Mockup */}
                 <div className="col-span-12 md:col-span-4 flex flex-col relative z-10 w-full">
-                  <div className="browser-mockup w-full md:w-[80%] group/browser rounded-[8px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
-                    <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-3 gap-3">
-                      <div className="traffic-lights flex gap-1.5">
-                        <span className="dot w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
-                        <span className="dot w-2.5 h-2.5 rounded-full bg-[#FEBC2E]"></span>
-                        <span className="dot w-2.5 h-2.5 rounded-full bg-[#28C840]"></span>
+                  <div className="browser-mockup w-full md:w-[80%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
+                    <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
+                      <div className="traffic-lights flex gap-2">
+                        <span className="dot w-[10px] h-[10px] rounded-full bg-[#FF5F57]"></span>
+                        <span className="dot w-[10px] h-[10px] rounded-full bg-[#FEBC2E]"></span>
+                        <span className="dot w-[10px] h-[10px] rounded-full bg-[#28C840]"></span>
                       </div>
-                      <div className="url-bar flex-1 h-[18px] bg-[#0E0E12] rounded-sm px-2 flex items-center gap-1 font-mono text-[9px] text-white/50">
-                        <Lock size={9} className="text-white/50 shrink-0" />
+                      <div className="url-bar flex-1 h-[20px] bg-[#0E0E12] rounded-md px-3 flex items-center gap-1.5 font-mono text-[10px] text-white/50">
+                        <Lock size={10} className="text-white/50 shrink-0" />
                         <span className="truncate">{item.domain}</span>
                       </div>
                     </div>
                     <div className="browser-content block leading-[0]">
-                      <div className="aspect-video relative overflow-hidden bg-[#111]">
+                      <div className="relative overflow-hidden bg-[#111] aspect-[1585/908]">
                         <Image 
                           src={item.image}
                           alt={`Case ${item.id}`}
                           fill
-                          className="object-contain"
+                          className="object-cover"
                           unoptimized
                         />
                       </div>
@@ -113,12 +112,12 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Соединительная линия (как в блоке шагов) */}
+                {/* Connection Line */}
                 <div className="hidden md:block md:col-span-2">
                   <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                 </div>
 
-                {/* Правая часть: текст */}
+                {/* Right Side: Description */}
                 <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
                   <div className="flex flex-col gap-2">
                     <h3 className="font-mono text-[4vw] md:text-[1.1vw] font-bold text-[#e0ded8] uppercase tracking-tight">
