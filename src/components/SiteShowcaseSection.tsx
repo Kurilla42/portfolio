@@ -48,11 +48,11 @@ export function SiteShowcaseSection() {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   
-  // Only for mobile: move the list up as we scroll through the 280vh container
+  // Only for mobile: move the list up more to reveal the 3rd case on small screens
   const mobileListY = useTransform(
     scrollYProgress, 
     [0.15, 0.9], 
-    ["0%", "-60%"]
+    ["0%", "-72%"]
   );
 
   // Handle bidirectional visibility for cases
@@ -95,7 +95,7 @@ export function SiteShowcaseSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[280vh] md:h-[180vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[320vh] md:h-[180vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Initial Text Overlay */}
