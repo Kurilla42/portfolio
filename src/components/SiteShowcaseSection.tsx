@@ -95,7 +95,7 @@ export function SiteShowcaseSection() {
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6 md:px-[4vw]"
         >
           <div className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-[2vw] w-full">
-            <h2 className="text-[9vw] md:text-[4.4vw] font-headline font-black uppercase text-[#e0ded8] leading-none tracking-tight text-center md:text-left whitespace-nowrap">
+            <h2 className="text-[9vw] md:text-[4.4vw] font-headline font-black uppercase text-[#e0ded8] leading-none tracking-normal text-center md:text-left whitespace-nowrap">
               EXPLORE HOW YOUR
             </h2>
             
@@ -109,7 +109,7 @@ export function SiteShowcaseSection() {
                />
             </div>
 
-            <h2 className="text-[9vw] md:text-[4.4vw] font-headline font-black uppercase text-[#e0ded8] leading-none tracking-tight text-center md:text-right whitespace-nowrap">
+            <h2 className="text-[9vw] md:text-[4.4vw] font-headline font-black uppercase text-[#e0ded8] leading-none tracking-normal text-center md:text-right whitespace-nowrap">
               SITE CAN LOOK LIKE
             </h2>
           </div>
@@ -130,8 +130,8 @@ export function SiteShowcaseSection() {
             >
               <div className="flex w-full items-center gap-0">
                 
-                {/* Left Side: Browser Mockup (reduced size) */}
-                <div className="w-[85%] md:w-[32%] shrink-0">
+                {/* Left Side: Browser Mockup */}
+                <div className="w-[85%] md:w-[27%] shrink-0">
                   <div className="browser-mockup w-full group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
                       <div className="traffic-lights flex gap-2">
@@ -158,12 +158,12 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Connection Line - Stretching from container to container */}
+                {/* Connection Line */}
                 <div className="hidden md:flex flex-1 items-center px-10">
                   <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                 </div>
 
-                {/* Right Side: Description (Fixed width for better layout) */}
+                {/* Right Side: Description */}
                 <div className="hidden md:flex md:w-[48%] flex-col justify-center">
                   <div className="flex flex-col gap-4">
                     <div className="flex flex-col gap-2">
@@ -187,9 +187,8 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Mobile text (stays below on mobile, handled by responsive classes if needed, but keeping simple for now) */}
+                {/* Mobile text placeholder */}
                 <div className="md:hidden flex flex-col gap-2 mt-4">
-                   {/* Simplified mobile view within existing staggered reveal */}
                 </div>
               </div>
             </motion.div>
