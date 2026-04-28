@@ -40,15 +40,15 @@ export function SiteShowcaseSection() {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
 
-  // Настройка анимаций для появления
-  const case1Y = useTransform(scrollYProgress, [0.1, 0.3], ["100vh", "0vh"]);
-  const case1Opacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
+  // Настройка анимаций для появления (уменьшен диапазон Y чтобы не было нахлеста)
+  const case1Y = useTransform(scrollYProgress, [0.1, 0.3], ["40vh", "0vh"]);
+  const case1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
 
-  const case2Y = useTransform(scrollYProgress, [0.35, 0.55], ["100vh", "0vh"]);
-  const case2Opacity = useTransform(scrollYProgress, [0.35, 0.45], [0, 1]);
+  const case2Y = useTransform(scrollYProgress, [0.35, 0.55], ["40vh", "0vh"]);
+  const case2Opacity = useTransform(scrollYProgress, [0.35, 0.5], [0, 1]);
 
-  const case3Y = useTransform(scrollYProgress, [0.6, 0.8], ["100vh", "0vh"]);
-  const case3Opacity = useTransform(scrollYProgress, [0.6, 0.7], [0, 1]);
+  const case3Y = useTransform(scrollYProgress, [0.6, 0.8], ["40vh", "0vh"]);
+  const case3Opacity = useTransform(scrollYProgress, [0.6, 0.75], [0, 1]);
 
   const caseTransforms = [
     { y: case1Y, opacity: case1Opacity },
@@ -73,8 +73,8 @@ export function SiteShowcaseSection() {
           </h2>
         </motion.div>
 
-        {/* Список кейсов */}
-        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-4 py-[2vh]">
+        {/* Список кейсов - центрирован по вертикали */}
+        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-8 py-[2vh]">
           {cases.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -82,12 +82,12 @@ export function SiteShowcaseSection() {
                 y: caseTransforms[idx].y, 
                 opacity: caseTransforms[idx].opacity 
               }}
-              className="relative w-full h-[30vh] flex items-center will-change-transform"
+              className="relative w-full h-[26vh] flex items-center will-change-transform"
             >
               <div className="grid grid-cols-12 w-full items-center h-full relative gap-8 md:gap-0">
-                {/* Левая часть: скриншот */}
-                <div className="col-span-12 md:col-span-5 flex flex-col relative z-10 w-full">
-                  <div className="browser-mockup w-full md:w-[72%] group/browser rounded-[8px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
+                {/* Левая часть: скриншот в браузере (на 20% меньше исходного) */}
+                <div className="col-span-12 md:col-span-4 flex flex-col relative z-10 w-full">
+                  <div className="browser-mockup w-full md:w-[80%] group/browser rounded-[8px] overflow-hidden shadow-[0_20px_40px_-15px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-3 gap-3">
                       <div className="traffic-lights flex gap-1.5">
                         <span className="dot w-2.5 h-2.5 rounded-full bg-[#FF5F57]"></span>
@@ -113,8 +113,8 @@ export function SiteShowcaseSection() {
                   </div>
                 </div>
 
-                {/* Соединительная линия */}
-                <div className="hidden md:block md:col-span-1">
+                {/* Соединительная линия (как в блоке шагов) */}
+                <div className="hidden md:block md:col-span-2">
                   <div className="w-full h-[1px] bg-[#e0ded8]/20" />
                 </div>
 
@@ -124,7 +124,7 @@ export function SiteShowcaseSection() {
                     <h3 className="font-mono text-[4vw] md:text-[1.1vw] font-bold text-[#e0ded8] uppercase tracking-tight">
                       Case {parseInt(item.id)} — {item.name}
                     </h3>
-                    <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[90%]">
+                    <p className="font-mono text-[3.5vw] md:text-[0.8vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[95%]">
                       {item.description}
                     </p>
                   </div>
