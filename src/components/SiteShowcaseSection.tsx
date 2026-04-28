@@ -86,7 +86,7 @@ export function SiteShowcaseSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[180vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[280vh] md:h-[180vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Initial Text Overlay */}
@@ -126,7 +126,7 @@ export function SiteShowcaseSection() {
             <motion.div
               key={item.id}
               variants={itemVariants}
-              className="relative w-full h-[45vh] md:h-[26vh] flex items-center will-change-transform"
+              className="relative w-full h-[28vh] md:h-[26vh] flex items-center will-change-transform"
             >
               <div className="flex w-full flex-col md:flex-row items-center md:items-center gap-4 md:gap-0">
                 
