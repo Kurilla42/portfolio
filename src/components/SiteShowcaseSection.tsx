@@ -109,9 +109,9 @@ export function SiteShowcaseSection() {
                   </span>
                 </div>
 
-                <div className={`${item.layout === 'left' ? 'col-span-12 md:col-span-5' : 'col-span-12 md:col-start-8 md:col-span-5'} flex flex-col relative z-10`}>
-                  {/* Browser Mockup Container */}
-                  <div className="browser-mockup group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
+                <div className={`${item.layout === 'left' ? 'col-span-12 md:col-span-5 items-start' : 'col-span-12 md:col-start-8 md:col-span-5 items-end'} flex flex-col relative z-10 w-full`}>
+                  {/* Browser Mockup Container - 15% smaller via w-[85%] */}
+                  <div className="browser-mockup w-[85%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     {/* Browser Chrome */}
                     <div className="browser-chrome h-9 bg-[#1C1C20] flex items-center px-4 gap-4">
                       <div className="traffic-lights flex gap-2">
@@ -138,8 +138,8 @@ export function SiteShowcaseSection() {
                     </div>
                   </div>
 
-                  {/* Caption with decorative line */}
-                  <div className={`flex items-center mt-6 gap-4 ${item.layout === 'right' ? 'flex-row-reverse' : ''}`}>
+                  {/* Caption with decorative line - also matching the 85% width for alignment */}
+                  <div className={`flex items-center mt-6 gap-4 w-[85%] ${item.layout === 'right' ? 'flex-row-reverse' : ''}`}>
                      <div className={`flex justify-between items-center gap-6 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 shrink-0 ${item.layout === 'right' ? 'flex-row-reverse' : ''}`}>
                        <span className="text-[#e0ded8]">VIEW FULL</span>
                        <span>TEMPLATE {parseInt(item.id)}</span>
