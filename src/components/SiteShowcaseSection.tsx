@@ -7,17 +7,18 @@ import Image from 'next/image';
 const cases = [
   {
     id: "01",
-    title: "RESIDENTIAL MASTERPIECE",
-    description: "DEMO PROJECT: A CONVERSION-OPTIMIZED LANDING PAGE BUILT FOR A RESIDENTIAL PLUMBING COMPANY SERVING UPPER MANHATTAN. DESIGNED AROUND MOBILE-FIRST UX WITH CLICK-TO-CALL, TRUST SIGNALS ABOVE THE FOLD, AND LOCAL SEO STRUCTURE FOR \"NEAR ME\" SEARCHES.",
     image: "https://i.ibb.co/NgFktWnH/2026-04-22-20-48-13.png",
     layout: "left"
   },
   {
     id: "02",
-    title: "COMMERCIAL INFRASTRUCTURE",
-    description: "DEMO PROJECT: A MULTI-PAGE SITE CONCEPT FOR A COMMERCIAL PLUMBING CONTRACTOR. BUILT TO HANDLE B2B LEAD CAPTURE, 24/7 EMERGENCY POSITIONING, AND SERVICE AREA TARGETING ACROSS MULTIPLE LOCATIONS.",
     image: "https://i.ibb.co/ZRY8rbdP/2026-04-22-20-46-21.png",
     layout: "right"
+  },
+  {
+    id: "03",
+    image: "https://i.ibb.co/GvnyyDvB/2026-04-28-13-03-19.png",
+    layout: "left"
   }
 ];
 
@@ -29,26 +30,31 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
-  const centralIconOpacity = useTransform(scrollYProgress, [0, 0.15, 0.5], [1, 1, 0]);
+  const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
+  const centralIconOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9], [1, 1, 0]);
   const centralScale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
-  const case1Y = useTransform(scrollYProgress, [0.15, 0.45], ["100vh", "0vh"]);
-  const case1Opacity = useTransform(scrollYProgress, [0.15, 0.35], [0, 1]);
+  // Настройка анимации для 3-х кейсов на протяжении 300vh
+  const case1Y = useTransform(scrollYProgress, [0.1, 0.35], ["100vh", "0vh"]);
+  const case1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
 
-  const case2Y = useTransform(scrollYProgress, [0.55, 0.85], ["100vh", "0vh"]);
-  const case2Opacity = useTransform(scrollYProgress, [0.55, 0.75], [0, 1]);
+  const case2Y = useTransform(scrollYProgress, [0.4, 0.65], ["100vh", "0vh"]);
+  const case2Opacity = useTransform(scrollYProgress, [0.4, 0.55], [0, 1]);
+
+  const case3Y = useTransform(scrollYProgress, [0.7, 0.95], ["100vh", "0vh"]);
+  const case3Opacity = useTransform(scrollYProgress, [0.7, 0.85], [0, 1]);
 
   const caseTransforms = [
     { y: case1Y, opacity: case1Opacity },
-    { y: case2Y, opacity: case2Opacity }
+    { y: case2Y, opacity: case2Opacity },
+    { y: case3Y, opacity: case3Opacity }
   ];
 
   return (
-    <div ref={containerRef} className="relative h-[200vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[300vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Initial Text Overlay with 15% Padding */}
+        {/* Initial Text Overlay */}
         <motion.div 
           style={{ opacity: headingOpacity }}
           className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-[15%]"
@@ -79,7 +85,7 @@ export function SiteShowcaseSection() {
         </motion.div>
 
         {/* Cases List */}
-        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-16 py-[5vh]">
+        <div className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col justify-center gap-4 py-[5vh]">
           {cases.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -89,68 +95,28 @@ export function SiteShowcaseSection() {
               }}
               className="relative w-full h-[28vh] flex items-center will-change-transform"
             >
-              <div className="grid grid-cols-4 w-full items-center h-full">
-                
+              <div className="grid grid-cols-12 w-full items-center h-full">
                 {item.layout === 'left' ? (
-                  <>
-                    {/* Left: Image Container (30% width) */}
-                    <div className="col-span-1 aspect-video relative overflow-hidden w-[120%]">
-                      <Image 
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
-                    </div>
-                    {/* Gap: Line connecting image to text */}
-                    <div className="col-span-1 px-[2vw] flex items-center justify-center">
-                      <div className="w-full h-[1px] bg-[#e0ded8]/20" />
-                    </div>
-                    {/* Right: Text Container starting at 50% */}
-                    <div className="col-span-2 flex flex-col justify-center">
-                      <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
-                        {item.title} 
-                        <span className="ml-3 text-[2.5vw] md:text-[1vw] font-mono font-bold text-[#e0ded8]/40 tracking-[0.2em]">
-                          [ CASE 1 ]
-                        </span>
-                      </h3>
-                      <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8]/40 uppercase tracking-[0.2em]">
-                        {item.description}
-                      </p>
-                    </div>
-                  </>
+                  <div className="col-span-12 md:col-span-5 aspect-video relative overflow-hidden">
+                    <Image 
+                      src={item.image}
+                      alt={`Case ${item.id}`}
+                      fill
+                      className="object-contain"
+                      unoptimized
+                    />
+                  </div>
                 ) : (
-                  <>
-                    {/* Left: Text Container ending at 50% */}
-                    <div className="col-span-2 flex flex-col justify-center text-right">
-                      <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight mb-2">
-                        <span className="mr-3 text-[2.5vw] md:text-[1vw] font-mono font-bold text-[#e0ded8]/40 tracking-[0.2em]">
-                          [ CASE 2 ]
-                        </span>
-                        {item.title}
-                      </h3>
-                      <p className="text-[2.5vw] md:text-[1vw] font-mono font-bold leading-tight text-[#e0ded8]/40 uppercase tracking-[0.2em]">
-                        {item.description}
-                      </p>
-                    </div>
-                    {/* Gap: Line connecting text to image */}
-                    <div className="col-span-1 px-[2vw] flex items-center justify-center">
-                      <div className="w-full h-[1px] bg-[#e0ded8]/20" />
-                    </div>
-                    {/* Right: Image Container (30% width) */}
-                    <div className="col-span-1 aspect-video relative overflow-hidden w-[120%] justify-self-end">
-                      <Image 
-                        src={item.image}
-                        alt={item.title}
-                        fill
-                        className="object-contain"
-                        unoptimized
-                      />
-                    </div>
-                  </>
+                  <div className="col-span-12 md:col-start-8 md:col-span-5 aspect-video relative overflow-hidden">
+                    <Image 
+                      src={item.image}
+                      alt={`Case ${item.id}`}
+                      fill
+                      className="object-contain"
+                      unoptimized
+                    />
+                  </div>
                 )}
-
               </div>
             </motion.div>
           ))}
