@@ -5,6 +5,8 @@ import { useRef } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import { Lock } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
 
 const cases = [
   {
@@ -12,6 +14,7 @@ const cases = [
     name: "Empire State Plumbing (Manhattan)",
     image: "https://i.ibb.co/4RTpwFsR/2026-04-28-20-44-06.png",
     domain: "bears-plumbing.com",
+    href: "/case1",
     description: "Deep navy paired with yellow CTAs — the classic \"trusted local contractor\" feel, but built on a disciplined grid with careful typography. The team is shown through real on-site photography instead of stock, which sells the brand as a genuine neighborhood operation rather than a national franchise."
   },
   {
@@ -19,6 +22,7 @@ const cases = [
     name: "ProFlow Plumbing",
     image: "https://i.ibb.co/kg7YRdSz/2026-04-28-20-44-39.png",
     domain: "expert-plumbing.app",
+    href: "/case2",
     description: "Warm cream background, slab-serif headlines, and gradient accent bars segment the page into clear narrative blocks. The execution leans editorial — more premium than typical competitors in the space, without losing the human, trust-driven tone a local service business needs."
   },
   {
@@ -26,6 +30,7 @@ const cases = [
     name: "Thelen Plumbing Co",
     image: "https://i.ibb.co/q30RfBHv/2026-04-28-20-49-48.png",
     domain: "thelen-mechanical.com",
+    href: "/case3",
     description: "Swiss-editorial minimalism applied to plumbing: oversized black headlines, cream paper background, a single terracotta accent. Reads like a magazine spread rather than a contractor's website — the boldest visual direction of the three."
   }
 ];
@@ -63,14 +68,27 @@ export function SiteShowcaseSection() {
         {/* Initial Text Overlay */}
         <motion.div 
           style={{ opacity: headingOpacity }}
-          className="absolute inset-0 z-20 flex items-center justify-between pointer-events-none px-[15%]"
+          className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6 md:px-[4vw]"
         >
-          <h2 className="text-[8vw] md:text-[3.5vw] font-headline font-black uppercase text-[#e0ded8] leading-[0.9] tracking-tight w-[40%] md:w-[35%]">
-            EXPLORE HOW YOUR
-          </h2>
-          <h2 className="text-[8vw] md:text-[3.5vw] font-headline font-black uppercase text-[#e0ded8] leading-[0.9] tracking-tight w-[40%] md:w-[35%] text-right">
-            SITE CAN LOOK LIKE
-          </h2>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-[4vw]">
+            <h2 className="text-[12vw] md:text-[6vw] font-headline font-black uppercase text-[#e0ded8] leading-[0.9] tracking-tight text-center md:text-left">
+              EXPLORE HOW<br />YOUR
+            </h2>
+            
+            <div className="relative w-[15vw] h-[15vw] md:w-[8vw] md:h-[8vw] shrink-0">
+               <Image 
+                  src="https://i.ibb.co/zWwNcSSf/image.png"
+                  alt="Decorative accent"
+                  fill
+                  className="object-contain"
+                  unoptimized
+               />
+            </div>
+
+            <h2 className="text-[12vw] md:text-[6vw] font-headline font-black uppercase text-[#e0ded8] leading-[0.9] tracking-tight text-center md:text-right">
+              SITE CAN<br />LOOK LIKE
+            </h2>
+          </div>
         </motion.div>
 
         {/* Case List */}
@@ -85,9 +103,9 @@ export function SiteShowcaseSection() {
               className="relative w-full h-[26vh] flex items-center will-change-transform"
             >
               <div className="grid grid-cols-12 w-full items-center h-full relative gap-8 md:gap-0">
-                {/* Left Side: Browser Mockup (уменьшен на 20%) */}
+                {/* Left Side: Browser Mockup (Reduced size by 15% from previous 80% -> ~68%) */}
                 <div className="col-span-12 md:col-span-4 flex flex-col relative z-10 w-full">
-                  <div className="browser-mockup w-full md:w-[80%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
+                  <div className="browser-mockup w-full md:w-[68%] group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
                       <div className="traffic-lights flex gap-2">
                         <span className="dot w-[10px] h-[10px] rounded-full bg-[#FF5F57]"></span>
@@ -120,13 +138,25 @@ export function SiteShowcaseSection() {
 
                 {/* Right Side: Description */}
                 <div className="col-span-12 md:col-span-6 flex flex-col justify-center">
-                  <div className="flex flex-col gap-2">
-                    <h3 className="font-mono text-[4vw] md:text-[1.1vw] font-bold text-[#e0ded8] uppercase tracking-tight">
-                      Case {parseInt(item.id)} — {item.name}
-                    </h3>
-                    <p className="font-mono text-[3.5vw] md:text-[0.8vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[95%]">
-                      {item.description}
-                    </p>
+                  <div className="flex flex-col gap-4">
+                    <div className="flex flex-col gap-2">
+                      <h3 className="font-mono text-[4vw] md:text-[1.1vw] font-bold text-[#e0ded8] uppercase tracking-tight">
+                        Case {parseInt(item.id)} — {item.name}
+                      </h3>
+                      <p className="font-mono text-[3.5vw] md:text-[0.8vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[95%]">
+                        {item.description}
+                      </p>
+                    </div>
+                    
+                    <div className="flex justify-start">
+                      <Button 
+                        asChild 
+                        variant="link" 
+                        className="p-0 h-auto text-[#e0ded8] font-mono font-bold uppercase tracking-[0.2em] text-[3vw] md:text-[0.8vw] underline underline-offset-8 decoration-[#e0ded8]/20 hover:decoration-[#e0ded8] transition-all"
+                      >
+                        <Link href={item.href}>[ VIEW FULL ]</Link>
+                      </Button>
+                    </div>
                   </div>
                 </div>
               </div>
