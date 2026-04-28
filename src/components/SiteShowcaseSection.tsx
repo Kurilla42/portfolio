@@ -93,13 +93,22 @@ export function SiteShowcaseSection() {
                 y: caseTransforms[idx].y, 
                 opacity: caseTransforms[idx].opacity 
               }}
-              className="relative w-full h-[28vh] flex items-center will-change-transform"
+              className="relative w-full h-[32vh] flex items-center will-change-transform"
             >
-              <div className="grid grid-cols-12 w-full items-center h-full">
+              <div className="grid grid-cols-12 w-full items-center h-full relative">
+                {/* Background Large Number */}
+                <div className={`absolute top-1/2 -translate-y-1/2 z-0 pointer-events-none select-none overflow-hidden
+                  ${item.layout === 'left' ? 'left-[20%]' : 'right-[20%]'}
+                `}>
+                  <span className="font-headline text-[25vw] md:text-[20vw] leading-none text-white/[0.04] tracking-tighter">
+                    {item.id}
+                  </span>
+                </div>
+
                 {item.layout === 'left' ? (
-                  <div className="col-span-12 md:col-span-5 flex flex-col">
+                  <div className="col-span-12 md:col-span-5 flex flex-col relative z-10">
                     <div className="rounded-sm border border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)] overflow-hidden">
-                      <div className="aspect-video relative overflow-hidden">
+                      <div className="aspect-video relative overflow-hidden bg-[#111]">
                         <Image 
                           src={item.image}
                           alt={`Case ${item.id}`}
@@ -109,15 +118,18 @@ export function SiteShowcaseSection() {
                         />
                       </div>
                     </div>
-                    <div className="flex justify-between items-center mt-3 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60">
-                      <span>TEMPLATE {parseInt(item.id)}</span>
-                      <span>VIEW FULL</span>
+                    <div className="flex items-center mt-4 gap-4">
+                       <div className="flex-1 h-[1px] bg-white/20" />
+                       <div className="flex justify-between items-center gap-6 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 shrink-0">
+                         <span>TEMPLATE {parseInt(item.id)}</span>
+                         <span className="text-[#e0ded8]">VIEW FULL</span>
+                       </div>
                     </div>
                   </div>
                 ) : (
-                  <div className="col-span-12 md:col-start-8 md:col-span-5 flex flex-col">
+                  <div className="col-span-12 md:col-start-8 md:col-span-5 flex flex-col relative z-10">
                     <div className="rounded-sm border border-white/10 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.06)] overflow-hidden">
-                      <div className="aspect-video relative overflow-hidden">
+                      <div className="aspect-video relative overflow-hidden bg-[#111]">
                         <Image 
                           src={item.image}
                           alt={`Case ${item.id}`}
@@ -127,9 +139,12 @@ export function SiteShowcaseSection() {
                         />
                       </div>
                     </div>
-                    <div className="flex justify-between items-center mt-3 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60">
-                      <span>TEMPLATE {parseInt(item.id)}</span>
-                      <span>VIEW FULL</span>
+                    <div className="flex items-center mt-4 gap-4">
+                       <div className="flex justify-between items-center gap-6 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 shrink-0">
+                         <span className="text-[#e0ded8]">VIEW FULL</span>
+                         <span>TEMPLATE {parseInt(item.id)}</span>
+                       </div>
+                       <div className="flex-1 h-[1px] bg-white/20" />
                     </div>
                   </div>
                 )}
