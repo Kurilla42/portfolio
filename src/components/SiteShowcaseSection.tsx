@@ -130,8 +130,8 @@ export function SiteShowcaseSection() {
             >
               <div className="flex w-full items-center gap-0">
                 
-                {/* Left Side: Browser Mockup - Reduced from 27% to 24.3% (10% smaller) */}
-                <div className="w-[85%] md:w-[24.3%] shrink-0">
+                {/* Left Side: Browser Mockup - Reduced to ~23.1% (additional 5% smaller) */}
+                <div className="w-[85%] md:w-[23.1%] shrink-0">
                   <div className="browser-mockup w-full group/browser rounded-[10px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.6),0_0_0_1px_rgba(255,255,255,0.08)] bg-[#1C1C20] transition-transform duration-300 hover:-translate-y-1">
                     <div className="browser-chrome h-8 bg-[#1C1C20] flex items-center px-4 gap-4">
                       <div className="traffic-lights flex gap-2">
