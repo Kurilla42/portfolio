@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useRef } from 'react';
@@ -34,7 +35,6 @@ export function SiteShowcaseSection() {
   const centralIconOpacity = useTransform(scrollYProgress, [0, 0.1, 0.9], [1, 1, 0]);
   const centralScale = useTransform(scrollYProgress, [0, 0.5], [0.8, 1]);
 
-  // Настройка анимации для 3-х кейсов на протяжении 300vh
   const case1Y = useTransform(scrollYProgress, [0.1, 0.35], ["100vh", "0vh"]);
   const case1Opacity = useTransform(scrollYProgress, [0.1, 0.25], [0, 1]);
 
@@ -97,24 +97,40 @@ export function SiteShowcaseSection() {
             >
               <div className="grid grid-cols-12 w-full items-center h-full">
                 {item.layout === 'left' ? (
-                  <div className="col-span-12 md:col-span-5 aspect-video relative overflow-hidden">
-                    <Image 
-                      src={item.image}
-                      alt={`Case ${item.id}`}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                    />
+                  <div className="col-span-12 md:col-span-5 flex flex-col">
+                    <div className="border border-[#e0ded8]/20 p-[2px]">
+                      <div className="aspect-video relative overflow-hidden">
+                        <Image 
+                          src={item.image}
+                          alt={`Case ${item.id}`}
+                          fill
+                          className="object-contain"
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center mt-3 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60">
+                      <span>TEMPLATE {parseInt(item.id)}</span>
+                      <span>VIEW FULL</span>
+                    </div>
                   </div>
                 ) : (
-                  <div className="col-span-12 md:col-start-8 md:col-span-5 aspect-video relative overflow-hidden">
-                    <Image 
-                      src={item.image}
-                      alt={`Case ${item.id}`}
-                      fill
-                      className="object-contain"
-                      unoptimized
-                    />
+                  <div className="col-span-12 md:col-start-8 md:col-span-5 flex flex-col">
+                    <div className="border border-[#e0ded8]/20 p-[2px]">
+                      <div className="aspect-video relative overflow-hidden">
+                        <Image 
+                          src={item.image}
+                          alt={`Case ${item.id}`}
+                          fill
+                          className="object-contain"
+                          unoptimized
+                        />
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center mt-3 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60">
+                      <span>TEMPLATE {parseInt(item.id)}</span>
+                      <span>VIEW FULL</span>
+                    </div>
                   </div>
                 )}
               </div>
