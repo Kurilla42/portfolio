@@ -95,7 +95,7 @@ export function SiteShowcaseSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] md:h-[180vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[500vh] md:h-[180vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Initial Text Overlay */}
