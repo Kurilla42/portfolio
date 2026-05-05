@@ -98,7 +98,7 @@ export function SiteShowcaseSection() {
           className="relative w-full h-full flex flex-col md:flex-row items-center justify-center px-6 md:px-[4vw] gap-12 md:gap-[5vw]"
         >
           {/* Левая часть: Длинная картинка в контейнере (от 10% до 40% ширины) */}
-          <div className="relative w-full md:w-[40%] h-[60vh] flex items-center justify-center">
+          <div className="relative w-full md:w-[40%] h-[80vh] flex items-center justify-center">
             <div className="relative w-[85%] md:w-full h-full bg-[#111] rounded-[20px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
               {/* Chrome bar */}
               <div className="absolute top-0 left-0 right-0 h-8 bg-[#1C1C20] z-20 flex items-center px-4 gap-4">
