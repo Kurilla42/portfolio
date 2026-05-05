@@ -1,7 +1,7 @@
 
 "use client";
 
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
@@ -62,17 +62,8 @@ export function SiteShowcaseSection() {
     }
   });
 
-  // Расчет прокрутки картинки внутри контейнера
-  // Мы хотим, чтобы для каждого кейса картинка прокручивалась от 0 до 100% за время его активности
-  const getImageScrollY = (index: number) => {
-    const start = 0.2 + (index * (0.8 / cases.length));
-    const end = start + (0.8 / cases.length);
-    // eslint-disable-next-line react-hooks/rules-of-hooks
-    return useTransform(scrollYProgress, [start, end], ["0%", "-100%"]);
-  };
-
   return (
-    <div ref={containerRef} className="relative h-[500vh] md:h-[400vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[400vh] md:h-[400vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Начальный заголовок - Исчезает при скролле */}
@@ -106,9 +97,9 @@ export function SiteShowcaseSection() {
           style={{ opacity: contentOpacity }}
           className="relative w-full h-full flex flex-col md:flex-row items-center justify-center px-6 md:px-[4vw] gap-12 md:gap-[5vw]"
         >
-          {/* Левая часть: Длинная картинка в контейнере */}
-          <div className="relative w-full md:w-[40%] h-[50vh] md:h-[60vh] flex items-center justify-center">
-            <div className="relative w-[70%] md:w-full h-full bg-[#111] rounded-[20px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
+          {/* Левая часть: Длинная картинка в контейнере (от 10% до 40% ширины) */}
+          <div className="relative w-full md:w-[40%] h-[60vh] flex items-center justify-center">
+            <div className="relative w-[85%] md:w-full h-full bg-[#111] rounded-[20px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
               {/* Chrome bar */}
               <div className="absolute top-0 left-0 right-0 h-8 bg-[#1C1C20] z-20 flex items-center px-4 gap-4">
                 <div className="flex gap-2">
@@ -121,7 +112,7 @@ export function SiteShowcaseSection() {
                 </div>
               </div>
 
-              {/* Scrolling Content */}
+              {/* Scrolling Content - Автоматическая прокрутка */}
               <div className="absolute inset-0 pt-8 overflow-hidden">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -132,12 +123,7 @@ export function SiteShowcaseSection() {
                     transition={{ duration: 0.5 }}
                     className="relative w-full h-full"
                   >
-                    <CaseScrollingImage 
-                      src={cases[activeIndex].image} 
-                      progress={scrollYProgress} 
-                      index={activeIndex} 
-                      total={cases.length}
-                    />
+                    <CaseScrollingImage src={cases[activeIndex].image} />
                   </motion.div>
                 </AnimatePresence>
               </div>
@@ -200,19 +186,20 @@ export function SiteShowcaseSection() {
   );
 }
 
-// Компонент для прокрутки длинного изображения внутри контейнера
-function CaseScrollingImage({ src, progress, index, total }: { src: string, progress: any, index: number, total: number }) {
-  // Настраиваем диапазон для каждого кейса
-  const start = 0.2 + (index * (0.7 / total));
-  const end = start + (0.7 / total);
-  
-  // Мы смещаем изображение от 0 до (высота картинки - высота контейнера)
-  // Поскольку мы не знаем точную высоту картинки, используем yPercent для имитации скролла
-  // Для длинного лендинга -100% y сместит его полностью за границы
-  const y = useTransform(progress, [start, end], ["0%", "-85%"]);
-
+// Компонент для АВТОМАТИЧЕСКОЙ прокрутки длинного изображения
+function CaseScrollingImage({ src }: { src: string }) {
   return (
-    <motion.div style={{ y }} className="relative w-full flex flex-col">
+    <motion.div 
+      initial={{ y: "0%" }}
+      animate={{ y: ["0%", "-70%"] }}
+      transition={{ 
+        duration: 25, 
+        ease: "linear", 
+        repeat: Infinity, 
+        repeatType: "reverse" 
+      }}
+      className="relative w-full flex flex-col"
+    >
       <Image 
         src={src}
         alt="Case screenshot"
