@@ -48,11 +48,12 @@ export function SiteShowcaseSection() {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   
-  // Only for mobile: move the list up more to reveal the 3rd case on small screens
+  // Increased transform depth from -72% to -85% and expanded the progress window to 0.94
+  // This ensures the bottom case travels high enough before the sticky section unpins.
   const mobileListY = useTransform(
     scrollYProgress, 
-    [0.15, 0.9], 
-    ["0%", "-72%"]
+    [0.12, 0.94], 
+    ["0%", "-85%"]
   );
 
   // Handle bidirectional visibility for cases
@@ -130,7 +131,7 @@ export function SiteShowcaseSection() {
           initial="hidden"
           animate={showCases ? "visible" : "hidden"}
           style={{ y: isMobile ? mobileListY : 0 }}
-          className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col md:justify-center justify-start gap-12 md:gap-8 py-[15vh] md:py-[2vh]"
+          className="relative w-full h-full max-w-[92vw] mx-auto flex flex-col md:justify-center justify-start gap-12 md:gap-8 py-[12vh] md:py-[2vh]"
         >
           {cases.map((item, idx) => (
             <motion.div
@@ -198,7 +199,7 @@ export function SiteShowcaseSection() {
                 </div>
 
                 {/* Mobile text content */}
-                <div className="md:hidden flex flex-col gap-3 mt-4 text-center px-4">
+                <div className="md:hidden flex flex-col gap-2 mt-3 text-center px-4">
                   <div className="flex flex-col gap-1">
                     <h3 className="font-mono text-[3.5vw] font-bold text-[#e0ded8] uppercase tracking-tight">
                       Case {parseInt(item.id)} — {item.name}
