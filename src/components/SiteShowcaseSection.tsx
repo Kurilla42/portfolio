@@ -48,8 +48,7 @@ export function SiteShowcaseSection() {
 
   const headingOpacity = useTransform(scrollYProgress, [0, 0.1], [1, 0]);
   
-  // Increased transform depth from -72% to -85% and expanded the progress window to 0.94
-  // This ensures the bottom case travels high enough before the sticky section unpins.
+  // Depth of transform -85% and progress window 0.94 ensures bottom case is visible on small screens
   const mobileListY = useTransform(
     scrollYProgress, 
     [0.12, 0.94], 
@@ -96,7 +95,7 @@ export function SiteShowcaseSection() {
   };
 
   return (
-    <div ref={containerRef} className="relative h-[500vh] md:h-[180vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[320vh] md:h-[180vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         {/* Initial Text Overlay */}
