@@ -450,7 +450,7 @@ export default function Home() {
                       COME SAY HELLO
                     </motion.h2>
 
-                    <div className="relative w-[18vw] aspect-square mt-10 mb-6">
+                    <div className="relative w-[22vw] aspect-square mt-10 mb-6">
                        <Image 
                           src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
                           alt="Decorative accent"
