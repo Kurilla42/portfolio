@@ -38,6 +38,7 @@ const cases = [
 export function SiteShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDisplaying, setIsDisplaying] = useState(false);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -53,10 +54,21 @@ export function SiteShowcaseSection() {
 
   // Определение активного индекса на основе прогресса скролла
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    if (latest < 0.2) return;
+    // Определяем, виден ли сейчас контент кейсов
+    const currentlyDisplaying = latest > 0.18 && latest < 0.98;
+    if (currentlyDisplaying !== isDisplaying) {
+      setIsDisplaying(currentlyDisplaying);
+    }
+
+    if (latest < 0.2) {
+      if (activeIndex !== 0) setActiveIndex(0);
+      return;
+    }
+    
     const progressPerCase = 0.8 / cases.length;
     const adjustedLatest = latest - 0.2;
     const index = Math.min(Math.floor(adjustedLatest / progressPerCase), cases.length - 1);
+    
     if (index >= 0 && index !== activeIndex) {
       setActiveIndex(index);
     }
@@ -97,7 +109,7 @@ export function SiteShowcaseSection() {
           style={{ opacity: contentOpacity }}
           className="relative w-full h-full flex flex-col md:flex-row items-center justify-center px-6 md:px-[4vw] gap-12 md:gap-[5vw]"
         >
-          {/* Левая часть: Длинная картинка в контейнере (от 10% до 40% ширины) */}
+          {/* Левая часть: Длинная картинка в контейнере */}
           <div className="relative w-full md:w-[40%] h-[80vh] flex items-center justify-center">
             <div className="relative w-[85%] md:w-full h-full bg-[#111] rounded-[20px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
               {/* Chrome bar */}
@@ -127,7 +139,7 @@ export function SiteShowcaseSection() {
                   >
                     <CaseScrollingImage 
                       src={item.image} 
-                      isActive={activeIndex === idx} 
+                      isActive={isDisplaying && activeIndex === idx} 
                       priority={idx === 0} 
                     />
                   </motion.div>
@@ -148,7 +160,7 @@ export function SiteShowcaseSection() {
                     isActive ? "opacity-100 translate-x-0" : "opacity-20 -translate-x-4 blur-[1px]"
                   )}
                 >
-                  {/* Highlight bar like pricing tabs */}
+                  {/* Линия выделения как в тарифах */}
                   {isActive && (
                     <motion.div 
                       layoutId="caseHighlight"
@@ -192,7 +204,7 @@ export function SiteShowcaseSection() {
   );
 }
 
-// Компонент для АВТОМАТИЧЕСКОЙ прокрутки длинного изображения
+// Компонент для автоматической прокрутки сброса позиции
 function CaseScrollingImage({ src, isActive, priority = false }: { src: string; isActive: boolean; priority?: boolean }) {
   return (
     <motion.div 
