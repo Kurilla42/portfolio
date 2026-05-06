@@ -49,13 +49,14 @@ export function SiteShowcaseSection() {
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const headingScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
   
-  // Управление видимостью основного контента (кейсов)
-  const contentOpacity = useTransform(scrollYProgress, [0.1, 0.2, 0.9, 1], [0, 1, 1, 0]);
+  // Управление видимостью основного контента (кейсов) - убрано исчезновение в конце [0.9, 1]
+  const contentOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
 
   // Определение активного индекса на основе прогресса скролла
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Определяем, виден ли сейчас контент кейсов
-    const currentlyDisplaying = latest > 0.18 && latest < 0.98;
+    // Определяем, виден ли сейчас контент кейсов. 
+    // Оставляем true до самого конца скролла секции.
+    const currentlyDisplaying = latest > 0.18;
     if (currentlyDisplaying !== isDisplaying) {
       setIsDisplaying(currentlyDisplaying);
     }
