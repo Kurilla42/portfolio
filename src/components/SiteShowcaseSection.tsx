@@ -15,7 +15,7 @@ const cases = [
     image: "https://i.ibb.co/d0G6rCKv/case1-iota-vercel-app.png",
     domain: "bears-plumbing.com",
     href: "/case1",
-    duration: 22, // Скорректировано для соответствия скорости второго кейса
+    duration: 22,
     description: "Deep navy paired with yellow CTAs — the classic \"trusted local contractor\" feel, but built on a disciplined grid with careful typography. The team is shown through real on-site photography instead of stock."
   },
   {
@@ -24,7 +24,7 @@ const cases = [
     image: "https://i.ibb.co/wFbPVcnm/case2-five-vercel-app.png",
     domain: "expert-plumbing.app",
     href: "/case2",
-    duration: 25, // Эталонная скорость
+    duration: 25,
     description: "Warm cream background, slab-serif headlines, and gradient accent bars segment the page into clear narrative blocks. The execution leans editorial — more premium than typical competitors."
   },
   {
@@ -33,7 +33,7 @@ const cases = [
     image: "https://i.ibb.co/0pnXpSWQ/case3-livid-vercel-app-4.png",
     domain: "thelen-mechanical.com",
     href: "/case3",
-    duration: 28, // Скорректировано для соответствия скорости второго кейса
+    duration: 28,
     description: "Swiss-editorial minimalism applied to plumbing: oversized black headlines, cream paper background, a single terracotta accent. Reads like a magazine spread rather than a contractor's website."
   }
 ];
@@ -48,17 +48,14 @@ export function SiteShowcaseSection() {
     offset: ["start start", "end end"]
   });
 
-  // Управление видимостью начального заголовка
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const headingScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
   
-  // Управление позицией основного контента (кейсов)
-  // Блок полностью выезжает из-за нижней границы (100vh)
   const contentY = useTransform(scrollYProgress, [0.1, 0.3], ["100vh", "0vh"]);
 
-  // Определение активного индекса на основе прогресса скролла
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    const currentlyDisplaying = latest > 0.15;
+    // Анимация прокрутки внутри кейса начнется только когда блок полностью выедет (>= 0.3)
+    const currentlyDisplaying = latest >= 0.3;
     if (currentlyDisplaying !== isDisplaying) {
       setIsDisplaying(currentlyDisplaying);
     }
@@ -81,7 +78,6 @@ export function SiteShowcaseSection() {
     <div ref={containerRef} className="relative h-[400vh] md:h-[400vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Начальный заголовок - Исчезает при скролле */}
         <motion.div 
           style={{ opacity: headingOpacity, scale: headingScale }}
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6 md:px-[4vw]"
@@ -107,15 +103,12 @@ export function SiteShowcaseSection() {
           </div>
         </motion.div>
 
-        {/* Основной интерактивный контент - Выезжает снизу */}
         <motion.div 
           style={{ y: contentY }}
           className="relative w-full h-full flex flex-col md:flex-row items-center justify-center px-6 md:px-[4vw] gap-12 md:gap-[5vw]"
         >
-          {/* Левая часть: Длинная картинка в контейнере высотой 80% */}
           <div className="relative w-full md:w-[40%] h-[80vh] flex items-center justify-center">
             <div className="relative w-[85%] md:w-full h-full bg-[#111] rounded-[20px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
-              {/* Chrome bar */}
               <div className="absolute top-0 left-0 right-0 h-8 bg-[#1C1C20] z-20 flex items-center px-4 gap-4">
                 <div className="flex gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#FF5F57]"></span>
@@ -127,7 +120,6 @@ export function SiteShowcaseSection() {
                 </div>
               </div>
 
-              {/* Scrolling Content */}
               <div className="absolute inset-0 pt-8 overflow-hidden">
                 {cases.map((item, idx) => (
                   <motion.div
@@ -152,7 +144,6 @@ export function SiteShowcaseSection() {
             </div>
           </div>
 
-          {/* Правая часть: Список описаний с выделением */}
           <div className="flex flex-col gap-8 md:gap-12 w-full md:w-[45%]">
             {cases.map((item, idx) => {
               const isActive = activeIndex === idx;
@@ -164,7 +155,6 @@ export function SiteShowcaseSection() {
                     isActive ? "opacity-100 translate-x-0" : "opacity-20 -translate-x-4 blur-[1px]"
                   )}
                 >
-                  {/* Линия выделения */}
                   {isActive && (
                     <motion.div 
                       layoutId="caseHighlight"
@@ -208,7 +198,6 @@ export function SiteShowcaseSection() {
   );
 }
 
-// Компонент для автоматической прокрутки со сбросом позиции
 function CaseScrollingImage({ src, isActive, duration, priority = false }: { src: string; isActive: boolean; duration: number; priority?: boolean }) {
   return (
     <motion.div 
@@ -221,7 +210,7 @@ function CaseScrollingImage({ src, isActive, duration, priority = false }: { src
         repeatType: "reverse" 
       } : { 
         duration: 0,
-        delay: 0.6 // Ждем пока закончится fade out (0.5s) перед сбросом позиции
+        delay: 0.6
       }}
       className="relative w-full flex flex-col"
     >
