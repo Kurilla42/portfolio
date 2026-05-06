@@ -112,7 +112,7 @@ export function SiteShowcaseSection() {
                 </div>
               </div>
 
-              {/* Scrolling Content - Все изображения рендерятся сразу для предотвращения мерцания */}
+              {/* Scrolling Content */}
               <div className="absolute inset-0 pt-8 overflow-hidden">
                 {cases.map((item, idx) => (
                   <motion.div
@@ -125,7 +125,11 @@ export function SiteShowcaseSection() {
                     transition={{ duration: 0.5, ease: "easeInOut" }}
                     className="absolute inset-0 pt-8"
                   >
-                    <CaseScrollingImage src={item.image} priority={idx === 0} />
+                    <CaseScrollingImage 
+                      src={item.image} 
+                      isActive={activeIndex === idx} 
+                      priority={idx === 0} 
+                    />
                   </motion.div>
                 ))}
               </div>
@@ -189,17 +193,17 @@ export function SiteShowcaseSection() {
 }
 
 // Компонент для АВТОМАТИЧЕСКОЙ прокрутки длинного изображения
-function CaseScrollingImage({ src, priority = false }: { src: string; priority?: boolean }) {
+function CaseScrollingImage({ src, isActive, priority = false }: { src: string; isActive: boolean; priority?: boolean }) {
   return (
     <motion.div 
       initial={{ y: "0%" }}
-      animate={{ y: ["0%", "-70%"] }}
-      transition={{ 
+      animate={isActive ? { y: ["0%", "-70%"] } : { y: "0%" }}
+      transition={isActive ? { 
         duration: 25, 
         ease: "linear", 
         repeat: Infinity, 
         repeatType: "reverse" 
-      }}
+      } : { duration: 0.5 }}
       className="relative w-full flex flex-col"
     >
       <Image 
