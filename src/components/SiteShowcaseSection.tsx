@@ -203,7 +203,10 @@ function CaseScrollingImage({ src, isActive, priority = false }: { src: string; 
         ease: "linear", 
         repeat: Infinity, 
         repeatType: "reverse" 
-      } : { duration: 0.5 }}
+      } : { 
+        duration: 0,
+        delay: 0.6 // Ждем пока закончится fade out (0.5s) перед сбросом позиции
+      }}
       className="relative w-full flex flex-col"
     >
       <Image 
