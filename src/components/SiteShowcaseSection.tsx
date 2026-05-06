@@ -49,15 +49,14 @@ export function SiteShowcaseSection() {
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const headingScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
   
-  // Управление видимостью и позицией основного контента (кейсов)
-  // Убрано исчезновение в конце (contentOpacity теперь только растет до 1)
-  const contentOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
-  const contentY = useTransform(scrollYProgress, [0.1, 0.2], ["20vh", "0vh"]);
+  // Управление позицией основного контента (кейсов)
+  // Теперь блок выезжает с самого низа (100vh), создавая эффект "заезда" в кадр
+  const contentY = useTransform(scrollYProgress, [0.1, 0.3], ["100vh", "0vh"]);
 
   // Определение активного индекса на основе прогресса скролла
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Определяем, виден ли сейчас контент кейсов
-    const currentlyDisplaying = latest > 0.18;
+    // Определяем, виден ли сейчас контент кейсов (начинаем активацию когда он выехал достаточно высоко)
+    const currentlyDisplaying = latest > 0.15;
     if (currentlyDisplaying !== isDisplaying) {
       setIsDisplaying(currentlyDisplaying);
     }
@@ -106,9 +105,9 @@ export function SiteShowcaseSection() {
           </div>
         </motion.div>
 
-        {/* Основной интерактивный контент */}
+        {/* Основной интерактивный контент - Выезжает снизу */}
         <motion.div 
-          style={{ opacity: contentOpacity, y: contentY }}
+          style={{ y: contentY }}
           className="relative w-full h-full flex flex-col md:flex-row items-center justify-center px-6 md:px-[4vw] gap-12 md:gap-[5vw]"
         >
           {/* Левая часть: Длинная картинка в контейнере */}
