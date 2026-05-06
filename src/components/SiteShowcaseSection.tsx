@@ -50,6 +50,7 @@ export function SiteShowcaseSection() {
   const headingScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
   
   // Управление видимостью и позицией основного контента (кейсов)
+  // Убрано исчезновение в конце (contentOpacity теперь только растет до 1)
   const contentOpacity = useTransform(scrollYProgress, [0.1, 0.2], [0, 1]);
   const contentY = useTransform(scrollYProgress, [0.1, 0.2], ["20vh", "0vh"]);
 
@@ -161,7 +162,7 @@ export function SiteShowcaseSection() {
                     isActive ? "opacity-100 translate-x-0" : "opacity-20 -translate-x-4 blur-[1px]"
                   )}
                 >
-                  {/* Линия выделения как в тарифах */}
+                  {/* Линия выделения */}
                   {isActive && (
                     <motion.div 
                       layoutId="caseHighlight"
@@ -178,7 +179,7 @@ export function SiteShowcaseSection() {
                     </h3>
                   </div>
                   
-                  <p className="font-mono text-[3vw] md:text-[1vw] uppercase tracking-tight text-[#e0ded8]/80 leading-relaxed max-w-[90%]">
+                  <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[90%]">
                     {item.description}
                   </p>
 
