@@ -1,7 +1,7 @@
 
 "use client";
 
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -79,38 +79,19 @@ const PRICING_PLANS = [
   },
 ];
 
-const AUTO_PLAY_DURATION = 10000;
-
 const TEXT_STYLE_MATCH = "font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-widest text-[#e0ded8] leading-relaxed";
 
 export function VerticalPricingTabs() {
   const [activeIndex, setActiveIndex] = useState(0);
   const [direction, setDirection] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, { once: true, amount: 0.2 });
-
-  const handleNext = useCallback(() => {
-    setDirection(1);
-    setActiveIndex((prev) => (prev + 1) % PRICING_PLANS.length);
-  }, []);
 
   const handleTabClick = (index: number) => {
     if (index === activeIndex) return;
     setDirection(index > activeIndex ? 1 : -1);
     setActiveIndex(index);
-    setIsPaused(false);
   };
-
-  useEffect(() => {
-    if (isPaused || !isInView) return;
-
-    const interval = setInterval(() => {
-      handleNext();
-    }, AUTO_PLAY_DURATION);
-
-    return () => clearInterval(interval);
-  }, [activeIndex, isPaused, handleNext, isInView]);
 
   const variants = {
     enter: (direction: number) => ({
@@ -164,20 +145,10 @@ export function VerticalPricingTabs() {
                           : "hover:bg-[#e0ded8]/5"
                       )}
                     >
-                      <div className="absolute left-0 top-0 bottom-0 w-[3px] bg-[#e0ded8]/5 overflow-hidden">
-                        {isActive && isInView && (
-                          <motion.div
-                            key={`progress-${index}-${isPaused}`}
-                            className={cn("absolute top-0 left-0 w-full origin-top bg-[#c7b684]")}
-                            initial={{ height: "0%" }}
-                            animate={isPaused ? { height: "0%" } : { height: "100%" }}
-                            transition={{
-                              duration: AUTO_PLAY_DURATION / 1000,
-                              ease: "linear",
-                            }}
-                          />
-                        )}
-                      </div>
+                      <div className={cn(
+                        "absolute left-0 top-0 bottom-0 w-[3px] transition-colors duration-500",
+                        isActive ? "bg-[#c7b684]" : "bg-[#e0ded8]/5"
+                      )} />
 
                       <span className={cn(
                         "font-mono text-[3.5vw] md:text-[0.8vw] font-bold tabular-nums transition-colors duration-500",
@@ -208,11 +179,7 @@ export function VerticalPricingTabs() {
 
           {/* Right Column: Content */}
           <div className="lg:col-span-8 flex flex-col order-2 lg:order-2">
-            <div 
-              className="relative min-h-[500px] md:min-h-[850px]"
-              onMouseEnter={() => setIsPaused(true)}
-              onMouseLeave={() => setIsPaused(false)}
-            >
+            <div className="relative min-h-[500px] md:min-h-[850px]">
               <div className="h-full flex flex-col relative p-0 md:pl-[4vw]">
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.div
