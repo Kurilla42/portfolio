@@ -61,7 +61,7 @@ export function SiteShowcaseSection() {
     scrollYProgress, 
     [0.1, 0.3, 1.0], 
     isMobile 
-      ? ["100vh", "0vh", "-120vh"] // Скорректировано с -220vh до -120vh для мобилок
+      ? ["100vh", "0vh", "-160vh"] // Increased from -120vh to -160vh to show 3rd case fully
       : ["100vh", "0vh", "0vh"]    
   );
 
@@ -88,7 +88,7 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className="relative z-10 bg-black h-[200vh] md:h-[300vh]">
+    <div ref={containerRef} className="relative z-10 bg-black h-[250vh] md:h-[300vh]">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
