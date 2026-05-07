@@ -57,18 +57,15 @@ export function SiteShowcaseSection() {
   const headingScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
   
   // Combine slide-up (0.1-0.3) and list-scroll (0.3-1.0)
-  // ПК-версия выезжает и стоит на месте (activeIndex меняется)
-  // Мобильная версия выезжает и прокручивается списком вверх
   const y = useTransform(
     scrollYProgress, 
     [0.1, 0.3, 1.0], 
     isMobile 
-      ? ["100vh", "0vh", "-220vh"] // Мобильная анимация: выезд и прокрутка списка
-      : ["100vh", "0vh", "0vh"]    // ПК анимация: только выезд и фиксация
+      ? ["100vh", "0vh", "-120vh"] // Скорректировано с -220vh до -120vh для мобилок
+      : ["100vh", "0vh", "0vh"]    
   );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Включаем отображение (и автоскролл ПК) только после выезда блока (0.3)
     const currentlyDisplaying = latest >= 0.3;
     if (currentlyDisplaying !== isDisplaying) {
       setIsDisplaying(currentlyDisplaying);
@@ -79,7 +76,6 @@ export function SiteShowcaseSection() {
       return;
     }
     
-    // Переключение кейсов на ПК (интерактивно)
     if (!isMobile) {
       const progressPerCase = 0.8 / cases.length;
       const adjustedLatest = latest - 0.2;
@@ -92,10 +88,9 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className="relative z-10 bg-black h-[240vh] md:h-[300vh]">
+    <div ref={containerRef} className="relative z-10 bg-black h-[200vh] md:h-[300vh]">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
-        {/* Вступительный заголовок */}
         <motion.div 
           style={{ opacity: headingOpacity, scale: headingScale }}
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6 md:px-[4vw]"
@@ -121,7 +116,6 @@ export function SiteShowcaseSection() {
           </div>
         </motion.div>
 
-        {/* Интерактивный блок / Список */}
         <motion.div 
           style={{ y }}
           className="relative w-full h-full flex flex-col items-center px-6 md:px-[4vw]"
@@ -211,11 +205,10 @@ export function SiteShowcaseSection() {
             </div>
           </div>
 
-          {/* MOBILE VIEW (Scrollable List) - Вертикальный список как на референсе */}
+          {/* MOBILE VIEW (Scrollable List) */}
           <div className="md:hidden flex flex-col w-full gap-24 pt-[15vh]">
             {cases.map((item) => (
               <div key={item.id} className="flex flex-col items-center w-full">
-                {/* Эмуляция браузера для мобильных */}
                 <div className="relative w-full aspect-[4/3] bg-[#111] rounded-[15px] overflow-hidden border border-white/10 mb-8 shadow-2xl">
                   <div className="absolute top-0 left-0 right-0 h-6 bg-[#1C1C20] z-20 flex items-center px-3 gap-2">
                     <div className="flex gap-1.5">
@@ -264,8 +257,6 @@ function CaseScrollingImage({ src, isActive, duration, priority = false }: { src
 
   useEffect(() => {
     let timer: NodeJS.Timeout;
-    
-    // Сбрасываем позицию, когда кейс не активен
     if (!isActive) {
       timer = setTimeout(() => {
         setShouldReset(true);
@@ -273,7 +264,6 @@ function CaseScrollingImage({ src, isActive, duration, priority = false }: { src
     } else {
       setShouldReset(false);
     }
-
     return () => {
       if (timer) clearTimeout(timer);
     };
