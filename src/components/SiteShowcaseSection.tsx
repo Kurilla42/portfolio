@@ -56,17 +56,18 @@ export function SiteShowcaseSection() {
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const headingScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
   
-  // Combine slide-up (0.1-0.3) and list-scroll (0.3-1.0) for mobile
+  // Combine slide-up (0.1-0.3) and list-scroll (0.3-1.0)
+  // Adjusting endpoints to feel natural over 300vh
   const y = useTransform(
     scrollYProgress, 
     [0.1, 0.3, 1.0], 
     isMobile 
-      ? ["100vh", "0vh", "-350vh"] // Mobile: slide up then scroll list
-      : ["100vh", "0vh", "0vh"]    // Desktop: slide up then stay fixed
+      ? ["100vh", "0vh", "-220vh"] // Mobile list scroll
+      : ["100vh", "0vh", "0vh"]    // Desktop slide up
   );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Only start displaying content (and triggering auto-scroll) after the slide-in is complete
+    // Start animation logic after entrance is finished
     const currentlyDisplaying = latest >= 0.3;
     if (currentlyDisplaying !== isDisplaying) {
       setIsDisplaying(currentlyDisplaying);
@@ -77,7 +78,7 @@ export function SiteShowcaseSection() {
       return;
     }
     
-    // Desktop swap logic
+    // Desktop swap logic based on progress
     if (!isMobile) {
       const progressPerCase = 0.8 / cases.length;
       const adjustedLatest = latest - 0.2;
@@ -90,9 +91,10 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[600vh]" : "h-[300vh]")}>
+    <div ref={containerRef} className="relative z-10 bg-black h-[300vh]">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
+        {/* Entrance Heading */}
         <motion.div 
           style={{ opacity: headingOpacity, scale: headingScale }}
           className="absolute inset-0 z-20 flex items-center justify-center pointer-events-none px-6 md:px-[4vw]"
@@ -118,14 +120,15 @@ export function SiteShowcaseSection() {
           </div>
         </motion.div>
 
+        {/* Content Block */}
         <motion.div 
           style={{ y }}
           className="relative w-full h-full flex flex-col items-center px-6 md:px-[4vw]"
         >
-          {/* DESKTOP INTERACTIVE VIEW */}
+          {/* DESKTOP VIEW (Interactive) */}
           <div className="hidden md:flex flex-row items-center justify-center w-full h-full gap-8 md:gap-[5vw]">
-            <div className="relative w-full md:w-[40%] h-[55vh] md:h-[80vh] flex items-center justify-center">
-              <div className="relative w-[90%] md:w-full h-full bg-[#111] rounded-[20px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
+            <div className="relative w-full md:w-[40%] h-[80vh] flex items-center justify-center">
+              <div className="relative w-full h-full bg-[#111] rounded-[20px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
                 <div className="absolute top-0 left-0 right-0 h-8 bg-[#1C1C20] z-20 flex items-center px-4 gap-4">
                   <div className="flex gap-2">
                     <span className="w-2 h-2 rounded-full bg-[#FF5F57]"></span>
@@ -158,7 +161,7 @@ export function SiteShowcaseSection() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-6 md:gap-12 w-full md:w-[45%]">
+            <div className="flex flex-col gap-12 w-[45%]">
               {cases.map((item, idx) => {
                 const isActive = activeIndex === idx;
                 return (
@@ -177,15 +180,15 @@ export function SiteShowcaseSection() {
                     )}
                     
                     <div className="flex items-center gap-4">
-                      <span className="font-mono text-[3vw] md:text-[0.8vw] text-[#c7b684] font-bold">
+                      <span className="font-mono text-[0.8vw] text-[#c7b684] font-bold">
                         /{item.id}
                       </span>
-                      <h3 className="font-mono text-[4vw] md:text-[1.5vw] font-bold text-[#e0ded8] uppercase tracking-tight">
+                      <h3 className="font-mono text-[1.5vw] font-bold text-[#e0ded8] uppercase tracking-tight">
                         {item.name}
                       </h3>
                     </div>
                     
-                    <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[90%]">
+                    <p className="font-mono text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[90%]">
                       {item.description}
                     </p>
 
@@ -194,7 +197,7 @@ export function SiteShowcaseSection() {
                         asChild 
                         variant="link" 
                         className={cn(
-                          "p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[2.5vw] md:text-[0.8vw] no-underline transition-all",
+                          "p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[0.8vw] no-underline transition-all",
                           isActive ? "text-[#c7b684]" : "text-[#e0ded8]/40"
                         )}
                       >
@@ -207,10 +210,11 @@ export function SiteShowcaseSection() {
             </div>
           </div>
 
-          {/* MOBILE LIST VIEW */}
+          {/* MOBILE VIEW (Scrollable List) */}
           <div className="md:hidden flex flex-col w-full gap-24 pt-[15vh]">
             {cases.map((item) => (
               <div key={item.id} className="flex flex-col items-center w-full">
+                {/* Browser UI mockup for mobile */}
                 <div className="relative w-full aspect-[4/3] bg-[#111] rounded-[15px] overflow-hidden border border-white/10 mb-8 shadow-2xl">
                   <div className="absolute top-0 left-0 right-0 h-6 bg-[#1C1C20] z-20 flex items-center px-3 gap-2">
                     <div className="flex gap-1.5">
@@ -260,6 +264,7 @@ function CaseScrollingImage({ src, isActive, duration, priority = false }: { src
   useEffect(() => {
     let timer: NodeJS.Timeout;
     
+    // When inactive, we wait for a transition then reset position to top
     if (!isActive) {
       timer = setTimeout(() => {
         setShouldReset(true);
