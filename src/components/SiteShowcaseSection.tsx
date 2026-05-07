@@ -2,11 +2,12 @@
 "use client";
 
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { cn } from '@/lib/utils';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const cases = [
   {
@@ -42,6 +43,7 @@ export function SiteShowcaseSection() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDisplaying, setIsDisplaying] = useState(false);
+  const isMobile = useIsMobile();
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -51,10 +53,15 @@ export function SiteShowcaseSection() {
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const headingScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
   
-  const contentY = useTransform(scrollYProgress, [0.1, 0.3], ["100vh", "0vh"]);
+  // Slide up animation: aggressive 100vh for PC, subtle 20vh for Mobile
+  const contentY = useTransform(
+    scrollYProgress, 
+    [0.1, 0.3], 
+    [isMobile ? "20vh" : "100vh", "0vh"]
+  );
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Animation of the content starts when the block has fully slid up
+    // Only start displaying content (and triggering auto-scroll) after the slide-in is complete
     const currentlyDisplaying = latest >= 0.3;
     if (currentlyDisplaying !== isDisplaying) {
       setIsDisplaying(currentlyDisplaying);
@@ -105,10 +112,11 @@ export function SiteShowcaseSection() {
 
         <motion.div 
           style={{ y: contentY }}
-          className="relative w-full h-full flex flex-col md:flex-row items-center justify-center px-6 md:px-[4vw] gap-12 md:gap-[5vw]"
+          className="relative w-full h-full flex flex-col md:flex-row items-center justify-center px-6 md:px-[4vw] gap-8 md:gap-[5vw]"
         >
-          <div className="relative w-full md:w-[40%] h-[80vh] flex items-center justify-center">
-            <div className="relative w-[85%] md:w-full h-full bg-[#111] rounded-[20px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
+          {/* Browser Mockup Container: 55vh on Mobile, 80vh on Desktop */}
+          <div className="relative w-full md:w-[40%] h-[55vh] md:h-[80vh] flex items-center justify-center">
+            <div className="relative w-[90%] md:w-full h-full bg-[#111] rounded-[20px] overflow-hidden shadow-[0_30px_60px_-20px_rgba(0,0,0,0.8),0_0_0_1px_rgba(255,255,255,0.05)] border border-white/5">
               <div className="absolute top-0 left-0 right-0 h-8 bg-[#1C1C20] z-20 flex items-center px-4 gap-4">
                 <div className="flex gap-2">
                   <span className="w-2 h-2 rounded-full bg-[#FF5F57]"></span>
@@ -141,7 +149,8 @@ export function SiteShowcaseSection() {
             </div>
           </div>
 
-          <div className="flex flex-col gap-8 md:gap-12 w-full md:w-[45%]">
+          {/* Description Content */}
+          <div className="flex flex-col gap-6 md:gap-12 w-full md:w-[45%]">
             {cases.map((item, idx) => {
               const isActive = activeIndex === idx;
               return (
@@ -198,7 +207,6 @@ export function SiteShowcaseSection() {
 function CaseScrollingImage({ src, isActive, duration, priority = false }: { src: string; isActive: boolean; duration: number; priority?: boolean }) {
   const [shouldReset, setShouldReset] = useState(false);
 
-  // Use useEffect for side effects instead of useMotionValueEvent on non-motion values
   useEffect(() => {
     let timer: NodeJS.Timeout;
     
