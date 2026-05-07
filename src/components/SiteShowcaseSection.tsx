@@ -88,7 +88,7 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className="relative z-10 bg-black h-[240vh] md:h-[300vh]">
+    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[240vh]" : "h-[300vh]")}>
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
@@ -209,7 +209,7 @@ export function SiteShowcaseSection() {
           <div className="md:hidden flex flex-col w-full gap-24 pt-[15vh]">
             {cases.map((item) => (
               <div key={item.id} className="flex flex-col items-center w-full">
-                <div className="relative w-full aspect-[4/3] bg-[#111] rounded-[15px] overflow-hidden border border-white/10 mb-8 shadow-2xl">
+                <div className="relative w-full aspect-[1585/908] bg-[#111] rounded-[15px] overflow-hidden border border-white/10 mb-8 shadow-2xl">
                   <div className="absolute top-0 left-0 right-0 h-6 bg-[#1C1C20] z-20 flex items-center px-3 gap-2">
                     <div className="flex gap-1.5">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#FF5F57]"></span>
