@@ -9,6 +9,13 @@ export default {
   ],
   theme: {
     extend: {
+      screens: {
+        'sm': '640px',
+        'md': '1280px',
+        'lg': '1440px',
+        'xl': '1600px',
+        '2xl': '1920px',
+      },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],
         body: ['Inter', 'sans-serif'],
