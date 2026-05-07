@@ -61,7 +61,7 @@ export function SiteShowcaseSection() {
     scrollYProgress, 
     [0.1, 0.3, 1.0], 
     isMobile 
-      ? ["100vh", "0vh", "-160vh"] 
+      ? ["100vh", "0vh", "-130vh"] 
       : ["100vh", "0vh", "0vh"]    
   );
 
@@ -88,7 +88,7 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[240vh]" : "h-[300vh]")}>
+    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[210vh]" : "h-[300vh]")}>
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
