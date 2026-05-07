@@ -21,7 +21,7 @@ const cases = [
   {
     id: "02",
     name: "ProFlow Plumbing",
-    image: "https://i.ibb.co/wFbPVcnm/case2-five-vercel-app.png",
+    image: "https://i.ibb.co/kV7Dr19W/case2-five-vercel-app.png",
     domain: "expert-plumbing.app",
     href: "/case2",
     duration: 25,
@@ -33,7 +33,7 @@ const cases = [
     image: "https://i.ibb.co/0pnXpSWQ/case3-livid-vercel-app-4.png",
     domain: "thelen-mechanical.com",
     href: "/case3",
-    duration: 25, // Synchronized with case 2 speed
+    duration: 25,
     description: "Swiss-editorial minimalism applied to plumbing: oversized black headlines, cream paper background, a single terracotta accent. Reads like a magazine spread rather than a contractor's website."
   }
 ];
