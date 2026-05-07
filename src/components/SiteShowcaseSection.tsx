@@ -75,7 +75,7 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className="relative h-[400vh] md:h-[400vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[300vh] md:h-[300vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
@@ -122,15 +122,12 @@ export function SiteShowcaseSection() {
 
               <div className="absolute inset-0 pt-8 overflow-hidden">
                 {cases.map((item, idx) => (
-                  <motion.div
+                  <div
                     key={item.id}
-                    initial={false}
-                    animate={{ 
-                      opacity: activeIndex === idx ? 1 : 0,
-                      pointerEvents: activeIndex === idx ? 'auto' : 'none'
-                    }}
-                    transition={{ duration: 0.5, ease: "easeInOut" }}
-                    className="absolute inset-0 pt-8"
+                    className={cn(
+                      "absolute inset-0 pt-8 transition-opacity duration-500",
+                      activeIndex === idx ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"
+                    )}
                   >
                     <CaseScrollingImage 
                       src={item.image} 
@@ -138,7 +135,7 @@ export function SiteShowcaseSection() {
                       duration={item.duration}
                       priority={idx === 0} 
                     />
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -199,6 +196,18 @@ export function SiteShowcaseSection() {
 }
 
 function CaseScrollingImage({ src, isActive, duration, priority = false }: { src: string; isActive: boolean; duration: number; priority?: boolean }) {
+  const [shouldReset, setShouldReset] = useState(false);
+
+  // Когда кейс становится неактивным, мы ждем завершения перехода, прежде чем сбросить позицию
+  useMotionValueEvent(isActive ? { get: () => true } as any : { get: () => false } as any, "change", (active) => {
+    if (!active) {
+      const timer = setTimeout(() => setShouldReset(true), 600);
+      return () => clearTimeout(timer);
+    } else {
+      setShouldReset(false);
+    }
+  });
+
   return (
     <motion.div 
       initial={{ y: "0%" }}
@@ -209,8 +218,8 @@ function CaseScrollingImage({ src, isActive, duration, priority = false }: { src
         repeat: Infinity, 
         repeatType: "reverse" 
       } : { 
-        duration: 0,
-        delay: 0.6
+        duration: shouldReset ? 0 : 0.8,
+        delay: isActive ? 0 : 0
       }}
       className="relative w-full flex flex-col"
     >
