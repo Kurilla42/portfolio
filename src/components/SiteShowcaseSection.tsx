@@ -1,8 +1,8 @@
 
 "use client";
 
-import { useRef, useState } from 'react';
-import { motion, useScroll, useTransform, useMotionValueEvent, AnimatePresence } from 'framer-motion';
+import { useRef, useState, useEffect } from 'react';
+import { motion, useScroll, useTransform, useMotionValueEvent } from 'framer-motion';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
@@ -33,7 +33,7 @@ const cases = [
     image: "https://i.ibb.co/0pnXpSWQ/case3-livid-vercel-app-4.png",
     domain: "thelen-mechanical.com",
     href: "/case3",
-    duration: 28,
+    duration: 25, // Synchronized with case 2 speed
     description: "Swiss-editorial minimalism applied to plumbing: oversized black headlines, cream paper background, a single terracotta accent. Reads like a magazine spread rather than a contractor's website."
   }
 ];
@@ -54,7 +54,7 @@ export function SiteShowcaseSection() {
   const contentY = useTransform(scrollYProgress, [0.1, 0.3], ["100vh", "0vh"]);
 
   useMotionValueEvent(scrollYProgress, "change", (latest) => {
-    // Анимация прокрутки внутри кейса начнется только когда блок полностью выедет (>= 0.3)
+    // Animation of the content starts when the block has fully slid up
     const currentlyDisplaying = latest >= 0.3;
     if (currentlyDisplaying !== isDisplaying) {
       setIsDisplaying(currentlyDisplaying);
@@ -75,7 +75,7 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className="relative h-[300vh] md:h-[300vh] z-10 bg-black">
+    <div ref={containerRef} className="relative h-[300vh] z-10 bg-black">
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
@@ -198,15 +198,23 @@ export function SiteShowcaseSection() {
 function CaseScrollingImage({ src, isActive, duration, priority = false }: { src: string; isActive: boolean; duration: number; priority?: boolean }) {
   const [shouldReset, setShouldReset] = useState(false);
 
-  // Когда кейс становится неактивным, мы ждем завершения перехода, прежде чем сбросить позицию
-  useMotionValueEvent(isActive ? { get: () => true } as any : { get: () => false } as any, "change", (active) => {
-    if (!active) {
-      const timer = setTimeout(() => setShouldReset(true), 600);
-      return () => clearTimeout(timer);
+  // Use useEffect for side effects instead of useMotionValueEvent on non-motion values
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    
+    if (!isActive) {
+      // Delay the reset until the fade-out transition is likely complete
+      timer = setTimeout(() => {
+        setShouldReset(true);
+      }, 600);
     } else {
       setShouldReset(false);
     }
-  });
+
+    return () => {
+      if (timer) clearTimeout(timer);
+    };
+  }, [isActive]);
 
   return (
     <motion.div 
@@ -219,7 +227,7 @@ function CaseScrollingImage({ src, isActive, duration, priority = false }: { src
         repeatType: "reverse" 
       } : { 
         duration: shouldReset ? 0 : 0.8,
-        delay: isActive ? 0 : 0
+        delay: 0
       }}
       className="relative w-full flex flex-col"
     >
