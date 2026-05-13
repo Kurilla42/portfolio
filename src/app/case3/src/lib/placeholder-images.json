@@ -1,0 +1,22 @@
+{
+  "placeholderImages": [
+    {
+      "id": "plumbing-service",
+      "description": "Professional plumber repairing a kitchen sink",
+      "imageUrl": "https://picsum.photos/seed/plumbing/800/1000",
+      "imageHint": "plumbing repair"
+    },
+    {
+      "id": "hvac-service",
+      "description": "Technician inspecting a modern HVAC unit",
+      "imageUrl": "https://picsum.photos/seed/hvac/800/1000",
+      "imageHint": "hvac maintenance"
+    },
+    {
+      "id": "drain-service",
+      "description": "Professional drain cleaning equipment in use",
+      "imageUrl": "https://picsum.photos/seed/drain/800/1000",
+      "imageHint": "drain cleaning"
+    }
+  ]
+}

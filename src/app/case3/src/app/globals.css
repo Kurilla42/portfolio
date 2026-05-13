@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Background: Warm Off-White (Bone) */
+    --background: 39 31% 94%;
+    --foreground: 0 0% 0%;
+    
+    --card: 39 31% 94%;
+    --card-foreground: 0 0% 0%;
+    
+    --popover: 39 31% 94%;
+    --popover-foreground: 0 0% 0%;
+    
+    /* Primary: Terracotta Red */
+    --primary: 11 68% 52%;
+    --primary-foreground: 39 31% 98%;
+    
+    /* Secondary: Warm Gray */
+    --secondary: 33 4% 85%;
+    --secondary-foreground: 0 0% 0%;
+    
+    --muted: 33 4% 80%;
+    --muted-foreground: 33 4% 30%;
+    
+    --accent: 0 0% 0%;
+    --accent-foreground: 39 31% 94%;
+    
+    --destructive: 355 78% 56%;
+    --destructive-foreground: 39 31% 98%;
+
+    --success: 138 25% 39%;
+    --success-foreground: 39 31% 98%;
+
+    --dark: 0 0% 0%;
+
+    --border: 0 0% 0%;
+    --input: 0 0% 0%;
+    --ring: 0 0% 0%;
+    
+    --radius: 0rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased selection:bg-primary/20;
+    position: relative;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-headline uppercase tracking-tighter;
+  }
+
+  h1 { font-size: clamp(3rem, 10vw, 7rem); line-height: 0.85; }
+  h2 { font-size: clamp(2rem, 6vw, 4.5rem); line-height: 0.9; }
+  h3 { font-size: clamp(1.25rem, 3vw, 2.5rem); }
+  p { font-size: clamp(0.875rem, 1.1vw, 1rem); }
+}
+
+@layer utilities {
+  .paper-grain {
+    @apply fixed inset-0 pointer-events-none;
+    z-index: 1;
+    opacity: 0.05;
+    mix-blend-mode: multiply;
+    background-image: url("https://i.ibb.co/GrtFGmP/beige-paper.png");
+    background-repeat: repeat;
+    background-size: 500px 500px;
+  }
+
+  .animate-marquee {
+    animation: marquee 42s linear infinite;
+  }
+
+  @keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+}
