@@ -15,8 +15,8 @@ const cases = [
     name: "Empire State Plumbing",
     image: "https://i.ibb.co/d0G6rCKv/case1-iota-vercel-app.png",
     mobileImage: "https://i.ibb.co/4RTpwFsR/2026-04-28-20-44-06.png",
-    domain: "bears-plumbing.com",
-    href: "/case1",
+    domain: "case1.kolesnikovdesign.pro",
+    href: "https://case1.kolesnikovdesign.pro",
     duration: 22,
     description: "Deep navy paired with yellow CTAs — the classic \"trusted local contractor\" feel, but built on a disciplined grid with careful typography. The team is shown through real on-site photography instead of stock."
   },
@@ -25,8 +25,8 @@ const cases = [
     name: "ProFlow Plumbing",
     image: "https://i.ibb.co/kV7Dr19W/case2-five-vercel-app.png",
     mobileImage: "https://i.ibb.co/rRKcj5JJ/2026-05-07-17-58-39.png",
-    domain: "expert-plumbing.app",
-    href: "/case2",
+    domain: "case2.kolesnikovdesign.pro",
+    href: "https://case2.kolesnikovdesign.pro",
     duration: 25,
     description: "Warm cream background, slab-serif headlines, and gradient accent bars segment the page into clear narrative blocks. The execution leans editorial — more premium than typical competitors."
   },
@@ -35,8 +35,8 @@ const cases = [
     name: "Thelen Plumbing Co",
     image: "https://i.ibb.co/0pnXpSWQ/case3-livid-vercel-app-4.png",
     mobileImage: "https://i.ibb.co/q30RfBHv/2026-04-28-20-49-48.png",
-    domain: "thelen-mechanical.com",
-    href: "/case3",
+    domain: "case3.kolesnikovdesign.pro",
+    href: "https://case3.kolesnikovdesign.pro",
     duration: 25,
     description: "Swiss-editorial minimalism applied to plumbing: oversized black headlines, cream paper background, a single terracotta accent. Reads like a magazine spread rather than a contractor's website."
   }
@@ -196,7 +196,7 @@ export function SiteShowcaseSection() {
                           isActive ? "text-[#c7b684]" : "text-[#e0ded8]/40"
                         )}
                       >
-                        <Link href={item.href}>[ VIEW FULL PROJECT ]</Link>
+                        <Link href={item.href} target="_blank">[ VIEW FULL PROJECT ]</Link>
                       </Button>
                     </div>
                   </div>
@@ -239,7 +239,7 @@ export function SiteShowcaseSection() {
                     {item.description}
                   </p>
                   <Button asChild variant="link" className="text-[#c7b684] p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[3.5vw]">
-                    <Link href={item.href}>[ VIEW FULL ]</Link>
+                    <Link href={item.href} target="_blank">[ VIEW FULL ]</Link>
                   </Button>
                 </div>
               </div>
