@@ -87,7 +87,6 @@ export function SiteShowcaseSection() {
     }
     
     if (!isMobile) {
-      // Adjusted for 4 cases
       const progressPerCase = 0.8 / cases.length;
       const adjustedLatest = latest - 0.2;
       const index = Math.min(Math.floor(adjustedLatest / progressPerCase), cases.length - 1);
