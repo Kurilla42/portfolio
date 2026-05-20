@@ -13,8 +13,8 @@ const cases = [
   {
     id: "01",
     name: "Empire State Plumbing",
-    image: "https://i.ibb.co/d0G6rCKv/case1-iota-vercel-app.png",
-    mobileImage: "https://i.ibb.co/4RTpwFsR/2026-04-28-20-44-06.png",
+    image: "https://i.ibb.co/YBv78Pj4/case1-iota-vercel-app.jpg",
+    mobileImage: "https://i.ibb.co/LhkZMT5H/2026-04-28-20-44-06.jpg",
     domain: "case1.kolesnikovdesign.pro",
     href: "https://case1.kolesnikovdesign.pro",
     duration: 22,
@@ -23,8 +23,8 @@ const cases = [
   {
     id: "02",
     name: "ProFlow Plumbing",
-    image: "https://i.ibb.co/kV7Dr19W/case2-five-vercel-app.png",
-    mobileImage: "https://i.ibb.co/rRKcj5JJ/2026-05-07-17-58-39.png",
+    image: "https://i.ibb.co/xtTg3m0b/case2-five-vercel-app.jpg",
+    mobileImage: "https://i.ibb.co/bMPMtnym/2026-05-07-17-58-39.jpg",
     domain: "case2.kolesnikovdesign.pro",
     href: "https://case2.kolesnikovdesign.pro",
     duration: 25,
@@ -33,12 +33,22 @@ const cases = [
   {
     id: "03",
     name: "Thelen Plumbing Co",
-    image: "https://i.ibb.co/0pnXpSWQ/case3-livid-vercel-app-4.png",
-    mobileImage: "https://i.ibb.co/q30RfBHv/2026-04-28-20-49-48.png",
+    image: "https://i.ibb.co/PzVVkYXk/case3-livid-vercel-app-4.jpg",
+    mobileImage: "https://i.ibb.co/k6BdYYwJ/2026-04-28-20-49-48.jpg",
     domain: "case3.kolesnikovdesign.pro",
     href: "https://case3.kolesnikovdesign.pro",
     duration: 25,
     description: "Swiss-editorial minimalism applied to plumbing: oversized black headlines, cream paper background, a single terracotta accent. Reads like a magazine spread rather than a contractor's website."
+  },
+  {
+    id: "04",
+    name: "Westbrook Plumbing",
+    image: "https://i.ibb.co/XrDTH6B1/case4-westbrook-plumbing-vercel-app.jpg",
+    mobileImage: "https://i.ibb.co/HLmkg9yJ/2026-05-21-01-36-21.jpg",
+    domain: "case4.kolesnikovdesign.pro",
+    href: "https://case4.kolesnikovdesign.pro",
+    duration: 28,
+    description: "Navy and cream punctuated by bronze, with sunset photography anchoring the premium sections. Serif headlines with italic-letter accents position Westbrook for pre-1980 Austin homes — a craftsman's brand, not a faceless local service."
   }
 ];
 
@@ -61,7 +71,7 @@ export function SiteShowcaseSection() {
     scrollYProgress, 
     [0.1, 0.3, 1.0], 
     isMobile 
-      ? ["100vh", "0vh", "-130vh"] 
+      ? ["100vh", "0vh", "-180vh"] 
       : ["100vh", "0vh", "0vh"]    
   );
 
@@ -77,6 +87,7 @@ export function SiteShowcaseSection() {
     }
     
     if (!isMobile) {
+      // Adjusted for 4 cases
       const progressPerCase = 0.8 / cases.length;
       const adjustedLatest = latest - 0.2;
       const index = Math.min(Math.floor(adjustedLatest / progressPerCase), cases.length - 1);
@@ -88,7 +99,7 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[210vh]" : "h-[300vh]")}>
+    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[280vh]" : "h-[400vh]")}>
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
@@ -156,14 +167,14 @@ export function SiteShowcaseSection() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-12 w-[45%]">
+            <div className="flex flex-col gap-8 w-[45%]">
               {cases.map((item, idx) => {
                 const isActive = activeIndex === idx;
                 return (
                   <div 
                     key={item.id}
                     className={cn(
-                      "relative flex flex-col gap-3 transition-all duration-700 ease-out",
+                      "relative flex flex-col gap-2 transition-all duration-700 ease-out",
                       isActive ? "opacity-100 translate-x-0" : "opacity-20 -translate-x-4 blur-[1px]"
                     )}
                   >
@@ -178,21 +189,21 @@ export function SiteShowcaseSection() {
                       <span className="font-mono text-[0.8vw] text-[#c7b684] font-bold">
                         /{item.id}
                       </span>
-                      <h3 className="font-mono text-[1.5vw] font-bold text-[#e0ded8] uppercase tracking-tight">
+                      <h3 className="font-mono text-[1.4vw] font-bold text-[#e0ded8] uppercase tracking-tight">
                         {item.name}
                       </h3>
                     </div>
                     
-                    <p className="font-mono text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[90%]">
+                    <p className="font-mono text-[0.85vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed max-w-[95%]">
                       {item.description}
                     </p>
 
-                    <div className="mt-2">
+                    <div className="mt-1">
                       <Button 
                         asChild 
                         variant="link" 
                         className={cn(
-                          "p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[0.8vw] no-underline transition-all",
+                          "p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[0.75vw] no-underline transition-all",
                           isActive ? "text-[#c7b684]" : "text-[#e0ded8]/40"
                         )}
                       >
