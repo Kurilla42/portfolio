@@ -66,12 +66,12 @@ export function SiteShowcaseSection() {
   const headingOpacity = useTransform(scrollYProgress, [0, 0.15], [1, 0]);
   const headingScale = useTransform(scrollYProgress, [0, 0.15], [1, 0.95]);
   
-  // Combine slide-up (0.1-0.3) and list-scroll (0.3-1.0)
+  // Adjusted mobile range to ensure the 4th case content (especially the button) is fully revealed
   const y = useTransform(
     scrollYProgress, 
     [0.1, 0.3, 1.0], 
     isMobile 
-      ? ["100vh", "0vh", "-180vh"] 
+      ? ["100vh", "0vh", "-250vh"] 
       : ["100vh", "0vh", "0vh"]    
   );
 
@@ -98,7 +98,7 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[290vh]" : "h-[400vh]")}>
+    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[350vh]" : "h-[400vh]")}>
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
