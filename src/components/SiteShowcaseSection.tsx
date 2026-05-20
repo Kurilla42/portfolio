@@ -98,7 +98,7 @@ export function SiteShowcaseSection() {
   });
 
   return (
-    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[280vh]" : "h-[400vh]")}>
+    <div ref={containerRef} className={cn("relative z-10 bg-black", isMobile ? "h-[290vh]" : "h-[400vh]")}>
       <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden">
         
         <motion.div 
