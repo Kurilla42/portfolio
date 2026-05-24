@@ -6,8 +6,8 @@ import { SmoothScroll } from "@/components/SmoothScroll";
 import { CustomCursor } from "@/components/CustomCursor";
 
 export const metadata: Metadata = {
-  title: 'JobFlow Landing Pages | Anton Kolesnikov',
-  description: 'High-converting landing pages for plumbing and home service businesses. Built for performance and conversion by Anton Kolesnikov.',
+  title: 'Kolesnikov Design',
+  description: 'Landing pages for local service businesses',
 };
 
 export default function RootLayout({
