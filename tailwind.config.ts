@@ -17,11 +17,11 @@ export default {
         '2xl': '1920px',
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-        body: ['Inter', 'sans-serif'],
-        headline: ['Anton', 'sans-serif'],
-        code: ['Space Mono', 'monospace'],
-        mono: ['Space Mono', 'monospace'],
+        sans: ['var(--font-inter)', 'sans-serif'],
+        body: ['var(--font-inter)', 'sans-serif'],
+        headline: ['var(--font-anton)', 'sans-serif'],
+        code: ['var(--font-space-mono)', 'monospace'],
+        mono: ['var(--font-space-mono)', 'monospace'],
       },
       colors: {
         background: 'hsl(var(--background))',

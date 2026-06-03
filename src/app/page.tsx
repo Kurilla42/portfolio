@@ -106,7 +106,7 @@ export default function Home() {
     }
   });
 
-  const bgDesktopUrl = "https://i.ibb.co/DD1rRjBJ/ezgif-com-video-to-gif-converter-1.gif";
+  const bgDesktopVideo = "/hero-bg.mp4";
   const bgMobileUrl = "https://i.ibb.co/qYZ8Bq2k/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg";
 
   return (
@@ -119,13 +119,15 @@ export default function Home() {
             style={{ y: bgY, scale: bgScale }}
             className="absolute -top-[20%] left-0 w-full h-[140%]"
           >
-            <Image
-              src={bgDesktopUrl}
-              alt="Background desktop"
-              fill
-              className="hidden md:block absolute inset-0 object-cover object-center blur-[10px]"
-              priority
-              unoptimized
+            <video
+              src={bgDesktopVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+              className="hidden md:block absolute inset-0 w-full h-full object-cover object-center blur-[10px]"
             />
             <Image
               src={bgMobileUrl}
@@ -436,7 +438,7 @@ export default function Home() {
                         <Link href="https://www.facebook.com/profile.php?id=61585447957089" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
                         <Link href="https://www.instagram.com/will_dukalis?igsh=MTN2OHM4aGZua2JvZQ==" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
                         <Link href="mailto:anton@kolesnikovdesign.pro" className="hover:text-[#c7b684] transition-colors">anton@kolesnikovdesign.pro</Link>
-                        <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">WhatsApp +7 (912) 758-22-10</Link>
+                        <Link href="https://wa.me/79127582210" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">WhatsApp +7 (912) 758-22-10</Link>
                       </motion.div>
                     </div>
                   </div>
@@ -464,7 +466,7 @@ export default function Home() {
                        <Link href="https://www.facebook.com/profile.php?id=61585447957089" target="_blank" rel="noopener noreferrer">[ FACEBOOK ]</Link>
                        <Link href="https://www.instagram.com/will_dukalis?igsh=MTN2OHM4aGZua2JvZQ==" target="_blank" rel="noopener noreferrer">[ INSTAGRAM ]</Link>
                        <Link href="mailto:anton@kolesnikovdesign.pro">anton@kolesnikovdesign.pro</Link>
-                       <Link href="tel:+79127582210">WhatsApp +7 (912) 758-22-10</Link>
+                       <Link href="https://wa.me/79127582210" target="_blank" rel="noopener noreferrer">WhatsApp +7 (912) 758-22-10</Link>
                     </div>
                   </div>
                 </div>

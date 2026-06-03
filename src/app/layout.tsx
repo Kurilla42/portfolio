@@ -1,13 +1,83 @@
 import type {Metadata} from 'next';
+import {Anton, Inter, Space_Mono} from 'next/font/google';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster";
-import { ScrollObserver } from "@/components/ScrollObserver";
 import { SmoothScroll } from "@/components/SmoothScroll";
 import { CustomCursor } from "@/components/CustomCursor";
 
+// Self-hosted fonts via next/font (no render-blocking external stylesheet)
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '500', '700', '800', '900'],
+  variable: '--font-inter',
+  display: 'swap',
+});
+
+const anton = Anton({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-anton',
+  display: 'swap',
+});
+
+const spaceMono = Space_Mono({
+  subsets: ['latin'],
+  weight: ['400', '700'],
+  variable: '--font-space-mono',
+  display: 'swap',
+});
+
+const siteUrl = 'https://kolesnikovdesign.pro';
+
 export const metadata: Metadata = {
-  title: 'Kolesnikov Design',
-  description: 'Landing pages for local service businesses',
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: 'Kolesnikov Design — High-Converting Landing Pages for Plumbers',
+    template: '%s | Kolesnikov Design',
+  },
+  description:
+    'Conversion-first landing pages for plumbing and local service businesses in the US. 12+ years in local lead generation — built to turn visitors into calls and form submissions.',
+  keywords: [
+    'plumbing landing page',
+    'landing page for plumbers',
+    'local service website',
+    'lead generation',
+    'conversion landing page',
+    'Kolesnikov Design',
+  ],
+  authors: [{ name: 'Anton Kolesnikov' }],
+  creator: 'Anton Kolesnikov',
+  alternates: {
+    canonical: siteUrl,
+  },
+  openGraph: {
+    type: 'website',
+    url: siteUrl,
+    siteName: 'Kolesnikov Design',
+    title: 'High-Converting Landing Pages for Plumbers',
+    description:
+      'Conversion-first landing pages for plumbing and local service businesses. Built to turn visitors into calls and leads.',
+    locale: 'en_US',
+    images: [
+      {
+        url: 'https://i.ibb.co/wFqwsVGc/i-EHXOE8-MWd2v-Ga9-Prmwyjtm35-A.png',
+        width: 1200,
+        height: 630,
+        alt: 'Kolesnikov Design — landing pages for plumbers',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'High-Converting Landing Pages for Plumbers',
+    description:
+      'Conversion-first landing pages for plumbing and local service businesses. Built to turn visitors into calls and leads.',
+    images: ['https://i.ibb.co/wFqwsVGc/i-EHXOE8-MWd2v-Ga9-Prmwyjtm35-A.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -16,20 +86,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;700;800;900&family=Space+Mono:wght@400&family=Cormorant+Garamond:ital,wght@1,400&family=Kurale&display=swap" rel="stylesheet" />
-      </head>
+    <html
+      lang="en"
+      className={`${inter.variable} ${anton.variable} ${spaceMono.variable}`}
+    >
       <body className="antialiased selection:bg-accent selection:text-accent-foreground overflow-x-hidden relative bg-[#eaeaf2]">
         {/* Grain Overlay */}
         <div className="noise-overlay" aria-hidden="true" />
-        
+
         <CustomCursor />
-        
+
         <SmoothScroll>
-          <ScrollObserver />
           {children}
         </SmoothScroll>
         <Toaster />
