@@ -16,9 +16,9 @@ export function CustomCursor() {
     if (isTouchDevice) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      if (!isVisible) setIsVisible(true);
+      setIsVisible(true);
       // Центрируем: новый размер 14px, значит смещение -7px
-      mouseX.set(e.clientX - 7); 
+      mouseX.set(e.clientX - 7);
       mouseY.set(e.clientY - 7);
     };
 
@@ -34,7 +34,7 @@ export function CustomCursor() {
       document.removeEventListener('mouseleave', handleMouseLeave);
       document.removeEventListener('mouseenter', handleMouseEnter);
     };
-  }, [mouseX, mouseY, isVisible]);
+  }, [mouseX, mouseY]);
 
   if (typeof window !== 'undefined' && ('ontouchstart' in window || navigator.maxTouchPoints > 0)) {
     return null;
