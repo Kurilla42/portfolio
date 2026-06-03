@@ -26,8 +26,9 @@ const PRICING_PLANS = [
     footerText: "You get a modern landing page that turns visitors into calls and leads — without overpaying a marketing agency.",
     buttonText: "Order Your Landing Page",
     investment: "$797",
+    pricePrefix: null,
     period: "one-time",
-    oldPrice: "$900",
+    oldPrice: "$1200",
     badge: "start here",
     color: "bg-white"
   },
@@ -48,9 +49,10 @@ const PRICING_PLANS = [
     ],
     footerText: "You get a unique website that strengthens your brand, addresses objections, and systematically turns traffic into calls and leads.",
     buttonText: "Discuss Custom Project",
-    investment: "From $2,997",
+    investment: "$1,997",
+    pricePrefix: "From",
     period: "one-time",
-    oldPrice: "$5000",
+    oldPrice: "$4000",
     badge: null,
     color: "bg-white"
   },
@@ -72,6 +74,7 @@ const PRICING_PLANS = [
     footerText: "Start getting calls from customers actively searching for plumbers in your area today with a professionally managed campaign.",
     buttonText: "Request Ads Setup",
     investment: "$497",
+    pricePrefix: null,
     period: "one-time",
     oldPrice: "$800",
     badge: null,
@@ -213,6 +216,11 @@ export function VerticalPricingTabs() {
                           <span className="line-through text-[#e0ded8]/20 text-[5vw] md:text-[2vw] font-mono">
                             {PRICING_PLANS[activeIndex].oldPrice}
                           </span>
+                          {PRICING_PLANS[activeIndex].pricePrefix && (
+                            <span className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-widest text-[#e0ded8]">
+                              {PRICING_PLANS[activeIndex].pricePrefix}
+                            </span>
+                          )}
                           <span className="text-[8vw] md:text-[4vw] font-black text-[#e0ded8] font-headline">
                             {PRICING_PLANS[activeIndex].investment}
                           </span>
