@@ -106,7 +106,7 @@ export default function Home() {
     }
   });
 
-  const bgDesktopUrl = "https://i.ibb.co/DD1rRjBJ/ezgif-com-video-to-gif-converter-1.gif";
+  const bgDesktopVideo = "/hero-bg.mp4";
   const bgMobileUrl = "https://i.ibb.co/qYZ8Bq2k/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg";
 
   return (
@@ -119,13 +119,15 @@ export default function Home() {
             style={{ y: bgY, scale: bgScale }}
             className="absolute -top-[20%] left-0 w-full h-[140%]"
           >
-            <Image
-              src={bgDesktopUrl}
-              alt="Background desktop"
-              fill
-              className="hidden md:block absolute inset-0 object-cover object-center blur-[10px]"
-              priority
-              unoptimized
+            <video
+              src={bgDesktopVideo}
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              aria-hidden="true"
+              className="hidden md:block absolute inset-0 w-full h-full object-cover object-center blur-[10px]"
             />
             <Image
               src={bgMobileUrl}
