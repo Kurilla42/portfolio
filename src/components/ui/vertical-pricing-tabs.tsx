@@ -10,12 +10,12 @@ import Link from "next/link";
 const PRICING_PLANS = [
   {
     id: "01",
-    title: "Ready-Made Landing",
+    title: "Landing Page",
     description: "Ready-Made High-Converting Landing Page",
-    subdescription: "Quick launch using my template, tailored specifically for plumbing services in the US",
-    whoIsThisFor: "Small plumbing companies and independent contractors who need a proper website \"yesterday,\" without lengthy approval processes or custom design wait times.",
+    subdescription: "A plumbing landing page built to turn clicks into calls — live in 5 business days.",
+    whoIsThisFor: "Small plumbing companies and independent contractors who need a proper website 'yesterday' — without lengthy approval processes or custom-design wait times.",
     resources: [
-      "Landing page setup using my template optimized for leads and calls",
+      "A landing page built on a structure proven to generate leads and calls",
       "Customization of the logo, colors, and images to match your brand",
       "Structural adaptation to fit your specific plumbing services and local service areas",
       "Integration of lead forms and \"Call now\" buttons with your email, CRM, or messengers",
@@ -23,12 +23,12 @@ const PRICING_PLANS = [
       "Basic SEO structure for local searches including titles, H1s, URLs, and \"near me\" blocks",
       "30 days of technical support and bug fixes"
     ],
-    footerText: "You get a modern landing page that turns visitors into calls and leads, without overpaying marketing agencies.",
-    buttonText: "Order Template Landing Page",
-    investment: "$697",
+    footerText: "You get a modern landing page that turns visitors into calls and leads — without overpaying a marketing agency.",
+    buttonText: "Order Your Landing Page",
+    investment: "$797",
     period: "one-time",
     oldPrice: "$900",
-    badge: "most popular",
+    badge: "start here",
     color: "bg-white"
   },
   {
@@ -48,7 +48,7 @@ const PRICING_PLANS = [
     ],
     footerText: "You get a unique website that strengthens your brand, addresses objections, and systematically turns traffic into calls and leads.",
     buttonText: "Discuss Custom Project",
-    investment: "$2997",
+    investment: "From $2,997",
     period: "one-time",
     oldPrice: "$5000",
     badge: null,
