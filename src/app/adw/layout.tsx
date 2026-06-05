@@ -3,14 +3,14 @@ import type { Metadata } from 'next';
 const siteUrl = 'https://kolesnikovdesign.pro';
 
 export const metadata: Metadata = {
-  title: 'Google Ads, Meta Ads & SEO for Local Business',
+  title: 'Google Ads, Meta Ads & SEO',
   description:
-    'Performance marketing for local businesses — Google Ads, Meta Ads, and Local SEO with Google Business Profile. Every campaign built around tracked calls and revenue. Transparent reporting, no lock-in.',
+    'Performance marketing — Google Ads, Meta Ads, and SEO built around tracked revenue and pipeline. Transparent reporting, no lock-in.',
   keywords: [
     'Google Ads management',
     'Meta Ads agency',
-    'Facebook ads for local business',
-    'local SEO',
+    'Facebook ads for business',
+    'SEO',
     'Google Business Profile optimization',
     'PPC management',
     'lead generation',
@@ -23,9 +23,9 @@ export const metadata: Metadata = {
     type: 'website',
     url: `${siteUrl}/adw`,
     siteName: 'Kolesnikov Design',
-    title: 'Google Ads, Meta Ads & SEO for Local Business',
+    title: 'Google Ads, Meta Ads & SEO',
     description:
-      'Turn clicks into paying customers. Google Ads, Meta Ads, and Local SEO built around tracked calls and revenue.',
+      'Turn clicks into paying customers. Google Ads, Meta Ads, and SEO built around tracked revenue and pipeline.',
     locale: 'en_US',
     images: [
       {
@@ -38,9 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Google Ads, Meta Ads & SEO for Local Business',
+    title: 'Google Ads, Meta Ads & SEO',
     description:
-      'Turn clicks into paying customers. Built around tracked calls and revenue.',
+      'Turn clicks into paying customers. Built around tracked revenue and pipeline.',
     images: ['https://i.ibb.co/wFqwsVGc/i-EHXOE8-MWd2v-Ga9-Prmwyjtm35-A.png'],
   },
 };

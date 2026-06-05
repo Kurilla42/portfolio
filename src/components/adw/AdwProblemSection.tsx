@@ -34,7 +34,7 @@ const leakPoints = [
   {
     number: "04",
     title: "Weak Offer",
-    description: "A me-too offer gives paid visitors no reason to pick you over the next competitor in the results"
+    description: "A me-too offer gives paid visitors no reason to pick you over competitors"
   },
   {
     number: "05",

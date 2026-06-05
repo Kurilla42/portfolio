@@ -69,8 +69,8 @@ export default function AdwHero({ isLifted }: AdwHeroProps) {
 
               <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw] text-left">
                 <p>Google Ads · Meta Ads · SEO</p>
-                <p>Built around tracked calls &amp; leads</p>
-                <p>Transparent reporting. No lock-in.</p>
+                <p>Built around tracked revenue &amp; leads</p>
+                <p>Transparent reporting. Results, not retainers.</p>
               </div>
 
               <div className="flex items-center justify-between md:justify-start gap-4 md:gap-[2.5vw] mt-auto">

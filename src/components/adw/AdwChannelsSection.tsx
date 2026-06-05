@@ -7,12 +7,12 @@ const channels = [
     id: "01",
     name: "Google Ads",
     tag: "Search & Performance Max",
-    pitch: "Be the first call when someone is ready to buy. We capture high-intent searches and turn them into tracked calls and form fills.",
+    pitch: "Be there the moment someone is ready to buy. We capture high-intent searches and turn them into tracked leads and revenue.",
     deliverables: [
       "Keyword & competitor research for your services and area",
       "Search + Performance Max campaign build",
-      "Precise geo / radius / zip targeting",
-      "Conversion tracking for calls, forms & WhatsApp",
+      "Precise geo & audience targeting",
+      "Conversion tracking for calls, forms & chat",
       "Negative keyword mining to protect budget",
       "AI-assisted bidding fed with real conversion data",
       "A/B tested ad copy & assets, bi-weekly optimization"
@@ -28,7 +28,7 @@ const channels = [
       "Scroll-stopping creative concepts & testing",
       "Instant lead forms & click-to-message setup",
       "Retargeting of site visitors & past leads",
-      "Full funnel from awareness to booked job",
+      "Full funnel from awareness to booked meeting",
       "Pixel & conversions API tracking",
       "Weekly creative refresh to beat fatigue"
     ]
@@ -55,7 +55,7 @@ const channels = [
     pitch: "Know exactly what every dollar returns. No vanity metrics — just leads, cost per lead, and revenue you can see.",
     deliverables: [
       "GA4 + conversion tracking implementation",
-      "Call tracking with recordings & source data",
+      "Call & lead tracking with source data",
       "Offline / CRM conversion import",
       "One clear dashboard across all channels",
       "Lead-to-sale visibility, not just clicks",
@@ -94,7 +94,7 @@ export function AdwChannelsSection() {
           <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex items-end h-full">
             <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed">
               Four channels, run as one system. Each one is built around the
-              same goal — more tracked calls and leads at a cost that makes
+              same goal — more tracked revenue and pipeline at a cost that makes
               sense for your business.
             </p>
           </div>

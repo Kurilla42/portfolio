@@ -144,7 +144,7 @@ export function AdwPricingTabs() {
           <div className="lg:col-span-4 flex flex-col justify-start order-1 lg:order-1 pt-0">
             <div className="space-y-4 mb-8 md:mb-[4vw]">
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
-                CHOOSE YOUR<br />CHANNEL
+YOUR<br />PLAN
               </h2>
             </div>
 
