@@ -33,8 +33,8 @@ const leakPoints = [
   },
   {
     number: "04",
-    title: "Weak Offer",
-    description: "A me-too offer gives paid visitors no reason to pick you over competitors"
+    title: "Weak\nOffer",
+    description: "A me-too offer gives paid visitors no reason to pick you over the next competitor in the results"
   },
   {
     number: "05",
@@ -107,7 +107,7 @@ export function AdwProblemSection() {
               <span className="font-mono text-[10px] md:text-[0.7vw] text-[#e0ded8]/40 mb-3 tracking-widest">
                 [{point.number}]
               </span>
-              <h3 className="font-headline text-[8vw] md:text-[3vw] text-[#e0ded8] leading-none mb-4 uppercase">
+              <h3 className="font-headline text-[8vw] md:text-[3vw] text-[#e0ded8] leading-none mb-4 uppercase whitespace-pre-line">
                 {point.title}
               </h3>
               <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-6" />

@@ -49,7 +49,7 @@ const PRICING_PLANS = [
     footerText: "You get a profitable, fully tracked Google Ads engine — calls from ready-to-buy customers, not vanity clicks.",
     buttonText: "Request a Custom Scope",
     investment: "$597",
-    pricePrefix: null,
+    pricePrefix: "From",
     period: "setup",
     retainer: "+ $450/mo or 15% of spend",
     oldPrice: "$900",
@@ -73,7 +73,7 @@ const PRICING_PLANS = [
     footerText: "You get a Meta funnel that turns scrolling into enquiries — and keeps your brand in front of people who already know you.",
     buttonText: "Request a Custom Scope",
     investment: "$497",
-    pricePrefix: null,
+    pricePrefix: "From",
     period: "setup",
     retainer: "+ $400/mo management",
     oldPrice: "$750",
@@ -97,7 +97,7 @@ const PRICING_PLANS = [
     footerText: "You get a Google presence that earns trust and traffic on autopilot — the asset that keeps paying after the ads pause.",
     buttonText: "Request a Custom Scope",
     investment: "$397",
-    pricePrefix: null,
+    pricePrefix: "From",
     period: "setup",
     retainer: "+ $500/mo management",
     oldPrice: "$600",
@@ -144,7 +144,7 @@ export function AdwPricingTabs() {
           <div className="lg:col-span-4 flex flex-col justify-start order-1 lg:order-1 pt-0">
             <div className="space-y-4 mb-8 md:mb-[4vw]">
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
-YOUR<br />PLAN
+YOUR PLAN
               </h2>
             </div>
 
@@ -240,14 +240,6 @@ YOUR<br />PLAN
                           )}
                           <span className="text-[8vw] md:text-[4vw] font-black text-[#e0ded8] font-headline">
                             {PRICING_PLANS[activeIndex].investment}
-                          </span>
-                        </div>
-                        <div className="flex flex-col md:items-end mt-2 gap-0.5">
-                          <span className="font-mono text-[3vw] md:text-[0.75vw] uppercase tracking-widest text-[#e0ded8]/40">
-                            {PRICING_PLANS[activeIndex].period}
-                          </span>
-                          <span className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-widest text-[#c7b684]">
-                            {PRICING_PLANS[activeIndex].retainer}
                           </span>
                         </div>
                       </div>
