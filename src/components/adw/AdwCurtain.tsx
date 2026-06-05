@@ -1,0 +1,117 @@
+'use client';
+
+import React from 'react';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+
+interface AdwCurtainProps {
+  isLifted: boolean;
+}
+
+export function AdwCurtain({ isLifted }: AdwCurtainProps) {
+  const iconUrl = "https://i.ibb.co/LzYz8M3F/Whisk-4c956caa38384ae948e4da1d2626c136dr-removebg-preview.png";
+
+  return (
+    <motion.div
+      initial={{ y: "0%" }}
+      animate={{ y: isLifted ? "-105%" : "0%" }}
+      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+      className="fixed inset-0 z-[100] w-full h-screen bg-black/70 backdrop-blur-md flex flex-col pointer-events-none select-none overflow-hidden"
+    >
+      {/* MOBILE LAYOUT */}
+      <div className="md:hidden relative flex-1 flex flex-col">
+        <div className="absolute inset-0 flex items-center justify-center">
+          <motion.div
+            initial={{ opacity: 1, scale: 1 }}
+            animate={{
+              opacity: isLifted ? 0 : 1,
+              scale: isLifted ? 0.8 : 1
+            }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="relative w-[66vw] aspect-square"
+          >
+            <Image
+              src={iconUrl}
+              alt="Decorative accent"
+              fill
+              className="object-contain"
+              unoptimized
+            />
+          </motion.div>
+        </div>
+
+        <div className="mt-auto px-[4vw] pb-[2vh]">
+          <motion.div
+            initial={{ opacity: 1, y: 0 }}
+            animate={{
+              opacity: isLifted ? 0 : 1,
+              y: isLifted ? -100 : 0
+            }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full flex justify-between items-end"
+          >
+            {['A', 'D', 'W'].map((char, i) => (
+              <span key={i} className="font-headline text-[40vw] leading-[0.7] text-[#e0ded8] tracking-tighter drop-shadow-2xl">
+                {char}
+              </span>
+            ))}
+          </motion.div>
+        </div>
+      </div>
+
+      {/* DESKTOP LAYOUT */}
+      <div className="hidden md:flex flex-col flex-1">
+        <div className="flex-[0.8]" />
+        <div className="flex-1 flex items-center justify-center px-[4vw]">
+          <motion.div
+            initial={{ y: 0, opacity: 1 }}
+            animate={{
+              y: isLifted ? -200 : 0,
+              opacity: isLifted ? 0 : 1
+            }}
+            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+            className="w-full flex justify-center items-end gap-[3vw]"
+          >
+            <div className="flex items-end justify-start gap-[2vw]">
+              <span className="font-headline text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">A</span>
+              <span className="font-headline text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">D</span>
+            </div>
+
+            <div className="relative w-[30vw] aspect-square mb-[-6vh] shrink-0">
+              <Image
+                src={iconUrl}
+                alt="Decorative accent"
+                fill
+                className="object-contain"
+                unoptimized
+              />
+            </div>
+
+            <div className="flex items-end justify-end gap-[2vw]">
+              <span className="font-headline text-[30vw] leading-[0.75] text-[#e0ded8] tracking-tighter drop-shadow-2xl">W</span>
+            </div>
+          </motion.div>
+        </div>
+        <div className="flex-[0.3]" />
+      </div>
+
+      {/* SHARED BOTTOM BAR */}
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: isLifted ? 0 : 1 }}
+        transition={{ duration: 0.8 }}
+        className="h-[6vh] w-full bg-black/40 flex items-center justify-center px-[4vw] relative overflow-hidden shrink-0 border-t border-[#e0ded8]/5"
+      >
+        <span className="font-mono text-[14px] md:text-[18px] font-black text-[#e0ded8] tracking-[0.4em] uppercase">
+          GOOGLE · META · SEO
+        </span>
+        <motion.div
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+          className="absolute bottom-0 left-0 w-full h-[3px] bg-[#c7b684] origin-left"
+        />
+      </motion.div>
+    </motion.div>
+  );
+}

@@ -1,0 +1,93 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { Search, Megaphone, MapPin } from "lucide-react";
+import { HighlightWipeHeading } from "@/components/HighlightWipeHeading";
+import Link from "next/link";
+
+interface AdwHeroProps {
+  isLifted?: boolean;
+}
+
+export default function AdwHero({ isLifted }: AdwHeroProps) {
+  const [greeting, setGreeting] = useState("Good morning!");
+
+  useEffect(() => {
+    const hour = new Date().getHours();
+    if (hour >= 12 && hour < 17) setGreeting("Good afternoon!");
+    else if (hour >= 17 || hour < 5) setGreeting("Good evening!");
+  }, []);
+
+  return (
+    <div className="relative h-screen w-full font-sans overflow-hidden bg-transparent">
+      <div className="relative z-10 w-full h-full px-6 md:px-[4vw] pt-6 md:pt-[4vh] pb-8 md:pb-[4vh] flex flex-col justify-between text-[#e0ded8]">
+
+        <div className="flex w-full items-start justify-between">
+          <div className="flex items-center gap-4">
+            <Link
+              href="/"
+              className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] opacity-60 hover:opacity-100 transition-opacity font-sans"
+            >
+              ← Kolesnikov
+            </Link>
+            <span className="hidden md:inline text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] opacity-30 font-sans">{greeting}</span>
+          </div>
+          <div>
+            <Link
+              href="#contact"
+              className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] border-b border-[#e0ded8]/40 pb-0.5 cursor-pointer font-sans hover:border-[#e0ded8] transition-colors"
+            >
+              Let's talk!
+            </Link>
+          </div>
+        </div>
+
+        <div className="w-full mt-auto flex flex-col">
+          <div className="grid grid-cols-12 w-full gap-4 md:gap-0 mb-6 md:mb-[2vh]">
+            <div className="col-span-12 flex flex-col">
+              <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">Performance marketing by</p>
+              <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter">
+                <span className="text-[#e0ded8]">Anton</span> <span className="opacity-40 font-medium">Kolesnikov</span>
+              </h2>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-12 w-full items-start gap-4 md:gap-0">
+            <div className="col-span-12 md:col-span-8">
+              <HighlightWipeHeading
+                as="h1"
+                lines={["TURN CLICKS", "INTO PAYING", "CUSTOMERS"]}
+                className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
+                stagger={0.12}
+                trigger={isLifted}
+                delay={0.6}
+              />
+            </div>
+
+            <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col pt-1.5 md:pt-[0.5vw]">
+              <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-4 md:mb-[1.5vw]" />
+
+              <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw] text-left">
+                <p>Google Ads · Meta Ads · SEO</p>
+                <p>Built around tracked calls &amp; leads</p>
+                <p>Transparent reporting. No lock-in.</p>
+              </div>
+
+              <div className="flex items-center justify-between md:justify-start gap-4 md:gap-[2.5vw] mt-auto">
+                <div className="flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity">
+                  <Search className="w-[18px] md:w-[1.43vw] h-[18px] md:h-[1.43vw]" />
+                  <span className="text-[11px] md:text-[0.91vw] uppercase font-bold tracking-tighter font-sans">Ads</span>
+                </div>
+                <Megaphone className="w-[20px] md:w-[1.56vw] h-[20px] md:h-[1.56vw] opacity-40 hover:opacity-100 transition-opacity" />
+                <div className="flex items-center gap-2 opacity-40 hover:opacity-100 transition-opacity">
+                   <MapPin className="w-[18px] md:w-[1.43vw] h-[18px] md:h-[1.43vw]" />
+                   <span className="text-[11px] md:text-[0.91vw] uppercase font-bold tracking-tighter font-sans">Maps</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
