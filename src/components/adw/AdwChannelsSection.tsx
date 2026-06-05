@@ -83,7 +83,7 @@ const itemVariants = {
 
 export function AdwChannelsSection() {
   return (
-    <section className="relative py-[12vh] md:py-[18vh] z-30 overflow-hidden w-full bg-black" id="channels">
+    <section className="relative py-16 md:py-[72px] z-30 overflow-hidden w-full bg-black" id="channels">
       <div className="relative z-10 w-full px-6 md:px-[4vw]">
         <div className="grid grid-cols-12 gap-8 md:gap-0 items-start mb-12 md:mb-[8vh]">
           <div className="col-span-12 lg:col-span-6 flex flex-col">

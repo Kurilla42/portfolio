@@ -5,7 +5,6 @@ import { motion, useScroll, useMotionValueEvent, useTransform } from 'framer-mot
 import Image from 'next/image';
 import Link from 'next/link';
 import AdwHero from '@/components/adw/AdwHero';
-import { AdwCurtain } from '@/components/adw/AdwCurtain';
 import { AdwProblemSection } from '@/components/adw/AdwProblemSection';
 import { AdwChannelsSection } from '@/components/adw/AdwChannelsSection';
 import { AdwPricingTabs } from '@/components/adw/AdwPricingTabs';
@@ -85,7 +84,7 @@ const rollingTextVariants = {
 export default function AdwPage() {
   const combinedRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLDivElement>(null);
-  const [isLifted, setIsLifted] = useState(false);
+  const [isLifted, setIsLifted] = useState(true);
 
   const { scrollYProgress: heroScroll } = useScroll({
     target: heroSectionRef,
@@ -111,8 +110,6 @@ export default function AdwPage() {
 
   return (
     <div className="min-h-screen bg-[#000000]">
-      <AdwCurtain isLifted={isLifted} />
-
       <div ref={combinedRef} className="relative z-0">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -158,7 +155,7 @@ export default function AdwPage() {
         </div>
 
         <div className="relative z-20">
-          <section className="relative min-h-[100vh] py-[15vh] md:py-[20vh] overflow-hidden">
+          <section className="relative pt-[15vh] md:pt-[20vh] pb-16 md:pb-[72px] overflow-hidden">
             <div className="absolute inset-0 z-0 bg-[linear-gradient(to_bottom,transparent_0%,black_65%)]" />
             <div className="relative z-10">
               <AdwProblemSection />
@@ -169,7 +166,7 @@ export default function AdwPage() {
 
       <AdwChannelsSection />
 
-      <section className="relative py-[12vh] md:py-[20vh] z-30 overflow-hidden w-full bg-black" id="steps">
+      <section className="relative pt-16 md:pt-[72px] pb-[12vh] md:pb-[20vh] z-30 overflow-hidden w-full bg-black" id="steps">
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-0 items-center relative">
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
