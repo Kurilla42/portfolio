@@ -9,78 +9,6 @@ import Link from "next/link";
 const PRICING_PLANS = [
   {
     id: "01",
-    title: "GOOGLE ADS",
-    description: "Google Ads Launch & Management",
-    subdescription: "Start getting calls from people actively searching for your service in your area — with every call and form tracked.",
-    whoIsThisFor: "Local businesses that want a fast, steady flow of high-intent leads and are ready to invest in paid traffic to win their market.",
-    resources: [
-      "Keyword & competitor research for your services and area",
-      "Search + Performance Max campaign build",
-      "Precise geo / radius / zip targeting",
-      "Conversion tracking for calls, forms & WhatsApp",
-      "Negative keyword management to protect budget",
-      "AI-assisted bidding fed with real conversion data",
-      "Bi-weekly optimization & plain-English reports"
-    ],
-    footerText: "You get a profitable, fully tracked Google Ads engine — calls from ready-to-buy customers, not vanity clicks.",
-    buttonText: "Launch Google Ads",
-    investment: "$597",
-    pricePrefix: null,
-    period: "setup",
-    retainer: "+ $450/mo or 15% of spend",
-    oldPrice: "$900",
-    badge: "start here",
-  },
-  {
-    id: "02",
-    title: "META ADS",
-    description: "Facebook & Instagram Ads",
-    subdescription: "Create demand where attention lives, then bring back everyone who didn't convert the first time.",
-    whoIsThisFor: "Businesses with a clear offer who want to fill the funnel, build local awareness, and retarget warm audiences into booked jobs.",
-    resources: [
-      "Audience, interest & lookalike building",
-      "Scroll-stopping creative concepts & testing",
-      "Instant lead forms & click-to-message setup",
-      "Retargeting of site visitors & past leads",
-      "Pixel & Conversions API tracking",
-      "Full funnel from awareness to enquiry",
-      "Weekly creative refresh & optimization"
-    ],
-    footerText: "You get a Meta funnel that turns scrolling into enquiries — and keeps your brand in front of people who already know you.",
-    buttonText: "Launch Meta Ads",
-    investment: "$497",
-    pricePrefix: null,
-    period: "setup",
-    retainer: "+ $400/mo management",
-    oldPrice: "$750",
-    badge: null,
-  },
-  {
-    id: "03",
-    title: "SEO + PROFILE",
-    description: "Local SEO + Google Business Profile",
-    subdescription: "Own the map pack and organic results so customers keep finding you — long after the ad budget stops.",
-    whoIsThisFor: "Owners who want compounding, long-term visibility on Google Search and Maps without paying for every single click.",
-    resources: [
-      "Google Business Profile setup & optimization",
-      "Categories, services, photos & weekly posts",
-      "Review generation system & response templates",
-      "Local landing pages per service & city",
-      "Citations & consistent NAP across the web",
-      "On-page SEO for \"near me\" intent",
-      "Monthly ranking & visibility reporting"
-    ],
-    footerText: "You get a Google presence that earns trust and traffic on autopilot — the asset that keeps paying after the ads pause.",
-    buttonText: "Grow My SEO",
-    investment: "$397",
-    pricePrefix: null,
-    period: "setup",
-    retainer: "+ $500/mo management",
-    oldPrice: "$600",
-    badge: null,
-  },
-  {
-    id: "04",
     title: "GROWTH BUNDLE",
     description: "All Channels, Run As One System",
     subdescription: "Google Ads, Meta, and Local SEO working together — with full analytics and tracking tying every lead back to revenue.",
@@ -95,13 +23,85 @@ const PRICING_PLANS = [
       "Single transparent invoice, no lock-in"
     ],
     footerText: "You get a complete growth engine — every channel aligned, every dollar measured, one team owning the result.",
-    buttonText: "Build My Growth Engine",
+    buttonText: "Request a Custom Scope",
     investment: "$1,290",
     pricePrefix: "From",
     period: "per month",
     retainer: "Setup from $990 (one-time)",
     oldPrice: "$2,400",
     badge: "best value",
+  },
+  {
+    id: "02",
+    title: "GOOGLE ADS",
+    description: "Google Ads Launch & Management",
+    subdescription: "Start getting calls from people actively searching for your service in your area — with every call and form tracked.",
+    whoIsThisFor: "Local businesses that want a fast, steady flow of high-intent leads and are ready to invest in paid traffic to win their market.",
+    resources: [
+      "Keyword & competitor research for your services and area",
+      "Search + Performance Max campaign build",
+      "Precise geo / radius / zip targeting",
+      "Conversion tracking for calls, forms & WhatsApp",
+      "Negative keyword management to protect budget",
+      "AI-assisted bidding fed with real conversion data",
+      "Bi-weekly optimization & plain-English reports"
+    ],
+    footerText: "You get a profitable, fully tracked Google Ads engine — calls from ready-to-buy customers, not vanity clicks.",
+    buttonText: "Request a Custom Scope",
+    investment: "$597",
+    pricePrefix: null,
+    period: "setup",
+    retainer: "+ $450/mo or 15% of spend",
+    oldPrice: "$900",
+    badge: "entry package",
+  },
+  {
+    id: "03",
+    title: "META ADS",
+    description: "Facebook & Instagram Ads",
+    subdescription: "Create demand where attention lives, then bring back everyone who didn't convert the first time.",
+    whoIsThisFor: "Businesses with a clear offer who want to fill the funnel, build local awareness, and retarget warm audiences into booked jobs.",
+    resources: [
+      "Audience, interest & lookalike building",
+      "Scroll-stopping creative concepts & testing",
+      "Instant lead forms & click-to-message setup",
+      "Retargeting of site visitors & past leads",
+      "Pixel & Conversions API tracking",
+      "Full funnel from awareness to enquiry",
+      "Weekly creative refresh & optimization"
+    ],
+    footerText: "You get a Meta funnel that turns scrolling into enquiries — and keeps your brand in front of people who already know you.",
+    buttonText: "Request a Custom Scope",
+    investment: "$497",
+    pricePrefix: null,
+    period: "setup",
+    retainer: "+ $400/mo management",
+    oldPrice: "$750",
+    badge: null,
+  },
+  {
+    id: "04",
+    title: "SEO + PROFILE",
+    description: "Local SEO + Google Business Profile",
+    subdescription: "Own the map pack and organic results so customers keep finding you — long after the ad budget stops.",
+    whoIsThisFor: "Owners who want compounding, long-term visibility on Google Search and Maps without paying for every single click.",
+    resources: [
+      "Google Business Profile setup & optimization",
+      "Categories, services, photos & weekly posts",
+      "Review generation system & response templates",
+      "Local landing pages per service & city",
+      "Citations & consistent NAP across the web",
+      "On-page SEO for \"near me\" intent",
+      "Monthly ranking & visibility reporting"
+    ],
+    footerText: "You get a Google presence that earns trust and traffic on autopilot — the asset that keeps paying after the ads pause.",
+    buttonText: "Request a Custom Scope",
+    investment: "$397",
+    pricePrefix: null,
+    period: "setup",
+    retainer: "+ $500/mo management",
+    oldPrice: "$600",
+    badge: null,
   },
 ];
 
@@ -155,7 +155,7 @@ export function AdwPricingTabs() {
 
                 return (
                   <React.Fragment key={plan.id}>
-                    {index === 3 && (
+                    {index === 1 && (
                       <div className="py-6 md:py-[2vw] flex items-center px-6 md:px-[2vw]" aria-hidden="true">
                         <div className="w-full h-[1px] bg-[#c7b684]" />
                       </div>
@@ -233,9 +233,6 @@ export function AdwPricingTabs() {
 
                       <div className="text-left md:text-right w-full md:w-auto shrink-0 pt-2">
                         <div className="flex items-baseline md:justify-end gap-4">
-                          <span className="line-through text-[#e0ded8]/20 text-[5vw] md:text-[2vw] font-mono">
-                            {PRICING_PLANS[activeIndex].oldPrice}
-                          </span>
                           {PRICING_PLANS[activeIndex].pricePrefix && (
                             <span className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-widest text-[#e0ded8]">
                               {PRICING_PLANS[activeIndex].pricePrefix}
