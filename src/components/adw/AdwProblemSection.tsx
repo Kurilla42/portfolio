@@ -33,13 +33,13 @@ const leakPoints = [
   },
   {
     number: "04",
-    title: "Invisible On Maps",
-    description: "Most local intent happens on Google Maps — and your profile isn't ranking"
+    title: "Weak Offer",
+    description: "A me-too offer gives paid visitors no reason to pick you over the next competitor in the results"
   },
   {
     number: "05",
-    title: "Slow Follow-Up",
-    description: "Leads go cold fast without a clear, quick path from enquiry to booking"
+    title: "Vanishing Visitors",
+    description: "Most visitors don't convert on visit one — without retargeting, that paid interest is gone for good"
   }
 ];
 

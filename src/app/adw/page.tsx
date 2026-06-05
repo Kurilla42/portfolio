@@ -12,45 +12,45 @@ import { AdwPricingTabs } from '@/components/adw/AdwPricingTabs';
 import { InfoShowcaseSection } from '@/components/InfoShowcaseSection';
 
 const steps = [
-  { number: "STEP 01", title: "Audit & Goals" },
-  { number: "STEP 02", title: "Set Up Tracking" },
-  { number: "STEP 03", title: "Build Campaigns" },
-  { number: "STEP 04", title: "Launch & Learn" },
-  { number: "STEP 05", title: "Optimize & Scale" }
+  { number: "STEP 01", title: "Analytics Setup" },
+  { number: "STEP 02", title: "Plan & Set Goals" },
+  { number: "STEP 03", title: "Launch Campaigns" },
+  { number: "STEP 04", title: "Full ROI Reporting" },
+  { number: "STEP 05", title: "Review & Optimize" }
 ];
 
 const comparisonData = [
   {
+    criterion: "EXPERIENCE",
+    me: "12 Years in Perf. Marketing",
+    freelancer: "A Rotating Junior Team"
+  },
+  {
     criterion: "FOCUS",
-    me: "Tracked Calls & Revenue",
+    me: "Revenue & ROAS",
     freelancer: "Clicks & Impressions"
   },
   {
     criterion: "REPORTING",
     me: "Plain-English ROI",
-    freelancer: "Confusing Vanity Dashboards"
+    freelancer: "Generic Optimization Reports"
   },
   {
-    criterion: "CHANNELS",
-    me: "Ads, SEO & Maps In Sync",
-    freelancer: "Siloed, One Channel Only"
+    criterion: "STRATEGY",
+    me: "Built For Your Market",
+    freelancer: "Cookie-Cutter Playbook"
   },
   {
-    criterion: "CONTRACTS",
-    me: "Month-To-Month, No Lock-In",
-    freelancer: "Long Lock-In Contracts"
-  },
-  {
-    criterion: "ACCESS",
-    me: "You Own All Accounts & Data",
-    freelancer: "Agency Holds Your Data"
+    criterion: "SPEED",
+    me: "Decisions In Hours",
+    freelancer: "Weeks Of Approvals"
   }
 ];
 
 const quoteLines = [
-  "MY JOB IS SIMPLE — turn your ad budget into",
-  "<span class='text-[#c7b684]'>booked jobs</span>, not vanity clicks. Every campaign is",
-  "built around <span class='text-[#c7b684]'>tracked calls and revenue</span> — so you",
+  "MY JOB IS SIMPLE — turn your media spend into",
+  "<span class='text-[#c7b684]'>revenue and pipeline</span>, not vanity metrics. Every campaign",
+  "is built around <span class='text-[#c7b684]'>ROAS and tracked revenue</span> — so you",
   "always know exactly what each dollar brings back"
 ];
 
