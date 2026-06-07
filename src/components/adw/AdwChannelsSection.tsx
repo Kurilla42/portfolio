@@ -9,13 +9,12 @@ const channels = [
     tag: "Search & Performance Max",
     pitch: "Be there the moment someone is ready to buy. We capture high-intent searches and turn them into tracked leads and revenue.",
     deliverables: [
-      "Keyword & competitor research for your services and area",
-      "Search + Performance Max campaign build",
-      "Precise geo & audience targeting",
-      "Conversion tracking for calls, forms & chat",
-      "Negative keyword mining to protect budget",
-      "AI-assisted bidding fed with real conversion data",
-      "A/B tested ad copy & assets, bi-weekly optimization"
+      "Demand & competitor audit: keywords, bids, seasonality by region",
+      "Account structure built around your goals: Search, Performance Max, remarketing",
+      "Automated bidding strategies targeting your cost per lead",
+      "Negative keywords & traffic cleanup — budget spent only on relevant queries",
+      "End-to-end conversion tracking: leads, calls, chats, forms",
+      "Clear reporting every two weeks"
     ]
   },
   {
@@ -24,13 +23,12 @@ const channels = [
     tag: "Facebook & Instagram",
     pitch: "Create demand where attention lives. We put your offer in front of the right people and bring back the ones who didn't convert.",
     deliverables: [
-      "Audience, interest & lookalike building",
-      "Scroll-stopping creative concepts & testing",
-      "Instant lead forms & click-to-message setup",
-      "Retargeting of site visitors & past leads",
-      "Full funnel from awareness to booked meeting",
-      "Pixel & conversions API tracking",
-      "Weekly creative refresh to beat fatigue"
+      "Audience strategy: interests, look-alikes, Advantage+",
+      "Lead forms and click-to-message campaigns",
+      "Pixel & Conversions API setup for accurate data",
+      "A/B testing of creatives and offer–audience combinations",
+      "Retargeting of site visitors and your existing base",
+      "Weekly creative rotation and refresh"
     ]
   },
   {
@@ -39,13 +37,12 @@ const channels = [
     tag: "Organic & Local Maps",
     pitch: "Own the map pack and the organic results so customers find you for free — long after the ad budget stops.",
     deliverables: [
-      "Google Business Profile setup & optimization",
-      "Categories, services, photos & weekly posts",
-      "Review generation system & response templates",
-      "Local landing pages for each service & city",
-      "Citations & consistent NAP across the web",
-      "On-page SEO for \"near me\" search intent",
-      "Monthly ranking & visibility reporting"
+      "Google Business Profile setup and optimization",
+      "Keyword research and page optimization for commercial queries",
+      "External links and brand mentions across the web",
+      "Technical optimization: speed, mobile version, structured data",
+      "Competitor and search results analysis",
+      "Monthly report on rankings, visibility and traffic"
     ]
   },
   {
