@@ -438,7 +438,7 @@ export default function Home() {
                         <Link href="https://www.facebook.com/profile.php?id=61585447957089" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">[ FACEBOOK ]</Link>
                         <Link href="https://www.instagram.com/will_dukalis?igsh=MTN2OHM4aGZua2JvZQ==" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">[ INSTAGRAM ]</Link>
                         <Link href="mailto:anton@kolesnikovdesign.pro" className="hover:text-[#c7b684] transition-colors">anton@kolesnikovdesign.pro</Link>
-                        <Link href="https://wa.me/79127582210" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">WhatsApp +7 (912) 758-22-10</Link>
+                        <Link href="https://wa.me/79127582210" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">WhatsApp</Link>
                       </motion.div>
                     </div>
                   </div>
@@ -466,7 +466,7 @@ export default function Home() {
                        <Link href="https://www.facebook.com/profile.php?id=61585447957089" target="_blank" rel="noopener noreferrer">[ FACEBOOK ]</Link>
                        <Link href="https://www.instagram.com/will_dukalis?igsh=MTN2OHM4aGZua2JvZQ==" target="_blank" rel="noopener noreferrer">[ INSTAGRAM ]</Link>
                        <Link href="mailto:anton@kolesnikovdesign.pro">anton@kolesnikovdesign.pro</Link>
-                       <Link href="https://wa.me/79127582210" target="_blank" rel="noopener noreferrer">WhatsApp +7 (912) 758-22-10</Link>
+                       <Link href="https://wa.me/79127582210" target="_blank" rel="noopener noreferrer">WhatsApp</Link>
                     </div>
                   </div>
                 </div>
