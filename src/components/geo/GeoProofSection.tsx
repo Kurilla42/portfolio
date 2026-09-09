@@ -148,7 +148,11 @@ export function GeoProofSection() {
           >
             15 РАЗДЕЛОВ ОТЧЁТА
           </motion.span>
-          <ol className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-8 md:gap-x-[2vw] border-t border-[#e0ded8]/10">
+          {/* Порядок в колонках вертикальный: на md 1–5 / 6–10 / 11–15, на sm 1–8 / 9–15. grid-flow-col
+              раскладывает DOM-порядок сверху вниз, поэтому нумерация по индексу не меняется, а на мобильном
+              (один столбец, grid-flow-row) список остаётся 1…15 сверху вниз. На sm вторая колонка короче на один
+              пункт — недостающая ячейка просто пустая, сетка не ломается. */}
+          <ol className="grid grid-cols-1 sm:grid-cols-2 sm:grid-flow-col sm:grid-rows-8 md:grid-cols-3 md:grid-rows-5 gap-x-8 md:gap-x-[2vw] border-t border-[#e0ded8]/10">
             {reportSections.map((title, i) => (
               <motion.li
                 key={i}

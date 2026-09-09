@@ -112,17 +112,20 @@ export function GeoIncludedSection() {
               {/* Слева: номер + название */}
               <div className="col-span-12 lg:col-span-5 flex flex-col">
                 <div className="flex items-baseline gap-4 md:gap-[1.5vw]">
-                  <span className="font-mono text-[3.5vw] md:text-[0.9vw] text-[#c7b684] font-bold tabular-nums pt-1">
+                  {/* Номер того же кегля, что заголовок, и фиксированной ширины на md+:
+                      «/04» в Oswald 700 при 3.2vw ≈ 4.4vw, берём 4.8vw с запасом —
+                      тогда tag и pitch ниже отступают ровно на ширину номера + gap */}
+                  <span className="font-headline text-[9vw] md:text-[3.2vw] leading-[0.95] text-[#c7b684] tabular-nums md:w-[4.8vw] shrink-0">
                     /{layer.id}
                   </span>
                   <h3 className="text-[9vw] md:text-[3.2vw] font-headline text-[#e0ded8] uppercase leading-[0.95] tracking-tight transition-colors duration-300 group-hover:text-[#c7b684]">
                     {layer.name}
                   </h3>
                 </div>
-                <span className="font-mono text-[3vw] md:text-[0.8vw] uppercase tracking-[0.2em] text-[#e0ded8]/40 mt-3 md:mt-4 md:pl-[3vw]">
+                <span className="font-mono text-[3vw] md:text-[0.8vw] uppercase tracking-[0.2em] text-[#e0ded8]/40 mt-3 md:mt-4 md:pl-[6.3vw]">
                   {layer.tag}
                 </span>
-                <p className="font-mono text-[3.5vw] md:text-[0.95vw] text-[#e0ded8]/70 leading-relaxed mt-5 md:mt-6 md:pl-[3vw] md:max-w-[90%] normal-case">
+                <p className="font-mono text-[3.5vw] md:text-[0.95vw] text-[#e0ded8]/70 leading-relaxed mt-5 md:mt-6 md:pl-[6.3vw] md:max-w-[90%] normal-case">
                   {layer.pitch}
                 </p>
               </div>
