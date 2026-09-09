@@ -149,3 +149,5 @@ html.lenis, html.lenis body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+/* /geo: Oswald вместо Anton — у Anton один тяжёлый вес, Oswald без этого будет тонким */
+.geo-fonts .font-headline { font-weight: 700; }
