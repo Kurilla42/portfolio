@@ -18,8 +18,8 @@ const stats = [
     label: "проходит мимо на каждую тысячу покупателей, задавших нейросети вопрос из ниши"
   },
   {
-    value: "60 ч",
-    label: "план работ: 15 задач с приоритетами и оценкой в часах"
+    value: "256 из 1000",
+    label: "покупателей из тысячи, спросивших «где купить», получат ответ без компании"
   }
 ];
 
@@ -58,6 +58,16 @@ const itemVariants = {
   }
 };
 
+// Rolling-эффект при наведении — тот же, что в таблице сравнения на page.tsx: две копии текста
+// в контейнере фиксированной высоты, при hover контейнер уезжает на -50% и показывает золотую копию.
+// Вариант «hover» приходит от родителя (whileHover на <li>), ключей hidden/visible тут нет намеренно —
+// иначе съезд стаггера из itemVariants дёргал бы и внутренний блок.
+const rollingTextVariants = {
+  initial: { y: 0 },
+  hover: { y: '-50%' }
+};
+const rollingTransition = { duration: 0.4, ease: [0.22, 1, 0.36, 1] };
+
 export function GeoProofSection() {
   return (
     <section className="relative py-16 md:py-[72px] z-30 overflow-hidden w-full bg-black" id="proof">
@@ -66,12 +76,17 @@ export function GeoProofSection() {
         <div className="grid grid-cols-12 gap-8 md:gap-0 items-start mb-12 md:mb-[8vh]">
           <div className="col-span-12 lg:col-span-6 flex flex-col">
             <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
-              ОДИН ОТЧЁТ<br />В ЦИФРАХ
+              ПРИМЕР ОТЧЁТА<br />В ЦИФРАХ
             </h2>
           </div>
-          <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex items-end h-full">
+          <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col justify-end h-full">
             <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed">
               Полный аудит · интернет-магазин оптических приборов · сентябрь 2026 · без названия клиента
+            </p>
+            {/* Оговорки про объём съёма и «на тысячу спросивших» живут здесь, а не в абзаце у цитаты:
+                там они утяжеляли вывод, а здесь читаются как паспорт отчёта. */}
+            <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/40 leading-relaxed mt-2">
+              Снят в объёме 30 запросов × 5 нейросетей; аудит по прайсу — 60–80 × 5 × 2 прогона. Потери посчитаны на тысячу спросивших: сколько покупателей вообще спрашивает нейросеть, не знает никто.
             </p>
           </div>
         </div>
@@ -129,7 +144,7 @@ export function GeoProofSection() {
             className="col-span-12 lg:col-start-9 lg:col-span-4 flex items-end"
           >
             <p className="font-mono text-[3.5vw] md:text-[0.95vw] text-[#e0ded8]/70 leading-relaxed normal-case md:max-w-[60vw]">
-              При этом компания — на первом месте в нише по упоминаниям, доля голоса 11,2 %. Хороший результат не отменяет находок: это единственный тип находки, где нейросеть не забывает о компании, а рассказывает о ней неправду. Исправление таких ошибок стоит первым приоритетом в плане. Сколько покупателей вообще спрашивает нейросеть, не знает никто, поэтому потери посчитаны на тысячу спросивших, а не в рублях за месяц. Этот отчёт снят в объёме 30 запросов × 5 нейросетей; аудит по прайсу — 60–80 запросов × 5 × 2 прогона.
+              При этом компания — на первом месте в нише по упоминаниям, доля голоса 11,2 %. Хороший результат не отменяет находок: это единственный тип находки, где нейросеть не забывает о компании, а рассказывает о ней неправду. Исправление таких ошибок стоит первым приоритетом в плане.
             </p>
           </motion.div>
         </motion.div>
@@ -157,12 +172,42 @@ export function GeoProofSection() {
               <motion.li
                 key={i}
                 variants={itemVariants}
-                className="flex items-baseline gap-4 md:gap-[1vw] py-3 border-b border-[#e0ded8]/10 font-mono text-[3.5vw] md:text-[0.85vw] uppercase tracking-widest text-[#e0ded8]/60 leading-relaxed"
+                whileHover="hover"
+                className="group cursor-default flex items-baseline gap-4 md:gap-[1vw] py-3 border-b border-[#e0ded8]/10 font-mono text-[3.5vw] md:text-[0.85vw] uppercase tracking-widest leading-relaxed"
               >
-                <span className="text-[#c7b684] font-bold tabular-nums shrink-0">
-                  /{String(i + 1).padStart(2, "0")}
+                {/* Фиксированная высота и вторая копия — только с md: на узких экранах длинные названия
+                    («Дословные цитаты и ошибки фактов») переносятся на две строки, и обрезать их в 1.3em нельзя.
+                    На тач-устройствах hover от framer не срабатывает, так что ниже md это просто статичный текст. */}
+                {/* Номер: золото → крем */}
+                <span className="md:h-[1.3em] overflow-hidden shrink-0">
+                  <motion.span
+                    variants={rollingTextVariants}
+                    transition={rollingTransition}
+                    className="flex flex-col"
+                  >
+                    <span className="md:h-[1.3em] flex items-center text-[#c7b684] font-bold tabular-nums">
+                      /{String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="hidden md:flex md:h-[1.3em] items-center text-[#e0ded8] font-bold tabular-nums" aria-hidden="true">
+                      /{String(i + 1).padStart(2, "0")}
+                    </span>
+                  </motion.span>
                 </span>
-                {title}
+                {/* Название: крем/60 → золото */}
+                <span className="md:h-[1.3em] overflow-hidden min-w-0">
+                  <motion.span
+                    variants={rollingTextVariants}
+                    transition={rollingTransition}
+                    className="flex flex-col"
+                  >
+                    <span className="md:h-[1.3em] flex items-center text-[#e0ded8]/60 md:whitespace-nowrap">
+                      {title}
+                    </span>
+                    <span className="hidden md:flex md:h-[1.3em] items-center text-[#c7b684] md:whitespace-nowrap" aria-hidden="true">
+                      {title}
+                    </span>
+                  </motion.span>
+                </span>
               </motion.li>
             ))}
           </ol>

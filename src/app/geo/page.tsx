@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { motion, useScroll, useMotionValueEvent, useTransform } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
+import { ymGoal } from '@/lib/ym';
 import GeoHero from '@/components/geo/GeoHero';
 import { GeoProblemSection } from '@/components/geo/GeoProblemSection';
 import { GeoIncludedSection } from '@/components/geo/GeoIncludedSection';
@@ -21,21 +22,17 @@ const steps = [
 ];
 
 // Поле freelancer оставлено как имя (структура 1-в-1 с /adw), значения — колонка «Автоотчёт за 3–5 тыс.» (сравнение только с автоотчётами: про ручные аудиты агентств данных по прогонам и сырым данным нет, см. pricing-research)
+// Ячейки короткие: на десктопе они стоят в одну строку с truncate
 const comparisonData = [
   {
     criterion: "ОБЪЁМ",
-    me: "60–80 запросов × 5 нейросетей",
-    freelancer: "Около 20 запросов"
+    me: "От 600 ответов, два прогона",
+    freelancer: "Около 40, один прогон"
   },
   {
-    criterion: "ПРОГОНЫ",
-    me: "Два — случайные всплески видны",
-    freelancer: "Один"
-  },
-  {
-    criterion: "ПРОВЕРКА",
-    me: "Каждая цитата по сырым ответам",
-    freelancer: "Машина считает совпадения слов"
+    criterion: "СЦЕНАРИИ",
+    me: "Ваш сегмент, город, цена",
+    freelancer: "20 шаблонных запросов"
   },
   {
     criterion: "ТЁЗКИ",
@@ -43,14 +40,24 @@ const comparisonData = [
     freelancer: "Засчитываются вам"
   },
   {
-    criterion: "ДАННЫЕ",
-    me: "Сырые ответы передаются вам",
-    freelancer: "Обычно только отчёт"
+    criterion: "ДЕНЬГИ",
+    me: "Потери в ₽ на 1000 спросивших",
+    freelancer: "Проценты без денег"
+  },
+  {
+    criterion: "ЧТО ДЕЛАТЬ",
+    me: "План с приоритетами и часами",
+    freelancer: "Общие советы"
   },
   {
     criterion: "ЧЕРЕЗ МЕСЯЦ",
     me: "Контрольный съём включён",
-    freelancer: "Нет"
+    freelancer: "Покупать заново"
+  },
+  {
+    criterion: "ДАННЫЕ",
+    me: "Полный текст каждого ответа",
+    freelancer: "Обычно только отчёт"
   }
 ];
 
@@ -334,7 +341,7 @@ export default function GeoPage() {
                              <span className="text-[1vw] font-mono font-bold tracking-[0.1em] uppercase text-[#e0ded8]/40 group-hover:text-[#e0ded8] transition-colors duration-300 h-[1.2vw] flex items-center">
                                {item.criterion}
                              </span>
-                             <span className="text-[1vw] font-mono font-bold tracking-[0.1em] uppercase text-[#e0ded8] h-[1.2vw] flex items-center">
+                             <span className="text-[1vw] font-mono font-bold tracking-[0.1em] uppercase text-[#c7b684] h-[1.2vw] flex items-center">
                                {item.criterion}
                              </span>
                            </motion.div>
@@ -351,7 +358,7 @@ export default function GeoPage() {
                              <p className="text-[1vw] font-mono font-bold leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
                                {item.me}
                              </p>
-                             <p className="text-[1vw] font-mono font-bold leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
+                             <p className="text-[1vw] font-mono font-bold leading-tight truncate text-[#c7b684] h-[1.2vw] flex items-center">
                                {item.me}
                              </p>
                            </motion.div>
@@ -368,7 +375,7 @@ export default function GeoPage() {
                              <p className="text-[1vw] font-mono font-medium leading-tight truncate text-[#e0ded8]/40 group-hover:text-[#e0ded8]/60 transition-colors duration-300 h-[1.2vw] flex items-center">
                                {item.freelancer}
                              </p>
-                             <p className="text-[1vw] font-mono font-medium leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
+                             <p className="text-[1vw] font-mono font-medium leading-tight truncate text-[#c7b684] h-[1.2vw] flex items-center">
                                {item.freelancer}
                              </p>
                            </motion.div>
@@ -417,7 +424,7 @@ export default function GeoPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <h2 className="md:text-[8vw] font-headline text-white leading-[0.9] uppercase tracking-tight drop-shadow-2xl">
+                        <h2 className="md:text-[8vw] font-headline text-white leading-[1.02] uppercase tracking-tight drop-shadow-2xl">
                           ОБСУДИМ<br />ВАШ<br />ЗАМЕР
                         </h2>
                       </motion.div>
@@ -447,16 +454,16 @@ export default function GeoPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.4 }}
                       >
-                        <Link href="tel:+79127582210" className="hover:text-[#c7b684] transition-colors">+7 912 758 22 10</Link>
-                        <Link href="https://t.me/telegam_kolesnikov" target="_blank" rel="noopener noreferrer" className="hover:text-[#c7b684] transition-colors">Telegram @telegam_kolesnikov</Link>
-                        <Link href="mailto:anton@kolesnikovdesign.pro" className="hover:text-[#c7b684] transition-colors">anton@kolesnikovdesign.pro</Link>
+                        <Link href="tel:+79127582210" onClick={() => ymGoal('geo_phone')} className="hover:text-[#c7b684] transition-colors">+7 912 758 22 10</Link>
+                        <Link href="https://t.me/telegam_kolesnikov" target="_blank" rel="noopener noreferrer" onClick={() => ymGoal('geo_telegram')} className="hover:text-[#c7b684] transition-colors">Telegram @telegam_kolesnikov</Link>
+                        <Link href="mailto:anton@kolesnikovdesign.pro" onClick={() => ymGoal('geo_email')} className="hover:text-[#c7b684] transition-colors">anton@kolesnikovdesign.pro</Link>
                       </motion.div>
                     </div>
                   </div>
 
                   <div className="md:hidden flex flex-col items-center w-full pt-4 h-full">
                     <motion.h2
-                      className="text-[12vw] font-headline text-white uppercase tracking-tight leading-[0.9] mb-2 text-center"
+                      className="text-[12vw] font-headline text-white uppercase tracking-tight leading-[1.0] mb-2 text-center"
                       initial={{ opacity: 0, y: -20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                     >
@@ -474,9 +481,9 @@ export default function GeoPage() {
                     </div>
 
                     <div className="flex flex-col items-center gap-3 text-[3.5vw] font-mono text-white/80 uppercase text-center mt-auto pb-10">
-                       <Link href="tel:+79127582210">+7 912 758 22 10</Link>
-                       <Link href="https://t.me/telegam_kolesnikov" target="_blank" rel="noopener noreferrer">Telegram @telegam_kolesnikov</Link>
-                       <Link href="mailto:anton@kolesnikovdesign.pro">anton@kolesnikovdesign.pro</Link>
+                       <Link href="tel:+79127582210" onClick={() => ymGoal('geo_phone')}>+7 912 758 22 10</Link>
+                       <Link href="https://t.me/telegam_kolesnikov" target="_blank" rel="noopener noreferrer" onClick={() => ymGoal('geo_telegram')}>Telegram @telegam_kolesnikov</Link>
+                       <Link href="mailto:anton@kolesnikovdesign.pro" onClick={() => ymGoal('geo_email')}>anton@kolesnikovdesign.pro</Link>
                     </div>
                   </div>
                 </div>

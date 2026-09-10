@@ -57,10 +57,10 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     images: [
       {
-        url: 'https://i.ibb.co/wFqwsVGc/i-EHXOE8-MWd2v-Ga9-Prmwyjtm35-A.png',
+        url: `${siteUrl}/og-geo.png`,
         width: 1200,
         height: 630,
-        alt: 'Антон Колесников — аудит AI-видимости',
+        alt: 'Аудит AI-видимости — Антон Колесников',
       },
     ],
   },
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: 'Аудит AI-видимости — что нейросети отвечают вашему покупателю',
     description:
       'Доля голоса, ошибки фактов, источники, план работ и контрольный съём через месяц. 25 000 ₽, 3 рабочих дня.',
-    images: ['https://i.ibb.co/wFqwsVGc/i-EHXOE8-MWd2v-Ga9-Prmwyjtm35-A.png'],
+    images: [`${siteUrl}/og-geo.png`],
   },
 };
 

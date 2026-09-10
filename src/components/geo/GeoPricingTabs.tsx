@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ymGoal } from "@/lib/ym";
 
 // Цены и сроки — из Оффер_и_прайс.md, без изменений. Неразрывные пробелы внутри чисел,
 // чтобы «25 000 ₽» не разваливалось на две строки в узкой правой колонке.
@@ -250,7 +251,11 @@ export function GeoPricingTabs() {
                             variant="link"
                             className="text-[#e0ded8] p-0 h-auto font-mono font-bold uppercase tracking-[0.2em] text-[3.5vw] md:text-[1vw] underline underline-offset-8 decoration-[#e0ded8]/30 hover:decoration-[#e0ded8] transition-all"
                           >
-                            <Link href="#contact">
+                            {/* Цель Метрики geo_cta_01/02/03 — по какому тарифу дошли до формы */}
+                            <Link
+                              href="#contact"
+                              onClick={() => ymGoal('geo_cta_' + PRICING_PLANS[activeIndex].id)}
+                            >
                               {PRICING_PLANS[activeIndex].buttonText}
                             </Link>
                           </Button>

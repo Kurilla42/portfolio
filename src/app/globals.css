@@ -154,7 +154,11 @@ html.lenis, html.lenis body {
 /* У в Oswald уходит хвостом ниже строки, а обёртки строк в HighlightWipeHeading режут всё за
    пределами line-box (overflow-hidden). Даём маске запас снизу и компенсируем его отрицательным
    полем, чтобы межстрочные расстояния не изменились. На md у обёрток свой py-4 (1rem) — сохраняем. */
-.geo-fonts .font-headline > span.overflow-hidden { padding-bottom: 0.18em; margin-bottom: -0.18em; }
+.geo-fonts .font-headline > span.overflow-hidden { padding-bottom: 0.22em; margin-bottom: -0.22em; }
 @media (min-width: 1280px) {
-  .geo-fonts .font-headline > span.overflow-hidden { padding-bottom: calc(1rem + 0.18em); margin-bottom: -0.18em; }
+  .geo-fonts .font-headline > span.overflow-hidden { padding-bottom: calc(1rem + 0.22em); margin-bottom: -0.22em; }
 }
+/* Вторая маска — внутренний span, которому framer ставит clip-path: inset(0 0% 0 0) по завершении
+   анимации; inset режет по боксу самого span, то есть по line-box, и хвост У пропадает даже при
+   запасе у обёртки. Растягиваем и его бокс вниз, снова компенсируя отрицательным полем. */
+.geo-fonts .font-headline > span.overflow-hidden > span { padding-bottom: 0.22em; margin-bottom: -0.22em; }

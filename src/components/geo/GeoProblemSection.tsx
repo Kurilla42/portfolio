@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { HighlightWipeHeading } from '@/components/HighlightWipeHeading';
 
 const part1 = [
-  "Часть покупателей уже спрашивает <span class='text-[#c7b684]'>нейросеть</span>, а не поисковик:",
+  "<span class='text-[#c7b684]'>31 %</span> пользователей ИИ уже выбирают с ним товары:",
   "какой диван взять, где купить телескоп,",
   "кому отдать разработку на 1С"
 ];
@@ -70,7 +70,7 @@ export function GeoProblemSection() {
   return (
     <div className="w-full flex flex-col items-center justify-center px-6 md:px-[4vw]">
       <div className="w-full md:max-w-full flex flex-col gap-12 md:gap-24">
-        <div className="w-full flex justify-start">
+        <div className="w-full flex flex-col justify-start">
           <HighlightWipeHeading
             as="p"
             lines={part1}
@@ -78,6 +78,10 @@ export function GeoProblemSection() {
             stagger={0.08}
             triggerOnce={true}
           />
+          {/* Источник цифры 31 % — без него заголовок читается как голословное утверждение */}
+          <p className="font-mono text-[3vw] md:text-[0.7vw] uppercase tracking-widest text-[#e0ded8]/40 mt-4 md:mt-3 max-w-full md:max-w-[60vw]">
+            «Ашманов и партнёры», исследование «Поиск 2026»: опрос 1000 онлайн-покупателей крупных городов, лето 2026. Совет ИИ-сервиса — третий фактор решения о покупке (32 %) после отзывов и бренда
+          </p>
         </div>
 
         <div className="w-full flex justify-start md:justify-end">
