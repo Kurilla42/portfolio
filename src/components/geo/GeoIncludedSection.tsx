@@ -83,12 +83,13 @@ export function GeoIncludedSection() {
     <section className="relative py-16 md:py-[72px] z-30 overflow-hidden w-full bg-black" id="channels">
       <div className="relative z-10 w-full px-6 md:px-[4vw]">
         <div className="grid grid-cols-12 gap-8 md:gap-0 items-start mb-12 md:mb-[8vh]">
-          <div className="col-span-12 lg:col-span-6 flex flex-col">
-            <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
-              ЧТО ВХОДИТ<br />В АУДИТ
+          {/* В одну строку на десктопе: восемь колонок под заголовок, иначе «ЧТО ВХОДИТ В АУДИТ» переносится */}
+          <div className="col-span-12 lg:col-span-8 flex flex-col">
+            <h2 className="text-[12vw] md:text-[6vw] md:whitespace-nowrap font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
+              ЧТО ВХОДИТ В АУДИТ
             </h2>
           </div>
-          <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex items-end h-full">
+          <div className="col-span-12 lg:col-start-9 lg:col-span-4 flex items-end h-full">
             <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed">
               Один отчёт, четыре слоя. Каждую цифру можно пересчитать по приложенной
               таблице сырых ответов: запрос, нейросеть, дата, полный текст.
