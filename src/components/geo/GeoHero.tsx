@@ -95,7 +95,8 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
               />
             </div>
 
-            <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col pt-1.5 md:pt-[0.5vw]">
+            {/* Без верхнего отступа на десктопе: первая строка текста встаёт вровень с верхом заголовка, линия над ней оказывается выше */}
+            <div className="col-span-12 md:col-span-4 md:pl-[4vw] flex flex-col pt-1.5 md:pt-0 md:-mt-[0.9vw]">
               <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-4 md:mb-[1.5vw]" />
 
               <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw] text-left">
