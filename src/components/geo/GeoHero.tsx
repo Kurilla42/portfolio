@@ -67,7 +67,7 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
           <div>
             <Link
               href="#contact"
-              className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] border-b border-[#e0ded8]/40 pb-0.5 cursor-pointer font-sans hover:border-[#e0ded8] transition-colors"
+              className="text-[10px] md:text-[0.7vw] uppercase tracking-[0.1em] text-[#c7b684] border-b border-[#c7b684]/50 pb-0.5 cursor-pointer font-sans hover:border-[#c7b684] transition-colors"
             >
               Написать
             </Link>
@@ -77,8 +77,8 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
         <div className="w-full mt-auto flex flex-col">
           <div className="grid grid-cols-12 w-full gap-4 md:gap-0 mb-6 md:mb-[2vh]">
             <div className="col-span-12 flex flex-col">
-              <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter text-[#e0ded8]">
-                Аудит видимости в нейросетях
+              <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter text-[#c7b684]">
+                Аудит AI-видимости
               </h2>
             </div>
           </div>
