@@ -88,7 +88,7 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
               <HighlightWipeHeading
                 as="h1"
                 lines={["СКОЛЬКО ПОКУПАТЕЛЕЙ", "ВЫ ТЕРЯЕТЕ", "В НЕЙРОСЕТЯХ?"]}
-                className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[1.02] md:leading-[0.9]"
+                className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[1.08] md:leading-[0.9]"
                 stagger={0.12}
                 trigger={isLifted}
                 delay={0.6}
