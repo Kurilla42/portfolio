@@ -151,3 +151,10 @@ html.lenis, html.lenis body {
 }
 /* /geo: Oswald вместо Anton — у Anton один тяжёлый вес, Oswald без этого будет тонким */
 .geo-fonts .font-headline { font-weight: 700; }
+/* У в Oswald уходит хвостом ниже строки, а обёртки строк в HighlightWipeHeading режут всё за
+   пределами line-box (overflow-hidden). Даём маске запас снизу и компенсируем его отрицательным
+   полем, чтобы межстрочные расстояния не изменились. На md у обёрток свой py-4 (1rem) — сохраняем. */
+.geo-fonts .font-headline > span.overflow-hidden { padding-bottom: 0.18em; margin-bottom: -0.18em; }
+@media (min-width: 1280px) {
+  .geo-fonts .font-headline > span.overflow-hidden { padding-bottom: calc(1rem + 0.18em); margin-bottom: -0.18em; }
+}
