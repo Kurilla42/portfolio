@@ -77,7 +77,7 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
         <div className="w-full mt-auto flex flex-col">
           <div className="grid grid-cols-12 w-full gap-4 md:gap-0 mb-6 md:mb-[2vh]">
             <div className="col-span-12 flex flex-col">
-              <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">AI-видимость бизнеса · замер и план работ</p>
+              <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">Аудит видимости в нейросетях</p>
               <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter">
                 <span className="text-[#e0ded8]">Антон</span> <span className="opacity-40 font-medium">Колесников</span>
               </h2>
@@ -88,7 +88,7 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
             <div className="col-span-12 md:col-span-8">
               <HighlightWipeHeading
                 as="h1"
-                lines={["ЧТО НЕЙРОСЕТИ", "ОТВЕЧАЮТ ВАШЕМУ", "ПОКУПАТЕЛЮ"]}
+                lines={["СКОЛЬКО ПОКУПАТЕЛЕЙ", "ВЫ ТЕРЯЕТЕ", "В НЕЙРОСЕТЯХ?"]}
                 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
                 stagger={0.12}
                 trigger={isLifted}
