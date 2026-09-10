@@ -27,9 +27,9 @@ const PRICING_PLANS = [
     footerText: "Сырые данные — запрос, нейросеть, дата, полный текст ответа — передаются вместе с отчётом. Любую цифру вы можете перепроверить сами.",
     buttonText: "Заказать аудит",
     investment: "25 000 ₽",
-    pricePrefix: null,
+    pricePrefix: "от",
     period: "3 рабочих дня",
-    retainer: "50% аванс, 50% по сдаче · договор и чек самозанятого",
+    retainer: "50% аванс, 50% по сдаче\nдоговор и чек самозанятого",
     badge: "начните с этого",
   },
   {
@@ -70,9 +70,9 @@ const PRICING_PLANS = [
     footerText: "Нейросети меняют ответы, и разовый аудит устаревает. Вы получаете канал, за которым слежу я.",
     buttonText: "Обсудить сопровождение",
     investment: "30 000 ₽",
-    pricePrefix: null,
+    pricePrefix: "от",
     period: "в месяц",
-    retainer: "от 3 месяцев · объём фиксируется после аудита",
+    retainer: "объём фиксируется после аудита\nот 3 месяцев",
     badge: null,
   },
 ];
@@ -221,7 +221,7 @@ export function GeoPricingTabs() {
                         <span className="block mt-2 font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-widest text-[#e0ded8]">
                           {PRICING_PLANS[activeIndex].period}
                         </span>
-                        <span className="block mt-1 font-mono text-[3.5vw] md:text-[0.9vw] tracking-widest text-[#e0ded8]/60 md:max-w-[22vw] md:ml-auto">
+                        <span className="block mt-1 font-mono text-[3.5vw] md:text-[0.9vw] tracking-widest text-[#e0ded8]/60 md:max-w-[22vw] md:ml-auto whitespace-pre-line">
                           {PRICING_PLANS[activeIndex].retainer}
                         </span>
                       </div>

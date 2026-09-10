@@ -74,19 +74,20 @@ export function GeoProofSection() {
       <div className="relative z-10 w-full px-6 md:px-[4vw]">
         {/* Шапка: заголовок слева, подпись справа */}
         <div className="grid grid-cols-12 gap-8 md:gap-0 items-start mb-12 md:mb-[8vh]">
-          <div className="col-span-12 lg:col-span-6 flex flex-col">
-            <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
-              ПРИМЕР ОТЧЁТА<br />В ЦИФРАХ
+          {/* Заголовок в одну строку на десктопе: 5vw вместо 6vw и восемь колонок, иначе «ПРИМЕР ОТЧЁТА В ЦИФРАХ» не влезает */}
+          <div className="col-span-12 lg:col-span-8 flex flex-col">
+            <h2 className="text-[12vw] md:text-[5vw] md:whitespace-nowrap font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
+              ПРИМЕР ОТЧЁТА В ЦИФРАХ
             </h2>
           </div>
-          <div className="col-span-12 lg:col-start-8 lg:col-span-5 flex flex-col justify-end h-full">
+          <div className="col-span-12 lg:col-start-9 lg:col-span-4 flex flex-col justify-end h-full">
             <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed">
-              Полный аудит · интернет-магазин оптических приборов · сентябрь 2026 · без названия клиента
+              Полный аудит · интернет-магазин оптических приборов · сентябрь 2026
             </p>
             {/* Оговорки про объём съёма и «на тысячу спросивших» живут здесь, а не в абзаце у цитаты:
                 там они утяжеляли вывод, а здесь читаются как паспорт отчёта. */}
             <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/40 leading-relaxed mt-2">
-              Снят в объёме 30 запросов × 5 нейросетей; аудит по прайсу — 60–80 × 5 × 2 прогона. Потери посчитаны на тысячу спросивших: сколько покупателей вообще спрашивает нейросеть, не знает никто.
+              Аудит по прайсу — 60–80 запросов × 5 нейросетей × 2 прогона. Потери посчитаны на тысячу спросивших: сколько покупателей вообще спрашивает нейросеть, не знает никто.
             </p>
           </div>
         </div>
