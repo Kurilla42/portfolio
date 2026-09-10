@@ -77,9 +77,8 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
         <div className="w-full mt-auto flex flex-col">
           <div className="grid grid-cols-12 w-full gap-4 md:gap-0 mb-6 md:mb-[2vh]">
             <div className="col-span-12 flex flex-col">
-              <p className="text-[3.5vw] md:text-[1vw] opacity-60 mb-1 font-sans">Аудит видимости в нейросетях</p>
-              <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter">
-                <span className="text-[#e0ded8]">Антон</span> <span className="opacity-40 font-medium">Колесников</span>
+              <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter text-[#e0ded8]">
+                Аудит видимости в нейросетях
               </h2>
             </div>
           </div>
@@ -89,7 +88,7 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
               <HighlightWipeHeading
                 as="h1"
                 lines={["СКОЛЬКО ПОКУПАТЕЛЕЙ", "ВЫ ТЕРЯЕТЕ", "В НЕЙРОСЕТЯХ?"]}
-                className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[0.9]"
+                className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] w-full md:w-[110%] -ml-0 md:-ml-1 tracking-tight leading-[1.02] md:leading-[0.9]"
                 stagger={0.12}
                 trigger={isLifted}
                 delay={0.6}
@@ -107,7 +106,7 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
                 <p className="pt-1 md:pt-[0.4vw]">— где вас нет в ответах покупателю</p>
                 <p>— какие ошибки о вас слышит покупатель</p>
                 <p className="pb-1 md:pb-[0.4vw]">— потери в ₽ на тысячу спросивших</p>
-                <p>Аудит — 25 000 ₽, 3 рабочих дня. Контрольный съём через месяц включён</p>
+                <p>Аудит — от 25 000 ₽, 3 рабочих дня. Контрольный съём через месяц включён</p>
               </div>
 
               <div className="flex items-center justify-between md:justify-start gap-4 md:gap-[2.5vw] mt-auto">
