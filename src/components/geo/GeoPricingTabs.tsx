@@ -69,8 +69,10 @@ const PRICING_PLANS = [
     ],
     footerText: "Нейросети меняют ответы, и разовый аудит устаревает. Вы получаете канал, за которым слежу я.",
     buttonText: "Обсудить сопровождение",
-    investment: "30 000 ₽",
-    pricePrefix: "от",
+    // Решение владельца от 12.09.2026: 40 000 ₽/мес, в КП печатается как "~ 40 000 ₽ в месяц"
+    // (было "от 30 000 ₽" — устарело, страница не успела обновиться после пересмотра цены)
+    investment: "~ 40 000 ₽",
+    pricePrefix: null,
     period: "в месяц",
     retainer: "объём фиксируется после аудита\nот 3 месяцев",
     badge: null,
@@ -118,6 +120,11 @@ export function GeoPricingTabs() {
               <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
                 С ЧЕГО<br />НАЧАТЬ
               </h2>
+              {/* Подсказка про кликабельность вкладок: отзыв "спрятаны ответы про что дальше" был
+                  про то, что 02 и 03 ничем не выглядели как кнопки — просто мелкая подпись внизу */}
+              <p className="font-mono text-[3vw] md:text-[0.75vw] uppercase tracking-widest text-[#e0ded8]/40">
+                Нажмите на этап — цена и состав откроются ниже
+              </p>
             </div>
 
             <div className="flex flex-col space-y-0">
@@ -156,14 +163,20 @@ export function GeoPricingTabs() {
 
                       <div className="flex flex-wrap items-center gap-3">
                         <span className={cn(
-                          "text-[5vw] md:text-[1.2vw] font-mono font-bold tracking-tight transition-colors duration-500 uppercase",
-                          isActive ? "text-[#e0ded8]" : "text-[#e0ded8]/30"
+                          "text-[5vw] md:text-[1.2vw] font-mono font-bold tracking-tight transition-colors duration-500 uppercase underline-offset-8 decoration-[#c7b684]/0 group-hover:decoration-[#c7b684]/60",
+                          isActive ? "text-[#e0ded8] underline decoration-[#c7b684]" : "text-[#e0ded8]/45 group-hover:underline"
                         )}>
                           {plan.title}
                         </span>
                         {plan.badge && (
                           <span className="px-2 py-0.5 bg-[#c7b684] text-black text-[2vw] md:text-[0.6vw] font-mono font-bold uppercase tracking-wider rounded-sm ml-2">
                             {plan.badge}
+                          </span>
+                        )}
+                        {/* Стрелка-подсказка у неактивных вкладок: без неё подписи 02/03 не читались как кнопки */}
+                        {!isActive && (
+                          <span aria-hidden="true" className="font-mono text-[3.5vw] md:text-[0.9vw] text-[#c7b684]/50 group-hover:text-[#c7b684] transition-colors duration-300">
+                            →
                           </span>
                         )}
                       </div>

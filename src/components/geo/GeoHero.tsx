@@ -100,9 +100,11 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
               <div className="w-full h-[1px] bg-[#e0ded8]/20 mb-4 md:mb-[1.5vw]" />
 
               <div className="space-y-1 md:space-y-[0.3vw] text-[3.5vw] md:text-[1vw] uppercase tracking-wider font-medium font-mono text-[#e0ded8]/60 mb-8 md:mb-[3vw] text-left">
-                {/* Пять имён в одну строку не влезают в колонку на 1440px — делим осознанно, а не браузером */}
+                {/* Пять имён в одну строку не влезают в колонку на 1440px — делим осознанно, а не браузером.
+                    Perplexity помечен отдельно как ИИ-поиск (не нейросеть по памяти) — так же, как в FAQ
+                    про Нейро и Google AIO, чтобы счёт "нейросетей" не расходился между блоками страницы */}
                 <p>Алиса · GigaChat · ChatGPT</p>
-                <p>DeepSeek · Gemini · Perplexity</p>
+                <p>DeepSeek · Gemini · Perplexity (ИИ-поиск)</p>
                 {/* Три места, где покупатель уходит мимо: нет в ответе, неверные факты, деньги на тысячу спросивших */}
                 <p className="pt-1 md:pt-[0.4vw]">— где вас нет в ответах покупателю</p>
                 <p>— какие ошибки о вас слышит покупатель</p>

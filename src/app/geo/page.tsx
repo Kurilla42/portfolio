@@ -430,21 +430,19 @@ export default function GeoPage() {
                       </motion.div>
                     </div>
 
-                    <div className="md:col-span-2 flex justify-center py-8 md:py-0">
-                      <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
+                    {/* Было ИИ-сгенерированное фото силуэта без подписи ("непонятно че за мужик" —
+                        отзыв Литегры). Заменено подписью-представлением, пока нет настоящего фото
+                        Антона: генеративную картинку без объяснения лучше убрать, чем оставить.
+                        TODO(владелец): заменить на настоящую фотографию, если она появится. */}
+                    <div className="md:col-span-2 flex justify-center items-center py-8 md:py-0 px-2">
+                      <motion.p
+                        initial={{ opacity: 0, scale: 0.95 }}
                         whileInView={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 1, delay: 0.2 }}
-                        className="relative md:w-[60vw] aspect-square"
+                        className="font-mono text-[0.85vw] uppercase tracking-widest text-white/70 text-center leading-relaxed"
                       >
-                        <Image
-                          src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
-                          alt="Декоративный элемент"
-                          fill
-                          className="object-contain"
-                          unoptimized
-                        />
-                      </motion.div>
+                        Антон Колесников — веду каждый аудит лично, от карты запросов до разбора сайта. Ни субподрядчиков, ни колл-центра: пишете — отвечаю сам.
+                      </motion.p>
                     </div>
 
                     <div className="md:col-span-5 flex flex-col md:items-end md:text-right">
@@ -470,15 +468,9 @@ export default function GeoPage() {
                       ОБСУДИМ<br />ВАШ ЗАМЕР
                     </motion.h2>
 
-                    <div className="relative w-[26vw] aspect-square mt-10 mb-6">
-                       <Image
-                          src="https://i.ibb.co/5Wj20F9h/Whisk-203fe268da3200295ee414b93c2d40aedr-removebg-preview.png"
-                          alt="Декоративный элемент"
-                          fill
-                          className="object-contain"
-                          unoptimized
-                        />
-                    </div>
+                    <p className="font-mono text-[3vw] uppercase tracking-widest text-white/70 text-center leading-relaxed mt-8 mb-6 px-4">
+                      Антон Колесников — веду каждый аудит лично. Ни субподрядчиков, ни колл-центра: пишете — отвечаю сам
+                    </p>
 
                     <div className="flex flex-col items-center gap-3 text-[3.5vw] font-mono text-white/80 uppercase text-center mt-auto pb-10">
                        <Link href="tel:+79127582210" onClick={() => ymGoal('geo_phone')}>+7 912 758 22 10</Link>
@@ -493,6 +485,18 @@ export default function GeoPage() {
              </div>
           </div>
         </div>
+      </section>
+
+      {/* Ссылка на white-label страницу для агентств: /geo целиком написан для конечного
+          владельца бизнеса, у посредника (агентство/подрядчик) другой язык и другая воронка —
+          поэтому отдельная страница, а не блок в этом скролле (см. agency_block.md) */}
+      <section className="relative w-full bg-black pb-16 px-6 md:px-[4vw] z-30 flex justify-center">
+        <Link
+          href="/geo/agency"
+          className="font-mono text-[3.5vw] md:text-[0.85vw] uppercase tracking-[0.15em] text-[#c7b684] border-b border-[#c7b684]/40 pb-1 hover:border-[#c7b684] transition-colors"
+        >
+          Для агентств →
+        </Link>
       </section>
     </div>
   );
