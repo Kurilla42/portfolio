@@ -99,7 +99,7 @@ const rollingTextVariants = {
   hover: { y: '-50%' }
 };
 
-export default function GeoPage() {
+export default function GeoPageClient() {
   const combinedRef = useRef<HTMLDivElement>(null);
   const heroSectionRef = useRef<HTMLDivElement>(null);
   const [isLifted, setIsLifted] = useState(true);
@@ -127,7 +127,8 @@ export default function GeoPage() {
   const bgMobileUrl = "https://i.ibb.co/qYZ8Bq2k/N5cohaa-Wu-Brrm5-Ozvud-HSkii-EXA.jpg";
 
   return (
-    <div className="min-h-screen bg-[#000000]">
+    // <main>, а не <div>: у страницы нет своего лендмарка, скринридер и краулер не видят, где начинается контент
+    <main className="min-h-screen bg-[#000000]">
       <div ref={combinedRef} className="relative z-0">
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <motion.div
@@ -140,14 +141,17 @@ export default function GeoPage() {
               muted
               loop
               playsInline
-              preload="auto"
+              // metadata, а не auto: на мобиле видео скрыто (hidden md:block), но auto всё равно тянет 599 КБ; autoPlay на десктопе докачает сам
+              preload="metadata"
               aria-hidden="true"
               className="hidden md:block absolute inset-0 w-full h-full object-cover object-center blur-[10px]"
             />
+            {/* alt="" — фон декоративный; priority остаётся: на мобиле это LCP-элемент */}
             <Image
               src={bgMobileUrl}
-              alt="Фон"
+              alt=""
               fill
+              sizes="100vw"
               className="block md:hidden absolute inset-0 object-cover object-center blur-[10px]"
               priority
             />
@@ -184,13 +188,14 @@ export default function GeoPage() {
 
       <GeoIncludedSection />
 
-      <section className="relative pt-16 md:pt-[72px] pb-[12vh] md:pb-[20vh] z-30 overflow-hidden w-full bg-black" id="steps">
+      <section className="relative pt-16 md:pt-[72px] pb-[12vh] md:pb-[20vh] z-30 overflow-hidden w-full bg-black" id="steps" aria-labelledby="steps-title">
         <div className="relative z-10 w-full px-6 md:px-[4vw]">
           <div className="grid grid-cols-12 gap-10 md:gap-0 items-center relative">
             <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[18vw] h-[45vh] z-20 pointer-events-none hidden lg:block">
+              {/* alt="" — силуэт декоративный, смысла для читателя не несёт */}
               <Image
                 src="https://i.ibb.co/NgHGBXj6/generated-image-16-removebg-preview.png"
-                alt="Специалист"
+                alt=""
                 fill
                 className="object-contain object-center"
                 unoptimized
@@ -198,7 +203,7 @@ export default function GeoPage() {
             </div>
 
             <div className="col-span-12 lg:col-span-5 flex flex-col">
-              <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
+              <h2 id="steps-title" className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
                 КАК ПРОХОДИТ<br />АУДИТ
               </h2>
               <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed w-full max-w-full">
@@ -233,7 +238,8 @@ export default function GeoPage() {
                           <span className="font-mono text-[4vw] md:text-[2vw] text-[#e0ded8]/30 font-bold uppercase tracking-wider h-[4vw] md:h-[2vw] flex items-center">
                             {step.number}
                           </span>
-                          <span className="font-mono text-[4vw] md:text-[2vw] text-[#e0ded8] font-bold uppercase tracking-wider h-[4vw] md:h-[2vw] flex items-center">
+                          {/* Вторая копия нужна только для rolling-hover — скринридеру и краулеру она читалась как дубль */}
+                          <span className="font-mono text-[4vw] md:text-[2vw] text-[#e0ded8] font-bold uppercase tracking-wider h-[4vw] md:h-[2vw] flex items-center" aria-hidden="true">
                             {step.number}
                           </span>
                         </motion.div>
@@ -248,9 +254,10 @@ export default function GeoPage() {
                           <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#e0ded8] uppercase tracking-tight h-[4vw] md:h-[2vw] flex items-center whitespace-normal">
                             {step.title}
                           </h3>
-                          <h3 className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#c7b684] uppercase tracking-tight h-[4vw] md:h-[2vw] flex items-center whitespace-normal">
+                          {/* div, а не второй h3: в outline страницы должен быть один заголовок на шаг; display задаёт класс flex, так что тег на вид не влияет */}
+                          <div className="text-[4vw] md:text-[2vw] font-mono font-bold text-[#c7b684] uppercase tracking-tight h-[4vw] md:h-[2vw] flex items-center whitespace-normal" aria-hidden="true">
                             {step.title}
-                          </h3>
+                          </div>
                         </motion.div>
                       </div>
                     </div>
@@ -266,7 +273,7 @@ export default function GeoPage() {
         quoteLines={quoteLines}
         mobileImageSrc="https://i.ibb.co/kVJpKgR9/Whisk-yiwomrjz2igmijtntcjnkhtl1ejz00cn3ujmtgd-upscayl-2x-upscayl-standard-4x.jpg"
       >
-        <section className="relative pb-16 pt-8 z-30 overflow-hidden w-full" id="difference">
+        <section className="relative pb-16 pt-8 z-30 overflow-hidden w-full" id="difference" aria-labelledby="difference-title">
           <div className="w-full px-6 md:px-[4vw]">
             <div className="flex flex-col lg:flex-row justify-between items-start gap-[4vw] w-full">
               <motion.div
@@ -277,7 +284,9 @@ export default function GeoPage() {
                 viewport={{ once: true, amount: 0.1 }}
               >
                 <div className="lg:hidden mb-6">
-                  <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
+                  {/* Заголовок продублирован для мобилы и десктопа (разные позиции в раскладке); id и роль заголовка — у этой копии,
+                      десктопная помечена aria-hidden, чтобы в HTML не было двух одинаковых h2. aria-labelledby работает и на скрытый display:none элемент */}
+                  <h2 id="difference-title" className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
                     В ЧЁМ<br />РАЗНИЦА
                   </h2>
                 </div>
@@ -341,7 +350,8 @@ export default function GeoPage() {
                              <span className="text-[1vw] font-mono font-bold tracking-[0.1em] uppercase text-[#e0ded8]/40 group-hover:text-[#e0ded8] transition-colors duration-300 h-[1.2vw] flex items-center">
                                {item.criterion}
                              </span>
-                             <span className="text-[1vw] font-mono font-bold tracking-[0.1em] uppercase text-[#c7b684] h-[1.2vw] flex items-center">
+                             {/* Золотые копии в трёх ячейках ниже — только для rolling-hover, см. GeoProofSection */}
+                             <span className="text-[1vw] font-mono font-bold tracking-[0.1em] uppercase text-[#c7b684] h-[1.2vw] flex items-center" aria-hidden="true">
                                {item.criterion}
                              </span>
                            </motion.div>
@@ -358,7 +368,7 @@ export default function GeoPage() {
                              <p className="text-[1vw] font-mono font-bold leading-tight truncate text-[#e0ded8] h-[1.2vw] flex items-center">
                                {item.me}
                              </p>
-                             <p className="text-[1vw] font-mono font-bold leading-tight truncate text-[#c7b684] h-[1.2vw] flex items-center">
+                             <p className="text-[1vw] font-mono font-bold leading-tight truncate text-[#c7b684] h-[1.2vw] flex items-center" aria-hidden="true">
                                {item.me}
                              </p>
                            </motion.div>
@@ -375,7 +385,7 @@ export default function GeoPage() {
                              <p className="text-[1vw] font-mono font-medium leading-tight truncate text-[#e0ded8]/40 group-hover:text-[#e0ded8]/60 transition-colors duration-300 h-[1.2vw] flex items-center">
                                {item.freelancer}
                              </p>
-                             <p className="text-[1vw] font-mono font-medium leading-tight truncate text-[#c7b684] h-[1.2vw] flex items-center">
+                             <p className="text-[1vw] font-mono font-medium leading-tight truncate text-[#c7b684] h-[1.2vw] flex items-center" aria-hidden="true">
                                {item.freelancer}
                              </p>
                            </motion.div>
@@ -402,17 +412,18 @@ export default function GeoPage() {
 
       <GeoFaqSection />
 
-      <section className="relative w-full bg-black py-16 px-6 md:px-[4vw] z-30" id="contact">
+      {/* footer, а не section: это контакты и подвал страницы — лендмарк contentinfo для скринридера */}
+      <footer className="relative w-full bg-black py-16 px-6 md:px-[4vw] z-30" id="contact" aria-labelledby="contact-title">
         <div className="relative w-full aspect-[21/9] min-h-[500px] bg-black overflow-hidden flex items-center justify-center">
           <div className="absolute inset-0 p-2 md:p-[1vw]">
              <div className="relative w-full h-full overflow-hidden border border-white/10 group">
+                {/* Без priority: блок в самом низу страницы, preload фона отбирал канал у LCP хиро */}
                 <Image
                   src="https://i.ibb.co/wFqwsVGc/i-EHXOE8-MWd2v-Ga9-Prmwyjtm35-A.png"
-                  alt="Фон финального блока"
+                  alt=""
                   fill
                   className="object-cover object-center blur-sm transition-all duration-1000"
                   unoptimized
-                  priority
                 />
                 <div className="absolute inset-0 bg-black/35 transition-all duration-1000" />
 
@@ -424,6 +435,7 @@ export default function GeoPage() {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
                       >
+                        {/* Десктопная копия заголовка — aria-hidden, id и роль заголовка у мобильной ниже (та же схема, что в «В ЧЁМ РАЗНИЦА») */}
                         <h2 className="md:text-[8vw] font-headline text-white leading-[1.02] uppercase tracking-tight drop-shadow-2xl">
                           ОБСУДИМ<br />ВАШ<br />ЗАМЕР
                         </h2>
@@ -461,6 +473,7 @@ export default function GeoPage() {
 
                   <div className="md:hidden flex flex-col items-center w-full pt-4 h-full">
                     <motion.h2
+                      id="contact-title"
                       className="text-[12vw] font-headline text-white uppercase tracking-tight leading-[1.0] mb-2 text-center"
                       initial={{ opacity: 0, y: -20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -485,7 +498,7 @@ export default function GeoPage() {
              </div>
           </div>
         </div>
-      </section>
+      </footer>
 
       {/* Ссылка на white-label страницу для агентств: /geo целиком написан для конечного
           владельца бизнеса, у посредника (агентство/подрядчик) другой язык и другая воронка —
@@ -498,6 +511,6 @@ export default function GeoPage() {
           Для агентств →
         </Link>
       </section>
-    </div>
+        </main>
   );
 }

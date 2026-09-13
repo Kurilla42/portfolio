@@ -80,12 +80,12 @@ const itemVariants = {
 
 export function GeoIncludedSection() {
   return (
-    <section className="relative py-16 md:py-[72px] z-30 overflow-hidden w-full bg-black" id="channels">
+    <section className="relative py-16 md:py-[72px] z-30 overflow-hidden w-full bg-black" id="channels" aria-labelledby="channels-title">
       <div className="relative z-10 w-full px-6 md:px-[4vw]">
         <div className="grid grid-cols-12 gap-8 md:gap-0 items-start mb-12 md:mb-[8vh]">
           {/* В одну строку на десктопе: восемь колонок под заголовок, иначе «ЧТО ВХОДИТ В АУДИТ» переносится */}
           <div className="col-span-12 lg:col-span-8 flex flex-col">
-            <h2 className="text-[12vw] md:text-[6vw] md:whitespace-nowrap font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
+            <h2 id="channels-title" className="text-[12vw] md:text-[6vw] md:whitespace-nowrap font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
               ЧТО ВХОДИТ В АУДИТ
             </h2>
           </div>

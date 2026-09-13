@@ -77,9 +77,10 @@ export default function GeoHero({ isLifted }: GeoHeroProps) {
         <div className="w-full mt-auto flex flex-col">
           <div className="grid grid-cols-12 w-full gap-4 md:gap-0 mb-6 md:mb-[2vh]">
             <div className="col-span-12 flex flex-col">
-              <h2 className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter text-[#c7b684]">
+              {/* p, а не h2: это кикер над h1, h2 перед h1 ломал иерархию заголовков. Preflight сбрасывает стили обоих тегов, вид задают классы */}
+              <p className="text-[8vw] md:text-[3vw] font-sans font-bold leading-tight tracking-tighter text-[#c7b684]">
                 Аудит AI-видимости
-              </h2>
+              </p>
             </div>
           </div>
 
