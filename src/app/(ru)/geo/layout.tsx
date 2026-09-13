@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import { Oswald, IBM_Plex_Mono, Inter } from 'next/font/google';
-import { GeoLang } from '@/components/geo/GeoLang';
 import { geoTitle, geoDescription } from '@/components/geo/GeoJsonLd';
 
-// Anton и Space Mono из корневого layout без кириллицы — для /geo подключаем
+// Anton и Space Mono из (en)-layout без кириллицы; в (ru)-layout их нет вовсе — для /geo подключаем
 // кириллические аналоги и подменяем ими CSS-переменные, на которые ссылаются
 // tailwind-классы font-headline / font-mono / font-sans. Разметка секций при этом
 // остаётся 1-в-1 как на /adw.
@@ -28,7 +27,7 @@ const interCyr = Inter({
   display: 'swap',
 });
 
-// www, как и в корневом layout: apex редиректит на www (307), canonical должен быть конечным.
+// www, как и в (ru)-layout: apex редиректит на www (307), canonical должен быть конечным.
 const siteUrl = 'https://www.kolesnikovdesign.pro';
 
 // og:description длиннее meta description (~190 символов): соцсети и мессенджеры не режут его
@@ -82,7 +81,10 @@ export const metadata: Metadata = {
 export default function GeoLayout({ children }: { children: React.ReactNode }) {
   return (
     <div
-      className={`geo-fonts ${oswald.variable} ${plexMono.variable} ${interCyr.variable}`}
+      // font-sans здесь обязателен: в (ru)-root на <html> нет латинского Inter, и body получает голый
+      // sans-serif. Класс на этой обёртке резолвит var(--font-inter) уже с подменой на кириллический
+      // Inter, и всё, что внутри наследует шрифт «от body», получает тот же Inter, что и раньше.
+      className={`geo-fonts font-sans ${oswald.variable} ${plexMono.variable} ${interCyr.variable}`}
       style={
         {
           '--font-anton': 'var(--font-oswald)',
@@ -93,10 +95,9 @@ export default function GeoLayout({ children }: { children: React.ReactNode }) {
     >
       {/* React 19 поднимает эти <link> в <head>. preconnect к i.ibb.co — оттуда картинки секций
           и финального блока; dns-prefetch к Метрике — её скрипт грузится afterInteractive из
-          корневого layout, полный preconnect ради него не нужен. */}
+          SiteChrome, полный preconnect ради него не нужен. */}
       <link rel="preconnect" href="https://i.ibb.co" />
       <link rel="dns-prefetch" href="https://mc.yandex.ru" />
-      <GeoLang />
       {children}
     </div>
   );
