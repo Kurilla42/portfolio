@@ -29,7 +29,9 @@ const spaceMono = Space_Mono({
   display: 'swap',
 });
 
-const siteUrl = 'https://kolesnikovdesign.pro';
+// Именно www: Vercel отдаёт 307 с apex на www.kolesnikovdesign.pro, поэтому канонический
+// хост — www. Иначе canonical/og:url/sitemap указывали бы на редиректящий адрес.
+const siteUrl = 'https://www.kolesnikovdesign.pro';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -79,6 +81,18 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+    // Без этих директив Google по умолчанию может резать сниппет и показывать превью картинки
+    // в уменьшенном размере; -1 = без ограничения.
+    'max-image-preview': 'large',
+    'max-snippet': -1,
+    'max-video-preview': -1,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1,
+    },
   },
 };
 

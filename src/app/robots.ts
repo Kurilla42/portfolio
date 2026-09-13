@@ -6,6 +6,7 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://kolesnikovdesign.pro/sitemap.xml',
+    // www, а не apex: apex редиректит на www (307), sitemap должен лежать на каноническом хосте.
+    sitemap: 'https://www.kolesnikovdesign.pro/sitemap.xml',
   };
 }

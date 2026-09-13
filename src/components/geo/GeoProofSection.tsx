@@ -70,13 +70,13 @@ const rollingTransition = { duration: 0.4, ease: [0.22, 1, 0.36, 1] };
 
 export function GeoProofSection() {
   return (
-    <section className="relative py-16 md:py-[72px] z-30 overflow-hidden w-full bg-black" id="proof">
+    <section className="relative py-16 md:py-[72px] z-30 overflow-hidden w-full bg-black" id="proof" aria-labelledby="proof-title">
       <div className="relative z-10 w-full px-6 md:px-[4vw]">
         {/* Шапка: заголовок слева, подпись справа */}
         <div className="grid grid-cols-12 gap-8 md:gap-0 items-start mb-12 md:mb-[8vh]">
           {/* Заголовок в одну строку на десктопе: 5vw вместо 6vw и восемь колонок, иначе «ПРИМЕР ОТЧЁТА В ЦИФРАХ» не влезает */}
           <div className="col-span-12 lg:col-span-8 flex flex-col">
-            <h2 className="text-[12vw] md:text-[5vw] md:whitespace-nowrap font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
+            <h2 id="proof-title" className="text-[12vw] md:text-[5vw] md:whitespace-nowrap font-headline text-[#e0ded8] uppercase leading-[0.9] mb-4 md:mb-8 tracking-tight">
               ПРИМЕР ОТЧЁТА В ЦИФРАХ
             </h2>
           </div>

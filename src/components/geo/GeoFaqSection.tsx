@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from 'react';
-import { AnimatePresence, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 
 // Аккордеон: на экране только вопросы, ответ раскрывается по клику. Открытых может быть несколько
 // одновременно — читатель сравнивает ответы на соседние вопросы («у нас есть сеошник» и «чем отличается
-// от SEO-аудита»), закрывать один ради другого неудобно. Тексты ответов остаются в SSR-разметке
-// только в открытом состоянии, поэтому для индекса нейросетями всё равно есть страница отчёта.
+// от SEO-аудита»), закрывать один ради другого неудобно. Тексты ответов всегда в DOM и в SSR-разметке
+// (закрытый пункт — это height:0 + aria-hidden, а не отсутствие узла): Яндекс, Google и LLM-краулеры
+// не кликают по кнопкам, а ответы FAQ — ключевой текст страницы, ~2 800 знаков.
 const faq = [
   {
     question: "Чем это отличается от SEO-аудита?",
@@ -61,6 +62,13 @@ const itemVariants = {
 
 // Одна кривая и для высоты, и для поворота «+», чтобы индикатор и раскрытие двигались в одном ритме.
 const openTransition = { duration: 0.45, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] };
+
+// Состояния ответа. Раньше был AnimatePresence с initial/exit — те же значения, та же кривая,
+// но узел удалялся из DOM. Теперь узел живёт всегда, а «закрыто/открыто» — это анимация между вариантами.
+const answerVariants = {
+  closed: { height: 0, opacity: 0 },
+  open: { height: 'auto', opacity: 1 }
+};
 
 export function GeoFaqSection() {
   // Set индексов открытых пунктов: у каждого вопроса своё состояние, открытых может быть несколько.
@@ -141,24 +149,24 @@ export function GeoFaqSection() {
                     </button>
                   </h3>
 
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        key="a"
-                        id={answerId}
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={openTransition}
-                        style={{ overflow: 'hidden' }}
-                      >
-                        {/* Нижний отступ внутри анимируемого блока, а не на нём: иначе при height:0 padding остаётся видимым. */}
-                        <p className="font-mono text-[3.5vw] md:text-[0.95vw] text-[#e0ded8]/70 leading-relaxed normal-case pb-6 md:pb-[3vh] md:pl-[2.4vw]">
-                          {item.answer}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+                  {/* initial={false}: framer берёт стартовые стили из animate-варианта, поэтому в SSR-HTML закрытый
+                      ответ сразу приходит с inline height:0; opacity:0 — без вспышки текста до гидрации и без
+                      анимации схлопывания при первом рендере. aria-hidden скрывает текст от скринридера, пока
+                      пункт закрыт; inert не нужен — внутри нет ссылок и кнопок, фокусу некуда попасть. */}
+                  <motion.div
+                    id={answerId}
+                    initial={false}
+                    animate={isOpen ? 'open' : 'closed'}
+                    variants={answerVariants}
+                    transition={openTransition}
+                    style={{ overflow: 'hidden' }}
+                    aria-hidden={!isOpen}
+                  >
+                    {/* Нижний отступ внутри анимируемого блока, а не на нём: иначе при height:0 padding остаётся видимым. */}
+                    <p className="font-mono text-[3.5vw] md:text-[0.95vw] text-[#e0ded8]/70 leading-relaxed normal-case pb-6 md:pb-[3vh] md:pl-[2.4vw]">
+                      {item.answer}
+                    </p>
+                  </motion.div>
                 </motion.div>
               );
             })}

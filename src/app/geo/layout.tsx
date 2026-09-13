@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Oswald, IBM_Plex_Mono, Inter } from 'next/font/google';
 import { GeoLang } from '@/components/geo/GeoLang';
+import { geoTitle, geoDescription } from '@/components/geo/GeoJsonLd';
 
 // Anton и Space Mono из корневого layout без кириллицы — для /geo подключаем
 // кириллические аналоги и подменяем ими CSS-переменные, на которые ссылаются
@@ -27,12 +28,19 @@ const interCyr = Inter({
   display: 'swap',
 });
 
-const siteUrl = 'https://kolesnikovdesign.pro';
+// www, как и в корневом layout: apex редиректит на www (307), canonical должен быть конечным.
+const siteUrl = 'https://www.kolesnikovdesign.pro';
+
+// og:description длиннее meta description (~190 символов): соцсети и мессенджеры не режут его
+// на 160, а тут есть место для «в ответах» и «о вас».
+const ogDescription =
+  'Что Алиса, GigaChat, ChatGPT, DeepSeek и Gemini отвечают вашему покупателю: где вас нет в ответах, какие ошибки о вас слышит покупатель, сколько рублей уходит мимо. От 25 000 ₽, 3 рабочих дня.';
 
 export const metadata: Metadata = {
-  title: 'Аудит видимости в нейросетях — сколько покупателей вы теряете',
-  description:
-    'Замер того, что Алиса, GigaChat, ChatGPT, DeepSeek и Gemini отвечают вашему покупателю: где вас нет в ответах, какие ошибки о вас слышит покупатель, сколько рублей уходит мимо. План работ и контрольный съём через месяц. От 25 000 ₽, 3 рабочих дня.',
+  // absolute — иначе корневой шаблон приклеивает « | Kolesnikov Design», и title растёт до 81
+  // символа; сейчас 62. title/description живут в GeoJsonLd, чтобы WebPage.name совпадал с ними.
+  title: { absolute: geoTitle },
+  description: geoDescription,
   keywords: [
     'аудит видимости в нейросетях',
     'AI-видимость',
@@ -51,24 +59,22 @@ export const metadata: Metadata = {
     type: 'website',
     url: `${siteUrl}/geo`,
     siteName: 'Kolesnikov Design',
-    title: 'Аудит видимости в нейросетях — сколько покупателей вы теряете',
-    description:
-      'Замер того, что Алиса, GigaChat, ChatGPT, DeepSeek и Gemini отвечают вашему покупателю: где вас нет в ответах, какие ошибки о вас слышит покупатель, сколько рублей уходит мимо. План работ и контрольный съём через месяц. От 25 000 ₽, 3 рабочих дня.',
+    title: geoTitle,
+    description: ogDescription,
     locale: 'ru_RU',
     images: [
       {
         url: `${siteUrl}/og-geo.png`,
         width: 1200,
         height: 630,
-        alt: 'Аудит видимости в нейросетях — сколько покупателей вы теряете',
+        alt: 'Аудит AI-видимости бизнеса в нейросетях — обложка страницы',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Аудит видимости в нейросетях — сколько покупателей вы теряете',
-    description:
-      'Где вас нет в ответах нейросетей, какие ошибки о вас слышит покупатель, сколько рублей уходит мимо. От 25 000 ₽, 3 рабочих дня.',
+    title: geoTitle,
+    description: geoDescription,
     images: [`${siteUrl}/og-geo.png`],
   },
 };
@@ -85,6 +91,11 @@ export default function GeoLayout({ children }: { children: React.ReactNode }) {
         } as React.CSSProperties
       }
     >
+      {/* React 19 поднимает эти <link> в <head>. preconnect к i.ibb.co — оттуда картинки секций
+          и финального блока; dns-prefetch к Метрике — её скрипт грузится afterInteractive из
+          корневого layout, полный preconnect ради него не нужен. */}
+      <link rel="preconnect" href="https://i.ibb.co" />
+      <link rel="dns-prefetch" href="https://mc.yandex.ru" />
       <GeoLang />
       {children}
     </div>

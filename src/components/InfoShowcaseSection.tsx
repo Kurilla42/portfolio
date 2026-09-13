@@ -40,20 +40,22 @@ export function InfoShowcaseSection({
             style={{ y }}
             className="absolute -top-[5%] left-0 w-full h-[140vh] md:h-[140vh]" 
           >
+            {/* Без priority: секция ниже первого экрана на всех страницах, preload двух фонов (десктоп + мобила) отбирал канал у LCP.
+                alt="" — фоны декоративные. sizes при unoptimized Next не выводит, оставлен, чтобы не было предупреждения fill-без-sizes */}
             <Image
               src={imageSrc}
-              alt="Section Background Desktop"
+              alt=""
               fill
-              className="hidden md:block object-cover object-top" 
-              priority
+              sizes="100vw"
+              className="hidden md:block object-cover object-top"
               unoptimized
             />
             <Image
               src={mobileImageSrc || imageSrc}
-              alt="Section Background Mobile"
+              alt=""
               fill
-              className="block md:hidden object-cover object-center" 
-              priority
+              sizes="100vw"
+              className="block md:hidden object-cover object-center"
               unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent 60% to-black" />
@@ -62,12 +64,14 @@ export function InfoShowcaseSection({
 
         <div className="relative z-10 flex flex-col items-center w-full h-full">
            <div className="w-full flex items-start justify-between px-6 md:px-[5vw] pt-[5vh] md:pt-[10vh] pointer-events-none">
-              <h2 className="text-[40vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
+              {/* div + aria-hidden, а не h2: «IN»/«FO» — декор, в outline страницы они читались как заголовки без смысла.
+                  Родитель flex, так что элементы блокифицируются независимо от тега — вид тот же */}
+              <div className="text-[40vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none" aria-hidden="true">
                 IN
-              </h2>
-              <h2 className="text-[40vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none">
+              </div>
+              <div className="text-[40vw] md:text-[30vw] font-headline leading-none text-[#e0ded8] tracking-tight select-none" aria-hidden="true">
                 FO
-              </h2>
+              </div>
            </div>
            
            <div className="w-full text-left md:text-center px-6 md:px-[4vw] pt-[35vh] md:pt-[45vh] pb-8 mt-auto">
@@ -96,10 +100,11 @@ export function InfoShowcaseSection({
         <div className="w-full flex items-center justify-center gap-2 md:gap-4 px-4 max-w-[90vw] mx-auto mb-8 md:mb-12">
           <div className="flex-1 h-[1px] bg-white/20" />
           <div className="relative w-[13.5vw] md:w-[6.725vw] h-[13.5vw] md:h-[6.725vw] shrink-0">
-            <Image 
+            <Image
               src="https://i.ibb.co/q37Hg9DS/generated-image-12-removebg-preview-1.png"
-              alt="Decorative Icon"
+              alt=""
               fill
+              sizes="100vw"
               className="object-contain"
               unoptimized
             />

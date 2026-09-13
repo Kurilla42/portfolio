@@ -109,18 +109,20 @@ export function GeoPricingTabs() {
   };
 
   return (
-    <section ref={containerRef} className="w-full pb-16 md:pb-32 pt-24 relative z-30 bg-black" id="packages">
+    <section ref={containerRef} className="w-full pb-16 md:pb-32 pt-24 relative z-30 bg-black" id="packages" aria-labelledby="packages-title">
       <div className="relative z-10 w-full px-6 md:px-[4vw] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-20 items-start">
           {/* Левая колонка: заголовок и навигация по тарифам */}
           <div className="lg:col-span-4 flex flex-col justify-start order-1 lg:order-1 pt-0">
             <div className="space-y-4 mb-8 md:mb-[4vw]">
-              <h2 className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
+              <h2 id="packages-title" className="text-[12vw] md:text-[6vw] font-headline text-[#e0ded8] uppercase leading-[0.9] tracking-tight">
                 С ЧЕГО<br />НАЧАТЬ
               </h2>
             </div>
 
-            <div className="flex flex-col space-y-0">
+            {/* ARIA-паттерн tabs: без него скринридер видел три кнопки без связи с содержимым справа.
+                Кнопки стоят столбиком — aria-orientation="vertical" */}
+            <div className="flex flex-col space-y-0" role="tablist" aria-orientation="vertical" aria-label="Тарифы">
               {PRICING_PLANS.map((plan, index) => {
                 const isActive = activeIndex === index;
                 // На /adw нижней линии нет ни у одного пункта (все четыре индекса исключены) —
@@ -135,6 +137,11 @@ export function GeoPricingTabs() {
                       </div>
                     )}
                     <button
+                      type="button"
+                      role="tab"
+                      id={`packages-tab-${plan.id}`}
+                      aria-selected={isActive}
+                      aria-controls="packages-panel"
                       onClick={() => handleTabClick(index)}
                       className={cn(
                         "group relative flex items-center gap-4 md:gap-[1.5vw] py-6 md:py-[2vw] px-6 md:px-[2vw] text-left transition-all duration-500 border-l border-[#e0ded8]/10",
@@ -178,7 +185,13 @@ export function GeoPricingTabs() {
           <div className="lg:col-span-8 flex flex-col order-2 lg:order-2">
             {/* 720 вместо 850 на /adw: планов три, а не четыре, и при 850 между тарифами и FAQ оставалась пустая полоса */}
             <div className="relative min-h-[500px] md:min-h-[720px]">
-              <div className="h-full flex flex-col relative p-0 md:pl-[4vw]">
+              {/* tabpanel — на статичной обёртке, а не на motion.div внутри AnimatePresence: тот перемонтируется при каждом переключении */}
+              <div
+                className="h-full flex flex-col relative p-0 md:pl-[4vw]"
+                role="tabpanel"
+                id="packages-panel"
+                aria-labelledby={`packages-tab-${PRICING_PLANS[activeIndex].id}`}
+              >
                 <AnimatePresence initial={false} custom={direction} mode="wait">
                   <motion.div
                     key={activeIndex}
