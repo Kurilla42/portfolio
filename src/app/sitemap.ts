@@ -28,5 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    {
+      // Страница для агентств: вспомогательная к /geo, аудитория уже — приоритет ниже.
+      url: `${siteUrl}/geo/agency`,
+      lastModified: new Date('2026-09-13'),
+      changeFrequency: 'monthly',
+      priority: 0.6,
+    },
   ];
 }

@@ -3,15 +3,39 @@ import Link from 'next/link';
 import { GeoAgencyContact } from '@/components/geo/GeoAgencyContact';
 
 // Серверный компонент (без 'use client'): нужен свой export metadata с title/description
-// для /geo/agency, а не только тот, что задан в src/app/geo/layout.tsx для /geo.
+// для /geo/agency, а не только тот, что задан в src/app/(ru)/geo/layout.tsx для /geo.
 // Интерактивность (ymGoal на клик) вынесена в клиентский GeoAgencyContact.
 
-const siteUrl = 'https://kolesnikovdesign.pro';
+// www, как в (ru)-layout и sitemap: apex редиректит на www (307), canonical и og:url должны быть
+// конечными адресами, иначе поисковик видит canonical на редирект.
+const siteUrl = 'https://www.kolesnikovdesign.pro';
+const pageUrl = `${siteUrl}/geo/agency`;
+const geoUrl = `${siteUrl}/geo`;
+
+// Один title на meta/og/twitter/JSON-LD, чтобы WebPage.name не расходился с <title>.
+// absolute — без него родительские layout'ы приклеивают « | Антон Колесников | Kolesnikov Design»,
+// и title разрастался до 90 символов; сейчас 51.
+const pageTitle = 'Замер AI-видимости под вашим брендом — для агентств';
+// 153 символа — укладывается в 160, чтобы сниппет не резался.
+const pageDescription =
+  'White-label замер того, что нейросети отвечают клиентам вашего агентства: белый срез, полный аудит и контрольный съём под вашим брендом, без моего имени.';
+// og:description длиннее meta description: соцсети и мессенджеры не режут его на 160, а здесь
+// помещаются «данные полного аудита» и «в документах» — то, что для агентства и есть суть оффера.
+const ogDescription =
+  'White-label замер того, что нейросети отвечают клиентам вашего агентства: белый срез, данные полного аудита и контрольный съём под вашим брендом, без моего имени в документах.';
+
+// Та же обложка, что у /geo: отдельной картинки под агентскую страницу нет, а без og:image
+// ссылка в Telegram/WhatsApp приходит голым текстом.
+const ogImage = {
+  url: `${siteUrl}/og-geo.png`,
+  width: 1200,
+  height: 630,
+  alt: 'Замер AI-видимости под брендом агентства — обложка страницы',
+};
 
 export const metadata: Metadata = {
-  title: 'Замер AI-видимости под вашим брендом — для агентств | Антон Колесников',
-  description:
-    'White-label замер того, что нейросети отвечают клиентам вашего агентства: белый срез, данные полного аудита и контрольный съём под вашим брендом, без моего имени в документах. Без гарантий позиций — честная методика и сырые данные.',
+  title: { absolute: pageTitle },
+  description: pageDescription,
   keywords: [
     'white-label GEO',
     'аудит AI-видимости для агентств',
@@ -20,24 +44,62 @@ export const metadata: Metadata = {
     'AEO white-label',
   ],
   alternates: {
-    canonical: `${siteUrl}/geo/agency`,
+    canonical: pageUrl,
   },
   openGraph: {
     type: 'website',
-    url: `${siteUrl}/geo/agency`,
+    url: pageUrl,
     siteName: 'Kolesnikov Design',
-    title: 'Замер AI-видимости под вашим брендом — для агентств',
-    description:
-      'White-label замер того, что нейросети отвечают клиентам вашего агентства: белый срез, данные полного аудита и контрольный съём под вашим брендом, без моего имени в документах.',
+    title: pageTitle,
+    description: ogDescription,
     locale: 'ru_RU',
+    images: [ogImage],
   },
   twitter: {
-    card: 'summary',
-    title: 'Замер AI-видимости под вашим брендом — для агентств',
-    description:
-      'White-label замер того, что нейросети отвечают клиентам вашего агентства. Без моего имени в документах, без гарантий позиций.',
+    card: 'summary_large_image',
+    title: pageTitle,
+    description: pageDescription,
+    images: [ogImage.url],
   },
 };
+
+// JSON-LD только WebPage + BreadcrumbList: FAQ и Service на этой странице нет, а тарифы для агентств —
+// не публичный прайс для конечного покупателя, в Offer их не выносим. WebSite/Person описаны
+// в графе /geo (GeoJsonLd), сюда ссылаемся по @id, не дублируя.
+const agencyJsonLd = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      '@id': `${pageUrl}#webpage`,
+      url: pageUrl,
+      name: pageTitle,
+      description: pageDescription,
+      inLanguage: 'ru-RU',
+      isPartOf: { '@id': `${siteUrl}/#website` },
+      primaryImageOfPage: {
+        '@type': 'ImageObject',
+        url: ogImage.url,
+        width: ogImage.width,
+        height: ogImage.height,
+      },
+      breadcrumb: { '@id': `${pageUrl}#breadcrumb` },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${pageUrl}#breadcrumb`,
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Главная', item: siteUrl },
+        { '@type': 'ListItem', position: 2, name: 'Аудит AI-видимости', item: geoUrl },
+        { '@type': 'ListItem', position: 3, name: 'Для агентств', item: pageUrl },
+      ],
+    },
+  ],
+};
+
+// «<» → <: JSON.stringify теги не экранирует, и «</script>» внутри строки закрыл бы тег
+// раньше времени. Для JSON-парсера обе записи — один и тот же символ.
+const agencyJsonLdHtml = JSON.stringify(agencyJsonLd).replace(/</g, '\\u003c');
 
 const offers = [
   {
@@ -103,7 +165,10 @@ const terms = [
 
 export default function GeoAgencyPage() {
   return (
-    <div className="min-h-screen bg-black text-[#e0ded8]">
+    // <main>, а не <div>: у страницы иначе нет landmark основного содержимого. Стили те же,
+    // main по умолчанию display:block — визуально ничего не меняется.
+    <main className="min-h-screen bg-black text-[#e0ded8]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: agencyJsonLdHtml }} />
       {/* Шапка */}
       <section className="relative w-full px-6 md:px-[4vw] pt-16 md:pt-[10vh] pb-16 md:pb-[10vh]">
         <Link
@@ -113,9 +178,11 @@ export default function GeoAgencyPage() {
           ← Аудит для конечных клиентов
         </Link>
 
-        <h2 className="text-[6vw] md:text-[1.6vw] font-sans font-bold text-[#c7b684] mb-4 md:mb-6">
+        {/* Кикер над h1 — <p>, а не <h2>: заголовок второго уровня перед первым ломает иерархию
+            заголовков для поисковиков и скринридеров. Классы те же, вид не меняется. */}
+        <p className="text-[6vw] md:text-[1.6vw] font-sans font-bold text-[#c7b684] mb-4 md:mb-6">
           Для агентств и SEO-подрядчиков
-        </h2>
+        </p>
         <h1 className="text-[11vw] md:text-[5vw] font-headline uppercase leading-[0.95] tracking-tight text-[#e0ded8] max-w-[90vw] md:max-w-[70vw]">
           Замер AI-видимости под вашим брендом
         </h1>
@@ -237,6 +304,6 @@ export default function GeoAgencyPage() {
         </p>
         <GeoAgencyContact />
       </section>
-    </div>
+    </main>
   );
 }
