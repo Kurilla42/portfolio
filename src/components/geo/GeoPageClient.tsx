@@ -36,7 +36,7 @@ const comparisonData = [
   },
   {
     criterion: "ТЁЗКИ",
-    me: "Отсекаются вручную",
+    me: "Отсекаются при вычитке",
     freelancer: "Засчитываются вам"
   },
   {
@@ -208,7 +208,7 @@ export default function GeoPageClient() {
               </h2>
               <p className="font-mono text-[3.5vw] md:text-[0.9vw] uppercase tracking-tight text-[#e0ded8]/60 leading-relaxed w-full max-w-full">
                 <span className="md:hidden">Три рабочих дня от аванса и согласованной карты запросов</span>
-                <span className="hidden md:inline">Три рабочих дня от аванса и согласованной карты запросов до отчёта. Запросы уходят в нейросети программно, руками делается разбор</span>
+                <span className="hidden md:inline">Три рабочих дня от аванса и согласованной карты запросов до отчёта. Запросы уходят в нейросети программно, дальше разбор и вычитка</span>
               </p>
             </div>
 
