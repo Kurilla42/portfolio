@@ -26,7 +26,7 @@ const steps = [
 const comparisonData = [
   {
     criterion: "ОБЪЁМ",
-    me: "От 600 ответов, два прогона",
+    me: "От 780 ответов, два прогона",
     freelancer: "Около 40, один прогон"
   },
   {
