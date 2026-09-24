@@ -25,11 +25,11 @@ export function GeoAgencyContact() {
         Telegram @telegam_kolesnikov
       </Link>
       <Link
-        href="mailto:anton@kolesnikovdesign.pro"
+        href="mailto:sterlet.prod@gmail.com"
         onClick={() => ymGoal("agency_email")}
         className="hover:text-[#c7b684] transition-colors"
       >
-        anton@kolesnikovdesign.pro
+        sterlet.prod@gmail.com
       </Link>
     </div>
   );
