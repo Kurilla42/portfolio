@@ -30,14 +30,14 @@ const interCyr = Inter({
 // www, как и в (ru)-layout: apex редиректит на www (307), canonical должен быть конечным.
 const siteUrl = 'https://www.kolesnikovdesign.pro';
 
-// og:description длиннее meta description (~190 символов): соцсети и мессенджеры не режут его
+// og:description длиннее meta description (~200 символов): соцсети и мессенджеры не режут его
 // на 160, а тут есть место для «в ответах» и «о вас».
 const ogDescription =
-  'Что Алиса, GigaChat, ChatGPT, DeepSeek и Gemini отвечают вашему покупателю: где вас нет в ответах, какие ошибки о вас слышит покупатель, сколько рублей уходит мимо. От 25 000 ₽, 3 рабочих дня.';
+  'Что ИИ-поиск Яндекса (Алиса с поиском и Нейро) и нейросети отвечают вашему покупателю: где вас нет в ответах, какие ошибки о вас слышит покупатель, сколько рублей уходит мимо. 25 000 ₽, 3 рабочих дня.';
 
 export const metadata: Metadata = {
   // absolute — иначе корневой шаблон приклеивает « | Kolesnikov Design», и title растёт до 81
-  // символа; сейчас 62. title/description живут в GeoJsonLd, чтобы WebPage.name совпадал с ними.
+  // символа; сейчас 59. title/description живут в GeoJsonLd, чтобы WebPage.name совпадал с ними.
   title: { absolute: geoTitle },
   description: geoDescription,
   keywords: [
@@ -47,6 +47,7 @@ export const metadata: Metadata = {
     'AEO',
     'продвижение в ChatGPT',
     'видимость в Алисе',
+    'Яндекс Нейро',
     'GigaChat',
     'DeepSeek',
     'Антон Колесников',
