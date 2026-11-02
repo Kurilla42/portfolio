@@ -1,8 +1,7 @@
 import Script from 'next/script';
 import { Analytics } from '@vercel/analytics/next';
 import { Toaster } from "@/components/ui/toaster";
-import { SmoothScroll } from "@/components/SmoothScroll";
-import { CustomCursor } from "@/components/CustomCursor";
+import { SiteMotion } from "@/components/SiteMotion";
 
 // Общая «обвязка» <body> для обоих root layout — (en) и (ru). Вынесена из бывшего
 // src/app/layout.tsx, чтобы у английских и русских страниц был разный <html lang>,
@@ -12,7 +11,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
   return (
     <>
       {/* Yandex.Metrika counter */}
-      <Script id="yandex-metrika" strategy="afterInteractive">
+      {process.env.NODE_ENV === 'production' && <><Script id="yandex-metrika" strategy="afterInteractive">
         {`(function(m,e,t,r,i,k,a){
             m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
             m[i].l=1*new Date();
@@ -25,17 +24,13 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
         <div>
           <img src="https://mc.yandex.ru/watch/109643428" style={{ position: 'absolute', left: '-9999px' }} alt="" />
         </div>
-      </noscript>
+      </noscript></>}
       {/* /Yandex.Metrika counter */}
 
       {/* Grain Overlay */}
       <div className="noise-overlay" aria-hidden="true" />
 
-      <CustomCursor />
-
-      <SmoothScroll>
-        {children}
-      </SmoothScroll>
+      <SiteMotion>{children}</SiteMotion>
       <Toaster />
       <Analytics />
     </>
