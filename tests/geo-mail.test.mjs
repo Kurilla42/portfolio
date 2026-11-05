@@ -22,6 +22,15 @@ test('only a valid provider receipt returns accepted; fixed recipient, plain tex
   assert.deepEqual(await result.json(),{accepted:true,lead_id:id});
   assert.deepEqual(sent.to,['sterlet.prod@gmail.com']);assert.match(sent.text,/utm_source: yandex/);assert.match(sent.text,/client_id: 123/);assert.doesNotMatch(sent.text,/not-a-tag/);assert.equal(sent.html,undefined);
 });
+
+test('provider UUIDv7 receipt confirms acceptance for both landing pages',async()=>{
+  const id='019a546a-d180-7d31-8c1a-61fe7cf89370';
+  for(const segment of ['business','agency']) {
+    const response=await handleGeoLead(request(lead({segment,agency_name:'Агентство',analysis_target_confirmed:true})),{env,now,fetchImpl:async()=>Response.json({id})});
+    assert.equal(response.status,200);
+    assert.deepEqual(await response.json(),{accepted:true,lead_id:id});
+  }
+});
 test('double click/retry use same provider key and receipt',async()=>{
   const key=randomUUID(),id=randomUUID();const deliveries=new Map();let sends=0;
   const fetchImpl=async(url,options)=>{const k=options.headers['Idempotency-Key'];if(!deliveries.has(k)){deliveries.set(k,options.body);sends++;}else assert.equal(deliveries.get(k),options.body);return Response.json({id});};

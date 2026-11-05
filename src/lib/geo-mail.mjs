@@ -1,4 +1,4 @@
-const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[1-5][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
+const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
 const TAGS = ['client_id','yclid','utm_source','utm_medium','utm_campaign','utm_content','utm_term','match_type','phrase_id','region_id'];
 export const PRIVACY_VERSION = '2026-11-03';
 export const RETRY_WINDOW_MS = 23 * 60 * 60 * 1000;
