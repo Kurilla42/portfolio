@@ -1,11 +1,12 @@
+import '@/components/geo/geo-landing.css';
 import type { Metadata } from 'next';
 import { Oswald, IBM_Plex_Mono, Inter } from 'next/font/google';
 import { geoTitle, geoDescription } from '@/components/geo/GeoJsonLd';
+import { GeoRouteTracking } from '@/components/geo/GeoRouteTracking';
 
 // Anton и Space Mono из (en)-layout без кириллицы; в (ru)-layout их нет вовсе — для /geo подключаем
 // кириллические аналоги и подменяем ими CSS-переменные, на которые ссылаются
-// tailwind-классы font-headline / font-mono / font-sans. Разметка секций при этом
-// остаётся 1-в-1 как на /adw.
+// tailwind-классы font-headline / font-mono / font-sans.
 const oswald = Oswald({
   subsets: ['cyrillic', 'latin'],
   weight: ['500', '600', '700'],
@@ -31,9 +32,8 @@ const interCyr = Inter({
 const siteUrl = 'https://www.kolesnikovdesign.pro';
 
 // og:description длиннее meta description (~200 символов): соцсети и мессенджеры не режут его
-// на 160, а тут есть место для «в ответах» и «о вас».
-const ogDescription =
-  'Что ИИ-поиск Яндекса (Алиса с поиском и Нейро) и нейросети отвечают вашему покупателю: где вас нет в ответах, какие ошибки о вас слышит покупатель, сколько рублей уходит мимо. 25 000 ₽, 3 рабочих дня.';
+// на 160; здесь используется согласованное описание услуги.
+const ogDescription = geoDescription;
 
 export const metadata: Metadata = {
   // absolute — иначе корневой шаблон приклеивает « | Kolesnikov Design», и title растёт до 81
@@ -64,7 +64,7 @@ export const metadata: Metadata = {
     locale: 'ru_RU',
     images: [
       {
-        url: `${siteUrl}/og-geo.png`,
+        url: `${siteUrl}/geo/og`,
         width: 1200,
         height: 630,
         alt: 'Аудит AI-видимости бизнеса в нейросетях — обложка страницы',
@@ -75,7 +75,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: geoTitle,
     description: geoDescription,
-    images: [`${siteUrl}/og-geo.png`],
+    images: [`${siteUrl}/geo/og`],
   },
 };
 
@@ -94,11 +94,9 @@ export default function GeoLayout({ children }: { children: React.ReactNode }) {
         } as React.CSSProperties
       }
     >
-      {/* React 19 поднимает эти <link> в <head>. preconnect к i.ibb.co — оттуда картинки секций
-          и финального блока; dns-prefetch к Метрике — её скрипт грузится afterInteractive из
-          SiteChrome, полный preconnect ради него не нужен. */}
-      <link rel="preconnect" href="https://i.ibb.co" />
+      {/* Изображения GEO локальные. Счётчик загружается afterInteractive из SiteChrome. */}
       <link rel="dns-prefetch" href="https://mc.yandex.ru" />
+      <GeoRouteTracking />
       {children}
     </div>
   );

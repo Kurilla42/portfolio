@@ -1,0 +1,216 @@
+{
+  "counter_id": 109643428,
+  "goal_type": "target_event",
+  "goals": [
+    {
+      "identifier": "geo_business_full_hero_cta",
+      "segment": "business",
+      "product": "full",
+      "event": "hero_cta",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_mini_hero_cta",
+      "segment": "business",
+      "product": "mini",
+      "event": "hero_cta",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_pricing_view",
+      "segment": "business",
+      "product": null,
+      "event": "pricing_view",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_sample_open",
+      "segment": "business",
+      "product": null,
+      "event": "sample_open",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_full_form_start",
+      "segment": "business",
+      "product": "full",
+      "event": "form_start",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_mini_form_start",
+      "segment": "business",
+      "product": "mini",
+      "event": "form_start",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_full_form_submit_attempt",
+      "segment": "business",
+      "product": "full",
+      "event": "form_submit_attempt",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_mini_form_submit_attempt",
+      "segment": "business",
+      "product": "mini",
+      "event": "form_submit_attempt",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_full_form_error",
+      "segment": "business",
+      "product": "full",
+      "event": "form_error",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_mini_form_error",
+      "segment": "business",
+      "product": "mini",
+      "event": "form_error",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_full_lead_success",
+      "segment": "business",
+      "product": "full",
+      "event": "lead_success",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_mini_lead_success",
+      "segment": "business",
+      "product": "mini",
+      "event": "lead_success",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_telegram_click",
+      "segment": "business",
+      "product": null,
+      "event": "telegram_click",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_phone_click",
+      "segment": "business",
+      "product": null,
+      "event": "phone_click",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_business_email_click",
+      "segment": "business",
+      "product": null,
+      "event": "email_click",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_full_hero_cta",
+      "segment": "agency",
+      "product": "full",
+      "event": "hero_cta",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_mini_hero_cta",
+      "segment": "agency",
+      "product": "mini",
+      "event": "hero_cta",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_pricing_view",
+      "segment": "agency",
+      "product": null,
+      "event": "pricing_view",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_sample_open",
+      "segment": "agency",
+      "product": null,
+      "event": "sample_open",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_full_form_start",
+      "segment": "agency",
+      "product": "full",
+      "event": "form_start",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_mini_form_start",
+      "segment": "agency",
+      "product": "mini",
+      "event": "form_start",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_full_form_submit_attempt",
+      "segment": "agency",
+      "product": "full",
+      "event": "form_submit_attempt",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_mini_form_submit_attempt",
+      "segment": "agency",
+      "product": "mini",
+      "event": "form_submit_attempt",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_full_form_error",
+      "segment": "agency",
+      "product": "full",
+      "event": "form_error",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_mini_form_error",
+      "segment": "agency",
+      "product": "mini",
+      "event": "form_error",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_full_lead_success",
+      "segment": "agency",
+      "product": "full",
+      "event": "lead_success",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_mini_lead_success",
+      "segment": "agency",
+      "product": "mini",
+      "event": "lead_success",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_telegram_click",
+      "segment": "agency",
+      "product": null,
+      "event": "telegram_click",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_phone_click",
+      "segment": "agency",
+      "product": null,
+      "event": "phone_click",
+      "numeric_goal_id": null
+    },
+    {
+      "identifier": "geo_agency_email_click",
+      "segment": "agency",
+      "product": null,
+      "event": "email_click",
+      "numeric_goal_id": null
+    }
+  ]
+}
