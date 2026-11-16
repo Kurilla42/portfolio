@@ -28,6 +28,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.9,
     },
+    {
+      url: `${siteUrl}/dayclear`,
+      lastModified: new Date('2026-11-16'),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     // /geo/agency в sitemap нет намеренно (правка владельца 24.09.2026): страница для агентств
     // живёт по прямой ссылке с noindex, прямой клиент не должен находить её через поиск.
   ];

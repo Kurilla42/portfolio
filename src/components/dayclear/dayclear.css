@@ -1,0 +1,4 @@
+.dayclear-landing .dayclear-contact-card{align-self:start;background:#000b;padding:24px;border:1px solid var(--geo-line)}
+.dayclear-landing .dayclear-contact-card .geo-button{margin-top:12px}
+.dayclear-landing .geo-lead-dialog .geo-button{width:100%}
+@media(max-width:700px){.dayclear-landing .dayclear-contact-card{padding:24px 0;border-inline:0}}

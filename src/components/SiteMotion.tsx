@@ -6,7 +6,7 @@ import { GeoSmoothScroll } from './geo/GeoSmoothScroll';
 
 export function SiteMotion({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  if (pathname === '/geo' || pathname === '/geo/agency') return <><CustomCursor /><GeoSmoothScroll>{children}</GeoSmoothScroll></>;
+  if (pathname === '/geo' || pathname === '/geo/agency' || pathname === '/dayclear') return <><CustomCursor /><GeoSmoothScroll>{children}</GeoSmoothScroll></>;
   if (pathname === '/geo' || pathname.startsWith('/geo/')) return <>{children}</>;
   return <><CustomCursor /><SmoothScroll>{children}</SmoothScroll></>;
 }
