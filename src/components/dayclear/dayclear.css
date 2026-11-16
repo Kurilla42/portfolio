@@ -1,4 +1,15 @@
 .dayclear-landing .geo-lead-dialog .geo-button{width:100%}
+.dayclear-hero-author{font-size:16px;line-height:1.5;color:var(--geo-muted);margin-bottom:24px!important}
+.dayclear-author{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:8.3vw;border-top:1px solid var(--geo-line)}
+.dayclear-author h2{margin:0}
+.dayclear-author-copy{max-width:65ch}
+.dayclear-author-copy p{line-height:1.55}
+.dayclear-author-copy p+p{margin-top:1em}
+
+@media(max-width:767px){
+ .dayclear-author{grid-template-columns:1fr;gap:24px}
+ .dayclear-author h2{margin-bottom:0}
+}
 
 @media(max-width:600px){
  .dayclear-landing .geo-hero h1{font-size:clamp(32px,10vw,56px);line-height:1.05}
