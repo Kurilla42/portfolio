@@ -8,8 +8,8 @@ const oswald = Oswald({ subsets: ['cyrillic', 'latin'], weight: ['500', '600', '
 const plexMono = IBM_Plex_Mono({ subsets: ['cyrillic', 'latin'], weight: ['400', '700'], variable: '--font-plex-mono', display: 'swap' });
 const interCyr = Inter({ subsets: ['cyrillic', 'latin'], weight: ['400', '500', '700', '800', '900'], variable: '--font-inter-cyr', display: 'swap' });
 const url = 'https://www.kolesnikovdesign.pro/dayclear';
-const title = 'Dayclear — отчётность для маркетологов и агентств';
-const description = 'Индивидуальная настройка отчётности: данные, пояснения и сохранённые выпуски в одном рабочем процессе.';
+const title = 'Dayclear: автоматизация отчетности по клиентам';
+const description = 'Настройка отчетности для маркетологов и агентств. Показатели за нужный период, ваши пояснения и ответы клиента в одном выпуске. Внедрение от 29 000 ₽.';
 export const metadata: Metadata = {
   title: { absolute: title }, description, alternates: { canonical: url },
   openGraph: { type: 'website', url, siteName: 'Kolesnikov Design', title, description, locale: 'ru_RU' },

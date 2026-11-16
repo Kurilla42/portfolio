@@ -1,5 +1,6 @@
 'use client';
 import { useEffect, useRef } from 'react';
+import { DayclearLeadForm } from './DayclearLeadForm';
 
 export function DayclearDialog() {
   const dialogRef = useRef<HTMLDialogElement>(null);
@@ -34,7 +35,7 @@ export function DayclearDialog() {
         };
         dialog.showModal();
       }
-      frame = requestAnimationFrame(() => { dialog.scrollTop = 0; dialog.querySelector<HTMLAnchorElement>('[data-telegram]')?.focus({ preventScroll: true }); });
+      frame = requestAnimationFrame(() => { dialog.scrollTop = 0; dialog.querySelector<HTMLInputElement>('[name="contact"]')?.focus({ preventScroll: true }); });
     };
     const outside = (event: MouseEvent) => {
       if (event.target !== dialog) return;
@@ -43,7 +44,7 @@ export function DayclearDialog() {
     };
     const keydown = (event: KeyboardEvent) => {
       if (event.key !== 'Tab' || event.defaultPrevented || event.ctrlKey || event.metaKey || event.altKey) return;
-      const controls = Array.from(dialog.querySelectorAll<HTMLElement>('a[href], button, [tabindex]')).filter(element => element.tabIndex >= 0 && !element.matches(':disabled') && !element.closest('[hidden], [inert]') && element.getClientRects().length > 0);
+      const controls = Array.from(dialog.querySelectorAll<HTMLElement>('a[href], button, input, select, textarea, [tabindex]')).filter(element => element.tabIndex >= 0 && !element.matches(':disabled') && !element.closest('[hidden], [inert]') && element.getClientRects().length > 0);
       const first = controls[0], last = controls[controls.length - 1];
       if (!first || !last) return;
       const active = document.activeElement;
@@ -68,7 +69,8 @@ export function DayclearDialog() {
   return <dialog ref={dialogRef} className="geo-lead-dialog" aria-labelledby="dayclear-dialog-title" data-lenis-prevent>
     <div className="geo-dialog-top"><p className="geo-eyebrow">Следующий шаг</p><button type="button" className="geo-dialog-close" aria-label="Закрыть окно" onClick={() => dialogRef.current?.close()}><span aria-hidden="true">×</span></button></div>
     <h2 id="dayclear-dialog-title" className="geo-dialog-title">Обсудим настройку</h2>
-    <p className="geo-dialog-intro">Напишите мне в Telegram: обсудим вашу отчётность и состав настройки. Отвечаю в будни.</p>
-    <a className="geo-button" data-telegram href="https://t.me/telegam_kolesnikov" target="_blank" rel="noopener noreferrer">Открыть Telegram<span aria-hidden="true">↗</span></a>
+    <p className="geo-dialog-intro">Уточню задачу по указанному контакту. Отвечаю в будни.</p>
+    <DayclearLeadForm idSuffix="dialog" />
   </dialog>;
 }
+
