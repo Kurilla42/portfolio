@@ -1,3 +1,5 @@
+import { safeDayclearAttribution } from './dayclear-analytics.mjs';
+
 const UUID = /^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i;
 export const PRIVACY_VERSION = '2026-11-16';
 export const RETRY_WINDOW_MS = 23 * 60 * 60 * 1000;
@@ -19,10 +21,11 @@ export function validateDayclearLead(value, now = Date.now()) {
     if (!['http:','https:'].includes(url.protocol) || url.username || url.password || !url.hostname.includes('.') || url.hostname === '127.0.0.1') throw fail(422,'INVALID_WEBSITE');
     website = url.href;
   }
-  return {contact,website,name:field(value.name || '',100),task:field(value.task || '',2000),policy_version:PRIVACY_VERSION,attempt_started_at:value.attempt_started_at};
+  return {contact,website,attribution:safeDayclearAttribution(value.attribution),name:field(value.name || '',100),task:field(value.task || '',2000),policy_version:PRIVACY_VERSION,attempt_started_at:value.attempt_started_at};
 }
 export function emailForDayclearLead(lead,key,from) {
   const lines = ['Заявка Dayclear',`ID обращения: ${key}`,`Контакт: ${lead.contact}`,`Имя: ${lead.name || 'Не указано'}`,`Сайт: ${lead.website || 'Не указан'}`,`Задача и текущая отчетность: ${lead.task || 'Не указано'}`,`Согласие: ${lead.policy_version}`,`Время начала отправки: ${new Date(lead.attempt_started_at).toISOString()}`];
+  for (const [tag, value] of Object.entries(lead.attribution || {})) lines.push(`${tag}: ${value}`);
   const mailbox = /^(?:[^<>\r\n]+\s*<([^\s<>@]+@[^\s<>@]+)>|([^\s<>@]+@[^\s<>@]+))$/.exec(from);
   const address = mailbox?.[1] || mailbox?.[2];
   const sender = address ? `Dayclear <${address}>` : from;

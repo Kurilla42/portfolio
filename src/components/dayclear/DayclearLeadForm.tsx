@@ -1,12 +1,14 @@
 'use client';
 import { useEffect, useRef, useState, type FormEvent } from 'react';
 
+import { captureDayclearAttribution, safeDayclearAttribution, dayclearAccepted } from '@/lib/dayclear-analytics.mjs';
+
 class UserMessage extends Error {}
 export function DayclearLeadForm({ idSuffix = '' }: { idSuffix?: string }) {
   const [state, setState] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
   const [message, setMessage] = useState('');
   const busy = useRef(false);
-  const pending = useRef<{ signature: string; key: string; created: number } | null>(null);
+  const pending = useRef<{ signature: string; key: string; created: number; attribution?: Record<string, string> } | null>(null);
   const abortRef = useRef<AbortController | null>(null);
   const statusRef = useRef<HTMLParagraphElement>(null);
   useEffect(() => { if (state === 'error' || state === 'success') statusRef.current?.focus(); }, [state]);
@@ -24,14 +26,15 @@ export function DayclearLeadForm({ idSuffix = '' }: { idSuffix?: string }) {
       const digest = Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(signature))), n => n.toString(16).padStart(2, '0')).join('');
       const storageKey = 'dayclear_pending';
       if (!pending.current) { try { pending.current = JSON.parse(sessionStorage.getItem(storageKey) || 'null'); } catch {} }
-      if (pending.current?.signature !== digest || !pending.current?.key) pending.current = { signature: digest, key: crypto.randomUUID(), created: Date.now() };
+      if (pending.current?.signature !== digest || !pending.current?.key) pending.current = { signature: digest, key: crypto.randomUUID(), created: Date.now(), attribution: captureDayclearAttribution() };
       if (!Number.isFinite(pending.current.created) || Date.now() - pending.current.created > 23 * 60 * 60 * 1000) throw new UserMessage('Срок повторной отправки истек. Свяжитесь по контактам рядом, чтобы уточнить получение заявки.');
       try { sessionStorage.setItem(storageKey, JSON.stringify(pending.current)); } catch {}
-      const response = await fetch('/api/dayclear-leads', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': pending.current.key }, body: JSON.stringify({ ...fields, attempt_started_at: pending.current.created }), signal: controller.signal });
+      const response = await fetch('/api/dayclear-leads', { method: 'POST', credentials: 'same-origin', headers: { 'Content-Type': 'application/json', 'Idempotency-Key': pending.current.key }, body: JSON.stringify({ ...fields, attribution: safeDayclearAttribution(pending.current.attribution), attempt_started_at: pending.current.created }), signal: controller.signal });
       const result = await response.json();
       if (response.status === 422) throw new UserMessage('Проверьте контакт, адрес сайта и согласие. Для Telegram укажите @username, для почты — полный email.');
       if (response.status === 409) throw new UserMessage('Не удалось подтвердить повторную отправку. Свяжитесь по контактам рядом, чтобы уточнить получение заявки.');
       if (!response.ok || result.accepted !== true || typeof result.lead_id !== 'string' || !/^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$/i.test(result.lead_id)) throw new Error('acceptance');
+      dayclearAccepted(result.lead_id);
       setState('success'); setMessage('Заявка принята. Уточню задачу по указанному контакту.');
     } catch (error) {
       setState('error');

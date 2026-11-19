@@ -27,6 +27,16 @@ test('provider receipt and fixed recipient; retries retain key and payload',asyn
   for(let i=0;i<2;i++){const response=await handleDayclearLead(request(lead({task:'Текущая отчетность'}),key),{env,now,fetchImpl});assert.deepEqual(await response.json(),{accepted:true,lead_id:id});}
   assert.equal(sends,1); const sent=JSON.parse([...deliveries.values()][0]);assert.deepEqual(sent.to,['sterlet.prod@gmail.com']);assert.match(sent.text,/Текущая отчетность/);assert.doesNotMatch(sent.text,/GEO|25 000/);
 });
+test('pre-update pending request keeps the exact legacy provider payload when attribution is absent',async()=>{
+  const key=randomUUID(),input=lead({task:'Старое ожидающее обращение'}), id=randomUUID();
+  const legacyText=['Заявка Dayclear',`ID обращения: ${key}`,`Контакт: ${input.contact}`,'Имя: Не указано','Сайт: Не указан',`Задача и текущая отчетность: ${input.task}`,`Согласие: ${PRIVACY_VERSION}`,`Время начала отправки: ${new Date(now).toISOString()}`].join('\n');
+  const legacyPayload=JSON.stringify({from:'Dayclear <test@example.invalid>',to:['sterlet.prod@gmail.com'],subject:'Dayclear: обсудить настройку',text:legacyText,reply_to:input.contact});
+  const fetchImpl=async(url,options)=>{assert.equal(options.headers['Idempotency-Key'],`dayclear/${key}`);assert.equal(options.body,legacyPayload);return Response.json({id});};
+  for(const payload of [input,{...input,attribution:{}}]) {
+    const response=await handleDayclearLead(request(payload,key),{env,now,fetchImpl});
+    assert.deepEqual(await response.json(),{accepted:true,lead_id:id});
+  }
+});
 test('unavailable or malformed provider does not confirm acceptance',async()=>{
   for(const fetchImpl of [async()=>Response.json({id:randomUUID()},{status:500}),async()=>Response.json({},{status:409}),async()=>Response.json({id:'bad'}),async()=>{throw new TypeError('offline');}]){
     const response=await handleDayclearLead(request(lead()),{env,now,fetchImpl});assert.ok(response.status>=400);assert.notEqual((await response.json()).accepted,true);

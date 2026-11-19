@@ -3,6 +3,7 @@ import { GeoSceneMotion } from '@/components/geo/GeoSceneMotion';
 import { DayclearDialog } from './DayclearDialog';
 import { DayclearLeadForm } from './DayclearLeadForm';
 import { DayclearScreens } from './DayclearScreens';
+import { DayclearTracking } from './DayclearTracking';
 
 const features = [
   ['Показатели без ручного переноса', 'Расходы, обращения и продажи рядом. Выбирайте период и сравнивайте его с предыдущим на графиках. При настройке определим, какое действие считать лидом.', ['Расходы, лиды и цена лида', 'Клики и визиты отдельно', 'Продажи и выручка', 'Выбор цели для учета лидов']],
@@ -29,13 +30,13 @@ function CTA() { return <a className="geo-button" href="#contact" data-dayclear-
 
 export function DayclearLanding() {
   return <main className="geo-landing dayclear-landing">
-    <GeoSceneMotion /><DayclearDialog />
+    <GeoSceneMotion /><DayclearDialog /><DayclearTracking />
     <a className="geo-skip" href="#contact">Перейти к обращению</a>
     <div className="geo-opening-scene"><GeoHeroBackground /><div className="geo-opening">
       <header className="geo-header geo-wrap"><a className="geo-brand" href="/">Антон Колесников<span>Dayclear · отчетность</span></a><a className="geo-header-contact" href="#contact" data-dayclear-contact>Обсудить настройку <span aria-hidden="true">↗</span></a></header>
       <section className="geo-hero geo-wrap" aria-labelledby="dayclear-heading">
         <div className="geo-hero-heading"><p className="geo-eyebrow">Для маркетологов и агентств</p><h1 id="dayclear-heading">Автоматизируйте<br className="geo-desktop-break" /> отчетность<br className="geo-desktop-break" /> по клиентам</h1></div>
-        <div className="geo-hero-offer"><p className="geo-intro">Сбор показателей, повторяющиеся вопросы и согласования забирают время у работы над проектами. Dayclear объединяет их в одном процессе. Настрою его под ваши источники и задачи, чтобы вам не пришлось разбираться в интеграциях самостоятельно.</p><p className="dayclear-hero-author">Антон Колесников · 12 лет в интернет-маркетинге</p><div className="geo-hero-actions"><p className="geo-hero-price"><strong>от 29 000 ₽</strong><span>настройка под вашу отчетность</span></p><CTA /><p className="geo-condition">Первые 30 дней обслуживания после активации включены, далее от 2 900 ₽/мес.</p><a className="geo-secondary" href="#scenario">Как устроен выпуск отчета <span aria-hidden="true">↓</span></a></div></div>
+        <div className="geo-hero-offer"><p className="geo-intro">Сбор показателей, повторяющиеся вопросы и согласования забирают время у работы над проектами. Dayclear объединяет их в одном процессе. Настрою его под ваши источники и задачи, чтобы вам не пришлось разбираться в интеграциях самостоятельно.</p><p className="dayclear-hero-author">Антон Колесников · 12 лет в интернет-маркетинге</p><div className="geo-hero-actions"><p className="geo-hero-price"><strong>от 29 000 ₽</strong><span>настройка под вашу отчетность</span></p><CTA /><p className="geo-condition">Первые 30 дней обслуживания после активации включены, далее от 2 900 ₽/мес.</p><a className="geo-secondary" href="#screens">Посмотреть пример отчета <span aria-hidden="true">↓</span></a></div></div>
       </section></div>
       <section id="scenario" className="geo-section geo-wrap geo-sample"><p className="geo-eyebrow">Работа с отчетом</p>
         <div className="geo-proof-layout"><div className="geo-proof-main"><h2>Показатели, пояснения<br />и ответы клиента</h2><div className="geo-proof-fragment"><p className="geo-proof-label">Порядок работы</p><blockquote>Выберите период, сравните показатели и добавьте готовые ответы на вопросы клиента. Сохраните выпуск: цифры и пояснения останутся в нем, а новые задачи и согласования можно вести в том же проекте.</blockquote><p className="geo-proof-source">Выпуски за день, неделю или месяц</p></div></div><div className="geo-proof-comment"><div><span className="geo-eyebrow">Период</span><p>Выберите день, неделю или месяц для отчета.</p></div><div><span className="geo-eyebrow">Пояснение</span><p>Добавьте ответ на вопрос клиента разово, до даты или постоянно.</p></div><div><span className="geo-eyebrow">Выпуск</span><p>Зафиксируйте показатели и пояснения. Клиент сможет оставить комментарий к выпуску.</p></div></div></div>
